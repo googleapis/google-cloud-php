@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the settings related to security issues, such as data redaction
@@ -55,7 +55,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define inspect base settings.
      * The `DLP Inspect Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
@@ -73,7 +73,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define de-identification configuration for the content.
      * The `DLP De-identify Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
@@ -152,7 +152,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           template to define inspect base settings.
      *           The `DLP Inspect Templates Reader` role is needed on the Dialogflow
      *           service identity service account (has the form
-     *           `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     *           `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      *           for your agent's project.
      *           If empty, we use the default DLP inspect config.
      *           The template name will have one of the following formats:
@@ -166,7 +166,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *           template to define de-identification configuration for the content.
      *           The `DLP De-identify Templates Reader` role is needed on the Dialogflow
      *           service identity service account (has the form
-     *           `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     *           `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      *           for your agent's project.
      *           If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      *           The template name will have one of the following formats:
@@ -187,7 +187,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      *     @type int $retention_strategy
      *           Specifies the retention behavior defined by
      *           [SecuritySettings.RetentionStrategy][google.cloud.dialogflow.cx.v3.SecuritySettings.RetentionStrategy].
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $purge_data_types
+     *     @type int[] $purge_data_types
      *           List of types of data to remove when retention settings triggers purge.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings\AudioExportSettings $audio_export_settings
      *           Controls audio export settings for post-conversation analytics when
@@ -345,7 +345,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define inspect base settings.
      * The `DLP Inspect Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
@@ -368,7 +368,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define inspect base settings.
      * The `DLP Inspect Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, we use the default DLP inspect config.
      * The template name will have one of the following formats:
@@ -395,7 +395,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define de-identification configuration for the content.
      * The `DLP De-identify Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
@@ -418,7 +418,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * template to define de-identification configuration for the content.
      * The `DLP De-identify Templates Reader` role is needed on the Dialogflow
      * service identity service account (has the form
-     * `service-PROJECT_NUMBER&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`)
+     * `service-PROJECT_NUMBER\@gcp-sa-dialogflow.iam.gserviceaccount.com`)
      * for your agent's project.
      * If empty, Dialogflow replaces sensitive info with `[redacted]` text.
      * The template name will have one of the following formats:
@@ -522,7 +522,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * List of types of data to remove when retention settings triggers purge.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SecuritySettings.PurgeDataType purge_data_types = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPurgeDataTypes()
     {
@@ -533,7 +533,7 @@ class SecuritySettings extends \Google\Protobuf\Internal\Message
      * List of types of data to remove when retention settings triggers purge.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SecuritySettings.PurgeDataType purge_data_types = 8;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPurgeDataTypes($var)

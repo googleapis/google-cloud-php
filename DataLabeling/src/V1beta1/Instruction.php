@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instruction of how to perform the labeling task for human operators.
@@ -109,7 +109,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataLabeling\V1beta1\PdfInstruction $pdf_instruction
      *           Instruction from a PDF document. The PDF should be in a Cloud Storage
      *           bucket.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type string[] $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the instruction.
      * }
@@ -396,7 +396,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * to the instruction.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockingResources()
     {
@@ -408,7 +408,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * to the instruction.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockingResources($var)

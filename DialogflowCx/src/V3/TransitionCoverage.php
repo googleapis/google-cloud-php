@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Transition coverage represents the percentage of all possible page
@@ -36,7 +36,7 @@ class TransitionCoverage extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage\Transition>|\Google\Protobuf\Internal\RepeatedField $transitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage\Transition[] $transitions
      *           The list of Transitions present in the agent.
      *     @type float $coverage_score
      *           The percent of transitions in the agent that are covered.
@@ -51,7 +51,7 @@ class TransitionCoverage extends \Google\Protobuf\Internal\Message
      * The list of Transitions present in the agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionCoverage.Transition transitions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage\Transition>
      */
     public function getTransitions()
     {
@@ -62,7 +62,7 @@ class TransitionCoverage extends \Google\Protobuf\Internal\Message
      * The list of Transitions present in the agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionCoverage.Transition transitions = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage\Transition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionCoverage\Transition[] $var
      * @return $this
      */
     public function setTransitions($var)

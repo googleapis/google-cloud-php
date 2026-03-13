@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a snapshot of a job.
@@ -95,7 +95,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The time after which this snapshot will be automatically deleted.
      *     @type int $state
      *           State of the snapshot.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
+     *     @type \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[] $pubsub_metadata
      *           Pub/Sub snapshot metadata.
      *     @type string $description
      *           User specified description of the snapshot. Maybe empty.
@@ -291,7 +291,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>
      */
     public function getPubsubMetadata()
     {
@@ -302,7 +302,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[] $var
      * @return $this
      */
     public function setPubsubMetadata($var)

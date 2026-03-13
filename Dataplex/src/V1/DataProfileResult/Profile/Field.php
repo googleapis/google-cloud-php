@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataProfileResult\Profile;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A field within a table.
@@ -208,5 +208,4 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

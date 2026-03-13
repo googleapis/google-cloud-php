@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Salesforce object.
@@ -39,7 +39,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
      *
      *     @type string $object_name
      *           Object name.
-     *     @type array<\Google\Cloud\Datastream\V1\SalesforceField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Datastream\V1\SalesforceField[] $fields
      *           Salesforce fields.
      *           When unspecified as part of include objects,
      *           includes everything, when unspecified as part of exclude objects,
@@ -84,7 +84,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
      * excludes nothing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SalesforceField fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\SalesforceField>
      */
     public function getFields()
     {
@@ -98,7 +98,7 @@ class SalesforceObject extends \Google\Protobuf\Internal\Message
      * excludes nothing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SalesforceField fields = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\SalesforceField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\SalesforceField[] $var
      * @return $this
      */
     public function setFields($var)

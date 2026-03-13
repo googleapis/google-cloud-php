@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details the properties of the underlying storage.
@@ -18,9 +18,9 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
     /**
      * Patterns to identify a set of files for this fileset.
      * Examples of a valid `file_pattern`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
      *                               and all subdirectories recursively
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -31,8 +31,8 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *
      * Generated from protobuf field <code>repeated string file_pattern = 1;</code>
@@ -51,12 +51,12 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_pattern
+     *     @type string[] $file_pattern
      *           Patterns to identify a set of files for this fileset.
      *           Examples of a valid `file_pattern`:
-     *            * `gs://bucket_name/dir/&#42;`: matches all files in the `bucket_name/dir`
+     *            * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
      *                                        directory
-     *            * `gs://bucket_name/dir/&#42;*`: matches all files in the `bucket_name/dir`
+     *            * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
      *                                         and all subdirectories recursively
      *            * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                                        `bucket_name`
@@ -67,8 +67,8 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *                                              `bucket_name`
      *            * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                            or `m` followed by `.txt` in `bucket_name`
-     *            * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                                        the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *            * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                                        the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *            * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *     @type string $file_type
      *           File type in MIME format, for example, `text/plain`.
@@ -82,9 +82,9 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
     /**
      * Patterns to identify a set of files for this fileset.
      * Examples of a valid `file_pattern`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
      *                               and all subdirectories recursively
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -95,12 +95,12 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *
      * Generated from protobuf field <code>repeated string file_pattern = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilePattern()
     {
@@ -110,9 +110,9 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
     /**
      * Patterns to identify a set of files for this fileset.
      * Examples of a valid `file_pattern`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in the `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir`
      *                               and all subdirectories recursively
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -123,12 +123,12 @@ class StorageProperties extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *
      * Generated from protobuf field <code>repeated string file_pattern = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilePattern($var)

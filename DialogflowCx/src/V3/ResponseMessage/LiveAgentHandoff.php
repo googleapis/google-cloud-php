@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates that the conversation should be handed off to a live agent.
@@ -89,5 +89,4 @@ class LiveAgentHandoff extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

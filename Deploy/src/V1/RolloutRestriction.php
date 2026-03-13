@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rollout restrictions.
@@ -52,10 +52,10 @@ class RolloutRestriction extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Required. Restriction rule ID. Required and must be unique within a
      *           DeployPolicy. The format is `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $invokers
+     *     @type int[] $invokers
      *           Optional. What invoked the action. If left empty, all invoker types will be
      *           restricted.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type int[] $actions
      *           Optional. Rollout actions to be restricted as part of the policy. If left
      *           empty, all actions will be restricted.
      *     @type \Google\Cloud\Deploy\V1\TimeWindows $time_windows
@@ -100,7 +100,7 @@ class RolloutRestriction extends \Google\Protobuf\Internal\Message
      * restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicy.Invoker invokers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getInvokers()
     {
@@ -112,7 +112,7 @@ class RolloutRestriction extends \Google\Protobuf\Internal\Message
      * restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicy.Invoker invokers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setInvokers($var)
@@ -128,7 +128,7 @@ class RolloutRestriction extends \Google\Protobuf\Internal\Message
      * empty, all actions will be restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RolloutRestriction.RolloutActions actions = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getActions()
     {
@@ -140,7 +140,7 @@ class RolloutRestriction extends \Google\Protobuf\Internal\Message
      * empty, all actions will be restricted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RolloutRestriction.RolloutActions actions = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setActions($var)

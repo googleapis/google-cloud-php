@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta\Violation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents remediation guidance to resolve compliance violation for
@@ -46,7 +46,7 @@ class Remediation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\CloudControlsPartner\V1beta\Violation\Remediation\Instructions $instructions
      *           Required. Remediation instructions to resolve violations
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $compliant_values
+     *     @type string[] $compliant_values
      *           Values that can resolve the violation
      *           For example: for list org policy violations, this will either be the list
      *           of allowed or denied values
@@ -102,7 +102,7 @@ class Remediation extends \Google\Protobuf\Internal\Message
      * of allowed or denied values
      *
      * Generated from protobuf field <code>repeated string compliant_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCompliantValues()
     {
@@ -115,7 +115,7 @@ class Remediation extends \Google\Protobuf\Internal\Message
      * of allowed or denied values
      *
      * Generated from protobuf field <code>repeated string compliant_values = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCompliantValues($var)
@@ -155,5 +155,4 @@ class Remediation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entry specification for a Dataplex table.
@@ -42,7 +42,7 @@ class DataplexTableSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\DataplexExternalTable>|\Google\Protobuf\Internal\RepeatedField $external_tables
+     *     @type \Google\Cloud\DataCatalog\V1\DataplexExternalTable[] $external_tables
      *           List of external tables registered by Dataplex in other systems based on
      *           the same underlying data.
      *           External tables allow to query this data in those systems.
@@ -63,7 +63,7 @@ class DataplexTableSpec extends \Google\Protobuf\Internal\Message
      * External tables allow to query this data in those systems.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.DataplexExternalTable external_tables = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\DataplexExternalTable>
      */
     public function getExternalTables()
     {
@@ -76,7 +76,7 @@ class DataplexTableSpec extends \Google\Protobuf\Internal\Message
      * External tables allow to query this data in those systems.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.DataplexExternalTable external_tables = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\DataplexExternalTable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\DataplexExternalTable[] $var
      * @return $this
      */
     public function setExternalTables($var)

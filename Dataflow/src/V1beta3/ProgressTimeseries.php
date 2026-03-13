@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the progress of some component of job execution.
@@ -37,7 +37,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      *
      *     @type float $current_progress
      *           The current progress of the component, in the range [0,1].
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point>|\Google\Protobuf\Internal\RepeatedField $data_points
+     *     @type \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point[] $data_points
      *           History of progress for the component.
      *           Points are sorted by time.
      * }
@@ -78,7 +78,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      * Points are sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ProgressTimeseries.Point data_points = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point>
      */
     public function getDataPoints()
     {
@@ -90,7 +90,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      * Points are sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ProgressTimeseries.Point data_points = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point[] $var
      * @return $this
      */
     public function setDataPoints($var)

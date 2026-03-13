@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The output of a DataQualityScan.
@@ -93,15 +93,15 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      *     @type float $score
      *           Output only. The overall data quality score.
      *           The score ranges between [0, 100] (up to two decimal points).
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityDimensionResult[] $dimensions
      *           Output only. A list of results at the dimension level.
      *           A dimension will have a corresponding `DataQualityDimensionResult` if and
      *           only if there is at least one rule with the 'dimension' field set to it.
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityColumnResult[] $columns
      *           Output only. A list of results at the column level.
      *           A column will have a corresponding `DataQualityColumnResult` if and only if
      *           there is at least one rule with the 'column' field set to it.
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRuleResult[] $rules
      *           Output only. A list of all the rules in a job, and their results.
      *     @type int|string $row_count
      *           Output only. The count of rows processed.
@@ -191,7 +191,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * only if there is at least one rule with the 'dimension' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>
      */
     public function getDimensions()
     {
@@ -204,7 +204,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * only if there is at least one rule with the 'dimension' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityDimensionResult[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -221,7 +221,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * there is at least one rule with the 'column' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityColumnResult columns = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>
      */
     public function getColumns()
     {
@@ -234,7 +234,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * there is at least one rule with the 'column' field set to it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityColumnResult columns = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityColumnResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityColumnResult[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -249,7 +249,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * Output only. A list of all the rules in a job, and their results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>
      */
     public function getRules()
     {
@@ -260,7 +260,7 @@ class DataQualityResult extends \Google\Protobuf\Internal\Message
      * Output only. A list of all the rules in a job, and their results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult rules = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityRuleResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRuleResult[] $var
      * @return $this
      */
     public function setRules($var)

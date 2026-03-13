@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListConversationModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\ConversationModel>|\Google\Protobuf\Internal\RepeatedField $conversation_models
+     *     @type \Google\Cloud\Dialogflow\V2\ConversationModel[] $conversation_models
      *           The list of models to return.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -52,7 +52,7 @@ class ListConversationModelsResponse extends \Google\Protobuf\Internal\Message
      * The list of models to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ConversationModel conversation_models = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ConversationModel>
      */
     public function getConversationModels()
     {
@@ -63,7 +63,7 @@ class ListConversationModelsResponse extends \Google\Protobuf\Internal\Message
      * The list of models to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ConversationModel conversation_models = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\ConversationModel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\ConversationModel[] $var
      * @return $this
      */
     public function setConversationModels($var)

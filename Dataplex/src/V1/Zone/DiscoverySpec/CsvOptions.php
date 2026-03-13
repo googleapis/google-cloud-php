@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Zone\DiscoverySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describe CSV and similar semi-structured data formats.
@@ -178,5 +178,4 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

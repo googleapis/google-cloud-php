@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The sources of the answers.
@@ -176,5 +176,4 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

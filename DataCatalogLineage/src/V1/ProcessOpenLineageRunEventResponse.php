@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -53,7 +53,7 @@ class ProcessOpenLineageRunEventResponse extends \Google\Protobuf\Internal\Messa
      *           Created run name.
      *           Format:
      *           `projects/{project}/locations/{location}/processes/{process}/runs/{run}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $lineage_events
+     *     @type string[] $lineage_events
      *           Created lineage event names.
      *           Format:
      *           `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`.
@@ -128,7 +128,7 @@ class ProcessOpenLineageRunEventResponse extends \Google\Protobuf\Internal\Messa
      * `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`.
      *
      * Generated from protobuf field <code>repeated string lineage_events = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLineageEvents()
     {
@@ -141,7 +141,7 @@ class ProcessOpenLineageRunEventResponse extends \Google\Protobuf\Internal\Messa
      * `projects/{project}/locations/{location}/processes/{process}/runs/{run}/lineageEvents/{lineage_event}`.
      *
      * Generated from protobuf field <code>repeated string lineage_events = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLineageEvents($var)

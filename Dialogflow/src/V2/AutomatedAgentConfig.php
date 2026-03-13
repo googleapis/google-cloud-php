@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the Automated Agent to connect to a conversation.
@@ -19,7 +19,7 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * Required. ID of the Dialogflow agent environment to use.
      * This project needs to either be the same project as the conversation or you
      * need to grant `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
      * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not
@@ -54,7 +54,7 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      *           Required. ID of the Dialogflow agent environment to use.
      *           This project needs to either be the same project as the conversation or you
      *           need to grant `service-<Conversation Project
-     *           Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
+     *           Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      *           Service Agent` role in this project.
      *           - For ES agents, use format: `projects/<Project ID>/locations/<Location
      *           ID>/agent/environments/<Environment ID or '-'>`. If environment is not
@@ -81,7 +81,7 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * Required. ID of the Dialogflow agent environment to use.
      * This project needs to either be the same project as the conversation or you
      * need to grant `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
      * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not
@@ -105,7 +105,7 @@ class AutomatedAgentConfig extends \Google\Protobuf\Internal\Message
      * Required. ID of the Dialogflow agent environment to use.
      * This project needs to either be the same project as the conversation or you
      * need to grant `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API
      * Service Agent` role in this project.
      * - For ES agents, use format: `projects/<Project ID>/locations/<Location
      * ID>/agent/environments/<Environment ID or '-'>`. If environment is not

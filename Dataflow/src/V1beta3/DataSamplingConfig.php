@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for sampling elements.
@@ -35,7 +35,7 @@ class DataSamplingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $behaviors
+     *     @type int[] $behaviors
      *           List of given sampling behaviors to enable. For example, specifying
      *           behaviors = [ALWAYS_ON] samples in-flight elements but does not sample
      *           exceptions. Can be used to specify multiple behaviors like,
@@ -62,7 +62,7 @@ class DataSamplingConfig extends \Google\Protobuf\Internal\Message
      * Ordering does not matter.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DataSamplingConfig.DataSamplingBehavior behaviors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getBehaviors()
     {
@@ -80,7 +80,7 @@ class DataSamplingConfig extends \Google\Protobuf\Internal\Message
      * Ordering does not matter.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DataSamplingConfig.DataSamplingBehavior behaviors = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setBehaviors($var)

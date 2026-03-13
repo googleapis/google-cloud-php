@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to an instance of GitHub Enterprise.
@@ -35,8 +35,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
     protected $app_slug = '';
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -44,8 +44,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
     protected $private_key_secret_version = '';
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * GitHub App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -108,13 +108,13 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The URL-friendly name of the GitHub App.
      *     @type string $private_key_secret_version
      *           Optional. SecretManager resource containing the private key of the GitHub
-     *           App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      *           supported in that location).
      *     @type string $webhook_secret_secret_version
      *           Optional. SecretManager resource containing the webhook secret of the
-     *           GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           GitHub App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      *           supported in that location).
      *     @type int|string $app_installation_id
      *           Optional. ID of the installation of the GitHub App.
@@ -221,8 +221,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -235,8 +235,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the private key of the GitHub
-     * App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string private_key_secret_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -253,8 +253,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * GitHub App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -267,8 +267,8 @@ class GitHubEnterpriseConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. SecretManager resource containing the webhook secret of the
-     * GitHub App, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * GitHub App, formatted as `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

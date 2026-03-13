@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A validation to perform on a stream.
@@ -50,7 +50,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      *           A short description of the validation.
      *     @type int $state
      *           Output only. Validation execution status.
-     *     @type array<\Google\Cloud\Datastream\V1\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $message
+     *     @type \Google\Cloud\Datastream\V1\ValidationMessage[] $message
      *           Messages reflecting the validation results.
      *     @type string $code
      *           A custom code identifying this validation.
@@ -117,7 +117,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      * Messages reflecting the validation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.ValidationMessage message = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\ValidationMessage>
      */
     public function getMessage()
     {
@@ -128,7 +128,7 @@ class Validation extends \Google\Protobuf\Internal\Message
      * Messages reflecting the validation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.ValidationMessage message = 3;</code>
-     * @param array<\Google\Cloud\Datastream\V1\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\ValidationMessage[] $var
      * @return $this
      */
     public function setMessage($var)

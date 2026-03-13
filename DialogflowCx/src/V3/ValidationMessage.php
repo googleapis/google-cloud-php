@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Agent/flow validation message.
@@ -55,9 +55,9 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      *
      *     @type int $resource_type
      *           The type of the resources where the message is found.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type string[] $resources
      *           The names of the resources where the message is found.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResourceName>|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResourceName[] $resource_names
      *           The resource names of the resources where the message is found.
      *     @type int $severity
      *           Indicates the severity of the message.
@@ -100,7 +100,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      * The names of the resources where the message is found.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getResources()
@@ -115,7 +115,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      * The names of the resources where the message is found.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -134,7 +134,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      * The resource names of the resources where the message is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResourceName resource_names = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResourceName>
      */
     public function getResourceNames()
     {
@@ -145,7 +145,7 @@ class ValidationMessage extends \Google\Protobuf\Internal\Message
      * The resource names of the resources where the message is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResourceName resource_names = 6;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResourceName>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResourceName[] $var
      * @return $this
      */
     public function setResourceNames($var)

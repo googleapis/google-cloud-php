@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an audio message that is composed of both segments
@@ -34,7 +34,7 @@ class MixedAudio extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\MixedAudio\Segment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\MixedAudio\Segment[] $segments
      *           Segments this audio response is composed of.
      * }
      */
@@ -47,7 +47,7 @@ class MixedAudio extends \Google\Protobuf\Internal\Message
      * Segments this audio response is composed of.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage.MixedAudio.Segment segments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\MixedAudio\Segment>
      */
     public function getSegments()
     {
@@ -58,7 +58,7 @@ class MixedAudio extends \Google\Protobuf\Internal\Message
      * Segments this audio response is composed of.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage.MixedAudio.Segment segments = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\MixedAudio\Segment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\MixedAudio\Segment[] $var
      * @return $this
      */
     public function setSegments($var)
@@ -70,5 +70,4 @@ class MixedAudio extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

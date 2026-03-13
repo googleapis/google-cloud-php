@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ChildRollouts job composition
@@ -34,9 +34,9 @@ class ChildRolloutJobs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\Job>|\Google\Protobuf\Internal\RepeatedField $create_rollout_jobs
+     *     @type \Google\Cloud\Deploy\V1\Job[] $create_rollout_jobs
      *           Output only. List of CreateChildRolloutJobs
-     *     @type array<\Google\Cloud\Deploy\V1\Job>|\Google\Protobuf\Internal\RepeatedField $advance_rollout_jobs
+     *     @type \Google\Cloud\Deploy\V1\Job[] $advance_rollout_jobs
      *           Output only. List of AdvanceChildRolloutJobs
      * }
      */
@@ -49,7 +49,7 @@ class ChildRolloutJobs extends \Google\Protobuf\Internal\Message
      * Output only. List of CreateChildRolloutJobs
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Job create_rollout_jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\Job>
      */
     public function getCreateRolloutJobs()
     {
@@ -60,7 +60,7 @@ class ChildRolloutJobs extends \Google\Protobuf\Internal\Message
      * Output only. List of CreateChildRolloutJobs
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Job create_rollout_jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\Job[] $var
      * @return $this
      */
     public function setCreateRolloutJobs($var)
@@ -75,7 +75,7 @@ class ChildRolloutJobs extends \Google\Protobuf\Internal\Message
      * Output only. List of AdvanceChildRolloutJobs
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Job advance_rollout_jobs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\Job>
      */
     public function getAdvanceRolloutJobs()
     {
@@ -86,7 +86,7 @@ class ChildRolloutJobs extends \Google\Protobuf\Internal\Message
      * Output only. List of AdvanceChildRolloutJobs
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Job advance_rollout_jobs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\Job[] $var
      * @return $this
      */
     public function setAdvanceRolloutJobs($var)

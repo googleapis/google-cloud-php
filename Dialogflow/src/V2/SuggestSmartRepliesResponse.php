@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -51,7 +51,7 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SmartReplyAnswer>|\Google\Protobuf\Internal\RepeatedField $smart_reply_answers
+     *     @type \Google\Cloud\Dialogflow\V2\SmartReplyAnswer[] $smart_reply_answers
      *           Output only. Multiple reply options provided by smart reply service. The
      *           order is based on the rank of the model prediction.
      *           The maximum number of the returned replies is set in SmartReplyConfig.
@@ -80,7 +80,7 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
      * The maximum number of the returned replies is set in SmartReplyConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SmartReplyAnswer smart_reply_answers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SmartReplyAnswer>
      */
     public function getSmartReplyAnswers()
     {
@@ -93,7 +93,7 @@ class SuggestSmartRepliesResponse extends \Google\Protobuf\Internal\Message
      * The maximum number of the returned replies is set in SmartReplyConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SmartReplyAnswer smart_reply_answers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SmartReplyAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SmartReplyAnswer[] $var
      * @return $this
      */
     public function setSmartReplyAnswers($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for sessions created for this environment.
@@ -128,5 +128,4 @@ class SessionSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

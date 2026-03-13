@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ImportPlaybookResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conflicting resources detected during the import process. Only filled when
@@ -44,9 +44,9 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      *
      *     @type string $main_playbook_display_name
      *           Display name of conflicting main playbook.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nested_playbook_display_names
+     *     @type string[] $nested_playbook_display_names
      *           Display names of conflicting nested playbooks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tool_display_names
+     *     @type string[] $tool_display_names
      *           Display names of conflicting tools.
      * }
      */
@@ -85,7 +85,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting nested playbooks.
      *
      * Generated from protobuf field <code>repeated string nested_playbook_display_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNestedPlaybookDisplayNames()
     {
@@ -96,7 +96,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting nested playbooks.
      *
      * Generated from protobuf field <code>repeated string nested_playbook_display_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNestedPlaybookDisplayNames($var)
@@ -111,7 +111,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting tools.
      *
      * Generated from protobuf field <code>repeated string tool_display_names = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getToolDisplayNames()
     {
@@ -122,7 +122,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting tools.
      *
      * Generated from protobuf field <code>repeated string tool_display_names = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setToolDisplayNames($var)
@@ -134,5 +134,4 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

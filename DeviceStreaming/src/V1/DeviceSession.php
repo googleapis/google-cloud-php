@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeviceStreaming\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Protobuf message describing the device message, used from several RPCs.
@@ -81,7 +81,7 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
      *           Output only. The title of the DeviceSession to be presented in the UI.
      *     @type int $state
      *           Output only. Current state of the DeviceSession.
-     *     @type array<\Google\Cloud\DeviceStreaming\V1\DeviceSession\SessionStateEvent>|\Google\Protobuf\Internal\RepeatedField $state_histories
+     *     @type \Google\Cloud\DeviceStreaming\V1\DeviceSession\SessionStateEvent[] $state_histories
      *           Output only. The historical state transitions of the session_state message
      *           including the current session state.
      *     @type \Google\Protobuf\Duration $ttl
@@ -193,7 +193,7 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
      * including the current session state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.devicestreaming.v1.DeviceSession.SessionStateEvent state_histories = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeviceStreaming\V1\DeviceSession\SessionStateEvent>
      */
     public function getStateHistories()
     {
@@ -205,7 +205,7 @@ class DeviceSession extends \Google\Protobuf\Internal\Message
      * including the current session state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.devicestreaming.v1.DeviceSession.SessionStateEvent state_histories = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DeviceStreaming\V1\DeviceSession\SessionStateEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeviceStreaming\V1\DeviceSession\SessionStateEvent[] $var
      * @return $this
      */
     public function setStateHistories($var)

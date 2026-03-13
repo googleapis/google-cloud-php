@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sources for the suggestion.
@@ -29,7 +29,7 @@ class Sources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $instruction_indexes
+     *     @type int[] $instruction_indexes
      *           Output only. Source instruction indexes for the suggestion. This is the
      *           index of the applicable_instructions field.
      * }
@@ -44,7 +44,7 @@ class Sources extends \Google\Protobuf\Internal\Message
      * index of the applicable_instructions field.
      *
      * Generated from protobuf field <code>repeated int32 instruction_indexes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getInstructionIndexes()
     {
@@ -56,7 +56,7 @@ class Sources extends \Google\Protobuf\Internal\Message
      * index of the applicable_instructions field.
      *
      * Generated from protobuf field <code>repeated int32 instruction_indexes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setInstructionIndexes($var)
@@ -68,5 +68,4 @@ class Sources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

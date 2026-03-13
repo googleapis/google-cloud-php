@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [GQL
@@ -27,7 +27,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      * When false, the query string must not contain any literals and instead must
      * bind all values. For example,
      * `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
-     * `SELECT * FROM Kind WHERE a = &#64;value` is.
+     * `SELECT * FROM Kind WHERE a = \@value` is.
      *
      * Generated from protobuf field <code>bool allow_literals = 2;</code>
      */
@@ -42,7 +42,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      */
     private $named_bindings;
     /**
-     * Numbered binding site &#64;1 references the first numbered parameter,
+     * Numbered binding site \@1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.
      * For each binding site numbered i in `query_string`, there must be an i-th
      * numbered parameter. The inverse must also be true.
@@ -64,14 +64,14 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      *           When false, the query string must not contain any literals and instead must
      *           bind all values. For example,
      *           `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
-     *           `SELECT * FROM Kind WHERE a = &#64;value` is.
+     *           `SELECT * FROM Kind WHERE a = \@value` is.
      *     @type array|\Google\Protobuf\Internal\MapField $named_bindings
      *           For each non-reserved named binding site in the query string, there must be
      *           a named parameter with that name, but not necessarily the inverse.
      *           Key must match regex `[A-Za-z_$][A-Za-z_$0-9]*`, must not match regex
      *           `__.*__`, and must not be `""`.
-     *     @type array<\Google\Cloud\Datastore\V1\GqlQueryParameter>|\Google\Protobuf\Internal\RepeatedField $positional_bindings
-     *           Numbered binding site &#64;1 references the first numbered parameter,
+     *     @type \Google\Cloud\Datastore\V1\GqlQueryParameter[] $positional_bindings
+     *           Numbered binding site \@1 references the first numbered parameter,
      *           effectively using 1-based indexing, rather than the usual 0.
      *           For each binding site numbered i in `query_string`, there must be an i-th
      *           numbered parameter. The inverse must also be true.
@@ -114,7 +114,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      * When false, the query string must not contain any literals and instead must
      * bind all values. For example,
      * `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
-     * `SELECT * FROM Kind WHERE a = &#64;value` is.
+     * `SELECT * FROM Kind WHERE a = \@value` is.
      *
      * Generated from protobuf field <code>bool allow_literals = 2;</code>
      * @return bool
@@ -128,7 +128,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      * When false, the query string must not contain any literals and instead must
      * bind all values. For example,
      * `SELECT * FROM Kind WHERE a = 'string literal'` is not allowed, while
-     * `SELECT * FROM Kind WHERE a = &#64;value` is.
+     * `SELECT * FROM Kind WHERE a = \@value` is.
      *
      * Generated from protobuf field <code>bool allow_literals = 2;</code>
      * @param bool $var
@@ -175,13 +175,13 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Numbered binding site &#64;1 references the first numbered parameter,
+     * Numbered binding site \@1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.
      * For each binding site numbered i in `query_string`, there must be an i-th
      * numbered parameter. The inverse must also be true.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.GqlQueryParameter positional_bindings = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\GqlQueryParameter>
      */
     public function getPositionalBindings()
     {
@@ -189,13 +189,13 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Numbered binding site &#64;1 references the first numbered parameter,
+     * Numbered binding site \@1 references the first numbered parameter,
      * effectively using 1-based indexing, rather than the usual 0.
      * For each binding site numbered i in `query_string`, there must be an i-th
      * numbered parameter. The inverse must also be true.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.GqlQueryParameter positional_bindings = 4;</code>
-     * @param array<\Google\Cloud\Datastore\V1\GqlQueryParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\GqlQueryParameter[] $var
      * @return $this
      */
     public function setPositionalBindings($var)

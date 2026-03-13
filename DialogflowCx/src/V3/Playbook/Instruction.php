@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Playbook;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message of the Instruction of the playbook.
@@ -41,7 +41,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *           General guidelines for the playbook. These are unstructured instructions
      *           that are not directly part of the goal, e.g. "Always be polite". It's
      *           valid for this text to be long and used instead of steps altogether.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Playbook\Step[] $steps
      *           Ordered list of step by step execution instructions to accomplish
      *           target goal.
      * }
@@ -86,7 +86,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * target goal.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Playbook.Step steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>
      */
     public function getSteps()
     {
@@ -98,7 +98,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * target goal.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Playbook.Step steps = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Playbook\Step[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -110,5 +110,4 @@ class Instruction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

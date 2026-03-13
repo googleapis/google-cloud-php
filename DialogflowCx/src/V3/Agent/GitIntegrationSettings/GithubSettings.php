@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Agent\GitIntegrationSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings of integration with GitHub.
@@ -62,7 +62,7 @@ class GithubSettings extends \Google\Protobuf\Internal\Message
      *     @type string $access_token
      *           The access token used to authenticate the access to the GitHub
      *           repository.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $branches
+     *     @type string[] $branches
      *           A list of branches configured to be used from Dialogflow.
      * }
      */
@@ -181,7 +181,7 @@ class GithubSettings extends \Google\Protobuf\Internal\Message
      * A list of branches configured to be used from Dialogflow.
      *
      * Generated from protobuf field <code>repeated string branches = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBranches()
     {
@@ -192,7 +192,7 @@ class GithubSettings extends \Google\Protobuf\Internal\Message
      * A list of branches configured to be used from Dialogflow.
      *
      * Generated from protobuf field <code>repeated string branches = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBranches($var)
@@ -204,5 +204,4 @@ class GithubSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

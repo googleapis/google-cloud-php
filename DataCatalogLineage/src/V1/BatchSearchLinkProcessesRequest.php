@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -58,7 +58,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location where you want to search.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type string[] $links
      *           Required. An array of links to check for their associated LineageProcesses.
      *           The maximum number of items in this array is 100.
      *           If the request contains more than 100 links, it returns the
@@ -114,7 +114,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/links/{link}`.
      *
      * Generated from protobuf field <code>repeated string links = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLinks()
     {
@@ -129,7 +129,7 @@ class BatchSearchLinkProcessesRequest extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/links/{link}`.
      *
      * Generated from protobuf field <code>repeated string links = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLinks($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The cluster's GKE config.
@@ -47,7 +47,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      *           and region as the Dataproc cluster (the GKE cluster can be zonal or
      *           regional). Format:
      *           'projects/{project}/locations/{location}/clusters/{cluster_id}'
-     *     @type array<\Google\Cloud\Dataproc\V1\GkeNodePoolTarget>|\Google\Protobuf\Internal\RepeatedField $node_pool_target
+     *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolTarget[] $node_pool_target
      *           Optional. GKE node pools where workloads will be scheduled. At least one
      *           node pool must be assigned the `DEFAULT`
      *           [GkeNodePoolTarget.Role][google.cloud.dataproc.v1.GkeNodePoolTarget.Role].
@@ -102,7 +102,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      * `GkeNodePoolTarget`. All node pools must have the same location settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget node_pool_target = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\GkeNodePoolTarget>
      */
     public function getNodePoolTarget()
     {
@@ -118,7 +118,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      * `GkeNodePoolTarget`. All node pools must have the same location settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget node_pool_target = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\GkeNodePoolTarget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\GkeNodePoolTarget[] $var
      * @return $this
      */
     public function setNodePoolTarget($var)

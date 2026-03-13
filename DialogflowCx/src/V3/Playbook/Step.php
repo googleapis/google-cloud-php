@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Playbook;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message of single step execution.
@@ -31,7 +31,7 @@ class Step extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           Step instruction in text format.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Playbook\Step[] $steps
      *           Sub-processing needed to execute the current step.
      * }
      */
@@ -75,7 +75,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * Sub-processing needed to execute the current step.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Playbook.Step steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>
      */
     public function getSteps()
     {
@@ -86,7 +86,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * Sub-processing needed to execute the current step.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Playbook.Step steps = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Playbook\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Playbook\Step[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -106,5 +106,4 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

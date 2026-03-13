@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A TransitionRouteGroup represents a group of
@@ -57,7 +57,7 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Required. The human-readable name of the transition route group, unique
      *           within the flow. The display name can be no longer than 30 characters.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $transition_routes
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $transition_routes
      *           Transition routes associated with the
      *           [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
      * }
@@ -134,7 +134,7 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>
      */
     public function getTransitionRoutes()
     {
@@ -146,7 +146,7 @@ class TransitionRouteGroup extends \Google\Protobuf\Internal\Message
      * [TransitionRouteGroup][google.cloud.dialogflow.cx.v3.TransitionRouteGroup].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $var
      * @return $this
      */
     public function setTransitionRoutes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A GeneratorSuggestion answer.
@@ -154,5 +154,4 @@ class GeneratorSuggestionAnswer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

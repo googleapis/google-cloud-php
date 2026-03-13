@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\Repository;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Controls Git remote configuration for a repository.
@@ -30,7 +30,7 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -64,7 +64,7 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
      *     @type string $authentication_token_secret_version
      *           Optional. The name of the Secret Manager secret version to use as an
      *           authentication token for Git operations. Must be in the format
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository\GitRemoteSettings\SshAuthenticationConfig $ssh_authentication_config
      *           Optional. Authentication fields for remote uris using SSH protocol.
      *     @type int $token_status
@@ -133,7 +133,7 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -146,7 +146,7 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to use as an
      * authentication token for Git operations. Must be in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string authentication_token_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -233,5 +233,4 @@ class GitRemoteSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boost specification to boost certain documents.
@@ -34,7 +34,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec[] $condition_boost_specs
      *           Optional. Condition boost specifications. If a document matches multiple
      *           conditions in the specifications, boost scores from these specifications
      *           are all applied and combined in a non-linear way. Maximum number of
@@ -53,7 +53,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec>
      */
     public function getConditionBoostSpecs()
     {
@@ -67,7 +67,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.BoostSpec.ConditionBoostSpec condition_boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\BoostSpec\ConditionBoostSpec[] $var
      * @return $this
      */
     public function setConditionBoostSpecs($var)

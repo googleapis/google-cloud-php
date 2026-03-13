@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A column within a schema. Columns can be nested inside
@@ -121,7 +121,7 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      *           Optional. Ordinal position
      *     @type int $highest_indexing_type
      *           Optional. Most important inclusion of this column.
-     *     @type array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $subcolumns
+     *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema[] $subcolumns
      *           Optional. Schema of sub-columns. A column can have zero or more
      *           sub-columns.
      *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema\LookerColumnSpec $looker_column_spec
@@ -346,7 +346,7 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      * sub-columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema subcolumns = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\ColumnSchema>
      */
     public function getSubcolumns()
     {
@@ -358,7 +358,7 @@ class ColumnSchema extends \Google\Protobuf\Internal\Message
      * sub-columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema subcolumns = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\ColumnSchema[] $var
      * @return $this
      */
     public function setSubcolumns($var)

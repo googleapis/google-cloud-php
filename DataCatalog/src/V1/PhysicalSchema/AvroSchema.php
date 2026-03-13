@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\PhysicalSchema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Schema in Avro JSON format.
@@ -64,5 +64,4 @@ class AvroSchema extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An intent represents a user's intent to interact with a conversational agent.
@@ -114,10 +114,10 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *     @type string $display_name
      *           Required. The human-readable name of the intent, unique within the agent.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase>|\Google\Protobuf\Internal\RepeatedField $training_phrases
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase[] $training_phrases
      *           The collection of training phrases the agent is trained on to identify the
      *           intent.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Intent\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Intent\Parameter[] $parameters
      *           The collection of parameters associated with the intent.
      *     @type int $priority
      *           The priority of this intent. Higher numbers represent higher
@@ -227,7 +227,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase training_phrases = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase>
      */
     public function getTrainingPhrases()
     {
@@ -239,7 +239,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase training_phrases = 3;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase[] $var
      * @return $this
      */
     public function setTrainingPhrases($var)
@@ -254,7 +254,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * The collection of parameters associated with the intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.Parameter parameters = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Intent\Parameter>
      */
     public function getParameters()
     {
@@ -265,7 +265,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * The collection of parameters associated with the intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.Parameter parameters = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Intent\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Intent\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

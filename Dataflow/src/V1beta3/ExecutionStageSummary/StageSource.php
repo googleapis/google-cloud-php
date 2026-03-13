@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of an input or output of an execution stage.
@@ -170,5 +170,4 @@ class StageSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

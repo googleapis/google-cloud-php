@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The version of the SDK used to run the job.
@@ -52,7 +52,7 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      *           A readable string describing the version of the SDK.
      *     @type int $sdk_support_status
      *           The support status for this SDK version.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\SdkBug>|\Google\Protobuf\Internal\RepeatedField $bugs
+     *     @type \Google\Cloud\Dataflow\V1beta3\SdkBug[] $bugs
      *           Output only. Known bugs found in this SDK version.
      * }
      */
@@ -143,7 +143,7 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      * Output only. Known bugs found in this SDK version.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkBug bugs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\SdkBug>
      */
     public function getBugs()
     {
@@ -154,7 +154,7 @@ class SdkVersion extends \Google\Protobuf\Internal\Message
      * Output only. Known bugs found in this SDK version.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SdkBug bugs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\SdkBug>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\SdkBug[] $var
      * @return $this
      */
     public function setBugs($var)

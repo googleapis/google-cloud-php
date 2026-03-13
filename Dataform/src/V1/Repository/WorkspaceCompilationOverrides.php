@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\Repository;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures workspace compilation overrides for a repository.
@@ -136,5 +136,4 @@ class WorkspaceCompilationOverrides extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instructs the speech recognizer on how to process the audio content.
@@ -118,7 +118,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           with information about the recognized speech words, e.g. start and end time
      *           offsets. If false or unspecified, Speech doesn't return any word-level
      *           information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_hints
+     *     @type string[] $phrase_hints
      *           Optional. A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
      *           See [the Cloud Speech
@@ -259,7 +259,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhraseHints()
     {
@@ -274,7 +274,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhraseHints($var)

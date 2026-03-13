@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The crypto key configuration. This field is used by the Customer-managed
@@ -19,7 +19,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the key which is used to encrypt/decrypt customer
      * data. For key in Cloud KMS, the key should be in the format of
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string key_reference = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -34,7 +34,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
      *     @type string $key_reference
      *           Required. The name of the key which is used to encrypt/decrypt customer
      *           data. For key in Cloud KMS, the key should be in the format of
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the key which is used to encrypt/decrypt customer
      * data. For key in Cloud KMS, the key should be in the format of
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string key_reference = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -58,7 +58,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the key which is used to encrypt/decrypt customer
      * data. For key in Cloud KMS, the key should be in the format of
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string key_reference = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

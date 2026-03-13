@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Coverage result message for one transition route group.
@@ -43,7 +43,7 @@ class Coverage extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup $route_group
      *           Transition route group metadata. Only name and displayName will be set.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage\Transition>|\Google\Protobuf\Internal\RepeatedField $transitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage\Transition[] $transitions
      *           The list of transition routes and coverage in the transition route group.
      *     @type float $coverage_score
      *           The percent of transition routes in the transition route group that are
@@ -95,7 +95,7 @@ class Coverage extends \Google\Protobuf\Internal\Message
      * The list of transition routes and coverage in the transition route group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRouteGroupCoverage.Coverage.Transition transitions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage\Transition>
      */
     public function getTransitions()
     {
@@ -106,7 +106,7 @@ class Coverage extends \Google\Protobuf\Internal\Message
      * The list of transition routes and coverage in the transition route group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRouteGroupCoverage.Coverage.Transition transitions = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage\Transition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroupCoverage\Coverage\Transition[] $var
      * @return $this
      */
     public function setTransitions($var)
@@ -146,5 +146,4 @@ class Coverage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

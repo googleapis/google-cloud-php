@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of an interstitial value between transforms in an execution
@@ -137,5 +137,4 @@ class ComponentSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

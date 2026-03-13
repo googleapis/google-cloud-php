@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The collection of simple response candidates.
@@ -31,7 +31,7 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse>|\Google\Protobuf\Internal\RepeatedField $simple_responses
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse[] $simple_responses
      *           Required. The list of simple responses.
      * }
      */
@@ -44,7 +44,7 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
      * Required. The list of simple responses.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.SimpleResponse simple_responses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse>
      */
     public function getSimpleResponses()
     {
@@ -55,7 +55,7 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
      * Required. The list of simple responses.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.SimpleResponse simple_responses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\SimpleResponse[] $var
      * @return $this
      */
     public function setSimpleResponses($var)
@@ -67,5 +67,4 @@ class SimpleResponses extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

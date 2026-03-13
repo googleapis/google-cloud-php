@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response used for ExportDataset longrunning operation.
@@ -17,7 +17,7 @@ class ExportDataOperationResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Ouptut only. The name of dataset.
-     * "projects/&#42;&#47;datasets/&#42;"
+     * "projects/{@*}datasets/*"
      *
      * Generated from protobuf field <code>string dataset = 1;</code>
      */
@@ -55,7 +55,7 @@ class ExportDataOperationResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $dataset
      *           Ouptut only. The name of dataset.
-     *           "projects/&#42;&#47;datasets/&#42;"
+     *           "projects/{@*}datasets/*"
      *     @type int $total_count
      *           Output only. Total number of examples requested to export
      *     @type int $export_count
@@ -73,7 +73,7 @@ class ExportDataOperationResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Ouptut only. The name of dataset.
-     * "projects/&#42;&#47;datasets/&#42;"
+     * "projects/{@*}datasets/*"
      *
      * Generated from protobuf field <code>string dataset = 1;</code>
      * @return string
@@ -85,7 +85,7 @@ class ExportDataOperationResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * Ouptut only. The name of dataset.
-     * "projects/&#42;&#47;datasets/&#42;"
+     * "projects/{@*}datasets/*"
      *
      * Generated from protobuf field <code>string dataset = 1;</code>
      * @param string $var

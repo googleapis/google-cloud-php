@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -39,7 +39,7 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_types
+     *     @type string[] $entity_types
      *           The unique identifier of the imported entity types.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
@@ -60,7 +60,7 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityTypes()
     {
@@ -73,7 +73,7 @@ class ImportEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/entity_types/<EntityTypeID>`.
      *
      * Generated from protobuf field <code>repeated string entity_types = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityTypes($var)

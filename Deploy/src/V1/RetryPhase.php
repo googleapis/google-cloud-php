@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RetryPhase contains the retry attempts and the metadata for initiating a
@@ -47,7 +47,7 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      *     @type int $backoff_mode
      *           Output only. The pattern of how the wait time of the retry attempt is
      *           calculated.
-     *     @type array<\Google\Cloud\Deploy\V1\RetryAttempt>|\Google\Protobuf\Internal\RepeatedField $attempts
+     *     @type \Google\Cloud\Deploy\V1\RetryAttempt[] $attempts
      *           Output only. Detail of a retry action.
      * }
      */
@@ -114,7 +114,7 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      * Output only. Detail of a retry action.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RetryAttempt attempts = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\RetryAttempt>
      */
     public function getAttempts()
     {
@@ -125,7 +125,7 @@ class RetryPhase extends \Google\Protobuf\Internal\Message
      * Output only. Detail of a retry action.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RetryAttempt attempts = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\RetryAttempt>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\RetryAttempt[] $var
      * @return $this
      */
     public function setAttempts($var)

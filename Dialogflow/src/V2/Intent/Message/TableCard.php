@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Table card for Actions on Google.
@@ -64,11 +64,11 @@ class TableCard extends \Google\Protobuf\Internal\Message
      *           Optional. Subtitle to the title.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Image $image
      *           Optional. Image which should be displayed on the card.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties>|\Google\Protobuf\Internal\RepeatedField $column_properties
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties[] $column_properties
      *           Optional. Display properties for the columns in this table.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardRow>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardRow[] $rows
      *           Optional. Rows in this table of data.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[] $buttons
      *           Optional. List of buttons for the card.
      * }
      */
@@ -169,7 +169,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. Display properties for the columns in this table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ColumnProperties column_properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties>
      */
     public function getColumnProperties()
     {
@@ -180,7 +180,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. Display properties for the columns in this table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ColumnProperties column_properties = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\ColumnProperties[] $var
      * @return $this
      */
     public function setColumnProperties($var)
@@ -195,7 +195,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. Rows in this table of data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.TableCardRow rows = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardRow>
      */
     public function getRows()
     {
@@ -206,7 +206,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. Rows in this table of data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.TableCardRow rows = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardRow[] $var
      * @return $this
      */
     public function setRows($var)
@@ -221,7 +221,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. List of buttons for the card.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>
      */
     public function getButtons()
     {
@@ -232,7 +232,7 @@ class TableCard extends \Google\Protobuf\Internal\Message
      * Optional. List of buttons for the card.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[] $var
      * @return $this
      */
     public function setButtons($var)
@@ -244,5 +244,4 @@ class TableCard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

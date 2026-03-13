@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An intent categorizes an end-user's intention for one conversation turn. For
@@ -230,22 +230,22 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           Optional. Indicates that this intent ends an interaction. Some integrations
      *           (e.g., Actions on Google or Dialogflow phone gateway) use this information
      *           to close interaction with an end user. Default is false.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_context_names
+     *     @type string[] $input_context_names
      *           Optional. The list of context names required for this intent to be
      *           triggered.
      *           Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type string[] $events
      *           Optional. The collection of event names that trigger the intent.
      *           If the collection of input contexts is not empty, all of the contexts must
      *           be present in the active user session for an event to trigger this intent.
      *           Event names are limited to 150 characters.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase>|\Google\Protobuf\Internal\RepeatedField $training_phrases
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[] $training_phrases
      *           Optional. The collection of examples that the agent is
      *           trained on.
      *     @type string $action
      *           Optional. The name of the action associated with the intent.
      *           Note: The action name must not contain whitespaces.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *     @type \Google\Cloud\Dialogflow\V2\Context[] $output_contexts
      *           Optional. The collection of contexts that are activated when the intent
      *           is matched. Context messages in this collection should not set the
      *           parameters field. Setting the `lifespan_count` to 0 will reset the context
@@ -254,12 +254,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      *     @type bool $reset_contexts
      *           Optional. Indicates whether to delete all contexts in the current
      *           session when this intent is matched.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Parameter[] $parameters
      *           Optional. The collection of parameters associated with the intent.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[] $messages
      *           Optional. The collection of rich messages corresponding to the
      *           `Response` field in the Dialogflow console.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $default_response_platforms
+     *     @type int[] $default_response_platforms
      *           Optional. The list of platforms for which the first responses will be
      *           copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *     @type string $root_followup_intent_name
@@ -277,7 +277,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      *           in order to make this intent a followup intent.
      *           It identifies the parent followup intent.
      *           Format: `projects/<Project ID>/agent/intents/<Intent ID>`.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo>|\Google\Protobuf\Internal\RepeatedField $followup_intent_info
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[] $followup_intent_info
      *           Output only. Read-only. Information about all followup intents that have
      *           this intent as a direct or indirect parent. We populate this field only in
      *           the output.
@@ -540,7 +540,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
      * Generated from protobuf field <code>repeated string input_context_names = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInputContextNames()
     {
@@ -553,7 +553,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
      * Generated from protobuf field <code>repeated string input_context_names = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInputContextNames($var)
@@ -571,7 +571,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Event names are limited to 150 characters.
      *
      * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEvents()
     {
@@ -585,7 +585,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Event names are limited to 150 characters.
      *
      * Generated from protobuf field <code>repeated string events = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEvents($var)
@@ -601,7 +601,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase>
      */
     public function getTrainingPhrases()
     {
@@ -613,7 +613,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * trained on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase training_phrases = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase[] $var
      * @return $this
      */
     public function setTrainingPhrases($var)
@@ -660,7 +660,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Context>
      */
     public function getOutputContexts()
     {
@@ -675,7 +675,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Context[] $var
      * @return $this
      */
     public function setOutputContexts($var)
@@ -718,7 +718,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of parameters associated with the intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Parameter>
      */
     public function getParameters()
     {
@@ -729,7 +729,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Optional. The collection of parameters associated with the intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Parameter parameters = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)
@@ -745,7 +745,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * `Response` field in the Dialogflow console.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message>
      */
     public function getMessages()
     {
@@ -757,7 +757,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * `Response` field in the Dialogflow console.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message messages = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -773,7 +773,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDefaultResponsePlatforms()
     {
@@ -785,7 +785,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * copied from the messages in PLATFORM_UNSPECIFIED (i.e. default platform).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Platform default_response_platforms = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDefaultResponsePlatforms($var)
@@ -876,7 +876,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo>
      */
     public function getFollowupIntentInfo()
     {
@@ -889,7 +889,7 @@ class Intent extends \Google\Protobuf\Internal\Message
      * the output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.FollowupIntentInfo followup_intent_info = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\FollowupIntentInfo[] $var
      * @return $this
      */
     public function setFollowupIntentInfo($var)

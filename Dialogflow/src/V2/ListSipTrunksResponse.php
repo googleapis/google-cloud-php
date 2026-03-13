@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListSipTrunksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SipTrunk>|\Google\Protobuf\Internal\RepeatedField $sip_trunks
+     *     @type \Google\Cloud\Dialogflow\V2\SipTrunk[] $sip_trunks
      *           The list of SIP trunks.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -52,7 +52,7 @@ class ListSipTrunksResponse extends \Google\Protobuf\Internal\Message
      * The list of SIP trunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SipTrunk sip_trunks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SipTrunk>
      */
     public function getSipTrunks()
     {
@@ -63,7 +63,7 @@ class ListSipTrunksResponse extends \Google\Protobuf\Internal\Message
      * The list of SIP trunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SipTrunk sip_trunks = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SipTrunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SipTrunk[] $var
      * @return $this
      */
     public function setSipTrunks($var)

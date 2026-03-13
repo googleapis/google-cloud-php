@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for deleting customer
@@ -17,7 +17,7 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. name of the resource to be deleted
-     * format: name=organizations/&#42;&#47;locations/&#42;&#47;customers/&#42;
+     * format: name=organizations/{@*}locations/{@*}customers/*
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. name of the resource to be deleted
-     *           format: name=organizations/&#42;&#47;locations/&#42;&#47;customers/&#42;
+     *           format: name=organizations/{@*}locations/{@*}customers/*
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. name of the resource to be deleted
-     * format: name=organizations/&#42;&#47;locations/&#42;&#47;customers/&#42;
+     * format: name=organizations/{@*}locations/{@*}customers/*
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteCustomerRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. name of the resource to be deleted
-     * format: name=organizations/&#42;&#47;locations/&#42;&#47;customers/&#42;
+     * format: name=organizations/{@*}locations/{@*}customers/*
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

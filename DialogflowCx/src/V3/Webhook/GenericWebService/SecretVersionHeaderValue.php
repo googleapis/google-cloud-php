@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the value of an HTTP header stored in a SecretManager secret
@@ -69,5 +69,4 @@ class SecretVersionHeaderValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

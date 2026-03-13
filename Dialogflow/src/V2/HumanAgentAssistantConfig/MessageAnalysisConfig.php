@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for analyses to run on each conversation message.
@@ -190,5 +190,4 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

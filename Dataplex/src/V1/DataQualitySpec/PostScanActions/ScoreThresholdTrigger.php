@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataQualitySpec\PostScanActions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This trigger is triggered when the DQ score in the job result is less
@@ -65,5 +65,4 @@ class ScoreThresholdTrigger extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

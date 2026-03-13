@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [Datastore.Commit][google.datastore.v1.Datastore.Commit].
@@ -42,7 +42,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastore\V1\MutationResult>|\Google\Protobuf\Internal\RepeatedField $mutation_results
+     *     @type \Google\Cloud\Datastore\V1\MutationResult[] $mutation_results
      *           The result of performing the mutations.
      *           The i-th mutation result corresponds to the i-th mutation in the request.
      *     @type int $index_updates
@@ -62,7 +62,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * The i-th mutation result corresponds to the i-th mutation in the request.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.MutationResult mutation_results = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\MutationResult>
      */
     public function getMutationResults()
     {
@@ -74,7 +74,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * The i-th mutation result corresponds to the i-th mutation in the request.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.MutationResult mutation_results = 3;</code>
-     * @param array<\Google\Cloud\Datastore\V1\MutationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\MutationResult[] $var
      * @return $this
      */
     public function setMutationResults($var)

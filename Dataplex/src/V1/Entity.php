@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents tables and fileset metadata contained within a zone.
@@ -91,7 +91,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The set of items within the data path constituting the data in
      * the entity, represented as a glob path. Example:
-     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * `gs://bucket/path/to/data/*{@*}*.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -186,7 +186,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *     @type string $data_path_pattern
      *           Optional. The set of items within the data path constituting the data in
      *           the entity, represented as a glob path. Example:
-     *           `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     *           `gs://bucket/path/to/data/*{@*}*.csv`.
      *     @type string $catalog_entry
      *           Output only. The name of the associated Data Catalog entry.
      *     @type int $system
@@ -522,7 +522,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The set of items within the data path constituting the data in
      * the entity, represented as a glob path. Example:
-     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * `gs://bucket/path/to/data/*{@*}*.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -535,7 +535,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The set of items within the data path constituting the data in
      * the entity, represented as a glob path. Example:
-     * `gs://bucket/path/to/data/&#42;*&#47;&#42;.csv`.
+     * `gs://bucket/path/to/data/*{@*}*.csv`.
      *
      * Generated from protobuf field <code>string data_path_pattern = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

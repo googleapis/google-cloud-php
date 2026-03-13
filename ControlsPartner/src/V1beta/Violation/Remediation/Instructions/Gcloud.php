@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta\Violation\Remediation\Instructions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Remediation instructions to resolve violation via gcloud cli
@@ -40,11 +40,11 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gcloud_commands
+     *     @type string[] $gcloud_commands
      *           Gcloud command to resolve violation
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type string[] $steps
      *           Steps to resolve violation via gcloud cli
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_links
+     *     @type string[] $additional_links
      *           Additional urls for more information about steps
      * }
      */
@@ -57,7 +57,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Gcloud command to resolve violation
      *
      * Generated from protobuf field <code>repeated string gcloud_commands = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGcloudCommands()
     {
@@ -68,7 +68,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Gcloud command to resolve violation
      *
      * Generated from protobuf field <code>repeated string gcloud_commands = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGcloudCommands($var)
@@ -83,7 +83,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Steps to resolve violation via gcloud cli
      *
      * Generated from protobuf field <code>repeated string steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSteps()
     {
@@ -94,7 +94,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Steps to resolve violation via gcloud cli
      *
      * Generated from protobuf field <code>repeated string steps = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -109,7 +109,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Additional urls for more information about steps
      *
      * Generated from protobuf field <code>repeated string additional_links = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalLinks()
     {
@@ -120,7 +120,7 @@ class Gcloud extends \Google\Protobuf\Internal\Message
      * Additional urls for more information about steps
      *
      * Generated from protobuf field <code>repeated string additional_links = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalLinks($var)
@@ -132,5 +132,4 @@ class Gcloud extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

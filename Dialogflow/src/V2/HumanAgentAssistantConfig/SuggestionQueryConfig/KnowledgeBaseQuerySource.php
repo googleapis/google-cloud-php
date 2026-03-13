@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Knowledge base source settings.
@@ -32,7 +32,7 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $knowledge_bases
+     *     @type string[] $knowledge_bases
      *           Required. Knowledge bases to query. Format:
      *           `projects/<Project ID>/locations/<Location
      *           ID>/knowledgeBases/<Knowledge Base ID>`. Currently, at most 5 knowledge
@@ -51,7 +51,7 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
      * bases are supported.
      *
      * Generated from protobuf field <code>repeated string knowledge_bases = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKnowledgeBases()
     {
@@ -65,7 +65,7 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
      * bases are supported.
      *
      * Generated from protobuf field <code>repeated string knowledge_bases = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKnowledgeBases($var)
@@ -77,5 +77,4 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

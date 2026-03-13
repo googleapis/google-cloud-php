@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Action details for resource references in assets that cannot be located.
@@ -30,5 +30,4 @@ class MissingResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `QueryFolderContents` request message.
@@ -17,7 +17,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the folder whose contents to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;folders/&#42;
+     * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -85,7 +85,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $folder
      *           Required. Name of the folder whose contents to list.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;folders/&#42;
+     *           Format: projects/{@*}locations/{@*}folders/*
      *     @type int $page_size
      *           Optional. Maximum number of paths to return. The server may return fewer
      *           items than requested. If unspecified, the server will pick an appropriate
@@ -118,7 +118,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the folder whose contents to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;folders/&#42;
+     * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -130,7 +130,7 @@ class QueryFolderContentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the folder whose contents to list.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;folders/&#42;
+     * Format: projects/{@*}locations/{@*}folders/*
      *
      * Generated from protobuf field <code>string folder = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

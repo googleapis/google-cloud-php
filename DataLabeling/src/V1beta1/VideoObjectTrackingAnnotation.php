@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Video object tracking annotation.
@@ -44,7 +44,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *           Label of the object tracked in this annotation.
      *     @type \Google\Cloud\DataLabeling\V1beta1\TimeSegment $time_segment
      *           The time segment of the video to which object tracking applies.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\ObjectTrackingFrame>|\Google\Protobuf\Internal\RepeatedField $object_tracking_frames
+     *     @type \Google\Cloud\DataLabeling\V1beta1\ObjectTrackingFrame[] $object_tracking_frames
      *           The list of frames where this object track appears.
      * }
      */
@@ -129,7 +129,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * The list of frames where this object track appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ObjectTrackingFrame object_tracking_frames = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\ObjectTrackingFrame>
      */
     public function getObjectTrackingFrames()
     {
@@ -140,7 +140,7 @@ class VideoObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * The list of frames where this object track appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ObjectTrackingFrame object_tracking_frames = 3;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\ObjectTrackingFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\ObjectTrackingFrame[] $var
      * @return $this
      */
     public function setObjectTrackingFrames($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a test case.
@@ -83,7 +83,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      *           [TestCases.CreateTestCase][google.cloud.dialogflow.cx.v3.TestCases.CreateTestCase]
      *           will populate the name automatically. Otherwise use format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Tags are short descriptions that users may apply to test cases for
      *           organizational and filtering purposes. Each tag should start with "#" and
      *           has a limit of 30 characters.
@@ -94,7 +94,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      *           Additional freeform notes about the test case. Limit of 400 characters.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\TestConfig $test_config
      *           Config for the test case.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>|\Google\Protobuf\Internal\RepeatedField $test_case_conversation_turns
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ConversationTurn[] $test_case_conversation_turns
      *           The conversation turns uttered when the test case was created, in
      *           chronological order. These include the canonical set of agent utterances
      *           that should occur when the agent is working properly.
@@ -147,7 +147,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * has a limit of 30 characters.
      *
      * Generated from protobuf field <code>repeated string tags = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -160,7 +160,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * has a limit of 30 characters.
      *
      * Generated from protobuf field <code>repeated string tags = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -267,7 +267,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * that should occur when the agent is working properly.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ConversationTurn test_case_conversation_turns = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>
      */
     public function getTestCaseConversationTurns()
     {
@@ -280,7 +280,7 @@ class TestCase extends \Google\Protobuf\Internal\Message
      * that should occur when the agent is working properly.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ConversationTurn test_case_conversation_turns = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ConversationTurn[] $var
      * @return $this
      */
     public function setTestCaseConversationTurns($var)

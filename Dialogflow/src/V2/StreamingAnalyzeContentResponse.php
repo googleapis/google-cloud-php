@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The top-level message returned from the `StreamingAnalyzeContent` method.
@@ -144,12 +144,12 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      *           instead.
      *     @type \Google\Cloud\Dialogflow\V2\Message $message
      *           Message analyzed by CCAI.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $human_agent_suggestion_results
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[] $human_agent_suggestion_results
      *           The suggestions for most recent human agent. The order is the same as
      *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
      *           of
      *           [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
-     *     @type array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $end_user_suggestion_results
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[] $end_user_suggestion_results
      *           The suggestions for end user. The order is the same as
      *           [HumanAgentAssistantConfig.SuggestionConfig.feature_configs][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionConfig.feature_configs]
      *           of
@@ -373,7 +373,7 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SuggestionResult>
      */
     public function getHumanAgentSuggestionResults()
     {
@@ -387,7 +387,7 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * [HumanAgentAssistantConfig.human_agent_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.human_agent_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult human_agent_suggestion_results = 7;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionResult[] $var
      * @return $this
      */
     public function setHumanAgentSuggestionResults($var)
@@ -405,7 +405,7 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SuggestionResult>
      */
     public function getEndUserSuggestionResults()
     {
@@ -419,7 +419,7 @@ class StreamingAnalyzeContentResponse extends \Google\Protobuf\Internal\Message
      * [HumanAgentAssistantConfig.end_user_suggestion_config][google.cloud.dialogflow.v2.HumanAgentAssistantConfig.end_user_suggestion_config].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult end_user_suggestion_results = 8;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionResult[] $var
      * @return $this
      */
     public function setEndUserSuggestionResults($var)

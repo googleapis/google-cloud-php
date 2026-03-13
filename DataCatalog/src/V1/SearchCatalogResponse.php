@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -52,14 +52,14 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\DataCatalog\V1\SearchCatalogResult[] $results
      *           Search results.
      *     @type int $total_size
      *           The approximate total number of entries matched by the query.
      *     @type string $next_page_token
      *           Pagination token that can be used in subsequent calls to retrieve the next
      *           page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable locations. Search results don't include data from those
      *           locations.
      *           To get additional information on an error, repeat the search request and
@@ -76,7 +76,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SearchCatalogResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>
      */
     public function getResults()
     {
@@ -87,7 +87,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SearchCatalogResult results = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\SearchCatalogResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -160,7 +160,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * `SearchCatalogRequest.scope.restricted_locations` parameter.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -175,7 +175,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * `SearchCatalogRequest.scope.restricted_locations` parameter.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

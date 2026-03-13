@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data disk assignment for a given VM instance.
@@ -41,7 +41,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      *     @type string $vm_instance
      *           VM instance name the data disks mounted to, for example
      *           "myproject-1014-104817-4c2-harness-0".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_disks
+     *     @type string[] $data_disks
      *           Mounted data disks. The order is important a data disk's 0-based index in
      *           this list defines which persistent directory the disk is mounted to, for
      *           example the list of { "myproject-1014-104817-4c2-harness-0-disk-0" },
@@ -88,7 +88,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      * { "myproject-1014-104817-4c2-harness-0-disk-1" }.
      *
      * Generated from protobuf field <code>repeated string data_disks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataDisks()
     {
@@ -102,7 +102,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      * { "myproject-1014-104817-4c2-harness-0-disk-1" }.
      *
      * Generated from protobuf field <code>repeated string data_disks = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataDisks($var)

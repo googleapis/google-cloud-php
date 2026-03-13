@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Tool\DataStoreTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A FallbackPrompt is a way to provide specifications for the Data Store
@@ -31,5 +31,4 @@ class FallbackPrompt extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

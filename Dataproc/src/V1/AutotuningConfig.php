@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Autotuning configuration of the workload.
@@ -28,7 +28,7 @@ class AutotuningConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $scenarios
+     *     @type int[] $scenarios
      *           Optional. Scenarios for which tunings are applied.
      * }
      */
@@ -41,7 +41,7 @@ class AutotuningConfig extends \Google\Protobuf\Internal\Message
      * Optional. Scenarios for which tunings are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AutotuningConfig.Scenario scenarios = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getScenarios()
     {
@@ -52,7 +52,7 @@ class AutotuningConfig extends \Google\Protobuf\Internal\Message
      * Optional. Scenarios for which tunings are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AutotuningConfig.Scenario scenarios = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setScenarios($var)

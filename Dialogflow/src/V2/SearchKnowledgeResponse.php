@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer>|\Google\Protobuf\Internal\RepeatedField $answers
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer[] $answers
      *           Most relevant snippets extracted from articles in the given knowledge base,
      *           ordered by confidence.
      *     @type string $rewritten_query
@@ -53,7 +53,7 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      * ordered by confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeAnswer answers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer>
      */
     public function getAnswers()
     {
@@ -65,7 +65,7 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      * ordered by confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeAnswer answers = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeAnswer[] $var
      * @return $this
      */
     public function setAnswers($var)

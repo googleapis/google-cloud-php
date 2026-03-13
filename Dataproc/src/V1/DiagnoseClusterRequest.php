@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to collect cluster diagnostic information.
@@ -112,10 +112,10 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Interval $diagnosis_interval
      *           Optional. Time interval in which diagnosis should be carried out on the
      *           cluster.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type string[] $jobs
      *           Optional. Specifies a list of jobs on which diagnosis is to be performed.
      *           Format: projects/{project}/regions/{region}/jobs/{job}
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $yarn_application_ids
+     *     @type string[] $yarn_application_ids
      *           Optional. Specifies a list of yarn applications on which diagnosis is to be
      *           performed.
      * }
@@ -306,7 +306,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/regions/{region}/jobs/{job}
      *
      * Generated from protobuf field <code>repeated string jobs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJobs()
     {
@@ -318,7 +318,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/regions/{region}/jobs/{job}
      *
      * Generated from protobuf field <code>repeated string jobs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJobs($var)
@@ -334,7 +334,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      * performed.
      *
      * Generated from protobuf field <code>repeated string yarn_application_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getYarnApplicationIds()
     {
@@ -346,7 +346,7 @@ class DiagnoseClusterRequest extends \Google\Protobuf\Internal\Message
      * performed.
      *
      * Generated from protobuf field <code>repeated string yarn_application_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setYarnApplicationIds($var)

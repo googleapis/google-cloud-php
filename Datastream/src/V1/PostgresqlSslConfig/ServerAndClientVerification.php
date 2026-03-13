@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\PostgresqlSslConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message represents the option where Datastream will enforce the encryption
@@ -209,5 +209,4 @@ class ServerAndClientVerification extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

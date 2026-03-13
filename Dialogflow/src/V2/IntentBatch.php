@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message is a wrapper around a collection of intents.
@@ -28,7 +28,7 @@ class IntentBatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type \Google\Cloud\Dialogflow\V2\Intent[] $intents
      *           A collection of intents.
      * }
      */
@@ -41,7 +41,7 @@ class IntentBatch extends \Google\Protobuf\Internal\Message
      * A collection of intents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent>
      */
     public function getIntents()
     {
@@ -52,7 +52,7 @@ class IntentBatch extends \Google\Protobuf\Internal\Message
      * A collection of intents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent intents = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent[] $var
      * @return $this
      */
     public function setIntents($var)

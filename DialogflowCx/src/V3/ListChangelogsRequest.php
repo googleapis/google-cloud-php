@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -27,7 +27,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * The filter string. Supports filter by user_email, resource, type and
      * create_time. Some examples:
      *   1. By user email:
-     *        user_email = "someone&#64;google.com"
+     *        user_email = "someone\@google.com"
      *   2. By resource name:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
      *   3. By resource display name:
@@ -42,7 +42,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *        2017-01-15T01:30:15.01Z
      *   7. Combination of above filters:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
-     *          AND user_email = "someone&#64;google.com"
+     *          AND user_email = "someone\@google.com"
      *          AND create_time <= 2017-01-15T01:30:15.01Z
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -90,7 +90,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *           The filter string. Supports filter by user_email, resource, type and
      *           create_time. Some examples:
      *             1. By user email:
-     *                  user_email = "someone&#64;google.com"
+     *                  user_email = "someone\@google.com"
      *             2. By resource name:
      *                  resource = "projects/123/locations/global/agents/456/flows/789"
      *             3. By resource display name:
@@ -105,7 +105,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *                  2017-01-15T01:30:15.01Z
      *             7. Combination of above filters:
      *                  resource = "projects/123/locations/global/agents/456/flows/789"
-     *                    AND user_email = "someone&#64;google.com"
+     *                    AND user_email = "someone\@google.com"
      *                    AND create_time <= 2017-01-15T01:30:15.01Z
      *     @type int $page_size
      *           The maximum number of items to return in a single page. By default 100 and
@@ -151,7 +151,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * The filter string. Supports filter by user_email, resource, type and
      * create_time. Some examples:
      *   1. By user email:
-     *        user_email = "someone&#64;google.com"
+     *        user_email = "someone\@google.com"
      *   2. By resource name:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
      *   3. By resource display name:
@@ -166,7 +166,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *        2017-01-15T01:30:15.01Z
      *   7. Combination of above filters:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
-     *          AND user_email = "someone&#64;google.com"
+     *          AND user_email = "someone\@google.com"
      *          AND create_time <= 2017-01-15T01:30:15.01Z
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -181,7 +181,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      * The filter string. Supports filter by user_email, resource, type and
      * create_time. Some examples:
      *   1. By user email:
-     *        user_email = "someone&#64;google.com"
+     *        user_email = "someone\@google.com"
      *   2. By resource name:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
      *   3. By resource display name:
@@ -196,7 +196,7 @@ class ListChangelogsRequest extends \Google\Protobuf\Internal\Message
      *        2017-01-15T01:30:15.01Z
      *   7. Combination of above filters:
      *        resource = "projects/123/locations/global/agents/456/flows/789"
-     *          AND user_email = "someone&#64;google.com"
+     *          AND user_email = "someone\@google.com"
      *          AND create_time <= 2017-01-15T01:30:15.01Z
      *
      * Generated from protobuf field <code>string filter = 2;</code>

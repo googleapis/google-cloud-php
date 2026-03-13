@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QueryDatabaseResourceGroupsRequest is the request to get a list of database
@@ -176,9 +176,9 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      *                     container="projects/456") AND location="us-east1"`
      *           Example: `full_resource_name=~"test"`
      *           Example: `full_resource_name=~"test.*master"`
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $signal_type_groups
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup[] $signal_type_groups
      *           Optional. Groups of signal types that are requested.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalFilter>|\Google\Protobuf\Internal\RepeatedField $signal_filters
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\SignalFilter[] $signal_filters
      *           Optional. Filters based on signals. The list will be ORed together and then
      *           ANDed with the `filters` field above.
      *     @type string $order_by
@@ -356,7 +356,7 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Groups of signal types that are requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalTypeGroup signal_type_groups = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>
      */
     public function getSignalTypeGroups()
     {
@@ -367,7 +367,7 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * Optional. Groups of signal types that are requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalTypeGroup signal_type_groups = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\SignalTypeGroup[] $var
      * @return $this
      */
     public function setSignalTypeGroups($var)
@@ -383,7 +383,7 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * ANDed with the `filters` field above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalFilter signal_filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\SignalFilter>
      */
     public function getSignalFilters()
     {
@@ -395,7 +395,7 @@ class QueryDatabaseResourceGroupsRequest extends \Google\Protobuf\Internal\Messa
      * ANDed with the `filters` field above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalFilter signal_filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\SignalFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\SignalFilter[] $var
      * @return $this
      */
     public function setSignalFilters($var)

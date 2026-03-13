@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The suggestion chip message that allows the user to jump out to the app
@@ -103,5 +103,4 @@ class LinkOutSuggestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

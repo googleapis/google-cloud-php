@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\ColumnSchema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Column info specific to Looker System.
@@ -64,5 +64,4 @@ class LookerColumnSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

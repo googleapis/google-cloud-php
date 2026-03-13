@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response containing the objects for a stream.
@@ -34,7 +34,7 @@ class ListStreamObjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\StreamObject>|\Google\Protobuf\Internal\RepeatedField $stream_objects
+     *     @type \Google\Cloud\Datastream\V1\StreamObject[] $stream_objects
      *           List of stream objects.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -49,7 +49,7 @@ class ListStreamObjectsResponse extends \Google\Protobuf\Internal\Message
      * List of stream objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.StreamObject stream_objects = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\StreamObject>
      */
     public function getStreamObjects()
     {
@@ -60,7 +60,7 @@ class ListStreamObjectsResponse extends \Google\Protobuf\Internal\Message
      * List of stream objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.StreamObject stream_objects = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\StreamObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\StreamObject[] $var
      * @return $this
      */
     public function setStreamObjects($var)

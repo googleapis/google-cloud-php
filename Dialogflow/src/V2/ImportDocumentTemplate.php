@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The template used for importing documents.
@@ -45,7 +45,7 @@ class ImportDocumentTemplate extends \Google\Protobuf\Internal\Message
      *
      *     @type string $mime_type
      *           Required. The MIME type of the document.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $knowledge_types
+     *     @type int[] $knowledge_types
      *           Required. The knowledge type of document content.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Metadata for the document. The metadata supports arbitrary
@@ -89,7 +89,7 @@ class ImportDocumentTemplate extends \Google\Protobuf\Internal\Message
      * Required. The knowledge type of document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document.KnowledgeType knowledge_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getKnowledgeTypes()
     {
@@ -100,7 +100,7 @@ class ImportDocumentTemplate extends \Google\Protobuf\Internal\Message
      * Required. The knowledge type of document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document.KnowledgeType knowledge_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setKnowledgeTypes($var)

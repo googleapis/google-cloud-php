@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies configuration information specific to running Hive metastore

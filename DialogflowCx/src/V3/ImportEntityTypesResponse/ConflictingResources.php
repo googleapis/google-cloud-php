@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ImportEntityTypesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conflicting resources detected during the import process. Only filled when
@@ -36,9 +36,9 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_type_display_names
+     *     @type string[] $entity_type_display_names
      *           Display names of conflicting entity types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_display_names
+     *     @type string[] $entity_display_names
      *           Display names of conflicting entities.
      * }
      */
@@ -51,7 +51,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting entity types.
      *
      * Generated from protobuf field <code>repeated string entity_type_display_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityTypeDisplayNames()
     {
@@ -62,7 +62,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting entity types.
      *
      * Generated from protobuf field <code>repeated string entity_type_display_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityTypeDisplayNames($var)
@@ -77,7 +77,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting entities.
      *
      * Generated from protobuf field <code>repeated string entity_display_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityDisplayNames()
     {
@@ -88,7 +88,7 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
      * Display names of conflicting entities.
      *
      * Generated from protobuf field <code>repeated string entity_display_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityDisplayNames($var)
@@ -100,5 +100,4 @@ class ConflictingResources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

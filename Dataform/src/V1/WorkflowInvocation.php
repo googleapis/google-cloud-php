@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single invocation of a compilation result.
@@ -42,7 +42,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resolved compilation result that was used to create this
      * invocation. Will be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -72,10 +72,10 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *     @type string $compilation_result
      *           Immutable. The name of the compilation result to use for this invocation.
      *           Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *     @type string $workflow_config
      *           Immutable. The name of the workflow config to invoke. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowConfigs/&#42;`.
+     *           format `projects/{@*}locations/{@*}repositories/{@*}workflowConfigs/*`.
      *     @type string $name
      *           Output only. The workflow invocation's name.
      *     @type \Google\Cloud\Dataform\V1\InvocationConfig $invocation_config
@@ -87,7 +87,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
      *     @type string $resolved_compilation_result
      *           Output only. The resolved compilation result that was used to create this
      *           invocation. Will be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *     @type \Google\Cloud\Dataform\V1\DataEncryptionState $data_encryption_state
      *           Output only. Only set if the repository has a KMS Key.
      *     @type string $internal_metadata
@@ -104,7 +104,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The name of the compilation result to use for this invocation.
      * Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string compilation_result = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,7 +122,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Immutable. The name of the compilation result to use for this invocation.
      * Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string compilation_result = 2 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -138,7 +138,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the workflow config to invoke. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowConfigs/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/{@*}workflowConfigs/*`.
      *
      * Generated from protobuf field <code>string workflow_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -155,7 +155,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the workflow config to invoke. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowConfigs/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/{@*}workflowConfigs/*`.
      *
      * Generated from protobuf field <code>string workflow_config = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -296,7 +296,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resolved compilation result that was used to create this
      * invocation. Will be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -309,7 +309,7 @@ class WorkflowInvocation extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resolved compilation result that was used to create this
      * invocation. Will be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string resolved_compilation_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

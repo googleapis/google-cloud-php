@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The workflow node.
@@ -54,7 +54,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
      *
      *     @type string $step_id
      *           Output only. The name of the node.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prerequisite_step_ids
+     *     @type string[] $prerequisite_step_ids
      *           Output only. Node's prerequisite nodes.
      *     @type string $job_id
      *           Output only. The job id; populated after the node enters RUNNING state.
@@ -99,7 +99,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
      * Output only. Node's prerequisite nodes.
      *
      * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrerequisiteStepIds()
     {
@@ -110,7 +110,7 @@ class WorkflowNode extends \Google\Protobuf\Internal\Message
      * Output only. Node's prerequisite nodes.
      *
      * Generated from protobuf field <code>repeated string prerequisite_step_ids = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrerequisiteStepIds($var)

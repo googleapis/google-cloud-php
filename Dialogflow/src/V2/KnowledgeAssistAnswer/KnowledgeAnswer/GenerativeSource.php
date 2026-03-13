@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about source of Generative answer.
@@ -29,7 +29,7 @@ class GenerativeSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource\Snippet>|\Google\Protobuf\Internal\RepeatedField $snippets
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource\Snippet[] $snippets
      *           All snippets used for this Generative Prediction, with their source URI
      *           and data.
      * }
@@ -44,7 +44,7 @@ class GenerativeSource extends \Google\Protobuf\Internal\Message
      * and data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource.Snippet snippets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource\Snippet>
      */
     public function getSnippets()
     {
@@ -56,7 +56,7 @@ class GenerativeSource extends \Google\Protobuf\Internal\Message
      * and data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.KnowledgeAssistAnswer.KnowledgeAnswer.GenerativeSource.Snippet snippets = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource\Snippet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource\Snippet[] $var
      * @return $this
      */
     public function setSnippets($var)
@@ -68,5 +68,4 @@ class GenerativeSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

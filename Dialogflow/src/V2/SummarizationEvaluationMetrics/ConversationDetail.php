@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregated evaluation result on conversation level. This conatins
@@ -51,15 +51,15 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\MessageEntry>|\Google\Protobuf\Internal\RepeatedField $message_entries
+     *     @type \Google\Cloud\Dialogflow\V2\MessageEntry[] $message_entries
      *           Output only. Conversation transcript that used for summarization
      *           evaluation as a reference.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>|\Google\Protobuf\Internal\RepeatedField $summary_sections
+     *     @type \Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection[] $summary_sections
      *           Output only. Summary sections that used for summarization evaluation as a
      *           reference.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail>|\Google\Protobuf\Internal\RepeatedField $metric_details
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail[] $metric_details
      *           Output only. List of metric details.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\SectionToken>|\Google\Protobuf\Internal\RepeatedField $section_tokens
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\SectionToken[] $section_tokens
      *           Output only. Conversation level token count per section. This is an
      *           aggregated(sum) result of input token of summary acorss all metrics for a
      *           single conversation.
@@ -75,7 +75,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * evaluation as a reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.MessageEntry message_entries = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\MessageEntry>
      */
     public function getMessageEntries()
     {
@@ -87,7 +87,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * evaluation as a reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.MessageEntry message_entries = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\MessageEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\MessageEntry[] $var
      * @return $this
      */
     public function setMessageEntries($var)
@@ -103,7 +103,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarySuggestion.SummarySection summary_sections = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>
      */
     public function getSummarySections()
     {
@@ -115,7 +115,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarySuggestion.SummarySection summary_sections = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection[] $var
      * @return $this
      */
     public function setSummarySections($var)
@@ -130,7 +130,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * Output only. List of metric details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail metric_details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail>
      */
     public function getMetricDetails()
     {
@@ -141,7 +141,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * Output only. List of metric details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail metric_details = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail[] $var
      * @return $this
      */
     public function setMetricDetails($var)
@@ -158,7 +158,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * single conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.SectionToken section_tokens = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\SectionToken>
      */
     public function getSectionTokens()
     {
@@ -171,7 +171,7 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
      * single conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.SectionToken section_tokens = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\SectionToken>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\SectionToken[] $var
      * @return $this
      */
     public function setSectionTokens($var)
@@ -183,5 +183,4 @@ class ConversationDetail extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

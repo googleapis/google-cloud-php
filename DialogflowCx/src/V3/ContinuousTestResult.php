@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a result from running a test case in an agent environment.
@@ -54,7 +54,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
      *     @type int $result
      *           The result of this continuous test run, i.e. whether all the tests in this
      *           continuous test run pass or not.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $test_case_results
+     *     @type string[] $test_case_results
      *           A list of individual test case results names in this continuous test run.
      *     @type \Google\Protobuf\Timestamp $run_time
      *           Time when the continuous testing run starts.
@@ -125,7 +125,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
      * A list of individual test case results names in this continuous test run.
      *
      * Generated from protobuf field <code>repeated string test_case_results = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTestCaseResults()
     {
@@ -136,7 +136,7 @@ class ContinuousTestResult extends \Google\Protobuf\Internal\Message
      * A list of individual test case results names in this continuous test run.
      *
      * Generated from protobuf field <code>repeated string test_case_results = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTestCaseResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Task;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for running scheduled notebooks.
@@ -59,10 +59,10 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      *           (`TASK_key=value`).
      *     @type \Google\Cloud\Dataplex\V1\Task\InfrastructureSpec $infrastructure_spec
      *           Optional. Infrastructure specification for the execution.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *     @type string[] $file_uris
      *           Optional. Cloud Storage URIs of files to be placed in the working
      *           directory of each executor.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *     @type string[] $archive_uris
      *           Optional. Cloud Storage URIs of archives to be extracted into the working
      *           directory of each executor. Supported file types: .jar, .tar, .tar.gz,
      *           .tgz, and .zip.
@@ -146,7 +146,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFileUris()
     {
@@ -158,7 +158,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      * directory of each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFileUris($var)
@@ -175,7 +175,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArchiveUris()
     {
@@ -188,7 +188,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      * .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArchiveUris($var)
@@ -200,5 +200,4 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

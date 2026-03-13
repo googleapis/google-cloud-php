@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -49,7 +49,7 @@ class SuggestFaqAnswersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\FaqAnswer>|\Google\Protobuf\Internal\RepeatedField $faq_answers
+     *     @type \Google\Cloud\Dialogflow\V2\FaqAnswer[] $faq_answers
      *           Answers extracted from FAQ documents.
      *     @type string $latest_message
      *           The name of the latest conversation message used to compile
@@ -74,7 +74,7 @@ class SuggestFaqAnswersResponse extends \Google\Protobuf\Internal\Message
      * Answers extracted from FAQ documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.FaqAnswer faq_answers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\FaqAnswer>
      */
     public function getFaqAnswers()
     {
@@ -85,7 +85,7 @@ class SuggestFaqAnswersResponse extends \Google\Protobuf\Internal\Message
      * Answers extracted from FAQ documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.FaqAnswer faq_answers = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\FaqAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\FaqAnswer[] $var
      * @return $this
      */
     public function setFaqAnswers($var)

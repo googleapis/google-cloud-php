@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\ReleaseConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A record of an attempt to create a compilation result for this release
@@ -33,7 +33,7 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
      *     @type string $compilation_result
      *           The name of the created compilation result, if one was successfully
      *           created. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *     @type \Google\Rpc\Status $error_status
      *           The error status encountered upon this attempt to create the
      *           compilation result, if the attempt was unsuccessful.
@@ -49,7 +49,7 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
     /**
      * The name of the created compilation result, if one was successfully
      * created. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string compilation_result = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -67,7 +67,7 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
     /**
      * The name of the created compilation result, if one was successfully
      * created. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string compilation_result = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -159,5 +159,4 @@ class ScheduledReleaseRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

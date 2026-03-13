@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List metadata jobs response.
@@ -41,12 +41,12 @@ class ListMetadataJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\MetadataJob>|\Google\Protobuf\Internal\RepeatedField $metadata_jobs
+     *     @type \Google\Cloud\Dataplex\V1\MetadataJob[] $metadata_jobs
      *           Metadata jobs under the specified parent location.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. If there are no more results
      *           in the list, the value is empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type string[] $unreachable_locations
      *           Locations that the service couldn't reach.
      * }
      */
@@ -59,7 +59,7 @@ class ListMetadataJobsResponse extends \Google\Protobuf\Internal\Message
      * Metadata jobs under the specified parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.MetadataJob metadata_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\MetadataJob>
      */
     public function getMetadataJobs()
     {
@@ -70,7 +70,7 @@ class ListMetadataJobsResponse extends \Google\Protobuf\Internal\Message
      * Metadata jobs under the specified parent location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.MetadataJob metadata_jobs = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\MetadataJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\MetadataJob[] $var
      * @return $this
      */
     public function setMetadataJobs($var)
@@ -113,7 +113,7 @@ class ListMetadataJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that the service couldn't reach.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachableLocations()
     {
@@ -124,7 +124,7 @@ class ListMetadataJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that the service couldn't reach.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachableLocations($var)

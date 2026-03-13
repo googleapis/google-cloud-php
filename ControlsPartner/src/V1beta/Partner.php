@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Partner resource
@@ -73,11 +73,11 @@ class Partner extends \Google\Protobuf\Internal\Message
      *           Identifier. The resource name of the partner.
      *           Format: `organizations/{organization}/locations/{location}/partner`
      *           Example: "organizations/123456/locations/us-central1/partner"
-     *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\Sku>|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type \Google\Cloud\CloudControlsPartner\V1beta\Sku[] $skus
      *           List of SKUs the partner is offering
-     *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\EkmMetadata>|\Google\Protobuf\Internal\RepeatedField $ekm_solutions
+     *     @type \Google\Cloud\CloudControlsPartner\V1beta\EkmMetadata[] $ekm_solutions
      *           List of Google Cloud supported EKM partners supported by the partner
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $operated_cloud_regions
+     *     @type string[] $operated_cloud_regions
      *           List of Google Cloud regions that the partner sells services to customers.
      *           Valid Google Cloud regions found here:
      *           https://cloud.google.com/compute/docs/regions-zones
@@ -129,7 +129,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * List of SKUs the partner is offering
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.Sku skus = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudControlsPartner\V1beta\Sku>
      */
     public function getSkus()
     {
@@ -140,7 +140,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * List of SKUs the partner is offering
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.Sku skus = 3;</code>
-     * @param array<\Google\Cloud\CloudControlsPartner\V1beta\Sku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudControlsPartner\V1beta\Sku[] $var
      * @return $this
      */
     public function setSkus($var)
@@ -155,7 +155,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * List of Google Cloud supported EKM partners supported by the partner
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.EkmMetadata ekm_solutions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudControlsPartner\V1beta\EkmMetadata>
      */
     public function getEkmSolutions()
     {
@@ -166,7 +166,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * List of Google Cloud supported EKM partners supported by the partner
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.EkmMetadata ekm_solutions = 4;</code>
-     * @param array<\Google\Cloud\CloudControlsPartner\V1beta\EkmMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudControlsPartner\V1beta\EkmMetadata[] $var
      * @return $this
      */
     public function setEkmSolutions($var)
@@ -183,7 +183,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/compute/docs/regions-zones
      *
      * Generated from protobuf field <code>repeated string operated_cloud_regions = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOperatedCloudRegions()
     {
@@ -196,7 +196,7 @@ class Partner extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/compute/docs/regions-zones
      *
      * Generated from protobuf field <code>repeated string operated_cloud_regions = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOperatedCloudRegions($var)

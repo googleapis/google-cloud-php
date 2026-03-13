@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execution using the default Cloud Build pool.
@@ -18,7 +18,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) will be used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) will be used.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -42,7 +42,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
      *     @type string $service_account
      *           Optional. Google service account to use for execution. If unspecified,
      *           the project execution service account
-     *           (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) will be used.
+     *           (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) will be used.
      *     @type string $artifact_storage
      *           Optional. Cloud Storage location where execution outputs should be stored.
      *           This can either be a bucket ("gs://my-bucket") or a path within a bucket
@@ -58,7 +58,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) will be used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) will be used.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -71,7 +71,7 @@ class DefaultPool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Google service account to use for execution. If unspecified,
      * the project execution service account
-     * (<PROJECT_NUMBER>-compute&#64;developer.gserviceaccount.com) will be used.
+     * (<PROJECT_NUMBER>-compute\@developer.gserviceaccount.com) will be used.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

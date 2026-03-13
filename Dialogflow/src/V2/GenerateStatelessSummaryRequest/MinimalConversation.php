@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\GenerateStatelessSummaryRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The minimum amount of information required to generate a Summary without
@@ -40,7 +40,7 @@ class MinimalConversation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Dialogflow\V2\Message[] $messages
      *           Required. The messages that the Summary will be generated from. It is
      *           expected that this message content is already redacted and does not
      *           contain any PII. Required fields: {content, language_code, participant,
@@ -64,7 +64,7 @@ class MinimalConversation extends \Google\Protobuf\Internal\Message
      * provided, then the messages must be provided in chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Message messages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Message>
      */
     public function getMessages()
     {
@@ -79,7 +79,7 @@ class MinimalConversation extends \Google\Protobuf\Internal\Message
      * provided, then the messages must be provided in chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Message messages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Message[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -119,5 +119,4 @@ class MinimalConversation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

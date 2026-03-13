@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of how speech should be synthesized.
@@ -90,13 +90,13 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *           amplitude of the normal native signal amplitude. We strongly recommend not
      *           to exceed +10 (dB) as there's usually no effective increase in loudness for
      *           any value greater than that.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
+     *     @type string[] $effects_profile_id
      *           Optional. An identifier which selects 'audio effects' profiles that are
      *           applied on (post synthesized) text to speech. Effects are applied on top of
      *           each other in the order they are given.
      *     @type \Google\Cloud\Dialogflow\V2\VoiceSelectionParams $voice
      *           Optional. The desired voice of the synthesized audio.
-     *     @type array<\Google\Cloud\Dialogflow\V2\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $pronunciations
+     *     @type \Google\Cloud\Dialogflow\V2\CustomPronunciationParams[] $pronunciations
      *           Optional. The custom pronunciations for the synthesized audio.
      * }
      */
@@ -213,7 +213,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * each other in the order they are given.
      *
      * Generated from protobuf field <code>repeated string effects_profile_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEffectsProfileId()
     {
@@ -226,7 +226,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * each other in the order they are given.
      *
      * Generated from protobuf field <code>repeated string effects_profile_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEffectsProfileId($var)
@@ -277,7 +277,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * Optional. The custom pronunciations for the synthesized audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CustomPronunciationParams pronunciations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\CustomPronunciationParams>
      */
     public function getPronunciations()
     {
@@ -288,7 +288,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * Optional. The custom pronunciations for the synthesized audio.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CustomPronunciationParams pronunciations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\CustomPronunciationParams[] $var
      * @return $this
      */
     public function setPronunciations($var)

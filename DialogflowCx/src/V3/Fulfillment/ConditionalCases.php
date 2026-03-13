@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Fulfillment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of cascading if-else conditions. Cases are mutually exclusive.
@@ -29,7 +29,7 @@ class ConditionalCases extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase>|\Google\Protobuf\Internal\RepeatedField $cases
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase[] $cases
      *           A list of cascading if-else conditions.
      * }
      */
@@ -42,7 +42,7 @@ class ConditionalCases extends \Google\Protobuf\Internal\Message
      * A list of cascading if-else conditions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case cases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase>
      */
     public function getCases()
     {
@@ -53,7 +53,7 @@ class ConditionalCases extends \Google\Protobuf\Internal\Message
      * A list of cascading if-else conditions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case cases = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase[] $var
      * @return $this
      */
     public function setCases($var)
@@ -65,5 +65,4 @@ class ConditionalCases extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

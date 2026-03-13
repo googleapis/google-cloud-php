@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The artifacts produced by a deploy operation.
@@ -39,7 +39,7 @@ class DeployArtifact extends \Google\Protobuf\Internal\Message
      *     @type string $artifact_uri
      *           Output only. URI of a directory containing the artifacts. All paths are
      *           relative to this location.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $manifest_paths
+     *     @type string[] $manifest_paths
      *           Output only. File paths of the manifests applied during the deploy
      *           operation relative to the URI.
      * }
@@ -82,7 +82,7 @@ class DeployArtifact extends \Google\Protobuf\Internal\Message
      * operation relative to the URI.
      *
      * Generated from protobuf field <code>repeated string manifest_paths = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getManifestPaths()
     {
@@ -94,7 +94,7 @@ class DeployArtifact extends \Google\Protobuf\Internal\Message
      * operation relative to the URI.
      *
      * Generated from protobuf field <code>repeated string manifest_paths = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setManifestPaths($var)

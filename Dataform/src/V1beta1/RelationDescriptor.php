@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a relation and its columns.
@@ -42,7 +42,7 @@ class RelationDescriptor extends \Google\Protobuf\Internal\Message
      *
      *     @type string $description
      *           A text description of the relation.
-     *     @type array<\Google\Cloud\Dataform\V1beta1\RelationDescriptor\ColumnDescriptor>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Dataform\V1beta1\RelationDescriptor\ColumnDescriptor[] $columns
      *           A list of descriptions of columns within the relation.
      *     @type array|\Google\Protobuf\Internal\MapField $bigquery_labels
      *           A set of BigQuery labels that should be applied to the relation.
@@ -83,7 +83,7 @@ class RelationDescriptor extends \Google\Protobuf\Internal\Message
      * A list of descriptions of columns within the relation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.RelationDescriptor.ColumnDescriptor columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\RelationDescriptor\ColumnDescriptor>
      */
     public function getColumns()
     {
@@ -94,7 +94,7 @@ class RelationDescriptor extends \Google\Protobuf\Internal\Message
      * A list of descriptions of columns within the relation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.RelationDescriptor.ColumnDescriptor columns = 2;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\RelationDescriptor\ColumnDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\RelationDescriptor\ColumnDescriptor[] $var
      * @return $this
      */
     public function setColumns($var)

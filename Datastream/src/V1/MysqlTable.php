@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MySQL table.
@@ -38,7 +38,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Table name.
-     *     @type array<\Google\Cloud\Datastream\V1\MysqlColumn>|\Google\Protobuf\Internal\RepeatedField $mysql_columns
+     *     @type \Google\Cloud\Datastream\V1\MysqlColumn[] $mysql_columns
      *           MySQL columns in the database.
      *           When unspecified as part of include/exclude objects, includes/excludes
      *           everything.
@@ -81,7 +81,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MysqlColumn>
      */
     public function getMysqlColumns()
     {
@@ -94,7 +94,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MysqlColumn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MysqlColumn[] $var
      * @return $this
      */
     public function setMysqlColumns($var)

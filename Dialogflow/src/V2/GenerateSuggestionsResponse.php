@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -38,7 +38,7 @@ class GenerateSuggestionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse\GeneratorSuggestionAnswer>|\Google\Protobuf\Internal\RepeatedField $generator_suggestion_answers
+     *     @type \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse\GeneratorSuggestionAnswer[] $generator_suggestion_answers
      *           The answers generated for the conversation based on context.
      *     @type string $latest_message
      *           The name of the latest conversation message used as context for
@@ -56,7 +56,7 @@ class GenerateSuggestionsResponse extends \Google\Protobuf\Internal\Message
      * The answers generated for the conversation based on context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GenerateSuggestionsResponse.GeneratorSuggestionAnswer generator_suggestion_answers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse\GeneratorSuggestionAnswer>
      */
     public function getGeneratorSuggestionAnswers()
     {
@@ -67,7 +67,7 @@ class GenerateSuggestionsResponse extends \Google\Protobuf\Internal\Message
      * The answers generated for the conversation based on context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GenerateSuggestionsResponse.GeneratorSuggestionAnswer generator_suggestion_answers = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse\GeneratorSuggestionAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\GenerateSuggestionsResponse\GeneratorSuggestionAnswer[] $var
      * @return $this
      */
     public function setGeneratorSuggestionAnswers($var)

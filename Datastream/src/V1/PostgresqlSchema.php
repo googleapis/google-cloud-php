@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PostgreSQL schema.
@@ -36,7 +36,7 @@ class PostgresqlSchema extends \Google\Protobuf\Internal\Message
      *
      *     @type string $schema
      *           Schema name.
-     *     @type array<\Google\Cloud\Datastream\V1\PostgresqlTable>|\Google\Protobuf\Internal\RepeatedField $postgresql_tables
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlTable[] $postgresql_tables
      *           Tables in the schema.
      * }
      */
@@ -75,7 +75,7 @@ class PostgresqlSchema extends \Google\Protobuf\Internal\Message
      * Tables in the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlTable postgresql_tables = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\PostgresqlTable>
      */
     public function getPostgresqlTables()
     {
@@ -86,7 +86,7 @@ class PostgresqlSchema extends \Google\Protobuf\Internal\Message
      * Tables in the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlTable postgresql_tables = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\PostgresqlTable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\PostgresqlTable[] $var
      * @return $this
      */
     public function setPostgresqlTables($var)

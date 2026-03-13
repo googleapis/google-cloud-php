@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`.
@@ -29,7 +29,7 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\Stage>|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type \Google\Cloud\Deploy\V1\Stage[] $stages
      *           Optional. Each stage specifies configuration for a `Target`. The ordering
      *           of this list defines the promotion flow.
      * }
@@ -44,7 +44,7 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
      * of this list defines the promotion flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\Stage>
      */
     public function getStages()
     {
@@ -56,7 +56,7 @@ class SerialPipeline extends \Google\Protobuf\Internal\Message
      * of this list defines the promotion flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Stage stages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\Stage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\Stage[] $var
      * @return $this
      */
     public function setStages($var)

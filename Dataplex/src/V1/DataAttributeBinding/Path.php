@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataAttributeBinding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a subresource of the given resource, and associated bindings
@@ -42,7 +42,7 @@ class Path extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name identifier of the path.
      *           Nested columns should be of the form: 'address.city'.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type string[] $attributes
      *           Optional. List of attributes to be associated with the path of the
      *           resource, provided in the form:
      *           projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
@@ -87,7 +87,7 @@ class Path extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *
      * Generated from protobuf field <code>repeated string attributes = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttributes()
     {
@@ -100,7 +100,7 @@ class Path extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/dataTaxonomies/{dataTaxonomy}/attributes/{data_attribute_id}
      *
      * Generated from protobuf field <code>repeated string attributes = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttributes($var)
@@ -112,5 +112,4 @@ class Path extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `SearchTeamFolders` response message.
@@ -35,7 +35,7 @@ class SearchTeamFoldersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult[] $results
      *           List of TeamFolders that match the search query.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class SearchTeamFoldersResponse extends \Google\Protobuf\Internal\Message
      * List of TeamFolders that match the search query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.SearchTeamFoldersResponse.TeamFolderSearchResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult>
      */
     public function getResults()
     {
@@ -62,7 +62,7 @@ class SearchTeamFoldersResponse extends \Google\Protobuf\Internal\Message
      * List of TeamFolders that match the search query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.SearchTeamFoldersResponse.TeamFolderSearchResult results = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\SearchTeamFoldersResponse\TeamFolderSearchResult[] $var
      * @return $this
      */
     public function setResults($var)

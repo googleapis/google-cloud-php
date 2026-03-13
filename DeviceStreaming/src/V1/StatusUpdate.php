@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeviceStreaming\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A StatusUpdate message given over the ADB protocol for the device state.

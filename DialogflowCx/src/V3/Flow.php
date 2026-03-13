@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Flows represents the conversation flows when you build your chatbot agent.
@@ -156,7 +156,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The description of the flow. The maximum length is 500 characters. If
      *           exceeded, the request is rejected.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $transition_routes
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $transition_routes
      *           A flow's transition routes serve two purposes:
      *           *   They are responsible for matching the user's first utterances in the
      *           flow.
@@ -169,7 +169,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           *   TransitionRoutes with intent specified.
      *           *   TransitionRoutes with only condition specified.
      *           TransitionRoutes with intent specified are inherited by pages in the flow.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $event_handlers
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $event_handlers
      *           A flow's event handlers serve two purposes:
      *           *   They are responsible for handling events (e.g. no match,
      *           webhook errors) in the flow.
@@ -181,7 +181,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           [transition_routes][google.cloud.dialogflow.cx.v3.Flow.transition_routes],
      *           these handlers are evaluated on a first-match basis. The first one that
      *           matches the event get executed, with the rest being ignored.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $transition_route_groups
+     *     @type string[] $transition_route_groups
      *           A flow's transition route group serve two purposes:
      *           *   They are responsible for matching the user's first utterances in the
      *           flow.
@@ -200,9 +200,9 @@ class Flow extends \Google\Protobuf\Internal\Message
      *           lower level overrides the settings exposed at the higher level.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\KnowledgeConnectorSettings $knowledge_connector_settings
      *           Optional. Knowledge connector configuration.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $input_parameter_definitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $input_parameter_definitions
      *           Optional. Defined structured input parameters for this flow.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $output_parameter_definitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $output_parameter_definitions
      *           Optional. Defined structured output parameters for this flow.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Flow\MultiLanguageSettings $multi_language_settings
      *           Optional. Multi-lingual agent settings for this flow.
@@ -315,7 +315,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * TransitionRoutes with intent specified are inherited by pages in the flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>
      */
     public function getTransitionRoutes()
     {
@@ -337,7 +337,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * TransitionRoutes with intent specified are inherited by pages in the flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRoute transition_routes = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRoute[] $var
      * @return $this
      */
     public function setTransitionRoutes($var)
@@ -362,7 +362,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * matches the event get executed, with the rest being ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler event_handlers = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>
      */
     public function getEventHandlers()
     {
@@ -383,7 +383,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * matches the event get executed, with the rest being ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler event_handlers = 10;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $var
      * @return $this
      */
     public function setEventHandlers($var)
@@ -408,7 +408,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 15 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTransitionRouteGroups()
     {
@@ -429,7 +429,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * for agent-level groups.
      *
      * Generated from protobuf field <code>repeated string transition_route_groups = 15 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTransitionRouteGroups($var)
@@ -554,7 +554,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured input parameters for this flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>
      */
     public function getInputParameterDefinitions()
     {
@@ -565,7 +565,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured input parameters for this flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $var
      * @return $this
      */
     public function setInputParameterDefinitions($var)
@@ -580,7 +580,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured output parameters for this flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>
      */
     public function getOutputParameterDefinitions()
     {
@@ -591,7 +591,7 @@ class Flow extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured output parameters for this flow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $var
      * @return $this
      */
     public function setOutputParameterDefinitions($var)

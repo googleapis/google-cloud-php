@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about source of FAQ answer.
@@ -64,5 +64,4 @@ class FaqSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

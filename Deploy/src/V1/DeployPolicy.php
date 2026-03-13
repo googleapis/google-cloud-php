@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `DeployPolicy` resource in the Cloud Deploy API.
@@ -162,12 +162,12 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      *     @type bool $suspended
      *           Optional. When suspended, the policy will not prevent actions from
      *           occurring, even if the action violates the policy.
-     *     @type array<\Google\Cloud\Deploy\V1\DeployPolicyResourceSelector>|\Google\Protobuf\Internal\RepeatedField $selectors
+     *     @type \Google\Cloud\Deploy\V1\DeployPolicyResourceSelector[] $selectors
      *           Required. Selected resources to which the policy will be applied. At least
      *           one selector is required. If one selector matches the resource the policy
      *           applies. For example, if there are two selectors and the action being
      *           attempted matches one of them, the policy will apply to that action.
-     *     @type array<\Google\Cloud\Deploy\V1\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Deploy\V1\PolicyRule[] $rules
      *           Required. Rules to apply. At least one rule must be present.
      *     @type string $etag
      *           The weak etag of the `DeployPolicy` resource.
@@ -466,7 +466,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * attempted matches one of them, the policy will apply to that action.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicyResourceSelector selectors = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\DeployPolicyResourceSelector>
      */
     public function getSelectors()
     {
@@ -480,7 +480,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * attempted matches one of them, the policy will apply to that action.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicyResourceSelector selectors = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Deploy\V1\DeployPolicyResourceSelector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\DeployPolicyResourceSelector[] $var
      * @return $this
      */
     public function setSelectors($var)
@@ -495,7 +495,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * Required. Rules to apply. At least one rule must be present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.PolicyRule rules = 10 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\PolicyRule>
      */
     public function getRules()
     {
@@ -506,7 +506,7 @@ class DeployPolicy extends \Google\Protobuf\Internal\Message
      * Required. Rules to apply. At least one rule must be present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.PolicyRule rules = 10 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Deploy\V1\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\PolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A form is a data model that groups related parameters that can be collected
@@ -33,7 +33,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Form\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Form\Parameter[] $parameters
      *           Parameters to collect from the user.
      * }
      */
@@ -46,7 +46,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * Parameters to collect from the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Form.Parameter parameters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Form\Parameter>
      */
     public function getParameters()
     {
@@ -57,7 +57,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * Parameters to collect from the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Form.Parameter parameters = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Form\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Form\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

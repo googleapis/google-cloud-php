@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing the GitRepositoryLink object
@@ -17,7 +17,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -102,7 +102,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Resource name of the repository, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     *           `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *     @type string $clone_uri
      *           Required. Git Clone URI.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -139,7 +139,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -151,7 +151,7 @@ class GitRepositoryLink extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Resource name of the repository, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

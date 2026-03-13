@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `CreateWorkflowInvocation` request message.
@@ -17,7 +17,7 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The repository in which to create the workflow invocation. Must
-     * be in the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * be in the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +54,7 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The repository in which to create the workflow invocation. Must
-     *           be in the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     *           be in the format `projects/{@*}locations/{@*}repositories/*`.
      *     @type \Google\Cloud\Dataform\V1\WorkflowInvocation $workflow_invocation
      *           Required. The workflow invocation resource to create.
      * }
@@ -66,7 +66,7 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to create the workflow invocation. Must
-     * be in the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * be in the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,7 +78,7 @@ class CreateWorkflowInvocationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to create the workflow invocation. Must
-     * be in the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * be in the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

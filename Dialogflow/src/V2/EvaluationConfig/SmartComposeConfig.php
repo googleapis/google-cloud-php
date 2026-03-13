@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\EvaluationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Smart compose specific configuration for evaluation job.
@@ -118,5 +118,4 @@ class SmartComposeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

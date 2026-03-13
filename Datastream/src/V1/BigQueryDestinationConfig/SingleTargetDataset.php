@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\BigQueryDestinationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single target dataset to which all data will be streamed.
@@ -72,5 +72,4 @@ class SingleTargetDataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

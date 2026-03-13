@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A text or ssml response that is preferentially used for TTS output audio
@@ -151,5 +151,4 @@ class OutputAudioText extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\TagField;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An enum value.
@@ -64,5 +64,4 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

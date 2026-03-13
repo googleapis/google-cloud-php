@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an example that the agent is trained on.
@@ -67,7 +67,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *           Output only. The unique identifier of this training phrase.
      *     @type int $type
      *           Required. The type of the training phrase.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[] $parts
      *           Required. The ordered list of training phrase parts.
      *           The parts are concatenated in order to form the training phrase.
      *           Note: The API does not automatically annotate training phrases like the
@@ -166,7 +166,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part>
      */
     public function getParts()
     {
@@ -192,7 +192,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[] $var
      * @return $this
      */
     public function setParts($var)
@@ -234,5 +234,4 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

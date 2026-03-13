@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Task\InfrastructureSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Batch compute resources associated with the task.
@@ -110,5 +110,4 @@ class BatchComputeResources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

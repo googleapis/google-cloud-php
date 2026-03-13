@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud conversation info for easier debugging.
@@ -150,10 +150,10 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *           Duration of first audio chunk.
      *     @type bool $single_utterance
      *           Whether client used single utterance mode.
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $speech_partial_results_end_times
+     *     @type \Google\Protobuf\Duration[] $speech_partial_results_end_times
      *           Time offsets of the speech partial results relative to the beginning of
      *           the stream.
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $speech_final_results_end_times
+     *     @type \Google\Protobuf\Duration[] $speech_final_results_end_times
      *           Time offsets of the speech final results (is_final=true) relative to the
      *           beginning of the stream.
      *     @type int $partial_responses
@@ -166,10 +166,10 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      *           Whether a barge-in event is triggered in this request.
      *     @type bool $speech_single_utterance
      *           Whether speech uses single utterance mode.
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $dtmf_partial_results_times
+     *     @type \Google\Protobuf\Duration[] $dtmf_partial_results_times
      *           Time offsets of the DTMF partial results relative to the beginning of
      *           the stream.
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $dtmf_final_results_times
+     *     @type \Google\Protobuf\Duration[] $dtmf_final_results_times
      *           Time offsets of the DTMF final results relative to the beginning of
      *           the stream.
      *     @type \Google\Protobuf\Duration $single_utterance_end_time_offset
@@ -323,7 +323,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration speech_partial_results_end_times = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Duration>
      */
     public function getSpeechPartialResultsEndTimes()
     {
@@ -335,7 +335,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration speech_partial_results_end_times = 6;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Duration[] $var
      * @return $this
      */
     public function setSpeechPartialResultsEndTimes($var)
@@ -351,7 +351,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * beginning of the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration speech_final_results_end_times = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Duration>
      */
     public function getSpeechFinalResultsEndTimes()
     {
@@ -363,7 +363,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * beginning of the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration speech_final_results_end_times = 7;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Duration[] $var
      * @return $this
      */
     public function setSpeechFinalResultsEndTimes($var)
@@ -487,7 +487,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration dtmf_partial_results_times = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Duration>
      */
     public function getDtmfPartialResultsTimes()
     {
@@ -499,7 +499,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration dtmf_partial_results_times = 12;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Duration[] $var
      * @return $this
      */
     public function setDtmfPartialResultsTimes($var)
@@ -515,7 +515,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration dtmf_final_results_times = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Duration>
      */
     public function getDtmfFinalResultsTimes()
     {
@@ -527,7 +527,7 @@ class CloudConversationDebuggingInfo extends \Google\Protobuf\Internal\Message
      * the stream.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration dtmf_final_results_times = 13;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Duration[] $var
      * @return $this
      */
     public function setDtmfFinalResultsTimes($var)

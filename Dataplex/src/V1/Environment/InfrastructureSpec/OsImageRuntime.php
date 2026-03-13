@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Environment\InfrastructureSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Software Runtime Configuration to run Analyze.
@@ -55,11 +55,11 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      *
      *     @type string $image_version
      *           Required. Dataplex Universal Catalog Image version.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $java_libraries
+     *     @type string[] $java_libraries
      *           Optional. List of Java jars to be included in the runtime environment.
      *           Valid input includes Cloud Storage URIs to Jar binaries.
      *           For example, gs://bucket-name/my/path/to/file.jar
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $python_packages
+     *     @type string[] $python_packages
      *           Optional. A list of python packages to be installed.
      *           Valid formats include Cloud Storage URI to a PIP installable library.
      *           For example, gs://bucket-name/my/path/to/lib.tar.gz
@@ -107,7 +107,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_libraries = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJavaLibraries()
     {
@@ -120,7 +120,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/file.jar
      *
      * Generated from protobuf field <code>repeated string java_libraries = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJavaLibraries($var)
@@ -137,7 +137,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPythonPackages()
     {
@@ -150,7 +150,7 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
      * For example, gs://bucket-name/my/path/to/lib.tar.gz
      *
      * Generated from protobuf field <code>repeated string python_packages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPythonPackages($var)
@@ -194,5 +194,4 @@ class OsImageRuntime extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

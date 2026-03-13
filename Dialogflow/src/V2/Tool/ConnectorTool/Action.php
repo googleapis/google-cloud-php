@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Tool\ConnectorTool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of a Connection operation for the tool to use.
@@ -41,10 +41,10 @@ class Action extends \Google\Protobuf\Internal\Message
      *           ID of a Connection action for the tool to use.
      *     @type \Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action\EntityOperation $entity_operation
      *           Entity operation configuration for the tool to use.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_fields
+     *     @type string[] $input_fields
      *           Optional. Entity fields to use as inputs for the operation.
      *           If no fields are specified, all fields of the Entity will be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $output_fields
+     *     @type string[] $output_fields
      *           Optional. Entity fields to return from the operation.
      *           If no fields are specified, all fields of the Entity will be returned.
      * }
@@ -121,7 +121,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * If no fields are specified, all fields of the Entity will be used.
      *
      * Generated from protobuf field <code>repeated string input_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInputFields()
     {
@@ -133,7 +133,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * If no fields are specified, all fields of the Entity will be used.
      *
      * Generated from protobuf field <code>repeated string input_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInputFields($var)
@@ -149,7 +149,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * If no fields are specified, all fields of the Entity will be returned.
      *
      * Generated from protobuf field <code>repeated string output_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOutputFields()
     {
@@ -161,7 +161,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * If no fields are specified, all fields of the Entity will be returned.
      *
      * Generated from protobuf field <code>repeated string output_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOutputFields($var)
@@ -181,5 +181,4 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

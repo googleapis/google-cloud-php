@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A DataStoreTool is a way to provide specifications needed to search a
@@ -35,7 +35,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>|\Google\Protobuf\Internal\RepeatedField $data_store_connections
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection[] $data_store_connections
      *           Required. List of data stores to search.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Tool\DataStoreTool\FallbackPrompt $fallback_prompt
      *           Required. Fallback prompt configurations to use.
@@ -50,7 +50,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Required. List of data stores to search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnection data_store_connections = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>
      */
     public function getDataStoreConnections()
     {
@@ -61,7 +61,7 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
      * Required. List of data stores to search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnection data_store_connections = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection[] $var
      * @return $this
      */
     public function setDataStoreConnections($var)
@@ -109,5 +109,4 @@ class DataStoreTool extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

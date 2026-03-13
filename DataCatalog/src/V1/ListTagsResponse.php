@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\DataCatalog\V1\Tag[] $tags
      *           [Tag][google.cloud.datacatalog.v1.Tag] details.
      *     @type string $next_page_token
      *           Pagination token of the next results page. Empty if there are
@@ -52,7 +52,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * [Tag][google.cloud.datacatalog.v1.Tag] details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag tags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\Tag>
      */
     public function getTags()
     {
@@ -63,7 +63,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * [Tag][google.cloud.datacatalog.v1.Tag] details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag tags = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\Tag[] $var
      * @return $this
      */
     public function setTags($var)

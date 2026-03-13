@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentAssistantFeedback;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feedback for conversation summarization.
@@ -186,5 +186,4 @@ class SummarizationFeedback extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

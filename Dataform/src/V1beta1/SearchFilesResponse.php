@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Client-facing representation of a file search response.
@@ -35,7 +35,7 @@ class SearchFilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
+     *     @type \Google\Cloud\Dataform\V1beta1\SearchResult[] $search_results
      *           List of matched results.
      *     @type string $next_page_token
      *           Optional. A token, which can be sent as `page_token` to retrieve the next
@@ -51,7 +51,7 @@ class SearchFilesResponse extends \Google\Protobuf\Internal\Message
      * List of matched results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.SearchResult search_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\SearchResult>
      */
     public function getSearchResults()
     {
@@ -62,7 +62,7 @@ class SearchFilesResponse extends \Google\Protobuf\Internal\Message
      * List of matched results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.SearchResult search_results = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\SearchResult[] $var
      * @return $this
      */
     public function setSearchResults($var)

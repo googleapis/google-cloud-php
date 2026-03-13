@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A rich message format, including a human readable string, a key for
@@ -48,7 +48,7 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      *     @type string $message_key
      *           Identifier for this message type.  Used by external systems to
      *           internationalize or personalize message.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter[] $parameters
      *           The structured data associated with this message.
      * }
      */
@@ -115,7 +115,7 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      * The structured data associated with this message.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StructuredMessage.Parameter parameters = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter>
      */
     public function getParameters()
     {
@@ -126,7 +126,7 @@ class StructuredMessage extends \Google\Protobuf\Internal\Message
      * The structured data associated with this message.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.StructuredMessage.Parameter parameters = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\StructuredMessage\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

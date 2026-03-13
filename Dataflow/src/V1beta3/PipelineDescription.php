@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A descriptive representation of submitted pipeline as well as the executed
@@ -48,11 +48,11 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\TransformSummary>|\Google\Protobuf\Internal\RepeatedField $original_pipeline_transform
+     *     @type \Google\Cloud\Dataflow\V1beta3\TransformSummary[] $original_pipeline_transform
      *           Description of each transform in the pipeline and collections between them.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary>|\Google\Protobuf\Internal\RepeatedField $execution_pipeline_stage
+     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary[] $execution_pipeline_stage
      *           Description of each stage of execution of the pipeline.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\DisplayData>|\Google\Protobuf\Internal\RepeatedField $display_data
+     *     @type \Google\Cloud\Dataflow\V1beta3\DisplayData[] $display_data
      *           Pipeline level display data.
      *     @type string $step_names_hash
      *           A hash value of the submitted pipeline portable graph step names if exists.
@@ -67,7 +67,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Description of each transform in the pipeline and collections between them.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.TransformSummary original_pipeline_transform = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\TransformSummary>
      */
     public function getOriginalPipelineTransform()
     {
@@ -78,7 +78,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Description of each transform in the pipeline and collections between them.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.TransformSummary original_pipeline_transform = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\TransformSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\TransformSummary[] $var
      * @return $this
      */
     public function setOriginalPipelineTransform($var)
@@ -93,7 +93,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Description of each stage of execution of the pipeline.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary execution_pipeline_stage = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary>
      */
     public function getExecutionPipelineStage()
     {
@@ -104,7 +104,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Description of each stage of execution of the pipeline.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary execution_pipeline_stage = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary[] $var
      * @return $this
      */
     public function setExecutionPipelineStage($var)
@@ -119,7 +119,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Pipeline level display data.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DisplayData display_data = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\DisplayData>
      */
     public function getDisplayData()
     {
@@ -130,7 +130,7 @@ class PipelineDescription extends \Google\Protobuf\Internal\Message
      * Pipeline level display data.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DisplayData display_data = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\DisplayData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\DisplayData[] $var
      * @return $this
      */
     public function setDisplayData($var)
