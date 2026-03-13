@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing Security Health Analytics custom modules.
@@ -35,7 +35,7 @@ class ListSecurityHealthAnalyticsCustomModulesResponse extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule>|\Google\Protobuf\Internal\RepeatedField $security_health_analytics_custom_modules
+     *     @type \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule[] $security_health_analytics_custom_modules
      *           Custom modules belonging to the requested parent.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more custom modules to be
@@ -51,7 +51,7 @@ class ListSecurityHealthAnalyticsCustomModulesResponse extends \Google\Protobuf\
      * Custom modules belonging to the requested parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_modules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule>
      */
     public function getSecurityHealthAnalyticsCustomModules()
     {
@@ -62,7 +62,7 @@ class ListSecurityHealthAnalyticsCustomModulesResponse extends \Google\Protobuf\
      * Custom modules belonging to the requested parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.SecurityHealthAnalyticsCustomModule security_health_analytics_custom_modules = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\SecurityHealthAnalyticsCustomModule[] $var
      * @return $this
      */
     public function setSecurityHealthAnalyticsCustomModules($var)

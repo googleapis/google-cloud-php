@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data source reference can be used to manage related data sources within the

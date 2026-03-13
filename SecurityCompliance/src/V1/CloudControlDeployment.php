@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A cloud control deployment represents the deployment of a particular cloud
@@ -141,7 +141,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
      *           deployment.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControl $parameter_substituted_cloud_control
      *           Output only. The cloud control after the given parameters are substituted.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $framework_deployment_references
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference[] $framework_deployment_references
      *           Output only. The references to the framework deployments that this cloud
      *           control deployment is part of. A cloud control deployment can be part of
      *           multiple framework deployments.
@@ -492,7 +492,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
      * multiple framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference framework_deployment_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference>
      */
     public function getFrameworkDeploymentReferences()
     {
@@ -505,7 +505,7 @@ class CloudControlDeployment extends \Google\Protobuf\Internal\Message
      * multiple framework deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkDeploymentReference framework_deployment_references = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeploymentReference[] $var
      * @return $this
      */
     public function setFrameworkDeploymentReferences($var)

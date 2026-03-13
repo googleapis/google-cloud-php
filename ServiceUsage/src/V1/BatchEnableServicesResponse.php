@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceUsage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `BatchEnableServices` method.
@@ -37,9 +37,9 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\ServiceUsage\V1\Service[] $services
      *           The new state of the services after enabling.
-     *     @type array<\Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure>|\Google\Protobuf\Internal\RepeatedField $failures
+     *     @type \Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure[] $failures
      *           If allow_partial_success is true, and one or more services could not be
      *           enabled, this field contains the details about each failure.
      * }
@@ -53,7 +53,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * The new state of the services after enabling.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.Service services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceUsage\V1\Service>
      */
     public function getServices()
     {
@@ -64,7 +64,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * The new state of the services after enabling.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.Service services = 1;</code>
-     * @param array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceUsage\V1\Service[] $var
      * @return $this
      */
     public function setServices($var)
@@ -80,7 +80,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * enabled, this field contains the details about each failure.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.BatchEnableServicesResponse.EnableFailure failures = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure>
      */
     public function getFailures()
     {
@@ -92,7 +92,7 @@ class BatchEnableServicesResponse extends \Google\Protobuf\Internal\Message
      * enabled, this field contains the details about each failure.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.BatchEnableServicesResponse.EnableFailure failures = 2;</code>
-     * @param array<\Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse\EnableFailure[] $var
      * @return $this
      */
     public function setFailures($var)

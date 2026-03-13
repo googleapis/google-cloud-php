@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [IssuanceModes][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.IssuanceModes]
@@ -121,5 +121,4 @@ class IssuanceModes extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Business days of the warehouse.
@@ -29,7 +29,7 @@ class BusinessDayConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $business_days
+     *     @type int[] $business_days
      *           Required. Regular business days.
      *           May not be empty.
      * }
@@ -44,7 +44,7 @@ class BusinessDayConfig extends \Google\Protobuf\Internal\Message
      * May not be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.BusinessDayConfig.Weekday business_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getBusinessDays()
     {
@@ -56,7 +56,7 @@ class BusinessDayConfig extends \Google\Protobuf\Internal\Message
      * May not be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.BusinessDayConfig.Weekday business_days = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setBusinessDays($var)

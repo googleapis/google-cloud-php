@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\TransitTable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If there's only one dimension set of `postal_code_group_names` or
@@ -32,7 +32,7 @@ class TransitTimeRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow\TransitTimeValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow\TransitTimeValue[] $values
      *           Required. Transit time range (min-max) in business days.
      * }
      */
@@ -45,7 +45,7 @@ class TransitTimeRow extends \Google\Protobuf\Internal\Message
      * Required. Transit time range (min-max) in business days.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TransitTable.TransitTimeRow.TransitTimeValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow\TransitTimeValue>
      */
     public function getValues()
     {
@@ -56,7 +56,7 @@ class TransitTimeRow extends \Google\Protobuf\Internal\Message
      * Required. Transit time range (min-max) in business days.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TransitTable.TransitTimeRow.TransitTimeValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow\TransitTimeValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow\TransitTimeValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -68,5 +68,4 @@ class TransitTimeRow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

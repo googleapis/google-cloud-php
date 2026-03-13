@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CWE stands for Common Weakness Enumeration. Information about this weakness,
@@ -38,7 +38,7 @@ class Cwe extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The CWE identifier, e.g. CWE-94
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Reference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\SecurityCenter\V2\Reference[] $references
      *           Any reference to the details on the CWE, for example,
      *           https://cwe.mitre.org/data/definitions/94.html
      * }
@@ -79,7 +79,7 @@ class Cwe extends \Google\Protobuf\Internal\Message
      * https://cwe.mitre.org/data/definitions/94.html
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Reference references = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Reference>
      */
     public function getReferences()
     {
@@ -91,7 +91,7 @@ class Cwe extends \Google\Protobuf\Internal\Message
      * https://cwe.mitre.org/data/definitions/94.html
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Reference references = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Reference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Reference[] $var
      * @return $this
      */
     public function setReferences($var)

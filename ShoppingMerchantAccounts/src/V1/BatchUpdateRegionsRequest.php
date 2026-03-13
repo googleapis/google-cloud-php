@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `BatchUpdateRegions` method.
@@ -39,7 +39,7 @@ class BatchUpdateRegionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The account to update one or more regions for.
      *           Format: `accounts/{account}`
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\UpdateRegionRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Shopping\Merchant\Accounts\V1\UpdateRegionRequest[] $requests
      *           Required. The region(s) to update.
      *           The maximum number of regions that can be updated in a batch is 100.
      * }
@@ -82,7 +82,7 @@ class BatchUpdateRegionsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of regions that can be updated in a batch is 100.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.UpdateRegionRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\UpdateRegionRequest>
      */
     public function getRequests()
     {
@@ -94,7 +94,7 @@ class BatchUpdateRegionsRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of regions that can be updated in a batch is 100.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.UpdateRegionRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\UpdateRegionRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\UpdateRegionRequest[] $var
      * @return $this
      */
     public function setRequests($var)

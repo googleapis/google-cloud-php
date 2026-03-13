@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Inventories\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Local inventory information for the product. Represents in-store information
@@ -164,7 +164,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *           specification](https://support.google.com/merchants/answer/3061342)
      *     @type string $instore_product_location
      *           Location of the product inside the store. Maximum length is 20 bytes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           A list of custom (merchant-provided) attributes. You can also use
      *           `CustomAttribute` to submit any attribute of the data specification in its
      *           generic form.
@@ -589,7 +589,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -602,7 +602,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * generic form.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 12;</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents error information for [QuotaOperation][google.api.servicecontrol.v1.QuotaOperation].

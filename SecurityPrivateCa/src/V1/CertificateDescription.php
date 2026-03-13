@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -101,11 +101,11 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\KeyId $authority_key_id
      *           Identifies the subject_key_id of the parent certificate, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.1
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $crl_distribution_points
+     *     @type string[] $crl_distribution_points
      *           Describes a list of locations to obtain CRL information, i.e.
      *           the DistributionPoint.fullName described by
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.13
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_issuing_certificate_urls
+     *     @type string[] $aia_issuing_certificate_urls
      *           Describes lists of issuer CA certificate URLs that appear in the
      *           "Authority Information Access" extension in the certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\CertificateFingerprint $cert_fingerprint
@@ -314,7 +314,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.13
      *
      * Generated from protobuf field <code>repeated string crl_distribution_points = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCrlDistributionPoints()
     {
@@ -327,7 +327,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.13
      *
      * Generated from protobuf field <code>repeated string crl_distribution_points = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCrlDistributionPoints($var)
@@ -343,7 +343,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * "Authority Information Access" extension in the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_issuing_certificate_urls = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAiaIssuingCertificateUrls()
     {
@@ -355,7 +355,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * "Authority Information Access" extension in the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_issuing_certificate_urls = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAiaIssuingCertificateUrls($var)

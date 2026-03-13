@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the status of customer-managed encryption.
@@ -18,7 +18,7 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
      * encrypt the secret payload, in the following format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,7 +33,7 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_version_name
      *           Required. The resource name of the Cloud KMS CryptoKeyVersion used to
      *           encrypt the secret payload, in the following format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}versions/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
      * encrypt the secret payload, in the following format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -57,7 +57,7 @@ class CustomerManagedEncryptionStatus extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Cloud KMS CryptoKeyVersion used to
      * encrypt the secret payload, in the following format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string kms_key_version_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

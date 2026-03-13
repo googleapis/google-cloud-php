@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\OrganizationSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration used for Asset Discovery runs.
@@ -41,11 +41,11 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $project_ids
+     *     @type string[] $project_ids
      *           The project ids to use for filtering asset discovery.
      *     @type int $inclusion_mode
      *           The mode to use for filtering asset discovery.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folder_ids
+     *     @type string[] $folder_ids
      *           The folder ids to use for filtering asset discovery.
      *           It consists of only digits, e.g., 756619654966.
      * }
@@ -59,7 +59,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * The project ids to use for filtering asset discovery.
      *
      * Generated from protobuf field <code>repeated string project_ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjectIds()
     {
@@ -70,7 +70,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * The project ids to use for filtering asset discovery.
      *
      * Generated from protobuf field <code>repeated string project_ids = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjectIds($var)
@@ -112,7 +112,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * It consists of only digits, e.g., 756619654966.
      *
      * Generated from protobuf field <code>repeated string folder_ids = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFolderIds()
     {
@@ -124,7 +124,7 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
      * It consists of only digits, e.g., 756619654966.
      *
      * Generated from protobuf field <code>repeated string folder_ids = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFolderIds($var)
@@ -136,5 +136,4 @@ class AssetDiscoveryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

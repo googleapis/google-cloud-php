@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Finding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Mute information about the finding, including whether the finding has a
@@ -39,7 +39,7 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\StaticMute $static_mute
      *           If set, the static mute applied to this finding. Static mutes override
      *           dynamic mutes. If unset, there is no static mute.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\DynamicMuteRecord>|\Google\Protobuf\Internal\RepeatedField $dynamic_mute_records
+     *     @type \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\DynamicMuteRecord[] $dynamic_mute_records
      *           The list of dynamic mute rules that currently match the finding.
      * }
      */
@@ -90,7 +90,7 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
      * The list of dynamic mute rules that currently match the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord dynamic_mute_records = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\DynamicMuteRecord>
      */
     public function getDynamicMuteRecords()
     {
@@ -101,7 +101,7 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
      * The list of dynamic mute rules that currently match the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Finding.MuteInfo.DynamicMuteRecord dynamic_mute_records = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\DynamicMuteRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Finding\MuteInfo\DynamicMuteRecord[] $var
      * @return $this
      */
     public function setDynamicMuteRecords($var)
@@ -113,5 +113,4 @@ class MuteInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

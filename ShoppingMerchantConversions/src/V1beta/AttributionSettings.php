@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Conversions\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents attribution settings for conversion sources receiving
@@ -49,7 +49,7 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      *           Supported values are 7, 30, 40.
      *     @type int $attribution_model
      *           Required. Attribution model.
-     *     @type array<\Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings\ConversionType>|\Google\Protobuf\Internal\RepeatedField $conversion_type
+     *     @type \Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings\ConversionType[] $conversion_type
      *           Immutable. Unordered list. List of different conversion types a conversion
      *           event can be classified as. A standard "purchase" type will be
      *           automatically created if this list is empty at creation time.
@@ -120,7 +120,7 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      * automatically created if this list is empty at creation time.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.conversions.v1beta.AttributionSettings.ConversionType conversion_type = 3 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings\ConversionType>
      */
     public function getConversionType()
     {
@@ -133,7 +133,7 @@ class AttributionSettings extends \Google\Protobuf\Internal\Message
      * automatically created if this list is empty at creation time.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.conversions.v1beta.AttributionSettings.ConversionType conversion_type = 3 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings\ConversionType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings\ConversionType[] $var
      * @return $this
      */
     public function setConversionType($var)

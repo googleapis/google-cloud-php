@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -20,7 +20,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * in the format `projects/{@*}locations/{@*}certificateTemplates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -129,7 +129,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}certificateTemplates/*`.
      *     @type \Google\Protobuf\Duration $maximum_lifetime
      *           Optional. The maximum lifetime allowed for issued
      *           [Certificates][google.cloud.security.privateca.v1.Certificate] that use
@@ -202,7 +202,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * in the format `projects/{@*}locations/{@*}certificateTemplates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -215,7 +215,7 @@ class CertificateTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * in the format `projects/{@*}locations/{@*}certificateTemplates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

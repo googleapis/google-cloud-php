@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response to list issues.
@@ -34,7 +34,7 @@ class ListIssuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\Issue>|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Cloud\SecureSourceManager\V1\Issue[] $issues
      *           The list of issues.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListIssuesResponse extends \Google\Protobuf\Internal\Message
      * The list of issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Issue issues = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\Issue>
      */
     public function getIssues()
     {
@@ -60,7 +60,7 @@ class ListIssuesResponse extends \Google\Protobuf\Internal\Message
      * The list of issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Issue issues = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\Issue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\Issue[] $var
      * @return $this
      */
     public function setIssues($var)

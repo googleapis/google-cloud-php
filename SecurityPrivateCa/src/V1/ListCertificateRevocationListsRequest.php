@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
     /**
      * Required. The resource name of the location associated with the
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -82,7 +82,7 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
      *     @type string $parent
      *           Required. The resource name of the location associated with the
      *           [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *     @type int $page_size
      *           Optional. Limit on the number of
      *           [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList]
@@ -109,7 +109,7 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
     /**
      * Required. The resource name of the location associated with the
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,7 +122,7 @@ class ListCertificateRevocationListsRequest extends \Google\Protobuf\Internal\Me
     /**
      * Required. The resource name of the location associated with the
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList],
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

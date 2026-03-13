@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [AggregateFrameworkComplianceReport][].
@@ -28,7 +28,7 @@ class AggregateFrameworkComplianceReportResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\AggregatedComplianceReport>|\Google\Protobuf\Internal\RepeatedField $aggregated_compliance_reports
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\AggregatedComplianceReport[] $aggregated_compliance_reports
      *           The list of aggregated compliance reports.
      * }
      */
@@ -41,7 +41,7 @@ class AggregateFrameworkComplianceReportResponse extends \Google\Protobuf\Intern
      * The list of aggregated compliance reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.AggregatedComplianceReport aggregated_compliance_reports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\AggregatedComplianceReport>
      */
     public function getAggregatedComplianceReports()
     {
@@ -52,7 +52,7 @@ class AggregateFrameworkComplianceReportResponse extends \Google\Protobuf\Intern
      * The list of aggregated compliance reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.AggregatedComplianceReport aggregated_compliance_reports = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\AggregatedComplianceReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\AggregatedComplianceReport[] $var
      * @return $this
      */
     public function setAggregatedComplianceReports($var)

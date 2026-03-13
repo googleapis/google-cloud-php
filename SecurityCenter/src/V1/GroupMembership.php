@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains details about groups of which this finding is a member. A group is a

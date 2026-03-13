@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -86,7 +86,7 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the location associated with the
      *           [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           format `projects/{@*}locations/{@*}caPools/*`.
      *     @type int $page_size
      *           Optional. Limit on the number of
      *           [Certificates][google.cloud.security.privateca.v1.Certificate] to include
@@ -117,7 +117,7 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -130,7 +130,7 @@ class ListCertificatesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [Certificates][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

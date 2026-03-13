@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource value configuration (RVC) is a mapping configuration of user's
@@ -113,7 +113,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      *           Resource value level this expression represents
      *           Only required when there is no Sensitive Data Protection mapping in the
      *           request
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
+     *     @type string[] $tag_values
      *           Tag values combined with `AND` to check against.
      *           For Google Cloud resources, they are tag value IDs in the form of
      *           "tagValues/123". Example: `[ "tagValues/123", "tagValues/456",
@@ -218,7 +218,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
      * Generated from protobuf field <code>repeated string tag_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTagValues()
     {
@@ -233,7 +233,7 @@ class ResourceValueConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      *
      * Generated from protobuf field <code>repeated string tag_values = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTagValues($var)

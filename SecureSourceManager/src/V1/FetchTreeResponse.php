@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message containing a list of TreeEntry objects.
@@ -34,7 +34,7 @@ class FetchTreeResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\TreeEntry>|\Google\Protobuf\Internal\RepeatedField $tree_entries
+     *     @type \Google\Cloud\SecureSourceManager\V1\TreeEntry[] $tree_entries
      *           The list of TreeEntry objects.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class FetchTreeResponse extends \Google\Protobuf\Internal\Message
      * The list of TreeEntry objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.TreeEntry tree_entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\TreeEntry>
      */
     public function getTreeEntries()
     {
@@ -60,7 +60,7 @@ class FetchTreeResponse extends \Google\Protobuf\Internal\Message
      * The list of TreeEntry objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.TreeEntry tree_entries = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\TreeEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\TreeEntry[] $var
      * @return $this
      */
     public function setTreeEntries($var)

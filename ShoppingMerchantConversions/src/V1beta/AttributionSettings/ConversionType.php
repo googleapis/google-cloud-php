@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Conversions\V1beta\AttributionSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a types of conversion events
@@ -102,5 +102,4 @@ class ConversionType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

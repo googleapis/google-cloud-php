@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\AttackPath;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents one point that an attacker passes through in this attack path.
@@ -72,11 +72,11 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      *           type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *     @type string $display_name
      *           Human-readable name of this resource.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding>|\Google\Protobuf\Internal\RepeatedField $associated_findings
+     *     @type \Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding[] $associated_findings
      *           The findings associated with this node in the attack path.
      *     @type string $uuid
      *           Unique id of the attack path node.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\AttackStepNode>|\Google\Protobuf\Internal\RepeatedField $attack_steps
+     *     @type \Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\AttackStepNode[] $attack_steps
      *           A list of attack step nodes that exist in this attack path node.
      * }
      */
@@ -175,7 +175,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * The findings associated with this node in the attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath.AttackPathNode.PathNodeAssociatedFinding associated_findings = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding>
      */
     public function getAssociatedFindings()
     {
@@ -186,7 +186,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * The findings associated with this node in the attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath.AttackPathNode.PathNodeAssociatedFinding associated_findings = 4;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\PathNodeAssociatedFinding[] $var
      * @return $this
      */
     public function setAssociatedFindings($var)
@@ -227,7 +227,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * A list of attack step nodes that exist in this attack path node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath.AttackPathNode.AttackStepNode attack_steps = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\AttackStepNode>
      */
     public function getAttackSteps()
     {
@@ -238,7 +238,7 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
      * A list of attack step nodes that exist in this attack path node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath.AttackPathNode.AttackStepNode attack_steps = 6;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\AttackStepNode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\AttackPath\AttackPathNode\AttackStepNode[] $var
      * @return $this
      */
     public function setAttackSteps($var)
@@ -250,5 +250,4 @@ class AttackPathNode extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

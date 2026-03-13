@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\Service\StoreConfig\CutoffConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Time that local delivery ends for the day.
@@ -126,5 +126,4 @@ class LocalCutoffTime extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

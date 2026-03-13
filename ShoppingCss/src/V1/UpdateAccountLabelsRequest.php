@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for the `UpdateLabels` method.
@@ -62,7 +62,7 @@ class UpdateAccountLabelsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The label resource name.
      *           Format: accounts/{account}
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $label_ids
+     *     @type int[]|string[] $label_ids
      *           The list of label IDs to overwrite the existing account label IDs.
      *           If the list is empty, all currently assigned label IDs will be deleted.
      *     @type string $parent
@@ -109,7 +109,7 @@ class UpdateAccountLabelsRequest extends \Google\Protobuf\Internal\Message
      * If the list is empty, all currently assigned label IDs will be deleted.
      *
      * Generated from protobuf field <code>repeated int64 label_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLabelIds()
     {
@@ -121,7 +121,7 @@ class UpdateAccountLabelsRequest extends \Google\Protobuf\Internal\Message
      * If the list is empty, all currently assigned label IDs will be deleted.
      *
      * Generated from protobuf field <code>repeated int64 label_ids = 2;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLabelIds($var)

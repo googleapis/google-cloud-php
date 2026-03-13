@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta\FileInput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fetch details to deliver the data source.
@@ -398,5 +398,4 @@ class FetchSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

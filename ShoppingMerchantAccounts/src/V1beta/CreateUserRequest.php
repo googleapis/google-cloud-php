@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `CreateUser` method.
@@ -24,7 +24,7 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Required. The email address of the user (for example,
-     * `john.doe&#64;gmail.com`).
+     * `john.doe\@gmail.com`).
      *
      * Generated from protobuf field <code>string user_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -64,7 +64,7 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
      *           created. Format: `accounts/{account}`
      *     @type string $user_id
      *           Required. The email address of the user (for example,
-     *           `john.doe&#64;gmail.com`).
+     *           `john.doe\@gmail.com`).
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\User $user
      *           Required. The user to create.
      * }
@@ -104,7 +104,7 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The email address of the user (for example,
-     * `john.doe&#64;gmail.com`).
+     * `john.doe\@gmail.com`).
      *
      * Generated from protobuf field <code>string user_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -116,7 +116,7 @@ class CreateUserRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The email address of the user (for example,
-     * `john.doe&#64;gmail.com`).
+     * `john.doe\@gmail.com`).
      *
      * Generated from protobuf field <code>string user_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

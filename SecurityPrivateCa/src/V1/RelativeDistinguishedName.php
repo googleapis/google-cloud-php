@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [RelativeDistinguishedName][google.cloud.security.privateca.v1.RelativeDistinguishedName]
@@ -30,7 +30,7 @@ class RelativeDistinguishedName extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\AttributeTypeAndValue>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Cloud\Security\PrivateCA\V1\AttributeTypeAndValue[] $attributes
      *           Attributes describes the attribute value assertions in the RDN.
      * }
      */
@@ -43,7 +43,7 @@ class RelativeDistinguishedName extends \Google\Protobuf\Internal\Message
      * Attributes describes the attribute value assertions in the RDN.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.AttributeTypeAndValue attributes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\AttributeTypeAndValue>
      */
     public function getAttributes()
     {
@@ -54,7 +54,7 @@ class RelativeDistinguishedName extends \Google\Protobuf\Internal\Message
      * Attributes describes the attribute value assertions in the RDN.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.AttributeTypeAndValue attributes = 1;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\AttributeTypeAndValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\AttributeTypeAndValue[] $var
      * @return $this
      */
     public function setAttributes($var)

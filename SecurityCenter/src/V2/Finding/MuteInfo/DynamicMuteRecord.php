@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Finding\MuteInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The record of a dynamic mute rule that matches the finding.
@@ -120,5 +120,4 @@ class DynamicMuteRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

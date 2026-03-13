@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1\Distribution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing buckets with arbitrary user-provided width.
@@ -40,7 +40,7 @@ class ExplicitBuckets extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $bounds
+     *     @type float[] $bounds
      *           'bound' is a list of strictly increasing boundaries between
      *           buckets. Note that a list of length N-1 defines N buckets because
      *           of fenceposting. See comments on `bucket_options` for details.
@@ -77,7 +77,7 @@ class ExplicitBuckets extends \Google\Protobuf\Internal\Message
      *  i == bound_size() (overflow)    bound[i-1]     +inf
      *
      * Generated from protobuf field <code>repeated double bounds = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getBounds()
     {
@@ -100,7 +100,7 @@ class ExplicitBuckets extends \Google\Protobuf\Internal\Message
      *  i == bound_size() (overflow)    bound[i-1]     +inf
      *
      * Generated from protobuf field <code>repeated double bounds = 1;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setBounds($var)
@@ -112,5 +112,4 @@ class ExplicitBuckets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\MinimumOrderValueTable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of store code sets sharing the same minimum order value. At least
@@ -38,7 +38,7 @@ class StoreCodeSetWithMov extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $store_codes
+     *     @type string[] $store_codes
      *           Optional. A list of unique store codes or empty for the catch all.
      *     @type \Google\Shopping\Type\Price $value
      *           The minimum order value for the given stores.
@@ -53,7 +53,7 @@ class StoreCodeSetWithMov extends \Google\Protobuf\Internal\Message
      * Optional. A list of unique store codes or empty for the catch all.
      *
      * Generated from protobuf field <code>repeated string store_codes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoreCodes()
     {
@@ -64,7 +64,7 @@ class StoreCodeSetWithMov extends \Google\Protobuf\Internal\Message
      * Optional. A list of unique store codes or empty for the catch all.
      *
      * Generated from protobuf field <code>repeated string store_codes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoreCodes($var)
@@ -112,5 +112,4 @@ class StoreCodeSetWithMov extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

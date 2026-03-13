@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `BatchCreateRegions` method.
@@ -28,7 +28,7 @@ class BatchCreateRegionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\Region>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Region[] $regions
      *           The created region(s).
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateRegionsResponse extends \Google\Protobuf\Internal\Message
      * The created region(s).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Region regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\Region>
      */
     public function getRegions()
     {
@@ -52,7 +52,7 @@ class BatchCreateRegionsResponse extends \Google\Protobuf\Internal\Message
      * The created region(s).
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Region regions = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\Region>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\Region[] $var
      * @return $this
      */
     public function setRegions($var)

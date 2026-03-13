@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\IpRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A port range which is inclusive of the min and max values.
@@ -101,5 +101,4 @@ class PortRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceHealth\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents service health events that may affect Google Cloud products used
@@ -139,10 +139,10 @@ class OrganizationEvent extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the event.
      *     @type int $detailed_state
      *           Output only. The current detailed state of the incident.
-     *     @type array<\Google\Cloud\ServiceHealth\V1\EventImpact>|\Google\Protobuf\Internal\RepeatedField $event_impacts
+     *     @type \Google\Cloud\ServiceHealth\V1\EventImpact[] $event_impacts
      *           Output only. Represents the Google Cloud products and locations impacted by
      *           the event.
-     *     @type array<\Google\Cloud\ServiceHealth\V1\EventUpdate>|\Google\Protobuf\Internal\RepeatedField $updates
+     *     @type \Google\Cloud\ServiceHealth\V1\EventUpdate[] $updates
      *           Output only. Incident-only field. Event updates are correspondence from
      *           Google.
      *     @type string $parent_event
@@ -364,7 +364,7 @@ class OrganizationEvent extends \Google\Protobuf\Internal\Message
      * the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.EventImpact event_impacts = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceHealth\V1\EventImpact>
      */
     public function getEventImpacts()
     {
@@ -376,7 +376,7 @@ class OrganizationEvent extends \Google\Protobuf\Internal\Message
      * the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.EventImpact event_impacts = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ServiceHealth\V1\EventImpact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceHealth\V1\EventImpact[] $var
      * @return $this
      */
     public function setEventImpacts($var)
@@ -392,7 +392,7 @@ class OrganizationEvent extends \Google\Protobuf\Internal\Message
      * Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.EventUpdate updates = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceHealth\V1\EventUpdate>
      */
     public function getUpdates()
     {
@@ -404,7 +404,7 @@ class OrganizationEvent extends \Google\Protobuf\Internal\Message
      * Google.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.EventUpdate updates = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ServiceHealth\V1\EventUpdate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceHealth\V1\EventUpdate[] $var
      * @return $this
      */
     public function setUpdates($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Shipping service.
@@ -104,7 +104,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           account.
      *     @type bool $active
      *           Required. A boolean exposing the active status of the shipping service.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $delivery_countries
+     *     @type string[] $delivery_countries
      *           Required. The CLDR territory code of the countries to which the service
      *           applies.
      *     @type string $currency_code
@@ -113,7 +113,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\DeliveryTime $delivery_time
      *           Required. Time spent in various aspects from order to the delivery of the
      *           product.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\RateGroup>|\Google\Protobuf\Internal\RepeatedField $rate_groups
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\RateGroup[] $rate_groups
      *           Optional. Shipping rate group definitions. Only the last one is allowed to
      *           have an empty `applicable_shipping_labels`, which means "everything else".
      *           The other `applicable_shipping_labels` must not overlap.
@@ -130,7 +130,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\Service\StoreConfig $store_config
      *           A list of stores your products are delivered from.
      *           This is only valid for the local delivery shipment type.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Service\LoyaltyProgram>|\Google\Protobuf\Internal\RepeatedField $loyalty_programs
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Service\LoyaltyProgram[] $loyalty_programs
      *           Optional. Loyalty programs that this shipping service is limited to.
      * }
      */
@@ -218,7 +218,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * applies.
      *
      * Generated from protobuf field <code>repeated string delivery_countries = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeliveryCountries()
     {
@@ -230,7 +230,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * applies.
      *
      * Generated from protobuf field <code>repeated string delivery_countries = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeliveryCountries($var)
@@ -323,7 +323,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * The other `applicable_shipping_labels` must not overlap.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.RateGroup rate_groups = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\RateGroup>
      */
     public function getRateGroups()
     {
@@ -336,7 +336,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * The other `applicable_shipping_labels` must not overlap.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.RateGroup rate_groups = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\RateGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\RateGroup[] $var
      * @return $this
      */
     public function setRateGroups($var)
@@ -505,7 +505,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Optional. Loyalty programs that this shipping service is limited to.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Service.LoyaltyProgram loyalty_programs = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Service\LoyaltyProgram>
      */
     public function getLoyaltyPrograms()
     {
@@ -516,7 +516,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Optional. Loyalty programs that this shipping service is limited to.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Service.LoyaltyProgram loyalty_programs = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Service\LoyaltyProgram>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Service\LoyaltyProgram[] $var
      * @return $this
      */
     public function setLoyaltyPrograms($var)

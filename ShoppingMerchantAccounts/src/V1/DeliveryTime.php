@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Time spent in various aspects from order to the delivery of the product.
@@ -130,7 +130,7 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1\BusinessDayConfig $transit_business_day_config
      *           The business days during which orders can be in-transit.
      *           If not provided, Monday to Friday business days will be assumed.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\WarehouseBasedDeliveryTime>|\Google\Protobuf\Internal\RepeatedField $warehouse_based_delivery_times
+     *     @type \Google\Shopping\Merchant\Accounts\V1\WarehouseBasedDeliveryTime[] $warehouse_based_delivery_times
      *           Optional. Indicates that the delivery time should be calculated per
      *           warehouse (shipping origin location) based on the settings of the selected
      *           carrier. When set, no other transit time related field in [delivery
@@ -473,7 +473,7 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      * be set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.WarehouseBasedDeliveryTime warehouse_based_delivery_times = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\WarehouseBasedDeliveryTime>
      */
     public function getWarehouseBasedDeliveryTimes()
     {
@@ -488,7 +488,7 @@ class DeliveryTime extends \Google\Protobuf\Internal\Message
      * be set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.WarehouseBasedDeliveryTime warehouse_based_delivery_times = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\WarehouseBasedDeliveryTime>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\WarehouseBasedDeliveryTime[] $var
      * @return $this
      */
     public function setWarehouseBasedDeliveryTimes($var)

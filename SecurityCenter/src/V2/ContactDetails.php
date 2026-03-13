@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about specific contacts
@@ -28,7 +28,7 @@ class ContactDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Contact>|\Google\Protobuf\Internal\RepeatedField $contacts
+     *     @type \Google\Cloud\SecurityCenter\V2\Contact[] $contacts
      *           A list of contacts
      * }
      */
@@ -41,7 +41,7 @@ class ContactDetails extends \Google\Protobuf\Internal\Message
      * A list of contacts
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Contact contacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Contact>
      */
     public function getContacts()
     {
@@ -52,7 +52,7 @@ class ContactDetails extends \Google\Protobuf\Internal\Message
      * A list of contacts
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Contact contacts = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Contact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Contact[] $var
      * @return $this
      */
     public function setContacts($var)

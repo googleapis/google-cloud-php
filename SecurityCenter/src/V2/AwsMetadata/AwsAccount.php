@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\AwsMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An AWS account that is a member of an organization.
@@ -98,5 +98,4 @@ class AwsAccount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The supplemental data source for local and online products. After creation,
@@ -88,7 +88,7 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      *           If set, the data source will only accept products matching this
      *           combination. If unset, the data source will accept produts without that
      *           restriction.
-     *     @type array<\Google\Shopping\Merchant\DataSources\V1beta\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $referencing_primary_data_sources
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\DataSourceReference[] $referencing_primary_data_sources
      *           Output only. The (unordered and deduplicated) list of all primary data
      *           sources linked to this data source in either default or custom rules.
      *           Supplemental data source cannot be deleted before all links are removed.
@@ -217,7 +217,7 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      * Supplemental data source cannot be deleted before all links are removed.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.DataSourceReference referencing_primary_data_sources = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\DataSources\V1beta\DataSourceReference>
      */
     public function getReferencingPrimaryDataSources()
     {
@@ -230,7 +230,7 @@ class SupplementalProductDataSource extends \Google\Protobuf\Internal\Message
      * Supplemental data source cannot be deleted before all links are removed.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.DataSourceReference referencing_primary_data_sources = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\DataSources\V1beta\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\DataSourceReference[] $var
      * @return $this
      */
     public function setReferencingPrimaryDataSources($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `CreateAndConfigureAccount` method.
@@ -54,12 +54,12 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\Account $account
      *           Required. The account to be created.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\CreateUserRequest>|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\CreateUserRequest[] $users
      *           Optional. Users to be added to the account.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AcceptTermsOfService $accept_terms_of_service
      *           Optional. The Terms of Service (ToS) to be accepted immediately upon
      *           account creation.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $service
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService[] $service
      *           Required. An account service between the account to be created and the
      *           provider account is initialized as part of the creation. At least one such
      *           service needs to be provided. Currently exactly one of these needs to be
@@ -113,7 +113,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateUserRequest users = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\CreateUserRequest>
      */
     public function getUsers()
     {
@@ -124,7 +124,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateUserRequest users = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\CreateUserRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\CreateUserRequest[] $var
      * @return $this
      */
     public function setUsers($var)
@@ -182,7 +182,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `product_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService>
      */
     public function getService()
     {
@@ -198,7 +198,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `product_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\CreateAndConfigureAccountRequest\AddAccountService[] $var
      * @return $this
      */
     public function setService($var)

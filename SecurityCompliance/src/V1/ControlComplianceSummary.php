@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details for control compliance.
@@ -99,11 +99,11 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      *           Output only. The overall evaluation status of the control.
      *     @type int $total_findings_count
      *           The total number of findings for the control.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $compliance_frameworks
+     *     @type string[] $compliance_frameworks
      *           The list of compliance frameworks that the control belongs to.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>|\Google\Protobuf\Internal\RepeatedField $similar_controls
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\SimilarControls[] $similar_controls
      *           The list of similar controls.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlReport>|\Google\Protobuf\Internal\RepeatedField $cloud_control_reports
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlReport[] $cloud_control_reports
      *           The list of cloud control reports.
      *     @type int $control_responsibility_type
      *           The responsibility type for the control.
@@ -253,7 +253,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of compliance frameworks that the control belongs to.
      *
      * Generated from protobuf field <code>repeated string compliance_frameworks = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComplianceFrameworks()
     {
@@ -264,7 +264,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of compliance frameworks that the control belongs to.
      *
      * Generated from protobuf field <code>repeated string compliance_frameworks = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComplianceFrameworks($var)
@@ -279,7 +279,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of similar controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.SimilarControls similar_controls = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>
      */
     public function getSimilarControls()
     {
@@ -290,7 +290,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of similar controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.SimilarControls similar_controls = 7;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\SimilarControls[] $var
      * @return $this
      */
     public function setSimilarControls($var)
@@ -305,7 +305,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of cloud control reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlReport cloud_control_reports = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlReport>
      */
     public function getCloudControlReports()
     {
@@ -316,7 +316,7 @@ class ControlComplianceSummary extends \Google\Protobuf\Internal\Message
      * The list of cloud control reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlReport cloud_control_reports = 8;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlReport[] $var
      * @return $this
      */
     public function setCloudControlReports($var)

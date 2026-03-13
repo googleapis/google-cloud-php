@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a posture that is deployed on Google Cloud by the
@@ -95,7 +95,7 @@ class SecurityPosture extends \Google\Protobuf\Internal\Message
      *           The name of the updated policy set, for example, `cis-policyset`.
      *     @type string $policy
      *           The ID of the updated policy, for example, `compute-policy-1`.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\SecurityPosture\PolicyDriftDetails>|\Google\Protobuf\Internal\RepeatedField $policy_drift_details
+     *     @type \Google\Cloud\SecurityCenter\V2\SecurityPosture\PolicyDriftDetails[] $policy_drift_details
      *           The details about a change in an updated policy that violates the deployed
      *           posture.
      * }
@@ -298,7 +298,7 @@ class SecurityPosture extends \Google\Protobuf\Internal\Message
      * posture.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.SecurityPosture.PolicyDriftDetails policy_drift_details = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\SecurityPosture\PolicyDriftDetails>
      */
     public function getPolicyDriftDetails()
     {
@@ -310,7 +310,7 @@ class SecurityPosture extends \Google\Protobuf\Internal\Message
      * posture.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.SecurityPosture.PolicyDriftDetails policy_drift_details = 8;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\SecurityPosture\PolicyDriftDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\SecurityPosture\PolicyDriftDetails[] $var
      * @return $this
      */
     public function setPolicyDriftDetails($var)

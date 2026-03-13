@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListAccountIssues` method.
@@ -35,7 +35,7 @@ class ListAccountIssuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue>|\Google\Protobuf\Internal\RepeatedField $account_issues
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\AccountIssue[] $account_issues
      *           The issues from the specified account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAccountIssuesResponse extends \Google\Protobuf\Internal\Message
      * The issues from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountIssue account_issues = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue>
      */
     public function getAccountIssues()
     {
@@ -62,7 +62,7 @@ class ListAccountIssuesResponse extends \Google\Protobuf\Internal\Message
      * The issues from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountIssue account_issues = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\AccountIssue[] $var
      * @return $this
      */
     public function setAccountIssues($var)

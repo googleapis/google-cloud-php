@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceUsage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `BatchGetServices` method.
@@ -48,7 +48,7 @@ class BatchGetServicesRequest extends \Google\Protobuf\Internal\Message
      *           match this field. An example name would be: `projects/123` where `123` is
      *           the project number. The `BatchGetServices` method currently only supports
      *           projects.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Names of the services to retrieve.
      *           An example name would be:
      *           `projects/123/services/serviceusage.googleapis.com` where `123` is the
@@ -103,7 +103,7 @@ class BatchGetServicesRequest extends \Google\Protobuf\Internal\Message
      * A single request can get a maximum of 30 services at a time.
      *
      * Generated from protobuf field <code>repeated string names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -118,7 +118,7 @@ class BatchGetServicesRequest extends \Google\Protobuf\Internal\Message
      * A single request can get a maximum of 30 services at a time.
      *
      * Generated from protobuf field <code>repeated string names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Transit time range (min-max) in business days.
@@ -122,5 +122,4 @@ class TransitTimeValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

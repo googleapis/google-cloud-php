@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      * [Certificate][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -134,7 +134,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the
      *           [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      *           [Certificate][google.cloud.security.privateca.v1.Certificate], in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           format `projects/{@*}locations/{@*}caPools/*`.
      *     @type string $certificate_id
      *           Optional. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a
@@ -197,7 +197,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      * [Certificate][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -211,7 +211,7 @@ class CreateCertificateRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource name of the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] associated with the
      * [Certificate][google.cloud.security.privateca.v1.Certificate], in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * format `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

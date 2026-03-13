@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PrivateConfig includes settings for private instance.
@@ -68,7 +68,7 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      *     @type string $ssh_service_attachment
      *           Output only. Service Attachment for SSH, resource is in the format of
      *           `projects/{project}/regions/{region}/serviceAttachments/{service_attachment}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $psc_allowed_projects
+     *     @type string[] $psc_allowed_projects
      *           Optional. Additional allowed projects for setting up PSC connections.
      *           Instance host project is automatically allowed and does not need to be
      *           included in this list.
@@ -195,7 +195,7 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      * included in this list.
      *
      * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPscAllowedProjects()
     {
@@ -208,7 +208,7 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      * included in this list.
      *
      * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPscAllowedProjects($var)
@@ -220,5 +220,4 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

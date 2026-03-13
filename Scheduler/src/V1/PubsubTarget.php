@@ -5,8 +5,8 @@
 namespace Google\Cloud\Scheduler\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pub/Sub target. The job will be delivered by publishing a message to

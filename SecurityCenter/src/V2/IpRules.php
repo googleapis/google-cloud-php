@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IP rules associated with the finding.
@@ -59,15 +59,15 @@ class IpRules extends \Google\Protobuf\Internal\Message
      *           Tuple with allowed rules.
      *     @type \Google\Cloud\SecurityCenter\V2\Denied $denied
      *           Tuple with denied rules.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges
+     *     @type string[] $source_ip_ranges
      *           If source IP ranges are specified, the firewall rule applies only to
      *           traffic that has a source IP address in these ranges. These ranges must be
      *           expressed in CIDR format. Only supports IPv4.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_ip_ranges
+     *     @type string[] $destination_ip_ranges
      *           If destination IP ranges are specified, the firewall rule applies only to
      *           traffic that has a destination IP address in these ranges. These ranges
      *           must be expressed in CIDR format. Only supports IPv4.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exposed_services
+     *     @type string[] $exposed_services
      *           Name of the network protocol service, such as FTP, that is exposed by the
      *           open port. Follows the naming convention available at:
      *           https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.
@@ -172,7 +172,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * expressed in CIDR format. Only supports IPv4.
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceIpRanges()
     {
@@ -185,7 +185,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * expressed in CIDR format. Only supports IPv4.
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceIpRanges($var)
@@ -202,7 +202,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * must be expressed in CIDR format. Only supports IPv4.
      *
      * Generated from protobuf field <code>repeated string destination_ip_ranges = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationIpRanges()
     {
@@ -215,7 +215,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * must be expressed in CIDR format. Only supports IPv4.
      *
      * Generated from protobuf field <code>repeated string destination_ip_ranges = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationIpRanges($var)
@@ -232,7 +232,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.
      *
      * Generated from protobuf field <code>repeated string exposed_services = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExposedServices()
     {
@@ -245,7 +245,7 @@ class IpRules extends \Google\Protobuf\Internal\Message
      * https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml.
      *
      * Generated from protobuf field <code>repeated string exposed_services = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExposedServices($var)

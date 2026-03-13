@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Representation of third party SIEM/SOAR fields within SCC.
@@ -100,7 +100,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *           "organizations/1234/sources/5678/findings/123456/externalSystems/jira",
      *           "folders/1234/sources/5678/findings/123456/externalSystems/jira",
      *           "projects/1234/sources/5678/findings/123456/externalSystems/jira"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $assignees
+     *     @type string[] $assignees
      *           References primary/secondary etc assignees in the external system.
      *     @type string $external_uid
      *           The identifier that's used to track the finding's corresponding case in the
@@ -167,7 +167,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      * References primary/secondary etc assignees in the external system.
      *
      * Generated from protobuf field <code>repeated string assignees = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssignees()
     {
@@ -178,7 +178,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      * References primary/secondary etc assignees in the external system.
      *
      * Generated from protobuf field <code>repeated string assignees = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssignees($var)

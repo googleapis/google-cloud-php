@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\AttackPath;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a connection between a source node and a destination node in
@@ -99,5 +99,4 @@ class AttackPathEdge extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

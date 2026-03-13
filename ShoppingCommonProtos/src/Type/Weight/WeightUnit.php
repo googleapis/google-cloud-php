@@ -59,6 +59,3 @@ class WeightUnit
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WeightUnit::class, \Google\Shopping\Type\Weight_WeightUnit::class);
-

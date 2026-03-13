@@ -5,8 +5,8 @@
 namespace Google\Cloud\Scheduler\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * App Engine target. The job will be pushed to a job handler by means
