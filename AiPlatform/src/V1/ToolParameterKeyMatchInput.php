@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input for tool parameter key match metric.
@@ -36,7 +36,7 @@ class ToolParameterKeyMatchInput extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchSpec $metric_spec
      *           Required. Spec for tool parameter key match metric.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchInstance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchInstance[] $instances
      *           Required. Repeated tool parameter key match instances.
      * }
      */
@@ -85,7 +85,7 @@ class ToolParameterKeyMatchInput extends \Google\Protobuf\Internal\Message
      * Required. Repeated tool parameter key match instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolParameterKeyMatchInstance instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchInstance>
      */
     public function getInstances()
     {
@@ -96,7 +96,7 @@ class ToolParameterKeyMatchInput extends \Google\Protobuf\Internal\Message
      * Required. Repeated tool parameter key match instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolParameterKeyMatchInstance instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ToolParameterKeyMatchInstance[] $var
      * @return $this
      */
     public function setInstances($var)

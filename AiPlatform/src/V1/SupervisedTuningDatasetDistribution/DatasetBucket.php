@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataset bucket used to create a histogram for the distribution given a
@@ -133,5 +133,4 @@ class DatasetBucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

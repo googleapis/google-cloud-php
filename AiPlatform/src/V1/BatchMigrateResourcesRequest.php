@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -60,7 +60,7 @@ class BatchMigrateResourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The location of the migrated resource will live in.
      *           Format: `projects/{project}/locations/{location}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\MigrateResourceRequest>|\Google\Protobuf\Internal\RepeatedField $migrate_resource_requests
+     *     @type \Google\Cloud\AIPlatform\V1\MigrateResourceRequest[] $migrate_resource_requests
      *           Required. The request messages specifying the resources to migrate.
      *           They must be in the same location as the destination.
      *           Up to 50 resources can be migrated in one batch.
@@ -105,7 +105,7 @@ class BatchMigrateResourcesRequest extends \Google\Protobuf\Internal\Message
      * Up to 50 resources can be migrated in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceRequest migrate_resource_requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\MigrateResourceRequest>
      */
     public function getMigrateResourceRequests()
     {
@@ -118,7 +118,7 @@ class BatchMigrateResourcesRequest extends \Google\Protobuf\Internal\Message
      * Up to 50 resources can be migrated in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceRequest migrate_resource_requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\MigrateResourceRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\MigrateResourceRequest[] $var
      * @return $this
      */
     public function setMigrateResourceRequests($var)

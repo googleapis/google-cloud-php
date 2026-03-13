@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the model version to be deleted, with a version ID
      * explicitly included.
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,7 +51,7 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the model version to be deleted, with a version ID
      *           explicitly included.
-     *           Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     *           Example: `projects/{project}/locations/{location}/models/{model}\@1234`
      * }
      */
     public function __construct($data = NULL) {
@@ -62,7 +62,7 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the model version to be deleted, with a version ID
      * explicitly included.
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class DeleteModelVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the model version to be deleted, with a version ID
      * explicitly included.
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;1234`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@1234`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

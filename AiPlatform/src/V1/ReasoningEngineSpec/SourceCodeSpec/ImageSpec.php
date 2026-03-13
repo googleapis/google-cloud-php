@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The image spec for building an image (within a single build step), based
@@ -69,5 +69,4 @@ class ImageSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

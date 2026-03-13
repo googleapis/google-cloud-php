@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -41,7 +41,7 @@ class RemoveDatapointsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Index resource to be updated.
      *           Format:
      *           `projects/{project}/locations/{location}/indexes/{index}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $datapoint_ids
+     *     @type string[] $datapoint_ids
      *           A list of datapoint ids to be deleted.
      * }
      */
@@ -84,7 +84,7 @@ class RemoveDatapointsRequest extends \Google\Protobuf\Internal\Message
      * A list of datapoint ids to be deleted.
      *
      * Generated from protobuf field <code>repeated string datapoint_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatapointIds()
     {
@@ -95,7 +95,7 @@ class RemoveDatapointsRequest extends \Google\Protobuf\Internal\Message
      * A list of datapoint ids to be deleted.
      *
      * Generated from protobuf field <code>repeated string datapoint_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatapointIds($var)

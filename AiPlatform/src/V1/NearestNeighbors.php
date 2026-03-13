@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Nearest neighbors for one query.
@@ -28,7 +28,7 @@ class NearestNeighbors extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighbors\Neighbor>|\Google\Protobuf\Internal\RepeatedField $neighbors
+     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighbors\Neighbor[] $neighbors
      *           All its neighbors.
      * }
      */
@@ -41,7 +41,7 @@ class NearestNeighbors extends \Google\Protobuf\Internal\Message
      * All its neighbors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighbors.Neighbor neighbors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NearestNeighbors\Neighbor>
      */
     public function getNeighbors()
     {
@@ -52,7 +52,7 @@ class NearestNeighbors extends \Google\Protobuf\Internal\Message
      * All its neighbors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighbors.Neighbor neighbors = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighbors\Neighbor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NearestNeighbors\Neighbor[] $var
      * @return $this
      */
     public function setNeighbors($var)

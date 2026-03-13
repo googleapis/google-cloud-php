@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NotebookExecutionJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Dataform Repository containing the input notebook.
@@ -106,5 +106,4 @@ class DataformRepositorySource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

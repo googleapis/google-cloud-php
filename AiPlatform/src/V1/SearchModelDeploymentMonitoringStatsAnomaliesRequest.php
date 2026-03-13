@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -112,7 +112,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      *           this feature. Format:
      *           [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.feature_display_name],
      *           example: "user_destination".
-     *     @type array<\Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective>|\Google\Protobuf\Internal\RepeatedField $objectives
+     *     @type \Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective[] $objectives
      *           Required. Objectives of the stats to retrieve.
      *     @type int $page_size
      *           The standard list page size.
@@ -227,7 +227,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      * Required. Objectives of the stats to retrieve.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.StatsAnomaliesObjective objectives = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective>
      */
     public function getObjectives()
     {
@@ -238,7 +238,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesRequest extends \Google\Proto
      * Required. Objectives of the stats to retrieve.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SearchModelDeploymentMonitoringStatsAnomaliesRequest.StatsAnomaliesObjective objectives = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest\StatsAnomaliesObjective[] $var
      * @return $this
      */
     public function setObjectives($var)

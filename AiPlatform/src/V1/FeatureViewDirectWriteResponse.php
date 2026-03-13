@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -57,7 +57,7 @@ class FeatureViewDirectWriteResponse extends \Google\Protobuf\Internal\Message
      *           rest succeed) from a single request may result in multiple responses -
      *           there will be one response for the successful request keys and one response
      *           for the failing request keys.
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse\WriteResponse>|\Google\Protobuf\Internal\RepeatedField $write_responses
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse\WriteResponse[] $write_responses
      *           Details about write for each key. If status is not OK,
      *           [WriteResponse.data_key][google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse.data_key]
      *           will have the key with error, but
@@ -130,7 +130,7 @@ class FeatureViewDirectWriteResponse extends \Google\Protobuf\Internal\Message
      * will not be present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse write_responses = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse\WriteResponse>
      */
     public function getWriteResponses()
     {
@@ -145,7 +145,7 @@ class FeatureViewDirectWriteResponse extends \Google\Protobuf\Internal\Message
      * will not be present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteResponse.WriteResponse write_responses = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse\WriteResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteResponse\WriteResponse[] $var
      * @return $this
      */
     public function setWriteResponses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureViewSync;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary from the Sync job. For continuous syncs, the summary is updated
@@ -147,5 +147,4 @@ class SyncSummary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

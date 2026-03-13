@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Retrieve from Vertex AI Search datastore or engine for grounding.
@@ -77,7 +77,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      *           The maximumm allowed value is 10.
      *     @type string $filter
      *           Optional. Filter strings to be passed to the search API.
-     *     @type array<\Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *     @type \Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec[] $data_store_specs
      *           Specifications that define the specific DataStores to be searched, along
      *           with configurations for those data stores. This is only considered for
      *           Engines with multiple data stores.
@@ -212,7 +212,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      * It should only be set if engine is used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexAISearch.DataStoreSpec data_store_specs = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec>
      */
     public function getDataStoreSpecs()
     {
@@ -226,7 +226,7 @@ class VertexAISearch extends \Google\Protobuf\Internal\Message
      * It should only be set if engine is used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexAISearch.DataStoreSpec data_store_specs = 5;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\VertexAISearch\DataStoreSpec[] $var
      * @return $this
      */
     public function setDataStoreSpecs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of a container for serving predictions. Some fields in this
@@ -226,7 +226,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      */
     protected $health_route = '';
     /**
-     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * Immutable. Invoke route prefix for the custom container. "/*" is the only
      * supported value right now. By setting this field, any non-root route on
      * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
      * however the [PredictionService.Invoke] RPC is not supported yet.
@@ -304,7 +304,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           You can use the URI to one of Vertex AI's [pre-built container images for
      *           prediction](https://cloud.google.com/vertex-ai/docs/predictions/pre-built-containers)
      *           in this field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
+     *     @type string[] $command
      *           Immutable. Specifies the command that runs when the container starts. This
      *           overrides the container's
      *           [ENTRYPOINT](https://docs.docker.com/engine/reference/builder/#entrypoint).
@@ -337,7 +337,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           example: <code>$$(<var>VARIABLE_NAME</var>)</code> This field corresponds
      *           to the `command` field of the Kubernetes Containers [v1 core
      *           API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Immutable. Specifies arguments for the command that runs when the container
      *           starts. This overrides the container's
      *           [`CMD`](https://docs.docker.com/engine/reference/builder/#cmd). Specify
@@ -369,7 +369,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           example: <code>$$(<var>VARIABLE_NAME</var>)</code> This field corresponds
      *           to the `args` field of the Kubernetes Containers [v1 core
      *           API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
-     *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\AIPlatform\V1\EnvVar[] $env
      *           Immutable. List of environment variables to set in the container. After the
      *           container starts running, code running in the container can read these
      *           environment variables.
@@ -396,7 +396,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *           This field corresponds to the `env` field of the Kubernetes Containers
      *           [v1 core
      *           API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
-     *     @type array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type \Google\Cloud\AIPlatform\V1\Port[] $ports
      *           Immutable. List of ports to expose from the container. Vertex AI sends any
      *           prediction requests that it receives to the first port on this list. Vertex
      *           AI also sends
@@ -469,14 +469,14 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      *             [`AIP_DEPLOYED_MODEL_ID` environment
      *             variable](https://cloud.google.com/vertex-ai/docs/predictions/custom-container-requirements#aip-variables).)
      *     @type string $invoke_route_prefix
-     *           Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     *           Immutable. Invoke route prefix for the custom container. "/*" is the only
      *           supported value right now. By setting this field, any non-root route on
      *           this model will be accessible with invoke http call eg: "/invoke/foo/bar",
      *           however the [PredictionService.Invoke] RPC is not supported yet.
      *           Only one of `predict_route` or `invoke_route_prefix` can be set, and we
      *           default to using `predict_route` if this field is not set. If this field
      *           is set, the Model can only be deployed to dedicated endpoint.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $grpc_ports
+     *     @type \Google\Cloud\AIPlatform\V1\Port[] $grpc_ports
      *           Immutable. List of ports to expose from the container. Vertex AI sends gRPC
      *           prediction requests that it receives to the first port on this list. Vertex
      *           AI also sends liveness and health checks to this port.
@@ -592,7 +592,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated string command = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommand()
     {
@@ -634,7 +634,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated string command = 2 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommand($var)
@@ -679,7 +679,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -720,7 +720,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -760,7 +760,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EnvVar>
      */
     public function getEnv()
     {
@@ -796,7 +796,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)
@@ -828,7 +828,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port ports = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Port>
      */
     public function getPorts()
     {
@@ -856,7 +856,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.23/#container-v1-core).
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port ports = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Port[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -1018,7 +1018,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * Immutable. Invoke route prefix for the custom container. "/*" is the only
      * supported value right now. By setting this field, any non-root route on
      * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
      * however the [PredictionService.Invoke] RPC is not supported yet.
@@ -1035,7 +1035,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Invoke route prefix for the custom container. "/&#42;" is the only
+     * Immutable. Invoke route prefix for the custom container. "/*" is the only
      * supported value right now. By setting this field, any non-root route on
      * this model will be accessible with invoke http call eg: "/invoke/foo/bar",
      * however the [PredictionService.Invoke] RPC is not supported yet.
@@ -1065,7 +1065,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Port>
      */
     public function getGrpcPorts()
     {
@@ -1082,7 +1082,7 @@ class ModelContainerSpec extends \Google\Protobuf\Internal\Message
      * corresponds to the `ports` field of the Kubernetes Containers v1 core API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Port grpc_ports = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Port>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Port[] $var
      * @return $this
      */
     public function setGrpcPorts($var)

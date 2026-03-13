@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A job that uses a
@@ -40,9 +40,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
      * the version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      * The model resource could also be a publisher model.
      *  Example: `publishers/{publisher}/models/{model}`
@@ -309,9 +309,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           Exactly one of model and unmanaged_container_model must be set.
      *           The model resource name may contain version id or version alias to specify
      *           the version.
-     *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *            Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *                        or
-     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                      `projects/{project}/locations/{location}/models/{model}\@golden`
      *           if no version is specified, the default version will be deployed.
      *           The model resource could also be a publisher model.
      *            Example: `publishers/{publisher}/models/{model}`
@@ -407,7 +407,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Only populated when the job's state is JOB_STATE_FAILED or
      *           JOB_STATE_CANCELLED.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type \Google\Rpc\Status[] $partial_failures
      *           Output only. Partial failures encountered.
      *           For example, single files that can't be read.
      *           This field never exceeds 20 entries.
@@ -518,9 +518,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
      * the version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      * The model resource could also be a publisher model.
      *  Example: `publishers/{publisher}/models/{model}`
@@ -543,9 +543,9 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Exactly one of model and unmanaged_container_model must be set.
      * The model resource name may contain version id or version alias to specify
      * the version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      * The model resource could also be a publisher model.
      *  Example: `publishers/{publisher}/models/{model}`
@@ -1159,7 +1159,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Status details fields contain standard Google Cloud error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialFailures()
     {
@@ -1173,7 +1173,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Status details fields contain standard Google Cloud error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialFailures($var)

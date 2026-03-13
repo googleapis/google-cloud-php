@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Featurestore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * OnlineServingConfig specifies the details for provisioning online serving
@@ -129,5 +129,4 @@ class OnlineServingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Model;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents export format supported by the Model.
@@ -65,7 +65,7 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
      *           Used for iOS mobile devices.
      *           * `custom-trained`
      *           A Model that was uploaded or trained by custom code.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $exportable_contents
+     *     @type int[] $exportable_contents
      *           Output only. The content of this Model that may be exported.
      * }
      */
@@ -132,7 +132,7 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
      * Output only. The content of this Model that may be exported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.ExportFormat.ExportableContent exportable_contents = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getExportableContents()
     {
@@ -143,7 +143,7 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
      * Output only. The content of this Model that may be exported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.ExportFormat.ExportableContent exportable_contents = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setExportableContents($var)
@@ -155,5 +155,4 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

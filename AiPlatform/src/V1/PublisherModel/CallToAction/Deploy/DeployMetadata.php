@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\Deploy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata information about the deployment for managing deployment
@@ -103,5 +103,4 @@ class DeployMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

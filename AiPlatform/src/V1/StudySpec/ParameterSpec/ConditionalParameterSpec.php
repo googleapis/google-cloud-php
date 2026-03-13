@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a parameter spec with condition from its parent parameter.
@@ -191,5 +191,4 @@ class ConditionalParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

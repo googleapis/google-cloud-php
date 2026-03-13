@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\LogprobsResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Candidates with top log probabilities at each decoding step.
@@ -28,7 +28,7 @@ class TopCandidates extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>|\Google\Protobuf\Internal\RepeatedField $candidates
+     *     @type \Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate[] $candidates
      *           Sorted by log probability in descending order.
      * }
      */
@@ -41,7 +41,7 @@ class TopCandidates extends \Google\Protobuf\Internal\Message
      * Sorted by log probability in descending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.Candidate candidates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>
      */
     public function getCandidates()
     {
@@ -52,7 +52,7 @@ class TopCandidates extends \Google\Protobuf\Internal\Message
      * Sorted by log probability in descending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.Candidate candidates = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate[] $var
      * @return $this
      */
     public function setCandidates($var)
@@ -64,5 +64,4 @@ class TopCandidates extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

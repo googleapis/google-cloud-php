@@ -23,36 +23,7 @@ class HyperparameterTuningJob
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-û
-:google/cloud/aiplatform/v1/hyperparameter_tuning_job.protogoogle.cloud.aiplatform.v1google/api/resource.proto+google/cloud/aiplatform/v1/custom_job.proto0google/cloud/aiplatform/v1/encryption_spec.proto*google/cloud/aiplatform/v1/job_state.proto&google/cloud/aiplatform/v1/study.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"³
-HyperparameterTuningJob
-name (	BàA
-display_name (	BàA>
-
-study_spec (2%.google.cloud.aiplatform.v1.StudySpecBàA
-max_trial_count (BàA!
-parallel_trial_count (BàA
-max_failed_trial_count (F
-trial_job_spec (2).google.cloud.aiplatform.v1.CustomJobSpecBàA6
-trials	 (2!.google.cloud.aiplatform.v1.TrialBàA8
-state
- (2$.google.cloud.aiplatform.v1.JobStateBàA4
-create_time (2.google.protobuf.TimestampBàA3
-
-start_time (2.google.protobuf.TimestampBàA1
-end_time (2.google.protobuf.TimestampBàA4
-update_time (2.google.protobuf.TimestampBàA&
-error (2.google.rpc.StatusBàAO
-labels (2?.google.cloud.aiplatform.v1.HyperparameterTuningJob.LabelsEntryC
-encryption_spec (2*.google.cloud.aiplatform.v1.EncryptionSpec
-satisfies_pzs (BàA
-satisfies_pzi (BàA-
-LabelsEntry
-key (	
-value (	:8:•êA‘
-1aiplatform.googleapis.com/HyperparameterTuningJob\\projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}BÚ
-com.google.cloud.aiplatform.v1BHyperparameterTuningJobProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+            "\x0A\xFB\x0C\x0A:google/cloud/aiplatform/v1/hyperparameter_tuning_job.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x19google/api/resource.proto\x1A+google/cloud/aiplatform/v1/custom_job.proto\x1A0google/cloud/aiplatform/v1/encryption_spec.proto\x1A*google/cloud/aiplatform/v1/job_state.proto\x1A&google/cloud/aiplatform/v1/study.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\x1A\x17google/rpc/status.proto\"\xB3\x08\x0A\x17HyperparameterTuningJob\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x03\x12\x19\x0A\x0Cdisplay_name\x18\x02 \x01(\x09B\x03\xE0A\x02\x12>\x0A\x0Astudy_spec\x18\x04 \x01(\x0B2%.google.cloud.aiplatform.v1.StudySpecB\x03\xE0A\x02\x12\x1C\x0A\x0Fmax_trial_count\x18\x05 \x01(\x05B\x03\xE0A\x02\x12!\x0A\x14parallel_trial_count\x18\x06 \x01(\x05B\x03\xE0A\x02\x12\x1E\x0A\x16max_failed_trial_count\x18\x07 \x01(\x05\x12F\x0A\x0Etrial_job_spec\x18\x08 \x01(\x0B2).google.cloud.aiplatform.v1.CustomJobSpecB\x03\xE0A\x02\x126\x0A\x06trials\x18\x09 \x03(\x0B2!.google.cloud.aiplatform.v1.TrialB\x03\xE0A\x03\x128\x0A\x05state\x18\x0A \x01(\x0E2\$.google.cloud.aiplatform.v1.JobStateB\x03\xE0A\x03\x124\x0A\x0Bcreate_time\x18\x0B \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x123\x0A\x0Astart_time\x18\x0C \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x121\x0A\x08end_time\x18\x0D \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x124\x0A\x0Bupdate_time\x18\x0E \x01(\x0B2\x1A.google.protobuf.TimestampB\x03\xE0A\x03\x12&\x0A\x05error\x18\x0F \x01(\x0B2\x12.google.rpc.StatusB\x03\xE0A\x03\x12O\x0A\x06labels\x18\x10 \x03(\x0B2?.google.cloud.aiplatform.v1.HyperparameterTuningJob.LabelsEntry\x12C\x0A\x0Fencryption_spec\x18\x11 \x01(\x0B2*.google.cloud.aiplatform.v1.EncryptionSpec\x12\x1A\x0A\x0Dsatisfies_pzs\x18\x13 \x01(\x08B\x03\xE0A\x03\x12\x1A\x0A\x0Dsatisfies_pzi\x18\x14 \x01(\x08B\x03\xE0A\x03\x1A-\x0A\x0BLabelsEntry\x12\x0B\x0A\x03key\x18\x01 \x01(\x09\x12\x0D\x0A\x05value\x18\x02 \x01(\x09:\x028\x01:\x95\x01\xEAA\x91\x01\x0A1aiplatform.googleapis.com/HyperparameterTuningJob\x12\\projects/{project}/locations/{location}/hyperparameterTuningJobs/{hyperparameter_tuning_job}B\xDA\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x1CHyperparameterTuningJobProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

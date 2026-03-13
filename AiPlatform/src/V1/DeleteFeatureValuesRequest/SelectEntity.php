@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\DeleteFeatureValuesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message to select entity.
@@ -80,5 +80,4 @@ class SelectEntity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

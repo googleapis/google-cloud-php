@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exported_files
+     *     @type string[] $exported_files
      *           All of the files that are exported in this export operation. For custom
      *           code training export, only three (training, validation and test)
      *           Cloud Storage paths in wildcard format are populated
@@ -63,7 +63,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      * (for example, gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExportedFiles()
     {
@@ -77,7 +77,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      * (for example, gs://.../training-*).
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExportedFiles($var)

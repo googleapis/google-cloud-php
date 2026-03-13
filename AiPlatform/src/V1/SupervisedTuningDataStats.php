@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tuning data statistics for Supervised Tuning.
@@ -115,16 +115,16 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      *           Output only. Dataset distributions for the user output tokens.
      *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution $user_message_per_example_distribution
      *           Output only. Dataset distributions for the messages per example.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $user_dataset_examples
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $user_dataset_examples
      *           Output only. Sample user messages in the training dataset uri.
      *     @type int|string $total_truncated_example_count
      *           Output only. The number of examples in the dataset that have been dropped.
      *           An example can be dropped for reasons including: too many tokens, contains
      *           an invalid image, contains too many images, etc.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $truncated_example_indices
+     *     @type int[]|string[] $truncated_example_indices
      *           Output only. A partial sample of the indices (starting from 1) of the
      *           dropped examples.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dropped_example_reasons
+     *     @type string[] $dropped_example_reasons
      *           Output only. For each index in `truncated_example_indices`, the user-facing
      *           reason why the example was dropped.
      * }
@@ -382,7 +382,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * Output only. Sample user messages in the training dataset uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content user_dataset_examples = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getUserDatasetExamples()
     {
@@ -393,7 +393,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * Output only. Sample user messages in the training dataset uri.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content user_dataset_examples = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setUserDatasetExamples($var)
@@ -439,7 +439,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * dropped examples.
      *
      * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getTruncatedExampleIndices()
     {
@@ -451,7 +451,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * dropped examples.
      *
      * Generated from protobuf field <code>repeated int64 truncated_example_indices = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setTruncatedExampleIndices($var)
@@ -467,7 +467,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * reason why the example was dropped.
      *
      * Generated from protobuf field <code>repeated string dropped_example_reasons = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDroppedExampleReasons()
     {
@@ -479,7 +479,7 @@ class SupervisedTuningDataStats extends \Google\Protobuf\Internal\Message
      * reason why the example was dropped.
      *
      * Generated from protobuf field <code>repeated string dropped_example_reasons = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDroppedExampleReasons($var)

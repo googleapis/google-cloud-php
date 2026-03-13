@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding support.
@@ -47,12 +47,12 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\Segment $segment
      *           Segment of the content this support belongs to.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $grounding_chunk_indices
+     *     @type int[] $grounding_chunk_indices
      *           A list of indices (into 'grounding_chunk') specifying the
      *           citations associated with the claim. For instance [1,3,4] means
      *           that grounding_chunk[1], grounding_chunk[3],
      *           grounding_chunk[4] are the retrieved content attributed to the claim.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $confidence_scores
+     *     @type float[] $confidence_scores
      *           Confidence score of the support references. Ranges from 0 to 1. 1 is the
      *           most confident. This list must have the same size as the
      *           grounding_chunk_indices.
@@ -106,7 +106,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * grounding_chunk[4] are the retrieved content attributed to the claim.
      *
      * Generated from protobuf field <code>repeated int32 grounding_chunk_indices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getGroundingChunkIndices()
     {
@@ -120,7 +120,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * grounding_chunk[4] are the retrieved content attributed to the claim.
      *
      * Generated from protobuf field <code>repeated int32 grounding_chunk_indices = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setGroundingChunkIndices($var)
@@ -137,7 +137,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * grounding_chunk_indices.
      *
      * Generated from protobuf field <code>repeated float confidence_scores = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getConfidenceScores()
     {
@@ -150,7 +150,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * grounding_chunk_indices.
      *
      * Generated from protobuf field <code>repeated float confidence_scores = 3;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setConfidenceScores($var)

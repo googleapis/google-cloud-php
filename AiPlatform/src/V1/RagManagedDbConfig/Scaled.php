@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagManagedDbConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Scaled tier offers production grade performance along with
@@ -32,5 +32,4 @@ class Scaled extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

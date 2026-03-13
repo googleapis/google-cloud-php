@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for ComputeTokens RPC call.
@@ -33,7 +33,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;
+     * projects/{project}/locations/{location}/publishers/{@*}models/*
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -73,15 +73,15 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      *     @type string $endpoint
      *           Required. The name of the Endpoint requested to get lists of tokens and
      *           token ids.
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Protobuf\Value[] $instances
      *           Optional. The instances that are the input to token computing API call.
      *           Schema is identical to the prediction schema of the text model, even for
      *           the non-text models, like chat models, or Codey models.
      *     @type string $model
      *           Optional. The name of the publisher model requested to serve the
      *           prediction. Format:
-     *           projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *           projects/{project}/locations/{location}/publishers/{@*}models/*
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $contents
      *           Optional. Input content.
      * }
      */
@@ -124,7 +124,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      * the non-text models, like chat models, or Codey models.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getInstances()
     {
@@ -137,7 +137,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      * the non-text models, like chat models, or Codey models.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -151,7 +151,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;
+     * projects/{project}/locations/{location}/publishers/{@*}models/*
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -164,7 +164,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;
+     * projects/{project}/locations/{location}/publishers/{@*}models/*
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -182,7 +182,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getContents()
     {
@@ -193,7 +193,7 @@ class ComputeTokensRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setContents($var)

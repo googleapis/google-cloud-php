@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SearchModelDeploymentMonitoringStatsAnomaliesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stats requested for specific objective.
@@ -115,5 +115,4 @@ class StatsAnomaliesObjective extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

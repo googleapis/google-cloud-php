@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * All the data stored in a TensorboardTimeSeries.
@@ -48,7 +48,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      *     @type int $value_type
      *           Required. Immutable. The value type of this time series. All the values in
      *           this time series data must match this value type.
-     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[] $values
      *           Required. Data points in this time series.
      * }
      */
@@ -117,7 +117,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * Required. Data points in this time series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesDataPoint values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>
      */
     public function getValues()
     {
@@ -128,7 +128,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * Required. Data points in this time series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesDataPoint values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[] $var
      * @return $this
      */
     public function setValues($var)

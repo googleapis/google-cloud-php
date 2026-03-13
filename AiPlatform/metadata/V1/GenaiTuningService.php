@@ -24,49 +24,7 @@ class GenaiTuningService
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-’
-5google/cloud/aiplatform/v1/genai_tuning_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto*google/cloud/aiplatform/v1/operation.proto+google/cloud/aiplatform/v1/tuning_job.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto"“
-CreateTuningJobRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location>
-
-tuning_job (2%.google.cloud.aiplatform.v1.TuningJobBàA"P
-GetTuningJobRequest9
-name (	B+àAúA%
-#aiplatform.googleapis.com/TuningJob"˜
-ListTuningJobsRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location
-filter (	BàA
-	page_size (BàA
-
-page_token (	BàA"m
-ListTuningJobsResponse:
-tuning_jobs (2%.google.cloud.aiplatform.v1.TuningJob
-next_page_token (	"S
-CancelTuningJobRequest9
-name (	B+àAúA%
-#aiplatform.googleapis.com/TuningJob"Ò
-RebaseTunedModelRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/LocationG
-tuned_model_ref (2).google.cloud.aiplatform.v1.TunedModelRefBàA>
-
-tuning_job (2%.google.cloud.aiplatform.v1.TuningJobBàAM
-artifact_destination (2*.google.cloud.aiplatform.v1.GcsDestinationBàA$
-deploy_to_same_endpoint (BàA"s
-!RebaseTunedModelOperationMetadataN
-generic_metadata (24.google.cloud.aiplatform.v1.GenericOperationMetadata2¶
-GenAiTuningServiceÄ
-CreateTuningJob2.google.cloud.aiplatform.v1.CreateTuningJobRequest%.google.cloud.aiplatform.v1.TuningJob"VÚAparent,tuning_job‚Óä“<"./v1/{parent=projects/*/locations/*}/tuningJobs:
-tuning_job¥
-GetTuningJob/.google.cloud.aiplatform.v1.GetTuningJobRequest%.google.cloud.aiplatform.v1.TuningJob"=ÚAname‚Óä“0./v1/{name=projects/*/locations/*/tuningJobs/*}¸
-ListTuningJobs1.google.cloud.aiplatform.v1.ListTuningJobsRequest2.google.cloud.aiplatform.v1.ListTuningJobsResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/tuningJobs¦
-CancelTuningJob2.google.cloud.aiplatform.v1.CancelTuningJobRequest.google.protobuf.Empty"GÚAname‚Óä“:"5/v1/{name=projects/*/locations/*/tuningJobs/*}:cancel:*ý
-RebaseTunedModel3.google.cloud.aiplatform.v1.RebaseTunedModelRequest.google.longrunning.Operation"”ÊA.
-	TuningJob!RebaseTunedModelOperationMetadataÚAparent,tuned_model_ref‚Óä“D"?/v1/{parent=projects/*/locations/*}/tuningJobs:rebaseTunedModel:*MÊAaiplatform.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBÕ
-com.google.cloud.aiplatform.v1BGenAiTuningServiceProtoPZ>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpbªGoogle.Cloud.AIPlatform.V1ÊGoogle\\Cloud\\AIPlatform\\V1êGoogle::Cloud::AIPlatform::V1bproto3'
+            "\x0A\x92\x15\x0A5google/cloud/aiplatform/v1/genai_tuning_service.proto\x12\x1Agoogle.cloud.aiplatform.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A#google/cloud/aiplatform/v1/io.proto\x1A*google/cloud/aiplatform/v1/operation.proto\x1A+google/cloud/aiplatform/v1/tuning_job.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto\"\x93\x01\x0A\x16CreateTuningJobRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12>\x0A\x0Atuning_job\x18\x02 \x01(\x0B2%.google.cloud.aiplatform.v1.TuningJobB\x03\xE0A\x02\"P\x0A\x13GetTuningJobRequest\x129\x0A\x04name\x18\x01 \x01(\x09B+\xE0A\x02\xFAA%\x0A#aiplatform.googleapis.com/TuningJob\"\x98\x01\x0A\x15ListTuningJobsRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12\x13\x0A\x06filter\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x16\x0A\x09page_size\x18\x03 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x04 \x01(\x09B\x03\xE0A\x01\"m\x0A\x16ListTuningJobsResponse\x12:\x0A\x0Btuning_jobs\x18\x01 \x03(\x0B2%.google.cloud.aiplatform.v1.TuningJob\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"S\x0A\x16CancelTuningJobRequest\x129\x0A\x04name\x18\x01 \x01(\x09B+\xE0A\x02\xFAA%\x0A#aiplatform.googleapis.com/TuningJob\"\xD2\x02\x0A\x17RebaseTunedModelRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12G\x0A\x0Ftuned_model_ref\x18\x02 \x01(\x0B2).google.cloud.aiplatform.v1.TunedModelRefB\x03\xE0A\x02\x12>\x0A\x0Atuning_job\x18\x03 \x01(\x0B2%.google.cloud.aiplatform.v1.TuningJobB\x03\xE0A\x01\x12M\x0A\x14artifact_destination\x18\x04 \x01(\x0B2*.google.cloud.aiplatform.v1.GcsDestinationB\x03\xE0A\x01\x12\$\x0A\x17deploy_to_same_endpoint\x18\x05 \x01(\x08B\x03\xE0A\x01\"s\x0A!RebaseTunedModelOperationMetadata\x12N\x0A\x10generic_metadata\x18\x01 \x01(\x0B24.google.cloud.aiplatform.v1.GenericOperationMetadata2\xB6\x08\x0A\x12GenAiTuningService\x12\xC4\x01\x0A\x0FCreateTuningJob\x122.google.cloud.aiplatform.v1.CreateTuningJobRequest\x1A%.google.cloud.aiplatform.v1.TuningJob\"V\xDAA\x11parent,tuning_job\x82\xD3\xE4\x93\x02<\"./v1/{parent=projects/*/locations/*}/tuningJobs:\x0Atuning_job\x12\xA5\x01\x0A\x0CGetTuningJob\x12/.google.cloud.aiplatform.v1.GetTuningJobRequest\x1A%.google.cloud.aiplatform.v1.TuningJob\"=\xDAA\x04name\x82\xD3\xE4\x93\x020\x12./v1/{name=projects/*/locations/*/tuningJobs/*}\x12\xB8\x01\x0A\x0EListTuningJobs\x121.google.cloud.aiplatform.v1.ListTuningJobsRequest\x1A2.google.cloud.aiplatform.v1.ListTuningJobsResponse\"?\xDAA\x06parent\x82\xD3\xE4\x93\x020\x12./v1/{parent=projects/*/locations/*}/tuningJobs\x12\xA6\x01\x0A\x0FCancelTuningJob\x122.google.cloud.aiplatform.v1.CancelTuningJobRequest\x1A\x16.google.protobuf.Empty\"G\xDAA\x04name\x82\xD3\xE4\x93\x02:\"5/v1/{name=projects/*/locations/*/tuningJobs/*}:cancel:\x01*\x12\xFD\x01\x0A\x10RebaseTunedModel\x123.google.cloud.aiplatform.v1.RebaseTunedModelRequest\x1A\x1D.google.longrunning.Operation\"\x94\x01\xCAA.\x0A\x09TuningJob\x12!RebaseTunedModelOperationMetadata\xDAA\x16parent,tuned_model_ref\x82\xD3\xE4\x93\x02D\"?/v1/{parent=projects/*/locations/*}/tuningJobs:rebaseTunedModel:\x01*\x1AM\xCAA\x19aiplatform.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xD5\x01\x0A\x1Ecom.google.cloud.aiplatform.v1B\x17GenAiTuningServiceProtoP\x01Z>cloud.google.com/go/aiplatform/apiv1/aiplatformpb;aiplatformpb\xAA\x02\x1AGoogle.Cloud.AIPlatform.V1\xCA\x02\x1AGoogle\\Cloud\\AIPlatform\\V1\xEA\x02\x1DGoogle::Cloud::AIPlatform::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for AugmentPrompt.
@@ -34,9 +34,9 @@ class AugmentPromptResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $augmented_prompt
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $augmented_prompt
      *           Augmented prompt, only text format is supported for now.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Fact>|\Google\Protobuf\Internal\RepeatedField $facts
+     *     @type \Google\Cloud\AIPlatform\V1\Fact[] $facts
      *           Retrieved facts from RAG data sources.
      * }
      */
@@ -49,7 +49,7 @@ class AugmentPromptResponse extends \Google\Protobuf\Internal\Message
      * Augmented prompt, only text format is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content augmented_prompt = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getAugmentedPrompt()
     {
@@ -60,7 +60,7 @@ class AugmentPromptResponse extends \Google\Protobuf\Internal\Message
      * Augmented prompt, only text format is supported for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content augmented_prompt = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setAugmentedPrompt($var)
@@ -75,7 +75,7 @@ class AugmentPromptResponse extends \Google\Protobuf\Internal\Message
      * Retrieved facts from RAG data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Fact facts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Fact>
      */
     public function getFacts()
     {
@@ -86,7 +86,7 @@ class AugmentPromptResponse extends \Google\Protobuf\Internal\Message
      * Retrieved facts from RAG data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Fact facts = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Fact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Fact[] $var
      * @return $this
      */
     public function setFacts($var)

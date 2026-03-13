@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -29,7 +29,7 @@ class ReadIndexDatapointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint>|\Google\Protobuf\Internal\RepeatedField $datapoints
+     *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint[] $datapoints
      *           The result list of datapoints.
      * }
      */
@@ -42,7 +42,7 @@ class ReadIndexDatapointsResponse extends \Google\Protobuf\Internal\Message
      * The result list of datapoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint datapoints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\IndexDatapoint>
      */
     public function getDatapoints()
     {
@@ -53,7 +53,7 @@ class ReadIndexDatapointsResponse extends \Google\Protobuf\Internal\Message
      * The result list of datapoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint datapoints = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint[] $var
      * @return $this
      */
     public function setDatapoints($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pre-tuned model for continuous tuning.
@@ -18,8 +18,8 @@ class PreTunedModel extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the Model.
      * E.g., a model resource name with a specified version id or alias:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
-     * `projects/{project}/locations/{location}/models/{model}&#64;{alias}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{alias}`
      * Or, omit the version id to use the default version:
      * `projects/{project}/locations/{location}/models/{model}`
      *
@@ -50,8 +50,8 @@ class PreTunedModel extends \Google\Protobuf\Internal\Message
      *     @type string $tuned_model_name
      *           The resource name of the Model.
      *           E.g., a model resource name with a specified version id or alias:
-     *           `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
-     *           `projects/{project}/locations/{location}/models/{model}&#64;{alias}`
+     *           `projects/{project}/locations/{location}/models/{model}\@{version_id}`
+     *           `projects/{project}/locations/{location}/models/{model}\@{alias}`
      *           Or, omit the version id to use the default version:
      *           `projects/{project}/locations/{location}/models/{model}`
      *     @type string $checkpoint_id
@@ -70,8 +70,8 @@ class PreTunedModel extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the Model.
      * E.g., a model resource name with a specified version id or alias:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
-     * `projects/{project}/locations/{location}/models/{model}&#64;{alias}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{alias}`
      * Or, omit the version id to use the default version:
      * `projects/{project}/locations/{location}/models/{model}`
      *
@@ -86,8 +86,8 @@ class PreTunedModel extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the Model.
      * E.g., a model resource name with a specified version id or alias:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
-     * `projects/{project}/locations/{location}/models/{model}&#64;{alias}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{alias}`
      * Or, omit the version id to use the default version:
      * `projects/{project}/locations/{location}/models/{model}`
      *

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tool details that the model may use to generate response.
@@ -99,7 +99,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>|\Google\Protobuf\Internal\RepeatedField $function_declarations
+     *     @type \Google\Cloud\AIPlatform\V1\FunctionDeclaration[] $function_declarations
      *           Optional. Function tool type.
      *           One or more function declarations to be passed to the model along with the
      *           current user query. Model may decide to call a subset of these functions
@@ -154,7 +154,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>
      */
     public function getFunctionDeclarations()
     {
@@ -173,7 +173,7 @@ class Tool extends \Google\Protobuf\Internal\Message
      * declarations can be provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionDeclaration function_declarations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FunctionDeclaration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FunctionDeclaration[] $var
      * @return $this
      */
     public function setFunctionDeclarations($var)

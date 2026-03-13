@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Feature Registry source for features that need to be synced to Online
@@ -35,7 +35,7 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup>|\Google\Protobuf\Internal\RepeatedField $feature_groups
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup[] $feature_groups
      *           Required. List of features that need to be synced to Online Store.
      *     @type int|string $project_number
      *           Optional. The project number of the parent project of the Feature Groups.
@@ -50,7 +50,7 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      * Required. List of features that need to be synced to Online Store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureView.FeatureRegistrySource.FeatureGroup feature_groups = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup>
      */
     public function getFeatureGroups()
     {
@@ -61,7 +61,7 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
      * Required. List of features that need to be synced to Online Store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureView.FeatureRegistrySource.FeatureGroup feature_groups = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource\FeatureGroup[] $var
      * @return $this
      */
     public function setFeatureGroups($var)
@@ -109,5 +109,4 @@ class FeatureRegistrySource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

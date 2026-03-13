@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -35,7 +35,7 @@ class DirectPredictResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $outputs
+     *     @type \Google\Cloud\AIPlatform\V1\Tensor[] $outputs
      *           The prediction output.
      *     @type \Google\Cloud\AIPlatform\V1\Tensor $parameters
      *           The parameters that govern the prediction.
@@ -50,7 +50,7 @@ class DirectPredictResponse extends \Google\Protobuf\Internal\Message
      * The prediction output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor outputs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tensor>
      */
     public function getOutputs()
     {
@@ -61,7 +61,7 @@ class DirectPredictResponse extends \Google\Protobuf\Internal\Message
      * The prediction output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor outputs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tensor[] $var
      * @return $this
      */
     public function setOutputs($var)

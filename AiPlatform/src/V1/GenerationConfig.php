@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generation config.
@@ -212,7 +212,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Number of candidates to generate.
      *     @type int $max_output_tokens
      *           Optional. The maximum number of output tokens to generate per message.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $stop_sequences
+     *     @type string[] $stop_sequences
      *           Optional. Stop sequences.
      *     @type bool $response_logprobs
      *           Optional. If true, export the logprobs results in response.
@@ -278,7 +278,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. If enabled, audio timestamps will be included in the request to
      *           the model. This can be useful for synchronizing audio with other modalities
      *           in the response.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $response_modalities
+     *     @type int[] $response_modalities
      *           Optional. The modalities of the response. The model will generate a
      *           response that includes all the specified modalities. For example, if this
      *           is set to `[TEXT, IMAGE]`, the response will include both text and an
@@ -489,7 +489,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Optional. Stop sequences.
      *
      * Generated from protobuf field <code>repeated string stop_sequences = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStopSequences()
     {
@@ -500,7 +500,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * Optional. Stop sequences.
      *
      * Generated from protobuf field <code>repeated string stop_sequences = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStopSequences($var)
@@ -956,7 +956,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GenerationConfig.Modality response_modalities = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getResponseModalities()
     {
@@ -970,7 +970,7 @@ class GenerationConfig extends \Google\Protobuf\Internal\Message
      * image.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GenerationConfig.Modality response_modalities = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setResponseModalities($var)

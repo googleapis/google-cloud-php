@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -94,7 +94,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *           If multiple SuggestTrialsRequests have the same `client_id`,
      *           the service will return the identical suggested Trial if the Trial is
      *           pending, and provide a new Trial if the last suggested Trial was completed.
-     *     @type array<\Google\Cloud\AIPlatform\V1\TrialContext>|\Google\Protobuf\Internal\RepeatedField $contexts
+     *     @type \Google\Cloud\AIPlatform\V1\TrialContext[] $contexts
      *           Optional. This allows you to specify the "context" for a Trial; a context
      *           is a slice (a subspace) of the search space.
      *           Typical uses for contexts:
@@ -259,7 +259,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *   suggestion will be geneated in the merged subspace.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TrialContext contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TrialContext>
      */
     public function getContexts()
     {
@@ -303,7 +303,7 @@ class SuggestTrialsRequest extends \Google\Protobuf\Internal\Message
      *   suggestion will be geneated in the merged subspace.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TrialContext contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TrialContext>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TrialContext[] $var
      * @return $this
      */
     public function setContexts($var)

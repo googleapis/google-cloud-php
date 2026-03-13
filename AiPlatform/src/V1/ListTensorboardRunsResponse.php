@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListTensorboardRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardRun>|\Google\Protobuf\Internal\RepeatedField $tensorboard_runs
+     *     @type \Google\Cloud\AIPlatform\V1\TensorboardRun[] $tensorboard_runs
      *           The TensorboardRuns mathching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -56,7 +56,7 @@ class ListTensorboardRunsResponse extends \Google\Protobuf\Internal\Message
      * The TensorboardRuns mathching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardRun tensorboard_runs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TensorboardRun>
      */
     public function getTensorboardRuns()
     {
@@ -67,7 +67,7 @@ class ListTensorboardRunsResponse extends \Google\Protobuf\Internal\Message
      * The TensorboardRuns mathching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardRun tensorboard_runs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardRun>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardRun[] $var
      * @return $this
      */
     public function setTensorboardRuns($var)

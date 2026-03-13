@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -68,7 +68,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      *           has a DeployedIndex.id field.
      *           The value of the field below must equal one of the DeployedIndex.id
      *           fields of the IndexEndpoint that is being called for this request.
-     *     @type array<\Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query>|\Google\Protobuf\Internal\RepeatedField $queries
+     *     @type \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query[] $queries
      *           The list of queries.
      *     @type bool $return_full_datapoint
      *           If set to true, the full datapoints (including all vector values and
@@ -152,7 +152,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      * The list of queries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FindNeighborsRequest.Query queries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query>
      */
     public function getQueries()
     {
@@ -163,7 +163,7 @@ class FindNeighborsRequest extends \Google\Protobuf\Internal\Message
      * The list of queries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FindNeighborsRequest.Query queries = 3;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query[] $var
      * @return $this
      */
     public function setQueries($var)

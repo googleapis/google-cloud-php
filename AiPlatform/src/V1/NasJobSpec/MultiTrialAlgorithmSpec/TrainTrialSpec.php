@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NasJobSpec\MultiTrialAlgorithmSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represent spec for train trials.
@@ -158,5 +158,4 @@ class TrainTrialSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

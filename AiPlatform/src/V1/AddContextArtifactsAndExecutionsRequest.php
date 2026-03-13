@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -79,11 +79,11 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      *           Required. The resource name of the Context that the Artifacts and
      *           Executions belong to. Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $artifacts
+     *     @type string[] $artifacts
      *           The resource names of the Artifacts to attribute to the Context.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type string[] $executions
      *           The resource names of the Executions to associate with the
      *           Context.
      *           Format:
@@ -131,7 +131,7 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      * Generated from protobuf field <code>repeated string artifacts = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArtifacts()
     {
@@ -144,7 +144,7 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/artifacts/{artifact}`
      *
      * Generated from protobuf field <code>repeated string artifacts = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArtifacts($var)
@@ -162,7 +162,7 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *
      * Generated from protobuf field <code>repeated string executions = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExecutions()
     {
@@ -176,7 +176,7 @@ class AddContextArtifactsAndExecutionsRequest extends \Google\Protobuf\Internal\
      * `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
      *
      * Generated from protobuf field <code>repeated string executions = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExecutions($var)

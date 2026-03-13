@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of operations that perform import Feature values.
@@ -76,7 +76,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *           Number of entities that have been imported by the operation.
      *     @type int|string $imported_feature_value_count
      *           Number of Feature values that have been imported by the operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_uris
+     *     @type string[] $source_uris
      *           The source URI from where Feature values are imported.
      *     @type int|string $invalid_row_count
      *           The number of rows in input source that weren't imported due to either
@@ -87,7 +87,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      *     @type int|string $timestamp_outside_retention_rows_count
      *           The number rows that weren't ingested due to having timestamps outside the
      *           retention boundary.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_operation_ids
+     *     @type int[]|string[] $blocking_operation_ids
      *           List of ImportFeatureValues operations running under a single EntityType
      *           that are blocking this operation.
      * }
@@ -189,7 +189,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      * The source URI from where Feature values are imported.
      *
      * Generated from protobuf field <code>repeated string source_uris = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceUris()
     {
@@ -200,7 +200,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      * The source URI from where Feature values are imported.
      *
      * Generated from protobuf field <code>repeated string source_uris = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceUris($var)
@@ -278,7 +278,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      * that are blocking this operation.
      *
      * Generated from protobuf field <code>repeated int64 blocking_operation_ids = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getBlockingOperationIds()
     {
@@ -290,7 +290,7 @@ class ImportFeatureValuesOperationMetadata extends \Google\Protobuf\Internal\Mes
      * that are blocking this operation.
      *
      * Generated from protobuf field <code>repeated int64 blocking_operation_ids = 8;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setBlockingOperationIds($var)

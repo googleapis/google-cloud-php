@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource used in LLM queries for users to explicitly specify what to cache
@@ -121,9 +121,9 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
      *           Optional. Input only. Immutable. Developer set system instruction.
      *           Currently, text only
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $contents
      *           Optional. Input only. Immutable. The content to cache
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\AIPlatform\V1\Tool[] $tools
      *           Optional. Input only. Immutable. A list of `Tools` the model may use to
      *           generate the next response
      *     @type \Google\Cloud\AIPlatform\V1\ToolConfig $tool_config
@@ -344,7 +344,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      * Optional. Input only. Immutable. The content to cache
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getContents()
     {
@@ -355,7 +355,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      * Optional. Input only. Immutable. The content to cache
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setContents($var)
@@ -371,7 +371,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      * generate the next response
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tool>
      */
     public function getTools()
     {
@@ -383,7 +383,7 @@ class CachedContent extends \Google\Protobuf\Internal\Message
      * generate the next response
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)

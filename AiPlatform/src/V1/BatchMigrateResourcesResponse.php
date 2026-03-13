@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class BatchMigrateResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\MigrateResourceResponse>|\Google\Protobuf\Internal\RepeatedField $migrate_resource_responses
+     *     @type \Google\Cloud\AIPlatform\V1\MigrateResourceResponse[] $migrate_resource_responses
      *           Successfully migrated resources.
      * }
      */
@@ -42,7 +42,7 @@ class BatchMigrateResourcesResponse extends \Google\Protobuf\Internal\Message
      * Successfully migrated resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceResponse migrate_resource_responses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\MigrateResourceResponse>
      */
     public function getMigrateResourceResponses()
     {
@@ -53,7 +53,7 @@ class BatchMigrateResourcesResponse extends \Google\Protobuf\Internal\Message
      * Successfully migrated resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceResponse migrate_resource_responses = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\MigrateResourceResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\MigrateResourceResponse[] $var
      * @return $this
      */
     public function setMigrateResourceResponses($var)

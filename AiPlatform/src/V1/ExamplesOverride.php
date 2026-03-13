@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Overrides for example-based explanations.
@@ -56,7 +56,7 @@ class ExamplesOverride extends \Google\Protobuf\Internal\Message
      *           The number of neighbors to return.
      *     @type int $crowding_count
      *           The number of neighbors to return that have the same crowding tag.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ExamplesRestrictionsNamespace>|\Google\Protobuf\Internal\RepeatedField $restrictions
+     *     @type \Google\Cloud\AIPlatform\V1\ExamplesRestrictionsNamespace[] $restrictions
      *           Restrict the resulting nearest neighbors to respect these constraints.
      *     @type bool $return_embeddings
      *           If true, return the embeddings instead of neighbors.
@@ -125,7 +125,7 @@ class ExamplesOverride extends \Google\Protobuf\Internal\Message
      * Restrict the resulting nearest neighbors to respect these constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ExamplesRestrictionsNamespace restrictions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ExamplesRestrictionsNamespace>
      */
     public function getRestrictions()
     {
@@ -136,7 +136,7 @@ class ExamplesOverride extends \Google\Protobuf\Internal\Message
      * Restrict the resulting nearest neighbors to respect these constraints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ExamplesRestrictionsNamespace restrictions = 3;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ExamplesRestrictionsNamespace>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ExamplesRestrictionsNamespace[] $var
      * @return $this
      */
     public function setRestrictions($var)

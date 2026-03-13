@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [NotebookService.CreateNotebookExecutionJob]
@@ -37,7 +37,7 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NotebookExecutionJob>|\Google\Protobuf\Internal\RepeatedField $notebook_execution_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\NotebookExecutionJob[] $notebook_execution_jobs
      *           List of NotebookExecutionJobs in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -55,7 +55,7 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
      * List of NotebookExecutionJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NotebookExecutionJob notebook_execution_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NotebookExecutionJob>
      */
     public function getNotebookExecutionJobs()
     {
@@ -66,7 +66,7 @@ class ListNotebookExecutionJobsResponse extends \Google\Protobuf\Internal\Messag
      * List of NotebookExecutionJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NotebookExecutionJob notebook_execution_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NotebookExecutionJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NotebookExecutionJob[] $var
      * @return $this
      */
     public function setNotebookExecutionJobs($var)

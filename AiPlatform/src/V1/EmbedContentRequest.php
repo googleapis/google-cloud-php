@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>optional string model = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -83,7 +83,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Required. The name of the publisher model requested to serve the
      *           prediction. Format:
-     *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *           `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *     @type \Google\Cloud\AIPlatform\V1\Content $content
      *           Required. Input content to be embedded. Required.
      *     @type string $title
@@ -106,7 +106,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>optional string model = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -129,7 +129,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>optional string model = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

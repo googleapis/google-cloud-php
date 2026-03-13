@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container to hold value(s), successive in time, for one Feature from the
@@ -115,5 +115,4 @@ class Data extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MetadataStore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents state information for a MetadataStore.
@@ -64,5 +64,4 @@ class MetadataStoreState extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

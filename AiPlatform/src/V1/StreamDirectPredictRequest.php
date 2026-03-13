@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -51,7 +51,7 @@ class StreamDirectPredictRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Endpoint requested to serve the prediction.
      *           Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\AIPlatform\V1\Tensor[] $inputs
      *           Optional. The prediction input.
      *     @type \Google\Cloud\AIPlatform\V1\Tensor $parameters
      *           Optional. The parameters that govern the prediction.
@@ -96,7 +96,7 @@ class StreamDirectPredictRequest extends \Google\Protobuf\Internal\Message
      * Optional. The prediction input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor inputs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tensor>
      */
     public function getInputs()
     {
@@ -107,7 +107,7 @@ class StreamDirectPredictRequest extends \Google\Protobuf\Internal\Message
      * Optional. The prediction input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor inputs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tensor[] $var
      * @return $this
      */
     public function setInputs($var)
