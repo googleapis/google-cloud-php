@@ -1,0 +1,73 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.modelarmor.v1",
+    "libraryPackage": "Google\\Cloud\\ModelArmor\\V1",
+    "services": {
+        "ModelArmor": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ModelArmorGapicClient",
+                    "rpcs": {
+                        "CreateTemplate": {
+                            "methods": [
+                                "createTemplate"
+                            ]
+                        },
+                        "DeleteTemplate": {
+                            "methods": [
+                                "deleteTemplate"
+                            ]
+                        },
+                        "GetFloorSetting": {
+                            "methods": [
+                                "getFloorSetting"
+                            ]
+                        },
+                        "GetTemplate": {
+                            "methods": [
+                                "getTemplate"
+                            ]
+                        },
+                        "ListTemplates": {
+                            "methods": [
+                                "listTemplates"
+                            ]
+                        },
+                        "SanitizeModelResponse": {
+                            "methods": [
+                                "sanitizeModelResponse"
+                            ]
+                        },
+                        "SanitizeUserPrompt": {
+                            "methods": [
+                                "sanitizeUserPrompt"
+                            ]
+                        },
+                        "UpdateFloorSetting": {
+                            "methods": [
+                                "updateFloorSetting"
+                            ]
+                        },
+                        "UpdateTemplate": {
+                            "methods": [
+                                "updateTemplate"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
