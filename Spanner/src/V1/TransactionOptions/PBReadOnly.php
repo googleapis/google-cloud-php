@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\TransactionOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message type to initiate a read-only transaction.
@@ -348,8 +348,4 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-
-// Adding a class alias for backwards compatibility with the "readonly" keyword.
-class_alias(PBReadOnly::class, __NAMESPACE__ . '\ReadOnly');
 

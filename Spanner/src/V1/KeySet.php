@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `KeySet` defines a collection of Cloud Spanner keys and/or key ranges. All
@@ -51,12 +51,12 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Protobuf\ListValue[] $keys
      *           A list of specific keys. Entries in `keys` should have exactly as
      *           many elements as there are columns in the primary or index key
      *           with which this `KeySet` is used.  Individual key values are
      *           encoded as described [here][google.spanner.v1.TypeCode].
-     *     @type array<\Google\Cloud\Spanner\V1\KeyRange>|\Google\Protobuf\Internal\RepeatedField $ranges
+     *     @type \Google\Cloud\Spanner\V1\KeyRange[] $ranges
      *           A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more
      *           information about key range specifications.
      *     @type bool $all
@@ -77,7 +77,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\ListValue>
      */
     public function getKeys()
     {
@@ -91,7 +91,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue keys = 1;</code>
-     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\ListValue[] $var
      * @return $this
      */
     public function setKeys($var)
@@ -107,7 +107,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * information about key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\KeyRange>
      */
     public function getRanges()
     {
@@ -119,7 +119,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * information about key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
-     * @param array<\Google\Cloud\Spanner\V1\KeyRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\KeyRange[] $var
      * @return $this
      */
     public function setRanges($var)

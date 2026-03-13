@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\PlanNode;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata associated with a parent-child relationship appearing in a
@@ -173,5 +173,4 @@ class ChildLink extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

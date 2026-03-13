@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -34,23 +34,23 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
-     *   * `metadata.&#64;type` - the type of metadata. For example, the type string
+     *   * `metadata.\@type` - the type of metadata. For example, the type string
      *      for
      *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
      *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
-     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      `metadata.\@type` must be specified first, if filtering on metadata
      *      fields.
      *   * `error` - Error associated with the long-running operation.
-     *   * `response.&#64;type` - the type of response.
+     *   * `response.\@type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic. However,
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *   * `(metadata.\@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
      *     `(metadata.source_type:BACKUP) AND` \
      *     `(metadata.backup_info.backup:backup_howl) AND` \
      *     `(metadata.name:restored_howl) AND` \
@@ -120,23 +120,23 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      *           are eligible for filtering:
      *             * `name` - The name of the long-running operation
      *             * `done` - False if the operation is in progress, else true.
-     *             * `metadata.&#64;type` - the type of metadata. For example, the type string
+     *             * `metadata.\@type` - the type of metadata. For example, the type string
      *                for
      *                [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
      *                is
      *                `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *             * `metadata.<field_name>` - any field in metadata.value.
-     *                `metadata.&#64;type` must be specified first, if filtering on metadata
+     *                `metadata.\@type` must be specified first, if filtering on metadata
      *                fields.
      *             * `error` - Error associated with the long-running operation.
-     *             * `response.&#64;type` - the type of response.
+     *             * `response.\@type` - the type of response.
      *             * `response.<field_name>` - any field in response.value.
      *           You can combine multiple expressions by enclosing each expression in
      *           parentheses. By default, expressions are combined with AND logic. However,
      *           you can specify AND, OR, and NOT logic explicitly.
      *           Here are a few examples:
      *             * `done:true` - The operation is complete.
-     *             * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *             * `(metadata.\@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
      *               `(metadata.source_type:BACKUP) AND` \
      *               `(metadata.backup_info.backup:backup_howl) AND` \
      *               `(metadata.name:restored_howl) AND` \
@@ -204,23 +204,23 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
-     *   * `metadata.&#64;type` - the type of metadata. For example, the type string
+     *   * `metadata.\@type` - the type of metadata. For example, the type string
      *      for
      *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
      *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
-     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      `metadata.\@type` must be specified first, if filtering on metadata
      *      fields.
      *   * `error` - Error associated with the long-running operation.
-     *   * `response.&#64;type` - the type of response.
+     *   * `response.\@type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic. However,
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *   * `(metadata.\@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
      *     `(metadata.source_type:BACKUP) AND` \
      *     `(metadata.backup_info.backup:backup_howl) AND` \
      *     `(metadata.name:restored_howl) AND` \
@@ -253,23 +253,23 @@ class ListDatabaseOperationsRequest extends \Google\Protobuf\Internal\Message
      * are eligible for filtering:
      *   * `name` - The name of the long-running operation
      *   * `done` - False if the operation is in progress, else true.
-     *   * `metadata.&#64;type` - the type of metadata. For example, the type string
+     *   * `metadata.\@type` - the type of metadata. For example, the type string
      *      for
      *      [RestoreDatabaseMetadata][google.spanner.admin.database.v1.RestoreDatabaseMetadata]
      *      is
      *      `type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata`.
      *   * `metadata.<field_name>` - any field in metadata.value.
-     *      `metadata.&#64;type` must be specified first, if filtering on metadata
+     *      `metadata.\@type` must be specified first, if filtering on metadata
      *      fields.
      *   * `error` - Error associated with the long-running operation.
-     *   * `response.&#64;type` - the type of response.
+     *   * `response.\@type` - the type of response.
      *   * `response.<field_name>` - any field in response.value.
      * You can combine multiple expressions by enclosing each expression in
      * parentheses. By default, expressions are combined with AND logic. However,
      * you can specify AND, OR, and NOT logic explicitly.
      * Here are a few examples:
      *   * `done:true` - The operation is complete.
-     *   * `(metadata.&#64;type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
+     *   * `(metadata.\@type=type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata) AND` \
      *     `(metadata.source_type:BACKUP) AND` \
      *     `(metadata.backup_info.backup:backup_howl) AND` \
      *     `(metadata.name:restored_howl) AND` \

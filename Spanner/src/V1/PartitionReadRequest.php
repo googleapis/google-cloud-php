@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [PartitionRead][google.spanner.v1.Spanner.PartitionRead]
@@ -93,7 +93,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      *           [key_set][google.spanner.v1.PartitionReadRequest.key_set] and sorting
      *           result rows. See [key_set][google.spanner.v1.PartitionReadRequest.key_set]
      *           for further information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type string[] $columns
      *           The columns of [table][google.spanner.v1.PartitionReadRequest.table] to be
      *           returned for each row matching this request.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
@@ -246,7 +246,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * returned for each row matching this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColumns()
     {
@@ -258,7 +258,7 @@ class PartitionReadRequest extends \Google\Protobuf\Internal\Message
      * returned for each row matching this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColumns($var)

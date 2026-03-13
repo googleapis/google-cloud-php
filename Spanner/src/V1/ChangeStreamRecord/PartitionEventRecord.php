@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A partition event record describes key range changes for a change stream
@@ -161,7 +161,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      *           [partition_token][google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.partition_token]
      *           is equal to the partition token of the change stream partition currently
      *           queried to return this PartitionEventRecord.
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveInEvent>|\Google\Protobuf\Internal\RepeatedField $move_in_events
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveInEvent[] $move_in_events
      *           Set when one or more key ranges are moved into the change stream
      *           partition identified by
      *           [partition_token][google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.partition_token].
@@ -194,7 +194,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      *               destination_partition_token: "P1"
      *             }
      *           }
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveOutEvent>|\Google\Protobuf\Internal\RepeatedField $move_out_events
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveOutEvent[] $move_out_events
      *           Set when one or more key ranges are moved out of the change stream
      *           partition identified by
      *           [partition_token][google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.partition_token].
@@ -383,7 +383,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      * }
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.MoveInEvent move_in_events = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveInEvent>
      */
     public function getMoveInEvents()
     {
@@ -425,7 +425,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      * }
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.MoveInEvent move_in_events = 4;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveInEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveInEvent[] $var
      * @return $this
      */
     public function setMoveInEvents($var)
@@ -471,7 +471,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      * }
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.MoveOutEvent move_out_events = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveOutEvent>
      */
     public function getMoveOutEvents()
     {
@@ -513,7 +513,7 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
      * }
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.PartitionEventRecord.MoveOutEvent move_out_events = 5;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveOutEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord\MoveOutEvent[] $var
      * @return $this
      */
     public function setMoveOutEvents($var)
@@ -525,5 +525,4 @@ class PartitionEventRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

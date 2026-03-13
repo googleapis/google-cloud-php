@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The autoscaling targets for an instance.
@@ -192,7 +192,4 @@ class AutoscalingTargets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingTargets::class, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig_AutoscalingTargets::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A heartbeat record is returned as a progress indicator, when there are no
@@ -88,5 +88,4 @@ class HeartbeatRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

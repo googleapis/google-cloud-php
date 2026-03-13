@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Partial results from a streaming read or SQL query. Streaming reads and
@@ -159,7 +159,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\ResultSetMetadata $metadata
      *           Metadata about the result set, such as row type information.
      *           Only present in the first response.
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Protobuf\Value[] $values
      *           A streamed result set consists of a stream of values, which might
      *           be split into many `PartialResultSet` messages to accommodate
      *           large rows and/or large values. Every N complete values defines a
@@ -367,7 +367,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * yields results from the `PartialResultSet` with value "orl".
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getValues()
     {
@@ -440,7 +440,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * yields results from the `PartialResultSet` with value "orl".
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setValues($var)

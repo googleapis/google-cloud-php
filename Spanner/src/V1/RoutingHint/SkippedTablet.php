@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\RoutingHint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A tablet that was skipped by the client. See `Tablet.tablet_uid` and
@@ -99,5 +99,4 @@ class SkippedTablet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
