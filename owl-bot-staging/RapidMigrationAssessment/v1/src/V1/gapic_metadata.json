@@ -1,0 +1,78 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.rapidmigrationassessment.v1",
+    "libraryPackage": "Google\\Cloud\\RapidMigrationAssessment\\V1",
+    "services": {
+        "RapidMigrationAssessment": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RapidMigrationAssessmentGapicClient",
+                    "rpcs": {
+                        "CreateAnnotation": {
+                            "methods": [
+                                "createAnnotation"
+                            ]
+                        },
+                        "CreateCollector": {
+                            "methods": [
+                                "createCollector"
+                            ]
+                        },
+                        "DeleteCollector": {
+                            "methods": [
+                                "deleteCollector"
+                            ]
+                        },
+                        "GetAnnotation": {
+                            "methods": [
+                                "getAnnotation"
+                            ]
+                        },
+                        "GetCollector": {
+                            "methods": [
+                                "getCollector"
+                            ]
+                        },
+                        "ListCollectors": {
+                            "methods": [
+                                "listCollectors"
+                            ]
+                        },
+                        "PauseCollector": {
+                            "methods": [
+                                "pauseCollector"
+                            ]
+                        },
+                        "RegisterCollector": {
+                            "methods": [
+                                "registerCollector"
+                            ]
+                        },
+                        "ResumeCollector": {
+                            "methods": [
+                                "resumeCollector"
+                            ]
+                        },
+                        "UpdateCollector": {
+                            "methods": [
+                                "updateCollector"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
