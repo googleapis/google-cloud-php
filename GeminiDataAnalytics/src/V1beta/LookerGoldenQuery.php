@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A golden query for Looker, including natural language questions and a
@@ -36,7 +36,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $natural_language_questions
+     *     @type string[] $natural_language_questions
      *           Optional. Natural language questions that a user might ask.
      *           For example: "How many orders were placed last month?"
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery $looker_query
@@ -53,7 +53,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
      * For example: "How many orders were placed last month?"
      *
      * Generated from protobuf field <code>repeated string natural_language_questions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNaturalLanguageQuestions()
     {
@@ -65,7 +65,7 @@ class LookerGoldenQuery extends \Google\Protobuf\Internal\Message
      * For example: "How many orders were placed last month?"
      *
      * Generated from protobuf field <code>repeated string natural_language_questions = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNaturalLanguageQuestions($var)

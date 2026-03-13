@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Retrieved data.
@@ -66,11 +66,11 @@ class DataResult extends \Google\Protobuf\Internal\Message
      *           * Example: "sales_for_product_12345"
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Schema $schema
      *           Optional. The schema of the data.
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $data
+     *     @type \Google\Protobuf\Struct[] $data
      *           Optional. The content of the data. Each row is a struct that matches the
      *           schema. Simple values are represented as strings, while nested structures
      *           are represented as lists or structs.
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $formatted_data
+     *     @type \Google\Protobuf\Struct[] $formatted_data
      *           Optional. Formatted representation of the data, when applicable.
      *           Each row is a struct that directly corresponds to the row at the same index
      *           within the `data` field. Its values are string representations of the
@@ -161,7 +161,7 @@ class DataResult extends \Google\Protobuf\Internal\Message
      * are represented as lists or structs.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getData()
     {
@@ -174,7 +174,7 @@ class DataResult extends \Google\Protobuf\Internal\Message
      * are represented as lists or structs.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct data = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setData($var)
@@ -195,7 +195,7 @@ class DataResult extends \Google\Protobuf\Internal\Message
      * field will be empty.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct formatted_data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getFormattedData()
     {
@@ -212,7 +212,7 @@ class DataResult extends \Google\Protobuf\Internal\Message
      * field will be empty.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct formatted_data = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setFormattedData($var)

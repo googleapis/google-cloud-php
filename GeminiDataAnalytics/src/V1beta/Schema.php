@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The schema of a Datasource or QueryResult instance.
@@ -67,17 +67,17 @@ class Schema extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Field[] $fields
      *           Optional. The fields in the schema.
      *     @type string $description
      *           Optional. A textual description of the table's content and purpose.
      *           For example: "Contains information about customer orders in our e-commerce
      *           store." Currently only used for BigQuery data sources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Optional. A list of alternative names or synonyms that can be used to refer
      *           to the table. For example: ["sales", "orders", "purchases"]. Currently only
      *           used for BigQuery data sources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. A list of tags or keywords associated with the table, used for
      *           categorization. For example: ["transaction", "revenue", "customer_data"].
      *           Currently only used for BigQuery data sources.
@@ -85,7 +85,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           Optional. Table display_name (same as label in
      *           cloud/data_analytics/anarres/data/looker/proto/model_explore.proto), not
      *           required, currently only Looker has this field.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter[] $filters
      *           Optional. The filters on the datasource's underlying data. Currently only
      *           used for Looker data sources.
      * }
@@ -99,7 +99,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. The fields in the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Field fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>
      */
     public function getFields()
     {
@@ -110,7 +110,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. The fields in the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Field fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Field[] $var
      * @return $this
      */
     public function setFields($var)
@@ -157,7 +157,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -170,7 +170,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -187,7 +187,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -200,7 +200,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -246,7 +246,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * used for Looker data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataFilter filters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter>
      */
     public function getFilters()
     {
@@ -258,7 +258,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * used for Looker data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataFilter filters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DataFilter[] $var
      * @return $this
      */
     public function setFilters($var)

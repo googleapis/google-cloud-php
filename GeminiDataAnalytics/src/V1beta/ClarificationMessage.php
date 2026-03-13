@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message of questions to help clarify the user's query. This is returned
@@ -29,7 +29,7 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion>|\Google\Protobuf\Internal\RepeatedField $questions
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion[] $questions
      *           Required. A batch of clarification questions to ask the user.
      * }
      */
@@ -42,7 +42,7 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
      * Required. A batch of clarification questions to ask the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion>
      */
     public function getQuestions()
     {
@@ -53,7 +53,7 @@ class ClarificationMessage extends \Google\Protobuf\Internal\Message
      * Required. A batch of clarification questions to ask the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ClarificationQuestion questions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ClarificationQuestion[] $var
      * @return $this
      */
     public function setQuestions($var)

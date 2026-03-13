@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response containing the generated query and related information.
@@ -77,7 +77,7 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
      *           Populated if options.generate_natural_language_answer was true in the
      *           request and query execution was successful based in the response from
      *           executeSql API.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disambiguation_question
+     *     @type string[] $disambiguation_question
      *           If ambiguity was detected in the natural language query and
      *           options.generate_disambiguation_question was true, this field contains a
      *           question to the user for clarification. The returned represents the
@@ -224,7 +224,7 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
      * service's best effort based on the ambiguous input.
      *
      * Generated from protobuf field <code>repeated string disambiguation_question = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisambiguationQuestion()
     {
@@ -238,7 +238,7 @@ class QueryDataResponse extends \Google\Protobuf\Internal\Message
      * service's best effort based on the ambiguous input.
      *
      * Generated from protobuf field <code>repeated string disambiguation_question = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisambiguationQuestion($var)

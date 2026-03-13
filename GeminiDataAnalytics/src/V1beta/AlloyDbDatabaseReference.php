@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a reference to a single AlloyDB database.
@@ -68,7 +68,7 @@ class AlloyDbDatabaseReference extends \Google\Protobuf\Internal\Message
      *           Required. The instance id.
      *     @type string $database_id
      *           Required. The database id.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $table_ids
+     *     @type string[] $table_ids
      *           Optional. The table ids. Denotes all tables if unset.
      * }
      */
@@ -211,7 +211,7 @@ class AlloyDbDatabaseReference extends \Google\Protobuf\Internal\Message
      * Optional. The table ids. Denotes all tables if unset.
      *
      * Generated from protobuf field <code>repeated string table_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTableIds()
     {
@@ -222,7 +222,7 @@ class AlloyDbDatabaseReference extends \Google\Protobuf\Internal\Message
      * Optional. The table ids. Denotes all tables if unset.
      *
      * Generated from protobuf field <code>repeated string table_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTableIds($var)

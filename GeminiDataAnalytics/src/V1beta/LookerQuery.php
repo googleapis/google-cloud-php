@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Looker Query Object
@@ -64,11 +64,11 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      *           Required. The LookML model used to generate the query.
      *     @type string $explore
      *           Required. The LookML explore used to generate the query.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type string[] $fields
      *           Optional. The fields to retrieve from the explore.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter[] $filters
      *           Optional. The filters to apply to the explore.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sorts
+     *     @type string[] $sorts
      *           Optional. The sorts to apply to the explore.
      *     @type string $limit
      *           Optional. Limit in the query.
@@ -135,7 +135,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The fields to retrieve from the explore.
      *
      * Generated from protobuf field <code>repeated string fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFields()
     {
@@ -146,7 +146,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The fields to retrieve from the explore.
      *
      * Generated from protobuf field <code>repeated string fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFields($var)
@@ -161,7 +161,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The filters to apply to the explore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerQuery.Filter filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter>
      */
     public function getFilters()
     {
@@ -172,7 +172,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The filters to apply to the explore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerQuery.Filter filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerQuery\Filter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -187,7 +187,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The sorts to apply to the explore.
      *
      * Generated from protobuf field <code>repeated string sorts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSorts()
     {
@@ -198,7 +198,7 @@ class LookerQuery extends \Google\Protobuf\Internal\Message
      * Optional. The sorts to apply to the explore.
      *
      * Generated from protobuf field <code>repeated string sorts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSorts($var)

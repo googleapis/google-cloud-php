@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing references to BigQuery tables and property graphs.
@@ -30,7 +30,7 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference>|\Google\Protobuf\Internal\RepeatedField $table_references
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference[] $table_references
      *           Optional. References to BigQuery tables.
      * }
      */
@@ -43,7 +43,7 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      * Optional. References to BigQuery tables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryTableReference table_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference>
      */
     public function getTableReferences()
     {
@@ -54,7 +54,7 @@ class BigQueryTableReferences extends \Google\Protobuf\Internal\Message
      * Optional. References to BigQuery tables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.BigQueryTableReference table_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\BigQueryTableReference[] $var
      * @return $this
      */
     public function setTableReferences($var)

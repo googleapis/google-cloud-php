@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing conversations.
@@ -34,7 +34,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Conversation>|\Google\Protobuf\Internal\RepeatedField $conversations
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Conversation[] $conversations
      *           The list of conversations.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Conversation conversations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Conversation>
      */
     public function getConversations()
     {
@@ -60,7 +60,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Conversation conversations = 1;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Conversation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Conversation[] $var
      * @return $this
      */
     public function setConversations($var)
