@@ -1,0 +1,89 @@
+<?php
+/*
+ * Copyright 2026 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
+ * GENERATED CODE WARNING
+ * This file was automatically generated - do not edit!
+ */
+
+require_once __DIR__ . '/../../../vendor/autoload.php';
+
+// [START visionai_v1_generated_Warehouse_RemoveCollectionItem_sync]
+use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\CollectionItem;
+use Google\Cloud\VisionAI\V1\CollectionItem\Type;
+use Google\Cloud\VisionAI\V1\RemoveCollectionItemResponse;
+use Google\Cloud\VisionAI\V1\WarehouseClient;
+
+/**
+ * Removes an item from a collection.
+ *
+ * @param string $formattedItemCollection The collection name that this item belongs to. Format:
+ *                                        `projects/{project_number}/locations/{location}/corpora/{corpus}/collections/{collection}`
+ *                                        Please see {@see WarehouseClient::collectionName()} for help formatting this field.
+ * @param int    $itemType                The type of item.
+ * @param string $itemItemResource        The name of the CollectionItem. Its format depends on the `type`
+ *                                        above. For ASSET:
+ *                                        `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}`
+ */
+function remove_collection_item_sample(
+    string $formattedItemCollection,
+    int $itemType,
+    string $itemItemResource
+): void {
+    // Create a client.
+    $warehouseClient = new WarehouseClient();
+
+    // Prepare any non-scalar elements to be passed along with the request.
+    $item = (new CollectionItem())
+        ->setCollection($formattedItemCollection)
+        ->setType($itemType)
+        ->setItemResource($itemItemResource);
+
+    // Call the API and handle any network failures.
+    try {
+        /** @var RemoveCollectionItemResponse $response */
+        $response = $warehouseClient->removeCollectionItem($item);
+        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+    } catch (ApiException $ex) {
+        printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
+    }
+}
+
+/**
+ * Helper to execute the sample.
+ *
+ * This sample has been automatically generated and should be regarded as a code
+ * template only. It will require modifications to work:
+ *  - It may require correct/in-range values for request initialization.
+ *  - It may require specifying regional endpoints when creating the service client,
+ *    please see the apiEndpoint client configuration option for more details.
+ */
+function callSample(): void
+{
+    $formattedItemCollection = WarehouseClient::collectionName(
+        '[PROJECT_NUMBER]',
+        '[LOCATION]',
+        '[CORPUS]',
+        '[COLLECTION]'
+    );
+    $itemType = Type::TYPE_UNSPECIFIED;
+    $itemItemResource = '[ITEM_RESOURCE]';
+
+    remove_collection_item_sample($formattedItemCollection, $itemType, $itemItemResource);
+}
+// [END visionai_v1_generated_Warehouse_RemoveCollectionItem_sync]
