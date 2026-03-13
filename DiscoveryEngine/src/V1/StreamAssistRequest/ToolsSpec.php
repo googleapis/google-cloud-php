@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of tools that are used to serve the request.
@@ -222,5 +222,4 @@ class ToolsSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

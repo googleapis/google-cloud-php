@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing the status of a LACP link.
@@ -250,5 +250,4 @@ class LinkLACPStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

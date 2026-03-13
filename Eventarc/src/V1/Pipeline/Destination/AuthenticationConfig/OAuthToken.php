@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\Pipeline\Destination\AuthenticationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information needed for generating an
@@ -137,5 +137,4 @@ class OAuthToken extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

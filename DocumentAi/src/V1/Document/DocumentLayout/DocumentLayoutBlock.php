@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\DocumentLayout;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a block. A block could be one of the various types (text,
@@ -261,5 +261,4 @@ class DocumentLayoutBlock extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

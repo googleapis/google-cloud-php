@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RestoreChannel imposes constraints on where backups can be restored.
@@ -20,7 +20,7 @@ class RestoreChannel extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The fully qualified name of the RestoreChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -95,7 +95,7 @@ class RestoreChannel extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The fully qualified name of the RestoreChannel.
-     *           `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *           `projects/{@*}locations/{@*}restoreChannels/*`
      *     @type string $destination_project
      *           Required. Immutable. The project into which the backups will be restored.
      *           The format is `projects/{projectId}` or `projects/{projectNumber}`.
@@ -134,7 +134,7 @@ class RestoreChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the RestoreChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -146,7 +146,7 @@ class RestoreChannel extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the RestoreChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

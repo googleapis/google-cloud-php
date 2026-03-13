@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RestorePlanBinding binds a RestorePlan with a RestoreChannel.
@@ -20,7 +20,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The fully qualified name of the RestorePlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;&#47;restorePlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/{@*}restorePlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -46,7 +46,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
     protected $update_time = null;
     /**
      * Output only. The fully qualified name of the RestorePlan bound to this
-     * RestoreChannel. `projects/&#42;&#47;locations/&#42;&#47;restorePlans/{restore_plan}`
+     * RestoreChannel. `projects/{@*}locations/{@*}restorePlans/{restore_plan}`
      *
      * Generated from protobuf field <code>string restore_plan = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -67,7 +67,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
     protected $etag = '';
     /**
      * Output only. The fully qualified name of the BackupPlan bound to the
-     * specified RestorePlan. `projects/&#42;&#47;locations/&#42;&#47;backukpPlans/{backup_plan}`
+     * specified RestorePlan. `projects/{@*}locations/{@*}backukpPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -81,7 +81,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The fully qualified name of the RestorePlanBinding.
-     *           `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;&#47;restorePlanBindings/&#42;`
+     *           `projects/{@*}locations/{@*}restoreChannels/{@*}restorePlanBindings/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
@@ -91,7 +91,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when this binding was created.
      *     @type string $restore_plan
      *           Output only. The fully qualified name of the RestorePlan bound to this
-     *           RestoreChannel. `projects/&#42;&#47;locations/&#42;&#47;restorePlans/{restore_plan}`
+     *           RestoreChannel. `projects/{@*}locations/{@*}restorePlans/{restore_plan}`
      *     @type string $etag
      *           Output only. `etag` is used for optimistic concurrency control as a way to
      *           help prevent simultaneous updates of a RestorePlanBinding from overwriting
@@ -104,7 +104,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
      *           to the same version of the resource.
      *     @type string $backup_plan
      *           Output only. The fully qualified name of the BackupPlan bound to the
-     *           specified RestorePlan. `projects/&#42;&#47;locations/&#42;&#47;backukpPlans/{backup_plan}`
+     *           specified RestorePlan. `projects/{@*}locations/{@*}backukpPlans/{backup_plan}`
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +114,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the RestorePlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;&#47;restorePlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/{@*}restorePlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -126,7 +126,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the RestorePlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;&#47;restorePlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/{@*}restorePlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -242,7 +242,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the RestorePlan bound to this
-     * RestoreChannel. `projects/&#42;&#47;locations/&#42;&#47;restorePlans/{restore_plan}`
+     * RestoreChannel. `projects/{@*}locations/{@*}restorePlans/{restore_plan}`
      *
      * Generated from protobuf field <code>string restore_plan = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -254,7 +254,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the RestorePlan bound to this
-     * RestoreChannel. `projects/&#42;&#47;locations/&#42;&#47;restorePlans/{restore_plan}`
+     * RestoreChannel. `projects/{@*}locations/{@*}restorePlans/{restore_plan}`
      *
      * Generated from protobuf field <code>string restore_plan = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -312,7 +312,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the BackupPlan bound to the
-     * specified RestorePlan. `projects/&#42;&#47;locations/&#42;&#47;backukpPlans/{backup_plan}`
+     * specified RestorePlan. `projects/{@*}locations/{@*}backukpPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -324,7 +324,7 @@ class RestorePlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the BackupPlan bound to the
-     * specified RestorePlan. `projects/&#42;&#47;locations/&#42;&#47;backukpPlans/{backup_plan}`
+     * specified RestorePlan. `projects/{@*}locations/{@*}backukpPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ConfigureManagementSettings` method.
@@ -17,7 +17,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * Required. The name of the `Registration` whose management settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -66,7 +66,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $registration
      *           Required. The name of the `Registration` whose management settings are being updated,
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}registrations/*`.
      *     @type \Google\Cloud\Domains\V1\ManagementSettings $management_settings
      *           Fields of the `ManagementSettings` to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -82,7 +82,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The name of the `Registration` whose management settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +94,7 @@ class ConfigureManagementSettingsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The name of the `Registration` whose management settings are being updated,
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;registrations/&#42;`.
+     * in the format `projects/{@*}locations/{@*}registrations/*`.
      *
      * Generated from protobuf field <code>string registration = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

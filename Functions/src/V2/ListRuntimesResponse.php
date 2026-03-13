@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListRuntimes` method.
@@ -28,7 +28,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Functions\V2\ListRuntimesResponse\Runtime>|\Google\Protobuf\Internal\RepeatedField $runtimes
+     *     @type \Google\Cloud\Functions\V2\ListRuntimesResponse\Runtime[] $runtimes
      *           The runtimes that match the request.
      * }
      */
@@ -41,7 +41,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * The runtimes that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.ListRuntimesResponse.Runtime runtimes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\ListRuntimesResponse\Runtime>
      */
     public function getRuntimes()
     {
@@ -52,7 +52,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * The runtimes that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.ListRuntimesResponse.Runtime runtimes = 1;</code>
-     * @param array<\Google\Cloud\Functions\V2\ListRuntimesResponse\Runtime>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\ListRuntimesResponse\Runtime[] $var
      * @return $this
      */
     public function setRuntimes($var)

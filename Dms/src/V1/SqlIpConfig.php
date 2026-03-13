@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IP Management configuration.
@@ -79,7 +79,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      *           for the migration job, this field is not relevant.
      *     @type \Google\Protobuf\BoolValue $require_ssl
      *           Whether SSL connections over IP should be enforced or not.
-     *     @type array<\Google\Cloud\CloudDms\V1\SqlAclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
+     *     @type \Google\Cloud\CloudDms\V1\SqlAclEntry[] $authorized_networks
      *           The list of external networks that are allowed to connect to the instance
      *           using the IP. See
      *           https://en.wikipedia.org/wiki/CIDR_notation#CIDR_notation, also known as
@@ -292,7 +292,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      * 'slash' notation (e.g. `192.168.100.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.SqlAclEntry authorized_networks = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\SqlAclEntry>
      */
     public function getAuthorizedNetworks()
     {
@@ -306,7 +306,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      * 'slash' notation (e.g. `192.168.100.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.SqlAclEntry authorized_networks = 4;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\SqlAclEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\SqlAclEntry[] $var
      * @return $this
      */
     public function setAuthorizedNetworks($var)

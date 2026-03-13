@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * External conversation proto definition.
@@ -17,9 +17,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/{@*}conversations/*`
      * or
-     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/{@*}conversations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -63,14 +63,14 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     *           `projects/{project}/locations/global/collections/{collection}/dataStore/{@*}conversations/*`
      *           or
-     *           `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     *           `projects/{project}/locations/global/collections/{collection}/engines/{@*}conversations/*`.
      *     @type int $state
      *           The state of the Conversation.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking users.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\ConversationMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\DiscoveryEngine\V1\ConversationMessage[] $messages
      *           Conversation messages.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time the conversation started.
@@ -85,9 +85,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/{@*}conversations/*`
      * or
-     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/{@*}conversations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -99,9 +99,9 @@ class Conversation extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/dataStore/&#42;&#47;conversations/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/dataStore/{@*}conversations/*`
      * or
-     * `projects/{project}/locations/global/collections/{collection}/engines/&#42;&#47;conversations/&#42;`.
+     * `projects/{project}/locations/global/collections/{collection}/engines/{@*}conversations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -171,7 +171,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Conversation messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.ConversationMessage messages = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\ConversationMessage>
      */
     public function getMessages()
     {
@@ -182,7 +182,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Conversation messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.ConversationMessage messages = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\ConversationMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\ConversationMessage[] $var
      * @return $this
      */
     public function setMessages($var)

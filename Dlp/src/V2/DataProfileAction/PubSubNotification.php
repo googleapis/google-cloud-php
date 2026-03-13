@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfileAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Send a Pub/Sub message into the given Pub/Sub topic to connect other
@@ -198,5 +198,4 @@ class PubSubNotification extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

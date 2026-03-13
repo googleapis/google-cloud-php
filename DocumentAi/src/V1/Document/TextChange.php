@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message is used for text changes aka. OCR corrections.
@@ -55,7 +55,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      *           before that index.
      *     @type string $changed_text
      *           The text that replaces the text identified in the `text_anchor`.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Provenance>|\Google\Protobuf\Internal\RepeatedField $provenance
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance[] $provenance
      *           The history of this annotation.
      * }
      */
@@ -140,7 +140,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      * The history of this annotation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Provenance>
      * @deprecated
      */
     public function getProvenance()
@@ -155,7 +155,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      * The history of this annotation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Provenance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance[] $var
      * @return $this
      * @deprecated
      */
@@ -171,5 +171,4 @@ class TextChange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

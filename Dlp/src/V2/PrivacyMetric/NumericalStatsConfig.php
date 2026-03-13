@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\PrivacyMetric;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compute numerical stats over an individual column, including
@@ -79,5 +79,4 @@ class NumericalStatsConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

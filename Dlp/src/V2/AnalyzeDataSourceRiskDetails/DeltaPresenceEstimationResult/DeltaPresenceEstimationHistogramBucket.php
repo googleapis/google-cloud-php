@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A DeltaPresenceEstimationHistogramBucket message with the following
@@ -67,7 +67,7 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
      *           Always greater than or equal to min_probability.
      *     @type int|string $bucket_size
      *           Number of records within these probability bounds.
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationQuasiIdValues>|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationQuasiIdValues[] $bucket_values
      *           Sample of quasi-identifier tuple values in this bucket. The total
      *           number of classes returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -162,7 +162,7 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
      * number of classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationQuasiIdValues bucket_values = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationQuasiIdValues>
      */
     public function getBucketValues()
     {
@@ -174,7 +174,7 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
      * number of classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationQuasiIdValues bucket_values = 6;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationQuasiIdValues>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationQuasiIdValues[] $var
      * @return $this
      */
     public function setBucketValues($var)
@@ -212,5 +212,4 @@ class DeltaPresenceEstimationHistogramBucket extends \Google\Protobuf\Internal\M
     }
 
 }
-
 

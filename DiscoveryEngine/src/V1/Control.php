@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a conditioned behavior to employ during serving.
@@ -20,7 +20,7 @@ class Control extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/dataStore/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -91,12 +91,12 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Promote certain links based on predefined trigger queries.
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
+     *           `projects/{@*}locations/global/dataStore/{@*}controls/*`
      *     @type string $display_name
      *           Required. Human readable name. The identifier used in UI views.
      *           Must be UTF-8 encoded string. Length limit is 128 characters.
      *           Otherwise an INVALID ARGUMENT error is thrown.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $associated_serving_config_ids
+     *     @type string[] $associated_serving_config_ids
      *           Output only. List of all
      *           [ServingConfig][google.cloud.discoveryengine.v1.ServingConfig] IDs this
      *           control is attached to. May take up to 10 minutes to update after changes.
@@ -104,7 +104,7 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. What solution the control belongs to.
      *           Must be compatible with vertical of resource.
      *           Otherwise an INVALID ARGUMENT error is thrown.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $use_cases
+     *     @type int[] $use_cases
      *           Specifies the use case for the control.
      *           Affects what condition fields can be set.
      *           Only applies to
@@ -112,7 +112,7 @@ class Control extends \Google\Protobuf\Internal\Message
      *           Currently only allow one use case per control.
      *           Must be set when solution_type is
      *           [SolutionType.SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Condition[] $conditions
      *           Determines when the associated action will trigger.
      *           Omit to always apply the action.
      *           Currently only a single condition may be specified.
@@ -283,7 +283,7 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/dataStore/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -295,7 +295,7 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/dataStore/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/dataStore/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -345,7 +345,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssociatedServingConfigIds()
     {
@@ -358,7 +358,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * control is attached to. May take up to 10 minutes to update after changes.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssociatedServingConfigIds($var)
@@ -409,7 +409,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * [SolutionType.SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchUseCase use_cases = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getUseCases()
     {
@@ -426,7 +426,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * [SolutionType.SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchUseCase use_cases = 8;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setUseCases($var)
@@ -444,7 +444,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * Otherwise an INVALID ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition conditions = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Condition>
      */
     public function getConditions()
     {
@@ -458,7 +458,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * Otherwise an INVALID ARGUMENT error is thrown.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Condition conditions = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Condition[] $var
      * @return $this
      */
     public function setConditions($var)

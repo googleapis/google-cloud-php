@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A transformation rule to be applied against Kubernetes resources as they
@@ -80,7 +80,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_namespaces
+     *     @type string[] $target_namespaces
      *           Optional. (Filtering parameter) Any resource subject to substitution must
      *           be contained within one of the listed Kubernetes Namespace in the Backup.
      *           If this field is not provided, no namespace filtering will be performed
@@ -88,7 +88,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *           will be candidates for substitution).
      *           To mix cluster-scoped and namespaced resources in the same rule, use an
      *           empty string ("") as one of the target namespaces.
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $target_group_kinds
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $target_group_kinds
      *           Optional. (Filtering parameter) Any resource subject to substitution must
      *           belong to one of the listed "types". If this field is not provided, no
      *           type filtering will be performed (all resources of all types matching
@@ -133,7 +133,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * empty string ("") as one of the target namespaces.
      *
      * Generated from protobuf field <code>repeated string target_namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetNamespaces()
     {
@@ -150,7 +150,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * empty string ("") as one of the target namespaces.
      *
      * Generated from protobuf field <code>repeated string target_namespaces = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetNamespaces($var)
@@ -168,7 +168,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * previous filtering parameters will be candidates for substitution).
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>
      */
     public function getTargetGroupKinds()
     {
@@ -182,7 +182,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * previous filtering parameters will be candidates for substitution).
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $var
      * @return $this
      */
     public function setTargetGroupKinds($var)
@@ -306,5 +306,4 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

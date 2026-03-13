@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A BackupPlanBinding binds a BackupPlan with a BackupChannel.
@@ -20,7 +20,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The fully qualified name of the BackupPlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;&#47;backupPlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/{@*}backupPlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -47,7 +47,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the BackupPlan bound
      * with the parent BackupChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/{backup_plan}`
+     * `projects/{@*}locations/{@*}backupPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -55,8 +55,8 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the cluster that is
      * being backed up Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -90,7 +90,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The fully qualified name of the BackupPlanBinding.
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;&#47;backupPlanBindings/&#42;`
+     *           `projects/{@*}locations/{@*}backupChannels/{@*}backupPlanBindings/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
@@ -101,12 +101,12 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
      *     @type string $backup_plan
      *           Output only. Immutable. The fully qualified name of the BackupPlan bound
      *           with the parent BackupChannel.
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/{backup_plan}`
+     *           `projects/{@*}locations/{@*}backupPlans/{backup_plan}`
      *     @type string $cluster
      *           Output only. Immutable. The fully qualified name of the cluster that is
      *           being backed up Valid formats:
-     *           - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *           - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *           - `projects/{@*}locations/{@*}clusters/*`
+     *           - `projects/{@*}zones/{@*}clusters/*`
      *     @type \Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails $backup_plan_details
      *           Output only. Contains details about the backup plan/backup.
      *     @type string $etag
@@ -128,7 +128,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the BackupPlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;&#47;backupPlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/{@*}backupPlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -140,7 +140,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The fully qualified name of the BackupPlanBinding.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupChannels/&#42;&#47;backupPlanBindings/&#42;`
+     * `projects/{@*}locations/{@*}backupChannels/{@*}backupPlanBindings/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -257,7 +257,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the BackupPlan bound
      * with the parent BackupChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/{backup_plan}`
+     * `projects/{@*}locations/{@*}backupPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -270,7 +270,7 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the BackupPlan bound
      * with the parent BackupChannel.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/{backup_plan}`
+     * `projects/{@*}locations/{@*}backupPlans/{backup_plan}`
      *
      * Generated from protobuf field <code>string backup_plan = 5 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -287,8 +287,8 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the cluster that is
      * being backed up Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -301,8 +301,8 @@ class BackupPlanBinding extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Immutable. The fully qualified name of the cluster that is
      * being backed up Valid formats:
-     * - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     * - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     * - `projects/{@*}locations/{@*}clusters/*`
+     * - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

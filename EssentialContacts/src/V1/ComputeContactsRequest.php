@@ -5,8 +5,8 @@
 namespace Google\Cloud\EssentialContacts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the ComputeContacts method.
@@ -60,7 +60,7 @@ class ComputeContactsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the resource to compute contacts for.
      *           Format: organizations/{organization_id},
      *           folders/{folder_id} or projects/{project_id}
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_categories
+     *     @type int[] $notification_categories
      *           The categories of notifications to compute contacts for. If ALL is included
      *           in this list, contacts subscribed to any notification category will be
      *           returned.
@@ -117,7 +117,7 @@ class ComputeContactsRequest extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_categories = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getNotificationCategories()
     {
@@ -130,7 +130,7 @@ class ComputeContactsRequest extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_categories = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setNotificationCategories($var)

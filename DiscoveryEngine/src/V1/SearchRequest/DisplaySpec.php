@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies features for display, like match highlighting.
@@ -64,5 +64,4 @@ class DisplaySpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

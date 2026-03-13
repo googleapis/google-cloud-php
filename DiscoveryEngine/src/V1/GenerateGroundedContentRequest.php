@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Top-level message sent by the client for the `GenerateGroundedContent`
@@ -86,7 +86,7 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      *           Content of the system instruction for the current API.
      *           These instructions will take priority over any other prompt instructions
      *           if the selected model is supporting them.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent[] $contents
      *           Content of the current conversation with the model.
      *           For single-turn queries, this is a single instance. For multi-turn queries,
      *           this is a repeated field that contains conversation history + latest
@@ -193,7 +193,7 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent contents = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent>
      */
     public function getContents()
     {
@@ -207,7 +207,7 @@ class GenerateGroundedContentRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundedGenerationContent contents = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GroundedGenerationContent[] $var
      * @return $this
      */
     public function setContents($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ACL Information of the Document.
@@ -28,7 +28,7 @@ class AclInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Document\AclInfo\AccessRestriction>|\Google\Protobuf\Internal\RepeatedField $readers
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo\AccessRestriction[] $readers
      *           Readers of the document.
      * }
      */
@@ -41,7 +41,7 @@ class AclInfo extends \Google\Protobuf\Internal\Message
      * Readers of the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction readers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Document\AclInfo\AccessRestriction>
      */
     public function getReaders()
     {
@@ -52,7 +52,7 @@ class AclInfo extends \Google\Protobuf\Internal\Message
      * Readers of the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document.AclInfo.AccessRestriction readers = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Document\AclInfo\AccessRestriction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Document\AclInfo\AccessRestriction[] $var
      * @return $this
      */
     public function setReaders($var)
@@ -64,5 +64,4 @@ class AclInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

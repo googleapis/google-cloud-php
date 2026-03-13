@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A selection of a collection, such as `messages as m1`.
@@ -110,7 +110,4 @@ class CollectionSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CollectionSelector::class, \Google\Cloud\Firestore\V1\StructuredQuery_CollectionSelector::class);
 

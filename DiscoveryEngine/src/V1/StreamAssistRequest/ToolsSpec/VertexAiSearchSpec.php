@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of the Vertex AI Search tool.
@@ -49,7 +49,7 @@ class VertexAiSearchSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $data_store_specs
      *           Optional. Specs defining
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore]s to filter on in
      *           a search call and configurations for those data stores. This is only
@@ -83,7 +83,7 @@ class VertexAiSearchSpec extends \Google\Protobuf\Internal\Message
      * multiple data stores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>
      */
     public function getDataStoreSpecs()
     {
@@ -98,7 +98,7 @@ class VertexAiSearchSpec extends \Google\Protobuf\Internal\Message
      * multiple data stores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $var
      * @return $this
      */
     public function setDataStoreSpecs($var)
@@ -158,5 +158,4 @@ class VertexAiSearchSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

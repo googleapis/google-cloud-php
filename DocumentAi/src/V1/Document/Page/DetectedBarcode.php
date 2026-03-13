@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A detected barcode.
@@ -126,5 +126,4 @@ class DetectedBarcode extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

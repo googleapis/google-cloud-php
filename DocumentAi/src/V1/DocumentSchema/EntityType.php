@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\DocumentSchema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * EntityType is the wrapper of a label of the corresponding model with
@@ -82,10 +82,10 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           - The `/` is sometimes used to denote a property of a type.  For example
      *             `line_item/amount`.  This convention is deprecated, but will still be
      *             honored for backward compatibility.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $base_types
+     *     @type string[] $base_types
      *           The entity type that this type is derived from.  For now, one and only
      *           one should be set.
-     *     @type array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property[] $properties
      *           Description the nested structure, or composition of an entity.
      * }
      */
@@ -212,7 +212,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * one should be set.
      *
      * Generated from protobuf field <code>repeated string base_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBaseTypes()
     {
@@ -224,7 +224,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * one should be set.
      *
      * Generated from protobuf field <code>repeated string base_types = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBaseTypes($var)
@@ -239,7 +239,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Description the nested structure, or composition of an entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType.Property properties = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property>
      */
     public function getProperties()
     {
@@ -250,7 +250,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Description the nested structure, or composition of an entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType.Property properties = 6;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType\Property[] $var
      * @return $this
      */
     public function setProperties($var)
@@ -270,5 +270,4 @@ class EntityType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

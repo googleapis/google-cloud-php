@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Assistant generation specification for the request.
@@ -70,5 +70,4 @@ class GenerationSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of the Channel resource.
@@ -72,7 +72,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -128,7 +128,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           Optional. Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt their event data.
      *           It must match the pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *     @type bool $satisfies_pzs
      *           Output only. Whether or not this Channel satisfies the requirements of
      *           physical zone separation
@@ -398,7 +398,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -412,7 +412,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

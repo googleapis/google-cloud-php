@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * EngineVersion controls which version of the engine is used to tune, train,

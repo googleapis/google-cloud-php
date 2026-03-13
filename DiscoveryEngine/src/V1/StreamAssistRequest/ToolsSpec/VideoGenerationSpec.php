@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\StreamAssistRequest\ToolsSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of the video generation tool.
@@ -30,5 +30,4 @@ class VideoGenerationSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

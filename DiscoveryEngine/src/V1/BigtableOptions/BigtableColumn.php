@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BigtableOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The column of the Bigtable.
@@ -214,5 +214,4 @@ class BigtableColumn extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

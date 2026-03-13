@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Provenance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parent element the current element is based on. Used for
@@ -144,5 +144,4 @@ class PBParent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The VPC peering configuration is used to create VPC peering with the

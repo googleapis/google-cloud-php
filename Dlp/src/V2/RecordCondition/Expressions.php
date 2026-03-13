@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\RecordCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An expression, consisting of an operator and conditions.
@@ -110,5 +110,4 @@ class Expressions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

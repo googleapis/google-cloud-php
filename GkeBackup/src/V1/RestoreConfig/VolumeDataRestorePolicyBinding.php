@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Binds resources in the scope to the given VolumeDataRestorePolicy.
@@ -113,5 +113,4 @@ class VolumeDataRestorePolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

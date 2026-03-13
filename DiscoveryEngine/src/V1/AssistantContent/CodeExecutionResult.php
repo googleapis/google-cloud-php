@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AssistantContent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of executing ExecutableCode.
@@ -102,5 +102,4 @@ class CodeExecutionResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

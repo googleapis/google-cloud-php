@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from `ListEvaluations`.
@@ -35,7 +35,7 @@ class ListEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Evaluation>|\Google\Protobuf\Internal\RepeatedField $evaluations
+     *     @type \Google\Cloud\DocumentAI\V1\Evaluation[] $evaluations
      *           The evaluations requested.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * The evaluations requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation evaluations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Evaluation>
      */
     public function getEvaluations()
     {
@@ -62,7 +62,7 @@ class ListEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * The evaluations requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation evaluations = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Evaluation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Evaluation[] $var
      * @return $this
      */
     public function setEvaluations($var)

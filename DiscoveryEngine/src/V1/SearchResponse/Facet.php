@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A facet result.
@@ -44,7 +44,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           The key for this facet. For example, `"colors"` or `"price"`. It matches
      *           [SearchRequest.FacetSpec.FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key].
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue[] $values
      *           The facet values for this field.
      *     @type bool $dynamic_facet
      *           Whether the facet is dynamically generated.
@@ -87,7 +87,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      * The facet values for this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue>
      */
     public function getValues()
     {
@@ -98,7 +98,7 @@ class Facet extends \Google\Protobuf\Internal\Message
      * The facet values for this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue values = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet\FacetValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -136,5 +136,4 @@ class Facet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a Cloud Function that contains user computation executed in
@@ -18,7 +18,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
 {
     /**
      * A user-defined name of the function. Function names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;functions/&#42;`
+     * globally and match pattern `projects/{@*}locations/{@*}functions/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -117,7 +117,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           A user-defined name of the function. Function names must be unique
-     *           globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;functions/&#42;`
+     *           globally and match pattern `projects/{@*}locations/{@*}functions/*`
      *     @type string $description
      *           User-provided description of a function.
      *     @type \Google\Cloud\Functions\V2\BuildConfig $build_config
@@ -135,7 +135,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *           Output only. The last update timestamp of a Cloud Function.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels associated with this Cloud Function.
-     *     @type array<\Google\Cloud\Functions\V2\StateMessage>|\Google\Protobuf\Internal\RepeatedField $state_messages
+     *     @type \Google\Cloud\Functions\V2\StateMessage[] $state_messages
      *           Output only. State Messages for this Cloud Function.
      *     @type int $environment
      *           Describe whether the function is 1st Gen or 2nd Gen.
@@ -160,7 +160,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * A user-defined name of the function. Function names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;functions/&#42;`
+     * globally and match pattern `projects/{@*}locations/{@*}functions/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -172,7 +172,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
 
     /**
      * A user-defined name of the function. Function names must be unique
-     * globally and match pattern `projects/&#42;&#47;locations/&#42;&#47;functions/&#42;`
+     * globally and match pattern `projects/{@*}locations/{@*}functions/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -418,7 +418,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Output only. State Messages for this Cloud Function.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.StateMessage state_messages = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\StateMessage>
      */
     public function getStateMessages()
     {
@@ -429,7 +429,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Output only. State Messages for this Cloud Function.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.StateMessage state_messages = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Functions\V2\StateMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\StateMessage[] $var
      * @return $this
      */
     public function setStateMessages($var)

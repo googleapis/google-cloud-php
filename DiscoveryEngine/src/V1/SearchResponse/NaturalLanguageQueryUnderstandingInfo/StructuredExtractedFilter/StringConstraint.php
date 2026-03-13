@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Constraint expression of a string field.
@@ -43,7 +43,7 @@ class StringConstraint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $field_name
      *           Name of the string field as defined in the schema.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Values of the string field. The record will only be returned if the
      *           field value matches one of the values specified here.
      *     @type string $query_segment
@@ -86,7 +86,7 @@ class StringConstraint extends \Google\Protobuf\Internal\Message
      * field value matches one of the values specified here.
      *
      * Generated from protobuf field <code>repeated string values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -98,7 +98,7 @@ class StringConstraint extends \Google\Protobuf\Internal\Message
      * field value matches one of the values specified here.
      *
      * Generated from protobuf field <code>repeated string values = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -136,5 +136,4 @@ class StringConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

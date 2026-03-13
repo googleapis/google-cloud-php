@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Diagnostics information about interconnect, contains detailed and current
@@ -45,10 +45,10 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      *
      *     @type string $mac_address
      *           The MAC address of the Interconnect's bundle interface.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>|\Google\Protobuf\Internal\RepeatedField $link_layer_addresses
+     *     @type \Google\Cloud\EdgeNetwork\V1\LinkLayerAddress[] $link_layer_addresses
      *           A list of LinkLayerAddress, describing the ip address and corresponding
      *           link-layer address of the neighbors for this interconnect.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkStatus>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkStatus[] $links
      *           A list of LinkStatus objects, used to describe the status for each link on
      *           the Interconnect.
      * }
@@ -89,7 +89,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * link-layer address of the neighbors for this interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.LinkLayerAddress link_layer_addresses = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>
      */
     public function getLinkLayerAddresses()
     {
@@ -101,7 +101,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * link-layer address of the neighbors for this interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.LinkLayerAddress link_layer_addresses = 2;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\LinkLayerAddress[] $var
      * @return $this
      */
     public function setLinkLayerAddresses($var)
@@ -117,7 +117,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus links = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkStatus>
      */
     public function getLinks()
     {
@@ -129,7 +129,7 @@ class InterconnectDiagnostics extends \Google\Protobuf\Internal\Message
      * the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkStatus links = 3;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkStatus[] $var
      * @return $this
      */
     public function setLinks($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -46,7 +46,7 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
      *           Answer to the current query.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Conversation $conversation
      *           Updated conversation including the answer.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult[] $search_results
      *           Search Results.
      * }
      */
@@ -131,7 +131,7 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
      * Search Results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult search_results = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>
      */
     public function getSearchResults()
     {
@@ -142,7 +142,7 @@ class ConverseConversationResponse extends \Google\Protobuf\Internal\Message
      * Search Results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult search_results = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult[] $var
      * @return $this
      */
     public function setSearchResults($var)

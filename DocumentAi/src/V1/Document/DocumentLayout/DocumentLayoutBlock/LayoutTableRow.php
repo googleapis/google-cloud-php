@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a row in a table.
@@ -28,7 +28,7 @@ class LayoutTableRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableCell>|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableCell[] $cells
      *           A table row is a list of table cells.
      * }
      */
@@ -41,7 +41,7 @@ class LayoutTableRow extends \Google\Protobuf\Internal\Message
      * A table row is a list of table cells.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableCell cells = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableCell>
      */
     public function getCells()
     {
@@ -52,7 +52,7 @@ class LayoutTableRow extends \Google\Protobuf\Internal\Message
      * A table row is a list of table cells.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableCell cells = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableCell>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableCell[] $var
      * @return $this
      */
     public function setCells($var)
@@ -64,5 +64,4 @@ class LayoutTableRow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Document\AclInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AclRestriction to model complex inheritance restrictions.
@@ -87,7 +87,7 @@ class AccessRestriction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Principal>|\Google\Protobuf\Internal\RepeatedField $principals
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Principal[] $principals
      *           List of principals.
      *     @type bool $idp_wide
      *           All users within the Identity Provider.
@@ -102,7 +102,7 @@ class AccessRestriction extends \Google\Protobuf\Internal\Message
      * List of principals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Principal principals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Principal>
      */
     public function getPrincipals()
     {
@@ -113,7 +113,7 @@ class AccessRestriction extends \Google\Protobuf\Internal\Message
      * List of principals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Principal principals = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Principal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Principal[] $var
      * @return $this
      */
     public function setPrincipals($var)
@@ -151,5 +151,4 @@ class AccessRestriction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

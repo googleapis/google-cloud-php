@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\InspectDataSourceDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Snapshot of the inspection configuration.
@@ -122,5 +122,4 @@ class RequestedOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

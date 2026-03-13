@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the
@@ -30,7 +30,7 @@ class FetchProcessorTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorType>|\Google\Protobuf\Internal\RepeatedField $processor_types
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessorType[] $processor_types
      *           The list of processor types.
      * }
      */
@@ -43,7 +43,7 @@ class FetchProcessorTypesResponse extends \Google\Protobuf\Internal\Message
      * The list of processor types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorType processor_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\ProcessorType>
      */
     public function getProcessorTypes()
     {
@@ -54,7 +54,7 @@ class FetchProcessorTypesResponse extends \Google\Protobuf\Internal\Message
      * The list of processor types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorType processor_types = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\ProcessorType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\ProcessorType[] $var
      * @return $this
      */
     public function setProcessorTypes($var)

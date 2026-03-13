@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\PurgeDocumentsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for
@@ -20,7 +20,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. A list of full resource name of documents to purge. In the
      * format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      * Recommended max of 100 items.
      *
      * Generated from protobuf field <code>repeated string documents = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -33,10 +33,10 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type string[] $documents
      *           Required. A list of full resource name of documents to purge. In the
      *           format
-     *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     *           `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      *           Recommended max of 100 items.
      * }
      */
@@ -48,11 +48,11 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. A list of full resource name of documents to purge. In the
      * format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      * Recommended max of 100 items.
      *
      * Generated from protobuf field <code>repeated string documents = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDocuments()
     {
@@ -62,11 +62,11 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     /**
      * Required. A list of full resource name of documents to purge. In the
      * format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      * Recommended max of 100 items.
      *
      * Generated from protobuf field <code>repeated string documents = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDocuments($var)
@@ -78,5 +78,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

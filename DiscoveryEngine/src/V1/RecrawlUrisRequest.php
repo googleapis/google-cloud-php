@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of the
      * [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine], such
-     * as `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine`.
+     * as `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine`.
      *
      * Generated from protobuf field <code>string site_search_engine = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,8 +50,8 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      *     @type string $site_search_engine
      *           Required. Full resource name of the
      *           [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine], such
-     *           as `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *           as `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine`.
+     *     @type string[] $uris
      *           Required. List of URIs to crawl. At most 10K URIs are supported, otherwise
      *           an INVALID_ARGUMENT error is thrown. Each URI should match at least one
      *           [TargetSite][google.cloud.discoveryengine.v1.TargetSite] in
@@ -68,7 +68,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of the
      * [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine], such
-     * as `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine`.
+     * as `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine`.
      *
      * Generated from protobuf field <code>string site_search_engine = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +81,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of the
      * [SiteSearchEngine][google.cloud.discoveryengine.v1.SiteSearchEngine], such
-     * as `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;siteSearchEngine`.
+     * as `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}siteSearchEngine`.
      *
      * Generated from protobuf field <code>string site_search_engine = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -102,7 +102,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      * `site_search_engine`.
      *
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -116,7 +116,7 @@ class RecrawlUrisRequest extends \Google\Protobuf\Internal\Message
      * `site_search_engine`.
      *
      * Generated from protobuf field <code>repeated string uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)

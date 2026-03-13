@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding support for a claim in `answer_text`.
@@ -76,7 +76,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      *           this field is set to false. In that case, no grounding check was
      *           done for the claim and therefore `grounding_score`, `sources` is not
      *           returned.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource[] $sources
      *           Optional. Citation sources for the claim.
      * }
      */
@@ -229,7 +229,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * Optional. Citation sources for the claim.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.CitationSource sources = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>
      */
     public function getSources()
     {
@@ -240,7 +240,7 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
      * Optional. Citation sources for the claim.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.CitationSource sources = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource[] $var
      * @return $this
      */
     public function setSources($var)
@@ -252,5 +252,4 @@ class GroundingSupport extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

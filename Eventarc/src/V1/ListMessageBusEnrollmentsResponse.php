@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the `ListMessageBusEnrollments` method.`
@@ -41,12 +41,12 @@ class ListMessageBusEnrollmentsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enrollments
+     *     @type string[] $enrollments
      *           The requested enrollments, up to the number specified in `page_size`.
      *     @type string $next_page_token
      *           A page token that can be sent to `ListMessageBusEnrollments` to request the
      *           next page. If this is empty, then there are no more pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources, if any.
      * }
      */
@@ -59,7 +59,7 @@ class ListMessageBusEnrollmentsResponse extends \Google\Protobuf\Internal\Messag
      * The requested enrollments, up to the number specified in `page_size`.
      *
      * Generated from protobuf field <code>repeated string enrollments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEnrollments()
     {
@@ -70,7 +70,7 @@ class ListMessageBusEnrollmentsResponse extends \Google\Protobuf\Internal\Messag
      * The requested enrollments, up to the number specified in `page_size`.
      *
      * Generated from protobuf field <code>repeated string enrollments = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEnrollments($var)
@@ -113,7 +113,7 @@ class ListMessageBusEnrollmentsResponse extends \Google\Protobuf\Internal\Messag
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListMessageBusEnrollmentsResponse extends \Google\Protobuf\Internal\Messag
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

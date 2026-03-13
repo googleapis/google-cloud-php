@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A facet value which contains value names and their count.
@@ -145,5 +145,4 @@ class FacetValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

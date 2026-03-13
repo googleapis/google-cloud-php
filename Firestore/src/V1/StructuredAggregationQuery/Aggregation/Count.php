@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredAggregationQuery\Aggregation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Count of documents that match the query.
@@ -163,7 +163,4 @@ class Count extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Count::class, \Google\Cloud\Firestore\V1\StructuredAggregationQuery_Aggregation_Count::class);
 

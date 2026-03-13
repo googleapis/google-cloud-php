@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ChunkingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for the layout based chunking.
@@ -114,5 +114,4 @@ class LayoutBasedChunkingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListBackupsResponse is the result of ListBackupsRequest.
@@ -46,7 +46,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Filestore\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type \Google\Cloud\Filestore\V1\Backup[] $backups
      *           A list of backups in the project for the specified location.
      *           If the `{location}` value in the request is "-", the response contains a
      *           list of backups from all locations. If any location is unreachable, the
@@ -56,7 +56,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           The token you can use to retrieve the next page of results. Not returned
      *           if there are no more results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -74,7 +74,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Backup backups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Filestore\V1\Backup>
      */
     public function getBackups()
     {
@@ -90,7 +90,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Backup backups = 1;</code>
-     * @param array<\Google\Cloud\Filestore\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Filestore\V1\Backup[] $var
      * @return $this
      */
     public function setBackups($var)
@@ -133,7 +133,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -144,7 +144,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Publish a message into a given Pub/Sub topic when DlpJob has completed. The
@@ -80,5 +80,4 @@ class PublishToPubSub extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

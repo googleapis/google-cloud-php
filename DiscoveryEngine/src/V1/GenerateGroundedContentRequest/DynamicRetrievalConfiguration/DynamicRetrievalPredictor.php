@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\DynamicRetrievalConfiguration;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the predictor settings for dynamic retrieval.
@@ -112,5 +112,4 @@ class DynamicRetrievalPredictor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

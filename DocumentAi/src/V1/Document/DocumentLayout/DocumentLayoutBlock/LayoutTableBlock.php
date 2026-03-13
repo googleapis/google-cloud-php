@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a table type block.
@@ -40,9 +40,9 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>|\Google\Protobuf\Internal\RepeatedField $header_rows
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow[] $header_rows
      *           Header rows at the top of the table.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>|\Google\Protobuf\Internal\RepeatedField $body_rows
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow[] $body_rows
      *           Body rows containing main table content.
      *     @type string $caption
      *           Table caption/title.
@@ -57,7 +57,7 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * Header rows at the top of the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow header_rows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>
      */
     public function getHeaderRows()
     {
@@ -68,7 +68,7 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * Header rows at the top of the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow header_rows = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow[] $var
      * @return $this
      */
     public function setHeaderRows($var)
@@ -83,7 +83,7 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * Body rows containing main table content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow body_rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>
      */
     public function getBodyRows()
     {
@@ -94,7 +94,7 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * Body rows containing main table content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutTableRow body_rows = 2;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutTableRow[] $var
      * @return $this
      */
     public function setBodyRows($var)
@@ -132,5 +132,4 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

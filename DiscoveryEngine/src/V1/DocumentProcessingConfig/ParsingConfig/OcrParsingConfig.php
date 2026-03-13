@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\DocumentProcessingConfig\ParsingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The OCR parsing configurations for documents.
@@ -37,7 +37,7 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enhanced_document_elements
+     *     @type string[] $enhanced_document_elements
      *           [DEPRECATED] This field is deprecated. To use the additional enhanced
      *           document elements processing, please switch to `layout_parsing_config`.
      *     @type bool $use_native_text
@@ -55,7 +55,7 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
      * document elements processing, please switch to `layout_parsing_config`.
      *
      * Generated from protobuf field <code>repeated string enhanced_document_elements = 1 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getEnhancedDocumentElements()
@@ -71,7 +71,7 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
      * document elements processing, please switch to `layout_parsing_config`.
      *
      * Generated from protobuf field <code>repeated string enhanced_document_elements = 1 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -115,5 +115,4 @@ class OcrParsingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\RouterStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PrefixCounter contains a collection of prefixes related counts.
@@ -234,5 +234,4 @@ class PrefixCounter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

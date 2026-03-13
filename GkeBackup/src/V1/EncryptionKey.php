@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defined a customer managed encryption key that will be used to encrypt Backup
@@ -18,7 +18,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. Google Cloud KMS encryption key. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
      *
      *     @type string $gcp_kms_encryption_key
      *           Optional. Google Cloud KMS encryption key. Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Google Cloud KMS encryption key. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -54,7 +54,7 @@ class EncryptionKey extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Google Cloud KMS encryption key. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`
      *
      * Generated from protobuf field <code>string gcp_kms_encryption_key = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

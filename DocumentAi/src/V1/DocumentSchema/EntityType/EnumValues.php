@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the a list of enum values.
@@ -28,7 +28,7 @@ class EnumValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           The individual values that this enum values type can include.
      * }
      */
@@ -41,7 +41,7 @@ class EnumValues extends \Google\Protobuf\Internal\Message
      * The individual values that this enum values type can include.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class EnumValues extends \Google\Protobuf\Internal\Message
      * The individual values that this enum values type can include.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class EnumValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

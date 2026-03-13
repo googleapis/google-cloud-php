@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the scope of cluster-scoped resources to restore.
@@ -71,11 +71,11 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $selected_group_kinds
      *           Optional. A list of cluster-scoped resource group kinds to restore from
      *           the backup. If specified, only the selected resources will be restored.
      *           Mutually exclusive to any other field in the message.
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $excluded_group_kinds
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $excluded_group_kinds
      *           Optional. A list of cluster-scoped resource group kinds to NOT restore
      *           from the backup. If specified, all valid cluster-scoped resources will be
      *           restored except for those specified in the list.
@@ -100,7 +100,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>
      */
     public function getSelectedGroupKinds()
     {
@@ -113,7 +113,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $var
      * @return $this
      */
     public function setSelectedGroupKinds($var)
@@ -131,7 +131,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>
      */
     public function getExcludedGroupKinds()
     {
@@ -145,7 +145,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * Mutually exclusive to any other field in the message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind excluded_group_kinds = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[] $var
      * @return $this
      */
     public function setExcludedGroupKinds($var)
@@ -215,5 +215,4 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

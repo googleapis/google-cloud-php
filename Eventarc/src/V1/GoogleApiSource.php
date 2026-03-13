@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A GoogleApiSource represents a subscription of 1P events from a MessageBus.
@@ -81,7 +81,7 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -130,7 +130,7 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      *           Optional. Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt their event data.
      *           It must match the pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *     @type \Google\Cloud\Eventarc\V1\LoggingConfig $logging_config
      *           Optional. Config to control Platform logging for the GoogleApiSource.
      *     @type \Google\Cloud\Eventarc\V1\GoogleApiSource\OrganizationSubscription $organization_subscription
@@ -421,7 +421,7 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -435,7 +435,7 @@ class GoogleApiSource extends \Google\Protobuf\Internal\Message
      * Optional. Resource name of a KMS crypto key (managed by the user) used to
      * encrypt/decrypt their event data.
      * It must match the pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string crypto_key_name = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

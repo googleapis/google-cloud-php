@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Combines all of the information about a DLP job.
@@ -105,9 +105,9 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *     @type string $job_trigger_name
      *           If created by a job trigger, the resource name of the trigger that
      *           instantiated the job.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           A stream of errors encountered running the job.
-     *     @type array<\Google\Cloud\Dlp\V2\ActionDetails>|\Google\Protobuf\Internal\RepeatedField $action_details
+     *     @type \Google\Cloud\Dlp\V2\ActionDetails[] $action_details
      *           Events that should occur after the job has completed.
      * }
      */
@@ -432,7 +432,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * A stream of errors encountered running the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -443,7 +443,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * A stream of errors encountered running the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -458,7 +458,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Events that should occur after the job has completed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\ActionDetails>
      */
     public function getActionDetails()
     {
@@ -469,7 +469,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * Events that should occur after the job has completed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ActionDetails action_details = 12;</code>
-     * @param array<\Google\Cloud\Dlp\V2\ActionDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\ActionDetails[] $var
      * @return $this
      */
     public function setActionDetails($var)

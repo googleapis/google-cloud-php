@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes EventTrigger, used to request events to be sent from another
@@ -62,7 +62,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -112,7 +112,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *           Required. The type of event to observe. For example:
      *           `google.cloud.audit.log.v1.written` or
      *           `google.cloud.pubsub.topic.v1.messagePublished`.
-     *     @type array<\Google\Cloud\Functions\V2\EventFilter>|\Google\Protobuf\Internal\RepeatedField $event_filters
+     *     @type \Google\Cloud\Functions\V2\EventFilter[] $event_filters
      *           Criteria used to filter events.
      *     @type string $pubsub_topic
      *           Optional. The name of a Pub/Sub topic in the same project that will be used
@@ -126,7 +126,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      *           must have permission to invoke Cloud Run services, the permission is
      *           `run.routes.invoke`.
      *           If empty, defaults to the Compute Engine default service account:
-     *           `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     *           `{project_number}-compute\@developer.gserviceaccount.com`.
      *     @type int $retry_policy
      *           Optional. If unset, then defaults to ignoring failures (i.e. not retrying
      *           them).
@@ -242,7 +242,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * Criteria used to filter events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.EventFilter event_filters = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\EventFilter>
      */
     public function getEventFilters()
     {
@@ -253,7 +253,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * Criteria used to filter events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.EventFilter event_filters = 4;</code>
-     * @param array<\Google\Cloud\Functions\V2\EventFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\EventFilter[] $var
      * @return $this
      */
     public function setEventFilters($var)
@@ -305,7 +305,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -320,7 +320,7 @@ class EventTrigger extends \Google\Protobuf\Internal\Message
      * must have permission to invoke Cloud Run services, the permission is
      * `run.routes.invoke`.
      * If empty, defaults to the Compute Engine default service account:
-     * `{project_number}-compute&#64;developer.gserviceaccount.com`.
+     * `{project_number}-compute\@developer.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account_email = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

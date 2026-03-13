@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of the l-diversity computation.
@@ -28,7 +28,7 @@ class LDiversityResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $sensitive_value_frequency_histogram_buckets
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket[] $sensitive_value_frequency_histogram_buckets
      *           Histogram of l-diversity equivalence class sensitive value frequencies.
      * }
      */
@@ -41,7 +41,7 @@ class LDiversityResult extends \Google\Protobuf\Internal\Message
      * Histogram of l-diversity equivalence class sensitive value frequencies.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket sensitive_value_frequency_histogram_buckets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket>
      */
     public function getSensitiveValueFrequencyHistogramBuckets()
     {
@@ -52,7 +52,7 @@ class LDiversityResult extends \Google\Protobuf\Internal\Message
      * Histogram of l-diversity equivalence class sensitive value frequencies.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityHistogramBucket sensitive_value_frequency_histogram_buckets = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityHistogramBucket[] $var
      * @return $this
      */
     public function setSensitiveValueFrequencyHistogramBuckets($var)
@@ -64,5 +64,4 @@ class LDiversityResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

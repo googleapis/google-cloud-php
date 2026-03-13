@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Entity;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parsed and normalized entity value.
@@ -379,5 +379,4 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

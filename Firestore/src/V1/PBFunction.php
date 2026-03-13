@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an unevaluated scalar expression.
@@ -52,7 +52,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      *           Required. The name of the function to evaluate.
      *           **Requires:**
      *           * must be in snake case (lower case with underscore separator).
-     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type \Google\Cloud\Firestore\V1\Value[] $args
      *           Optional. Ordered list of arguments the given function expects.
      *     @type array|\Google\Protobuf\Internal\MapField $options
      *           Optional. Optional named arguments that certain functions may support.
@@ -97,7 +97,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Optional. Ordered list of arguments the given function expects.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Value>
      */
     public function getArgs()
     {
@@ -108,7 +108,7 @@ class PBFunction extends \Google\Protobuf\Internal\Message
      * Optional. Ordered list of arguments the given function expects.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Value[] $var
      * @return $this
      */
     public function setArgs($var)

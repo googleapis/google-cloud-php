@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TransformationRuleAction defines a TransformationRule action based on the
@@ -179,5 +179,4 @@ class TransformationRuleAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Creates a set of terms that will act as synonyms of one another.
@@ -33,7 +33,7 @@ class SynonymsAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Defines a set of synonyms.
      *           Can specify up to 100 synonyms.
      *           Must specify at least 2 synonyms. Otherwise an INVALID ARGUMENT error is
@@ -52,7 +52,7 @@ class SynonymsAction extends \Google\Protobuf\Internal\Message
      * thrown.
      *
      * Generated from protobuf field <code>repeated string synonyms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -66,7 +66,7 @@ class SynonymsAction extends \Google\Protobuf\Internal\Message
      * thrown.
      *
      * Generated from protobuf field <code>repeated string synonyms = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -78,5 +78,4 @@ class SynonymsAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
