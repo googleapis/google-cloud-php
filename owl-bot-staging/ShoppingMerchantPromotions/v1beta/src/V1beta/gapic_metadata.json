@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.shopping.merchant.promotions.v1beta",
+    "libraryPackage": "Google\\Shopping\\Merchant\\Promotions\\V1beta",
+    "services": {
+        "PromotionsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PromotionsServiceGapicClient",
+                    "rpcs": {
+                        "GetPromotion": {
+                            "methods": [
+                                "getPromotion"
+                            ]
+                        },
+                        "InsertPromotion": {
+                            "methods": [
+                                "insertPromotion"
+                            ]
+                        },
+                        "ListPromotions": {
+                            "methods": [
+                                "listPromotions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
