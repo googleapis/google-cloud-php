@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FirewallAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A substitute action transparently serves a different page than the one
@@ -69,5 +69,4 @@ class SubstituteAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

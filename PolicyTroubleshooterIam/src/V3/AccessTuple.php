@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the principal, resource, and permission to check.
@@ -17,8 +17,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The email address of the principal whose access you want to
-     * check. For example, `alice&#64;example.com` or
-     * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
+     * check. For example, `alice\@example.com` or
+     * `my-service-account\@my-project.iam.gserviceaccount.com`.
      * The principal must be a Google Account or a service account. Other types of
      * principals are not supported.
      *
@@ -71,8 +71,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
      *
      *     @type string $principal
      *           Required. The email address of the principal whose access you want to
-     *           check. For example, `alice&#64;example.com` or
-     *           `my-service-account&#64;my-project.iam.gserviceaccount.com`.
+     *           check. For example, `alice\@example.com` or
+     *           `my-service-account\@my-project.iam.gserviceaccount.com`.
      *           The principal must be a Google Account or a service account. Other types of
      *           principals are not supported.
      *     @type string $full_resource_name
@@ -105,8 +105,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The email address of the principal whose access you want to
-     * check. For example, `alice&#64;example.com` or
-     * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
+     * check. For example, `alice\@example.com` or
+     * `my-service-account\@my-project.iam.gserviceaccount.com`.
      * The principal must be a Google Account or a service account. Other types of
      * principals are not supported.
      *
@@ -120,8 +120,8 @@ class AccessTuple extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The email address of the principal whose access you want to
-     * check. For example, `alice&#64;example.com` or
-     * `my-service-account&#64;my-project.iam.gserviceaccount.com`.
+     * check. For example, `alice\@example.com` or
+     * `my-service-account\@my-project.iam.gserviceaccount.com`.
      * The principal must be a Google Account or a service account. Other types of
      * principals are not supported.
      *

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures dynamic metadata that can be linked to a
@@ -19,7 +19,7 @@ class Control extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -79,25 +79,25 @@ class Control extends \Google\Protobuf\Internal\Message
      *           For example: Boost "gShoe" when query full matches "Running Shoes".
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;controls/&#42;`
+     *           `projects/{@*}locations/global/catalogs/{@*}controls/*`
      *     @type string $display_name
      *           Required. The human readable control display name. Used in Retail UI.
      *           This field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is thrown.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $associated_serving_config_ids
+     *     @type string[] $associated_serving_config_ids
      *           Output only. List of [serving config][google.cloud.retail.v2.ServingConfig]
      *           ids that are associated with this control in the same
      *           [Catalog][google.cloud.retail.v2.Catalog].
      *           Note the association is managed via the
      *           [ServingConfig][google.cloud.retail.v2.ServingConfig], this is an output
      *           only denormalized view.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $solution_types
+     *     @type int[] $solution_types
      *           Required. Immutable. The solution types that the control is used for.
      *           Currently we support setting only one type of solution at creation time.
      *           Only `SOLUTION_TYPE_SEARCH` value is supported at the moment.
      *           If no solution type is provided at creation time, will default to
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $search_solution_use_case
+     *     @type int[] $search_solution_use_case
      *           Specifies the use case for the control.
      *           Affects what condition fields can be set.
      *           Only settable by search controls.
@@ -149,7 +149,7 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -161,7 +161,7 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;controls/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}controls/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -214,7 +214,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * only denormalized view.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssociatedServingConfigIds()
     {
@@ -230,7 +230,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * only denormalized view.
      *
      * Generated from protobuf field <code>repeated string associated_serving_config_ids = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssociatedServingConfigIds($var)
@@ -249,7 +249,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SolutionType solution_types = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSolutionTypes()
     {
@@ -264,7 +264,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SolutionType solution_types = 6 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSolutionTypes($var)
@@ -285,7 +285,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchSolutionUseCase search_solution_use_case = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSearchSolutionUseCase()
     {
@@ -302,7 +302,7 @@ class Control extends \Google\Protobuf\Internal\Message
      * control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchSolutionUseCase search_solution_use_case = 7;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSearchSolutionUseCase($var)

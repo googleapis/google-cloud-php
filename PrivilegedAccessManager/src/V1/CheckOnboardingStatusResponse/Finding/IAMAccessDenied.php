@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PAM's service account is being denied access by Cloud IAM.
@@ -31,7 +31,7 @@ class IAMAccessDenied extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_permissions
+     *     @type string[] $missing_permissions
      *           List of permissions that are being denied.
      * }
      */
@@ -44,7 +44,7 @@ class IAMAccessDenied extends \Google\Protobuf\Internal\Message
      * List of permissions that are being denied.
      *
      * Generated from protobuf field <code>repeated string missing_permissions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMissingPermissions()
     {
@@ -55,7 +55,7 @@ class IAMAccessDenied extends \Google\Protobuf\Internal\Message
      * List of permissions that are being denied.
      *
      * Generated from protobuf field <code>repeated string missing_permissions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMissingPermissions($var)
@@ -67,5 +67,4 @@ class IAMAccessDenied extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

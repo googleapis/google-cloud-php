@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `StreamingPull` method. This response is used to stream
@@ -49,7 +49,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $received_messages
+     *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[] $received_messages
      *           Optional. Received Pub/Sub messages.
      *     @type \Google\Cloud\PubSub\V1\StreamingPullResponse\AcknowledgeConfirmation $acknowledge_confirmation
      *           Optional. This field will only be set if `enable_exactly_once_delivery` is
@@ -70,7 +70,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * Optional. Received Pub/Sub messages.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\ReceivedMessage>
      */
     public function getReceivedMessages()
     {
@@ -81,7 +81,7 @@ class StreamingPullResponse extends \Google\Protobuf\Internal\Message
      * Optional. Received Pub/Sub messages.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\ReceivedMessage[] $var
      * @return $this
      */
     public function setReceivedMessages($var)

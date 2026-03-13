@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Maintenance policy per cluster.
@@ -50,7 +50,7 @@ class ClusterMaintenancePolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the policy was updated i.e. Maintenance Window
      *           or Deny Period was updated.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\ClusterWeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $weekly_maintenance_window
+     *     @type \Google\Cloud\Redis\Cluster\V1\ClusterWeeklyMaintenanceWindow[] $weekly_maintenance_window
      *           Optional. Maintenance window that is applied to resources covered by this
      *           policy. Minimum 1. For the current version, the maximum number of
      *           weekly_maintenance_window is expected to be one.
@@ -143,7 +143,7 @@ class ClusterMaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_maintenance_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ClusterWeeklyMaintenanceWindow weekly_maintenance_window = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\ClusterWeeklyMaintenanceWindow>
      */
     public function getWeeklyMaintenanceWindow()
     {
@@ -156,7 +156,7 @@ class ClusterMaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_maintenance_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ClusterWeeklyMaintenanceWindow weekly_maintenance_window = 3;</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\ClusterWeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\ClusterWeeklyMaintenanceWindow[] $var
      * @return $this
      */
     public function setWeeklyMaintenanceWindow($var)

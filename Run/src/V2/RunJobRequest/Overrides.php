@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\RunJobRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RunJob Overrides that contains Execution fields to be overridden.
@@ -43,7 +43,7 @@ class Overrides extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Run\V2\RunJobRequest\Overrides\ContainerOverride>|\Google\Protobuf\Internal\RepeatedField $container_overrides
+     *     @type \Google\Cloud\Run\V2\RunJobRequest\Overrides\ContainerOverride[] $container_overrides
      *           Per container override specification.
      *     @type int $task_count
      *           Optional. The desired number of tasks the execution should run. Will
@@ -63,7 +63,7 @@ class Overrides extends \Google\Protobuf\Internal\Message
      * Per container override specification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.RunJobRequest.Overrides.ContainerOverride container_overrides = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\RunJobRequest\Overrides\ContainerOverride>
      */
     public function getContainerOverrides()
     {
@@ -74,7 +74,7 @@ class Overrides extends \Google\Protobuf\Internal\Message
      * Per container override specification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.RunJobRequest.Overrides.ContainerOverride container_overrides = 1;</code>
-     * @param array<\Google\Cloud\Run\V2\RunJobRequest\Overrides\ContainerOverride>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\RunJobRequest\Overrides\ContainerOverride[] $var
      * @return $this
      */
     public function setContainerOverrides($var)
@@ -154,5 +154,4 @@ class Overrides extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

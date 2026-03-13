@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\Grant;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Timeline of a grant describing what happened to it and when.
@@ -31,7 +31,7 @@ class Timeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event[] $events
      *           Output only. The events that have occurred on this grant. This list
      *           contains entries in the same order as they occurred. The first entry is
      *           always be of type `Requested` and there is always at least one entry in
@@ -50,7 +50,7 @@ class Timeline extends \Google\Protobuf\Internal\Message
      * this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event events = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event>
      */
     public function getEvents()
     {
@@ -64,7 +64,7 @@ class Timeline extends \Google\Protobuf\Internal\Message
      * this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Grant.Timeline.Event events = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event[] $var
      * @return $this
      */
     public function setEvents($var)
@@ -76,5 +76,4 @@ class Timeline extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

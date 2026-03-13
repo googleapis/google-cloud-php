@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A manual approval workflow where users who are designated as approvers
@@ -50,7 +50,7 @@ class ManualApprovals extends \Google\Protobuf\Internal\Message
      *     @type bool $require_approver_justification
      *           Optional. Do the approvers need to provide a justification for their
      *           actions?
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals\Step[] $steps
      *           Optional. List of approval steps in this workflow. These steps are followed
      *           in the specified order sequentially. Only 1 step is supported.
      * }
@@ -93,7 +93,7 @@ class ManualApprovals extends \Google\Protobuf\Internal\Message
      * in the specified order sequentially. Only 1 step is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step steps = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals\Step>
      */
     public function getSteps()
     {
@@ -105,7 +105,7 @@ class ManualApprovals extends \Google\Protobuf\Internal\Message
      * in the specified order sequentially. Only 1 step is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.ManualApprovals.Step steps = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals\Step[] $var
      * @return $this
      */
     public function setSteps($var)

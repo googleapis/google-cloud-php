@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1\FeatureMap;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of string features.
@@ -28,7 +28,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $value
+     *     @type string[] $value
      *           String feature value with a length limit of 128 bytes.
      * }
      */
@@ -41,7 +41,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * String feature value with a length limit of 128 bytes.
      *
      * Generated from protobuf field <code>repeated string value = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValue()
     {
@@ -52,7 +52,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * String feature value with a length limit of 128 bytes.
      *
      * Generated from protobuf field <code>repeated string value = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValue($var)
@@ -64,5 +64,4 @@ class StringList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

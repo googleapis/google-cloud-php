@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivateCatalog\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The consumer representation of a version which is a child resource under a

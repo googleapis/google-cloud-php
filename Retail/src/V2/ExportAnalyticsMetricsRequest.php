@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `ExportAnalyticsMetrics` method.
@@ -17,7 +17,7 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full resource name of the parent catalog.
-     * Expected format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;`
+     * Expected format: `projects/{@*}locations/{@*}catalogs/*`
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -55,7 +55,7 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $catalog
      *           Required. Full resource name of the parent catalog.
-     *           Expected format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;`
+     *           Expected format: `projects/{@*}locations/{@*}catalogs/*`
      *     @type \Google\Cloud\Retail\V2\OutputConfig $output_config
      *           Required. The output location of the data.
      *     @type string $filter
@@ -81,7 +81,7 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the parent catalog.
-     * Expected format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;`
+     * Expected format: `projects/{@*}locations/{@*}catalogs/*`
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -93,7 +93,7 @@ class ExportAnalyticsMetricsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full resource name of the parent catalog.
-     * Expected format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;`
+     * Expected format: `projects/{@*}locations/{@*}catalogs/*`
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

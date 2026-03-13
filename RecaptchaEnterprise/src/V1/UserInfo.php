@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User information associated with a request protected by reCAPTCHA Enterprise.
@@ -56,7 +56,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      *           it is stable (meaning it is the same for every request associated with the
      *           same user), or any stable user ID of your choice. Leave blank for non
      *           logged-in actions or guest checkout.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\UserId>|\Google\Protobuf\Internal\RepeatedField $user_ids
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\UserId[] $user_ids
      *           Optional. Identifiers associated with this user or request.
      * }
      */
@@ -143,7 +143,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * Optional. Identifiers associated with this user or request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.UserId user_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\UserId>
      */
     public function getUserIds()
     {
@@ -154,7 +154,7 @@ class UserInfo extends \Google\Protobuf\Internal\Message
      * Optional. Identifiers associated with this user or request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.UserId user_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\UserId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\UserId[] $var
      * @return $this
      */
     public function setUserIds($var)

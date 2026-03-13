@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Account defender risk assessment.
@@ -28,7 +28,7 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type int[] $labels
      *           Output only. Labels for this request.
      * }
      */
@@ -41,7 +41,7 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * Output only. Labels for this request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel labels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLabels()
     {
@@ -52,7 +52,7 @@ class AccountDefenderAssessment extends \Google\Protobuf\Internal\Message
      * Output only. Labels for this request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment.AccountDefenderLabel labels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLabels($var)

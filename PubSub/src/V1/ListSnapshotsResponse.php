@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListSnapshots` method.
@@ -36,7 +36,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PubSub\V1\Snapshot>|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type \Google\Cloud\PubSub\V1\Snapshot[] $snapshots
      *           Optional. The resulting snapshots.
      *     @type string $next_page_token
      *           Optional. If not empty, indicates that there may be more snapshot that
@@ -53,7 +53,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The resulting snapshots.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\Snapshot>
      */
     public function getSnapshots()
     {
@@ -64,7 +64,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The resulting snapshots.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Snapshot snapshots = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\Snapshot>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\Snapshot[] $var
      * @return $this
      */
     public function setSnapshots($var)

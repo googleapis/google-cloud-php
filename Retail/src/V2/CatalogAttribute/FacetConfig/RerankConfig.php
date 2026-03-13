@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to rerank based on facet values engaged by the user for the
@@ -48,7 +48,7 @@ class RerankConfig extends \Google\Protobuf\Internal\Message
      *           If set to true, then we also rerank the dynamic facets based on the
      *           facet values engaged by the user for the current attribute key during
      *           serving.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $facet_values
+     *     @type string[] $facet_values
      *           If empty, rerank on all facet values for the current key. Otherwise,
      *           will rerank on the facet values from this list only.
      * }
@@ -93,7 +93,7 @@ class RerankConfig extends \Google\Protobuf\Internal\Message
      * will rerank on the facet values from this list only.
      *
      * Generated from protobuf field <code>repeated string facet_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFacetValues()
     {
@@ -105,7 +105,7 @@ class RerankConfig extends \Google\Protobuf\Internal\Message
      * will rerank on the facet values from this list only.
      *
      * Generated from protobuf field <code>repeated string facet_values = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFacetValues($var)
@@ -117,5 +117,4 @@ class RerankConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

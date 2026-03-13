@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Explanation for how a condition affects a principal's access
@@ -44,9 +44,9 @@ class ConditionExplanation extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Value $value
      *           Value of the condition.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Any errors that prevented complete evaluation of the condition expression.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation\EvaluationState>|\Google\Protobuf\Internal\RepeatedField $evaluation_states
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation\EvaluationState[] $evaluation_states
      *           The value of each statement of the condition expression. The value can be
      *           `true`, `false`, or `null`. The value is `null` if the statement can't be
      *           evaluated.
@@ -97,7 +97,7 @@ class ConditionExplanation extends \Google\Protobuf\Internal\Message
      * Any errors that prevented complete evaluation of the condition expression.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -108,7 +108,7 @@ class ConditionExplanation extends \Google\Protobuf\Internal\Message
      * Any errors that prevented complete evaluation of the condition expression.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -125,7 +125,7 @@ class ConditionExplanation extends \Google\Protobuf\Internal\Message
      * evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ConditionExplanation.EvaluationState evaluation_states = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation\EvaluationState>
      */
     public function getEvaluationStates()
     {
@@ -138,7 +138,7 @@ class ConditionExplanation extends \Google\Protobuf\Internal\Message
      * evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ConditionExplanation.EvaluationState evaluation_states = 2;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation\EvaluationState>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation\EvaluationState[] $var
      * @return $this
      */
     public function setEvaluationStates($var)

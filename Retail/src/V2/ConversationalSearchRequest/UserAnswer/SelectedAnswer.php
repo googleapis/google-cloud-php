@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\ConversationalSearchRequest\UserAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies the selected answers during the conversational
@@ -79,5 +79,4 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

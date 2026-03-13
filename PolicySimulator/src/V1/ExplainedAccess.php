@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a set of policies, listed in
@@ -54,12 +54,12 @@ class ExplainedAccess extends \Google\Protobuf\Internal\Message
      *     @type int $access_state
      *           Whether the principal in the access tuple has permission to access the
      *           resource in the access tuple under the given policies.
-     *     @type array<\Google\Cloud\PolicySimulator\V1\ExplainedPolicy>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type \Google\Cloud\PolicySimulator\V1\ExplainedPolicy[] $policies
      *           If the [AccessState][google.cloud.policysimulator.v1.AccessState] is
      *           `UNKNOWN`, this field contains the policies that led to that result.
      *           If the `AccessState` is `GRANTED` or `NOT_GRANTED`, this field is
      *           omitted.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           If the [AccessState][google.cloud.policysimulator.v1.AccessState] is
      *           `UNKNOWN`, this field contains a list of errors explaining why the result
      *           is `UNKNOWN`.
@@ -107,7 +107,7 @@ class ExplainedAccess extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.ExplainedPolicy policies = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\ExplainedPolicy>
      */
     public function getPolicies()
     {
@@ -121,7 +121,7 @@ class ExplainedAccess extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.ExplainedPolicy policies = 2;</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\ExplainedPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\ExplainedPolicy[] $var
      * @return $this
      */
     public function setPolicies($var)
@@ -140,7 +140,7 @@ class ExplainedAccess extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -155,7 +155,7 @@ class ExplainedAccess extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)

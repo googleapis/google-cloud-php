@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing QuotaInfos
@@ -35,7 +35,7 @@ class ListQuotaInfosResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudQuotas\V1\QuotaInfo>|\Google\Protobuf\Internal\RepeatedField $quota_infos
+     *     @type \Google\Cloud\CloudQuotas\V1\QuotaInfo[] $quota_infos
      *           The list of QuotaInfo
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListQuotaInfosResponse extends \Google\Protobuf\Internal\Message
      * The list of QuotaInfo
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1.QuotaInfo quota_infos = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudQuotas\V1\QuotaInfo>
      */
     public function getQuotaInfos()
     {
@@ -62,7 +62,7 @@ class ListQuotaInfosResponse extends \Google\Protobuf\Internal\Message
      * The list of QuotaInfo
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1.QuotaInfo quota_infos = 1;</code>
-     * @param array<\Google\Cloud\CloudQuotas\V1\QuotaInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudQuotas\V1\QuotaInfo[] $var
      * @return $this
      */
     public function setQuotaInfos($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A grant represents a request from a user for obtaining the access specified
@@ -134,7 +134,7 @@ class Grant extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PrivilegedAccessManager\V1\Grant\AuditTrail $audit_trail
      *           Output only. Audit trail of access provided by this grant. If unspecified
      *           then access was never granted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_email_recipients
+     *     @type string[] $additional_email_recipients
      *           Optional. Additional email addresses to notify for all the actions
      *           performed on the grant.
      *     @type bool $externally_modified
@@ -499,7 +499,7 @@ class Grant extends \Google\Protobuf\Internal\Message
      * performed on the grant.
      *
      * Generated from protobuf field <code>repeated string additional_email_recipients = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalEmailRecipients()
     {
@@ -511,7 +511,7 @@ class Grant extends \Google\Protobuf\Internal\Message
      * performed on the grant.
      *
      * Generated from protobuf field <code>repeated string additional_email_recipients = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalEmailRecipients($var)

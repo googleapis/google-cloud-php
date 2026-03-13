@@ -5,8 +5,8 @@
 namespace Google\Cloud\Parallelstore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Long-running operation metadata related to a data transfer.
@@ -55,7 +55,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The progress of the transfer operation.
      *     @type int $transfer_type
      *           Output only. The type of transfer occurring.
-     *     @type array<\Google\Cloud\Parallelstore\V1beta\TransferErrorSummary>|\Google\Protobuf\Internal\RepeatedField $error_summary
+     *     @type \Google\Cloud\Parallelstore\V1beta\TransferErrorSummary[] $error_summary
      *           Output only. List of files that failed to be transferred. This list will
      *           have a maximum size of 5 elements.
      * }
@@ -256,7 +256,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * have a maximum size of 5 elements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.TransferErrorSummary error_summary = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Parallelstore\V1beta\TransferErrorSummary>
      */
     public function getErrorSummary()
     {
@@ -268,7 +268,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * have a maximum size of 5 elements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1beta.TransferErrorSummary error_summary = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Parallelstore\V1beta\TransferErrorSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Parallelstore\V1beta\TransferErrorSummary[] $var
      * @return $this
      */
     public function setErrorSummary($var)

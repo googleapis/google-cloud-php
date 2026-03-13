@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `SearchEntitlements` method.
@@ -34,7 +34,7 @@ class SearchEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\Entitlement[] $entitlements
      *           The list of entitlements.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class SearchEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * The list of entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Entitlement entitlements = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>
      */
     public function getEntitlements()
     {
@@ -60,7 +60,7 @@ class SearchEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * The list of entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Entitlement entitlements = 1;</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\Entitlement[] $var
      * @return $this
      */
     public function setEntitlements($var)

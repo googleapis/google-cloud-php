@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Model;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional configs for the frequently-bought-together model type.
@@ -76,5 +76,4 @@ class FrequentlyBoughtTogetherFeaturesConfig extends \Google\Protobuf\Internal\M
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message defines attributes for an HTTP request. If the actual
@@ -80,5 +80,4 @@ class Request extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

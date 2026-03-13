@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for [ListBackupCollections].
@@ -49,7 +49,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\BackupCollection>|\Google\Protobuf\Internal\RepeatedField $backup_collections
+     *     @type \Google\Cloud\Redis\Cluster\V1\BackupCollection[] $backup_collections
      *           A list of backupCollections in the project.
      *           If the `location_id` in the parent field of the request is "-", all regions
      *           available to the project are queried, and the results aggregated.
@@ -62,7 +62,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -83,7 +83,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      * available for ListBackupCollections".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.BackupCollection backup_collections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\BackupCollection>
      */
     public function getBackupCollections()
     {
@@ -102,7 +102,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      * available for ListBackupCollections".
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.BackupCollection backup_collections = 1;</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\BackupCollection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\BackupCollection[] $var
      * @return $this
      */
     public function setBackupCollections($var)
@@ -145,7 +145,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -156,7 +156,7 @@ class ListBackupCollectionsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

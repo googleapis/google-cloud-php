@@ -5,8 +5,8 @@
 namespace Google\Cloud\Parallelstore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Parallelstore instance.
@@ -164,7 +164,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $daos_version
      *           Output only. Deprecated: The version of DAOS software running in the
      *           instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_points
+     *     @type string[] $access_points
      *           Output only. A list of IPv4 addresses used for client side configuration.
      *     @type string $network
      *           Optional. Immutable. The name of the Compute Engine
@@ -458,7 +458,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. A list of IPv4 addresses used for client side configuration.
      *
      * Generated from protobuf field <code>repeated string access_points = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAccessPoints()
     {
@@ -469,7 +469,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. A list of IPv4 addresses used for client side configuration.
      *
      * Generated from protobuf field <code>repeated string access_points = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAccessPoints($var)

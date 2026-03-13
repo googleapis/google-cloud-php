@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`. Use
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`. Use
      * `default_branch` as the branch ID, to list products under the default
      * branch.
      * If the caller does not have permission to list
@@ -131,7 +131,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent branch resource name, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`. Use
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/0`. Use
      *           `default_branch` as the branch ID, to list products under the default
      *           branch.
      *           If the caller does not have permission to list
@@ -202,7 +202,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`. Use
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`. Use
      * `default_branch` as the branch ID, to list products under the default
      * branch.
      * If the caller does not have permission to list
@@ -219,7 +219,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`. Use
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`. Use
      * `default_branch` as the branch ID, to list products under the default
      * branch.
      * If the caller does not have permission to list

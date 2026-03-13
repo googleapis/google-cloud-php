@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a set of Cloud SQL instances. Each one will be available under
@@ -35,7 +35,7 @@ class CloudSqlInstance extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           The Cloud SQL instance connection names, as can be found in
      *           https://console.cloud.google.com/sql/instances. Visit
      *           https://cloud.google.com/sql/docs/mysql/connect-run for more information on
@@ -56,7 +56,7 @@ class CloudSqlInstance extends \Google\Protobuf\Internal\Message
      * {project}:{location}:{instance}
      *
      * Generated from protobuf field <code>repeated string instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -71,7 +71,7 @@ class CloudSqlInstance extends \Google\Protobuf\Internal\Message
      * {project}:{location}:{instance}
      *
      * Generated from protobuf field <code>repeated string instances = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

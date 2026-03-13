@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for submitting a Build.
@@ -106,7 +106,7 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      *           `{project}` and `{region}` are the project id and region respectively where
      *           the worker pool is defined and `{workerPool}` is the short name of the
      *           worker pool.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. Additional tags to annotate the build.
      *     @type string $machine_type
      *           Optional. The machine type from default pool to use for the build. If left
@@ -342,7 +342,7 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      * Optional. Additional tags to annotate the build.
      *
      * Generated from protobuf field <code>repeated string tags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -353,7 +353,7 @@ class SubmitBuildRequest extends \Google\Protobuf\Internal\Message
      * Optional. Additional tags to annotate the build.
      *
      * Generated from protobuf field <code>repeated string tags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

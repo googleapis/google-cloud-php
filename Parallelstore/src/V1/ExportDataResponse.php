@@ -5,8 +5,8 @@
 namespace Google\Cloud\Parallelstore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response to a request to export data from Parallelstore.

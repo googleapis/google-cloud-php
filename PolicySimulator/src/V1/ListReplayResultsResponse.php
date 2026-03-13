@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class ListReplayResultsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PolicySimulator\V1\ReplayResult>|\Google\Protobuf\Internal\RepeatedField $replay_results
+     *     @type \Google\Cloud\PolicySimulator\V1\ReplayResult[] $replay_results
      *           The results of running a [Replay][google.cloud.policysimulator.v1.Replay].
      *     @type string $next_page_token
      *           A token that you can use to retrieve the next page of
@@ -54,7 +54,7 @@ class ListReplayResultsResponse extends \Google\Protobuf\Internal\Message
      * The results of running a [Replay][google.cloud.policysimulator.v1.Replay].
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.ReplayResult replay_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\ReplayResult>
      */
     public function getReplayResults()
     {
@@ -65,7 +65,7 @@ class ListReplayResultsResponse extends \Google\Protobuf\Internal\Message
      * The results of running a [Replay][google.cloud.policysimulator.v1.Replay].
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.ReplayResult replay_results = 1;</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\ReplayResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\ReplayResult[] $var
      * @return $this
      */
     public function setReplayResults($var)

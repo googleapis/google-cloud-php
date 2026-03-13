@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TaskTemplate describes the data a task should have when created
@@ -89,10 +89,10 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type \Google\Cloud\Run\V2\Container[] $containers
      *           Holds the single container that defines the unit of execution for this
      *           task.
-     *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\Run\V2\Volume[] $volumes
      *           Optional. A list of Volumes to make available to containers.
      *     @type int $max_retries
      *           Number of retries allowed per Task, before marking this Task failed.
@@ -133,7 +133,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Container>
      */
     public function getContainers()
     {
@@ -145,7 +145,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 1;</code>
-     * @param array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Container[] $var
      * @return $this
      */
     public function setContainers($var)
@@ -160,7 +160,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Optional. A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Volume>
      */
     public function getVolumes()
     {
@@ -171,7 +171,7 @@ class TaskTemplate extends \Google\Protobuf\Internal\Message
      * Optional. A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)

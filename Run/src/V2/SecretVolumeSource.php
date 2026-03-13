@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The secret's value will be presented as the content of a file whose
@@ -67,7 +67,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      *           Format: {secret} if the secret is in the same project.
      *           projects/{project}/secrets/{secret} if the secret is
      *           in a different project.
-     *     @type array<\Google\Cloud\Run\V2\VersionToPath>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Run\V2\VersionToPath[] $items
      *           If unspecified, the volume will expose a file whose name is the
      *           secret, relative to VolumeMount.mount_path + VolumeMount.sub_path.
      *           If specified, the key will be used as the version to fetch from Cloud
@@ -135,7 +135,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      * volume. When items are defined, they must specify a path and a version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VersionToPath items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\VersionToPath>
      */
     public function getItems()
     {
@@ -150,7 +150,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      * volume. When items are defined, they must specify a path and a version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VersionToPath items = 2;</code>
-     * @param array<\Google\Cloud\Run\V2\VersionToPath>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\VersionToPath[] $var
      * @return $this
      */
     public function setItems($var)

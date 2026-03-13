@@ -5,8 +5,8 @@
 namespace Google\Cloud\Profiler\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListProfileResponse contains the list of collected profiles for deployments
@@ -45,7 +45,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Profiler\V2\Profile>|\Google\Protobuf\Internal\RepeatedField $profiles
+     *     @type \Google\Cloud\Profiler\V2\Profile[] $profiles
      *           List of profiles fetched.
      *     @type string $next_page_token
      *           Token to receive the next page of results.
@@ -66,7 +66,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      * List of profiles fetched.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudprofiler.v2.Profile profiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Profiler\V2\Profile>
      */
     public function getProfiles()
     {
@@ -77,7 +77,7 @@ class ListProfilesResponse extends \Google\Protobuf\Internal\Message
      * List of profiles fetched.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudprofiler.v2.Profile profiles = 1;</code>
-     * @param array<\Google\Cloud\Profiler\V2\Profile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Profiler\V2\Profile[] $var
      * @return $this
      */
     public function setProfiles($var)

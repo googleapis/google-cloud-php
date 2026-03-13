@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event representing that the policy bindings made by this grant were
@@ -31,5 +31,4 @@ class ExternallyModified extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\TransactionData;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structured address format for billing and shipping addresses.
@@ -65,7 +65,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type string $recipient
      *           Optional. The recipient name, potentially including information such as
      *           "care of".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $address
+     *     @type string[] $address
      *           Optional. The first lines of the address. The first line generally
      *           contains the street name and number, and further lines may include
      *           information such as an apartment number.
@@ -119,7 +119,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * information such as an apartment number.
      *
      * Generated from protobuf field <code>repeated string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAddress()
     {
@@ -132,7 +132,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * information such as an apartment number.
      *
      * Generated from protobuf field <code>repeated string address = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAddress($var)
@@ -250,5 +250,4 @@ class Address extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Model;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an ordered combination of valid serving configs, which
@@ -30,7 +30,7 @@ class ServingConfigList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $serving_config_ids
+     *     @type string[] $serving_config_ids
      *           Optional. A set of valid serving configs that may be used for
      *           `PAGE_OPTIMIZATION`.
      * }
@@ -45,7 +45,7 @@ class ServingConfigList extends \Google\Protobuf\Internal\Message
      * `PAGE_OPTIMIZATION`.
      *
      * Generated from protobuf field <code>repeated string serving_config_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServingConfigIds()
     {
@@ -57,7 +57,7 @@ class ServingConfigList extends \Google\Protobuf\Internal\Message
      * `PAGE_OPTIMIZATION`.
      *
      * Generated from protobuf field <code>repeated string serving_config_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServingConfigIds($var)
@@ -69,5 +69,4 @@ class ServingConfigList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The detailed quota information such as effective quota value for a
@@ -64,7 +64,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
      *           name.
      *     @type \Google\Cloud\CloudQuotas\V1beta\QuotaDetails $details
      *           Quota details for the specified dimensions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_locations
+     *     @type string[] $applicable_locations
      *           The applicable regions or zones of this dimension. The field is
      *           set to ['global'] for quotas that are not per region or per zone.
      *           Otherwise, it will be set to the list of locations this dimension info is
@@ -161,7 +161,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
      * applicable to.
      *
      * Generated from protobuf field <code>repeated string applicable_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableLocations()
     {
@@ -175,7 +175,7 @@ class DimensionsInfo extends \Google\Protobuf\Internal\Message
      * applicable to.
      *
      * Generated from protobuf field <code>repeated string applicable_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableLocations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FraudSignals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Signals describing the user involved in this transaction.
@@ -110,5 +110,4 @@ class UserSignals extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

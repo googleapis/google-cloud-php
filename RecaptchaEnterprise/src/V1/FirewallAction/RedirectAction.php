@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FirewallAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A redirect action returns a 307 (temporary redirect) response, pointing
@@ -31,5 +31,4 @@ class RedirectAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

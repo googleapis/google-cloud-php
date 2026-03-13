@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivateCatalog\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The readonly representation of a product computed with a given resource
@@ -70,7 +70,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -118,7 +118,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -130,7 +130,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *   signup_url:
      *     type: string
      *     pattern:
-     *     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      * required:
      * - name
      * - description
@@ -171,7 +171,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -266,7 +266,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *                   url:
      *                     type: string
      *                     pattern:
-     *                     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *                     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *                   title:
      *                     type: string
      *                     minLength: 1
@@ -314,7 +314,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *                   url:
      *                     type: string
      *                     pattern:
-     *                     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *                     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *                   title:
      *                     type: string
      *                     minLength: 1
@@ -326,7 +326,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *             signup_url:
      *               type: string
      *               pattern:
-     *               "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *               "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *           required:
      *           - name
      *           - description
@@ -367,7 +367,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *                   url:
      *                     type: string
      *                     pattern:
-     *                     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *                     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *                   title:
      *                     type: string
      *                     minLength: 1
@@ -382,7 +382,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           additionalProperties: true
      *     @type string $icon_uri
      *           Output only. The icon URI of the product.
-     *     @type array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $asset_references
+     *     @type \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[] $asset_references
      *           Output only. A collection of assets referred by a product.
      *           This field is set for Terraform Products only.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -495,7 +495,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -543,7 +543,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -555,7 +555,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *   signup_url:
      *     type: string
      *     pattern:
-     *     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      * required:
      * - name
      * - description
@@ -596,7 +596,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -665,7 +665,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -713,7 +713,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -725,7 +725,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *   signup_url:
      *     type: string
      *     pattern:
-     *     "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *     "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      * required:
      * - name
      * - description
@@ -766,7 +766,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *         url:
      *           type: string
      *           pattern:
-     *           "^(https?)://[-a-zA-Z0-9+&&#64;#/%?=~_|!:,.;]*[-a-zA-Z0-9+&&#64;#/%=~_|]"
+     *           "^(https?)://[-a-zA-Z0-9+&\@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&\@#/%=~_|]"
      *         title:
      *           type: string
      *           minLength: 1
@@ -823,7 +823,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This field is set for Terraform Products only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.AssetReference asset_references = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>
      */
     public function getAssetReferences()
     {
@@ -835,7 +835,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This field is set for Terraform Products only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.AssetReference asset_references = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[] $var
      * @return $this
      */
     public function setAssetReferences($var)

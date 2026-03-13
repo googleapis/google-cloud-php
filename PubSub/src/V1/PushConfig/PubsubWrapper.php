@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\PushConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The payload to the push endpoint is in the form of the JSON representation
@@ -32,5 +32,4 @@ class PubsubWrapper extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

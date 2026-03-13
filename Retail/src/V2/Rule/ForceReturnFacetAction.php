@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Force returns an attribute/facet in the request around a certain position
@@ -50,7 +50,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment>|\Google\Protobuf\Internal\RepeatedField $facet_position_adjustments
+     *     @type \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment[] $facet_position_adjustments
      *           Each instance corresponds to a force return attribute for the given
      *           condition. There can't be more 15 instances here.
      * }
@@ -65,7 +65,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
      * condition. There can't be more 15 instances here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment facet_position_adjustments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment>
      */
     public function getFacetPositionAdjustments()
     {
@@ -77,7 +77,7 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
      * condition. There can't be more 15 instances here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Rule.ForceReturnFacetAction.FacetPositionAdjustment facet_position_adjustments = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction\FacetPositionAdjustment[] $var
      * @return $this
      */
     public function setFacetPositionAdjustments($var)
@@ -89,5 +89,4 @@ class ForceReturnFacetAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Condition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used for time-dependent conditions.
@@ -119,5 +119,4 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

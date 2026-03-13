@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prevents `query_term` from being associated with specified terms during
@@ -45,14 +45,14 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_terms
+     *     @type string[] $query_terms
      *           Terms from the search query.
      *           Will not consider do_not_associate_terms for search if in search query.
      *           Can specify up to 100 terms.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $do_not_associate_terms
+     *     @type string[] $do_not_associate_terms
      *           Cannot contain duplicates or the query term.
      *           Can specify up to 100 terms.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $terms
+     *     @type string[] $terms
      *           Will be [deprecated = true] post migration;
      * }
      */
@@ -67,7 +67,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryTerms()
     {
@@ -80,7 +80,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryTerms($var)
@@ -96,7 +96,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string do_not_associate_terms = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDoNotAssociateTerms()
     {
@@ -108,7 +108,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string do_not_associate_terms = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDoNotAssociateTerms($var)
@@ -123,7 +123,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Will be [deprecated = true] post migration;
      *
      * Generated from protobuf field <code>repeated string terms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTerms()
     {
@@ -134,7 +134,7 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
      * Will be [deprecated = true] post migration;
      *
      * Generated from protobuf field <code>repeated string terms = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTerms($var)
@@ -146,5 +146,4 @@ class DoNotAssociateAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

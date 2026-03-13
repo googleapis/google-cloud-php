@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Service acts as a top-level container that manages a set of
@@ -412,7 +412,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Optional. Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\RevisionTemplate $template
      *           Required. The template used to create revisions for this Service.
-     *     @type array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $traffic
+     *     @type \Google\Cloud\Run\V2\TrafficTarget[] $traffic
      *           Optional. Specifies how to distribute traffic over a collection of
      *           Revisions belonging to the Service. If traffic is empty or not provided,
      *           defaults to 100% traffic to the latest `Ready` Revision.
@@ -424,13 +424,13 @@ class Service extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      *     @type bool $default_uri_disabled
      *           Optional. Disables public resolution of the default URI of this service.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
+     *     @type string[] $urls
      *           Output only. All URLs serving traffic for this Service.
      *     @type bool $iap_enabled
      *           Optional. IAP settings on the Service.
      *     @type \Google\Cloud\Run\V2\Service\MultiRegionSettings $multi_region_settings
      *           Optional. Settings for multi-region deployment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
+     *     @type string[] $custom_audiences
      *           One or more custom audiences that you want this service to support. Specify
      *           each custom audience as the full URL in a string. The custom audiences are
      *           encoded in the token and used to authenticate requests. For more
@@ -447,7 +447,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           status, and detailed error information in case it did not reach a serving
      *           state. See comments in `reconciling` for additional information on
      *           reconciliation process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Run\V2\Condition[] $conditions
      *           Output only. The Conditions of all other associated sub-resources. They
      *           contain additional diagnostics information in case the Service does not
      *           reach its Serving state. See comments in `reconciling` for additional
@@ -460,7 +460,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Output only. Name of the last created revision. See comments in
      *           `reconciling` for additional information on reconciliation process in Cloud
      *           Run.
-     *     @type array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $traffic_statuses
+     *     @type \Google\Cloud\Run\V2\TrafficTargetStatus[] $traffic_statuses
      *           Output only. Detailed status information for corresponding traffic targets.
      *           See comments in `reconciling` for additional information on reconciliation
      *           process in Cloud Run.
@@ -1115,7 +1115,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * defaults to 100% traffic to the latest `Ready` Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\TrafficTarget>
      */
     public function getTraffic()
     {
@@ -1128,7 +1128,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * defaults to 100% traffic to the latest `Ready` Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTarget traffic = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Run\V2\TrafficTarget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\TrafficTarget[] $var
      * @return $this
      */
     public function setTraffic($var)
@@ -1235,7 +1235,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Output only. All URLs serving traffic for this Service.
      *
      * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUrls()
     {
@@ -1246,7 +1246,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * Output only. All URLs serving traffic for this Service.
      *
      * Generated from protobuf field <code>repeated string urls = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUrls($var)
@@ -1327,7 +1327,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/run/docs/configuring/custom-audiences.
      *
      * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomAudiences()
     {
@@ -1342,7 +1342,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/run/docs/configuring/custom-audiences.
      *
      * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomAudiences($var)
@@ -1436,7 +1436,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Condition>
      */
     public function getConditions()
     {
@@ -1450,7 +1450,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Condition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -1527,7 +1527,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\TrafficTargetStatus>
      */
     public function getTrafficStatuses()
     {
@@ -1540,7 +1540,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.TrafficTargetStatus traffic_statuses = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\TrafficTargetStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\TrafficTargetStatus[] $var
      * @return $this
      */
     public function setTrafficStatuses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CompleteQueryResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource that represents attribute results.
@@ -28,7 +28,7 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $suggestions
+     *     @type string[] $suggestions
      *           The list of suggestions for the attribute.
      * }
      */
@@ -41,7 +41,7 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
      * The list of suggestions for the attribute.
      *
      * Generated from protobuf field <code>repeated string suggestions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSuggestions()
     {
@@ -52,7 +52,7 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
      * The list of suggestions for the attribute.
      *
      * Generated from protobuf field <code>repeated string suggestions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSuggestions($var)
@@ -64,5 +64,4 @@ class AttributeResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

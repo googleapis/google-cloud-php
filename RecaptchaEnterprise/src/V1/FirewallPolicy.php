@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A FirewallPolicy represents a single matching pattern and resulting actions
@@ -94,7 +94,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *           and its [language
      *           definition](https://github.com/google/cel-spec/blob/master/doc/langdef.md).
      *           A condition has a max length of 500 characters.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallAction>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction[] $actions
      *           Optional. The actions that the caller should take regarding user access.
      *           There should be at most one terminal action. A terminal action is any
      *           action that forces a response, such as `AllowAction`,
@@ -249,7 +249,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * specified. A single policy can contain up to 16 actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\FirewallAction>
      */
     public function getActions()
     {
@@ -265,7 +265,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      * specified. A single policy can contain up to 16 actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FirewallAction actions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\FirewallAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FirewallAction[] $var
      * @return $this
      */
     public function setActions($var)

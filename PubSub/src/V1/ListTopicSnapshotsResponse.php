@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListTopicSnapshots` method.
@@ -36,7 +36,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type string[] $snapshots
      *           Optional. The names of the snapshots that match the request.
      *     @type string $next_page_token
      *           Optional. If not empty, indicates that there may be more snapshots that
@@ -53,7 +53,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The names of the snapshots that match the request.
      *
      * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSnapshots()
     {
@@ -64,7 +64,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The names of the snapshots that match the request.
      *
      * Generated from protobuf field <code>repeated string snapshots = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSnapshots($var)

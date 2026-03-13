@@ -5,8 +5,8 @@
 namespace Google\Cloud\Profiler\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CreateProfileRequest describes a profile resource online creation request.
@@ -47,7 +47,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      *           Parent project to create the profile in.
      *     @type \Google\Cloud\Profiler\V2\Deployment $deployment
      *           Deployment details.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $profile_type
+     *     @type int[] $profile_type
      *           One or more profile types that the agent is capable of providing.
      * }
      */
@@ -122,7 +122,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * One or more profile types that the agent is capable of providing.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudprofiler.v2.ProfileType profile_type = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getProfileType()
     {
@@ -133,7 +133,7 @@ class CreateProfileRequest extends \Google\Protobuf\Internal\Message
      * One or more profile types that the agent is capable of providing.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudprofiler.v2.ProfileType profile_type = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setProfileType($var)

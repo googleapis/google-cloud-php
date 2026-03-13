@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Maintenance policy for an instance.
@@ -56,7 +56,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of what this policy is for. Create/Update methods
      *           return INVALID_ARGUMENT if the length is greater than 512.
-     *     @type array<\Google\Cloud\Redis\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $weekly_maintenance_window
+     *     @type \Google\Cloud\Redis\V1\WeeklyMaintenanceWindow[] $weekly_maintenance_window
      *           Optional. Maintenance window that is applied to resources covered by this
      *           policy. Minimum 1. For the current version, the maximum number of
      *           weekly_window is expected to be one.
@@ -173,7 +173,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.WeeklyMaintenanceWindow weekly_maintenance_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\V1\WeeklyMaintenanceWindow>
      */
     public function getWeeklyMaintenanceWindow()
     {
@@ -186,7 +186,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.WeeklyMaintenanceWindow weekly_maintenance_window = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Redis\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\V1\WeeklyMaintenanceWindow[] $var
      * @return $this
      */
     public function setWeeklyMaintenanceWindow($var)

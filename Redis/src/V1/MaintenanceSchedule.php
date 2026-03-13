@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Upcoming maintenance schedule. If no maintenance is scheduled, fields are not

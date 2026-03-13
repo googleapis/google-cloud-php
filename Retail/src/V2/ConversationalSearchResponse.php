@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -85,7 +85,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_query_types
+     *     @type string[] $user_query_types
      *           The types Retail classifies the search query as.
      *           Supported values are:
      *           - "ORDER_SUPPORT"
@@ -109,7 +109,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      *           search request's
      *           [ConversationalSearchRequest.conversation_id][google.cloud.retail.v2.ConversationalSearchRequest.conversation_id]
      *           to restore conversation state in server.
-     *     @type array<\Google\Cloud\Retail\V2\ConversationalSearchResponse\RefinedSearch>|\Google\Protobuf\Internal\RepeatedField $refined_search
+     *     @type \Google\Cloud\Retail\V2\ConversationalSearchResponse\RefinedSearch[] $refined_search
      *           The proposed refined search queries. They can be used to fetch the relevant
      *           search results. When using CONVERSATIONAL_FILTER_ONLY mode, the
      *           refined_query from search response will be populated here.
@@ -141,7 +141,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      * - "DISABLED"
      *
      * Generated from protobuf field <code>repeated string user_query_types = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUserQueryTypes()
     {
@@ -164,7 +164,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      * - "DISABLED"
      *
      * Generated from protobuf field <code>repeated string user_query_types = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUserQueryTypes($var)
@@ -277,7 +277,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      * refined_query from search response will be populated here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ConversationalSearchResponse.RefinedSearch refined_search = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\ConversationalSearchResponse\RefinedSearch>
      */
     public function getRefinedSearch()
     {
@@ -290,7 +290,7 @@ class ConversationalSearchResponse extends \Google\Protobuf\Internal\Message
      * refined_query from search response will be populated here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ConversationalSearchResponse.RefinedSearch refined_search = 6;</code>
-     * @param array<\Google\Cloud\Retail\V2\ConversationalSearchResponse\RefinedSearch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\ConversationalSearchResponse\RefinedSearch[] $var
      * @return $this
      */
     public function setRefinedSearch($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents additional information about the state of the cluster.
@@ -72,5 +72,4 @@ class StateInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

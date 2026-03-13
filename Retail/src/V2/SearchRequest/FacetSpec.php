@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A facet specification to perform faceted search.
@@ -98,7 +98,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *           unspecified, defaults to 50. The maximum allowed value is 300. Values
      *           above 300 will be coerced to 300.
      *           If this field is negative, an INVALID_ARGUMENT is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_filter_keys
+     *     @type string[] $excluded_filter_keys
      *           List of keys to exclude when faceting.
      *           By default,
      *           [FacetKey.key][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.key]
@@ -244,7 +244,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>repeated string excluded_filter_keys = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedFilterKeys()
     {
@@ -276,7 +276,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * is returned.
      *
      * Generated from protobuf field <code>repeated string excluded_filter_keys = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedFilterKeys($var)
@@ -356,5 +356,4 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

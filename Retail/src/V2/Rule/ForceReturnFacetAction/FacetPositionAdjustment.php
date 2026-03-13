@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule\ForceReturnFacetAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each facet position adjustment consists of a single attribute name (i.e.
@@ -111,5 +111,4 @@ class FacetPositionAdjustment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

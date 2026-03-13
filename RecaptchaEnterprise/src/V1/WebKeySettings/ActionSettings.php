@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\WebKeySettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Per-action challenge settings.
@@ -68,5 +68,4 @@ class ActionSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

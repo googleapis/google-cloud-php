@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\ConversationalSearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies all related information that is needed on client
@@ -135,5 +135,4 @@ class ConversationalFilteringResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

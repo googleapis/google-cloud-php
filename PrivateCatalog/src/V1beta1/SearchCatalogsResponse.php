@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivateCatalog\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [PrivateCatalog.SearchCatalogs][google.cloud.privatecatalog.v1beta1.PrivateCatalog.SearchCatalogs].
@@ -35,7 +35,7 @@ class SearchCatalogsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PrivateCatalog\V1beta1\Catalog>|\Google\Protobuf\Internal\RepeatedField $catalogs
+     *     @type \Google\Cloud\PrivateCatalog\V1beta1\Catalog[] $catalogs
      *           The `Catalog`s computed from the resource context.
      *     @type string $next_page_token
      *           A pagination token returned from a previous call to SearchCatalogs that
@@ -51,7 +51,7 @@ class SearchCatalogsResponse extends \Google\Protobuf\Internal\Message
      * The `Catalog`s computed from the resource context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.Catalog catalogs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivateCatalog\V1beta1\Catalog>
      */
     public function getCatalogs()
     {
@@ -62,7 +62,7 @@ class SearchCatalogsResponse extends \Google\Protobuf\Internal\Message
      * The `Catalog`s computed from the resource context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.Catalog catalogs = 1;</code>
-     * @param array<\Google\Cloud\PrivateCatalog\V1beta1\Catalog>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivateCatalog\V1beta1\Catalog[] $var
      * @return $this
      */
     public function setCatalogs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1\AutomatedBackupConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This schedule allows the backup to be triggered at a fixed frequency
@@ -79,5 +79,4 @@ class FixedFrequencySchedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

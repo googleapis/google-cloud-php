@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListOrgPolicyViolationsResponse is the response message for
@@ -36,7 +36,7 @@ class ListOrgPolicyViolationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolation>|\Google\Protobuf\Internal\RepeatedField $org_policy_violations
+     *     @type \Google\Cloud\PolicySimulator\V1\OrgPolicyViolation[] $org_policy_violations
      *           The list of OrgPolicyViolations
      *     @type string $next_page_token
      *           A token that you can use to retrieve the next page of results.
@@ -52,7 +52,7 @@ class ListOrgPolicyViolationsResponse extends \Google\Protobuf\Internal\Message
      * The list of OrgPolicyViolations
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyViolation org_policy_violations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolation>
      */
     public function getOrgPolicyViolations()
     {
@@ -63,7 +63,7 @@ class ListOrgPolicyViolationsResponse extends \Google\Protobuf\Internal\Message
      * The list of OrgPolicyViolations
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyViolation org_policy_violations = 1;</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\OrgPolicyViolation[] $var
      * @return $this
      */
     public function setOrgPolicyViolations($var)

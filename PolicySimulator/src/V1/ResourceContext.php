@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceContext provides the context we know about a resource.
@@ -68,7 +68,7 @@ class ResourceContext extends \Google\Protobuf\Internal\Message
      *           See [Supported asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *           for more information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *     @type string[] $ancestors
      *           The ancestry path of the resource in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      *           represented as a list of relative resource names. An ancestry path starts
@@ -161,7 +161,7 @@ class ResourceContext extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAncestors()
     {
@@ -178,7 +178,7 @@ class ResourceContext extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAncestors($var)

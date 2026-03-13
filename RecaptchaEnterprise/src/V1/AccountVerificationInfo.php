@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about account verification, used for identity verification.
@@ -49,7 +49,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo[] $endpoints
      *           Optional. Endpoints that can be used for identity verification.
      *     @type string $language_code
      *           Optional. Language code preference for the verification message, set as a
@@ -70,7 +70,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints that can be used for identity verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo>
      */
     public function getEndpoints()
     {
@@ -81,7 +81,7 @@ class AccountVerificationInfo extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints that can be used for identity verification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.EndpointVerificationInfo endpoints = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\EndpointVerificationInfo[] $var
      * @return $this
      */
     public function setEndpoints($var)

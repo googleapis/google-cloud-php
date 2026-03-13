@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for BatchUpdateGenerativeQuestionConfig method.
@@ -54,7 +54,7 @@ class BatchUpdateGenerativeQuestionConfigsRequest extends \Google\Protobuf\Inter
      *     @type string $parent
      *           Optional. Resource name of the parent catalog.
      *           Format: projects/{project}/locations/{location}/catalogs/{catalog}
-     *     @type array<\Google\Cloud\Retail\V2\UpdateGenerativeQuestionConfigRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\Retail\V2\UpdateGenerativeQuestionConfigRequest[] $requests
      *           Required. The updates question configs.
      * }
      */
@@ -95,7 +95,7 @@ class BatchUpdateGenerativeQuestionConfigsRequest extends \Google\Protobuf\Inter
      * Required. The updates question configs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.UpdateGenerativeQuestionConfigRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\UpdateGenerativeQuestionConfigRequest>
      */
     public function getRequests()
     {
@@ -106,7 +106,7 @@ class BatchUpdateGenerativeQuestionConfigsRequest extends \Google\Protobuf\Inter
      * Required. The updates question configs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.UpdateGenerativeQuestionConfigRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Retail\V2\UpdateGenerativeQuestionConfigRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\UpdateGenerativeQuestionConfigRequest[] $var
      * @return $this
      */
     public function setRequests($var)
