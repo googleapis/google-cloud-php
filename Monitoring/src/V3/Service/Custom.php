@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Use a custom service to designate a service that you want to monitor
@@ -32,5 +32,4 @@ class Custom extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ActiveDirectory is the public representation of the active directory config.
@@ -190,12 +190,12 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      *           Required. Username of the Active Directory domain administrator.
      *     @type string $password
      *           Required. Password of the Active Directory domain administrator.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_operators
+     *     @type string[] $backup_operators
      *           Optional. Users to be added to the Built-in Backup Operator active
      *           directory group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $administrators
+     *     @type string[] $administrators
      *           Optional. Users to be added to the Built-in Admininstrators group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_operators
+     *     @type string[] $security_operators
      *           Optional. Domain users to be given the SeSecurityPrivilege.
      *     @type string $kdc_hostname
      *           Name of the active directory machine. This optional parameter is used only
@@ -534,7 +534,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * directory group.
      *
      * Generated from protobuf field <code>repeated string backup_operators = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBackupOperators()
     {
@@ -546,7 +546,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * directory group.
      *
      * Generated from protobuf field <code>repeated string backup_operators = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBackupOperators($var)
@@ -561,7 +561,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the Built-in Admininstrators group.
      *
      * Generated from protobuf field <code>repeated string administrators = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdministrators()
     {
@@ -572,7 +572,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the Built-in Admininstrators group.
      *
      * Generated from protobuf field <code>repeated string administrators = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdministrators($var)
@@ -587,7 +587,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * Optional. Domain users to be given the SeSecurityPrivilege.
      *
      * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecurityOperators()
     {
@@ -598,7 +598,7 @@ class ActiveDirectory extends \Google\Protobuf\Internal\Message
      * Optional. Domain users to be given the SeSecurityPrivilege.
      *
      * Generated from protobuf field <code>repeated string security_operators = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecurityOperators($var)

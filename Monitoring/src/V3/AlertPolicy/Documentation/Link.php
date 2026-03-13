@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Documentation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Links to content such as playbooks, repositories, and other resources.
@@ -118,5 +118,4 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

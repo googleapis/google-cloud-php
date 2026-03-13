@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListNotificationChannelDescriptors` response.
@@ -38,7 +38,7 @@ class ListNotificationChannelDescriptorsResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\NotificationChannelDescriptor>|\Google\Protobuf\Internal\RepeatedField $channel_descriptors
+     *     @type \Google\Cloud\Monitoring\V3\NotificationChannelDescriptor[] $channel_descriptors
      *           The monitored resource descriptors supported for the specified
      *           project, optionally filtered.
      *     @type string $next_page_token
@@ -58,7 +58,7 @@ class ListNotificationChannelDescriptorsResponse extends \Google\Protobuf\Intern
      * project, optionally filtered.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.NotificationChannelDescriptor channel_descriptors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\NotificationChannelDescriptor>
      */
     public function getChannelDescriptors()
     {
@@ -70,7 +70,7 @@ class ListNotificationChannelDescriptorsResponse extends \Google\Protobuf\Intern
      * project, optionally filtered.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.NotificationChannelDescriptor channel_descriptors = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\NotificationChannelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\NotificationChannelDescriptor[] $var
      * @return $this
      */
     public function setChannelDescriptors($var)

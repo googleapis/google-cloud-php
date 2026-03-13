@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Documentation that is included in the notifications and incidents
@@ -88,7 +88,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *           variables](https://cloud.google.com/monitoring/alerts/doc-variables#doc-vars).
      *           If this field is missing or empty, a default subject line will be
      *           generated.
-     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link[] $links
      *           Optional. Links to content such as playbooks, repositories, and other
      *           resources. This field can contain up to 3 entries.
      * }
@@ -215,7 +215,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * resources. This field can contain up to 3 entries.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Documentation.Link links = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link>
      */
     public function getLinks()
     {
@@ -227,7 +227,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * resources. This field can contain up to 3 entries.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Documentation.Link links = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation\Link[] $var
      * @return $this
      */
     public function setLinks($var)
@@ -239,5 +239,4 @@ class Documentation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sensitive Data Protection Inspection Result.
@@ -65,7 +65,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      *     @type int $execution_state
      *           Output only. Reports whether Sensitive Data Protection inspection was
      *           successfully executed or not.
-     *     @type array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $message_items
+     *     @type \Google\Cloud\ModelArmor\V1\MessageItem[] $message_items
      *           Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution state is skipped then this field provides
@@ -74,7 +74,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      *           Output only. Match state for SDP Inspection.
      *           Value is MATCH_FOUND if at least one Sensitive Data Protection finding is
      *           identified.
-     *     @type array<\Google\Cloud\ModelArmor\V1\SdpFinding>|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type \Google\Cloud\ModelArmor\V1\SdpFinding[] $findings
      *           List of Sensitive Data Protection findings.
      *     @type bool $findings_truncated
      *           If true, then there is possibility that more findings were identified and
@@ -124,7 +124,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\MessageItem>
      */
     public function getMessageItems()
     {
@@ -138,7 +138,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\MessageItem[] $var
      * @return $this
      */
     public function setMessageItems($var)
@@ -183,7 +183,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      * List of Sensitive Data Protection findings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\SdpFinding>
      */
     public function getFindings()
     {
@@ -194,7 +194,7 @@ class SdpInspectResult extends \Google\Protobuf\Internal\Message
      * List of Sensitive Data Protection findings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.SdpFinding findings = 4;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\SdpFinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\SdpFinding[] $var
      * @return $this
      */
     public function setFindings($var)

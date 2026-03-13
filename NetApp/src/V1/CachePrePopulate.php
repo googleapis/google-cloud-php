@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pre-populate cache volume with data from the origin volume.
@@ -43,10 +43,10 @@ class CachePrePopulate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $path_list
+     *     @type string[] $path_list
      *           Optional. List of directory-paths to be pre-populated for the FlexCache
      *           volume.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_path_list
+     *     @type string[] $exclude_path_list
      *           Optional. List of directory-paths to be excluded for pre-population for the
      *           FlexCache volume.
      *     @type bool $recursion
@@ -64,7 +64,7 @@ class CachePrePopulate extends \Google\Protobuf\Internal\Message
      * volume.
      *
      * Generated from protobuf field <code>repeated string path_list = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPathList()
     {
@@ -76,7 +76,7 @@ class CachePrePopulate extends \Google\Protobuf\Internal\Message
      * volume.
      *
      * Generated from protobuf field <code>repeated string path_list = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPathList($var)
@@ -92,7 +92,7 @@ class CachePrePopulate extends \Google\Protobuf\Internal\Message
      * FlexCache volume.
      *
      * Generated from protobuf field <code>repeated string exclude_path_list = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludePathList()
     {
@@ -104,7 +104,7 @@ class CachePrePopulate extends \Google\Protobuf\Internal\Message
      * FlexCache volume.
      *
      * Generated from protobuf field <code>repeated string exclude_path_list = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludePathList($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Responsible AI Result.
@@ -56,7 +56,7 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
      *     @type int $execution_state
      *           Output only. Reports whether the RAI filter was successfully executed or
      *           not.
-     *     @type array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $message_items
+     *     @type \Google\Cloud\ModelArmor\V1\MessageItem[] $message_items
      *           Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution state is skipped then this field provides
@@ -110,7 +110,7 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\MessageItem>
      */
     public function getMessageItems()
     {
@@ -124,7 +124,7 @@ class RaiFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\MessageItem[] $var
      * @return $this
      */
     public function setMessageItems($var)

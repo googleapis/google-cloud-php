@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about locations
@@ -28,7 +28,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $location_features
+     *     @type int[] $location_features
      *           List of supported features
      * }
      */
@@ -41,7 +41,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * List of supported features
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.LocationFeature location_features = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLocationFeatures()
     {
@@ -52,7 +52,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * List of supported features
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.LocationFeature location_features = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLocationFeatures($var)

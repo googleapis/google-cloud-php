@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cache Parameters for the volume.
@@ -97,7 +97,7 @@ class CacheParameters extends \Google\Protobuf\Internal\Message
      *           Required. Name of the origin volume's ONTAP cluster.
      *     @type string $peer_svm_name
      *           Required. Name of the origin volume's SVM.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $peer_ip_addresses
+     *     @type string[] $peer_ip_addresses
      *           Required. List of IC LIF addresses of the origin volume's ONTAP cluster.
      *     @type bool $enable_global_file_lock
      *           Optional. Indicates whether the cache volume has global file lock enabled.
@@ -205,7 +205,7 @@ class CacheParameters extends \Google\Protobuf\Internal\Message
      * Required. List of IC LIF addresses of the origin volume's ONTAP cluster.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPeerIpAddresses()
     {
@@ -216,7 +216,7 @@ class CacheParameters extends \Google\Protobuf\Internal\Message
      * Required. List of IC LIF addresses of the origin volume's ONTAP cluster.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPeerIpAddresses($var)

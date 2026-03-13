@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Maintenance window as defined by Oracle.
@@ -94,16 +94,16 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *
      *     @type int $preference
      *           Optional. The maintenance window scheduling preference.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $months
+     *     @type int[] $months
      *           Optional. Months during the year when maintenance should be performed.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $weeks_of_month
+     *     @type int[] $weeks_of_month
      *           Optional. Weeks during the month when maintenance should be performed.
      *           Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a
      *           duration of 7 days. Weeks start and end based on calendar dates, not days
      *           of the week.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_week
+     *     @type int[] $days_of_week
      *           Optional. Days during the week when maintenance should be performed.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $hours_of_day
+     *     @type int[] $hours_of_day
      *           Optional. The window of hours during the day when maintenance should be
      *           performed. The window is a 4 hour slot. Valid values are:
      *             0 - represents time slot 0:00 - 3:59 UTC
@@ -162,7 +162,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Optional. Months during the year when maintenance should be performed.
      *
      * Generated from protobuf field <code>repeated .google.type.Month months = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMonths()
     {
@@ -173,7 +173,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Optional. Months during the year when maintenance should be performed.
      *
      * Generated from protobuf field <code>repeated .google.type.Month months = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMonths($var)
@@ -191,7 +191,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * of the week.
      *
      * Generated from protobuf field <code>repeated int32 weeks_of_month = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getWeeksOfMonth()
     {
@@ -205,7 +205,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * of the week.
      *
      * Generated from protobuf field <code>repeated int32 weeks_of_month = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setWeeksOfMonth($var)
@@ -220,7 +220,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Optional. Days during the week when maintenance should be performed.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfWeek()
     {
@@ -231,7 +231,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      * Optional. Days during the week when maintenance should be performed.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfWeek($var)
@@ -253,7 +253,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *   20 - represents time slot 20:00 - 23:59 UTC
      *
      * Generated from protobuf field <code>repeated int32 hours_of_day = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getHoursOfDay()
     {
@@ -271,7 +271,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      *   20 - represents time slot 20:00 - 23:59 UTC
      *
      * Generated from protobuf field <code>repeated int32 hours_of_day = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setHoursOfDay($var)

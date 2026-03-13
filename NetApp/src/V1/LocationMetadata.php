@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for a given
@@ -47,9 +47,9 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_service_levels
+     *     @type int[] $supported_service_levels
      *           Output only. Supported service levels in a location.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_flex_performance
+     *     @type int[] $supported_flex_performance
      *           Output only. Supported flex performance in a location.
      *     @type bool $has_vcp
      *           Output only. Indicates if the location has VCP support.
@@ -66,7 +66,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Supported service levels in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.ServiceLevel supported_service_levels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedServiceLevels()
     {
@@ -77,7 +77,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Supported service levels in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.ServiceLevel supported_service_levels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedServiceLevels($var)
@@ -92,7 +92,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Supported flex performance in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.FlexPerformance supported_flex_performance = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedFlexPerformance()
     {
@@ -103,7 +103,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Supported flex performance in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.FlexPerformance supported_flex_performance = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedFlexPerformance($var)

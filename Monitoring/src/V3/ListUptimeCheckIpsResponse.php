@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The protocol for the `ListUptimeCheckIps` response.
@@ -40,7 +40,7 @@ class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\UptimeCheckIp>|\Google\Protobuf\Internal\RepeatedField $uptime_check_ips
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckIp[] $uptime_check_ips
      *           The returned list of IP addresses (including region and location) that the
      *           checkers run from.
      *     @type string $next_page_token
@@ -62,7 +62,7 @@ class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
      * checkers run from.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckIp uptime_check_ips = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\UptimeCheckIp>
      */
     public function getUptimeCheckIps()
     {
@@ -74,7 +74,7 @@ class ListUptimeCheckIpsResponse extends \Google\Protobuf\Internal\Message
      * checkers run from.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckIp uptime_check_ips = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\UptimeCheckIp>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckIp[] $var
      * @return $this
      */
     public function setUptimeCheckIps($var)

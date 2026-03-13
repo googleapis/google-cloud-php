@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `SearchVehicles` response message.
@@ -29,7 +29,7 @@ class SearchVehiclesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleMatch>|\Google\Protobuf\Internal\RepeatedField $matches
+     *     @type \Google\Maps\FleetEngine\V1\VehicleMatch[] $matches
      *           List of vehicles that match the `SearchVehiclesRequest` criteria, ordered
      *           according to `SearchVehiclesRequest.order_by` field.
      * }
@@ -44,7 +44,7 @@ class SearchVehiclesResponse extends \Google\Protobuf\Internal\Message
      * according to `SearchVehiclesRequest.order_by` field.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleMatch matches = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleMatch>
      */
     public function getMatches()
     {
@@ -56,7 +56,7 @@ class SearchVehiclesResponse extends \Google\Protobuf\Internal\Message
      * according to `SearchVehiclesRequest.order_by` field.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleMatch matches = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleMatch[] $var
      * @return $this
      */
     public function setMatches($var)

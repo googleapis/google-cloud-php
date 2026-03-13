@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties of a DbSystem initial storage size summary.
@@ -51,9 +51,9 @@ class DbSystemInitialStorageSizeProperties extends \Google\Protobuf\Internal\Mes
      *           Output only. The storage option used in DB system.
      *     @type int $shape_type
      *           Output only. VM shape platform type
-     *     @type array<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>|\Google\Protobuf\Internal\RepeatedField $storage_size_details
+     *     @type \Google\Cloud\OracleDatabase\V1\StorageSizeDetails[] $storage_size_details
      *           Output only. List of storage disk details.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>|\Google\Protobuf\Internal\RepeatedField $launch_from_backup_storage_size_details
+     *     @type \Google\Cloud\OracleDatabase\V1\StorageSizeDetails[] $launch_from_backup_storage_size_details
      *           Output only. List of storage disk details available for launches from
      *           backup.
      * }
@@ -119,7 +119,7 @@ class DbSystemInitialStorageSizeProperties extends \Google\Protobuf\Internal\Mes
      * Output only. List of storage disk details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.StorageSizeDetails storage_size_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>
      */
     public function getStorageSizeDetails()
     {
@@ -130,7 +130,7 @@ class DbSystemInitialStorageSizeProperties extends \Google\Protobuf\Internal\Mes
      * Output only. List of storage disk details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.StorageSizeDetails storage_size_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\StorageSizeDetails[] $var
      * @return $this
      */
     public function setStorageSizeDetails($var)
@@ -146,7 +146,7 @@ class DbSystemInitialStorageSizeProperties extends \Google\Protobuf\Internal\Mes
      * backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.StorageSizeDetails launch_from_backup_storage_size_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>
      */
     public function getLaunchFromBackupStorageSizeDetails()
     {
@@ -158,7 +158,7 @@ class DbSystemInitialStorageSizeProperties extends \Google\Protobuf\Internal\Mes
      * backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.StorageSizeDetails launch_from_backup_storage_size_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\StorageSizeDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\StorageSizeDetails[] $var
      * @return $this
      */
     public function setLaunchFromBackupStorageSizeDetails($var)

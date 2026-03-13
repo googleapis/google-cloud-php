@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SearchTrips response message.
@@ -36,7 +36,7 @@ class SearchTripsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\V1\Trip>|\Google\Protobuf\Internal\RepeatedField $trips
+     *     @type \Google\Maps\FleetEngine\V1\Trip[] $trips
      *           The list of trips for the requested vehicle.
      *     @type string $next_page_token
      *           Pass this token in the SearchTripsRequest to page through list results. The
@@ -53,7 +53,7 @@ class SearchTripsResponse extends \Google\Protobuf\Internal\Message
      * The list of trips for the requested vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Trip trips = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\Trip>
      */
     public function getTrips()
     {
@@ -64,7 +64,7 @@ class SearchTripsResponse extends \Google\Protobuf\Internal\Message
      * The list of trips for the requested vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Trip trips = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\Trip>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\Trip[] $var
      * @return $this
      */
     public function setTrips($var)

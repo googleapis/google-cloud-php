@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\Inventory;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operating system information for the VM.
@@ -314,5 +314,4 @@ class OsInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

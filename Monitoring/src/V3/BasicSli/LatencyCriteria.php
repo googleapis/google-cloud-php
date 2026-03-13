@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\BasicSli;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for a latency threshold SLI.
@@ -78,5 +78,4 @@ class LatencyCriteria extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

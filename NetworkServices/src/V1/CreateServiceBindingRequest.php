@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used by the ServiceBinding method.
@@ -17,7 +17,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the ServiceBinding. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;`.
+     *           format `projects/{@*}locations/*`.
      *     @type string $service_binding_id
      *           Required. Short name of the ServiceBinding resource to be created.
      *     @type \Google\Cloud\NetworkServices\V1\ServiceBinding $service_binding
@@ -76,7 +76,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class CreateServiceBindingRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the ServiceBinding. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;`.
+     * format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

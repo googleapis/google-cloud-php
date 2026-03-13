@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Maintenance policy per instance.
@@ -46,7 +46,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the policy was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the policy was updated.
-     *     @type array<\Google\Cloud\Memorystore\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $weekly_maintenance_window
+     *     @type \Google\Cloud\Memorystore\V1\WeeklyMaintenanceWindow[] $weekly_maintenance_window
      *           Optional. Maintenance window that is applied to resources covered by this
      *           policy. Minimum 1. For the current version, the maximum number of
      *           weekly_window is expected to be one.
@@ -135,7 +135,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.WeeklyMaintenanceWindow weekly_maintenance_window = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\WeeklyMaintenanceWindow>
      */
     public function getWeeklyMaintenanceWindow()
     {
@@ -148,7 +148,7 @@ class MaintenancePolicy extends \Google\Protobuf\Internal\Message
      * weekly_window is expected to be one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.WeeklyMaintenanceWindow weekly_maintenance_window = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\WeeklyMaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\WeeklyMaintenanceWindow[] $var
      * @return $this
      */
     public function setWeeklyMaintenanceWindow($var)

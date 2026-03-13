@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\TextLocator;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The position of a byte within the text.
@@ -102,5 +102,4 @@ class Position extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

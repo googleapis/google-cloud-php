@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Control over the rate of notifications sent to this alerting policy's
@@ -75,5 +75,4 @@ class NotificationRateLimit extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request message for listing patch deployments.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name of the parent in the form `projects/&#42;`.
+     * Required. The resource name of the parent in the form `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The resource name of the parent in the form `projects/&#42;`.
+     *           Required. The resource name of the parent in the form `projects/*`.
      *     @type int $page_size
      *           Optional. The maximum number of patch deployments to return. Default is
      *           100.
@@ -74,7 +74,7 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the parent in the form `projects/&#42;`.
+     * Required. The resource name of the parent in the form `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,7 +85,7 @@ class ListPatchDeploymentsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the parent in the form `projects/&#42;`.
+     * Required. The resource name of the parent in the form `projects/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

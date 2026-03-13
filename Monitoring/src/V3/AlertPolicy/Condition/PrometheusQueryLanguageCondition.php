@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A condition type that allows alerting policies to be defined using
@@ -485,5 +485,4 @@ class PrometheusQueryLanguageCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

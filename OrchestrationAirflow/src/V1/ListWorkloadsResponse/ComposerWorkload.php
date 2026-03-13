@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1\ListWorkloadsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a single workload.
@@ -142,5 +142,4 @@ class ComposerWorkload extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

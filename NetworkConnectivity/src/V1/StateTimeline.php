@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The timeline of the pending states for a resource.
@@ -28,7 +28,7 @@ class StateTimeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\StateTimeline\StateMetadata>|\Google\Protobuf\Internal\RepeatedField $states
+     *     @type \Google\Cloud\NetworkConnectivity\V1\StateTimeline\StateMetadata[] $states
      *           Output only. The state and activation time details of the resource state.
      * }
      */
@@ -41,7 +41,7 @@ class StateTimeline extends \Google\Protobuf\Internal\Message
      * Output only. The state and activation time details of the resource state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.StateTimeline.StateMetadata states = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\StateTimeline\StateMetadata>
      */
     public function getStates()
     {
@@ -52,7 +52,7 @@ class StateTimeline extends \Google\Protobuf\Internal\Message
      * Output only. The state and activation time details of the resource state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.StateTimeline.StateMetadata states = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\StateTimeline\StateMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\StateTimeline\StateMetadata[] $var
      * @return $this
      */
     public function setStates($var)

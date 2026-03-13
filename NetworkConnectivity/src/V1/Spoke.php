@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Network Connectivity Center spoke represents one or more network
@@ -179,7 +179,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *           name is created, the new spoke is assigned a different `unique_id`.
      *     @type int $state
      *           Output only. The current lifecycle state of this spoke.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type \Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason[] $reasons
      *           Output only. The reasons for current state of the spoke.
      *     @type int $spoke_type
      *           Output only. The type of resource associated with the spoke.
@@ -187,7 +187,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *           Optional. This checksum is computed by the server based on the value of
      *           other fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $field_paths_pending_update
+     *     @type string[] $field_paths_pending_update
      *           Optional. The list of fields waiting for hub administration's approval.
      * }
      */
@@ -646,7 +646,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Output only. The reasons for current state of the spoke.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke.StateReason reasons = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason>
      */
     public function getReasons()
     {
@@ -657,7 +657,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Output only. The reasons for current state of the spoke.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke.StateReason reasons = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\Spoke\StateReason[] $var
      * @return $this
      */
     public function setReasons($var)
@@ -728,7 +728,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Optional. The list of fields waiting for hub administration's approval.
      *
      * Generated from protobuf field <code>repeated string field_paths_pending_update = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFieldPathsPendingUpdate()
     {
@@ -739,7 +739,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      * Optional. The list of fields waiting for hub administration's approval.
      *
      * Generated from protobuf field <code>repeated string field_paths_pending_update = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFieldPathsPendingUpdate($var)

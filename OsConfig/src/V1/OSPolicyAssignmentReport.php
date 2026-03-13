@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A report of the OS policy assignment status for a given instance.
@@ -33,7 +33,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
      * belongs to.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 3 [(.google.api.resource_reference) = {</code>
      */
@@ -78,8 +78,8 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      *           Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
      *           belongs to.
      *           Format:
-     *           `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance>|\Google\Protobuf\Internal\RepeatedField $os_policy_compliances
+     *           `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance[] $os_policy_compliances
      *           Compliance data for each `OSPolicy` that is applied to the VM.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Timestamp for when the report was last generated.
@@ -157,7 +157,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
      * belongs to.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -171,7 +171,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Reference to the `OSPolicyAssignment` API resource that the `OSPolicy`
      * belongs to.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -189,7 +189,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Compliance data for each `OSPolicy` that is applied to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance os_policy_compliances = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance>
      */
     public function getOsPolicyCompliances()
     {
@@ -200,7 +200,7 @@ class OSPolicyAssignmentReport extends \Google\Protobuf\Internal\Message
      * Compliance data for each `OSPolicy` that is applied to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance os_policy_compliances = 4;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance[] $var
      * @return $this
      */
     public function setOsPolicyCompliances($var)

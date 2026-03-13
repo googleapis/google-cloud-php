@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of an identified virus
@@ -42,7 +42,7 @@ class VirusDetail extends \Google\Protobuf\Internal\Message
      *
      *     @type string $vendor
      *           Name of vendor that produced this virus identification.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Names of this Virus.
      *     @type int $threat_type
      *           Threat type of the identified virus
@@ -83,7 +83,7 @@ class VirusDetail extends \Google\Protobuf\Internal\Message
      * Names of this Virus.
      *
      * Generated from protobuf field <code>repeated string names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -94,7 +94,7 @@ class VirusDetail extends \Google\Protobuf\Internal\Message
      * Names of this Virus.
      *
      * Generated from protobuf field <code>repeated string names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

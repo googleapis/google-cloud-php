@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ReportBillableTrip request message.
@@ -72,7 +72,7 @@ class ReportBillableTripRequest extends \Google\Protobuf\Internal\Message
      *           place. Price is defined according to country code.
      *     @type int $platform
      *           The platform upon which the request was issued.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_ids
+     *     @type string[] $related_ids
      *           The identifiers that are directly related to the trip being reported. These
      *           are usually IDs (for example, session IDs) of pre-booking operations done
      *           before the trip ID is available. The number of `related_ids` is
@@ -182,7 +182,7 @@ class ReportBillableTripRequest extends \Google\Protobuf\Internal\Message
      * limited to 50.
      *
      * Generated from protobuf field <code>repeated string related_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedIds()
     {
@@ -196,7 +196,7 @@ class ReportBillableTripRequest extends \Google\Protobuf\Internal\Message
      * limited to 50.
      *
      * Generated from protobuf field <code>repeated string related_ids = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedIds($var)

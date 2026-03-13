@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Various properties of Exadata Infrastructure.
@@ -270,7 +270,7 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      *           Output only. The time when the next maintenance run will occur.
      *     @type \Google\Protobuf\Timestamp $next_security_maintenance_run_time
      *           Output only. The time when the next security maintenance run will occur.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\CustomerContact>|\Google\Protobuf\Internal\RepeatedField $customer_contacts
+     *     @type \Google\Cloud\OracleDatabase\V1\CustomerContact[] $customer_contacts
      *           Optional. The list of customer contacts.
      *     @type string $monthly_storage_server_version
      *           Output only. The monthly software version of the storage servers (cells)
@@ -967,7 +967,7 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      * Optional. The list of customer contacts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\CustomerContact>
      */
     public function getCustomerContacts()
     {
@@ -978,7 +978,7 @@ class CloudExadataInfrastructureProperties extends \Google\Protobuf\Internal\Mes
      * Optional. The list of customer contacts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\CustomerContact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\CustomerContact[] $var
      * @return $this
      */
     public function setCustomerContacts($var)

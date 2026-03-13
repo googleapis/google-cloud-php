@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The groups and associated preference sets on which
@@ -69,7 +69,7 @@ class ReportConfig extends \Google\Protobuf\Internal\Message
      *           User-friendly display name. Maximum length is 63 characters.
      *     @type string $description
      *           Free-text description.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment>|\Google\Protobuf\Internal\RepeatedField $group_preferenceset_assignments
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment[] $group_preferenceset_assignments
      *           Required. Collection of combinations of groups and preference sets.
      * }
      */
@@ -232,7 +232,7 @@ class ReportConfig extends \Google\Protobuf\Internal\Message
      * Required. Collection of combinations of groups and preference sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportConfig.GroupPreferenceSetAssignment group_preferenceset_assignments = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment>
      */
     public function getGroupPreferencesetAssignments()
     {
@@ -243,7 +243,7 @@ class ReportConfig extends \Google\Protobuf\Internal\Message
      * Required. Collection of combinations of groups and preference sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportConfig.GroupPreferenceSetAssignment group_preferenceset_assignments = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportConfig\GroupPreferenceSetAssignment[] $var
      * @return $this
      */
     public function setGroupPreferencesetAssignments($var)

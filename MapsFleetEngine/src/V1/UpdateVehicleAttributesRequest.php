@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `UpdateVehicleAttributes` request message.
@@ -51,7 +51,7 @@ class UpdateVehicleAttributesRequest extends \Google\Protobuf\Internal\Message
      *           The provider must be the Project ID (for example, `sample-cloud-project`)
      *           of the Google Cloud Project of which the service account making
      *           this call is a member.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\V1\VehicleAttribute[] $attributes
      *           Required. The vehicle attributes to update. Unmentioned attributes are not
      *           altered or removed.
      * }
@@ -134,7 +134,7 @@ class UpdateVehicleAttributesRequest extends \Google\Protobuf\Internal\Message
      * altered or removed.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute attributes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleAttribute>
      */
     public function getAttributes()
     {
@@ -146,7 +146,7 @@ class UpdateVehicleAttributesRequest extends \Google\Protobuf\Internal\Message
      * altered or removed.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute attributes = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

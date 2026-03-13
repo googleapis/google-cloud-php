@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of Shielded Instance options.
@@ -163,5 +163,4 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

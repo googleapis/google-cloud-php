@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for
@@ -44,13 +44,13 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Group>|\Google\Protobuf\Internal\RepeatedField $groups
+     *     @type \Google\Cloud\NetworkConnectivity\V1\Group[] $groups
      *           The requested groups.
      *     @type string $next_page_token
      *           The token for the next page of the response. To see more results,
      *           use this value as the page_token for your next request. If this value
      *           is empty, there are no more results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Hubs that could not be reached.
      * }
      */
@@ -63,7 +63,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * The requested groups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Group groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\Group>
      */
     public function getGroups()
     {
@@ -74,7 +74,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * The requested groups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Group groups = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\Group>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\Group[] $var
      * @return $this
      */
     public function setGroups($var)
@@ -119,7 +119,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * Hubs that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -130,7 +130,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * Hubs that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

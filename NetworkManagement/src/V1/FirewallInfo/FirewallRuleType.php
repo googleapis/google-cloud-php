@@ -142,4 +142,3 @@ class FirewallRuleType
     }
 }
 
-

@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListDeliveryVehicles` response message.
@@ -46,7 +46,7 @@ class ListDeliveryVehiclesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle>|\Google\Protobuf\Internal\RepeatedField $delivery_vehicles
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle[] $delivery_vehicles
      *           The set of delivery vehicles that meet the requested filtering criteria.
      *           When no filter is specified, the request returns all delivery vehicles. A
      *           successful response can also be empty. An empty response indicates that no
@@ -72,7 +72,7 @@ class ListDeliveryVehiclesResponse extends \Google\Protobuf\Internal\Message
      * delivery vehicles were found meeting the requested filter criteria.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicle delivery_vehicles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle>
      */
     public function getDeliveryVehicles()
     {
@@ -86,7 +86,7 @@ class ListDeliveryVehiclesResponse extends \Google\Protobuf\Internal\Message
      * delivery vehicles were found meeting the requested filter criteria.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicle delivery_vehicles = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicle[] $var
      * @return $this
      */
     public function setDeliveryVehicles($var)

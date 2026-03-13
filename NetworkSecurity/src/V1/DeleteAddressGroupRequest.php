@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used by the DeleteAddressGroup method.
@@ -17,7 +17,7 @@ class DeleteAddressGroupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the AddressGroup to delete. Must be in the format
-     * `projects/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class DeleteAddressGroupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the AddressGroup to delete. Must be in the format
-     *           `projects/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     *           `projects/{@*}locations/{location}/addressGroups/*`.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -84,7 +84,7 @@ class DeleteAddressGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to delete. Must be in the format
-     * `projects/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -96,7 +96,7 @@ class DeleteAddressGroupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to delete. Must be in the format
-     * `projects/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AuthorizationPolicy is a resource that specifies how a server
@@ -86,7 +86,7 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      *     @type int $action
      *           Required. The action to take when a rule match is found. Possible values
      *           are "ALLOW" or "DENY".
-     *     @type array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule[] $rules
      *           Optional. List of rules to match. Note that at least one of the rules must match in
      *           order for the action specified in the 'action' field to be taken. A rule is
      *           a match if there is a matching source and destination. If left blank, the
@@ -285,7 +285,7 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      * action specified in the `action` field will be applied on every request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule>
      */
     public function getRules()
     {
@@ -299,7 +299,7 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      * action specified in the `action` field will be applied on every request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule[] $var
      * @return $this
      */
     public function setRules($var)

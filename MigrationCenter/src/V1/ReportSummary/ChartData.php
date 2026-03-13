@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a collection of data points rendered as a Chart.
@@ -30,7 +30,7 @@ class ChartData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\ChartData\DataPoint>|\Google\Protobuf\Internal\RepeatedField $data_points
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\ChartData\DataPoint[] $data_points
      *           Each data point in the chart is represented as a name-value pair
      *           with the name being the x-axis label, and the value being the y-axis
      *           value.
@@ -47,7 +47,7 @@ class ChartData extends \Google\Protobuf\Internal\Message
      * value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint data_points = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportSummary\ChartData\DataPoint>
      */
     public function getDataPoints()
     {
@@ -60,7 +60,7 @@ class ChartData extends \Google\Protobuf\Internal\Message
      * value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.ChartData.DataPoint data_points = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportSummary\ChartData\DataPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\ChartData\DataPoint[] $var
      * @return $this
      */
     public function setDataPoints($var)
@@ -72,5 +72,4 @@ class ChartData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

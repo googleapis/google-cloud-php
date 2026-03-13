@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The authentication parameters to provide to the specified resource or
@@ -101,5 +101,4 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

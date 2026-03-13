@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Vehicle’s travel segment - from its previous stop to the
@@ -100,7 +100,7 @@ class VehicleJourneySegment extends \Google\Protobuf\Internal\Message
      *           `DeliveryVehicle.remainingDuration` (REST).
      *           This provides the remaining driving duration from the driver app's latest
      *           known location rather than the driving time from the previous stop.
-     *     @type array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $path
+     *     @type \Google\Type\LatLng[] $path
      *           Output only. The path from the previous stop to this stop. If the current
      *           stop is the first stop in the list of journey segments, then this is the
      *           path from the vehicle's current location to this stop at the time that the
@@ -314,7 +314,7 @@ class VehicleJourneySegment extends \Google\Protobuf\Internal\Message
      * the previous stop.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng path = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Type\LatLng>
      */
     public function getPath()
     {
@@ -337,7 +337,7 @@ class VehicleJourneySegment extends \Google\Protobuf\Internal\Message
      * the previous stop.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng path = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Type\LatLng[] $var
      * @return $this
      */
     public function setPath($var)

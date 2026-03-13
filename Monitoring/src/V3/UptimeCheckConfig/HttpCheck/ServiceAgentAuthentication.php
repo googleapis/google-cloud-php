@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information needed for generating either an
@@ -69,5 +69,4 @@ class ServiceAgentAuthentication extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

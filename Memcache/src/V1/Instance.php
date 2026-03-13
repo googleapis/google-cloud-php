@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memcache\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Memorystore for Memcached instance
@@ -176,7 +176,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           [network](/compute/docs/networks-and-firewalls#networks) to which the
      *           instance is connected. If left unspecified, the `default` network
      *           will be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type string[] $zones
      *           Zones in which Memcached nodes should be provisioned.
      *           Memcached nodes will be equally distributed across these zones. If not
      *           provided, the service will by default create nodes in all zones in the
@@ -194,7 +194,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Memcache\V1\MemcacheParameters $parameters
      *           User defined parameters to apply to the memcached process
      *           on each node.
-     *     @type array<\Google\Cloud\Memcache\V1\Instance\Node>|\Google\Protobuf\Internal\RepeatedField $memcache_nodes
+     *     @type \Google\Cloud\Memcache\V1\Instance\Node[] $memcache_nodes
      *           Output only. List of Memcached nodes.
      *           Refer to [Node][google.cloud.memcache.v1.Instance.Node] message for more details.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -208,7 +208,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           System automatically determines the full memcached version for an instance
      *           based on the input MemcacheVersion.
      *           The full version format will be "memcached-1.5.16".
-     *     @type array<\Google\Cloud\Memcache\V1\Instance\InstanceMessage>|\Google\Protobuf\Internal\RepeatedField $instance_messages
+     *     @type \Google\Cloud\Memcache\V1\Instance\InstanceMessage[] $instance_messages
      *           List of messages that describe the current state of the Memcached instance.
      *     @type string $discovery_endpoint
      *           Output only. Endpoint for the Discovery API.
@@ -360,7 +360,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * region for the instance.
      *
      * Generated from protobuf field <code>repeated string zones = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getZones()
     {
@@ -374,7 +374,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * region for the instance.
      *
      * Generated from protobuf field <code>repeated string zones = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setZones($var)
@@ -524,7 +524,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Refer to [Node][google.cloud.memcache.v1.Instance.Node] message for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1.Instance.Node memcache_nodes = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memcache\V1\Instance\Node>
      */
     public function getMemcacheNodes()
     {
@@ -536,7 +536,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Refer to [Node][google.cloud.memcache.v1.Instance.Node] message for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1.Instance.Node memcache_nodes = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Memcache\V1\Instance\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memcache\V1\Instance\Node[] $var
      * @return $this
      */
     public function setMemcacheNodes($var)
@@ -681,7 +681,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * List of messages that describe the current state of the Memcached instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1.Instance.InstanceMessage instance_messages = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memcache\V1\Instance\InstanceMessage>
      */
     public function getInstanceMessages()
     {
@@ -692,7 +692,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * List of messages that describe the current state of the Memcached instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1.Instance.InstanceMessage instance_messages = 19;</code>
-     * @param array<\Google\Cloud\Memcache\V1\Instance\InstanceMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memcache\V1\Instance\InstanceMessage[] $var
      * @return $this
      */
     public function setInstanceMessages($var)

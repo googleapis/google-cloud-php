@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `AutonomousDatabaseBackup.List`.
@@ -34,7 +34,7 @@ class ListAutonomousDatabaseBackupsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup>|\Google\Protobuf\Internal\RepeatedField $autonomous_database_backups
+     *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup[] $autonomous_database_backups
      *           The list of Autonomous Database Backups.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListAutonomousDatabaseBackupsResponse extends \Google\Protobuf\Internal\Me
      * The list of Autonomous Database Backups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDatabaseBackup autonomous_database_backups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup>
      */
     public function getAutonomousDatabaseBackups()
     {
@@ -60,7 +60,7 @@ class ListAutonomousDatabaseBackupsResponse extends \Google\Protobuf\Internal\Me
      * The list of Autonomous Database Backups.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDatabaseBackup autonomous_database_backups = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseBackup[] $var
      * @return $this
      */
     public function setAutonomousDatabaseBackups($var)

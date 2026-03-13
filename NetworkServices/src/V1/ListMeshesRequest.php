@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used with the ListMeshes method.
@@ -17,7 +17,7 @@ class ListMeshesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which the Meshes should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/{@*}locations/global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,7 +68,7 @@ class ListMeshesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which the Meshes should be
-     *           listed, specified in the format `projects/&#42;&#47;locations/global`.
+     *           listed, specified in the format `projects/{@*}locations/global`.
      *     @type int $page_size
      *           Maximum number of Meshes to return per call.
      *     @type string $page_token
@@ -88,7 +88,7 @@ class ListMeshesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the Meshes should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/{@*}locations/global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,7 +100,7 @@ class ListMeshesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which the Meshes should be
-     * listed, specified in the format `projects/&#42;&#47;locations/global`.
+     * listed, specified in the format `projects/{@*}locations/global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

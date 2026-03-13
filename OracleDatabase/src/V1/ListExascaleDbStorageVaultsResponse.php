@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `ExascaleDbStorageVault.List`.
@@ -37,7 +37,7 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault>|\Google\Protobuf\Internal\RepeatedField $exascale_db_storage_vaults
+     *     @type \Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault[] $exascale_db_storage_vaults
      *           The ExascaleDbStorageVaults.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return. If present,
@@ -55,7 +55,7 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
      * The ExascaleDbStorageVaults.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVault exascale_db_storage_vaults = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault>
      */
     public function getExascaleDbStorageVaults()
     {
@@ -66,7 +66,7 @@ class ListExascaleDbStorageVaultsResponse extends \Google\Protobuf\Internal\Mess
      * The ExascaleDbStorageVaults.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVault exascale_db_storage_vaults = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\ExascaleDbStorageVault[] $var
      * @return $this
      */
     public function setExascaleDbStorageVaults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of a notebook instance.
@@ -37,7 +37,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $proxy_uri = '';
     /**
-     * Input only. The owner of this instance after creation. Format: `alias&#64;example.com`
+     * Input only. The owner of this instance after creation. Format: `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
@@ -292,8 +292,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Cloud Storage path (`gs://path-to-file/file-name`).
      *     @type string $proxy_uri
      *           Output only. The proxy endpoint that is used to access the Jupyter notebook.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_owners
-     *           Input only. The owner of this instance after creation. Format: `alias&#64;example.com`
+     *     @type string[] $instance_owners
+     *           Input only. The owner of this instance after creation. Format: `alias\@example.com`
      *           Currently supports one owner only. If not specified, all of the service
      *           account users of your VM instance's service account can use
      *           the instance.
@@ -305,7 +305,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           If not specified, the [Compute Engine default service
      *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
+     *     @type string[] $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances.
      *           If not specified, the following
@@ -358,7 +358,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}`
      *           Learn more about [using your own encryption keys](/kms/docs/quickstart).
-     *     @type array<\Google\Cloud\Notebooks\V1\Instance\Disk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Notebooks\V1\Instance\Disk[] $disks
      *           Output only. Attached disks to notebook instance.
      *     @type \Google\Cloud\Notebooks\V1\Instance\ShieldedInstanceConfig $shielded_instance_config
      *           Optional. Shielded VM configuration.
@@ -381,10 +381,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           These can be later modified by the setLabels method.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Custom metadata to apply to this instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
-     *     @type array<\Google\Cloud\Notebooks\V1\Instance\UpgradeHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $upgrade_history
+     *     @type \Google\Cloud\Notebooks\V1\Instance\UpgradeHistoryEntry[] $upgrade_history
      *           The upgrade history of this instance.
      *     @type int $nic_type
      *           Optional. The type of vNIC to be used on this interface. This may be gVNIC or
@@ -557,13 +557,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The owner of this instance after creation. Format: `alias&#64;example.com`
+     * Input only. The owner of this instance after creation. Format: `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
      *
      * Generated from protobuf field <code>repeated string instance_owners = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceOwners()
     {
@@ -571,13 +571,13 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The owner of this instance after creation. Format: `alias&#64;example.com`
+     * Input only. The owner of this instance after creation. Format: `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
      *
      * Generated from protobuf field <code>repeated string instance_owners = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceOwners($var)
@@ -638,7 +638,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *    https://www.googleapis.com/auth/compute
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccountScopes()
     {
@@ -657,7 +657,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *    https://www.googleapis.com/auth/compute
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccountScopes($var)
@@ -1032,7 +1032,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Attached disks to notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.Disk disks = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Instance\Disk>
      */
     public function getDisks()
     {
@@ -1043,7 +1043,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Attached disks to notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.Disk disks = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Instance\Disk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Instance\Disk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -1265,7 +1265,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -1277,7 +1277,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -1292,7 +1292,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The upgrade history of this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.UpgradeHistoryEntry upgrade_history = 29;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Instance\UpgradeHistoryEntry>
      */
     public function getUpgradeHistory()
     {
@@ -1303,7 +1303,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * The upgrade history of this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.UpgradeHistoryEntry upgrade_history = 29;</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Instance\UpgradeHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Instance\UpgradeHistoryEntry[] $var
      * @return $this
      */
     public function setUpgradeHistory($var)

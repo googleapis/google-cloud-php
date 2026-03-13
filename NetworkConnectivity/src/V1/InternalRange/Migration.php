@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\InternalRange;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification for migration with source and target resource names.
@@ -122,5 +122,4 @@ class Migration extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

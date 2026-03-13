@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information involved in sending ICMP pings alongside public HTTP/TCP
@@ -66,5 +66,4 @@ class PingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

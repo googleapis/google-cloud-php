@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to aggregate one or more values.
@@ -43,7 +43,7 @@ class AggregateAssetsValuesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent value for `AggregateAssetsValuesRequest`.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type \Google\Cloud\MigrationCenter\V1\Aggregation[] $aggregations
      *           Array of aggregations to perform.
      *           Up to 25 aggregations can be defined.
      *     @type string $filter
@@ -86,7 +86,7 @@ class AggregateAssetsValuesRequest extends \Google\Protobuf\Internal\Message
      * Up to 25 aggregations can be defined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Aggregation aggregations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\Aggregation>
      */
     public function getAggregations()
     {
@@ -98,7 +98,7 @@ class AggregateAssetsValuesRequest extends \Google\Protobuf\Internal\Message
      * Up to 25 aggregations can be defined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Aggregation aggregations = 2;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\Aggregation[] $var
      * @return $this
      */
     public function setAggregations($var)

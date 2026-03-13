@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes how to route traffic.
@@ -38,7 +38,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $matches
+     *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\RouteMatch[] $matches
      *           Optional. Matches define conditions used for matching the rule against
      *           incoming gRPC requests. Each match is independent, i.e. this rule will be
      *           matched if ANY one of the matches is satisfied.  If no matches field is
@@ -60,7 +60,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * specified, this rule will unconditionally match traffic.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteMatch>
      */
     public function getMatches()
     {
@@ -74,7 +74,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * specified, this rule will unconditionally match traffic.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\GrpcRoute\RouteMatch[] $var
      * @return $this
      */
     public function setMatches($var)
@@ -124,5 +124,4 @@ class RouteRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The user preferences relating to target regions.
@@ -32,7 +32,7 @@ class RegionPreferences extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $preferred_regions
+     *     @type string[] $preferred_regions
      *           A list of preferred regions,
      *           ordered by the most preferred region first.
      *           Set only valid Google Cloud region names.
@@ -53,7 +53,7 @@ class RegionPreferences extends \Google\Protobuf\Internal\Message
      * for available regions.
      *
      * Generated from protobuf field <code>repeated string preferred_regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPreferredRegions()
     {
@@ -68,7 +68,7 @@ class RegionPreferences extends \Google\Protobuf\Internal\Message
      * for available regions.
      *
      * Generated from protobuf field <code>repeated string preferred_regions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPreferredRegions($var)

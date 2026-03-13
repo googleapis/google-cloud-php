@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Preferences concerning Sole Tenancy nodes and VMs.
@@ -61,7 +61,7 @@ class SoleTenancyPreferences extends \Google\Protobuf\Internal\Message
      *           insights and recommendations.
      *           If you are unsure which value to set, a 3 year commitment plan is often a
      *           good value to start with.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\SoleTenantNodeType>|\Google\Protobuf\Internal\RepeatedField $node_types
+     *     @type \Google\Cloud\MigrationCenter\V1\SoleTenantNodeType[] $node_types
      *           A list of sole tenant node types.
      *           An empty list means that all possible node types will be considered.
      * }
@@ -162,7 +162,7 @@ class SoleTenancyPreferences extends \Google\Protobuf\Internal\Message
      * An empty list means that all possible node types will be considered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.SoleTenantNodeType node_types = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\SoleTenantNodeType>
      */
     public function getNodeTypes()
     {
@@ -174,7 +174,7 @@ class SoleTenancyPreferences extends \Google\Protobuf\Internal\Message
      * An empty list means that all possible node types will be considered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.SoleTenantNodeType node_types = 4;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\SoleTenantNodeType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\SoleTenantNodeType[] $var
      * @return $this
      */
     public function setNodeTypes($var)

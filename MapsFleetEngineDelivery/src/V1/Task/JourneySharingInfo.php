@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1\Task;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Journey sharing specific fields.
@@ -57,7 +57,7 @@ class JourneySharingInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>|\Google\Protobuf\Internal\RepeatedField $remaining_vehicle_journey_segments
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment[] $remaining_vehicle_journey_segments
      *           Tracking information for the stops that the assigned vehicle will make
      *           before it completes this Task. Note that this list can contain stops
      *           from other tasks.
@@ -105,7 +105,7 @@ class JourneySharingInfo extends \Google\Protobuf\Internal\Message
      * remaining `VehicleStops`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleJourneySegment remaining_vehicle_journey_segments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>
      */
     public function getRemainingVehicleJourneySegments()
     {
@@ -130,7 +130,7 @@ class JourneySharingInfo extends \Google\Protobuf\Internal\Message
      * remaining `VehicleStops`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleJourneySegment remaining_vehicle_journey_segments = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment[] $var
      * @return $this
      */
     public function setRemainingVehicleJourneySegments($var)
@@ -210,5 +210,4 @@ class JourneySharingInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

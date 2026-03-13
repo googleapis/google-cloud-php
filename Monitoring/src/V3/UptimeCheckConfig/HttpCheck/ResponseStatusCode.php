@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A status to accept. Either a status code class like "2xx", or an integer
@@ -106,5 +106,4 @@ class ResponseStatusCode extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

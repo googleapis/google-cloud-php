@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message to list `MulticloudDataTransferConfig` resources.
@@ -40,11 +40,11 @@ class ListMulticloudDataTransferConfigsResponse extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferConfig>|\Google\Protobuf\Internal\RepeatedField $multicloud_data_transfer_configs
+     *     @type \Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferConfig[] $multicloud_data_transfer_configs
      *           The list of `MulticloudDataTransferConfig` resources to be listed.
      *     @type string $next_page_token
      *           The next page token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListMulticloudDataTransferConfigsResponse extends \Google\Protobuf\Interna
      * The list of `MulticloudDataTransferConfig` resources to be listed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.MulticloudDataTransferConfig multicloud_data_transfer_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferConfig>
      */
     public function getMulticloudDataTransferConfigs()
     {
@@ -68,7 +68,7 @@ class ListMulticloudDataTransferConfigsResponse extends \Google\Protobuf\Interna
      * The list of `MulticloudDataTransferConfig` resources to be listed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.MulticloudDataTransferConfig multicloud_data_transfer_configs = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferConfig[] $var
      * @return $this
      */
     public function setMulticloudDataTransferConfigs($var)
@@ -109,7 +109,7 @@ class ListMulticloudDataTransferConfigsResponse extends \Google\Protobuf\Interna
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListMulticloudDataTransferConfigsResponse extends \Google\Protobuf\Interna
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Specification for allowing client side cross-origin requests.
@@ -79,19 +79,19 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origins
+     *     @type string[] $allow_origins
      *           Specifies the list of origins that will be allowed to do CORS requests.
      *           An origin is allowed if it matches either an item in allow_origins or
      *           an item in allow_origin_regexes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_origin_regexes
+     *     @type string[] $allow_origin_regexes
      *           Specifies the regular expression patterns that match allowed origins. For
      *           regular expression grammar, please see
      *           https://github.com/google/re2/wiki/Syntax.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_methods
+     *     @type string[] $allow_methods
      *           Specifies the content for Access-Control-Allow-Methods header.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_headers
+     *     @type string[] $allow_headers
      *           Specifies the content for Access-Control-Allow-Headers header.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $expose_headers
+     *     @type string[] $expose_headers
      *           Specifies the content for Access-Control-Expose-Headers header.
      *     @type string $max_age
      *           Specifies how long result of a preflight request can be cached in
@@ -117,7 +117,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * an item in allow_origin_regexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowOrigins()
     {
@@ -130,7 +130,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * an item in allow_origin_regexes.
      *
      * Generated from protobuf field <code>repeated string allow_origins = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowOrigins($var)
@@ -147,7 +147,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * https://github.com/google/re2/wiki/Syntax.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowOriginRegexes()
     {
@@ -160,7 +160,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * https://github.com/google/re2/wiki/Syntax.
      *
      * Generated from protobuf field <code>repeated string allow_origin_regexes = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowOriginRegexes($var)
@@ -175,7 +175,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Allow-Methods header.
      *
      * Generated from protobuf field <code>repeated string allow_methods = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowMethods()
     {
@@ -186,7 +186,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Allow-Methods header.
      *
      * Generated from protobuf field <code>repeated string allow_methods = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowMethods($var)
@@ -201,7 +201,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Allow-Headers header.
      *
      * Generated from protobuf field <code>repeated string allow_headers = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowHeaders()
     {
@@ -212,7 +212,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Allow-Headers header.
      *
      * Generated from protobuf field <code>repeated string allow_headers = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowHeaders($var)
@@ -227,7 +227,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Expose-Headers header.
      *
      * Generated from protobuf field <code>repeated string expose_headers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExposeHeaders()
     {
@@ -238,7 +238,7 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
      * Specifies the content for Access-Control-Expose-Headers header.
      *
      * Generated from protobuf field <code>repeated string expose_headers = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExposeHeaders($var)
@@ -338,5 +338,4 @@ class CorsPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

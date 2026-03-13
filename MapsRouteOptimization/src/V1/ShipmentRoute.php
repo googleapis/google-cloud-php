@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A vehicle's route can be decomposed, along the time axis, like this (we
@@ -230,11 +230,11 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           Time at which the vehicle starts its route.
      *     @type \Google\Protobuf\Timestamp $vehicle_end_time
      *           Time at which the vehicle finishes its route.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit>|\Google\Protobuf\Internal\RepeatedField $visits
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit[] $visits
      *           Ordered sequence of visits representing a route.
      *           visits[i] is the i-th visit in the route.
      *           If this field is empty, the vehicle is considered as unused.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Transition>|\Google\Protobuf\Internal\RepeatedField $transitions
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentRoute\Transition[] $transitions
      *           Ordered list of transitions for the route.
      *     @type bool $has_traffic_infeasibilities
      *           When
@@ -258,7 +258,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           This field is only populated if
      *           [OptimizeToursRequest.populate_polylines][google.maps.routeoptimization.v1.OptimizeToursRequest.populate_polylines]
      *           is set to true.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\PBBreak>|\Google\Protobuf\Internal\RepeatedField $breaks
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentRoute\PBBreak[] $breaks
      *           Breaks scheduled for the vehicle performing this route.
      *           The `breaks` sequence represents time intervals, each starting at the
      *           corresponding `start_time` and lasting `duration` seconds.
@@ -430,7 +430,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * If this field is empty, the vehicle is considered as unused.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Visit visits = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit>
      */
     public function getVisits()
     {
@@ -443,7 +443,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * If this field is empty, the vehicle is considered as unused.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Visit visits = 7;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentRoute\Visit[] $var
      * @return $this
      */
     public function setVisits($var)
@@ -458,7 +458,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Ordered list of transitions for the route.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Transition transitions = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Transition>
      */
     public function getTransitions()
     {
@@ -469,7 +469,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Ordered list of transitions for the route.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Transition transitions = 8;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\Transition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentRoute\Transition[] $var
      * @return $this
      */
     public function setTransitions($var)
@@ -584,7 +584,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * corresponding `start_time` and lasting `duration` seconds.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Break breaks = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentRoute\PBBreak>
      */
     public function getBreaks()
     {
@@ -597,7 +597,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * corresponding `start_time` and lasting `duration` seconds.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute.Break breaks = 11;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentRoute\PBBreak>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentRoute\PBBreak[] $var
      * @return $this
      */
     public function setBreaks($var)

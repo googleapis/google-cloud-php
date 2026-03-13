@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The destination to which traffic will be routed.
@@ -159,5 +159,4 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

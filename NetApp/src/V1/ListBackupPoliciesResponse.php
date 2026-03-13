@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListBackupPoliciesResponse contains all the backup policies requested.
@@ -40,11 +40,11 @@ class ListBackupPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetApp\V1\BackupPolicy>|\Google\Protobuf\Internal\RepeatedField $backup_policies
+     *     @type \Google\Cloud\NetApp\V1\BackupPolicy[] $backup_policies
      *           The list of backup policies.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListBackupPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The list of backup policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BackupPolicy backup_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\BackupPolicy>
      */
     public function getBackupPolicies()
     {
@@ -68,7 +68,7 @@ class ListBackupPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The list of backup policies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BackupPolicy backup_policies = 1;</code>
-     * @param array<\Google\Cloud\NetApp\V1\BackupPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\BackupPolicy[] $var
      * @return $this
      */
     public function setBackupPolicies($var)
@@ -109,7 +109,7 @@ class ListBackupPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListBackupPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

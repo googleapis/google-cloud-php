@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For display only. Metadata associated with a Compute Engine route.
@@ -211,15 +211,15 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *           URI of a VPC network where route is located.
      *     @type int $priority
      *           Priority of the route.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_tags
+     *     @type string[] $instance_tags
      *           Instance tags of the route.
      *     @type string $src_ip_range
      *           Source IP address range of the route. POLICY_BASED routes only.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dest_port_ranges
+     *     @type string[] $dest_port_ranges
      *           Destination port ranges of the route. POLICY_BASED routes only.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $src_port_ranges
+     *     @type string[] $src_port_ranges
      *           Source port ranges of the route. POLICY_BASED routes only.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $protocols
+     *     @type string[] $protocols
      *           Protocols of the route. POLICY_BASED routes only.
      *     @type string $ncc_hub_uri
      *           URI of the NCC Hub the route is advertised by. PEERING_SUBNET and
@@ -544,7 +544,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Instance tags of the route.
      *
      * Generated from protobuf field <code>repeated string instance_tags = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceTags()
     {
@@ -555,7 +555,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Instance tags of the route.
      *
      * Generated from protobuf field <code>repeated string instance_tags = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceTags($var)
@@ -596,7 +596,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Destination port ranges of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string dest_port_ranges = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestPortRanges()
     {
@@ -607,7 +607,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Destination port ranges of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string dest_port_ranges = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestPortRanges($var)
@@ -622,7 +622,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Source port ranges of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string src_port_ranges = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSrcPortRanges()
     {
@@ -633,7 +633,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Source port ranges of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string src_port_ranges = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSrcPortRanges($var)
@@ -648,7 +648,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Protocols of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string protocols = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProtocols()
     {
@@ -659,7 +659,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Protocols of the route. POLICY_BASED routes only.
      *
      * Generated from protobuf field <code>repeated string protocols = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProtocols($var)

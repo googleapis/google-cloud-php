@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of findings that applies to assets destined for Compute Engine.
@@ -46,13 +46,13 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allocated_regions
+     *     @type string[] $allocated_regions
      *           Set of regions in which the assets were allocated.
      *     @type int|string $allocated_asset_count
      *           Count of assets which were allocated.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\MachineSeriesAllocation>|\Google\Protobuf\Internal\RepeatedField $machine_series_allocations
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\MachineSeriesAllocation[] $machine_series_allocations
      *           Distribution of assets based on the Machine Series.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allocated_disk_types
+     *     @type int[] $allocated_disk_types
      *           Set of disk types allocated to assets.
      * }
      */
@@ -65,7 +65,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of regions in which the assets were allocated.
      *
      * Generated from protobuf field <code>repeated string allocated_regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllocatedRegions()
     {
@@ -76,7 +76,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of regions in which the assets were allocated.
      *
      * Generated from protobuf field <code>repeated string allocated_regions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllocatedRegions($var)
@@ -117,7 +117,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Distribution of assets based on the Machine Series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation machine_series_allocations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportSummary\MachineSeriesAllocation>
      */
     public function getMachineSeriesAllocations()
     {
@@ -128,7 +128,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Distribution of assets based on the Machine Series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.MachineSeriesAllocation machine_series_allocations = 3;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportSummary\MachineSeriesAllocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\MachineSeriesAllocation[] $var
      * @return $this
      */
     public function setMachineSeriesAllocations($var)
@@ -143,7 +143,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of disk types allocated to assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PersistentDiskType allocated_disk_types = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllocatedDiskTypes()
     {
@@ -154,7 +154,7 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of disk types allocated to assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PersistentDiskType allocated_disk_types = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllocatedDiskTypes($var)
@@ -166,5 +166,4 @@ class ComputeEngineFinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

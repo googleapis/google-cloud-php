@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The user workloads Secrets for a given environment.
@@ -34,7 +34,7 @@ class ListUserWorkloadsSecretsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret>|\Google\Protobuf\Internal\RepeatedField $user_workloads_secrets
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret[] $user_workloads_secrets
      *           The list of Secrets returned by a ListUserWorkloadsSecretsRequest.
      *     @type string $next_page_token
      *           The page token used to query for the next page if one exists.
@@ -49,7 +49,7 @@ class ListUserWorkloadsSecretsResponse extends \Google\Protobuf\Internal\Message
      * The list of Secrets returned by a ListUserWorkloadsSecretsRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.UserWorkloadsSecret user_workloads_secrets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret>
      */
     public function getUserWorkloadsSecrets()
     {
@@ -60,7 +60,7 @@ class ListUserWorkloadsSecretsResponse extends \Google\Protobuf\Internal\Message
      * The list of Secrets returned by a ListUserWorkloadsSecretsRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.UserWorkloadsSecret user_workloads_secrets = 1;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsSecret[] $var
      * @return $this
      */
     public function setUserWorkloadsSecrets($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message containing insights list.
@@ -34,7 +34,7 @@ class InsightList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\Insight>|\Google\Protobuf\Internal\RepeatedField $insights
+     *     @type \Google\Cloud\MigrationCenter\V1\Insight[] $insights
      *           Output only. Insights of the list.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update timestamp.
@@ -49,7 +49,7 @@ class InsightList extends \Google\Protobuf\Internal\Message
      * Output only. Insights of the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Insight insights = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\Insight>
      */
     public function getInsights()
     {
@@ -60,7 +60,7 @@ class InsightList extends \Google\Protobuf\Internal\Message
      * Output only. Insights of the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Insight insights = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\Insight>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\Insight[] $var
      * @return $this
      */
     public function setInsights($var)

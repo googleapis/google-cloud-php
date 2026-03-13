@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\StateTimeline;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The state and activation time details of the resource state.
@@ -124,5 +124,4 @@ class StateMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

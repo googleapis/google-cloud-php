@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\InjectedSolutionConstraint\ConstraintRelaxation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If `relaxations` is empty, the start time and sequence of all visits
@@ -198,5 +198,4 @@ class Relaxation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
