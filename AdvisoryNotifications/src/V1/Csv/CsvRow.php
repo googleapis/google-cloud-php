@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1\Csv;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of a single data row in a CSV file.
@@ -29,7 +29,7 @@ class CsvRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type string[] $entries
      *           The data entries in a CSV file row, as a string array rather than a
      *           single comma-separated string.
      * }
@@ -44,7 +44,7 @@ class CsvRow extends \Google\Protobuf\Internal\Message
      * single comma-separated string.
      *
      * Generated from protobuf field <code>repeated string entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntries()
     {
@@ -56,7 +56,7 @@ class CsvRow extends \Google\Protobuf\Internal\Message
      * single comma-separated string.
      *
      * Generated from protobuf field <code>repeated string entries = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntries($var)
@@ -68,5 +68,4 @@ class CsvRow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

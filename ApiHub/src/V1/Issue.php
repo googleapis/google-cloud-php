@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Issue contains the details of a single issue found by the linter.
@@ -55,7 +55,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      *
      *     @type string $code
      *           Required. Rule code unique to each rule defined in linter.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $path
+     *     @type string[] $path
      *           Required. An array of strings indicating the location in the analyzed
      *           document where the rule was triggered.
      *     @type string $message
@@ -102,7 +102,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      * document where the rule was triggered.
      *
      * Generated from protobuf field <code>repeated string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPath()
     {
@@ -114,7 +114,7 @@ class Issue extends \Google\Protobuf\Internal\Message
      * document where the rule was triggered.
      *
      * Generated from protobuf field <code>repeated string path = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPath($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to generate a pivot report.
@@ -133,20 +133,20 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *           Within a batch request, this property should either be unspecified or
      *           consistent with the batch-level property.
      *           Example: properties/1234
-     *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Analytics\Data\V1beta\Dimension[] $dimensions
      *           The dimensions requested. All defined dimensions must be used by one of the
      *           following: dimension_expression, dimension_filter, pivots, order_bys.
-     *     @type array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Analytics\Data\V1beta\Metric[] $metrics
      *           The metrics requested, at least one metric needs to be specified. All
      *           defined metrics must be used by one of the following: metric_expression,
      *           metric_filter, order_bys.
-     *     @type array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type \Google\Analytics\Data\V1beta\DateRange[] $date_ranges
      *           The date range to retrieve event data for the report. If multiple date
      *           ranges are specified, event data from each date range is used in the
      *           report. A special dimension with field name "dateRange" can be included in
      *           a Pivot's field names; if included, the report compares between date
      *           ranges. In a cohort request, this `dateRanges` must be unspecified.
-     *     @type array<\Google\Analytics\Data\V1beta\Pivot>|\Google\Protobuf\Internal\RepeatedField $pivots
+     *     @type \Google\Analytics\Data\V1beta\Pivot[] $pivots
      *           Describes the visual format of the report's dimensions in columns or rows.
      *           The union of the fieldNames (dimension names) in all pivots must be a
      *           subset of dimension names defined in Dimensions. No two pivots can share a
@@ -176,7 +176,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $return_property_quota
      *           Toggles whether to return the current state of this Google Analytics
      *           property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
-     *     @type array<\Google\Analytics\Data\V1beta\Comparison>|\Google\Protobuf\Internal\RepeatedField $comparisons
+     *     @type \Google\Analytics\Data\V1beta\Comparison[] $comparisons
      *           Optional. The configuration of comparisons requested and displayed. The
      *           request requires both a comparisons field and a comparisons dimension to
      *           receive a comparison column in the response.
@@ -230,7 +230,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * following: dimension_expression, dimension_filter, pivots, order_bys.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Dimension>
      */
     public function getDimensions()
     {
@@ -242,7 +242,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * following: dimension_expression, dimension_filter, pivots, order_bys.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Dimension[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -259,7 +259,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * metric_filter, order_bys.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Metric>
      */
     public function getMetrics()
     {
@@ -272,7 +272,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * metric_filter, order_bys.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Metric[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -291,7 +291,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * ranges. In a cohort request, this `dateRanges` must be unspecified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DateRange date_ranges = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\DateRange>
      */
     public function getDateRanges()
     {
@@ -306,7 +306,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * ranges. In a cohort request, this `dateRanges` must be unspecified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DateRange date_ranges = 4;</code>
-     * @param array<\Google\Analytics\Data\V1beta\DateRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\DateRange[] $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -324,7 +324,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * dimension. A dimension is only visible if it appears in a pivot.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Pivot pivots = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Pivot>
      */
     public function getPivots()
     {
@@ -338,7 +338,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * dimension. A dimension is only visible if it appears in a pivot.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Pivot pivots = 5;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Pivot>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Pivot[] $var
      * @return $this
      */
     public function setPivots($var)
@@ -567,7 +567,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * receive a comparison column in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Comparison comparisons = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Comparison>
      */
     public function getComparisons()
     {
@@ -580,7 +580,7 @@ class RunPivotReportRequest extends \Google\Protobuf\Internal\Message
      * receive a comparison column in the response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Comparison comparisons = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Analytics\Data\V1beta\Comparison>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Comparison[] $var
      * @return $this
      */
     public function setComparisons($var)

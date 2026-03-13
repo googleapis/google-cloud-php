@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\ReadPoolInstancesUpgradeStageStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Upgrade stats for read pool instances.
@@ -166,5 +166,4 @@ class Stats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

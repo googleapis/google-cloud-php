@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\DataStream;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data specific to iOS app streams.
@@ -106,5 +106,4 @@ class IosAppStreamData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

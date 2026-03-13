@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\ImportClusterRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for importing data in CSV format.
@@ -62,7 +62,7 @@ class CsvImportOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Required. The database table to import CSV file into.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type string[] $columns
      *           Optional. The columns to which CSV data is imported. If not specified,
      *           all columns of the database table are loaded with CSV data.
      *     @type string $field_delimiter
@@ -116,7 +116,7 @@ class CsvImportOptions extends \Google\Protobuf\Internal\Message
      * all columns of the database table are loaded with CSV data.
      *
      * Generated from protobuf field <code>repeated string columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColumns()
     {
@@ -128,7 +128,7 @@ class CsvImportOptions extends \Google\Protobuf\Internal\Message
      * all columns of the database table are loaded with CSV data.
      *
      * Generated from protobuf field <code>repeated string columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -232,5 +232,4 @@ class CsvImportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

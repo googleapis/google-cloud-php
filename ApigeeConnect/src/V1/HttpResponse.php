@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The proto definition of http response.
@@ -69,7 +69,7 @@ class HttpResponse extends \Google\Protobuf\Internal\Message
      *           Status code of http response, e.g. 200.
      *     @type string $body
      *           The HTTP 1.1 response body.
-     *     @type array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type \Google\Cloud\ApigeeConnect\V1\Header[] $headers
      *           The HTTP response headers.
      *     @type int|string $content_length
      *           Content length records the length of the associated content. The
@@ -191,7 +191,7 @@ class HttpResponse extends \Google\Protobuf\Internal\Message
      * The HTTP response headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeconnect.v1.Header headers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApigeeConnect\V1\Header>
      */
     public function getHeaders()
     {
@@ -202,7 +202,7 @@ class HttpResponse extends \Google\Protobuf\Internal\Message
      * The HTTP response headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeconnect.v1.Header headers = 5;</code>
-     * @param array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApigeeConnect\V1\Header[] $var
      * @return $this
      */
     public function setHeaders($var)

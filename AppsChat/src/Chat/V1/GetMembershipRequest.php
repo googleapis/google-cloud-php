@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to get a membership of a space.
@@ -22,7 +22,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * You can use the user's email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -80,7 +80,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      *           you can optionally use `spaces/{space}/members/app`.
      *           Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      *           You can use the user's email as an alias for `{member}`. For example,
-     *           `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     *           `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      *           email of the Google Chat user.
      *     @type bool $use_admin_access
      *           Optional. When `true`, the method runs using the user's Google Workspace
@@ -106,7 +106,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * You can use the user's email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -124,7 +124,7 @@ class GetMembershipRequest extends \Google\Protobuf\Internal\Message
      * you can optionally use `spaces/{space}/members/app`.
      * Format: `spaces/{space}/members/{member}` or `spaces/{space}/members/app`
      * You can use the user's email as an alias for `{member}`. For example,
-     * `spaces/{space}/members/example&#64;gmail.com` where `example&#64;gmail.com` is the
+     * `spaces/{space}/members/example\@gmail.com` where `example\@gmail.com` is the
      * email of the Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the count of events received by the property, along with metadata
@@ -281,7 +281,4 @@ class PropertyUsage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PropertyUsage::class, \Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse_PropertyUsage::class);
 

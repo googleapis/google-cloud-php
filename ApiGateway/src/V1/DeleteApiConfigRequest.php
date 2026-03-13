@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for ApiGatewayService.DeleteApiConfig
@@ -17,7 +17,7 @@ class DeleteApiConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Resource name of the form:
-     * `projects/&#42;&#47;locations/global/apis/&#42;&#47;configs/&#42;`
+     * `projects/{@*}locations/global/apis/{@*}configs/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class DeleteApiConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Resource name of the form:
-     *           `projects/&#42;&#47;locations/global/apis/&#42;&#47;configs/&#42;`
+     *           `projects/{@*}locations/global/apis/{@*}configs/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteApiConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the form:
-     * `projects/&#42;&#47;locations/global/apis/&#42;&#47;configs/&#42;`
+     * `projects/{@*}locations/global/apis/{@*}configs/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteApiConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Resource name of the form:
-     * `projects/&#42;&#47;locations/global/apis/&#42;&#47;configs/&#42;`
+     * `projects/{@*}locations/global/apis/{@*}configs/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

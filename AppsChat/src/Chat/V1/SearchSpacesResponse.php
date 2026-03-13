@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response with a list of spaces corresponding to the search spaces request.
@@ -42,7 +42,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $spaces
+     *     @type \Google\Apps\Chat\V1\Space[] $spaces
      *           A page of the requested spaces.
      *     @type string $next_page_token
      *           A token that can be used to retrieve the next page. If this field is empty,
@@ -61,7 +61,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
      * A page of the requested spaces.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Space>
      */
     public function getSpaces()
     {
@@ -72,7 +72,7 @@ class SearchSpacesResponse extends \Google\Protobuf\Internal\Message
      * A page of the requested spaces.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Space spaces = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\Space>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Space[] $var
      * @return $this
      */
     public function setSpaces($var)

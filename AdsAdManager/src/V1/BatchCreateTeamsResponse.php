@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchCreateTeams` method.
@@ -28,7 +28,7 @@ class BatchCreateTeamsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\Team>|\Google\Protobuf\Internal\RepeatedField $teams
+     *     @type \Google\Ads\AdManager\V1\Team[] $teams
      *           The `Team` objects created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateTeamsResponse extends \Google\Protobuf\Internal\Message
      * The `Team` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Team teams = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Team>
      */
     public function getTeams()
     {
@@ -52,7 +52,7 @@ class BatchCreateTeamsResponse extends \Google\Protobuf\Internal\Message
      * The `Team` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Team teams = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\Team>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Team[] $var
      * @return $this
      */
     public function setTeams($var)

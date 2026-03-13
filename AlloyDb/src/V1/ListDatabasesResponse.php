@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for ListDatabases response.
@@ -35,7 +35,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\Database>|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type \Google\Cloud\AlloyDb\V1\Database[] $databases
      *           The list of databases.
      *     @type string $next_page_token
      *           A token identifying the next page of results the server should return.
@@ -51,7 +51,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The list of databases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Database databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Database>
      */
     public function getDatabases()
     {
@@ -62,7 +62,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The list of databases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Database databases = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Database[] $var
      * @return $this
      */
     public function setDatabases($var)

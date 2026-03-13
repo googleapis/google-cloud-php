@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Carousel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A card that can be displayed as a carousel item.
@@ -37,10 +37,10 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\Card\NestedWidget>|\Google\Protobuf\Internal\RepeatedField $widgets
+     *     @type \Google\Apps\Card\V1\Card\NestedWidget[] $widgets
      *           A list of widgets displayed in the carousel card. The widgets are
      *           displayed in the order that they are specified.
-     *     @type array<\Google\Apps\Card\V1\Card\NestedWidget>|\Google\Protobuf\Internal\RepeatedField $footer_widgets
+     *     @type \Google\Apps\Card\V1\Card\NestedWidget[] $footer_widgets
      *           A list of widgets displayed at the bottom of the carousel card. The
      *           widgets are displayed in the order that they are specified.
      * }
@@ -55,7 +55,7 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
      * displayed in the order that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.NestedWidget widgets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Card\NestedWidget>
      */
     public function getWidgets()
     {
@@ -67,7 +67,7 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
      * displayed in the order that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.NestedWidget widgets = 1;</code>
-     * @param array<\Google\Apps\Card\V1\Card\NestedWidget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Card\NestedWidget[] $var
      * @return $this
      */
     public function setWidgets($var)
@@ -83,7 +83,7 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
      * widgets are displayed in the order that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.NestedWidget footer_widgets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Card\NestedWidget>
      */
     public function getFooterWidgets()
     {
@@ -95,7 +95,7 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
      * widgets are displayed in the order that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.NestedWidget footer_widgets = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Card\NestedWidget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Card\NestedWidget[] $var
      * @return $this
      */
     public function setFooterWidgets($var)
@@ -107,5 +107,4 @@ class CarouselCard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\ExportClusterRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for exporting data in CSV format.
@@ -194,5 +194,4 @@ class CsvExportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

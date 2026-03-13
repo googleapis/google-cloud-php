@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to `ListServicePerimetersRequest`.
@@ -36,7 +36,7 @@ class ListServicePerimetersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $service_perimeters
+     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter[] $service_perimeters
      *           List of the [Service Perimeter]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter] instances.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListServicePerimetersResponse extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\ServicePerimeter>
      */
     public function getServicePerimeters()
     {
@@ -66,7 +66,7 @@ class ListServicePerimetersResponse extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeters = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter[] $var
      * @return $this
      */
     public function setServicePerimeters($var)

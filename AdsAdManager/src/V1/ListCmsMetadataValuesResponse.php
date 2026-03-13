@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListCmsMetadataValuesRequest` containing matching
@@ -50,7 +50,7 @@ class ListCmsMetadataValuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CmsMetadataValue>|\Google\Protobuf\Internal\RepeatedField $cms_metadata_values
+     *     @type \Google\Ads\AdManager\V1\CmsMetadataValue[] $cms_metadata_values
      *           The `CmsMetadataValue` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListCmsMetadataValuesResponse extends \Google\Protobuf\Internal\Message
      * The `CmsMetadataValue` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataValue cms_metadata_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CmsMetadataValue>
      */
     public function getCmsMetadataValues()
     {
@@ -87,7 +87,7 @@ class ListCmsMetadataValuesResponse extends \Google\Protobuf\Internal\Message
      * The `CmsMetadataValue` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CmsMetadataValue cms_metadata_values = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\CmsMetadataValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CmsMetadataValue[] $var
      * @return $this
      */
     public function setCmsMetadataValues($var)

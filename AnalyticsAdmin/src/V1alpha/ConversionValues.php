@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conversion value settings for a postback window for SKAdNetwork conversion
@@ -76,7 +76,7 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      *     @type int $coarse_value
      *           Required. A coarse grained conversion value.
      *           This value is not guaranteed to be unique.
-     *     @type array<\Google\Analytics\Admin\V1alpha\EventMapping>|\Google\Protobuf\Internal\RepeatedField $event_mappings
+     *     @type \Google\Analytics\Admin\V1alpha\EventMapping[] $event_mappings
      *           Event conditions that must be met for this Conversion Value to be achieved.
      *           The conditions in this list are ANDed together. It must have minimum of 1
      *           entry and maximum of 3 entries, if the postback window is enabled.
@@ -198,7 +198,7 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      * entry and maximum of 3 entries, if the postback window is enabled.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.EventMapping event_mappings = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\EventMapping>
      */
     public function getEventMappings()
     {
@@ -211,7 +211,7 @@ class ConversionValues extends \Google\Protobuf\Internal\Message
      * entry and maximum of 3 entries, if the postback window is enabled.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.EventMapping event_mappings = 4;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\EventMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\EventMapping[] $var
      * @return $this
      */
     public function setEventMappings($var)

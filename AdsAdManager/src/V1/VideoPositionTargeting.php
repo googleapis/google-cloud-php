@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Video Position Targeting
@@ -29,7 +29,7 @@ class VideoPositionTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\VideoPosition>|\Google\Protobuf\Internal\RepeatedField $video_positions
+     *     @type \Google\Ads\AdManager\V1\VideoPosition[] $video_positions
      *           Optional. A list of video position targeting criterion (applied with a
      *           logical AND).
      * }
@@ -44,7 +44,7 @@ class VideoPositionTargeting extends \Google\Protobuf\Internal\Message
      * logical AND).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.VideoPosition video_positions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\VideoPosition>
      */
     public function getVideoPositions()
     {
@@ -56,7 +56,7 @@ class VideoPositionTargeting extends \Google\Protobuf\Internal\Message
      * logical AND).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.VideoPosition video_positions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\VideoPosition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\VideoPosition[] $var
      * @return $this
      */
     public function setVideoPositions($var)

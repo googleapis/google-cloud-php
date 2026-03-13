@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A session matches a criteria if the session's events meet the conditions in
@@ -30,7 +30,7 @@ class SessionSegmentCriteria extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\SessionSegmentConditionGroup>|\Google\Protobuf\Internal\RepeatedField $and_condition_groups
+     *     @type \Google\Analytics\Data\V1alpha\SessionSegmentConditionGroup[] $and_condition_groups
      *           A session matches this criteria if the session matches each of these
      *           `andConditionGroups`.
      * }
@@ -45,7 +45,7 @@ class SessionSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andConditionGroups`.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SessionSegmentConditionGroup and_condition_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\SessionSegmentConditionGroup>
      */
     public function getAndConditionGroups()
     {
@@ -57,7 +57,7 @@ class SessionSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andConditionGroups`.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SessionSegmentConditionGroup and_condition_groups = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\SessionSegmentConditionGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\SessionSegmentConditionGroup[] $var
      * @return $this
      */
     public function setAndConditionGroups($var)

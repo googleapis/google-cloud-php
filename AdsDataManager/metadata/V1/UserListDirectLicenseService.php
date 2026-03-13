@@ -21,33 +21,7 @@ class UserListDirectLicenseService
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-å
-@google/ads/datamanager/v1/user_list_direct_license_service.protogoogle.ads.datamanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"«
-"CreateUserListDirectLicenseRequestH
-parent (	B8‡A˙A20datamanager.googleapis.com/UserListDirectLicenseW
-user_list_direct_license (20.google.ads.datamanager.v1.UserListDirectLicenseB‡A"i
-GetUserListDirectLicenseRequestF
-name (	B8‡A˙A2
-0datamanager.googleapis.com/UserListDirectLicense"≥
-"UpdateUserListDirectLicenseRequestW
-user_list_direct_license (20.google.ads.datamanager.v1.UserListDirectLicenseB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"≥
-!ListUserListDirectLicensesRequestH
-parent (	B8‡A˙A20datamanager.googleapis.com/UserListDirectLicense
-filter (	B‡A
-	page_size (B‡A
-
-page_token (	B‡A"í
-"ListUserListDirectLicensesResponseS
-user_list_direct_licenses (20.google.ads.datamanager.v1.UserListDirectLicense
-next_page_token (	2¯
-UserListDirectLicenseServiceí
-CreateUserListDirectLicense=.google.ads.datamanager.v1.CreateUserListDirectLicenseRequest0.google.ads.datamanager.v1.UserListDirectLicense"Å⁄Aparent,user_list_direct_licenseÇ”‰ìY"=/v1/{parent=accountTypes/*/accounts/*}/userListDirectLicenses:user_list_direct_license÷
-GetUserListDirectLicense:.google.ads.datamanager.v1.GetUserListDirectLicenseRequest0.google.ads.datamanager.v1.UserListDirectLicense"L⁄AnameÇ”‰ì?=/v1/{name=accountTypes/*/accounts/*/userListDirectLicenses/*}∞
-UpdateUserListDirectLicense=.google.ads.datamanager.v1.UpdateUserListDirectLicenseRequest0.google.ads.datamanager.v1.UserListDirectLicense"ü⁄A$user_list_direct_license,update_maskÇ”‰ìr2V/v1/{user_list_direct_license.name=accountTypes/*/accounts/*/userListDirectLicenses/*}:user_list_direct_licenseÈ
-ListUserListDirectLicenses<.google.ads.datamanager.v1.ListUserListDirectLicensesRequest=.google.ads.datamanager.v1.ListUserListDirectLicensesResponse"N⁄AparentÇ”‰ì?=/v1/{parent=accountTypes/*/accounts/*}/userListDirectLicensesK Adatamanager.googleapis.com“A+https://www.googleapis.com/auth/datamanagerBﬁ
-com.google.ads.datamanager.v1B!UserListDirectLicenseServiceProtoPZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb™Google.Ads.DataManager.V1 Google\\Ads\\DataManager\\V1ÍGoogle::Ads::DataManager::V1bproto3'
+            "\x0A\x8C\x13\x0A@google/ads/datamanager/v1/user_list_direct_license_service.proto\x12\x19google.ads.datamanager.v1\x1A\x1Cgoogle/api/annotations.proto\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A google/protobuf/field_mask.proto\"\xC7\x01\x0A\"CreateUserListDirectLicenseRequest\x12H\x0A\x06parent\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x120datamanager.googleapis.com/UserListDirectLicense\x12W\x0A\x18user_list_direct_license\x18\x02 \x01(\x0B20.google.ads.datamanager.v1.UserListDirectLicenseB\x03\xE0A\x02\"i\x0A\x1FGetUserListDirectLicenseRequest\x12F\x0A\x04name\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x0A0datamanager.googleapis.com/UserListDirectLicense\"\xB3\x01\x0A\"UpdateUserListDirectLicenseRequest\x12W\x0A\x18user_list_direct_license\x18\x01 \x01(\x0B20.google.ads.datamanager.v1.UserListDirectLicenseB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x01\"\xB3\x01\x0A!ListUserListDirectLicensesRequest\x12H\x0A\x06parent\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x120datamanager.googleapis.com/UserListDirectLicense\x12\x13\x0A\x06filter\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x16\x0A\x09page_size\x18\x03 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x04 \x01(\x09B\x03\xE0A\x01\"\x92\x01\x0A\"ListUserListDirectLicensesResponse\x12S\x0A\x19user_list_direct_licenses\x18\x01 \x03(\x0B20.google.ads.datamanager.v1.UserListDirectLicense\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x092\xF8\x08\x0A\x1CUserListDirectLicenseService\x12\x92\x02\x0A\x1BCreateUserListDirectLicense\x12=.google.ads.datamanager.v1.CreateUserListDirectLicenseRequest\x1A0.google.ads.datamanager.v1.UserListDirectLicense\"\x81\x01\xDAA\x1Fparent,user_list_direct_license\x82\xD3\xE4\x93\x02Y\"=/v1/{parent=accountTypes/*/accounts/*}/userListDirectLicenses:\x18user_list_direct_license\x12\xD6\x01\x0A\x18GetUserListDirectLicense\x12:.google.ads.datamanager.v1.GetUserListDirectLicenseRequest\x1A0.google.ads.datamanager.v1.UserListDirectLicense\"L\xDAA\x04name\x82\xD3\xE4\x93\x02?\x12=/v1/{name=accountTypes/*/accounts/*/userListDirectLicenses/*}\x12\xB0\x02\x0A\x1BUpdateUserListDirectLicense\x12=.google.ads.datamanager.v1.UpdateUserListDirectLicenseRequest\x1A0.google.ads.datamanager.v1.UserListDirectLicense\"\x9F\x01\xDAA\$user_list_direct_license,update_mask\x82\xD3\xE4\x93\x02r2V/v1/{user_list_direct_license.name=accountTypes/*/accounts/*/userListDirectLicenses/*}:\x18user_list_direct_license\x12\xE9\x01\x0A\x1AListUserListDirectLicenses\x12<.google.ads.datamanager.v1.ListUserListDirectLicensesRequest\x1A=.google.ads.datamanager.v1.ListUserListDirectLicensesResponse\"N\xDAA\x06parent\x82\xD3\xE4\x93\x02?\x12=/v1/{parent=accountTypes/*/accounts/*}/userListDirectLicenses\x1AK\xCAA\x1Adatamanager.googleapis.com\xD2A+https://www.googleapis.com/auth/datamanagerB\xDE\x01\x0A\x1Dcom.google.ads.datamanager.v1B!UserListDirectLicenseServiceProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

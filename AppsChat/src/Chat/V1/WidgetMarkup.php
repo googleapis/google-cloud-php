@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A widget is a UI element that presents text and images.
@@ -36,7 +36,7 @@ class WidgetMarkup extends \Google\Protobuf\Internal\Message
      *           Display an image in this widget.
      *     @type \Google\Apps\Chat\V1\WidgetMarkup\KeyValue $key_value
      *           Display a key value item in this widget.
-     *     @type array<\Google\Apps\Chat\V1\WidgetMarkup\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type \Google\Apps\Chat\V1\WidgetMarkup\Button[] $buttons
      *           A list of buttons. Buttons is also `oneof data` and only one of these
      *           fields should be set.
      * }
@@ -144,7 +144,7 @@ class WidgetMarkup extends \Google\Protobuf\Internal\Message
      * fields should be set.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup.Button buttons = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\WidgetMarkup\Button>
      */
     public function getButtons()
     {
@@ -156,7 +156,7 @@ class WidgetMarkup extends \Google\Protobuf\Internal\Message
      * fields should be set.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup.Button buttons = 6;</code>
-     * @param array<\Google\Apps\Chat\V1\WidgetMarkup\Button>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\WidgetMarkup\Button[] $var
      * @return $this
      */
     public function setButtons($var)

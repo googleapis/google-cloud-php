@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A plugin resource in the API Hub.
@@ -174,7 +174,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
      *           of data into hub. Note, in this case the plugin hosting service interface
      *           is not required to be implemented. Also, the plugin instance lifecycle
      *           actions will be disabled from API hub's UI.
-     *     @type array<\Google\Cloud\ApiHub\V1\PluginActionConfig>|\Google\Protobuf\Internal\RepeatedField $actions_config
+     *     @type \Google\Cloud\ApiHub\V1\PluginActionConfig[] $actions_config
      *           Optional. The configuration of actions supported by the plugin.
      *           **REQUIRED**: This field must be provided when creating or updating a
      *           Plugin. The server will reject requests if this field is missing.
@@ -457,7 +457,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
      * Plugin. The server will reject requests if this field is missing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginActionConfig actions_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\PluginActionConfig>
      */
     public function getActionsConfig()
     {
@@ -470,7 +470,7 @@ class Plugin extends \Google\Protobuf\Internal\Message
      * Plugin. The server will reject requests if this field is missing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginActionConfig actions_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\PluginActionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\PluginActionConfig[] $var
      * @return $this
      */
     public function setActionsConfig($var)

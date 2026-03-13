@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The
@@ -37,7 +37,7 @@ class ListPluginInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\PluginInstance>|\Google\Protobuf\Internal\RepeatedField $plugin_instances
+     *     @type \Google\Cloud\ApiHub\V1\PluginInstance[] $plugin_instances
      *           The plugin instances from the specified parent resource.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -53,7 +53,7 @@ class ListPluginInstancesResponse extends \Google\Protobuf\Internal\Message
      * The plugin instances from the specified parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginInstance plugin_instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\PluginInstance>
      */
     public function getPluginInstances()
     {
@@ -64,7 +64,7 @@ class ListPluginInstancesResponse extends \Google\Protobuf\Internal\Message
      * The plugin instances from the specified parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginInstance plugin_instances = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\PluginInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\PluginInstance[] $var
      * @return $this
      */
     public function setPluginInstances($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Columns` widget displays up to 2 columns in a card or dialog. You can
@@ -54,7 +54,7 @@ class Columns extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\Columns\Column>|\Google\Protobuf\Internal\RepeatedField $column_items
+     *     @type \Google\Apps\Card\V1\Columns\Column[] $column_items
      *           An array of columns. You can include up to 2 columns in a card or dialog.
      * }
      */
@@ -67,7 +67,7 @@ class Columns extends \Google\Protobuf\Internal\Message
      * An array of columns. You can include up to 2 columns in a card or dialog.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Columns.Column column_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Columns\Column>
      */
     public function getColumnItems()
     {
@@ -78,7 +78,7 @@ class Columns extends \Google\Protobuf\Internal\Message
      * An array of columns. You can include up to 2 columns in a card or dialog.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Columns.Column column_items = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Columns\Column>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Columns\Column[] $var
      * @return $this
      */
     public function setColumnItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListAnalyticsAccountLinks RPC.
@@ -35,7 +35,7 @@ class ListAnalyticsAccountLinksResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink>|\Google\Protobuf\Internal\RepeatedField $analytics_account_links
+     *     @type \Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink[] $analytics_account_links
      *           Analytics account links in this organization.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAnalyticsAccountLinksResponse extends \Google\Protobuf\Internal\Messag
      * Analytics account links in this organization.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.AnalyticsAccountLink analytics_account_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink>
      */
     public function getAnalyticsAccountLinks()
     {
@@ -62,7 +62,7 @@ class ListAnalyticsAccountLinksResponse extends \Google\Protobuf\Internal\Messag
      * Analytics account links in this organization.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.AnalyticsAccountLink analytics_account_links = 1;</code>
-     * @param array<\Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\MarketingPlatform\Admin\V1alpha\AnalyticsAccountLink[] $var
      * @return $this
      */
     public function setAnalyticsAccountLinks($var)

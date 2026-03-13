@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of buttons layed out horizontally. For an example in
@@ -33,7 +33,7 @@ class ButtonList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type \Google\Apps\Card\V1\Button[] $buttons
      *           An array of buttons.
      * }
      */
@@ -46,7 +46,7 @@ class ButtonList extends \Google\Protobuf\Internal\Message
      * An array of buttons.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Button buttons = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Button>
      */
     public function getButtons()
     {
@@ -57,7 +57,7 @@ class ButtonList extends \Google\Protobuf\Internal\Message
      * An array of buttons.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Button buttons = 1;</code>
-     * @param array<\Google\Apps\Card\V1\Button>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Button[] $var
      * @return $this
      */
     public function setButtons($var)

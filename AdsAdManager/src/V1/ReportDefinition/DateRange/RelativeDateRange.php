@@ -350,4 +350,3 @@ class RelativeDateRange
     }
 }
 
-

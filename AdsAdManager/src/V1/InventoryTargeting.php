@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Targeted ad units and AU placements are applied with
@@ -46,14 +46,14 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\AdUnitTargeting>|\Google\Protobuf\Internal\RepeatedField $targeted_ad_units
+     *     @type \Google\Ads\AdManager\V1\AdUnitTargeting[] $targeted_ad_units
      *           Optional. A list of ad units that should be targeted/included.
-     *     @type array<\Google\Ads\AdManager\V1\AdUnitTargeting>|\Google\Protobuf\Internal\RepeatedField $excluded_ad_units
+     *     @type \Google\Ads\AdManager\V1\AdUnitTargeting[] $excluded_ad_units
      *           Optional. A list of ad units that should be excluded.
      *           Excluded AUs take precedence over targeted AUs. In fact an AU can be
      *           excluded only if one of its ancestors is targeted. Subsequently child
      *           AUs of an excluded AU can not be targeted (except via a placement).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_placements
+     *     @type string[] $targeted_placements
      *           Optional. The resource names of the placements that should be
      *           targeted/included.
      * }
@@ -67,7 +67,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of ad units that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting targeted_ad_units = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnitTargeting>
      */
     public function getTargetedAdUnits()
     {
@@ -78,7 +78,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of ad units that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting targeted_ad_units = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AdUnitTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdUnitTargeting[] $var
      * @return $this
      */
     public function setTargetedAdUnits($var)
@@ -96,7 +96,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * AUs of an excluded AU can not be targeted (except via a placement).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting excluded_ad_units = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnitTargeting>
      */
     public function getExcludedAdUnits()
     {
@@ -110,7 +110,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * AUs of an excluded AU can not be targeted (except via a placement).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitTargeting excluded_ad_units = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AdUnitTargeting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdUnitTargeting[] $var
      * @return $this
      */
     public function setExcludedAdUnits($var)
@@ -126,7 +126,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_placements = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedPlacements()
     {
@@ -138,7 +138,7 @@ class InventoryTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_placements = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedPlacements($var)

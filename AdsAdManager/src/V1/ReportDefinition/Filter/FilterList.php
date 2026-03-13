@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition\Filter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of filters.
@@ -28,7 +28,7 @@ class FilterList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $filters
      *           Required. A list of filters.
      * }
      */
@@ -41,7 +41,7 @@ class FilterList extends \Google\Protobuf\Internal\Message
      * Required. A list of filters.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Filter>
      */
     public function getFilters()
     {
@@ -52,7 +52,7 @@ class FilterList extends \Google\Protobuf\Internal\Message
      * Required. A list of filters.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -64,5 +64,4 @@ class FilterList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

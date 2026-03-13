@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for setting up a PSC interface to enable outbound
@@ -77,5 +77,4 @@ class PscInterfaceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

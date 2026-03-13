@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Bandwidth Targeting.
@@ -39,10 +39,10 @@ class BandwidthTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_bandwidth_groups
+     *     @type string[] $targeted_bandwidth_groups
      *           Optional. A list of resource names of the bandwidth groups that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_bandwidth_groups
+     *     @type string[] $excluded_bandwidth_groups
      *           Optional. A list of resource names of the bandwidth groups that should be
      *           excluded.
      * }
@@ -57,7 +57,7 @@ class BandwidthTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_bandwidth_groups = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedBandwidthGroups()
     {
@@ -69,7 +69,7 @@ class BandwidthTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_bandwidth_groups = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedBandwidthGroups($var)
@@ -85,7 +85,7 @@ class BandwidthTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_bandwidth_groups = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedBandwidthGroups()
     {
@@ -97,7 +97,7 @@ class BandwidthTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_bandwidth_groups = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedBandwidthGroups($var)

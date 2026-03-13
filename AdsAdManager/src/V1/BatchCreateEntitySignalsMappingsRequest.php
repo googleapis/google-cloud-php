@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `BatchCreateEntitySignalsMappings` method.
@@ -60,7 +60,7 @@ class BatchCreateEntitySignalsMappingsRequest extends \Google\Protobuf\Internal\
      *           Required. The parent resource where `EntitySignalsMappings` will be
      *           created. Format: `networks/{network_code}` The parent field in the
      *           CreateEntitySignalsMappingRequest must match this field.
-     *     @type array<\Google\Ads\AdManager\V1\CreateEntitySignalsMappingRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Ads\AdManager\V1\CreateEntitySignalsMappingRequest[] $requests
      *           Required. The `EntitySignalsMapping` objects to create.
      *           A maximum of 100 objects can be created in a batch.
      * }
@@ -105,7 +105,7 @@ class BatchCreateEntitySignalsMappingsRequest extends \Google\Protobuf\Internal\
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateEntitySignalsMappingRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreateEntitySignalsMappingRequest>
      */
     public function getRequests()
     {
@@ -117,7 +117,7 @@ class BatchCreateEntitySignalsMappingsRequest extends \Google\Protobuf\Internal\
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateEntitySignalsMappingRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\CreateEntitySignalsMappingRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreateEntitySignalsMappingRequest[] $var
      * @return $this
      */
     public function setRequests($var)

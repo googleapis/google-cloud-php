@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Event payload for multiple new reactions.
@@ -29,7 +29,7 @@ class ReactionBatchCreatedEventData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\ReactionCreatedEventData>|\Google\Protobuf\Internal\RepeatedField $reactions
+     *     @type \Google\Apps\Chat\V1\ReactionCreatedEventData[] $reactions
      *           A list of new reactions.
      * }
      */
@@ -42,7 +42,7 @@ class ReactionBatchCreatedEventData extends \Google\Protobuf\Internal\Message
      * A list of new reactions.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ReactionCreatedEventData reactions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\ReactionCreatedEventData>
      */
     public function getReactions()
     {
@@ -53,7 +53,7 @@ class ReactionBatchCreatedEventData extends \Google\Protobuf\Internal\Message
      * A list of new reactions.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ReactionCreatedEventData reactions = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\ReactionCreatedEventData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\ReactionCreatedEventData[] $var
      * @return $this
      */
     public function setReactions($var)

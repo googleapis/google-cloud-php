@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of filter expressions.
@@ -28,7 +28,7 @@ class AccessFilterExpressionList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessFilterExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type \Google\Analytics\Admin\V1alpha\AccessFilterExpression[] $expressions
      *           A list of filter expressions.
      * }
      */
@@ -41,7 +41,7 @@ class AccessFilterExpressionList extends \Google\Protobuf\Internal\Message
      * A list of filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessFilterExpression expressions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessFilterExpression>
      */
     public function getExpressions()
     {
@@ -52,7 +52,7 @@ class AccessFilterExpressionList extends \Google\Protobuf\Internal\Message
      * A list of filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessFilterExpression expressions = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessFilterExpression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessFilterExpression[] $var
      * @return $this
      */
     public function setExpressions($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An audience export is a list of users in an audience at the time of the
@@ -108,7 +108,7 @@ class AudienceExport extends \Google\Protobuf\Internal\Message
      *     @type string $audience_display_name
      *           Output only. The descriptive display name for this audience. For example,
      *           "Purchasers".
-     *     @type array<\Google\Analytics\Data\V1beta\AudienceDimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Analytics\Data\V1beta\AudienceDimension[] $dimensions
      *           Required. The dimensions requested and displayed in the query response.
      *     @type int $state
      *           Output only. The current state for this AudienceExport.
@@ -229,7 +229,7 @@ class AudienceExport extends \Google\Protobuf\Internal\Message
      * Required. The dimensions requested and displayed in the query response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.AudienceDimension dimensions = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\AudienceDimension>
      */
     public function getDimensions()
     {
@@ -240,7 +240,7 @@ class AudienceExport extends \Google\Protobuf\Internal\Message
      * Required. The dimensions requested and displayed in the query response.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.AudienceDimension dimensions = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Data\V1beta\AudienceDimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\AudienceDimension[] $var
      * @return $this
      */
     public function setDimensions($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Placement` resource.
@@ -91,7 +91,7 @@ class Placement extends \Google\Protobuf\Internal\Message
      *           of serving the ad. This attribute is assigned by Google.
      *     @type int $status
      *           Output only. The status of the Placement.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_ad_units
+     *     @type string[] $targeted_ad_units
      *           Optional. The resource names of AdUnits that constitute the Placement.
      *           Format: "networks/{network_code}/adUnits/{ad_unit}"
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -312,7 +312,7 @@ class Placement extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/adUnits/{ad_unit}"
      *
      * Generated from protobuf field <code>repeated string targeted_ad_units = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedAdUnits()
     {
@@ -324,7 +324,7 @@ class Placement extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/adUnits/{ad_unit}"
      *
      * Generated from protobuf field <code>repeated string targeted_ad_units = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedAdUnits($var)

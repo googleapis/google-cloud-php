@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\DiscoveredApiOperation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MatchResult represents the result of matching a discovered API operation
@@ -73,5 +73,4 @@ class MatchResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

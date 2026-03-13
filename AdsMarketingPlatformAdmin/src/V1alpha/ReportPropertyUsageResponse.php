@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ReportPropertyUsage RPC.
@@ -35,7 +35,7 @@ class ReportPropertyUsageResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\PropertyUsage>|\Google\Protobuf\Internal\RepeatedField $property_usages
+     *     @type \Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\PropertyUsage[] $property_usages
      *           Usage data for all properties in the specified organization and month.
      *     @type \Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\BillInfo $bill_info
      *           Bill amount in the specified organization and month.
@@ -51,7 +51,7 @@ class ReportPropertyUsageResponse extends \Google\Protobuf\Internal\Message
      * Usage data for all properties in the specified organization and month.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.ReportPropertyUsageResponse.PropertyUsage property_usages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\PropertyUsage>
      */
     public function getPropertyUsages()
     {
@@ -62,7 +62,7 @@ class ReportPropertyUsageResponse extends \Google\Protobuf\Internal\Message
      * Usage data for all properties in the specified organization and month.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.ReportPropertyUsageResponse.PropertyUsage property_usages = 1;</code>
-     * @param array<\Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\PropertyUsage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\MarketingPlatform\Admin\V1alpha\ReportPropertyUsageResponse\PropertyUsage[] $var
      * @return $this
      */
     public function setPropertyUsages($var)

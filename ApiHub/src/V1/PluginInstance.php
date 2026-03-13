@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a plugin instance resource in the API Hub.
@@ -122,7 +122,7 @@ class PluginInstance extends \Google\Protobuf\Internal\Message
      *           Delete or ApplyConfig operation corresponding to the plugin instance.This
      *           field will only be populated if the plugin instance is in the ERROR or
      *           FAILED state.
-     *     @type array<\Google\Cloud\ApiHub\V1\PluginInstanceAction>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\ApiHub\V1\PluginInstanceAction[] $actions
      *           Required. The action status for the plugin instance.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp indicating when the plugin instance was created.
@@ -333,7 +333,7 @@ class PluginInstance extends \Google\Protobuf\Internal\Message
      * Required. The action status for the plugin instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginInstanceAction actions = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\PluginInstanceAction>
      */
     public function getActions()
     {
@@ -344,7 +344,7 @@ class PluginInstance extends \Google\Protobuf\Internal\Message
      * Required. The action status for the plugin instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.PluginInstanceAction actions = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\PluginInstanceAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\PluginInstanceAction[] $var
      * @return $this
      */
     public function setActions($var)

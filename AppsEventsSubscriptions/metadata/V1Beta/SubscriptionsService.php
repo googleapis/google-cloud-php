@@ -23,52 +23,7 @@ class SubscriptionsService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-≤
-Cgoogle/apps/events/subscriptions/v1beta/subscriptions_service.proto\'google.apps.events.subscriptions.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protoCgoogle/apps/events/subscriptions/v1beta/subscription_resource.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"â
-CreateSubscriptionRequestP
-subscription (25.google.apps.events.subscriptions.v1beta.SubscriptionB‡A
-validate_only (B‡A"©
-DeleteSubscriptionRequestA
-name (	B3‡A˙A-
-+workspaceevents.googleapis.com/Subscription
-validate_only (B‡A
-allow_missing (B‡A
-etag (	B‡A"[
-GetSubscriptionRequestA
-name (	B3‡A˙A-
-+workspaceevents.googleapis.com/Subscription"ø
-UpdateSubscriptionRequestP
-subscription (25.google.apps.events.subscriptions.v1beta.SubscriptionB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A
-validate_only (B‡A"b
-ReactivateSubscriptionRequestA
-name (	B3‡A˙A-
-+workspaceevents.googleapis.com/Subscription"`
-ListSubscriptionsRequest
-	page_size (B‡A
-
-page_token (	B‡A
-filter (	B‡A"Ç
-ListSubscriptionsResponseL
-subscriptions (25.google.apps.events.subscriptions.v1beta.Subscription
-next_page_token (	"
-UpdateSubscriptionMetadata"
-CreateSubscriptionMetadata"
-DeleteSubscriptionMetadata" 
-ReactivateSubscriptionMetadata2ı
-SubscriptionsService‡
-CreateSubscriptionB.google.apps.events.subscriptions.v1beta.CreateSubscriptionRequest.google.longrunning.Operation"g A*
-SubscriptionCreateSubscriptionMetadata⁄AsubscriptionÇ”‰ì%"/v1beta/subscriptions:subscription‹
-DeleteSubscriptionB.google.apps.events.subscriptions.v1beta.DeleteSubscriptionRequest.google.longrunning.Operation"c A3
-google.protobuf.EmptyDeleteSubscriptionMetadata⁄AnameÇ”‰ì */v1beta/{name=subscriptions/*}∏
-GetSubscription?.google.apps.events.subscriptions.v1beta.GetSubscriptionRequest5.google.apps.events.subscriptions.v1beta.Subscription"-⁄AnameÇ”‰ì /v1beta/{name=subscriptions/*}¬
-ListSubscriptionsA.google.apps.events.subscriptions.v1beta.ListSubscriptionsRequestB.google.apps.events.subscriptions.v1beta.ListSubscriptionsResponse"&⁄AfilterÇ”‰ì/v1beta/subscriptionsÉ
-UpdateSubscriptionB.google.apps.events.subscriptions.v1beta.UpdateSubscriptionRequest.google.longrunning.Operation"â A*
-SubscriptionUpdateSubscriptionMetadata⁄Asubscription,update_maskÇ”‰ì;2+/v1beta/{subscription.name=subscriptions/*}:subscriptionÌ
-ReactivateSubscriptionF.google.apps.events.subscriptions.v1beta.ReactivateSubscriptionRequest.google.longrunning.Operation"l A.
-SubscriptionReactivateSubscriptionMetadata⁄AnameÇ”‰ì.")/v1beta/{name=subscriptions/*}:reactivate:*§ Aworkspaceevents.googleapis.com“Aˇhttps://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/drive,https://www.googleapis.com/auth/drive.file,https://www.googleapis.com/auth/drive.metadata,https://www.googleapis.com/auth/drive.metadata.readonly,https://www.googleapis.com/auth/drive.readonly,https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonlyB•
-+com.google.apps.events.subscriptions.v1betaBSubscriptionsServiceProtoPZWcloud.google.com/go/apps/events/subscriptions/apiv1beta/subscriptionspb;subscriptionspb™\'Google.Apps.Events.Subscriptions.V1Beta \'Google\\Apps\\Events\\Subscriptions\\V1betaÍ+Google::Apps::Events::Subscriptions::V1betabproto3'
+            "\x0A\xB2\x1E\x0ACgoogle/apps/events/subscriptions/v1beta/subscriptions_service.proto\x12'google.apps.events.subscriptions.v1beta\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1ACgoogle/apps/events/subscriptions/v1beta/subscription_resource.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\"\x89\x01\x0A\x19CreateSubscriptionRequest\x12P\x0A\x0Csubscription\x18\x01 \x01(\x0B25.google.apps.events.subscriptions.v1beta.SubscriptionB\x03\xE0A\x02\x12\x1A\x0A\x0Dvalidate_only\x18\x02 \x01(\x08B\x03\xE0A\x01\"\xA9\x01\x0A\x19DeleteSubscriptionRequest\x12A\x0A\x04name\x18\x01 \x01(\x09B3\xE0A\x02\xFAA-\x0A+workspaceevents.googleapis.com/Subscription\x12\x1A\x0A\x0Dvalidate_only\x18\x02 \x01(\x08B\x03\xE0A\x01\x12\x1A\x0A\x0Dallow_missing\x18\x03 \x01(\x08B\x03\xE0A\x01\x12\x11\x0A\x04etag\x18\x04 \x01(\x09B\x03\xE0A\x01\"[\x0A\x16GetSubscriptionRequest\x12A\x0A\x04name\x18\x01 \x01(\x09B3\xE0A\x02\xFAA-\x0A+workspaceevents.googleapis.com/Subscription\"\xBF\x01\x0A\x19UpdateSubscriptionRequest\x12P\x0A\x0Csubscription\x18\x01 \x01(\x0B25.google.apps.events.subscriptions.v1beta.SubscriptionB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x01\x12\x1A\x0A\x0Dvalidate_only\x18\x03 \x01(\x08B\x03\xE0A\x01\"b\x0A\x1DReactivateSubscriptionRequest\x12A\x0A\x04name\x18\x01 \x01(\x09B3\xE0A\x02\xFAA-\x0A+workspaceevents.googleapis.com/Subscription\"`\x0A\x18ListSubscriptionsRequest\x12\x16\x0A\x09page_size\x18\x01 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x03 \x01(\x09B\x03\xE0A\x02\"\x82\x01\x0A\x19ListSubscriptionsResponse\x12L\x0A\x0Dsubscriptions\x18\x01 \x03(\x0B25.google.apps.events.subscriptions.v1beta.Subscription\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"\x1C\x0A\x1AUpdateSubscriptionMetadata\"\x1C\x0A\x1ACreateSubscriptionMetadata\"\x1C\x0A\x1ADeleteSubscriptionMetadata\" \x0A\x1EReactivateSubscriptionMetadata2\xF5\x10\x0A\x14SubscriptionsService\x12\xE0\x01\x0A\x12CreateSubscription\x12B.google.apps.events.subscriptions.v1beta.CreateSubscriptionRequest\x1A\x1D.google.longrunning.Operation\"g\xCAA*\x0A\x0CSubscription\x12\x1ACreateSubscriptionMetadata\xDAA\x0Csubscription\x82\xD3\xE4\x93\x02%\"\x15/v1beta/subscriptions:\x0Csubscription\x12\xDC\x01\x0A\x12DeleteSubscription\x12B.google.apps.events.subscriptions.v1beta.DeleteSubscriptionRequest\x1A\x1D.google.longrunning.Operation\"c\xCAA3\x0A\x15google.protobuf.Empty\x12\x1ADeleteSubscriptionMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02 *\x1E/v1beta/{name=subscriptions/*}\x12\xB8\x01\x0A\x0FGetSubscription\x12?.google.apps.events.subscriptions.v1beta.GetSubscriptionRequest\x1A5.google.apps.events.subscriptions.v1beta.Subscription\"-\xDAA\x04name\x82\xD3\xE4\x93\x02 \x12\x1E/v1beta/{name=subscriptions/*}\x12\xC2\x01\x0A\x11ListSubscriptions\x12A.google.apps.events.subscriptions.v1beta.ListSubscriptionsRequest\x1AB.google.apps.events.subscriptions.v1beta.ListSubscriptionsResponse\"&\xDAA\x06filter\x82\xD3\xE4\x93\x02\x17\x12\x15/v1beta/subscriptions\x12\x83\x02\x0A\x12UpdateSubscription\x12B.google.apps.events.subscriptions.v1beta.UpdateSubscriptionRequest\x1A\x1D.google.longrunning.Operation\"\x89\x01\xCAA*\x0A\x0CSubscription\x12\x1AUpdateSubscriptionMetadata\xDAA\x18subscription,update_mask\x82\xD3\xE4\x93\x02;2+/v1beta/{subscription.name=subscriptions/*}:\x0Csubscription\x12\xED\x01\x0A\x16ReactivateSubscription\x12F.google.apps.events.subscriptions.v1beta.ReactivateSubscriptionRequest\x1A\x1D.google.longrunning.Operation\"l\xCAA.\x0A\x0CSubscription\x12\x1EReactivateSubscriptionMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02.\")/v1beta/{name=subscriptions/*}:reactivate:\x01*\x1A\xA4\x06\xCAA\x1Eworkspaceevents.googleapis.com\xD2A\xFF\x05https://www.googleapis.com/auth/chat.memberships,https://www.googleapis.com/auth/chat.memberships.readonly,https://www.googleapis.com/auth/chat.messages,https://www.googleapis.com/auth/chat.messages.reactions,https://www.googleapis.com/auth/chat.messages.reactions.readonly,https://www.googleapis.com/auth/chat.messages.readonly,https://www.googleapis.com/auth/chat.spaces,https://www.googleapis.com/auth/chat.spaces.readonly,https://www.googleapis.com/auth/drive,https://www.googleapis.com/auth/drive.file,https://www.googleapis.com/auth/drive.metadata,https://www.googleapis.com/auth/drive.metadata.readonly,https://www.googleapis.com/auth/drive.readonly,https://www.googleapis.com/auth/meetings.space.created,https://www.googleapis.com/auth/meetings.space.readonlyB\xA5\x02\x0A+com.google.apps.events.subscriptions.v1betaB\x19SubscriptionsServiceProtoP\x01ZWcloud.google.com/go/apps/events/subscriptions/apiv1beta/subscriptionspb;subscriptionspb\xAA\x02'Google.Apps.Events.Subscriptions.V1Beta\xCA\x02'Google\\Apps\\Events\\Subscriptions\\V1beta\xEA\x02+Google::Apps::Events::Subscriptions::V1betab\x06proto3"
         , true);
 
         static::$is_initialized = true;

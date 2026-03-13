@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListSearchAds360Links RPC.
@@ -35,7 +35,7 @@ class ListSearchAds360LinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\SearchAds360Link>|\Google\Protobuf\Internal\RepeatedField $search_ads_360_links
+     *     @type \Google\Analytics\Admin\V1alpha\SearchAds360Link[] $search_ads_360_links
      *           List of SearchAds360Links.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListSearchAds360LinksResponse extends \Google\Protobuf\Internal\Message
      * List of SearchAds360Links.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\SearchAds360Link>
      */
     public function getSearchAds360Links()
     {
@@ -62,7 +62,7 @@ class ListSearchAds360LinksResponse extends \Google\Protobuf\Internal\Message
      * List of SearchAds360Links.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SearchAds360Link search_ads_360_links = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\SearchAds360Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\SearchAds360Link[] $var
      * @return $this
      */
     public function setSearchAds360Links($var)

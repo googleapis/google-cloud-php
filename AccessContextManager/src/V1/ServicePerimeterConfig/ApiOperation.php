@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identification for an API Operation.
@@ -54,7 +54,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation]
      *           with `service_name` field set to `*` will allow all methods AND
      *           permissions for all services.
-     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\MethodSelector>|\Google\Protobuf\Internal\RepeatedField $method_selectors
+     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\MethodSelector[] $method_selectors
      *           API methods or permissions to allow. Method or permission must belong to
      *           the service specified by `service_name` field. A single [MethodSelector]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector]
@@ -115,7 +115,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      * AND permissions for the service specified in `service_name`.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector method_selectors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\MethodSelector>
      */
     public function getMethodSelectors()
     {
@@ -130,7 +130,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      * AND permissions for the service specified in `service_name`.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.MethodSelector method_selectors = 2;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\MethodSelector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\MethodSelector[] $var
      * @return $this
      */
     public function setMethodSelectors($var)
@@ -142,5 +142,4 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

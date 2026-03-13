@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for UpdateApiSpec.
@@ -18,7 +18,7 @@ class UpdateApiSpecRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The spec to update.
      * The `name` field is used to identify the spec to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}versions/{@*}specs/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiSpec api_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -70,7 +70,7 @@ class UpdateApiSpecRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApigeeRegistry\V1\ApiSpec $api_spec
      *           Required. The spec to update.
      *           The `name` field is used to identify the spec to update.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
+     *           Format: `projects/{@*}locations/{@*}apis/{@*}versions/{@*}specs/*`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -89,7 +89,7 @@ class UpdateApiSpecRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The spec to update.
      * The `name` field is used to identify the spec to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}versions/{@*}specs/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiSpec api_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ApigeeRegistry\V1\ApiSpec|null
@@ -112,7 +112,7 @@ class UpdateApiSpecRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The spec to update.
      * The `name` field is used to identify the spec to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}versions/{@*}specs/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiSpec api_spec = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ApigeeRegistry\V1\ApiSpec $var

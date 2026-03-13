@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execute a SQL statement response.
@@ -35,7 +35,7 @@ class ExecuteSqlResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\SqlResult>|\Google\Protobuf\Internal\RepeatedField $sql_results
+     *     @type \Google\Cloud\AlloyDb\V1\SqlResult[] $sql_results
      *           SqlResult represents the results for the execution of sql statements.
      *     @type \Google\Cloud\AlloyDb\V1\ExecuteSqlMetadata $metadata
      *           Any additional metadata information regarding the execution of the sql
@@ -51,7 +51,7 @@ class ExecuteSqlResponse extends \Google\Protobuf\Internal\Message
      * SqlResult represents the results for the execution of sql statements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResult sql_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\SqlResult>
      */
     public function getSqlResults()
     {
@@ -62,7 +62,7 @@ class ExecuteSqlResponse extends \Google\Protobuf\Internal\Message
      * SqlResult represents the results for the execution of sql statements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResult sql_results = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\SqlResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\SqlResult[] $var
      * @return $this
      */
     public function setSqlResults($var)

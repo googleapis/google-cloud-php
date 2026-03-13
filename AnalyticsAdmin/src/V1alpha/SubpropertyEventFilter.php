@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource message representing a Google Analytics subproperty event filter.
@@ -50,7 +50,7 @@ class SubpropertyEventFilter extends \Google\Protobuf\Internal\Message
      *           Example: properties/1234/subpropertyEventFilters/5678
      *     @type string $apply_to_property
      *           Immutable. Resource name of the Subproperty that uses this filter.
-     *     @type array<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause>|\Google\Protobuf\Internal\RepeatedField $filter_clauses
+     *     @type \Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause[] $filter_clauses
      *           Required. Unordered list. Filter clauses that define the
      *           SubpropertyEventFilter. All clauses are AND'ed together to determine what
      *           data is sent to the subproperty.
@@ -133,7 +133,7 @@ class SubpropertyEventFilter extends \Google\Protobuf\Internal\Message
      * data is sent to the subproperty.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertyEventFilterClause filter_clauses = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause>
      */
     public function getFilterClauses()
     {
@@ -146,7 +146,7 @@ class SubpropertyEventFilter extends \Google\Protobuf\Internal\Message
      * data is sent to the subproperty.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertyEventFilterClause filter_clauses = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertyEventFilterClause[] $var
      * @return $this
      */
     public function setFilterClauses($var)

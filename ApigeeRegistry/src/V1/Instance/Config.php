@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Available configurations to provision an Instance.
@@ -110,5 +110,4 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

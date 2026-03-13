@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to create a space and add specified users to it.
@@ -58,7 +58,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * `User.Type.HUMAN`. You can only add human users when setting up a space
      * (adding Chat apps is only supported for direct message setup with the
      * calling app). You can also add members using the user's email as an alias
-     * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
+     * for {user}. For example, the `user.name` can be `users/example\@gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
      * For Google group membership, the `Membership.group_member` field must
@@ -109,7 +109,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      *           instead of creating a new space.
      *           Specifying an existing request ID from the same Chat app with a different
      *           authenticated user returns an error.
-     *     @type array<\Google\Apps\Chat\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $memberships
+     *     @type \Google\Apps\Chat\V1\Membership[] $memberships
      *           Optional. The Google Chat users or groups to invite to join the space. Omit
      *           the calling user, as they are added automatically.
      *           The set currently allows up to 49 memberships (in addition to the caller).
@@ -118,7 +118,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      *           `User.Type.HUMAN`. You can only add human users when setting up a space
      *           (adding Chat apps is only supported for direct message setup with the
      *           calling app). You can also add members using the user's email as an alias
-     *           for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
+     *           for {user}. For example, the `user.name` can be `users/example\@gmail.com`.
      *           To invite Gmail users or users from external Google Workspace domains,
      *           user's email must be used for `{user}`.
      *           For Google group membership, the `Membership.group_member` field must
@@ -254,7 +254,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * `User.Type.HUMAN`. You can only add human users when setting up a space
      * (adding Chat apps is only supported for direct message setup with the
      * calling app). You can also add members using the user's email as an alias
-     * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
+     * for {user}. For example, the `user.name` can be `users/example\@gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
      * For Google group membership, the `Membership.group_member` field must
@@ -270,7 +270,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`).
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Membership memberships = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Membership>
      */
     public function getMemberships()
     {
@@ -286,7 +286,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * `User.Type.HUMAN`. You can only add human users when setting up a space
      * (adding Chat apps is only supported for direct message setup with the
      * calling app). You can also add members using the user's email as an alias
-     * for {user}. For example, the `user.name` can be `users/example&#64;gmail.com`.
+     * for {user}. For example, the `user.name` can be `users/example\@gmail.com`.
      * To invite Gmail users or users from external Google Workspace domains,
      * user's email must be used for `{user}`.
      * For Google group membership, the `Membership.group_member` field must
@@ -302,7 +302,7 @@ class SetUpSpaceRequest extends \Google\Protobuf\Internal\Message
      * `DIRECT_MESSAGE` and `Space.singleUserBotDm` to `true`).
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Membership memberships = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Apps\Chat\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Membership[] $var
      * @return $this
      */
     public function setMemberships($var)

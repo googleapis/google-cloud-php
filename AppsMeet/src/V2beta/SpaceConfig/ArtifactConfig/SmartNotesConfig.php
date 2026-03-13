@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta\SpaceConfig\ArtifactConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration related to smart notes in a meeting space. More
@@ -74,5 +74,4 @@ class SmartNotesConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

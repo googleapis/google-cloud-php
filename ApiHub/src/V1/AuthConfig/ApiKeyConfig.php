@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\AuthConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for authentication with API key.
@@ -170,5 +170,4 @@ class ApiKeyConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

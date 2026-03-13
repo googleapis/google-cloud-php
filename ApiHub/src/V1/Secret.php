@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Secret provides a reference to entries in Secret Manager.
@@ -17,7 +17,7 @@ class Secret extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the secret version in the format,
-     * format as: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format as: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string secret_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -31,7 +31,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *
      *     @type string $secret_version
      *           Required. The resource name of the secret version in the format,
-     *           format as: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           format as: `projects/{@*}secrets/{@*}versions/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class Secret extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the secret version in the format,
-     * format as: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format as: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string secret_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -53,7 +53,7 @@ class Secret extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the secret version in the format,
-     * format as: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format as: `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string secret_version = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

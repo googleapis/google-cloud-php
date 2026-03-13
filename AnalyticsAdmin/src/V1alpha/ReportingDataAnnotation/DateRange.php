@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\ReportingDataAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Reporting Data Annotation's date range, both start and end
@@ -135,5 +135,4 @@ class DateRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

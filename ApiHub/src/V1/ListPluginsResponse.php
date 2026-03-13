@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListPlugins][google.cloud.apihub.v1.ApiHubPlugin.ListPlugins] method's
@@ -36,7 +36,7 @@ class ListPluginsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Plugin>|\Google\Protobuf\Internal\RepeatedField $plugins
+     *     @type \Google\Cloud\ApiHub\V1\Plugin[] $plugins
      *           The plugins from the specified parent resource.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListPluginsResponse extends \Google\Protobuf\Internal\Message
      * The plugins from the specified parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Plugin plugins = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Plugin>
      */
     public function getPlugins()
     {
@@ -63,7 +63,7 @@ class ListPluginsResponse extends \Google\Protobuf\Internal\Message
      * The plugins from the specified parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Plugin plugins = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Plugin>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Plugin[] $var
      * @return $this
      */
     public function setPlugins($var)

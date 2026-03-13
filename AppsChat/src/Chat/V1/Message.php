@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message in a Google Chat space.
@@ -71,8 +71,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. Plain-text body of the message. The first link to an image,
      * video, or web page generates a [preview
      * chip](https://developers.google.com/workspace/chat/preview-links). You can
-     * also [&#64;mention a Google Chat
-     * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
+     * also [\@mention a Google Chat
+     * user](https://developers.google.com/workspace/chat/format-messages#messages-\@mention),
      * or everyone in the space.
      * To learn about creating text messages, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
@@ -89,7 +89,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * for bold, italic, strikethrough, monospace, monospace block, and bulleted
      * list.
      * * [User
-     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention)
+     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
      * * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the
      * first string is the URL and the second is the rendered text—for example,
@@ -318,8 +318,8 @@ class Message extends \Google\Protobuf\Internal\Message
      *           Optional. Plain-text body of the message. The first link to an image,
      *           video, or web page generates a [preview
      *           chip](https://developers.google.com/workspace/chat/preview-links). You can
-     *           also [&#64;mention a Google Chat
-     *           user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
+     *           also [\@mention a Google Chat
+     *           user](https://developers.google.com/workspace/chat/format-messages#messages-\@mention),
      *           or everyone in the space.
      *           To learn about creating text messages, see [Send a
      *           message](https://developers.google.com/workspace/chat/create-messages).
@@ -332,7 +332,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *           for bold, italic, strikethrough, monospace, monospace block, and bulleted
      *           list.
      *           * [User
-     *           mentions](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention)
+     *           mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      *           using the format `<users/{user}>`.
      *           * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the
      *           first string is the URL and the second is the rendered text—for example,
@@ -343,13 +343,13 @@ class Message extends \Google\Protobuf\Internal\Message
      *           * Bullet list items using asterisks (`*`)—for example, `* item`.
      *           For more information, see [View text formatting sent in a
      *           message](https://developers.google.com/workspace/chat/format-messages#view_text_formatting_sent_in_a_message)
-     *     @type array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card>|\Google\Protobuf\Internal\RepeatedField $cards
+     *     @type \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card[] $cards
      *           Deprecated: Use `cards_v2` instead.
      *           Rich, formatted, and interactive cards that you can use to display UI
      *           elements such as: formatted texts, buttons, and clickable images. Cards are
      *           normally displayed below the plain-text body of the message. `cards` and
      *           `cards_v2` can have a maximum size of 32 KB.
-     *     @type array<\Google\Apps\Chat\V1\CardWithId>|\Google\Protobuf\Internal\RepeatedField $cards_v2
+     *     @type \Google\Apps\Chat\V1\CardWithId[] $cards_v2
      *           Optional. An array of
      *           [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards).
      *           Only Chat apps can create cards. If your Chat app [authenticates as a
@@ -358,7 +358,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *           To learn how to create a message that contains cards, see [Send a
      *           message](https://developers.google.com/workspace/chat/create-messages).
      *           [Card builder](https://addons.gsuite.google.com/uikit/builder)
-     *     @type array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Apps\Chat\V1\Annotation[] $annotations
      *           Output only. Annotations can be associated with the plain-text body of the
      *           message or with chips that link to Google Workspace resources like Google
      *           Docs or Sheets with `start_index` and `length` of 0.
@@ -383,7 +383,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *           stripped out.
      *     @type \Google\Apps\Chat\V1\SlashCommand $slash_command
      *           Output only. Slash command information, if applicable.
-     *     @type array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachment
+     *     @type \Google\Apps\Chat\V1\Attachment[] $attachment
      *           Optional. User-uploaded attachment.
      *     @type \Google\Apps\Chat\V1\MatchedUrl $matched_url
      *           Output only. A URL in `spaces.messages.text` that matches a link preview
@@ -402,7 +402,7 @@ class Message extends \Google\Protobuf\Internal\Message
      *           [`messageId`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.messages/create#body.QUERY_PARAMETERS.message_id)
      *           field when you create the message. For details, see [Name a
      *           message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
-     *     @type array<\Google\Apps\Chat\V1\EmojiReactionSummary>|\Google\Protobuf\Internal\RepeatedField $emoji_reaction_summaries
+     *     @type \Google\Apps\Chat\V1\EmojiReactionSummary[] $emoji_reaction_summaries
      *           Output only. The list of emoji reaction summaries on the message.
      *     @type \Google\Apps\Chat\V1\User $private_message_viewer
      *           Optional. Immutable. Input for creating a message, otherwise output only.
@@ -426,9 +426,9 @@ class Message extends \Google\Protobuf\Internal\Message
      *           `quotedMessageMetadata` field, but you can remove it.
      *           For example usage, see [Quote another
      *           message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
-     *     @type array<\Google\Apps\Chat\V1\AttachedGif>|\Google\Protobuf\Internal\RepeatedField $attached_gifs
+     *     @type \Google\Apps\Chat\V1\AttachedGif[] $attached_gifs
      *           Output only. GIF images that are attached to the message.
-     *     @type array<\Google\Apps\Chat\V1\AccessoryWidget>|\Google\Protobuf\Internal\RepeatedField $accessory_widgets
+     *     @type \Google\Apps\Chat\V1\AccessoryWidget[] $accessory_widgets
      *           Optional. One or more interactive widgets that appear at the bottom of a
      *           message. You can add accessory widgets to messages that contain text,
      *           cards, or both text and cards. Not supported for messages that contain
@@ -662,8 +662,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. Plain-text body of the message. The first link to an image,
      * video, or web page generates a [preview
      * chip](https://developers.google.com/workspace/chat/preview-links). You can
-     * also [&#64;mention a Google Chat
-     * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
+     * also [\@mention a Google Chat
+     * user](https://developers.google.com/workspace/chat/format-messages#messages-\@mention),
      * or everyone in the space.
      * To learn about creating text messages, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
@@ -680,8 +680,8 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. Plain-text body of the message. The first link to an image,
      * video, or web page generates a [preview
      * chip](https://developers.google.com/workspace/chat/preview-links). You can
-     * also [&#64;mention a Google Chat
-     * user](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention),
+     * also [\@mention a Google Chat
+     * user](https://developers.google.com/workspace/chat/format-messages#messages-\@mention),
      * or everyone in the space.
      * To learn about creating text messages, see [Send a
      * message](https://developers.google.com/workspace/chat/create-messages).
@@ -707,7 +707,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * for bold, italic, strikethrough, monospace, monospace block, and bulleted
      * list.
      * * [User
-     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention)
+     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
      * * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the
      * first string is the URL and the second is the rendered text—for example,
@@ -736,7 +736,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * for bold, italic, strikethrough, monospace, monospace block, and bulleted
      * list.
      * * [User
-     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-&#64;mention)
+     * mentions](https://developers.google.com/workspace/chat/format-messages#messages-\@mention)
      * using the format `<users/{user}>`.
      * * Custom hyperlinks using the format `<{url}|{rendered_text}>` where the
      * first string is the URL and the second is the rendered text—for example,
@@ -768,7 +768,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * `cards_v2` can have a maximum size of 32 KB.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card cards = 5 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card>
      * @deprecated
      */
     public function getCards()
@@ -787,7 +787,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * `cards_v2` can have a maximum size of 32 KB.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card cards = 5 [deprecated = true];</code>
-     * @param array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card[] $var
      * @return $this
      * @deprecated
      */
@@ -813,7 +813,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\CardWithId>
      */
     public function getCardsV2()
     {
@@ -831,7 +831,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * [Card builder](https://addons.gsuite.google.com/uikit/builder)
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CardWithId cards_v2 = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Apps\Chat\V1\CardWithId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\CardWithId[] $var
      * @return $this
      */
     public function setCardsV2($var)
@@ -848,7 +848,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Annotation>
      */
     public function getAnnotations()
     {
@@ -861,7 +861,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Docs or Sheets with `start_index` and `length` of 0.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Annotation[] $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -1090,7 +1090,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. User-uploaded attachment.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Attachment>
      */
     public function getAttachment()
     {
@@ -1101,7 +1101,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Optional. User-uploaded attachment.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachment = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Attachment[] $var
      * @return $this
      */
     public function setAttachment($var)
@@ -1226,7 +1226,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. The list of emoji reaction summaries on the message.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.EmojiReactionSummary emoji_reaction_summaries = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\EmojiReactionSummary>
      */
     public function getEmojiReactionSummaries()
     {
@@ -1237,7 +1237,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. The list of emoji reaction summaries on the message.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.EmojiReactionSummary emoji_reaction_summaries = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Apps\Chat\V1\EmojiReactionSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\EmojiReactionSummary[] $var
      * @return $this
      */
     public function setEmojiReactionSummaries($var)
@@ -1392,7 +1392,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. GIF images that are attached to the message.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.AttachedGif attached_gifs = 42 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\AttachedGif>
      */
     public function getAttachedGifs()
     {
@@ -1403,7 +1403,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * Output only. GIF images that are attached to the message.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.AttachedGif attached_gifs = 42 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Apps\Chat\V1\AttachedGif>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\AttachedGif[] $var
      * @return $this
      */
     public function setAttachedGifs($var)
@@ -1425,7 +1425,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\AccessoryWidget>
      */
     public function getAccessoryWidgets()
     {
@@ -1443,7 +1443,7 @@ class Message extends \Google\Protobuf\Internal\Message
      * (https://developers.google.com/workspace/chat/authenticate-authorize-chat-app).
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.AccessoryWidget accessory_widgets = 44 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Apps\Chat\V1\AccessoryWidget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\AccessoryWidget[] $var
      * @return $this
      */
     public function setAccessoryWidgets($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from the
@@ -36,7 +36,7 @@ class SearchPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\PartnerLink>|\Google\Protobuf\Internal\RepeatedField $partner_links
+     *     @type \Google\Ads\DataManager\V1\PartnerLink[] $partner_links
      *           The partner links for the given account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class SearchPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The partner links for the given account.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.PartnerLink partner_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\PartnerLink>
      */
     public function getPartnerLinks()
     {
@@ -63,7 +63,7 @@ class SearchPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The partner links for the given account.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.PartnerLink partner_links = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\PartnerLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\PartnerLink[] $var
      * @return $this
      */
     public function setPartnerLinks($var)

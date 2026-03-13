@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An SSL certificate obtained from a certificate authority.
@@ -36,7 +36,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      * <unencrypted_key_value>
      * -----END RSA PRIVATE KEY-----
      * </pre>
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string private_key = 2;</code>
      */
@@ -65,7 +65,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      *           <unencrypted_key_value>
      *           -----END RSA PRIVATE KEY-----
      *           </pre>
-     *           &#64;InputOnly
+     *           \@InputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -120,7 +120,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      * <unencrypted_key_value>
      * -----END RSA PRIVATE KEY-----
      * </pre>
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string private_key = 2;</code>
      * @return string
@@ -139,7 +139,7 @@ class CertificateRawData extends \Google\Protobuf\Internal\Message
      * <unencrypted_key_value>
      * -----END RSA PRIVATE KEY-----
      * </pre>
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string private_key = 2;</code>
      * @param string $var

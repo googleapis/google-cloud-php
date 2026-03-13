@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A restriction for a specific service and optionally one or multiple
@@ -50,7 +50,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
      *           service name, for example: `translate.googleapis.com`.
      *           You can use [`gcloud services list`](/sdk/gcloud/reference/services/list)
      *           to get a list of services that are enabled in the project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $methods
+     *     @type string[] $methods
      *           Optional. List of one or more methods that can be called.
      *           If empty, all methods for the service are allowed. A wildcard
      *           (*) can be used as the last symbol.
@@ -109,7 +109,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
      *   `translate.googleapis.com.Get*`
      *
      * Generated from protobuf field <code>repeated string methods = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMethods()
     {
@@ -127,7 +127,7 @@ class ApiTarget extends \Google\Protobuf\Internal\Message
      *   `translate.googleapis.com.Get*`
      *
      * Generated from protobuf field <code>repeated string methods = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMethods($var)

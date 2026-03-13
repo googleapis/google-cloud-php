@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\Plugin;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ConfigTemplate represents the configuration template for a plugin.
@@ -37,7 +37,7 @@ class ConfigTemplate extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate\AuthConfigTemplate $auth_config_template
      *           Optional. The authentication template for the plugin.
-     *     @type array<\Google\Cloud\ApiHub\V1\ConfigVariableTemplate>|\Google\Protobuf\Internal\RepeatedField $additional_config_template
+     *     @type \Google\Cloud\ApiHub\V1\ConfigVariableTemplate[] $additional_config_template
      *           Optional. The list of additional configuration variables for the plugin's
      *           configuration.
      * }
@@ -88,7 +88,7 @@ class ConfigTemplate extends \Google\Protobuf\Internal\Message
      * configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigVariableTemplate additional_config_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\ConfigVariableTemplate>
      */
     public function getAdditionalConfigTemplate()
     {
@@ -100,7 +100,7 @@ class ConfigTemplate extends \Google\Protobuf\Internal\Message
      * configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigVariableTemplate additional_config_template = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\ConfigVariableTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\ConfigVariableTemplate[] $var
      * @return $this
      */
     public function setAdditionalConfigTemplate($var)
@@ -112,5 +112,4 @@ class ConfigTemplate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

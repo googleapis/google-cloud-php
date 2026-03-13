@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A persistent (sticky) footer that that appears at the bottom of the card.
@@ -140,5 +140,4 @@ class CardFixedFooter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

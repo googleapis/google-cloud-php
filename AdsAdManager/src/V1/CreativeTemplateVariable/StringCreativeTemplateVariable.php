@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\CreativeTemplateVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a string variable defined in a creative template.
@@ -129,5 +129,4 @@ class StringCreativeTemplateVariable extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

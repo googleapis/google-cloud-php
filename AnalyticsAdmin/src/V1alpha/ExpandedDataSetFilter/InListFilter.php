@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\ExpandedDataSetFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter for a string dimension that matches a particular list of options.
@@ -37,7 +37,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. The list of possible string values to match against. Must be
      *           non-empty.
      *     @type bool $case_sensitive
@@ -56,7 +56,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      * non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -68,7 +68,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      * non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -110,5 +110,4 @@ class InListFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

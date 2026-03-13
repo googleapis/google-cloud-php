@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListCreativeTemplatesRequest` containing matching
@@ -50,7 +50,7 @@ class ListCreativeTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CreativeTemplate>|\Google\Protobuf\Internal\RepeatedField $creative_templates
+     *     @type \Google\Ads\AdManager\V1\CreativeTemplate[] $creative_templates
      *           The `CreativeTemplate` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListCreativeTemplatesResponse extends \Google\Protobuf\Internal\Message
      * The `CreativeTemplate` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplate creative_templates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreativeTemplate>
      */
     public function getCreativeTemplates()
     {
@@ -87,7 +87,7 @@ class ListCreativeTemplatesResponse extends \Google\Protobuf\Internal\Message
      * The `CreativeTemplate` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplate creative_templates = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\CreativeTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreativeTemplate[] $var
      * @return $this
      */
     public function setCreativeTemplates($var)

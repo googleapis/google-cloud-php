@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The
@@ -37,7 +37,7 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Dependency>|\Google\Protobuf\Internal\RepeatedField $dependencies
+     *     @type \Google\Cloud\ApiHub\V1\Dependency[] $dependencies
      *           The dependency resources present in the API hub.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -53,7 +53,7 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
      * The dependency resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Dependency dependencies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Dependency>
      */
     public function getDependencies()
     {
@@ -64,7 +64,7 @@ class ListDependenciesResponse extends \Google\Protobuf\Internal\Message
      * The dependency resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Dependency dependencies = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Dependency>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Dependency[] $var
      * @return $this
      */
     public function setDependencies($var)

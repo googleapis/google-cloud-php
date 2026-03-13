@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Define conditions that must occur in a specific order for the user to be
@@ -71,7 +71,7 @@ class UserSegmentSequenceGroup extends \Google\Protobuf\Internal\Message
      *           seconds, but not 5 seconds and 1 microsecond.
      *           `sequenceMaximumDuration` is optional, and if unspecified, sequences can
      *           be completed in any time duration.
-     *     @type array<\Google\Analytics\Data\V1alpha\UserSequenceStep>|\Google\Protobuf\Internal\RepeatedField $user_sequence_steps
+     *     @type \Google\Analytics\Data\V1alpha\UserSequenceStep[] $user_sequence_steps
      *           An ordered sequence of condition steps. A user's events must complete
      *           each step in order for the user to match the
      *           `UserSegmentSequenceGroup`.
@@ -174,7 +174,7 @@ class UserSegmentSequenceGroup extends \Google\Protobuf\Internal\Message
      * `UserSegmentSequenceGroup`.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSequenceStep user_sequence_steps = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\UserSequenceStep>
      */
     public function getUserSequenceSteps()
     {
@@ -187,7 +187,7 @@ class UserSegmentSequenceGroup extends \Google\Protobuf\Internal\Message
      * `UserSegmentSequenceGroup`.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSequenceStep user_sequence_steps = 3;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\UserSequenceStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\UserSequenceStep[] $var
      * @return $this
      */
     public function setUserSequenceSteps($var)

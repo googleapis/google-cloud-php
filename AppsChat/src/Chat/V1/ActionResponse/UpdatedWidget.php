@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\ActionResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For `selectionInput` widgets, returns autocomplete suggestions for a
@@ -111,5 +111,4 @@ class UpdatedWidget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

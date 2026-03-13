@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\CurationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom curation information for this plugin instance.
@@ -72,5 +72,4 @@ class CustomCuration extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

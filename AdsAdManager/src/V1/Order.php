@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Order` resource.
@@ -239,7 +239,7 @@ class Order extends \Google\Protobuf\Internal\Message
      *     @type string $trafficker
      *           Required. The resource name of the User responsible for trafficking the
      *           Order. Format: "networks/{network_code}/users/{user_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertiser_contacts
+     *     @type string[] $advertiser_contacts
      *           Optional. Unordered list. The resource names of Contacts from the
      *           advertiser of this Order. Format:
      *           "networks/{network_code}/contacts/{contact_id}"
@@ -247,17 +247,17 @@ class Order extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the Company, which is of type
      *           Company.Type.ADVERTISER, to which this order belongs. Format:
      *           "networks/{network_code}/companies/{company_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $agency_contacts
+     *     @type string[] $agency_contacts
      *           Optional. The resource names of Contacts from the advertising Agency of
      *           this Order. Format: "networks/{network_code}/contacts/{contact_id}"
      *     @type string $agency
      *           Optional. The resource name of the Company, which is of type
      *           Company.Type.AGENCY, with which this order is associated. Format:
      *           "networks/{network_code}/companies/{company_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_teams
+     *     @type string[] $applied_teams
      *           Optional. The resource names of Teams directly applied to this Order.
      *           Format: "networks/{network_code}/teams/{team_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effective_teams
+     *     @type string[] $effective_teams
      *           Output only. The resource names of Teams applied to this Order including
      *           inherited values. Format: "networks/{network_code}/teams/{team_id}"
      *     @type string $creator
@@ -297,22 +297,22 @@ class Order extends \Google\Protobuf\Internal\Message
      *     @type string $salesperson
      *           Optional. The resource name of the User responsible for the sales of the
      *           Order. Format: "networks/{network_code}/users/{user_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_salespeople
+     *     @type string[] $secondary_salespeople
      *           Optional. Unordered list. The resource names of the secondary salespeople
      *           associated with the order. Format:
      *           "networks/{network_code}/users/{user_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_traffickers
+     *     @type string[] $secondary_traffickers
      *           Optional. Unordered list. The resource names of the secondary traffickers
      *           associated with the order. Format:
      *           "networks/{network_code}/users/{user_id}"
-     *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $applied_labels
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
      *           Optional. The set of labels applied directly to this order.
-     *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $effective_applied_labels
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $effective_applied_labels
      *           Output only. Contains the set of labels applied directly to the order as
      *           well as those inherited from the company that owns the order. If a label
      *           has been negated, only the negated label is returned. This field is
      *           assigned by Google.
-     *     @type array<\Google\Ads\AdManager\V1\CustomFieldValue>|\Google\Protobuf\Internal\RepeatedField $custom_field_values
+     *     @type \Google\Ads\AdManager\V1\CustomFieldValue[] $custom_field_values
      *           Optional. The set of custom field values to this order.
      * }
      */
@@ -503,7 +503,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvertiserContacts()
     {
@@ -516,7 +516,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>repeated string advertiser_contacts = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvertiserContacts($var)
@@ -572,7 +572,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * this Order. Format: "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>repeated string agency_contacts = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAgencyContacts()
     {
@@ -584,7 +584,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * this Order. Format: "networks/{network_code}/contacts/{contact_id}"
      *
      * Generated from protobuf field <code>repeated string agency_contacts = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAgencyContacts($var)
@@ -640,7 +640,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAppliedTeams()
     {
@@ -652,7 +652,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAppliedTeams($var)
@@ -668,7 +668,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * inherited values. Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string effective_teams = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEffectiveTeams()
     {
@@ -680,7 +680,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * inherited values. Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string effective_teams = 28 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEffectiveTeams($var)
@@ -1187,7 +1187,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>repeated string secondary_salespeople = 22 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondarySalespeople()
     {
@@ -1200,7 +1200,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>repeated string secondary_salespeople = 22 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondarySalespeople($var)
@@ -1217,7 +1217,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>repeated string secondary_traffickers = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondaryTraffickers()
     {
@@ -1230,7 +1230,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/users/{user_id}"
      *
      * Generated from protobuf field <code>repeated string secondary_traffickers = 24 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = UNORDERED_LIST, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondaryTraffickers($var)
@@ -1245,7 +1245,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The set of labels applied directly to this order.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
      */
     public function getAppliedLabels()
     {
@@ -1256,7 +1256,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The set of labels applied directly to this order.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
      * @return $this
      */
     public function setAppliedLabels($var)
@@ -1274,7 +1274,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * assigned by Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
      */
     public function getEffectiveAppliedLabels()
     {
@@ -1288,7 +1288,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * assigned by Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
      * @return $this
      */
     public function setEffectiveAppliedLabels($var)
@@ -1303,7 +1303,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The set of custom field values to this order.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomFieldValue>
      */
     public function getCustomFieldValues()
     {
@@ -1314,7 +1314,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Optional. The set of custom field values to this order.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomFieldValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomFieldValue[] $var
      * @return $this
      */
     public function setCustomFieldValues($var)

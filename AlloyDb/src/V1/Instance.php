@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Instance is a computing unit that an end customer can connect to.
@@ -317,7 +317,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AlloyDb\V1\Instance\Node $writable_node
      *           Output only. This is set for the read-write VM of the PRIMARY instance
      *           only.
-     *     @type array<\Google\Cloud\AlloyDb\V1\Instance\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\Node[] $nodes
      *           Output only. List of available read-only VMs in this instance, including
      *           the standby for a PRIMARY instance.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\QueryInsightsInstanceConfig $query_insights_config
@@ -355,7 +355,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           instance.
      *     @type \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig $network_config
      *           Optional. Instance-level network configuration.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $outbound_public_ip_addresses
+     *     @type string[] $outbound_public_ip_addresses
      *           Output only. All outbound public IP addresses configured for the instance.
      *     @type int $activation_policy
      *           Optional. Specifies whether an instance needs to spin up. Once the instance
@@ -861,7 +861,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * the standby for a PRIMARY instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.Node nodes = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Instance\Node>
      */
     public function getNodes()
     {
@@ -873,7 +873,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * the standby for a PRIMARY instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.Node nodes = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Instance\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Instance\Node[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -1282,7 +1282,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. All outbound public IP addresses configured for the instance.
      *
      * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOutboundPublicIpAddresses()
     {
@@ -1293,7 +1293,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. All outbound public IP addresses configured for the instance.
      *
      * Generated from protobuf field <code>repeated string outbound_public_ip_addresses = 34 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOutboundPublicIpAddresses($var)

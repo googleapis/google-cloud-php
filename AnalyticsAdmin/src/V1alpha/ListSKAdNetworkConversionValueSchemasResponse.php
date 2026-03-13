@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListSKAdNetworkConversionValueSchemas RPC
@@ -39,7 +39,7 @@ class ListSKAdNetworkConversionValueSchemasResponse extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema>|\Google\Protobuf\Internal\RepeatedField $skadnetwork_conversion_value_schemas
+     *     @type \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema[] $skadnetwork_conversion_value_schemas
      *           List of SKAdNetworkConversionValueSchemas. This will have at most one
      *           value.
      *     @type string $next_page_token
@@ -60,7 +60,7 @@ class ListSKAdNetworkConversionValueSchemasResponse extends \Google\Protobuf\Int
      * value.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema skadnetwork_conversion_value_schemas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema>
      */
     public function getSkadnetworkConversionValueSchemas()
     {
@@ -72,7 +72,7 @@ class ListSKAdNetworkConversionValueSchemasResponse extends \Google\Protobuf\Int
      * value.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SKAdNetworkConversionValueSchema skadnetwork_conversion_value_schemas = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\SKAdNetworkConversionValueSchema[] $var
      * @return $this
      */
     public function setSkadnetworkConversionValueSchemas($var)

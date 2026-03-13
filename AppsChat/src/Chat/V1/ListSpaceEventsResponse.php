@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing space events.
@@ -37,7 +37,7 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\SpaceEvent>|\Google\Protobuf\Internal\RepeatedField $space_events
+     *     @type \Google\Apps\Chat\V1\SpaceEvent[] $space_events
      *           Results are returned in chronological order (oldest event first).
      *           Note: The `permissionSettings` field is not returned in the Space
      *           object for list requests.
@@ -57,7 +57,7 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
      * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.SpaceEvent space_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\SpaceEvent>
      */
     public function getSpaceEvents()
     {
@@ -70,7 +70,7 @@ class ListSpaceEventsResponse extends \Google\Protobuf\Internal\Message
      * object for list requests.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.SpaceEvent space_events = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\SpaceEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\SpaceEvent[] $var
      * @return $this
      */
     public function setSpaceEvents($var)

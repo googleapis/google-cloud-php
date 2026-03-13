@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures a long-running operation resource to send a webhook notification
@@ -39,7 +39,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      * A URI is required to use webhook notifications.
      * Requests to this webhook server will contain an ID token authenticating the
      * service account
-     * `google-analytics-audience-export&#64;system.gserviceaccount.com`. To learn
+     * `google-analytics-audience-export\@system.gserviceaccount.com`. To learn
      * more about ID tokens, see
      * https://cloud.google.com/docs/authentication/token-types#id. For Google
      * Cloud Functions, this lets you configure your function to require
@@ -91,7 +91,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      *           A URI is required to use webhook notifications.
      *           Requests to this webhook server will contain an ID token authenticating the
      *           service account
-     *           `google-analytics-audience-export&#64;system.gserviceaccount.com`. To learn
+     *           `google-analytics-audience-export\@system.gserviceaccount.com`. To learn
      *           more about ID tokens, see
      *           https://cloud.google.com/docs/authentication/token-types#id. For Google
      *           Cloud Functions, this lets you configure your function to require
@@ -135,7 +135,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      * A URI is required to use webhook notifications.
      * Requests to this webhook server will contain an ID token authenticating the
      * service account
-     * `google-analytics-audience-export&#64;system.gserviceaccount.com`. To learn
+     * `google-analytics-audience-export\@system.gserviceaccount.com`. To learn
      * more about ID tokens, see
      * https://cloud.google.com/docs/authentication/token-types#id. For Google
      * Cloud Functions, this lets you configure your function to require
@@ -184,7 +184,7 @@ class WebhookNotification extends \Google\Protobuf\Internal\Message
      * A URI is required to use webhook notifications.
      * Requests to this webhook server will contain an ID token authenticating the
      * service account
-     * `google-analytics-audience-export&#64;system.gserviceaccount.com`. To learn
+     * `google-analytics-audience-export\@system.gserviceaccount.com`. To learn
      * more about ID tokens, see
      * https://cloud.google.com/docs/authentication/token-types#id. For Google
      * Cloud Functions, this lets you configure your function to require

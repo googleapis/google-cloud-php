@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Android apps that are allowed to use the key.
@@ -29,7 +29,7 @@ class AndroidKeyRestrictions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiKeys\V2\AndroidApplication>|\Google\Protobuf\Internal\RepeatedField $allowed_applications
+     *     @type \Google\Cloud\ApiKeys\V2\AndroidApplication[] $allowed_applications
      *           A list of Android applications that are allowed to make API calls with
      *           this key.
      * }
@@ -44,7 +44,7 @@ class AndroidKeyRestrictions extends \Google\Protobuf\Internal\Message
      * this key.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.AndroidApplication allowed_applications = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiKeys\V2\AndroidApplication>
      */
     public function getAllowedApplications()
     {
@@ -56,7 +56,7 @@ class AndroidKeyRestrictions extends \Google\Protobuf\Internal\Message
      * this key.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.AndroidApplication allowed_applications = 1;</code>
-     * @param array<\Google\Cloud\ApiKeys\V2\AndroidApplication>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiKeys\V2\AndroidApplication[] $var
      * @return $this
      */
     public function setAllowedApplications($var)

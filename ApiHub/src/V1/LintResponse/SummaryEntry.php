@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\LintResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Count of issues with a given severity.
@@ -98,5 +98,4 @@ class SummaryEntry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

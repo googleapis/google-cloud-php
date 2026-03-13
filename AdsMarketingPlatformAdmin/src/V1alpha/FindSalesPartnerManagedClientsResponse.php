@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for FindSalesPartnerManagedClients RPC.
@@ -28,7 +28,7 @@ class FindSalesPartnerManagedClientsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse\ClientData>|\Google\Protobuf\Internal\RepeatedField $client_data
+     *     @type \Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse\ClientData[] $client_data
      *           The clients managed by the sales org.
      * }
      */
@@ -41,7 +41,7 @@ class FindSalesPartnerManagedClientsResponse extends \Google\Protobuf\Internal\M
      * The clients managed by the sales org.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.FindSalesPartnerManagedClientsResponse.ClientData client_data = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse\ClientData>
      */
     public function getClientData()
     {
@@ -52,7 +52,7 @@ class FindSalesPartnerManagedClientsResponse extends \Google\Protobuf\Internal\M
      * The clients managed by the sales org.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.FindSalesPartnerManagedClientsResponse.ClientData client_data = 1;</code>
-     * @param array<\Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse\ClientData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse\ClientData[] $var
      * @return $this
      */
     public function setClientData($var)

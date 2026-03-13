@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a location in the world, for targeting.
@@ -82,7 +82,7 @@ class GeoTarget extends \Google\Protobuf\Internal\Message
      *           States" thus the canonical_parent would be the name of California and the
      *           canonical_parent of California would be the name of United states Format:
      *           `networks/{network_code}/geoTargets/{geo_target}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_names
+     *     @type string[] $parent_names
      *           Output only. All parents of the geo target ordered by ascending size.
      *     @type string $region_code
      *           Output only. The Unicode CLDR region code of the geo target.
@@ -211,7 +211,7 @@ class GeoTarget extends \Google\Protobuf\Internal\Message
      * Output only. All parents of the geo target ordered by ascending size.
      *
      * Generated from protobuf field <code>repeated string parent_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getParentNames()
     {
@@ -222,7 +222,7 @@ class GeoTarget extends \Google\Protobuf\Internal\Message
      * Output only. All parents of the geo target ordered by ascending size.
      *
      * Generated from protobuf field <code>repeated string parent_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setParentNames($var)

@@ -5,11 +5,11 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
- * Annotation metadata for user mentions (&#64;).
+ * Annotation metadata for user mentions (\@).
  *
  * Generated from protobuf message <code>google.chat.v1.UserMentionMetadata</code>
  */

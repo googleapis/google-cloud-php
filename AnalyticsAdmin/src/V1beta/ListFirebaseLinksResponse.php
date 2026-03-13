@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListFirebaseLinks RPC
@@ -37,7 +37,7 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1beta\FirebaseLink>|\Google\Protobuf\Internal\RepeatedField $firebase_links
+     *     @type \Google\Analytics\Admin\V1beta\FirebaseLink[] $firebase_links
      *           List of FirebaseLinks. This will have at most one value.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -55,7 +55,7 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * List of FirebaseLinks. This will have at most one value.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.FirebaseLink firebase_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\FirebaseLink>
      */
     public function getFirebaseLinks()
     {
@@ -66,7 +66,7 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * List of FirebaseLinks. This will have at most one value.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.FirebaseLink firebase_links = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\FirebaseLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\FirebaseLink[] $var
      * @return $this
      */
     public function setFirebaseLinks($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Events\Subscriptions\V1beta\Subscription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional supported options for serving Drive events.
@@ -104,5 +104,4 @@ class DriveOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

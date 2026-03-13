@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SqlResult represents the result for the execution of a sql statement.
@@ -35,10 +35,10 @@ class SqlResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\SqlResultColumn>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\AlloyDb\V1\SqlResultColumn[] $columns
      *           List of columns included in the result. This also includes the data type
      *           of the column.
-     *     @type array<\Google\Cloud\AlloyDb\V1\SqlResultRow>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Cloud\AlloyDb\V1\SqlResultRow[] $rows
      *           Rows returned by the SQL statement.
      * }
      */
@@ -52,7 +52,7 @@ class SqlResult extends \Google\Protobuf\Internal\Message
      * of the column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultColumn columns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\SqlResultColumn>
      */
     public function getColumns()
     {
@@ -64,7 +64,7 @@ class SqlResult extends \Google\Protobuf\Internal\Message
      * of the column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultColumn columns = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\SqlResultColumn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\SqlResultColumn[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -79,7 +79,7 @@ class SqlResult extends \Google\Protobuf\Internal\Message
      * Rows returned by the SQL statement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultRow rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\SqlResultRow>
      */
     public function getRows()
     {
@@ -90,7 +90,7 @@ class SqlResult extends \Google\Protobuf\Internal\Message
      * Rows returned by the SQL statement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultRow rows = 2;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\SqlResultRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\SqlResultRow[] $var
      * @return $this
      */
     public function setRows($var)

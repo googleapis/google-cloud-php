@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The report content corresponding to a report task.
@@ -72,19 +72,19 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type \Google\Analytics\Data\V1alpha\DimensionHeader[] $dimension_headers
      *           Describes dimension columns. The number of DimensionHeaders and ordering of
      *           DimensionHeaders matches the dimensions present in rows.
-     *     @type array<\Google\Analytics\Data\V1alpha\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type \Google\Analytics\Data\V1alpha\MetricHeader[] $metric_headers
      *           Describes metric columns. The number of MetricHeaders and ordering of
      *           MetricHeaders matches the metrics present in rows.
-     *     @type array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Analytics\Data\V1alpha\Row[] $rows
      *           Rows of dimension value combinations and metric values in the report.
-     *     @type array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $totals
+     *     @type \Google\Analytics\Data\V1alpha\Row[] $totals
      *           If requested, the totaled values of metrics.
-     *     @type array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $maximums
+     *     @type \Google\Analytics\Data\V1alpha\Row[] $maximums
      *           If requested, the maximum values of metrics.
-     *     @type array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $minimums
+     *     @type \Google\Analytics\Data\V1alpha\Row[] $minimums
      *           If requested, the minimum values of metrics.
      *     @type int $row_count
      *           The total number of rows in the query result.
@@ -102,7 +102,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionHeader dimension_headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\DimensionHeader>
      */
     public function getDimensionHeaders()
     {
@@ -114,7 +114,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionHeader dimension_headers = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\DimensionHeader[] $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -130,7 +130,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricHeader metric_headers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\MetricHeader>
      */
     public function getMetricHeaders()
     {
@@ -142,7 +142,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricHeader metric_headers = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\MetricHeader[] $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -157,7 +157,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row rows = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Row>
      */
     public function getRows()
     {
@@ -168,7 +168,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row rows = 3;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Row[] $var
      * @return $this
      */
     public function setRows($var)
@@ -183,7 +183,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the totaled values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row totals = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Row>
      */
     public function getTotals()
     {
@@ -194,7 +194,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the totaled values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row totals = 4;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Row[] $var
      * @return $this
      */
     public function setTotals($var)
@@ -209,7 +209,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the maximum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row maximums = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Row>
      */
     public function getMaximums()
     {
@@ -220,7 +220,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the maximum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row maximums = 5;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Row[] $var
      * @return $this
      */
     public function setMaximums($var)
@@ -235,7 +235,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the minimum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row minimums = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Row>
      */
     public function getMinimums()
     {
@@ -246,7 +246,7 @@ class QueryReportTaskResponse extends \Google\Protobuf\Internal\Message
      * If requested, the minimum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Row minimums = 6;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Row[] $var
      * @return $this
      */
     public function setMinimums($var)

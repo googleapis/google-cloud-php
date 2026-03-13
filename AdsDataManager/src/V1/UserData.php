@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data that identifies the user. At least one identifier is required.
@@ -33,7 +33,7 @@ class UserData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\UserIdentifier>|\Google\Protobuf\Internal\RepeatedField $user_identifiers
+     *     @type \Google\Ads\DataManager\V1\UserIdentifier[] $user_identifiers
      *           Required. The identifiers for the user. It's possible to provide multiple
      *           instances of the same type of data (for example, multiple email addresses).
      *           To increase the likelihood of a match, provide as many identifiers as
@@ -56,7 +56,7 @@ class UserData extends \Google\Protobuf\Internal\Message
      * [Event][google.ads.datamanager.v1.Event].
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserIdentifier user_identifiers = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserIdentifier>
      */
     public function getUserIdentifiers()
     {
@@ -72,7 +72,7 @@ class UserData extends \Google\Protobuf\Internal\Message
      * [Event][google.ads.datamanager.v1.Event].
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserIdentifier user_identifiers = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\DataManager\V1\UserIdentifier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserIdentifier[] $var
      * @return $this
      */
     public function setUserIdentifiers($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\UpgradeClusterResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stage information for different stages in the upgrade process.
@@ -140,5 +140,4 @@ class StageInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1\Application;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The feature specific settings to be used in the application. These define
@@ -123,5 +123,4 @@ class FeatureSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

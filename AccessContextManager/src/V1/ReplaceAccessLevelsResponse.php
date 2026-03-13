@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to ReplaceAccessLevelsRequest. This will be put inside of
@@ -30,7 +30,7 @@ class ReplaceAccessLevelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type \Google\Identity\AccessContextManager\V1\AccessLevel[] $access_levels
      *           List of the [Access Level]
      *           [google.identity.accesscontextmanager.v1.AccessLevel] instances.
      * }
@@ -45,7 +45,7 @@ class ReplaceAccessLevelsResponse extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessLevel] instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessLevel access_levels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\AccessLevel>
      */
     public function getAccessLevels()
     {
@@ -57,7 +57,7 @@ class ReplaceAccessLevelsResponse extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessLevel] instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessLevel access_levels = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\AccessLevel[] $var
      * @return $this
      */
     public function setAccessLevels($var)

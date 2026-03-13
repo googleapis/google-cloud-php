@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchUpdateAdUnits` method.
@@ -28,7 +28,7 @@ class BatchUpdateAdUnitsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\AdUnit>|\Google\Protobuf\Internal\RepeatedField $ad_units
+     *     @type \Google\Ads\AdManager\V1\AdUnit[] $ad_units
      *           The `AdUnit` objects updated.
      * }
      */
@@ -41,7 +41,7 @@ class BatchUpdateAdUnitsResponse extends \Google\Protobuf\Internal\Message
      * The `AdUnit` objects updated.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnit ad_units = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnit>
      */
     public function getAdUnits()
     {
@@ -52,7 +52,7 @@ class BatchUpdateAdUnitsResponse extends \Google\Protobuf\Internal\Message
      * The `AdUnit` objects updated.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnit ad_units = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\AdUnit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdUnit[] $var
      * @return $this
      */
     public function setAdUnits($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for client-side data redaction. Singleton resource under a Web
@@ -70,7 +70,7 @@ class DataRedactionSettings extends \Google\Protobuf\Internal\Message
      *           query parameter if it is in the configured set of query parameters.
      *           If enabled, URL query replacement logic will be run for the Stream. Any
      *           query parameters defined in query_parameter_keys will be redacted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_parameter_keys
+     *     @type string[] $query_parameter_keys
      *           The query parameter keys to apply redaction logic to if present in the URL.
      *           Query parameter matching is case-insensitive.
      *           Must contain at least one element if query_parameter_replacement_enabled
@@ -181,7 +181,7 @@ class DataRedactionSettings extends \Google\Protobuf\Internal\Message
      * is true. Keys cannot contain commas.
      *
      * Generated from protobuf field <code>repeated string query_parameter_keys = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryParameterKeys()
     {
@@ -195,7 +195,7 @@ class DataRedactionSettings extends \Google\Protobuf\Internal\Message
      * is true. Keys cannot contain commas.
      *
      * Generated from protobuf field <code>repeated string query_parameter_keys = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryParameterKeys($var)

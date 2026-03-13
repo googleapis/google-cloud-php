@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDataTable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A row of report data.
@@ -42,10 +42,10 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $dimension_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $dimension_values
      *           The order of the dimension values is the same as the order of the
      *           dimensions specified in the request.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDataTable\MetricValueGroup>|\Google\Protobuf\Internal\RepeatedField $metric_value_groups
+     *     @type \Google\Ads\AdManager\V1\ReportDataTable\MetricValueGroup[] $metric_value_groups
      *           The length of the metric_value_groups
      *           field will be equal to the length of the date_ranges field in the
      *           fetch response. The metric_value_groups field is
@@ -66,7 +66,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * dimensions specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue dimension_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getDimensionValues()
     {
@@ -78,7 +78,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * dimensions specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue dimension_values = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setDimensionValues($var)
@@ -100,7 +100,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * represents the metrics for date y.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDataTable.MetricValueGroup metric_value_groups = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDataTable\MetricValueGroup>
      */
     public function getMetricValueGroups()
     {
@@ -118,7 +118,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * represents the metrics for date y.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDataTable.MetricValueGroup metric_value_groups = 2;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDataTable\MetricValueGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDataTable\MetricValueGroup[] $var
      * @return $this
      */
     public function setMetricValueGroups($var)
@@ -130,5 +130,4 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
