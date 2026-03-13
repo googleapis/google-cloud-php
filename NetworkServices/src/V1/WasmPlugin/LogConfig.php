@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\WasmPlugin;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the logging options for the activity performed by this
@@ -186,5 +186,4 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

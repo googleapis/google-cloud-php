@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of VLAN attachment resources. These resources should
@@ -53,7 +53,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           The URIs of linked interconnect attachment resources
      *     @type bool $site_to_site_data_transfer
      *           A value that controls whether site-to-site data transfer is enabled for
@@ -61,7 +61,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      *           locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *     @type string $vpc_network
      *           Output only. The VPC network where these VLAN attachments are located.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_import_ranges
+     *     @type string[] $include_import_ranges
      *           Optional. IP ranges allowed to be included during import from hub (does not
      *           control transit connectivity). The only allowed value for now is
      *           "ALL_IPV4_RANGES".
@@ -76,7 +76,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * The URIs of linked interconnect attachment resources
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -87,7 +87,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * The URIs of linked interconnect attachment resources
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)
@@ -160,7 +160,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * "ALL_IPV4_RANGES".
      *
      * Generated from protobuf field <code>repeated string include_import_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeImportRanges()
     {
@@ -173,7 +173,7 @@ class LinkedInterconnectAttachments extends \Google\Protobuf\Internal\Message
      * "ALL_IPV4_RANGES".
      *
      * Generated from protobuf field <code>repeated string include_import_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeImportRanges($var)

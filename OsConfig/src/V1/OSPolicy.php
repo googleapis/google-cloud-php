@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An OS policy defines the desired state configuration for a VM.
@@ -79,7 +79,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      *           Length of the description is limited to 1024 characters.
      *     @type int $mode
      *           Required. Policy mode
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup>|\Google\Protobuf\Internal\RepeatedField $resource_groups
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup[] $resource_groups
      *           Required. List of resource groups for the policy.
      *           For a particular VM, resource groups are evaluated in the order specified
      *           and the first resource group that is applicable is selected and the rest
@@ -199,7 +199,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      * toggled by the flag `allow_no_resource_group_match`
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy.ResourceGroup resource_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup>
      */
     public function getResourceGroups()
     {
@@ -216,7 +216,7 @@ class OSPolicy extends \Google\Protobuf\Internal\Message
      * toggled by the flag `allow_no_resource_group_match`
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicy.ResourceGroup resource_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicy\ResourceGroup[] $var
      * @return $this
      */
     public function setResourceGroups($var)

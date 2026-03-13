@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of how to configure a VM instance outside of Resources and
@@ -111,13 +111,13 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           Optional. The machine type of the VM instance.
      *           https://cloud.google.com/compute/docs/machine-resource
-     *     @type array<\Google\Cloud\Notebooks\V2\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerator_configs
+     *     @type \Google\Cloud\Notebooks\V2\AcceleratorConfig[] $accelerator_configs
      *           Optional. The hardware accelerators used on this instance. If you use
      *           accelerators, make sure that your configuration has
      *           [enough vCPUs and memory to support the `machine_type` you have
      *           selected](https://cloud.google.com/compute/docs/gpus/#gpus-list).
      *           Currently supports only one accelerator configuration.
-     *     @type array<\Google\Cloud\Notebooks\V2\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type \Google\Cloud\Notebooks\V2\ServiceAccount[] $service_accounts
      *           Optional. The service account that serves as an identity for the VM
      *           instance. Currently supports only one service account.
      *     @type \Google\Cloud\Notebooks\V2\VmImage $vm_image
@@ -126,19 +126,19 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      *           Optional. Use a container image to start the notebook instance.
      *     @type \Google\Cloud\Notebooks\V2\BootDisk $boot_disk
      *           Optional. The boot disk for the VM.
-     *     @type array<\Google\Cloud\Notebooks\V2\DataDisk>|\Google\Protobuf\Internal\RepeatedField $data_disks
+     *     @type \Google\Cloud\Notebooks\V2\DataDisk[] $data_disks
      *           Optional. Data disks attached to the VM instance.
      *           Currently supports only one data disk.
      *     @type \Google\Cloud\Notebooks\V2\ShieldedInstanceConfig $shielded_instance_config
      *           Optional. Shielded VM configuration.
      *           [Images using supported Shielded VM
      *           features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm).
-     *     @type array<\Google\Cloud\Notebooks\V2\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\Notebooks\V2\NetworkInterface[] $network_interfaces
      *           Optional. The network interfaces for the VM.
      *           Supports only one interface.
      *     @type bool $disable_public_ip
      *           Optional. If true, no external IP will be assigned to this VM instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
@@ -191,7 +191,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Currently supports only one accelerator configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.AcceleratorConfig accelerator_configs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V2\AcceleratorConfig>
      */
     public function getAcceleratorConfigs()
     {
@@ -206,7 +206,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Currently supports only one accelerator configuration.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.AcceleratorConfig accelerator_configs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V2\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V2\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAcceleratorConfigs($var)
@@ -222,7 +222,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * instance. Currently supports only one service account.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.ServiceAccount service_accounts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V2\ServiceAccount>
      */
     public function getServiceAccounts()
     {
@@ -234,7 +234,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * instance. Currently supports only one service account.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.ServiceAccount service_accounts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V2\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V2\ServiceAccount[] $var
      * @return $this
      */
     public function setServiceAccounts($var)
@@ -348,7 +348,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Currently supports only one data disk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.DataDisk data_disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V2\DataDisk>
      */
     public function getDataDisks()
     {
@@ -360,7 +360,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Currently supports only one data disk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.DataDisk data_disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V2\DataDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V2\DataDisk[] $var
      * @return $this
      */
     public function setDataDisks($var)
@@ -416,7 +416,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Supports only one interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.NetworkInterface network_interfaces = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V2\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -428,7 +428,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * Supports only one interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.NetworkInterface network_interfaces = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V2\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V2\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -470,7 +470,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -482,7 +482,7 @@ class GceSetup extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

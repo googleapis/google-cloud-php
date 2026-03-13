@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `DatabaseCharacterSet.List`.
@@ -34,7 +34,7 @@ class ListDatabaseCharacterSetsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\DatabaseCharacterSet>|\Google\Protobuf\Internal\RepeatedField $database_character_sets
+     *     @type \Google\Cloud\OracleDatabase\V1\DatabaseCharacterSet[] $database_character_sets
      *           The list of DatabaseCharacterSets.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListDatabaseCharacterSetsResponse extends \Google\Protobuf\Internal\Messag
      * The list of DatabaseCharacterSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DatabaseCharacterSet database_character_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\DatabaseCharacterSet>
      */
     public function getDatabaseCharacterSets()
     {
@@ -60,7 +60,7 @@ class ListDatabaseCharacterSetsResponse extends \Google\Protobuf\Internal\Messag
      * The list of DatabaseCharacterSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DatabaseCharacterSet database_character_sets = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\DatabaseCharacterSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\DatabaseCharacterSet[] $var
      * @return $this
      */
     public function setDatabaseCharacterSets($var)

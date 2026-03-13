@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config settings for virtual machine.
@@ -188,7 +188,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *           Short name is valid. Examples:
      *           * `n1-standard-2`
      *           * `e2-standard-8`
-     *     @type array<\Google\Cloud\Notebooks\V1\ContainerImage>|\Google\Protobuf\Internal\RepeatedField $container_images
+     *     @type \Google\Cloud\Notebooks\V1\ContainerImage[] $container_images
      *           Optional. Use a list of container images to use as Kernels in the notebook instance.
      *     @type \Google\Cloud\Notebooks\V1\LocalDisk $data_disk
      *           Required. Data disk option configuration settings.
@@ -226,7 +226,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      *           vm. This `internal_ip_only` restriction can only be enabled for
      *           subnetwork enabled networks, and all dependencies must be
      *           configured to be accessible without external IP addresses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $guest_attributes
@@ -341,7 +341,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.ContainerImage container_images = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\ContainerImage>
      */
     public function getContainerImages()
     {
@@ -352,7 +352,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.ContainerImage container_images = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V1\ContainerImage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\ContainerImage[] $var
      * @return $this
      */
     public function setContainerImages($var)
@@ -634,7 +634,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -646,7 +646,7 @@ class VirtualMachineConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

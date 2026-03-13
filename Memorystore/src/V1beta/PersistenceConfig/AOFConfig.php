@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta\PersistenceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for AOF based persistence.
@@ -64,5 +64,4 @@ class AOFConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

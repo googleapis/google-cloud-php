@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\SkippedShipment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If we can explain why the shipment was skipped, reasons will be listed
@@ -175,5 +175,4 @@ class Reason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

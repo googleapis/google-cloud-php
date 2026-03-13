@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing `LbTrafficExtension` resources.
@@ -40,11 +40,11 @@ class ListLbTrafficExtensionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\LbTrafficExtension>|\Google\Protobuf\Internal\RepeatedField $lb_traffic_extensions
+     *     @type \Google\Cloud\NetworkServices\V1\LbTrafficExtension[] $lb_traffic_extensions
      *           The list of `LbTrafficExtension` resources.
      *     @type string $next_page_token
      *           A token identifying a page of results that the server returns.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListLbTrafficExtensionsResponse extends \Google\Protobuf\Internal\Message
      * The list of `LbTrafficExtension` resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.LbTrafficExtension lb_traffic_extensions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\LbTrafficExtension>
      */
     public function getLbTrafficExtensions()
     {
@@ -68,7 +68,7 @@ class ListLbTrafficExtensionsResponse extends \Google\Protobuf\Internal\Message
      * The list of `LbTrafficExtension` resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.LbTrafficExtension lb_traffic_extensions = 1;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\LbTrafficExtension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\LbTrafficExtension[] $var
      * @return $this
      */
     public function setLbTrafficExtensions($var)
@@ -109,7 +109,7 @@ class ListLbTrafficExtensionsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListLbTrafficExtensionsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

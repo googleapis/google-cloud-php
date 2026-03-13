@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A shipment model contains a set of shipments which must be performed by a
@@ -246,11 +246,11 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\RouteOptimization\V1\Shipment>|\Google\Protobuf\Internal\RepeatedField $shipments
+     *     @type \Google\Maps\RouteOptimization\V1\Shipment[] $shipments
      *           Set of shipments which must be performed in the model.
-     *     @type array<\Google\Maps\RouteOptimization\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $vehicles
+     *     @type \Google\Maps\RouteOptimization\V1\Vehicle[] $vehicles
      *           Set of vehicles which can be used to perform visits.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\Objective>|\Google\Protobuf\Internal\RepeatedField $objectives
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentModel\Objective[] $objectives
      *           The set of objectives for this model, that we will transform into costs.
      *           If not empty, the input model has to be costless.
      *           To obtain the modified request, please use `solving_mode` =
@@ -286,7 +286,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           and optimize for earliest job completion, for example. This cost must be in
      *           the same unit as
      *           [Shipment.penalty_cost][google.maps.routeoptimization.v1.Shipment.penalty_cost].
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrices
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix[] $duration_distance_matrices
      *           Specifies duration and distance matrices used in the model. If this field
      *           is empty, Google Maps or geodesic distances will be used instead, depending
      *           on the value of the `use_geodesic_distances` field. If it is not empty,
@@ -368,7 +368,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *             }
      *           }
      *           ```
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrix_src_tags
+     *     @type string[] $duration_distance_matrix_src_tags
      *           Tags defining the sources of the duration and distance matrices;
      *           `duration_distance_matrices(i).rows(j)` defines durations and distances
      *           from visits with tag `duration_distance_matrix_src_tags(j)` to other visits
@@ -382,7 +382,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           the same; similarly a `VisitRequest`'s source and destination tags may be
      *           the same. All tags must be different and cannot be empty strings. If this
      *           field is not empty, then `duration_distance_matrices` must not be empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrix_dst_tags
+     *     @type string[] $duration_distance_matrix_dst_tags
      *           Tags defining the destinations of the duration and distance matrices;
      *           `duration_distance_matrices(i).rows(j).durations(k)` (resp.
      *           `duration_distance_matrices(i).rows(j).meters(k))` defines the duration
@@ -398,13 +398,13 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           the same; similarly a `VisitRequest`'s source and destination tags may be
      *           the same. All tags must be different and cannot be empty strings. If this
      *           field is not empty, then `duration_distance_matrices` must not be empty.
-     *     @type array<\Google\Maps\RouteOptimization\V1\TransitionAttributes>|\Google\Protobuf\Internal\RepeatedField $transition_attributes
+     *     @type \Google\Maps\RouteOptimization\V1\TransitionAttributes[] $transition_attributes
      *           Transition attributes added to the model.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentTypeIncompatibility>|\Google\Protobuf\Internal\RepeatedField $shipment_type_incompatibilities
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentTypeIncompatibility[] $shipment_type_incompatibilities
      *           Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentTypeRequirement>|\Google\Protobuf\Internal\RepeatedField $shipment_type_requirements
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentTypeRequirement[] $shipment_type_requirements
      *           Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $precedence_rules
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule[] $precedence_rules
      *           Set of precedence rules which must be enforced in the model.
      *           *IMPORTANT*: Use of precedence rules limits the size of problem that can be
      *           optimized. Requests using precedence rules that include many shipments may
@@ -420,7 +420,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of shipments which must be performed in the model.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment shipments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\Shipment>
      */
     public function getShipments()
     {
@@ -431,7 +431,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of shipments which must be performed in the model.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment shipments = 1;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\Shipment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\Shipment[] $var
      * @return $this
      */
     public function setShipments($var)
@@ -446,7 +446,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of vehicles which can be used to perform visits.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Vehicle vehicles = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\Vehicle>
      */
     public function getVehicles()
     {
@@ -457,7 +457,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of vehicles which can be used to perform visits.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Vehicle vehicles = 2;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\Vehicle[] $var
      * @return $this
      */
     public function setVehicles($var)
@@ -479,7 +479,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.Objective objectives = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentModel\Objective>
      */
     public function getObjectives()
     {
@@ -497,7 +497,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.Objective objectives = 17;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\Objective>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentModel\Objective[] $var
      * @return $this
      */
     public function setObjectives($var)
@@ -764,7 +764,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.DurationDistanceMatrix duration_distance_matrices = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix>
      */
     public function getDurationDistanceMatrices()
     {
@@ -855,7 +855,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.DurationDistanceMatrix duration_distance_matrices = 8;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix[] $var
      * @return $this
      */
     public function setDurationDistanceMatrices($var)
@@ -882,7 +882,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_src_tags = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDurationDistanceMatrixSrcTags()
     {
@@ -905,7 +905,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_src_tags = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDurationDistanceMatrixSrcTags($var)
@@ -934,7 +934,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_dst_tags = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDurationDistanceMatrixDstTags()
     {
@@ -959,7 +959,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_dst_tags = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDurationDistanceMatrixDstTags($var)
@@ -974,7 +974,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Transition attributes added to the model.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.TransitionAttributes transition_attributes = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\TransitionAttributes>
      */
     public function getTransitionAttributes()
     {
@@ -985,7 +985,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Transition attributes added to the model.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.TransitionAttributes transition_attributes = 11;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\TransitionAttributes>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\TransitionAttributes[] $var
      * @return $this
      */
     public function setTransitionAttributes($var)
@@ -1000,7 +1000,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentTypeIncompatibility shipment_type_incompatibilities = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentTypeIncompatibility>
      */
     public function getShipmentTypeIncompatibilities()
     {
@@ -1011,7 +1011,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentTypeIncompatibility shipment_type_incompatibilities = 12;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentTypeIncompatibility>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentTypeIncompatibility[] $var
      * @return $this
      */
     public function setShipmentTypeIncompatibilities($var)
@@ -1026,7 +1026,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentTypeRequirement shipment_type_requirements = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentTypeRequirement>
      */
     public function getShipmentTypeRequirements()
     {
@@ -1037,7 +1037,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentTypeRequirement shipment_type_requirements = 13;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentTypeRequirement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentTypeRequirement[] $var
      * @return $this
      */
     public function setShipmentTypeRequirements($var)
@@ -1055,7 +1055,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * be rejected.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule>
      */
     public function getPrecedenceRules()
     {
@@ -1069,7 +1069,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * be rejected.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentModel\PrecedenceRule[] $var
      * @return $this
      */
     public function setPrecedenceRules($var)

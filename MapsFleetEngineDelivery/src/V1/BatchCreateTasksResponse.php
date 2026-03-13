@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `BatchCreateTask` response message.
@@ -28,7 +28,7 @@ class BatchCreateTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\Task>|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\Task[] $tasks
      *           The created Tasks.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateTasksResponse extends \Google\Protobuf\Internal\Message
      * The created Tasks.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.Task tasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\Task>
      */
     public function getTasks()
     {
@@ -52,7 +52,7 @@ class BatchCreateTasksResponse extends \Google\Protobuf\Internal\Message
      * The created Tasks.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.Task tasks = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\Task>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\Task[] $var
      * @return $this
      */
     public function setTasks($var)

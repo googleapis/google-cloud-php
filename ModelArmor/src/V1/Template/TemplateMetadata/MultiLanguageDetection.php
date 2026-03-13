@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1\Template\TemplateMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata to enable multi language detection via template.
@@ -64,5 +64,4 @@ class MultiLanguageDetection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

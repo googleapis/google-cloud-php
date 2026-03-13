@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information needed to perform a JSONPath content match.
@@ -108,5 +108,4 @@ class JsonPathMatcher extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a row of the duration and distance matrix.
@@ -37,10 +37,10 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $durations
+     *     @type \Google\Protobuf\Duration[] $durations
      *           Duration values for a given row. It must have as many elements as
      *           [ShipmentModel.duration_distance_matrix_dst_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_dst_tags].
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $meters
+     *     @type float[] $meters
      *           Distance values for a given row. If no costs or constraints refer to
      *           distances in the model, this can be left empty; otherwise it must have
      *           as many elements as `durations`.
@@ -56,7 +56,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * [ShipmentModel.duration_distance_matrix_dst_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_dst_tags].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration durations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Duration>
      */
     public function getDurations()
     {
@@ -68,7 +68,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * [ShipmentModel.duration_distance_matrix_dst_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_dst_tags].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Duration durations = 1;</code>
-     * @param array<\Google\Protobuf\Duration>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Duration[] $var
      * @return $this
      */
     public function setDurations($var)
@@ -85,7 +85,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * as many elements as `durations`.
      *
      * Generated from protobuf field <code>repeated double meters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getMeters()
     {
@@ -98,7 +98,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * as many elements as `durations`.
      *
      * Generated from protobuf field <code>repeated double meters = 2;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setMeters($var)
@@ -110,5 +110,4 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

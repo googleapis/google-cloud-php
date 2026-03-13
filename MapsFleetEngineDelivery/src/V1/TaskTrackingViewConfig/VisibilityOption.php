@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1\TaskTrackingViewConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The option message that defines when a data element should be visible to
@@ -223,5 +223,4 @@ class VisibilityOption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

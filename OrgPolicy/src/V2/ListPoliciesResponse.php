@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response returned from the [ListPolicies]
@@ -38,7 +38,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type \Google\Cloud\OrgPolicy\V2\Policy[] $policies
      *           All policies that exist on the resource. It will be empty if no
      *           policies are set.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * policies are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OrgPolicy\V2\Policy>
      */
     public function getPolicies()
     {
@@ -68,7 +68,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * policies are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
-     * @param array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OrgPolicy\V2\Policy[] $var
      * @return $this
      */
     public function setPolicies($var)

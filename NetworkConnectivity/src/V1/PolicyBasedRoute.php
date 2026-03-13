@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Policy-based routes route L4 network traffic based on not just destination IP
@@ -137,7 +137,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      *           routes found. In cases where multiple policy-based routes are matched, the
      *           one with the lowest-numbered priority value wins. The default value is
      *           1000. The priority value must be from 1 to 65535, inclusive.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings[] $warnings
      *           Output only. If potential misconfigurations are detected for this route,
      *           this field will be populated with warning messages.
      *     @type string $self_link
@@ -541,7 +541,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      * this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute.Warnings warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings>
      */
     public function getWarnings()
     {
@@ -553,7 +553,7 @@ class PolicyBasedRoute extends \Google\Protobuf\Internal\Message
      * this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute.Warnings warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Warnings[] $var
      * @return $this
      */
     public function setWarnings($var)

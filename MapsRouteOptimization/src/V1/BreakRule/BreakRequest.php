@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\BreakRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The sequence of breaks (i.e. their number and order) that apply to each
@@ -166,5 +166,4 @@ class BreakRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

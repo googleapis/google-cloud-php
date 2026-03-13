@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListServiceClasses.
@@ -41,12 +41,12 @@ class ListServiceClassesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceClass>|\Google\Protobuf\Internal\RepeatedField $service_classes
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceClass[] $service_classes
      *           ServiceClasses to be returned.
      *     @type string $next_page_token
      *           The next pagination token in the List response. It should be used as
      *           page_token for the following request. An empty value means no more result.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListServiceClassesResponse extends \Google\Protobuf\Internal\Message
      * ServiceClasses to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceClass service_classes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceClass>
      */
     public function getServiceClasses()
     {
@@ -70,7 +70,7 @@ class ListServiceClassesResponse extends \Google\Protobuf\Internal\Message
      * ServiceClasses to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceClass service_classes = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceClass>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceClass[] $var
      * @return $this
      */
     public function setServiceClasses($var)
@@ -113,7 +113,7 @@ class ListServiceClassesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListServiceClassesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

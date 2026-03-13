@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An output only view of all the member instances participating in the cross
@@ -40,7 +40,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance $primary_instance
      *           Output only. The primary instance that acts as the source of replication
      *           for the secondary instances.
-     *     @type array<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>|\Google\Protobuf\Internal\RepeatedField $secondary_instances
+     *     @type \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance[] $secondary_instances
      *           Output only. The list of secondary instances replicating from the primary
      *           instance.
      * }
@@ -93,7 +93,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      * instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance secondary_instances = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>
      */
     public function getSecondaryInstances()
     {
@@ -105,7 +105,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      * instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance secondary_instances = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance[] $var
      * @return $this
      */
     public function setSecondaryInstances($var)
@@ -117,5 +117,4 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

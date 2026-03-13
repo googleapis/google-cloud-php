@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detailed information about an error category.
@@ -108,5 +108,4 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

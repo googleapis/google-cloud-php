@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `DeliveryVehicle` message. A delivery vehicle transports shipments from a
@@ -155,7 +155,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      *           The format is `providers/{provider}/deliveryVehicles/{vehicle}`.
      *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation $last_location
      *           The last reported location of the Delivery Vehicle.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation>|\Google\Protobuf\Internal\RepeatedField $past_locations
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation[] $past_locations
      *           Input only. Locations where this Delivery Vehicle has been in the past that
      *           haven't yet been reported to Fleet Engine. This is used in
      *           `UpdateDeliveryVehicleRequest` to record locations which were previously
@@ -218,11 +218,11 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      *           active tasks assigned to the Delivery Vehicle.
      *           Fleet Engine ignores this field in `UpdateDeliveryVehicleRequest` if the
      *           `current_route_segment` field is empty.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>|\Google\Protobuf\Internal\RepeatedField $remaining_vehicle_journey_segments
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment[] $remaining_vehicle_journey_segments
      *           The journey segments assigned to this Delivery Vehicle, starting from the
      *           Vehicle's most recently reported location. This field won't be populated
      *           in the response of `ListDeliveryVehicles`.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleAttribute[] $attributes
      *           A list of custom Delivery Vehicle attributes. A Delivery Vehicle can have
      *           at most 100 attributes, and each attribute must have a unique key.
      *     @type int $type
@@ -306,7 +306,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * Vehicle does not have internet connectivity.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicleLocation past_locations = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation>
      */
     public function getPastLocations()
     {
@@ -321,7 +321,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * Vehicle does not have internet connectivity.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicleLocation past_locations = 12 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation[] $var
      * @return $this
      */
     public function setPastLocations($var)
@@ -639,7 +639,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * in the response of `ListDeliveryVehicles`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleJourneySegment remaining_vehicle_journey_segments = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>
      */
     public function getRemainingVehicleJourneySegments()
     {
@@ -652,7 +652,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * in the response of `ListDeliveryVehicles`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleJourneySegment remaining_vehicle_journey_segments = 8;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\VehicleJourneySegment[] $var
      * @return $this
      */
     public function setRemainingVehicleJourneySegments($var)
@@ -668,7 +668,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * at most 100 attributes, and each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicleAttribute attributes = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleAttribute>
      */
     public function getAttributes()
     {
@@ -680,7 +680,7 @@ class DeliveryVehicle extends \Google\Protobuf\Internal\Message
      * at most 100 attributes, and each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.DeliveryVehicleAttribute attributes = 9;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

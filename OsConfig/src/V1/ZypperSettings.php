@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Zypper patching is performed by running `zypper patch`.
@@ -67,15 +67,15 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      *           Adds the `--with-optional` flag to `zypper patch`.
      *     @type bool $with_update
      *           Adds the `--with-update` flag, to `zypper patch`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type string[] $categories
      *           Install only patches with these categories.
      *           Common categories include security, recommended, and feature.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $severities
+     *     @type string[] $severities
      *           Install only patches with these severities.
      *           Common severities include critical, important, moderate, and low.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excludes
+     *     @type string[] $excludes
      *           List of patches to exclude from update.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclusive_patches
+     *     @type string[] $exclusive_patches
      *           An exclusive list of patches to be updated. These are the only patches
      *           that will be installed using 'zypper patch patch:<patch_name>' command.
      *           This field must not be used with any other patch configuration fields.
@@ -143,7 +143,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * Common categories include security, recommended, and feature.
      *
      * Generated from protobuf field <code>repeated string categories = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCategories()
     {
@@ -155,7 +155,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * Common categories include security, recommended, and feature.
      *
      * Generated from protobuf field <code>repeated string categories = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCategories($var)
@@ -171,7 +171,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * Common severities include critical, important, moderate, and low.
      *
      * Generated from protobuf field <code>repeated string severities = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSeverities()
     {
@@ -183,7 +183,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * Common severities include critical, important, moderate, and low.
      *
      * Generated from protobuf field <code>repeated string severities = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSeverities($var)
@@ -198,7 +198,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * List of patches to exclude from update.
      *
      * Generated from protobuf field <code>repeated string excludes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludes()
     {
@@ -209,7 +209,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * List of patches to exclude from update.
      *
      * Generated from protobuf field <code>repeated string excludes = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludes($var)
@@ -226,7 +226,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * This field must not be used with any other patch configuration fields.
      *
      * Generated from protobuf field <code>repeated string exclusive_patches = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExclusivePatches()
     {
@@ -239,7 +239,7 @@ class ZypperSettings extends \Google\Protobuf\Internal\Message
      * This field must not be used with any other patch configuration fields.
      *
      * Generated from protobuf field <code>repeated string exclusive_patches = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExclusivePatches($var)

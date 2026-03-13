@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information involved in an HTTP/HTTPS Uptime check request.
@@ -213,7 +213,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      *           Note: If client libraries aren't used (which performs the conversion
      *           automatically) base64 encode your `body` data since the field is of
      *           `bytes` type.
-     *     @type array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode>|\Google\Protobuf\Internal\RepeatedField $accepted_response_status_codes
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode[] $accepted_response_status_codes
      *           If present, the check will only pass if the HTTP response status code is
      *           in this set of status codes. If empty, the HTTP status code will only
      *           pass if the HTTP status code is 200-299.
@@ -620,7 +620,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * pass if the HTTP status code is 200-299.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode accepted_response_status_codes = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode>
      */
     public function getAcceptedResponseStatusCodes()
     {
@@ -633,7 +633,7 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
      * pass if the HTTP status code is 200-299.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.HttpCheck.ResponseStatusCode accepted_response_status_codes = 11;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\HttpCheck\ResponseStatusCode[] $var
      * @return $this
      */
     public function setAcceptedResponseStatusCodes($var)
@@ -724,5 +724,4 @@ class HttpCheck extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

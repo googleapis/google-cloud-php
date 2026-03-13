@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\LocalDisk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Optional. A list of features to enable on the guest operating system.
@@ -105,5 +105,4 @@ class RuntimeGuestOsFeature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

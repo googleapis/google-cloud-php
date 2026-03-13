@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used by the CloneAddressGroupItems method.
@@ -17,7 +17,7 @@ class CloneAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the
-     * format `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * format `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -71,7 +71,7 @@ class CloneAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $address_group
      *           Required. A name of the AddressGroup to clone items to. Must be in the
-     *           format `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     *           format `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *     @type string $source_address_group
      *           Required. Source address group to clone items from.
      *     @type string $request_id
@@ -95,7 +95,7 @@ class CloneAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the
-     * format `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * format `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class CloneAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to clone items to. Must be in the
-     * format `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * format `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

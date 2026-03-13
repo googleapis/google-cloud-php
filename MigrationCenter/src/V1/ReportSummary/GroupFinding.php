@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary Findings for a specific Group.
@@ -61,7 +61,7 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      *           Summary statistics for all the assets in this group.
      *     @type int|string $overlapping_asset_count
      *           This field is deprecated, do not rely on it having a value.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding>|\Google\Protobuf\Internal\RepeatedField $preference_set_findings
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding[] $preference_set_findings
      *           Findings for each of the PreferenceSets for this group.
      * }
      */
@@ -194,7 +194,7 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      * Findings for each of the PreferenceSets for this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding preference_set_findings = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding>
      */
     public function getPreferenceSetFindings()
     {
@@ -205,7 +205,7 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
      * Findings for each of the PreferenceSets for this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.GroupPreferenceSetFinding preference_set_findings = 5;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\GroupPreferenceSetFinding[] $var
      * @return $this
      */
     public function setPreferenceSetFindings($var)
@@ -217,5 +217,4 @@ class GroupFinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

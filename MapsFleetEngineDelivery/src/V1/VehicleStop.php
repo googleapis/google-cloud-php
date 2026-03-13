@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a point where a Vehicle stops to perform one or more `Task`s.
@@ -48,7 +48,7 @@ class VehicleStop extends \Google\Protobuf\Internal\Message
      *           Required. The location of the stop. Note that the locations in the `Task`s
      *           might not exactly match this location, but will be within a short distance
      *           of it. This field won't be populated in the response of a `GetTask` call.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\VehicleStop\TaskInfo>|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\VehicleStop\TaskInfo[] $tasks
      *           The list of `Task`s to be performed at this stop. This field won't be
      *           populated in the response of a `GetTask` call.
      *     @type int $state
@@ -106,7 +106,7 @@ class VehicleStop extends \Google\Protobuf\Internal\Message
      * populated in the response of a `GetTask` call.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleStop.TaskInfo tasks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\VehicleStop\TaskInfo>
      */
     public function getTasks()
     {
@@ -118,7 +118,7 @@ class VehicleStop extends \Google\Protobuf\Internal\Message
      * populated in the response of a `GetTask` call.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.VehicleStop.TaskInfo tasks = 2;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\VehicleStop\TaskInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\VehicleStop\TaskInfo[] $var
      * @return $this
      */
     public function setTasks($var)

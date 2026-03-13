@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used to schedule the query to run every so many hours.
@@ -124,5 +124,4 @@ class Hourly extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

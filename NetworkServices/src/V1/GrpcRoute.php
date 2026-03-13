@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GrpcRoute is the resource defining how gRPC traffic routed by a Mesh
@@ -18,7 +18,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -87,7 +87,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -97,7 +97,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -120,7 +120,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the GrpcRoute resource. It matches pattern
-     *           `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
+     *           `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -132,7 +132,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. A free-text description of the resource. Max length 1024
      *           characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hostnames
+     *     @type string[] $hostnames
      *           Required. Service hostnames with an optional port for which this route
      *           describes traffic.
      *           Format: <hostname>[:<port>]
@@ -157,18 +157,18 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      *           If a port is specified, then gRPC clients must use the channel URI with the
      *           port to match this rule (i.e. "xds:///service:123"), otherwise they must
      *           supply the URI without a port (i.e. "xds:///service").
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $meshes
+     *     @type string[] $meshes
      *           Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      *           one of the routing rules to route the requests served by the mesh.
      *           Each mesh reference should match the pattern:
-     *           `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gateways
+     *           `projects/{@*}locations/global/meshes/<mesh_name>`
+     *     @type string[] $gateways
      *           Optional. Gateways defines a list of gateways this GrpcRoute is attached
      *           to, as one of the routing rules to route the requests served by the
      *           gateway.
      *           Each gateway reference should match the pattern:
-     *           `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
-     *     @type array<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *           `projects/{@*}locations/global/gateways/<gateway_name>`
+     *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule[] $rules
      *           Required. A list of detailed rules defining how to route traffic.
      *           Within a single GrpcRoute, the GrpcRoute.RouteAction associated with the
      *           first matching GrpcRoute.RouteRule will be executed. At least one rule
@@ -182,7 +182,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -194,7 +194,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the GrpcRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/grpcRoutes/<grpc_route_name>`
+     * `projects/{@*}locations/global/grpcRoutes/<grpc_route_name>`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -387,7 +387,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * supply the URI without a port (i.e. "xds:///service").
      *
      * Generated from protobuf field <code>repeated string hostnames = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHostnames()
     {
@@ -421,7 +421,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * supply the URI without a port (i.e. "xds:///service").
      *
      * Generated from protobuf field <code>repeated string hostnames = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHostnames($var)
@@ -436,10 +436,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMeshes()
     {
@@ -450,10 +450,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this GrpcRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      *
      * Generated from protobuf field <code>repeated string meshes = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMeshes($var)
@@ -469,10 +469,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGateways()
     {
@@ -484,10 +484,10 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGateways($var)
@@ -505,7 +505,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.RouteRule rules = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule>
      */
     public function getRules()
     {
@@ -519,7 +519,7 @@ class GrpcRoute extends \Google\Protobuf\Internal\Message
      * must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.RouteRule rules = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\GrpcRoute\RouteRule[] $var
      * @return $this
      */
     public function setRules($var)

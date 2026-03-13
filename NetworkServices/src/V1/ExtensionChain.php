@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single extension chain wrapper that contains the match conditions and
@@ -60,7 +60,7 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      *           a number.
      *     @type \Google\Cloud\NetworkServices\V1\ExtensionChain\MatchCondition $match_condition
      *           Required. Conditions under which this chain is invoked for a request.
-     *     @type array<\Google\Cloud\NetworkServices\V1\ExtensionChain\Extension>|\Google\Protobuf\Internal\RepeatedField $extensions
+     *     @type \Google\Cloud\NetworkServices\V1\ExtensionChain\Extension[] $extensions
      *           Required. A set of extensions to execute for the matching request.
      *           At least one extension is required.
      *           Up to 3 extensions can be defined for each extension chain
@@ -155,7 +155,7 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      * per extension chain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain.Extension extensions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\ExtensionChain\Extension>
      */
     public function getExtensions()
     {
@@ -171,7 +171,7 @@ class ExtensionChain extends \Google\Protobuf\Internal\Message
      * per extension chain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain.Extension extensions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\ExtensionChain\Extension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\ExtensionChain\Extension[] $var
      * @return $this
      */
     public function setExtensions($var)

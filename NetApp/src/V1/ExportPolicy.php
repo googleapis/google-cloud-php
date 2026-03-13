@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the export policy for the volume.
@@ -28,7 +28,7 @@ class ExportPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetApp\V1\SimpleExportPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\NetApp\V1\SimpleExportPolicyRule[] $rules
      *           Required. List of export policy rules
      * }
      */
@@ -41,7 +41,7 @@ class ExportPolicy extends \Google\Protobuf\Internal\Message
      * Required. List of export policy rules
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.SimpleExportPolicyRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\SimpleExportPolicyRule>
      */
     public function getRules()
     {
@@ -52,7 +52,7 @@ class ExportPolicy extends \Google\Protobuf\Internal\Message
      * Required. List of export policy rules
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.SimpleExportPolicyRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetApp\V1\SimpleExportPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\SimpleExportPolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

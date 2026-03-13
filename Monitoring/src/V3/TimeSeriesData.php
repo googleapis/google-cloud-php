@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the values of a time series associated with a
@@ -38,12 +38,12 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\LabelValue>|\Google\Protobuf\Internal\RepeatedField $label_values
+     *     @type \Google\Cloud\Monitoring\V3\LabelValue[] $label_values
      *           The values of the labels in the time series identifier, given in the same
      *           order as the `label_descriptors` field of the TimeSeriesDescriptor
      *           associated with this object. Each value must have a value of the type
      *           given in the corresponding entry of `label_descriptors`.
-     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeriesData\PointData>|\Google\Protobuf\Internal\RepeatedField $point_data
+     *     @type \Google\Cloud\Monitoring\V3\TimeSeriesData\PointData[] $point_data
      *           The points in the time series.
      * }
      */
@@ -59,7 +59,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * given in the corresponding entry of `label_descriptors`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.LabelValue label_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\LabelValue>
      */
     public function getLabelValues()
     {
@@ -73,7 +73,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * given in the corresponding entry of `label_descriptors`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.LabelValue label_values = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\LabelValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\LabelValue[] $var
      * @return $this
      */
     public function setLabelValues($var)
@@ -88,7 +88,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * The points in the time series.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeriesData.PointData point_data = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\TimeSeriesData\PointData>
      */
     public function getPointData()
     {
@@ -99,7 +99,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * The points in the time series.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeriesData.PointData point_data = 2;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\TimeSeriesData\PointData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\TimeSeriesData\PointData[] $var
      * @return $this
      */
     public function setPointData($var)

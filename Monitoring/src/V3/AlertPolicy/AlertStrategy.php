@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Control over how the notification channels in `notification_channels`
@@ -58,14 +58,14 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      *           condition.
      *           This limit is not implemented for alerting policies that do not have
      *           a LogMatch condition.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_prompts
+     *     @type int[] $notification_prompts
      *           For log-based alert policies, the notification prompts is always
      *           [OPENED]. For non log-based alert policies, the notification prompts can
      *           be [OPENED] or [OPENED, CLOSED].
      *     @type \Google\Protobuf\Duration $auto_close
      *           If an alerting policy that was active has no data for this long, any open
      *           incidents will close
-     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy>|\Google\Protobuf\Internal\RepeatedField $notification_channel_strategy
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy[] $notification_channel_strategy
      *           Control how notifications will be sent out, on a per-channel basis.
      * }
      */
@@ -122,7 +122,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      * be [OPENED] or [OPENED, CLOSED].
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationPrompt notification_prompts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getNotificationPrompts()
     {
@@ -135,7 +135,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      * be [OPENED] or [OPENED, CLOSED].
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationPrompt notification_prompts = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setNotificationPrompts($var)
@@ -188,7 +188,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      * Control how notifications will be sent out, on a per-channel basis.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationChannelStrategy notification_channel_strategy = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy>
      */
     public function getNotificationChannelStrategy()
     {
@@ -199,7 +199,7 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
      * Control how notifications will be sent out, on a per-channel basis.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.AlertStrategy.NotificationChannelStrategy notification_channel_strategy = 4;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy\NotificationChannelStrategy[] $var
      * @return $this
      */
     public function setNotificationChannelStrategy($var)
@@ -211,5 +211,4 @@ class AlertStrategy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

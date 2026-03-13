@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\PatchJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A summary of the current patch state across all instances that this patch
@@ -551,5 +551,4 @@ class InstanceDetailsSummary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

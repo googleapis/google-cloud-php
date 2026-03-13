@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sensitive Data Protection Deidentification Result.
@@ -66,7 +66,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      *     @type int $execution_state
      *           Output only. Reports whether Sensitive Data Protection deidentification was
      *           successfully executed or not.
-     *     @type array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $message_items
+     *     @type \Google\Cloud\ModelArmor\V1\MessageItem[] $message_items
      *           Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution state is skipped then this field provides
@@ -78,7 +78,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      *           De-identified data.
      *     @type int|string $transformed_bytes
      *           Total size in bytes that were transformed during deidentification.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type string[] $info_types
      *           List of Sensitive Data Protection info-types that were de-identified.
      * }
      */
@@ -122,7 +122,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\MessageItem>
      */
     public function getMessageItems()
     {
@@ -136,7 +136,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.MessageItem message_items = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\MessageItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\MessageItem[] $var
      * @return $this
      */
     public function setMessageItems($var)
@@ -241,7 +241,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      * List of Sensitive Data Protection info-types that were de-identified.
      *
      * Generated from protobuf field <code>repeated string info_types = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInfoTypes()
     {
@@ -252,7 +252,7 @@ class SdpDeidentifyResult extends \Google\Protobuf\Internal\Message
      * List of Sensitive Data Protection info-types that were de-identified.
      *
      * Generated from protobuf field <code>repeated string info_types = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInfoTypes($var)

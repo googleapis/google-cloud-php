@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `SearchVehicles` request message.
@@ -239,7 +239,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      *           Required. Specifies the number of passengers being considered for a trip.
      *           The value must be greater than or equal to one. The driver is not
      *           considered in the capacity value.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $trip_types
+     *     @type int[] $trip_types
      *           Required. Represents the type of proposed trip. Must include exactly one
      *           type. `UNKNOWN_TRIP_TYPE` is not allowed. Restricts the search to only
      *           those vehicles that can support that trip type.
@@ -248,11 +248,11 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      *           to Fleet Engine within the specified duration. Stationary vehicles still
      *           transmitting their locations are not considered stale. If this field is not
      *           set, the server uses five minutes as the default value.
-     *     @type array<\Google\Maps\FleetEngine\V1\Vehicle\VehicleType>|\Google\Protobuf\Internal\RepeatedField $vehicle_types
+     *     @type \Google\Maps\FleetEngine\V1\Vehicle\VehicleType[] $vehicle_types
      *           Required. Restricts the search to vehicles with one of the specified types.
      *           At least one vehicle type must be specified. VehicleTypes with a category
      *           of `UNKNOWN` are not allowed.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $required_attributes
+     *     @type \Google\Maps\FleetEngine\V1\VehicleAttribute[] $required_attributes
      *           Callers can form complex logical operations using any combination of the
      *           `required_attributes`, `required_one_of_attributes`, and
      *           `required_one_of_attribute_sets` fields.
@@ -272,13 +272,13 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      *           This field is a conjunction/AND operation. A max of 50 required_attributes
      *           is allowed. This matches the maximum number of attributes allowed on a
      *           vehicle.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleAttributeList>|\Google\Protobuf\Internal\RepeatedField $required_one_of_attributes
+     *     @type \Google\Maps\FleetEngine\V1\VehicleAttributeList[] $required_one_of_attributes
      *           Restricts the search to only those vehicles with at least one of
      *           the specified attributes in each `VehicleAttributeList`. Within each
      *           list, a vehicle must match at least one of the attributes. This field is an
      *           inclusive disjunction/OR operation in each `VehicleAttributeList` and a
      *           conjunction/AND operation across the collection of `VehicleAttributeList`.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleAttributeList>|\Google\Protobuf\Internal\RepeatedField $required_one_of_attribute_sets
+     *     @type \Google\Maps\FleetEngine\V1\VehicleAttributeList[] $required_one_of_attribute_sets
      *           `required_one_of_attribute_sets` provides additional functionality.
      *           Similar to `required_one_of_attributes`, `required_one_of_attribute_sets`
      *           uses a message which allows a list of lists, allowing expressions such as
@@ -581,7 +581,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * those vehicles that can support that trip type.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripType trip_types = 9 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTripTypes()
     {
@@ -594,7 +594,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * those vehicles that can support that trip type.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripType trip_types = 9 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTripTypes($var)
@@ -653,7 +653,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * of `UNKNOWN` are not allowed.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Vehicle.VehicleType vehicle_types = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\Vehicle\VehicleType>
      */
     public function getVehicleTypes()
     {
@@ -666,7 +666,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * of `UNKNOWN` are not allowed.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Vehicle.VehicleType vehicle_types = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\Vehicle\VehicleType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\Vehicle\VehicleType[] $var
      * @return $this
      */
     public function setVehicleTypes($var)
@@ -699,7 +699,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute required_attributes = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleAttribute>
      */
     public function getRequiredAttributes()
     {
@@ -728,7 +728,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute required_attributes = 12;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleAttribute[] $var
      * @return $this
      */
     public function setRequiredAttributes($var)
@@ -747,7 +747,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * conjunction/AND operation across the collection of `VehicleAttributeList`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttributeList required_one_of_attributes = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleAttributeList>
      */
     public function getRequiredOneOfAttributes()
     {
@@ -762,7 +762,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * conjunction/AND operation across the collection of `VehicleAttributeList`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttributeList required_one_of_attributes = 15;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleAttributeList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleAttributeList[] $var
      * @return $this
      */
     public function setRequiredOneOfAttributes($var)
@@ -798,7 +798,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * operation across the collection of `VehicleAttributeList`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttributeList required_one_of_attribute_sets = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleAttributeList>
      */
     public function getRequiredOneOfAttributeSets()
     {
@@ -830,7 +830,7 @@ class SearchVehiclesRequest extends \Google\Protobuf\Internal\Message
      * operation across the collection of `VehicleAttributeList`.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttributeList required_one_of_attribute_sets = 20;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleAttributeList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleAttributeList[] $var
      * @return $this
      */
     public function setRequiredOneOfAttributeSets($var)

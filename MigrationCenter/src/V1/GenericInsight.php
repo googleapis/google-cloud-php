@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A generic insight about an asset.
@@ -52,7 +52,7 @@ class GenericInsight extends \Google\Protobuf\Internal\Message
      *     @type string $default_message
      *           Output only. In case message_code is not yet known by the client
      *           default_message will be the message to be used instead.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_information
+     *     @type string[] $additional_information
      *           Output only. Additional information about the insight, each entry can be a
      *           logical entry and must make sense if it is displayed with line breaks
      *           between each entry. Text can contain md style links.
@@ -127,7 +127,7 @@ class GenericInsight extends \Google\Protobuf\Internal\Message
      * between each entry. Text can contain md style links.
      *
      * Generated from protobuf field <code>repeated string additional_information = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalInformation()
     {
@@ -140,7 +140,7 @@ class GenericInsight extends \Google\Protobuf\Internal\Message
      * between each entry. Text can contain md style links.
      *
      * Generated from protobuf field <code>repeated string additional_information = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalInformation($var)

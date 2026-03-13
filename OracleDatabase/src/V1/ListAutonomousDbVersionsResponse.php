@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `AutonomousDbVersion.List`.
@@ -34,7 +34,7 @@ class ListAutonomousDbVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\AutonomousDbVersion>|\Google\Protobuf\Internal\RepeatedField $autonomous_db_versions
+     *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDbVersion[] $autonomous_db_versions
      *           The list of Autonomous Database versions.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListAutonomousDbVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of Autonomous Database versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDbVersion autonomous_db_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\AutonomousDbVersion>
      */
     public function getAutonomousDbVersions()
     {
@@ -60,7 +60,7 @@ class ListAutonomousDbVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of Autonomous Database versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDbVersion autonomous_db_versions = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\AutonomousDbVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\AutonomousDbVersion[] $var
      * @return $this
      */
     public function setAutonomousDbVersions($var)

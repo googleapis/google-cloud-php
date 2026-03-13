@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HttpRoute is the resource defining how HTTP traffic should be routed by a
@@ -18,7 +18,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the HttpRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/httpRoutes/http_route_name>`.
+     * `projects/{@*}locations/global/httpRoutes/http_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -77,7 +77,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this HttpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -88,7 +88,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -116,7 +116,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the HttpRoute resource. It matches pattern
-     *           `projects/&#42;&#47;locations/global/httpRoutes/http_route_name>`.
+     *           `projects/{@*}locations/global/httpRoutes/http_route_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type string $description
@@ -126,7 +126,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when the resource was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the resource was updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hostnames
+     *     @type string[] $hostnames
      *           Required. Hostnames define a set of hosts that should match against the
      *           HTTP host header to select a HttpRoute to process the request. Hostname is
      *           the fully qualified domain name of a network host, as defined by RFC 1123
@@ -147,21 +147,21 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      *           `*.foo.bar.com` and `*.bar.com` to be associated with the same Mesh (or
      *           Gateways under the same scope), it is not possible to associate two routes
      *           both with `*.bar.com` or both with `bar.com`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $meshes
+     *     @type string[] $meshes
      *           Optional. Meshes defines a list of meshes this HttpRoute is attached to, as
      *           one of the routing rules to route the requests served by the mesh.
      *           Each mesh reference should match the pattern:
-     *           `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     *           `projects/{@*}locations/global/meshes/<mesh_name>`
      *           The attached Mesh should be of a type SIDECAR
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gateways
+     *     @type string[] $gateways
      *           Optional. Gateways defines a list of gateways this HttpRoute is attached
      *           to, as one of the routing rules to route the requests served by the
      *           gateway.
      *           Each gateway reference should match the pattern:
-     *           `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     *           `projects/{@*}locations/global/gateways/<gateway_name>`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Set of label tags associated with the HttpRoute resource.
-     *     @type array<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule[] $rules
      *           Required. Rules that define how traffic is routed and handled.
      *           Rules will be matched sequentially based on the RouteMatch specified for
      *           the rule.
@@ -174,7 +174,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the HttpRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/httpRoutes/http_route_name>`.
+     * `projects/{@*}locations/global/httpRoutes/http_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -186,7 +186,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the HttpRoute resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/httpRoutes/http_route_name>`.
+     * `projects/{@*}locations/global/httpRoutes/http_route_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -349,7 +349,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * both with `*.bar.com` or both with `bar.com`.
      *
      * Generated from protobuf field <code>repeated string hostnames = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHostnames()
     {
@@ -379,7 +379,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * both with `*.bar.com` or both with `bar.com`.
      *
      * Generated from protobuf field <code>repeated string hostnames = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHostnames($var)
@@ -394,11 +394,11 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this HttpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMeshes()
     {
@@ -409,11 +409,11 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * Optional. Meshes defines a list of meshes this HttpRoute is attached to, as
      * one of the routing rules to route the requests served by the mesh.
      * Each mesh reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`
+     * `projects/{@*}locations/global/meshes/<mesh_name>`
      * The attached Mesh should be of a type SIDECAR
      *
      * Generated from protobuf field <code>repeated string meshes = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMeshes($var)
@@ -429,10 +429,10 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGateways()
     {
@@ -444,10 +444,10 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * to, as one of the routing rules to route the requests served by the
      * gateway.
      * Each gateway reference should match the pattern:
-     * `projects/&#42;&#47;locations/global/gateways/<gateway_name>`
+     * `projects/{@*}locations/global/gateways/<gateway_name>`
      *
      * Generated from protobuf field <code>repeated string gateways = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGateways($var)
@@ -490,7 +490,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.RouteRule rules = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule>
      */
     public function getRules()
     {
@@ -503,7 +503,7 @@ class HttpRoute extends \Google\Protobuf\Internal\Message
      * the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.RouteRule rules = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\RouteRule[] $var
      * @return $this
      */
     public function setRules($var)

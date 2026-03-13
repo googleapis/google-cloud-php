@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A description of the conditions under which some aspect of your system is
@@ -199,7 +199,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           whereas Prometheus {rule group} is an unrestricted UTF-8 string.
      *           This means that they cannot be stored as-is in user labels, because
      *           they may contain characters that are not allowed in user-label values.
-     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[] $conditions
      *           A list of conditions for the policy. The conditions are combined by AND or
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
@@ -223,7 +223,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           Read-only description of how the alerting policy is invalid. This field is
      *           only set when the alerting policy is invalid. An invalid alerting policy
      *           will not generate incidents.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *     @type string[] $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
      *           an already opened incident. Each element of this array corresponds to
@@ -437,7 +437,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>
      */
     public function getConditions()
     {
@@ -455,7 +455,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -629,7 +629,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNotificationChannels()
     {
@@ -648,7 +648,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNotificationChannels($var)

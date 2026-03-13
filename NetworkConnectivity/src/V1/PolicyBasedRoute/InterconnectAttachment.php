@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * InterconnectAttachment that this route applies to.
@@ -68,5 +68,4 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

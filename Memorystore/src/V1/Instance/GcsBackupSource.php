@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Backups that stored in Cloud Storage buckets.
@@ -29,7 +29,7 @@ class GcsBackupSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           Optional. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
      * }
      */
@@ -42,7 +42,7 @@ class GcsBackupSource extends \Google\Protobuf\Internal\Message
      * Optional. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -53,7 +53,7 @@ class GcsBackupSource extends \Google\Protobuf\Internal\Message
      * Optional. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)
@@ -65,5 +65,4 @@ class GcsBackupSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

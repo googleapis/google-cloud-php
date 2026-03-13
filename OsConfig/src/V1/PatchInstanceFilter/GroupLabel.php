@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\PatchInstanceFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Targets a group of VM instances by using their [assigned
@@ -74,5 +74,4 @@ class GroupLabel extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\TlsRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how to match traffic and how to route traffic when traffic is
@@ -37,7 +37,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $matches
+     *     @type \Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch[] $matches
      *           Required. RouteMatch defines the predicate used to match requests to a
      *           given action. Multiple match types are "OR"ed for evaluation. Atleast one
      *           RouteMatch must be supplied.
@@ -56,7 +56,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * RouteMatch must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TlsRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch>
      */
     public function getMatches()
     {
@@ -69,7 +69,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * RouteMatch must be supplied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TlsRoute.RouteMatch matches = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\TlsRoute\RouteMatch[] $var
      * @return $this
      */
     public function setMatches($var)
@@ -117,5 +117,4 @@ class RouteRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

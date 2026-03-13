@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\Spoke;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The reason a spoke is inactive.
@@ -132,5 +132,4 @@ class StateReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

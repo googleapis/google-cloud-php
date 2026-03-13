@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of rules.
@@ -41,12 +41,12 @@ class Rule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Source>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Source[] $sources
      *           Optional. List of attributes for the traffic source. All of the sources must match.
      *           A source is a match if both principals and ip_blocks match. If not set,
      *           the action specified in the 'action' field will be applied without any
      *           rule checks for the source.
-     *     @type array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination[] $destinations
      *           Optional. List of attributes for the traffic destination. All of the destinations
      *           must match. A destination is a match if a request matches all the
      *           specified hosts, ports, methods and headers. If not set, the
@@ -66,7 +66,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * rule checks for the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule.Source sources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Source>
      */
     public function getSources()
     {
@@ -80,7 +80,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * rule checks for the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule.Source sources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Source>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Source[] $var
      * @return $this
      */
     public function setSources($var)
@@ -99,7 +99,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * checks for the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule.Destination destinations = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination>
      */
     public function getDestinations()
     {
@@ -114,7 +114,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * checks for the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AuthorizationPolicy.Rule.Destination destinations = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination[] $var
      * @return $this
      */
     public function setDestinations($var)
@@ -126,5 +126,4 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

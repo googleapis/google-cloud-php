@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\Aggregation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Histogram of bucketed assets counts by field value.
@@ -36,7 +36,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $lower_bounds
+     *     @type float[] $lower_bounds
      *           Lower bounds of buckets.
      *           The response will contain `n+1` buckets for `n` bounds.
      *           The first bucket will count all assets for which the field value is
@@ -65,7 +65,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * You can define up to 20 lower bounds.
      *
      * Generated from protobuf field <code>repeated double lower_bounds = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getLowerBounds()
     {
@@ -84,7 +84,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * You can define up to 20 lower bounds.
      *
      * Generated from protobuf field <code>repeated double lower_bounds = 1;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setLowerBounds($var)
@@ -96,5 +96,4 @@ class Histogram extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

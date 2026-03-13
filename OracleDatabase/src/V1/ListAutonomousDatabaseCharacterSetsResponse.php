@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `AutonomousDatabaseCharacterSet.List`.
@@ -34,7 +34,7 @@ class ListAutonomousDatabaseCharacterSetsResponse extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet>|\Google\Protobuf\Internal\RepeatedField $autonomous_database_character_sets
+     *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet[] $autonomous_database_character_sets
      *           The list of Autonomous Database Character Sets.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListAutonomousDatabaseCharacterSetsResponse extends \Google\Protobuf\Inter
      * The list of Autonomous Database Character Sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDatabaseCharacterSet autonomous_database_character_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet>
      */
     public function getAutonomousDatabaseCharacterSets()
     {
@@ -60,7 +60,7 @@ class ListAutonomousDatabaseCharacterSetsResponse extends \Google\Protobuf\Inter
      * The list of Autonomous Database Character Sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.AutonomousDatabaseCharacterSet autonomous_database_character_sets = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseCharacterSet[] $var
      * @return $this
      */
     public function setAutonomousDatabaseCharacterSets($var)

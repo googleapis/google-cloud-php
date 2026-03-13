@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\InternalRange;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Range auto-allocation options, to be optionally used when CIDR block is not
@@ -115,5 +115,4 @@ class AllocationOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

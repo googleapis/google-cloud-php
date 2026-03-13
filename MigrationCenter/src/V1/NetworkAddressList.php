@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of allocated/assigned network addresses.
@@ -28,7 +28,7 @@ class NetworkAddressList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\NetworkAddress>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\MigrationCenter\V1\NetworkAddress[] $entries
      *           Network address entries.
      * }
      */
@@ -41,7 +41,7 @@ class NetworkAddressList extends \Google\Protobuf\Internal\Message
      * Network address entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.NetworkAddress entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\NetworkAddress>
      */
     public function getEntries()
     {
@@ -52,7 +52,7 @@ class NetworkAddressList extends \Google\Protobuf\Internal\Message
      * Network address entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.NetworkAddress entries = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\NetworkAddress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\NetworkAddress[] $var
      * @return $this
      */
     public function setEntries($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\BasicSli;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Future parameters for the availability SLI.
@@ -30,5 +30,4 @@ class AvailabilityCriteria extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

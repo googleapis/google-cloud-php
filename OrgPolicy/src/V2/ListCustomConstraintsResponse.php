@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response returned from the [ListCustomConstraints]
@@ -39,7 +39,7 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $custom_constraints
+     *     @type \Google\Cloud\OrgPolicy\V2\CustomConstraint[] $custom_constraints
      *           All custom and managed constraints that exist on the organization resource.
      *           It will be empty if no custom constraints are set.
      *     @type string $next_page_token
@@ -57,7 +57,7 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
      * It will be empty if no custom constraints are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OrgPolicy\V2\CustomConstraint>
      */
     public function getCustomConstraints()
     {
@@ -69,7 +69,7 @@ class ListCustomConstraintsResponse extends \Google\Protobuf\Internal\Message
      * It will be empty if no custom constraints are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.CustomConstraint custom_constraints = 1;</code>
-     * @param array<\Google\Cloud\OrgPolicy\V2\CustomConstraint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OrgPolicy\V2\CustomConstraint[] $var
      * @return $this
      */
     public function setCustomConstraints($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A service in your project in a region that is eligible for Data Transfer
@@ -38,7 +38,7 @@ class MulticloudDataTransferSupportedService extends \Google\Protobuf\Internal\M
      *
      *     @type string $name
      *           Identifier. The name of the service.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceConfig>|\Google\Protobuf\Internal\RepeatedField $service_configs
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConfig[] $service_configs
      *           Output only. The network service tier or regional endpoint supported for
      *           the service.
      * }
@@ -79,7 +79,7 @@ class MulticloudDataTransferSupportedService extends \Google\Protobuf\Internal\M
      * the service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConfig service_configs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceConfig>
      */
     public function getServiceConfigs()
     {
@@ -91,7 +91,7 @@ class MulticloudDataTransferSupportedService extends \Google\Protobuf\Internal\M
      * the service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConfig service_configs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceConfig[] $var
      * @return $this
      */
     public function setServiceConfigs($var)

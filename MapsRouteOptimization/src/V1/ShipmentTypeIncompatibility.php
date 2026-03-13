@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies incompatibilties between shipments depending on their
@@ -37,7 +37,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type string[] $types
      *           List of incompatible types. Two shipments having different `shipment_types`
      *           among those listed are "incompatible".
      *     @type int $incompatibility_mode
@@ -54,7 +54,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      * among those listed are "incompatible".
      *
      * Generated from protobuf field <code>repeated string types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTypes()
     {
@@ -66,7 +66,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      * among those listed are "incompatible".
      *
      * Generated from protobuf field <code>repeated string types = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTypes($var)

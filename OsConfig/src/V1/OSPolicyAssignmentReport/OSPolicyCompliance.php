@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compliance data for an OS policy
@@ -87,7 +87,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      *           when the agent or VM unexpectedly restarts while applying OS policies.
      *           * `internal-service-errors`: Internal service errors were encountered
      *           while attempting to apply the policy.
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance>|\Google\Protobuf\Internal\RepeatedField $os_policy_resource_compliances
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance[] $os_policy_resource_compliances
      *           Compliance data for each resource within the policy that is applied to
      *           the VM.
      * }
@@ -214,7 +214,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      * the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance os_policy_resource_compliances = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance>
      */
     public function getOsPolicyResourceCompliances()
     {
@@ -226,7 +226,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      * the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance os_policy_resource_compliances = 4;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance[] $var
      * @return $this
      */
     public function setOsPolicyResourceCompliances($var)
@@ -238,5 +238,4 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

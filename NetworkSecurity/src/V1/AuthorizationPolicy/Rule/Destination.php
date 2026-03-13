@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of traffic destination attributes.
@@ -54,14 +54,14 @@ class Destination extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hosts
+     *     @type string[] $hosts
      *           Required. List of host names to match. Matched against the ":authority" header in
      *           http requests. At least one host should match. Each host can be an
      *           exact match, or a prefix match (example "mydomain.*") or a suffix
      *           match (example "*.myorg.com") or a presence (any) match "*".
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type int[] $ports
      *           Required. List of destination ports to match. At least one port should match.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $methods
+     *     @type string[] $methods
      *           Optional. A list of HTTP methods to match. At least one method should
      *           match. Should not be set for gRPC services.
      *     @type \Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination\HttpHeaderMatch $http_header_match
@@ -84,7 +84,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * match (example "*.myorg.com") or a presence (any) match "*".
      *
      * Generated from protobuf field <code>repeated string hosts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHosts()
     {
@@ -98,7 +98,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * match (example "*.myorg.com") or a presence (any) match "*".
      *
      * Generated from protobuf field <code>repeated string hosts = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHosts($var)
@@ -113,7 +113,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * Required. List of destination ports to match. At least one port should match.
      *
      * Generated from protobuf field <code>repeated uint32 ports = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPorts()
     {
@@ -124,7 +124,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * Required. List of destination ports to match. At least one port should match.
      *
      * Generated from protobuf field <code>repeated uint32 ports = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -140,7 +140,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * match. Should not be set for gRPC services.
      *
      * Generated from protobuf field <code>repeated string methods = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMethods()
     {
@@ -152,7 +152,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * match. Should not be set for gRPC services.
      *
      * Generated from protobuf field <code>repeated string methods = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMethods($var)
@@ -208,5 +208,4 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

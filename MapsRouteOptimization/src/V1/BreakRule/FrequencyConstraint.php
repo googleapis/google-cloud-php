@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\BreakRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * One may further constrain the frequency and duration of the breaks
@@ -160,5 +160,4 @@ class FrequencyConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

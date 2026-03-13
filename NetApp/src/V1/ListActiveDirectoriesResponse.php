@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListActiveDirectoriesResponse contains all the active directories requested.
@@ -40,11 +40,11 @@ class ListActiveDirectoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetApp\V1\ActiveDirectory>|\Google\Protobuf\Internal\RepeatedField $active_directories
+     *     @type \Google\Cloud\NetApp\V1\ActiveDirectory[] $active_directories
      *           The list of active directories.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListActiveDirectoriesResponse extends \Google\Protobuf\Internal\Message
      * The list of active directories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.ActiveDirectory active_directories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\ActiveDirectory>
      */
     public function getActiveDirectories()
     {
@@ -68,7 +68,7 @@ class ListActiveDirectoriesResponse extends \Google\Protobuf\Internal\Message
      * The list of active directories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.ActiveDirectory active_directories = 1;</code>
-     * @param array<\Google\Cloud\NetApp\V1\ActiveDirectory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\ActiveDirectory[] $var
      * @return $this
      */
     public function setActiveDirectories($var)
@@ -109,7 +109,7 @@ class ListActiveDirectoriesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListActiveDirectoriesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

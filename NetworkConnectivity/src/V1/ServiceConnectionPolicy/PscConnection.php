@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a specific Private Service Connect connection.
@@ -593,5 +593,4 @@ class PscConnection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

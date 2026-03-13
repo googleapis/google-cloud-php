@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For a group of vehicles, specifies at what threshold(s) constraints on
@@ -48,10 +48,10 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint\ConstraintRelaxation\Relaxation>|\Google\Protobuf\Internal\RepeatedField $relaxations
+     *     @type \Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint\ConstraintRelaxation\Relaxation[] $relaxations
      *           All the visit constraint relaxations that will apply to visits on
      *           routes with vehicles in `vehicle_indices`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $vehicle_indices
+     *     @type int[] $vehicle_indices
      *           Specifies the vehicle indices to which the visit constraint
      *           `relaxations` apply. If empty, this is considered the default and the
      *           `relaxations` apply to all vehicles that are not specified in other
@@ -75,7 +75,7 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * routes with vehicles in `vehicle_indices`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation relaxations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint\ConstraintRelaxation\Relaxation>
      */
     public function getRelaxations()
     {
@@ -87,7 +87,7 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * routes with vehicles in `vehicle_indices`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.InjectedSolutionConstraint.ConstraintRelaxation.Relaxation relaxations = 1;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint\ConstraintRelaxation\Relaxation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\InjectedSolutionConstraint\ConstraintRelaxation\Relaxation[] $var
      * @return $this
      */
     public function setRelaxations($var)
@@ -112,7 +112,7 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * comment).
      *
      * Generated from protobuf field <code>repeated int32 vehicle_indices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getVehicleIndices()
     {
@@ -133,7 +133,7 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
      * comment).
      *
      * Generated from protobuf field <code>repeated int32 vehicle_indices = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setVehicleIndices($var)
@@ -145,5 +145,4 @@ class ConstraintRelaxation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

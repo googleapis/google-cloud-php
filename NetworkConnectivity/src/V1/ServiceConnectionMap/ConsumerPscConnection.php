@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PSC connection details on consumer side.
@@ -647,5 +647,4 @@ class ConsumerPscConnection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

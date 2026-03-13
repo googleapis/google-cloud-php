@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Block device represents the device(s) which are stored in the block volume.
@@ -74,7 +74,7 @@ class BlockDevice extends \Google\Protobuf\Internal\Message
      *           *   Contain only uppercase or lowercase letters (A-Z, a-z), numbers (0-9),
      *               and the following special characters: "-", "_", "}", "{", ".".
      *           *   Spaces are not allowed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $host_groups
+     *     @type string[] $host_groups
      *           Optional. A list of host groups that identify hosts that can mount the
      *           block volume. Format:
      *           `projects/{project_id}/locations/{location}/hostGroups/{host_group_id}`
@@ -152,7 +152,7 @@ class BlockDevice extends \Google\Protobuf\Internal\Message
      * This field can be updated after the block device is created.
      *
      * Generated from protobuf field <code>repeated string host_groups = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHostGroups()
     {
@@ -166,7 +166,7 @@ class BlockDevice extends \Google\Protobuf\Internal\Message
      * This field can be updated after the block device is created.
      *
      * Generated from protobuf field <code>repeated string host_groups = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHostGroups($var)

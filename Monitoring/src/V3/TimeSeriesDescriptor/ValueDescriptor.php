@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\TimeSeriesDescriptor;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A descriptor for the value columns in a data point.
@@ -178,5 +178,4 @@ class ValueDescriptor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

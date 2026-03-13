@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NFS export.
@@ -36,7 +36,7 @@ class NfsExport extends \Google\Protobuf\Internal\Message
      *
      *     @type string $export_directory
      *           The directory being exported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hosts
+     *     @type string[] $hosts
      *           The hosts or networks to which the export is being shared.
      * }
      */
@@ -75,7 +75,7 @@ class NfsExport extends \Google\Protobuf\Internal\Message
      * The hosts or networks to which the export is being shared.
      *
      * Generated from protobuf field <code>repeated string hosts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHosts()
     {
@@ -86,7 +86,7 @@ class NfsExport extends \Google\Protobuf\Internal\Message
      * The hosts or networks to which the export is being shared.
      *
      * Generated from protobuf field <code>repeated string hosts = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHosts($var)

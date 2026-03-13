@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an integer value range.
@@ -98,5 +98,4 @@ class IntegerRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
