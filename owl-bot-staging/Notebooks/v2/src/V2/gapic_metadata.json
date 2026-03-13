@@ -1,0 +1,103 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.notebooks.v2",
+    "libraryPackage": "Google\\Cloud\\Notebooks\\V2",
+    "services": {
+        "NotebookService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NotebookServiceGapicClient",
+                    "rpcs": {
+                        "CheckInstanceUpgradability": {
+                            "methods": [
+                                "checkInstanceUpgradability"
+                            ]
+                        },
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "DiagnoseInstance": {
+                            "methods": [
+                                "diagnoseInstance"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "ResetInstance": {
+                            "methods": [
+                                "resetInstance"
+                            ]
+                        },
+                        "RollbackInstance": {
+                            "methods": [
+                                "rollbackInstance"
+                            ]
+                        },
+                        "StartInstance": {
+                            "methods": [
+                                "startInstance"
+                            ]
+                        },
+                        "StopInstance": {
+                            "methods": [
+                                "stopInstance"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpgradeInstance": {
+                            "methods": [
+                                "upgradeInstance"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
