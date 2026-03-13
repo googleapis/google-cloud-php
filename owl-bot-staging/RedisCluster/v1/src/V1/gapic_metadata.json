@@ -1,0 +1,98 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.redis.cluster.v1",
+    "libraryPackage": "Google\\Cloud\\Redis\\Cluster\\V1",
+    "services": {
+        "CloudRedisCluster": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudRedisClusterGapicClient",
+                    "rpcs": {
+                        "BackupCluster": {
+                            "methods": [
+                                "backupCluster"
+                            ]
+                        },
+                        "CreateCluster": {
+                            "methods": [
+                                "createCluster"
+                            ]
+                        },
+                        "DeleteBackup": {
+                            "methods": [
+                                "deleteBackup"
+                            ]
+                        },
+                        "DeleteCluster": {
+                            "methods": [
+                                "deleteCluster"
+                            ]
+                        },
+                        "ExportBackup": {
+                            "methods": [
+                                "exportBackup"
+                            ]
+                        },
+                        "GetBackup": {
+                            "methods": [
+                                "getBackup"
+                            ]
+                        },
+                        "GetBackupCollection": {
+                            "methods": [
+                                "getBackupCollection"
+                            ]
+                        },
+                        "GetCluster": {
+                            "methods": [
+                                "getCluster"
+                            ]
+                        },
+                        "GetClusterCertificateAuthority": {
+                            "methods": [
+                                "getClusterCertificateAuthority"
+                            ]
+                        },
+                        "ListBackupCollections": {
+                            "methods": [
+                                "listBackupCollections"
+                            ]
+                        },
+                        "ListBackups": {
+                            "methods": [
+                                "listBackups"
+                            ]
+                        },
+                        "ListClusters": {
+                            "methods": [
+                                "listClusters"
+                            ]
+                        },
+                        "RescheduleClusterMaintenance": {
+                            "methods": [
+                                "rescheduleClusterMaintenance"
+                            ]
+                        },
+                        "UpdateCluster": {
+                            "methods": [
+                                "updateCluster"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
