@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\CreateTableRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An initial split point for a newly created table.
@@ -64,7 +64,4 @@ class Split extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Split::class, \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest_Split::class);
 

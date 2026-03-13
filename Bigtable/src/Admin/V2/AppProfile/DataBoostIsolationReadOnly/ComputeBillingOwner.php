@@ -55,6 +55,3 @@ class ComputeBillingOwner
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ComputeBillingOwner::class, \Google\Cloud\Bigtable\Admin\V2\AppProfile_DataBoostIsolationReadOnly_ComputeBillingOwner::class);
-

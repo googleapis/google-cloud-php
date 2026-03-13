@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type\Aggregate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Computes the sum of the input values.
@@ -32,7 +32,4 @@ class Sum extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Sum::class, \Google\Cloud\Bigtable\V2\Type_Aggregate_Sum::class);
 

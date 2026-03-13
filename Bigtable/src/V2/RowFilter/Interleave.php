@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\RowFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RowFilter which sends each row to each of several component
@@ -51,7 +51,7 @@ class Interleave extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Cloud\Bigtable\V2\RowFilter[] $filters
      *           The elements of "filters" all process a copy of the input row, and the
      *           results are pooled, sorted, and combined into a single output row.
      *           If multiple cells are produced with the same column and timestamp,
@@ -108,7 +108,7 @@ class Interleave extends \Google\Protobuf\Internal\Message
      * All interleaved filters are executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\RowFilter>
      */
     public function getFilters()
     {
@@ -141,7 +141,7 @@ class Interleave extends \Google\Protobuf\Internal\Message
      * All interleaved filters are executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\RowFilter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -153,7 +153,4 @@ class Interleave extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Interleave::class, \Google\Cloud\Bigtable\V2\RowFilter_Interleave::class);
 

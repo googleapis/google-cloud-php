@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaScorecardResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A scorecard result may have multiple sets of scores from varying sources,
@@ -64,7 +64,7 @@ class ScoreSource extends \Google\Protobuf\Internal\Message
      *           answered using `na_value` are excluded from this calculation.
      *     @type float $normalized_score
      *           The normalized score, which is the score divided by the potential score.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>|\Google\Protobuf\Internal\RepeatedField $qa_tag_results
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult[] $qa_tag_results
      *           Collection of tags and their scores.
      * }
      */
@@ -213,7 +213,7 @@ class ScoreSource extends \Google\Protobuf\Internal\Message
      * Collection of tags and their scores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.QaTagResult qa_tag_results = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>
      */
     public function getQaTagResults()
     {
@@ -224,7 +224,7 @@ class ScoreSource extends \Google\Protobuf\Internal\Message
      * Collection of tags and their scores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.QaTagResult qa_tag_results = 5;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult[] $var
      * @return $this
      */
     public function setQaTagResults($var)
@@ -236,5 +236,4 @@ class ScoreSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

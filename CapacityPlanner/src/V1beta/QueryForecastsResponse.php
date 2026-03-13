@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `QueryForecasts` response.
@@ -28,7 +28,7 @@ class QueryForecastsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\Forecast>|\Google\Protobuf\Internal\RepeatedField $forecasts
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\Forecast[] $forecasts
      *           The forecasts that match the request.
      * }
      */
@@ -41,7 +41,7 @@ class QueryForecastsResponse extends \Google\Protobuf\Internal\Message
      * The forecasts that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Forecast forecasts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\Forecast>
      */
     public function getForecasts()
     {
@@ -52,7 +52,7 @@ class QueryForecastsResponse extends \Google\Protobuf\Internal\Message
      * The forecasts that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Forecast forecasts = 1;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\Forecast>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\Forecast[] $var
      * @return $this
      */
     public function setForecasts($var)

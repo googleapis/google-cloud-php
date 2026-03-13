@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Line item information.
@@ -46,7 +46,7 @@ class LineItemInfo extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the offer can have either of these formats:
      *           'billingAccounts/{billing_account}/offers/{offer}',
      *           or 'services/{service}/standardOffers/{offer}'.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter[] $parameters
      *           Optional. User-provided parameters.
      *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\Subscription $subscription
      *           Output only. Information about the subscription created, if applicable.
@@ -91,7 +91,7 @@ class LineItemInfo extends \Google\Protobuf\Internal\Message
      * Optional. User-provided parameters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.Parameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter>
      */
     public function getParameters()
     {
@@ -102,7 +102,7 @@ class LineItemInfo extends \Google\Protobuf\Internal\Message
      * Optional. User-provided parameters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.Parameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

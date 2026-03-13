@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Progress info for copying a table's data to the new cluster.
@@ -133,7 +133,4 @@ class TableProgress extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TableProgress::class, \Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata_TableProgress::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `Documentation` provides the information for describing a service.
@@ -131,9 +131,9 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *           text. It becomes the overview of the service displayed in Google Cloud
      *           Console.
      *           NOTE: This field is equivalent to the standard field `description`.
-     *     @type array<\Google\Api\Page>|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type \Google\Api\Page[] $pages
      *           The top level pages for the documentation set.
-     *     @type array<\Google\Api\DocumentationRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Api\DocumentationRule[] $rules
      *           A list of documentation rules that apply to individual API elements.
      *           **NOTE:** All service configuration rules follow "last one wins" order.
      *     @type string $documentation_root_url
@@ -200,7 +200,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The top level pages for the documentation set.
      *
      * Generated from protobuf field <code>repeated .google.api.Page pages = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Page>
      */
     public function getPages()
     {
@@ -211,7 +211,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The top level pages for the documentation set.
      *
      * Generated from protobuf field <code>repeated .google.api.Page pages = 5;</code>
-     * @param array<\Google\Api\Page>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Page[] $var
      * @return $this
      */
     public function setPages($var)
@@ -227,7 +227,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.DocumentationRule rules = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\DocumentationRule>
      */
     public function getRules()
     {
@@ -239,7 +239,7 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * **NOTE:** All service configuration rules follow "last one wins" order.
      *
      * Generated from protobuf field <code>repeated .google.api.DocumentationRule rules = 3;</code>
-     * @param array<\Google\Api\DocumentationRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\DocumentationRule[] $var
      * @return $this
      */
     public function setRules($var)

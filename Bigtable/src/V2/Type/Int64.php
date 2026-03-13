@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Int64
@@ -75,7 +75,4 @@ class Int64 extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Int64::class, \Google\Cloud\Bigtable\V2\Type_Int64::class);
 

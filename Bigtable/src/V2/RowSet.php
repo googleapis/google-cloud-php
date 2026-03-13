@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a non-contiguous set of rows.
@@ -34,9 +34,9 @@ class RowSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $row_keys
+     *     @type string[] $row_keys
      *           Single rows included in the set.
-     *     @type array<\Google\Cloud\Bigtable\V2\RowRange>|\Google\Protobuf\Internal\RepeatedField $row_ranges
+     *     @type \Google\Cloud\Bigtable\V2\RowRange[] $row_ranges
      *           Contiguous row ranges included in the set.
      * }
      */
@@ -49,7 +49,7 @@ class RowSet extends \Google\Protobuf\Internal\Message
      * Single rows included in the set.
      *
      * Generated from protobuf field <code>repeated bytes row_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRowKeys()
     {
@@ -60,7 +60,7 @@ class RowSet extends \Google\Protobuf\Internal\Message
      * Single rows included in the set.
      *
      * Generated from protobuf field <code>repeated bytes row_keys = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRowKeys($var)
@@ -75,7 +75,7 @@ class RowSet extends \Google\Protobuf\Internal\Message
      * Contiguous row ranges included in the set.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowRange row_ranges = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\RowRange>
      */
     public function getRowRanges()
     {
@@ -86,7 +86,7 @@ class RowSet extends \Google\Protobuf\Internal\Message
      * Contiguous row ranges included in the set.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowRange row_ranges = 2;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\RowRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\RowRange[] $var
      * @return $this
      */
     public function setRowRanges($var)

@@ -63,6 +63,3 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Bigtable\Admin\V2\Instance_Type::class);
-

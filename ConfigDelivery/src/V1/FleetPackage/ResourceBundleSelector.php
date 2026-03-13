@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1\FleetPackage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information specifying the source of kubernetes configuration to deploy.
@@ -105,5 +105,4 @@ class ResourceBundleSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

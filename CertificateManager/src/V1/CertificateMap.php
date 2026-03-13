@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a collection of certificate configurations.
@@ -18,7 +18,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the Certificate Map. Certificate Map names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -65,7 +65,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           A user-defined name of the Certificate Map. Certificate Map names must be
      *           unique globally and match pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     *           `projects/{@*}locations/{@*}certificateMaps/*`.
      *     @type string $description
      *           One or more paragraphs of text description of a certificate map.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -74,7 +74,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      *           Output only. The update timestamp of a Certificate Map.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with a Certificate Map.
-     *     @type array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>|\Google\Protobuf\Internal\RepeatedField $gclb_targets
+     *     @type \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget[] $gclb_targets
      *           Output only. A list of GCLB targets that use this Certificate Map.
      *           A Target Proxy is only present on this list if it's attached to a
      *           Forwarding Rule.
@@ -88,7 +88,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the Certificate Map. Certificate Map names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -101,7 +101,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
     /**
      * A user-defined name of the Certificate Map. Certificate Map names must be
      * unique globally and match pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateMaps/&#42;`.
+     * `projects/{@*}locations/{@*}certificateMaps/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -245,7 +245,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      * Forwarding Rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>
      */
     public function getGclbTargets()
     {
@@ -258,7 +258,7 @@ class CertificateMap extends \Google\Protobuf\Internal\Message
      * Forwarding Rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMap.GclbTarget gclb_targets = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CertificateManager\V1\CertificateMap\GclbTarget[] $var
      * @return $this
      */
     public function setGclbTargets($var)

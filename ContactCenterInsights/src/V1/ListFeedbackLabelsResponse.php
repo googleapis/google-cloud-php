@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for listing feedback labels.
@@ -34,7 +34,7 @@ class ListFeedbackLabelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\FeedbackLabel>|\Google\Protobuf\Internal\RepeatedField $feedback_labels
+     *     @type \Google\Cloud\ContactCenterInsights\V1\FeedbackLabel[] $feedback_labels
      *           The feedback labels that match the request.
      *     @type string $next_page_token
      *           The next page token.
@@ -49,7 +49,7 @@ class ListFeedbackLabelsResponse extends \Google\Protobuf\Internal\Message
      * The feedback labels that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.FeedbackLabel feedback_labels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\FeedbackLabel>
      */
     public function getFeedbackLabels()
     {
@@ -60,7 +60,7 @@ class ListFeedbackLabelsResponse extends \Google\Protobuf\Internal\Message
      * The feedback labels that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.FeedbackLabel feedback_labels = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\FeedbackLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\FeedbackLabel[] $var
      * @return $this
      */
     public function setFeedbackLabels($var)

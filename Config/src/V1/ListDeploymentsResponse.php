@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.config.v1.ListDeploymentsResponse</code>
@@ -39,12 +39,12 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Config\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $deployments
+     *     @type \Google\Cloud\Config\V1\Deployment[] $deployments
      *           List of [Deployment][google.cloud.config.v1.Deployment]s.
      *     @type string $next_page_token
      *           Token to be supplied to the next ListDeployments request via `page_token`
      *           to obtain the next set of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * List of [Deployment][google.cloud.config.v1.Deployment]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Deployment deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\Deployment>
      */
     public function getDeployments()
     {
@@ -68,7 +68,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * List of [Deployment][google.cloud.config.v1.Deployment]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Deployment deployments = 1;</code>
-     * @param array<\Google\Cloud\Config\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\Deployment[] $var
      * @return $this
      */
     public function setDeployments($var)
@@ -111,7 +111,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -122,7 +122,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

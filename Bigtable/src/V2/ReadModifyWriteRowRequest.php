@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Bigtable.ReadModifyWriteRow.
@@ -134,7 +134,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      *     @type string $row_key
      *           Required. The key of the row to which the read/modify/write rules should be
      *           applied.
-     *     @type array<\Google\Cloud\Bigtable\V2\ReadModifyWriteRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $rules
      *           Required. Rules specifying how the specified row's contents are to be
      *           transformed into writes. Entries are applied in order, meaning that earlier
      *           rules will affect the results of later ones. At least one entry must be
@@ -273,7 +273,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      * specified, and there can be at most 100000 rules.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\ReadModifyWriteRule>
      */
     public function getRules()
     {
@@ -287,7 +287,7 @@ class ReadModifyWriteRowRequest extends \Google\Protobuf\Internal\Message
      * specified, and there can be at most 100000 rules.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadModifyWriteRule rules = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Bigtable\V2\ReadModifyWriteRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\ReadModifyWriteRule[] $var
      * @return $this
      */
     public function setRules($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\Conversation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * All information about a single turn in the conversation.
@@ -35,7 +35,7 @@ class Turn extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Ces\V1\Message[] $messages
      *           Optional. List of messages in the conversation turn, including user
      *           input, agent responses and intermediate events during the processing.
      *     @type \Google\Cloud\Ces\V1\Span $root_span
@@ -52,7 +52,7 @@ class Turn extends \Google\Protobuf\Internal\Message
      * input, agent responses and intermediate events during the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Message>
      */
     public function getMessages()
     {
@@ -64,7 +64,7 @@ class Turn extends \Google\Protobuf\Internal\Message
      * input, agent responses and intermediate events during the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Message[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -112,5 +112,4 @@ class Turn extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

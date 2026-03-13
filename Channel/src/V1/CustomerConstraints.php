@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents constraints required to purchase the Offer for a customer.
@@ -40,11 +40,11 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_regions
+     *     @type string[] $allowed_regions
      *           Allowed geographical regions of the customer.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_customer_types
+     *     @type int[] $allowed_customer_types
      *           Allowed Customer Type.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $promotional_order_types
+     *     @type int[] $promotional_order_types
      *           Allowed Promotional Order Type. Present for Promotional offers.
      * }
      */
@@ -57,7 +57,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed geographical regions of the customer.
      *
      * Generated from protobuf field <code>repeated string allowed_regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedRegions()
     {
@@ -68,7 +68,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed geographical regions of the customer.
      *
      * Generated from protobuf field <code>repeated string allowed_regions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedRegions($var)
@@ -83,7 +83,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed Customer Type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.CloudIdentityInfo.CustomerType allowed_customer_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedCustomerTypes()
     {
@@ -94,7 +94,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed Customer Type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.CloudIdentityInfo.CustomerType allowed_customer_types = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedCustomerTypes($var)
@@ -109,7 +109,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed Promotional Order Type. Present for Promotional offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PromotionalOrderType promotional_order_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPromotionalOrderTypes()
     {
@@ -120,7 +120,7 @@ class CustomerConstraints extends \Google\Protobuf\Internal\Message
      * Allowed Promotional Order Type. Present for Promotional offers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PromotionalOrderType promotional_order_types = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPromotionalOrderTypes($var)

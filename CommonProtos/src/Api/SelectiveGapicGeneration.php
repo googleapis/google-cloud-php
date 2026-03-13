@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message is used to configure the generation of a subset of the RPCs in
@@ -41,7 +41,7 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $methods
+     *     @type string[] $methods
      *           An allowlist of the fully qualified names of RPCs that should be included
      *           on public client surfaces.
      *     @type bool $generate_omitted_as_internal
@@ -63,7 +63,7 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
      * on public client surfaces.
      *
      * Generated from protobuf field <code>repeated string methods = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMethods()
     {
@@ -75,7 +75,7 @@ class SelectiveGapicGeneration extends \Google\Protobuf\Internal\Message
      * on public client surfaces.
      *
      * Generated from protobuf field <code>repeated string methods = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMethods($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ImportAppResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the app that was imported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type string[] $warnings
      *           Warning messages generated during the import process.
      *           If errors occur for specific resources, they will not be included in the
      *           imported app and the error will be mentioned here.
@@ -82,7 +82,7 @@ class ImportAppResponse extends \Google\Protobuf\Internal\Message
      * imported app and the error will be mentioned here.
      *
      * Generated from protobuf field <code>repeated string warnings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWarnings()
     {
@@ -95,7 +95,7 @@ class ImportAppResponse extends \Google\Protobuf\Internal\Message
      * imported app and the error will be mentioned here.
      *
      * Generated from protobuf field <code>repeated string warnings = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWarnings($var)

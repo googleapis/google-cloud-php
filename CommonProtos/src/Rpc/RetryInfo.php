@@ -5,8 +5,8 @@
 namespace Google\Rpc;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes when the clients can retry a failed request. Clients could ignore

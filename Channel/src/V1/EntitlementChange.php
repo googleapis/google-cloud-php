@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Change event entry for Entitlement order history
@@ -100,7 +100,7 @@ class EntitlementChange extends \Google\Protobuf\Internal\Message
      *           The submitted time of the change.
      *     @type int $operator_type
      *           Operator type responsible for the change.
-     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Channel\V1\Parameter[] $parameters
      *           Extended parameters, such as:
      *           purchase_order_number, gcp_details;
      *           internal_correlation_id, long_running_operation_id, order_id;
@@ -427,7 +427,7 @@ class EntitlementChange extends \Google\Protobuf\Internal\Message
      * etc.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Parameter>
      */
     public function getParameters()
     {
@@ -441,7 +441,7 @@ class EntitlementChange extends \Google\Protobuf\Internal\Message
      * etc.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 8;</code>
-     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

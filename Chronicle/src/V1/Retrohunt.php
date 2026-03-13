@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Retrohunt is an execution of a Rule over a time range in the past.
@@ -18,7 +18,7 @@ class Retrohunt extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the retrohunt.
      * Retrohunt is the child of a rule revision. {rule} in the format below is
-     * structured as {rule_id&#64;revision_id}.
+     * structured as {rule_id\@revision_id}.
      * Format:
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}/retrohunts/{retrohunt}`
      *
@@ -63,7 +63,7 @@ class Retrohunt extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the retrohunt.
      *           Retrohunt is the child of a rule revision. {rule} in the format below is
-     *           structured as {rule_id&#64;revision_id}.
+     *           structured as {rule_id\@revision_id}.
      *           Format:
      *           `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}/retrohunts/{retrohunt}`
      *     @type \Google\Type\Interval $process_interval
@@ -88,7 +88,7 @@ class Retrohunt extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the retrohunt.
      * Retrohunt is the child of a rule revision. {rule} in the format below is
-     * structured as {rule_id&#64;revision_id}.
+     * structured as {rule_id\@revision_id}.
      * Format:
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}/retrohunts/{retrohunt}`
      *
@@ -103,7 +103,7 @@ class Retrohunt extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the retrohunt.
      * Retrohunt is the child of a rule revision. {rule} in the format below is
-     * structured as {rule_id&#64;revision_id}.
+     * structured as {rule_id\@revision_id}.
      * Format:
      * `projects/{project}/locations/{location}/instances/{instance}/rules/{rule}/retrohunts/{retrohunt}`
      *

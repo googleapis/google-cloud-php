@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Bigtable.CheckAndMutateRow.
@@ -183,13 +183,13 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      *           on whether or not any results are yielded, either `true_mutations` or
      *           `false_mutations` will be executed. If unset, checks that the row contains
      *           any values at all.
-     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $true_mutations
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[] $true_mutations
      *           Changes to be atomically applied to the specified row if `predicate_filter`
      *           yields at least one cell when applied to `row_key`. Entries are applied in
      *           order, meaning that earlier mutations can be masked by later ones.
      *           Must contain at least one entry if `false_mutations` is empty, and at most
      *           100000.
-     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $false_mutations
+     *     @type \Google\Cloud\Bigtable\V2\Mutation[] $false_mutations
      *           Changes to be atomically applied to the specified row if `predicate_filter`
      *           does not yield any cells when applied to `row_key`. Entries are applied in
      *           order, meaning that earlier mutations can be masked by later ones.
@@ -372,7 +372,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      * 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation true_mutations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Mutation>
      */
     public function getTrueMutations()
     {
@@ -387,7 +387,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      * 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation true_mutations = 4;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $var
      * @return $this
      */
     public function setTrueMutations($var)
@@ -406,7 +406,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      * 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation false_mutations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\Mutation>
      */
     public function getFalseMutations()
     {
@@ -421,7 +421,7 @@ class CheckAndMutateRowRequest extends \Google\Protobuf\Internal\Message
      * 100000.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation false_mutations = 5;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\Mutation[] $var
      * @return $this
      */
     public function setFalseMutations($var)

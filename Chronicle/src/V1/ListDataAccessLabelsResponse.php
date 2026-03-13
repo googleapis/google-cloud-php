@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListDataAccessLabels.
@@ -35,7 +35,7 @@ class ListDataAccessLabelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Chronicle\V1\DataAccessLabel>|\Google\Protobuf\Internal\RepeatedField $data_access_labels
+     *     @type \Google\Cloud\Chronicle\V1\DataAccessLabel[] $data_access_labels
      *           List of data access labels.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDataAccessLabelsResponse extends \Google\Protobuf\Internal\Message
      * List of data access labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabel data_access_labels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\DataAccessLabel>
      */
     public function getDataAccessLabels()
     {
@@ -62,7 +62,7 @@ class ListDataAccessLabelsResponse extends \Google\Protobuf\Internal\Message
      * List of data access labels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.DataAccessLabel data_access_labels = 1;</code>
-     * @param array<\Google\Cloud\Chronicle\V1\DataAccessLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\DataAccessLabel[] $var
      * @return $this
      */
     public function setDataAccessLabels($var)

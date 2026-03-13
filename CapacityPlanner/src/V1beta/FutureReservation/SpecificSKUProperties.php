@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\FutureReservation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents specific SKU properties for the Future Reservation.
@@ -112,5 +112,4 @@ class SpecificSKUProperties extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

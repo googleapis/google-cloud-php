@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to modify claims in the token to generate custom-purpose tokens.
@@ -49,7 +49,7 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      *     @type string $audience
      *           Optional. Optional string to issue the token with a custom audience claim.
      *           Required if one or more nonces are specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nonce
+     *     @type string[] $nonce
      *           Optional. Optional parameter to place one or more nonces in the eat_nonce
      *           claim in the output token. The minimum size for JSON-encoded EATs is 10
      *           bytes and the maximum size is 74 bytes.
@@ -127,7 +127,7 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      * bytes and the maximum size is 74 bytes.
      *
      * Generated from protobuf field <code>repeated string nonce = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNonce()
     {
@@ -140,7 +140,7 @@ class TokenOptions extends \Google\Protobuf\Internal\Message
      * bytes and the maximum size is 74 bytes.
      *
      * Generated from protobuf field <code>repeated string nonce = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNonce($var)

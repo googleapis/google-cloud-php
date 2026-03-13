@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Mutation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Mutation which incrementally updates a cell in an `Aggregate` family.
@@ -216,7 +216,4 @@ class AddToCell extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AddToCell::class, \Google\Cloud\Bigtable\V2\Mutation_AddToCell::class);
 

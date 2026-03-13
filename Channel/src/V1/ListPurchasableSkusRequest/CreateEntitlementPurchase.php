@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1\ListPurchasableSkusRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List SKUs for a new entitlement. Make the purchase using
@@ -73,5 +73,4 @@ class CreateEntitlementPurchase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

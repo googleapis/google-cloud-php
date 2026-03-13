@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\Report>|\Google\Protobuf\Internal\RepeatedField $reports
+     *     @type \Google\Cloud\Channel\V1\Report[] $reports
      *           The reports available to the partner.
      *     @type string $next_page_token
      *           Pass this token to
@@ -55,7 +55,7 @@ class ListReportsResponse extends \Google\Protobuf\Internal\Message
      * The reports available to the partner.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Report reports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Report>
      */
     public function getReports()
     {
@@ -66,7 +66,7 @@ class ListReportsResponse extends \Google\Protobuf\Internal\Message
      * The reports available to the partner.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Report reports = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\Report>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Report[] $var
      * @return $this
      */
     public function setReports($var)

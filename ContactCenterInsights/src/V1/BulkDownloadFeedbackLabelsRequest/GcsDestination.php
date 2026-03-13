@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\BulkDownloadFeedbackLabelsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Cloud Storage Object details to write the feedback labels to.
@@ -232,5 +232,4 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

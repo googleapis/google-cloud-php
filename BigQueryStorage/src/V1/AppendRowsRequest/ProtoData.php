@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\AppendRowsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ProtoData contains the data rows and schema when constructing append
@@ -147,5 +147,4 @@ class ProtoData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

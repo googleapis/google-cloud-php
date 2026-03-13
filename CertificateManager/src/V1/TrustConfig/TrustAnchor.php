@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\TrustConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a trust anchor.
@@ -75,5 +75,4 @@ class TrustAnchor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

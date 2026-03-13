@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for creating a Challenge
@@ -17,7 +17,7 @@ class CreateChallengeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the location where the Challenge will be
-     * used, in the format `projects/&#42;&#47;locations/&#42;`.
+     * used, in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,7 +56,7 @@ class CreateChallengeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the location where the Challenge will be
-     *           used, in the format `projects/&#42;&#47;locations/&#42;`.
+     *           used, in the format `projects/{@*}locations/*`.
      *     @type \Google\Cloud\ConfidentialComputing\V1\Challenge $challenge
      *           Required. The Challenge to be created. Currently this field can be empty as
      *           all the Challenge fields are set by the server.
@@ -69,7 +69,7 @@ class CreateChallengeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location where the Challenge will be
-     * used, in the format `projects/&#42;&#47;locations/&#42;`.
+     * used, in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +81,7 @@ class CreateChallengeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the location where the Challenge will be
-     * used, in the format `projects/&#42;&#47;locations/&#42;`.
+     * used, in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

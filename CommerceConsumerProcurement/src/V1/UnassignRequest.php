@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -24,7 +24,7 @@ class UnassignRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
     /**
      * Required. Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>repeated string usernames = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,9 +54,9 @@ class UnassignRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. License pool name.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $usernames
+     *     @type string[] $usernames
      *           Required. Username.
-     *           Format: `name&#64;domain.com`.
+     *           Format: `name\@domain.com`.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,10 +92,10 @@ class UnassignRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>repeated string usernames = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUsernames()
     {
@@ -104,10 +104,10 @@ class UnassignRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>repeated string usernames = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUsernames($var)

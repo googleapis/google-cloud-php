@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\Customer>|\Google\Protobuf\Internal\RepeatedField $customers
+     *     @type \Google\Cloud\Channel\V1\Customer[] $customers
      *           The customers belonging to a reseller or distributor.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
      * The customers belonging to a reseller or distributor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Customer customers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Customer>
      */
     public function getCustomers()
     {
@@ -67,7 +67,7 @@ class ListCustomersResponse extends \Google\Protobuf\Internal\Message
      * The customers belonging to a reseller or distributor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Customer customers = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\Customer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Customer[] $var
      * @return $this
      */
     public function setCustomers($var)

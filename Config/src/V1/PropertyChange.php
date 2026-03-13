@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A property change represents a change to a property in the state file.
@@ -56,12 +56,12 @@ class PropertyChange extends \Google\Protobuf\Internal\Message
      *
      *     @type string $path
      *           Output only. The path of the property change.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $before_sensitive_paths
+     *     @type string[] $before_sensitive_paths
      *           Output only. The paths of sensitive fields in `before`. Paths are relative
      *           to `path`.
      *     @type \Google\Protobuf\Value $before
      *           Output only. Representations of the object value before the actions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $after_sensitive_paths
+     *     @type string[] $after_sensitive_paths
      *           Output only. The paths of sensitive fields in `after`. Paths are relative
      *           to `path`.
      *     @type \Google\Protobuf\Value $after
@@ -104,7 +104,7 @@ class PropertyChange extends \Google\Protobuf\Internal\Message
      * to `path`.
      *
      * Generated from protobuf field <code>repeated string before_sensitive_paths = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBeforeSensitivePaths()
     {
@@ -116,7 +116,7 @@ class PropertyChange extends \Google\Protobuf\Internal\Message
      * to `path`.
      *
      * Generated from protobuf field <code>repeated string before_sensitive_paths = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBeforeSensitivePaths($var)
@@ -168,7 +168,7 @@ class PropertyChange extends \Google\Protobuf\Internal\Message
      * to `path`.
      *
      * Generated from protobuf field <code>repeated string after_sensitive_paths = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAfterSensitivePaths()
     {
@@ -180,7 +180,7 @@ class PropertyChange extends \Google\Protobuf\Internal\Message
      * to `path`.
      *
      * Generated from protobuf field <code>repeated string after_sensitive_paths = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAfterSensitivePaths($var)

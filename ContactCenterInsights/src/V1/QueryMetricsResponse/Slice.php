@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A slice contains a total and (if the request specified a time granularity)
@@ -49,7 +49,7 @@ class Slice extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Dimension[] $dimensions
      *           A unique combination of dimensions that this slice represents.
      *     @type \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint $total
      *           The total metric value. The interval of this data point is
@@ -68,7 +68,7 @@ class Slice extends \Google\Protobuf\Internal\Message
      * A unique combination of dimensions that this slice represents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Dimension dimensions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Dimension>
      */
     public function getDimensions()
     {
@@ -79,7 +79,7 @@ class Slice extends \Google\Protobuf\Internal\Message
      * A unique combination of dimensions that this slice represents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Dimension dimensions = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Dimension[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -167,5 +167,4 @@ class Slice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

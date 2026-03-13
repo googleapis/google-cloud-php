@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\ReadSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional attributes when reading a table.
@@ -74,5 +74,4 @@ class TableModifiers extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
