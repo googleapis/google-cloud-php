@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [SecuritySettings.ListSecuritySettings][].
@@ -35,7 +35,7 @@ class ListSecuritySettingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SecuritySettings>|\Google\Protobuf\Internal\RepeatedField $security_settings
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings[] $security_settings
      *           The list of security settings.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListSecuritySettingsResponse extends \Google\Protobuf\Internal\Message
      * The list of security settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SecuritySettings security_settings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\SecuritySettings>
      */
     public function getSecuritySettings()
     {
@@ -62,7 +62,7 @@ class ListSecuritySettingsResponse extends \Google\Protobuf\Internal\Message
      * The list of security settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SecuritySettings security_settings = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\SecuritySettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SecuritySettings[] $var
      * @return $this
      */
     public function setSecuritySettings($var)

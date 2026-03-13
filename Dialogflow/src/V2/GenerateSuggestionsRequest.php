@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -77,7 +77,7 @@ class GenerateSuggestionsRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the latest conversation message for which the request
      *           is triggered. Format: `projects/<Project ID>/locations/<Location
      *           ID>/conversations/<Conversation ID>/messages/<Message ID>`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $trigger_events
+     *     @type int[] $trigger_events
      *           Optional. A list of trigger events. Only generators configured in the
      *           conversation_profile whose trigger_event is listed here will be triggered.
      * }
@@ -156,7 +156,7 @@ class GenerateSuggestionsRequest extends \Google\Protobuf\Internal\Message
      * conversation_profile whose trigger_event is listed here will be triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TriggerEvent trigger_events = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTriggerEvents()
     {
@@ -168,7 +168,7 @@ class GenerateSuggestionsRequest extends \Google\Protobuf\Internal\Message
      * conversation_profile whose trigger_event is listed here will be triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.TriggerEvent trigger_events = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTriggerEvents($var)

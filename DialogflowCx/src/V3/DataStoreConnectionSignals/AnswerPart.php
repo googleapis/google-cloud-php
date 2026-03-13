@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Answer part with citation.
@@ -36,7 +36,7 @@ class AnswerPart extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           Substring of the answer.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supporting_indices
+     *     @type int[] $supporting_indices
      *           Citations for this answer part. Indices of `search_snippets`.
      * }
      */
@@ -75,7 +75,7 @@ class AnswerPart extends \Google\Protobuf\Internal\Message
      * Citations for this answer part. Indices of `search_snippets`.
      *
      * Generated from protobuf field <code>repeated int32 supporting_indices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportingIndices()
     {
@@ -86,7 +86,7 @@ class AnswerPart extends \Google\Protobuf\Internal\Message
      * Citations for this answer part. Indices of `search_snippets`.
      *
      * Generated from protobuf field <code>repeated int32 supporting_indices = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportingIndices($var)
@@ -98,5 +98,4 @@ class AnswerPart extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

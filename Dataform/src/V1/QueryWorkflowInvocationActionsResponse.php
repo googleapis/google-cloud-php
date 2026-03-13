@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `QueryWorkflowInvocationActions` response message.
@@ -35,7 +35,7 @@ class QueryWorkflowInvocationActionsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1\WorkflowInvocationAction>|\Google\Protobuf\Internal\RepeatedField $workflow_invocation_actions
+     *     @type \Google\Cloud\Dataform\V1\WorkflowInvocationAction[] $workflow_invocation_actions
      *           List of workflow invocation actions.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class QueryWorkflowInvocationActionsResponse extends \Google\Protobuf\Internal\M
      * List of workflow invocation actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.WorkflowInvocationAction workflow_invocation_actions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\WorkflowInvocationAction>
      */
     public function getWorkflowInvocationActions()
     {
@@ -62,7 +62,7 @@ class QueryWorkflowInvocationActionsResponse extends \Google\Protobuf\Internal\M
      * List of workflow invocation actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.WorkflowInvocationAction workflow_invocation_actions = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1\WorkflowInvocationAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\WorkflowInvocationAction[] $var
      * @return $this
      */
     public function setWorkflowInvocationActions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a part of a message possibly annotated with an entity. The part
@@ -36,7 +36,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      * The [Dialogflow system entity formatted value
      * ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of
      * this message part. For example for a system entity of type
-     * `&#64;sys.unit-currency`, this may contain:
+     * `\@sys.unit-currency`, this may contain:
      * <pre>
      * {
      *   "amount": 5,
@@ -65,7 +65,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      *           The [Dialogflow system entity formatted value
      *           ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of
      *           this message part. For example for a system entity of type
-     *           `&#64;sys.unit-currency`, this may contain:
+     *           `\@sys.unit-currency`, this may contain:
      *           <pre>
      *           {
      *             "amount": 5,
@@ -141,7 +141,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      * The [Dialogflow system entity formatted value
      * ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of
      * this message part. For example for a system entity of type
-     * `&#64;sys.unit-currency`, this may contain:
+     * `\@sys.unit-currency`, this may contain:
      * <pre>
      * {
      *   "amount": 5,
@@ -171,7 +171,7 @@ class AnnotatedMessagePart extends \Google\Protobuf\Internal\Message
      * The [Dialogflow system entity formatted value
      * ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of
      * this message part. For example for a system entity of type
-     * `&#64;sys.unit-currency`, this may contain:
+     * `\@sys.unit-currency`, this may contain:
      * <pre>
      * {
      *   "amount": 5,

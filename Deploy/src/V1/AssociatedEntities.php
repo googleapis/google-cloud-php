@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about entities associated with a `Target`.
@@ -34,9 +34,9 @@ class AssociatedEntities extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\GkeCluster>|\Google\Protobuf\Internal\RepeatedField $gke_clusters
+     *     @type \Google\Cloud\Deploy\V1\GkeCluster[] $gke_clusters
      *           Optional. Information specifying GKE clusters as associated entities.
-     *     @type array<\Google\Cloud\Deploy\V1\AnthosCluster>|\Google\Protobuf\Internal\RepeatedField $anthos_clusters
+     *     @type \Google\Cloud\Deploy\V1\AnthosCluster[] $anthos_clusters
      *           Optional. Information specifying Anthos clusters as associated entities.
      * }
      */
@@ -49,7 +49,7 @@ class AssociatedEntities extends \Google\Protobuf\Internal\Message
      * Optional. Information specifying GKE clusters as associated entities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.GkeCluster gke_clusters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\GkeCluster>
      */
     public function getGkeClusters()
     {
@@ -60,7 +60,7 @@ class AssociatedEntities extends \Google\Protobuf\Internal\Message
      * Optional. Information specifying GKE clusters as associated entities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.GkeCluster gke_clusters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\GkeCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\GkeCluster[] $var
      * @return $this
      */
     public function setGkeClusters($var)
@@ -75,7 +75,7 @@ class AssociatedEntities extends \Google\Protobuf\Internal\Message
      * Optional. Information specifying Anthos clusters as associated entities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.AnthosCluster anthos_clusters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\AnthosCluster>
      */
     public function getAnthosClusters()
     {
@@ -86,7 +86,7 @@ class AssociatedEntities extends \Google\Protobuf\Internal\Message
      * Optional. Information specifying Anthos clusters as associated entities.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.AnthosCluster anthos_clusters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\AnthosCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\AnthosCluster[] $var
      * @return $this
      */
     public function setAnthosClusters($var)

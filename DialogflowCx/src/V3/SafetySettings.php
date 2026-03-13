@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for Generative Safety.
@@ -56,7 +56,7 @@ class SafetySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type int $default_banned_phrase_match_strategy
      *           Optional. Default phrase match strategy for banned phrases.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase>|\Google\Protobuf\Internal\RepeatedField $banned_phrases
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase[] $banned_phrases
      *           Banned phrases for generated text.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings $rai_settings
      *           Optional. Settings for Responsible AI checks.
@@ -103,7 +103,7 @@ class SafetySettings extends \Google\Protobuf\Internal\Message
      * Banned phrases for generated text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SafetySettings.Phrase banned_phrases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase>
      */
     public function getBannedPhrases()
     {
@@ -114,7 +114,7 @@ class SafetySettings extends \Google\Protobuf\Internal\Message
      * Banned phrases for generated text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SafetySettings.Phrase banned_phrases = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\Phrase[] $var
      * @return $this
      */
     public function setBannedPhrases($var)

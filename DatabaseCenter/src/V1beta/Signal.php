@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a signal.
@@ -61,7 +61,7 @@ class Signal extends \Google\Protobuf\Internal\Message
      *           Type of the signal.
      *     @type int $signal_status
      *           Status of the signal.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\AdditionalDetail>|\Google\Protobuf\Internal\RepeatedField $additional_details
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\AdditionalDetail[] $additional_details
      *           Additional information related to the signal.
      *           In the case of composite signals, this field encapsulates details
      *           associated with granular signals, having a signal status of "ISSUE";
@@ -140,7 +140,7 @@ class Signal extends \Google\Protobuf\Internal\Message
      * regardless of the signal status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.AdditionalDetail additional_details = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\AdditionalDetail>
      */
     public function getAdditionalDetails()
     {
@@ -156,7 +156,7 @@ class Signal extends \Google\Protobuf\Internal\Message
      * regardless of the signal status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.AdditionalDetail additional_details = 3;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\AdditionalDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\AdditionalDetail[] $var
      * @return $this
      */
     public function setAdditionalDetails($var)

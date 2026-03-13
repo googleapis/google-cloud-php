@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sample response that the agent can use. This could be based on applicable
@@ -153,5 +153,4 @@ class SampleResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

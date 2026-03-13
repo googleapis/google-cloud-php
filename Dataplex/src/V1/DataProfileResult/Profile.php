@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataProfileResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains name, type, mode and field type specific profile information.
@@ -29,7 +29,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field[] $fields
      *           Output only. List of fields with structural and profile information for
      *           each field.
      * }
@@ -44,7 +44,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * each field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>
      */
     public function getFields()
     {
@@ -56,7 +56,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * each field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataProfileResult.Profile.Field fields = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field[] $var
      * @return $this
      */
     public function setFields($var)
@@ -68,5 +68,4 @@ class Profile extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

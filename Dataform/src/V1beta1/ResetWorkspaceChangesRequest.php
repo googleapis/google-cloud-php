@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `ResetWorkspaceChanges` request message.
@@ -43,7 +43,7 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The workspace's name.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           Optional. Full file paths to reset back to their committed state including
      *           filename, rooted at workspace root. If left empty, all files will be reset.
      *     @type bool $clean
@@ -86,7 +86,7 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      * filename, rooted at workspace root. If left empty, all files will be reset.
      *
      * Generated from protobuf field <code>repeated string paths = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -98,7 +98,7 @@ class ResetWorkspaceChangesRequest extends \Google\Protobuf\Internal\Message
      * filename, rooted at workspace root. If left empty, all files will be reset.
      *
      * Generated from protobuf field <code>repeated string paths = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

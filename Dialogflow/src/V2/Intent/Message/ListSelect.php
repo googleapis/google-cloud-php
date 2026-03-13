@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The card for presenting a list of options to select from.
@@ -42,7 +42,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      *
      *     @type string $title
      *           Optional. The overall title of the list.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[] $items
      *           Required. List items.
      *     @type string $subtitle
      *           Optional. Subtitle of the list.
@@ -83,7 +83,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      * Required. List items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item>
      */
     public function getItems()
     {
@@ -94,7 +94,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      * Required. List items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[] $var
      * @return $this
      */
     public function setItems($var)
@@ -132,5 +132,4 @@ class ListSelect extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

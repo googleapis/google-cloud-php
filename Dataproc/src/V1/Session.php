@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of a session.
@@ -157,7 +157,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *           Optional. Environment configuration for the session execution.
      *     @type string $user
      *           Optional. The email address of the user who owns the session.
-     *     @type array<\Google\Cloud\Dataproc\V1\Session\SessionStateHistory>|\Google\Protobuf\Internal\RepeatedField $state_history
+     *     @type \Google\Cloud\Dataproc\V1\Session\SessionStateHistory[] $state_history
      *           Output only. Historical state information for the session.
      *     @type string $session_template
      *           Optional. The session template used by the session.
@@ -618,7 +618,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Output only. Historical state information for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Session.SessionStateHistory state_history = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\Session\SessionStateHistory>
      */
     public function getStateHistory()
     {
@@ -629,7 +629,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Output only. Historical state information for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Session.SessionStateHistory state_history = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Session\SessionStateHistory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\Session\SessionStateHistory[] $var
      * @return $this
      */
     public function setStateHistory($var)

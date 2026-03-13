@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataQualityRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluates whether each column value lies between a specified range.
@@ -198,5 +198,4 @@ class RangeExpectation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CustomTargetSkaffoldActions represents the `CustomTargetType` configuration
@@ -50,7 +50,7 @@ class CustomTargetSkaffoldActions extends \Google\Protobuf\Internal\Message
      *           `skaffold render`.
      *     @type string $deploy_action
      *           Required. The Skaffold custom action responsible for deploy operations.
-     *     @type array<\Google\Cloud\Deploy\V1\SkaffoldModules>|\Google\Protobuf\Internal\RepeatedField $include_skaffold_modules
+     *     @type \Google\Cloud\Deploy\V1\SkaffoldModules[] $include_skaffold_modules
      *           Optional. List of Skaffold modules Cloud Deploy will include in the
      *           Skaffold Config as required before performing diagnose.
      * }
@@ -121,7 +121,7 @@ class CustomTargetSkaffoldActions extends \Google\Protobuf\Internal\Message
      * Skaffold Config as required before performing diagnose.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldModules include_skaffold_modules = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\SkaffoldModules>
      */
     public function getIncludeSkaffoldModules()
     {
@@ -133,7 +133,7 @@ class CustomTargetSkaffoldActions extends \Google\Protobuf\Internal\Message
      * Skaffold Config as required before performing diagnose.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldModules include_skaffold_modules = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\SkaffoldModules>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\SkaffoldModules[] $var
      * @return $this
      */
     public function setIncludeSkaffoldModules($var)

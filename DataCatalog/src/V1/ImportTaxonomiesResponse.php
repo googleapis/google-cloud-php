@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class ImportTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $taxonomies
+     *     @type \Google\Cloud\DataCatalog\V1\Taxonomy[] $taxonomies
      *           Imported taxonomies.
      * }
      */
@@ -42,7 +42,7 @@ class ImportTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * Imported taxonomies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy taxonomies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\Taxonomy>
      */
     public function getTaxonomies()
     {
@@ -53,7 +53,7 @@ class ImportTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * Imported taxonomies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy taxonomies = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\Taxonomy[] $var
      * @return $this
      */
     public function setTaxonomies($var)

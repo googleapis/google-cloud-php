@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\SkaffoldModules;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Build V2 Repository containing Skaffold Configs.
@@ -144,5 +144,4 @@ class SkaffoldGCBRepoSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

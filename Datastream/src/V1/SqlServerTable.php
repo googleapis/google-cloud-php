@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SQLServer table.
@@ -38,7 +38,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Table name.
-     *     @type array<\Google\Cloud\Datastream\V1\SqlServerColumn>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\Datastream\V1\SqlServerColumn[] $columns
      *           SQLServer columns in the schema.
      *           When unspecified as part of include/exclude objects,
      *           includes/excludes everything.
@@ -81,7 +81,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
      * includes/excludes everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SqlServerColumn columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\SqlServerColumn>
      */
     public function getColumns()
     {
@@ -94,7 +94,7 @@ class SqlServerTable extends \Google\Protobuf\Internal\Message
      * includes/excludes everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SqlServerColumn columns = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\SqlServerColumn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\SqlServerColumn[] $var
      * @return $this
      */
     public function setColumns($var)

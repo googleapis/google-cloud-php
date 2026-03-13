@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc job for running [Apache Spark
@@ -62,7 +62,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      *           Optional. A mapping of property names to values, used to configure
      *           Spark SQL's SparkConf. Properties that conflict with values set by the
      *           Dataproc API might be overwritten.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type string[] $jar_file_uris
      *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
      *           Optional. The runtime log config for job execution.
@@ -197,7 +197,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJarFileUris()
     {
@@ -208,7 +208,7 @@ class SparkSqlJob extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 56 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJarFileUris($var)

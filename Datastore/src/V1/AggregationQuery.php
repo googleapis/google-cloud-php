@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Datastore query for running an aggregation over a
@@ -35,7 +35,7 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Datastore\V1\Query $nested_query
      *           Nested query for aggregation
-     *     @type array<\Google\Cloud\Datastore\V1\AggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type \Google\Cloud\Datastore\V1\AggregationQuery\Aggregation[] $aggregations
      *           Optional. Series of aggregations to apply over the results of the
      *           `nested_query`.
      *           Requires:
@@ -85,7 +85,7 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
      * * A minimum of one and maximum of five aggregations per query.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.AggregationQuery.Aggregation aggregations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\AggregationQuery\Aggregation>
      */
     public function getAggregations()
     {
@@ -99,7 +99,7 @@ class AggregationQuery extends \Google\Protobuf\Internal\Message
      * * A minimum of one and maximum of five aggregations per query.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.AggregationQuery.Aggregation aggregations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Datastore\V1\AggregationQuery\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\AggregationQuery\Aggregation[] $var
      * @return $this
      */
     public function setAggregations($var)

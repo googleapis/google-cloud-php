@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration specific to Salesforce Live Agent.
@@ -178,5 +178,4 @@ class SalesforceLiveAgentConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

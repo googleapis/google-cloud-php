@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -33,7 +33,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *    well as any references to the entity type (i.e. Page
      *    [parameter][google.cloud.dialogflow.cx.v3.Form.Parameter] of the entity
      *    type will be changed to
-     *    '&#64;sys.any' and intent
+     *    '\@sys.any' and intent
      *    [parameter][google.cloud.dialogflow.cx.v3.Intent.Parameter] of the
      *    entity type will be removed).
      *
@@ -76,7 +76,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *              well as any references to the entity type (i.e. Page
      *              [parameter][google.cloud.dialogflow.cx.v3.Form.Parameter] of the entity
      *              type will be changed to
-     *              '&#64;sys.any' and intent
+     *              '\@sys.any' and intent
      *              [parameter][google.cloud.dialogflow.cx.v3.Intent.Parameter] of the
      *              entity type will be removed).
      * }
@@ -125,7 +125,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *    well as any references to the entity type (i.e. Page
      *    [parameter][google.cloud.dialogflow.cx.v3.Form.Parameter] of the entity
      *    type will be changed to
-     *    '&#64;sys.any' and intent
+     *    '\@sys.any' and intent
      *    [parameter][google.cloud.dialogflow.cx.v3.Intent.Parameter] of the
      *    entity type will be removed).
      *
@@ -146,7 +146,7 @@ class DeleteEntityTypeRequest extends \Google\Protobuf\Internal\Message
      *    well as any references to the entity type (i.e. Page
      *    [parameter][google.cloud.dialogflow.cx.v3.Form.Parameter] of the entity
      *    type will be changed to
-     *    '&#64;sys.any' and intent
+     *    '\@sys.any' and intent
      *    [parameter][google.cloud.dialogflow.cx.v3.Intent.Parameter] of the
      *    entity type will be removed).
      *

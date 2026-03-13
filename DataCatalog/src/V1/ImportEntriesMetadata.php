@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata message for [long-running operation][google.longrunning.Operation]
@@ -41,7 +41,7 @@ class ImportEntriesMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type int $state
      *           State of the import operation.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Partial errors that are encountered during the ImportEntries operation.
      *           There is no guarantee that all the encountered errors are reported.
      *           However, if no errors are reported, it means that no errors were
@@ -86,7 +86,7 @@ class ImportEntriesMetadata extends \Google\Protobuf\Internal\Message
      * encountered.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -100,7 +100,7 @@ class ImportEntriesMetadata extends \Google\Protobuf\Internal\Message
      * encountered.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)

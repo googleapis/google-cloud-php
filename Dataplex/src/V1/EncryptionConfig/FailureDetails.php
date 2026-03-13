@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\EncryptionConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the failure if anything related to Cmek db fails.
@@ -102,5 +102,4 @@ class FailureDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List metadata partitions response.
@@ -35,7 +35,7 @@ class ListPartitionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $partitions
+     *     @type \Google\Cloud\Dataplex\V1\Partition[] $partitions
      *           Partitions under the specified parent entity.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -51,7 +51,7 @@ class ListPartitionsResponse extends \Google\Protobuf\Internal\Message
      * Partitions under the specified parent entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Partition partitions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\Partition>
      */
     public function getPartitions()
     {
@@ -62,7 +62,7 @@ class ListPartitionsResponse extends \Google\Protobuf\Internal\Message
      * Partitions under the specified parent entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Partition partitions = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\Partition[] $var
      * @return $this
      */
     public function setPartitions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\GeneratorEvaluationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input data config details
@@ -376,5 +376,4 @@ class InputDataConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

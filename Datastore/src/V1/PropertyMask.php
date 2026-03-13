@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The set of arbitrarily nested property paths used to restrict an operation to
@@ -36,7 +36,7 @@ class PropertyMask extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           The paths to the properties covered by this mask.
      *           A path is a list of property names separated by dots (`.`), for example
      *           `foo.bar` means the property `bar` inside the entity property `foo` inside
@@ -63,7 +63,7 @@ class PropertyMask extends \Google\Protobuf\Internal\Message
      * [array value][google.datastore.v1.Value.array_value].
      *
      * Generated from protobuf field <code>repeated string paths = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -81,7 +81,7 @@ class PropertyMask extends \Google\Protobuf\Internal\Message
      * [array value][google.datastore.v1.Value.array_value].
      *
      * Generated from protobuf field <code>repeated string paths = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

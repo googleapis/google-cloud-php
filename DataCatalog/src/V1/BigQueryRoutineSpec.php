@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fields specific for BigQuery routines.
@@ -28,7 +28,7 @@ class BigQueryRoutineSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $imported_libraries
+     *     @type string[] $imported_libraries
      *           Paths of the imported libraries.
      * }
      */
@@ -41,7 +41,7 @@ class BigQueryRoutineSpec extends \Google\Protobuf\Internal\Message
      * Paths of the imported libraries.
      *
      * Generated from protobuf field <code>repeated string imported_libraries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getImportedLibraries()
     {
@@ -52,7 +52,7 @@ class BigQueryRoutineSpec extends \Google\Protobuf\Internal\Message
      * Paths of the imported libraries.
      *
      * Generated from protobuf field <code>repeated string imported_libraries = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setImportedLibraries($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `QueryRepositoryDirectoryContents` response message.
@@ -35,7 +35,7 @@ class QueryRepositoryDirectoryContentsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\DirectoryEntry>|\Google\Protobuf\Internal\RepeatedField $directory_entries
+     *     @type \Google\Cloud\Dataform\V1beta1\DirectoryEntry[] $directory_entries
      *           List of entries in the directory.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class QueryRepositoryDirectoryContentsResponse extends \Google\Protobuf\Internal
      * List of entries in the directory.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.DirectoryEntry directory_entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\DirectoryEntry>
      */
     public function getDirectoryEntries()
     {
@@ -62,7 +62,7 @@ class QueryRepositoryDirectoryContentsResponse extends \Google\Protobuf\Internal
      * List of entries in the directory.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.DirectoryEntry directory_entries = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\DirectoryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\DirectoryEntry[] $var
      * @return $this
      */
     public function setDirectoryEntries($var)

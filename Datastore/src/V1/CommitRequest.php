@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [Datastore.Commit][google.datastore.v1.Datastore.Commit].
@@ -139,7 +139,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           The transaction is committed when the request completes. If specified,
      *           [TransactionOptions.mode][google.datastore.v1.TransactionOptions] must be
      *           [TransactionOptions.ReadWrite][google.datastore.v1.TransactionOptions.ReadWrite].
-     *     @type array<\Google\Cloud\Datastore\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type \Google\Cloud\Datastore\V1\Mutation[] $mutations
      *           The mutations to perform.
      *           When mode is `TRANSACTIONAL`, mutations affecting a single entity are
      *           applied in order. The following sequences of mutations affecting a single
@@ -324,7 +324,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * entity.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Mutation mutations = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\Mutation>
      */
     public function getMutations()
     {
@@ -344,7 +344,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * entity.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Mutation mutations = 6;</code>
-     * @param array<\Google\Cloud\Datastore\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\Mutation[] $var
      * @return $this
      */
     public function setMutations($var)

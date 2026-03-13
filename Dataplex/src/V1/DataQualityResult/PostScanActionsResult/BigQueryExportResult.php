@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataQualityResult\PostScanActionsResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of BigQuery export post scan action.
@@ -98,5 +98,4 @@ class BigQueryExportResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

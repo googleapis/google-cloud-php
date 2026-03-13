@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\Lineage\V1\Run>|\Google\Protobuf\Internal\RepeatedField $runs
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\Run[] $runs
      *           The runs from the specified project and location.
      *     @type string $next_page_token
      *           The token to specify as `page_token` in the next call to get the next page.
@@ -52,7 +52,7 @@ class ListRunsResponse extends \Google\Protobuf\Internal\Message
      * The runs from the specified project and location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Run runs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\Lineage\V1\Run>
      */
     public function getRuns()
     {
@@ -63,7 +63,7 @@ class ListRunsResponse extends \Google\Protobuf\Internal\Message
      * The runs from the specified project and location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.Run runs = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\Lineage\V1\Run>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\Run[] $var
      * @return $this
      */
     public function setRuns($var)

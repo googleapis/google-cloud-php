@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SmartReplyMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluation metrics when retrieving `n` smart replies with the model.
@@ -118,5 +118,4 @@ class TopNMetrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

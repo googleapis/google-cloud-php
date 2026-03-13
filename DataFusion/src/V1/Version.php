@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataFusion\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Data Fusion version. This proto message stores information about certain
@@ -51,7 +51,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The version number of the Data Fusion instance, such as '6.0.1.0'.
      *     @type bool $default_version
      *           Whether this is currently the default version for Cloud Data Fusion
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
+     *     @type string[] $available_features
      *           Represents a list of available feature names for a given version.
      *     @type int $type
      *           Type represents the release availability of the version
@@ -118,7 +118,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Represents a list of available feature names for a given version.
      *
      * Generated from protobuf field <code>repeated string available_features = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableFeatures()
     {
@@ -129,7 +129,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Represents a list of available feature names for a given version.
      *
      * Generated from protobuf field <code>repeated string available_features = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableFeatures($var)

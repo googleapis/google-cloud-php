@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the result of compiling a Dataform project.
@@ -36,7 +36,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      */
     protected $resolved_git_commit_sha = '';
     /**
-     * Output only. The version of `&#64;dataform/core` that was used for compilation.
+     * Output only. The version of `\@dataform/core` that was used for compilation.
      *
      * Generated from protobuf field <code>string dataform_core_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -83,10 +83,10 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *           - a branch name: `branch1`
      *     @type string $workspace
      *           Immutable. The name of the workspace to compile. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workspaces/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}workspaces/*`.
      *     @type string $release_config
      *           Immutable. The name of the release config to compile. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     *           format `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *     @type string $name
      *           Output only. The compilation result's name.
      *     @type \Google\Cloud\Dataform\V1\CodeCompilationConfig $code_compilation_config
@@ -96,8 +96,8 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      *           Output only. The fully resolved Git commit SHA of the code that was
      *           compiled. Not set for compilation results whose source is a workspace.
      *     @type string $dataform_core_version
-     *           Output only. The version of `&#64;dataform/core` that was used for compilation.
-     *     @type array<\Google\Cloud\Dataform\V1\CompilationResult\CompilationError>|\Google\Protobuf\Internal\RepeatedField $compilation_errors
+     *           Output only. The version of `\@dataform/core` that was used for compilation.
+     *     @type \Google\Cloud\Dataform\V1\CompilationResult\CompilationError[] $compilation_errors
      *           Output only. Errors encountered during project compilation.
      *     @type \Google\Cloud\Dataform\V1\DataEncryptionState $data_encryption_state
      *           Output only. Only set if the repository has a KMS Key.
@@ -155,7 +155,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the workspace to compile. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workspaces/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}workspaces/*`.
      *
      * Generated from protobuf field <code>string workspace = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -172,7 +172,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the workspace to compile. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workspaces/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}workspaces/*`.
      *
      * Generated from protobuf field <code>string workspace = 3 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -188,7 +188,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the release config to compile. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *
      * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -205,7 +205,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The name of the release config to compile. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;releaseConfigs/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/{@*}releaseConfigs/*`.
      *
      * Generated from protobuf field <code>string release_config = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -312,7 +312,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version of `&#64;dataform/core` that was used for compilation.
+     * Output only. The version of `\@dataform/core` that was used for compilation.
      *
      * Generated from protobuf field <code>string dataform_core_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -323,7 +323,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The version of `&#64;dataform/core` that was used for compilation.
+     * Output only. The version of `\@dataform/core` that was used for compilation.
      *
      * Generated from protobuf field <code>string dataform_core_version = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -341,7 +341,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      * Output only. Errors encountered during project compilation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.CompilationResult.CompilationError compilation_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\CompilationResult\CompilationError>
      */
     public function getCompilationErrors()
     {
@@ -352,7 +352,7 @@ class CompilationResult extends \Google\Protobuf\Internal\Message
      * Output only. Errors encountered during project compilation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.CompilationResult.CompilationError compilation_errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataform\V1\CompilationResult\CompilationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\CompilationResult\CompilationError[] $var
      * @return $this
      */
     public function setCompilationErrors($var)

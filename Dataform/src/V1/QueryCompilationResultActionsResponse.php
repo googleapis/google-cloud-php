@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `QueryCompilationResultActions` response message.
@@ -35,7 +35,7 @@ class QueryCompilationResultActionsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1\CompilationResultAction>|\Google\Protobuf\Internal\RepeatedField $compilation_result_actions
+     *     @type \Google\Cloud\Dataform\V1\CompilationResultAction[] $compilation_result_actions
      *           List of compilation result actions.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class QueryCompilationResultActionsResponse extends \Google\Protobuf\Internal\Me
      * List of compilation result actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.CompilationResultAction compilation_result_actions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\CompilationResultAction>
      */
     public function getCompilationResultActions()
     {
@@ -62,7 +62,7 @@ class QueryCompilationResultActionsResponse extends \Google\Protobuf\Internal\Me
      * List of compilation result actions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.CompilationResultAction compilation_result_actions = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1\CompilationResultAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\CompilationResultAction[] $var
      * @return $this
      */
     public function setCompilationResultActions($var)

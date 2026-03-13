@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DatabaseResourceGroup represents all resources that serve a common data set.
@@ -40,12 +40,12 @@ class DatabaseResourceGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>|\Google\Protobuf\Internal\RepeatedField $root_resources
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\DatabaseResource[] $root_resources
      *           A database resource that serves as a root of the group of database
      *           resources. It is repeated just in case we have the concept of multiple
      *           roots in the future, however, it will only be populated with a single value
      *           for now.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\IssueCount>|\Google\Protobuf\Internal\RepeatedField $signal_groups
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\IssueCount[] $signal_groups
      *           The filtered signal groups and the count of issues associated with the
      *           resources that have been filtered in.
      * }
@@ -62,7 +62,7 @@ class DatabaseResourceGroup extends \Google\Protobuf\Internal\Message
      * for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.DatabaseResource root_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>
      */
     public function getRootResources()
     {
@@ -76,7 +76,7 @@ class DatabaseResourceGroup extends \Google\Protobuf\Internal\Message
      * for now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.DatabaseResource root_resources = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\DatabaseResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\DatabaseResource[] $var
      * @return $this
      */
     public function setRootResources($var)
@@ -92,7 +92,7 @@ class DatabaseResourceGroup extends \Google\Protobuf\Internal\Message
      * resources that have been filtered in.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueCount signal_groups = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\IssueCount>
      */
     public function getSignalGroups()
     {
@@ -104,7 +104,7 @@ class DatabaseResourceGroup extends \Google\Protobuf\Internal\Message
      * resources that have been filtered in.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueCount signal_groups = 2;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\IssueCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\IssueCount[] $var
      * @return $this
      */
     public function setSignalGroups($var)

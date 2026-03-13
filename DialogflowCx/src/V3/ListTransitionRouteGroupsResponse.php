@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -39,7 +39,7 @@ class ListTransitionRouteGroupsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup>|\Google\Protobuf\Internal\RepeatedField $transition_route_groups
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup[] $transition_route_groups
      *           The list of transition route groups. There will be a maximum number of
      *           items returned based on the page_size field in the request. The list may in
      *           some cases be empty or contain fewer entries than page_size even if this
@@ -61,7 +61,7 @@ class ListTransitionRouteGroupsResponse extends \Google\Protobuf\Internal\Messag
      * isn't the last page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRouteGroup transition_route_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup>
      */
     public function getTransitionRouteGroups()
     {
@@ -75,7 +75,7 @@ class ListTransitionRouteGroupsResponse extends \Google\Protobuf\Internal\Messag
      * isn't the last page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TransitionRouteGroup transition_route_groups = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TransitionRouteGroup[] $var
      * @return $this
      */
     public function setTransitionRouteGroups($var)

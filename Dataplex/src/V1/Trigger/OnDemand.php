@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Trigger;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The scan runs once via `RunDataScan` API.
@@ -30,5 +30,4 @@ class OnDemand extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

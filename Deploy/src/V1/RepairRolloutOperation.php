@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the information for an automated `repair rollout` operation.
@@ -58,7 +58,7 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      *           Output only. The name of the rollout that initiates the `AutomationRun`.
      *     @type int|string $current_repair_phase_index
      *           Output only. The index of the current repair action in the repair sequence.
-     *     @type array<\Google\Cloud\Deploy\V1\RepairPhase>|\Google\Protobuf\Internal\RepeatedField $repair_phases
+     *     @type \Google\Cloud\Deploy\V1\RepairPhase[] $repair_phases
      *           Output only. Records of the repair attempts. Each repair phase may have
      *           multiple retry attempts or single rollback attempt.
      *     @type string $phase_id
@@ -130,7 +130,7 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      * multiple retry attempts or single rollback attempt.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairPhase repair_phases = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\RepairPhase>
      */
     public function getRepairPhases()
     {
@@ -142,7 +142,7 @@ class RepairRolloutOperation extends \Google\Protobuf\Internal\Message
      * multiple retry attempts or single rollback attempt.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.RepairPhase repair_phases = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\RepairPhase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\RepairPhase[] $var
      * @return $this
      */
     public function setRepairPhases($var)

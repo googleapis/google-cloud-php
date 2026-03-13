@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for auto rollout.
@@ -48,7 +48,7 @@ class RolloutConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\RolloutConfig\RolloutStep>|\Google\Protobuf\Internal\RepeatedField $rollout_steps
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\RolloutConfig\RolloutStep[] $rollout_steps
      *           Steps to roll out a flow version. Steps should be sorted by percentage in
      *           ascending order.
      *     @type string $rollout_condition
@@ -74,7 +74,7 @@ class RolloutConfig extends \Google\Protobuf\Internal\Message
      * ascending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.RolloutConfig.RolloutStep rollout_steps = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\RolloutConfig\RolloutStep>
      */
     public function getRolloutSteps()
     {
@@ -86,7 +86,7 @@ class RolloutConfig extends \Google\Protobuf\Internal\Message
      * ascending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.RolloutConfig.RolloutStep rollout_steps = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\RolloutConfig\RolloutStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\RolloutConfig\RolloutStep[] $var
      * @return $this
      */
     public function setRolloutSteps($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each case has a Boolean condition. When it is evaluated to be True, the
@@ -47,7 +47,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      *           parameters][SessionInfo.parameters].
      *           See the [conditions
      *           reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition).
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase\CaseContent>|\Google\Protobuf\Internal\RepeatedField $case_content
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase\CaseContent[] $case_content
      *           A list of case content.
      * }
      */
@@ -96,7 +96,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      * A list of case content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent case_content = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase\CaseContent>
      */
     public function getCaseContent()
     {
@@ -107,7 +107,7 @@ class PBCase extends \Google\Protobuf\Internal\Message
      * A list of case content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Fulfillment.ConditionalCases.Case.CaseContent case_content = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase\CaseContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase\CaseContent[] $var
      * @return $this
      */
     public function setCaseContent($var)
@@ -119,5 +119,4 @@ class PBCase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

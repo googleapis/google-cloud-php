@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a job to be run by the Cloud Dataflow service. Do not enter
@@ -282,7 +282,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Optional. The type of Dataflow job.
      *     @type \Google\Cloud\Dataflow\V1beta3\Environment $environment
      *           Optional. The environment for the job.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\Dataflow\V1beta3\Step[] $steps
      *           Exactly one of step or steps_location should be specified.
      *           The top-level steps that constitute the entire job. Only retrieved with
      *           JOB_VIEW_ALL.
@@ -333,7 +333,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $replaced_by_job_id
      *           If another job is an update of this job (and thus, this job is in
      *           `JOB_STATE_UPDATED`), this field contains the ID of that job.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temp_files
+     *     @type string[] $temp_files
      *           A set of files the system should be aware of that are used
      *           for temporary storage. These temporary files will be
      *           removed on job completion.
@@ -360,7 +360,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A description of the user pipeline and stages through which it is executed.
      *           Created by Cloud Dataflow service.  Only retrieved with
      *           JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageState>|\Google\Protobuf\Internal\RepeatedField $stage_states
+     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageState[] $stage_states
      *           This field may be mutated by the Cloud Dataflow service;
      *           callers cannot mutate it.
      *     @type \Google\Cloud\Dataflow\V1beta3\JobMetadata $job_metadata
@@ -562,7 +562,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * JOB_VIEW_ALL.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Step steps = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\Step>
      */
     public function getSteps()
     {
@@ -575,7 +575,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * JOB_VIEW_ALL.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Step steps = 6;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\Step[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -942,7 +942,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *    bucket.storage.googleapis.com/{object}
      *
      * Generated from protobuf field <code>repeated string temp_files = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTempFiles()
     {
@@ -961,7 +961,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *    bucket.storage.googleapis.com/{object}
      *
      * Generated from protobuf field <code>repeated string temp_files = 16;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTempFiles($var)
@@ -1087,7 +1087,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageState stage_states = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ExecutionStageState>
      */
     public function getStageStates()
     {
@@ -1099,7 +1099,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageState stage_states = 20;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageState>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageState[] $var
      * @return $this
      */
     public function setStageStates($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Basic authentication with username and password.
@@ -106,5 +106,4 @@ class BasicAuthentication extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

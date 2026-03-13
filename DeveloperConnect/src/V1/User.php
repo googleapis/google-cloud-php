@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User represents a user connected to the service providers through
@@ -18,7 +18,7 @@ class User extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Resource name of the user, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;&#47;users/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/{@*}users/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -51,7 +51,7 @@ class User extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Resource name of the user, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;&#47;users/&#42;`.
+     *           `projects/{@*}locations/{@*}accountConnectors/{@*}users/*`.
      *     @type string $display_name
      *           Output only. Developer Connect automatically converts user identity
      *           to some human readable description, e.g., email address.
@@ -68,7 +68,7 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Resource name of the user, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;&#47;users/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/{@*}users/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -80,7 +80,7 @@ class User extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Resource name of the user, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;&#47;users/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/{@*}users/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

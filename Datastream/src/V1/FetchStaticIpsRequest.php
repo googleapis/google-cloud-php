@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for 'FetchStaticIps' request.
@@ -17,7 +17,7 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name for the location for which static IPs should be
-     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * returned. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name for the location for which static IPs should be
-     *           returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     *           returned. Must be in the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Maximum number of Ips to return, will likely not be specified.
      *     @type string $page_token
@@ -74,7 +74,7 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name for the location for which static IPs should be
-     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * returned. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,7 +86,7 @@ class FetchStaticIpsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name for the location for which static IPs should be
-     * returned. Must be in the format `projects/&#42;&#47;locations/&#42;`.
+     * returned. Must be in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

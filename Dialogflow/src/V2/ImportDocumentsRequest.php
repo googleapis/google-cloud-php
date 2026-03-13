@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -54,7 +54,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           The path can include a wildcard.
      *           These URIs may have the forms
      *           `gs://<bucket-name>/<object-name>`.
-     *           `gs://<bucket-name>/<object-path>/&#42;.<extension>`.
+     *           `gs://<bucket-name>/<object-path>/*.<extension>`.
      *     @type \Google\Cloud\Dialogflow\V2\ImportDocumentTemplate $document_template
      *           Required. Document template used for importing all the documents.
      *     @type bool $import_gcs_custom_metadata
@@ -102,7 +102,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * The path can include a wildcard.
      * These URIs may have the forms
      * `gs://<bucket-name>/<object-name>`.
-     * `gs://<bucket-name>/<object-path>/&#42;.<extension>`.
+     * `gs://<bucket-name>/<object-path>/*.<extension>`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dialogflow\V2\GcsSources|null
@@ -122,7 +122,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * The path can include a wildcard.
      * These URIs may have the forms
      * `gs://<bucket-name>/<object-name>`.
-     * `gs://<bucket-name>/<object-path>/&#42;.<extension>`.
+     * `gs://<bucket-name>/<object-path>/*.<extension>`.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.GcsSources gcs_source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dialogflow\V2\GcsSources $var

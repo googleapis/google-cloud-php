@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1\WorkflowTemplate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encryption settings for encrypting workflow template job arguments.
@@ -164,5 +164,4 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

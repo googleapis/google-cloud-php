@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Actions suggested for the agent. This is based on applicable instructions.
@@ -152,5 +152,4 @@ class AgentActionSuggestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

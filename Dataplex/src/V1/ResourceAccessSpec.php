@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceAccessSpec holds the access control configuration to be enforced
@@ -44,13 +44,13 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $readers
+     *     @type string[] $readers
      *           Optional. The format of strings follows the pattern followed by IAM in the
      *           bindings. user:{email}, serviceAccount:{email} group:{email}.
      *           The set of principals to be granted reader role on the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $writers
+     *     @type string[] $writers
      *           Optional. The set of principals to be granted writer role on the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $owners
+     *     @type string[] $owners
      *           Optional. The set of principals to be granted owner role on the resource.
      * }
      */
@@ -65,7 +65,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * The set of principals to be granted reader role on the resource.
      *
      * Generated from protobuf field <code>repeated string readers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReaders()
     {
@@ -78,7 +78,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * The set of principals to be granted reader role on the resource.
      *
      * Generated from protobuf field <code>repeated string readers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReaders($var)
@@ -93,7 +93,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * Optional. The set of principals to be granted writer role on the resource.
      *
      * Generated from protobuf field <code>repeated string writers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWriters()
     {
@@ -104,7 +104,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * Optional. The set of principals to be granted writer role on the resource.
      *
      * Generated from protobuf field <code>repeated string writers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWriters($var)
@@ -119,7 +119,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * Optional. The set of principals to be granted owner role on the resource.
      *
      * Generated from protobuf field <code>repeated string owners = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOwners()
     {
@@ -130,7 +130,7 @@ class ResourceAccessSpec extends \Google\Protobuf\Internal\Message
      * Optional. The set of principals to be granted owner role on the resource.
      *
      * Generated from protobuf field <code>repeated string owners = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOwners($var)

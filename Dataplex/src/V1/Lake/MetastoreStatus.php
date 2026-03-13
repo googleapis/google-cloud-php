@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Lake;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of Lake and Dataproc Metastore service instance association.
@@ -176,5 +176,4 @@ class MetastoreStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

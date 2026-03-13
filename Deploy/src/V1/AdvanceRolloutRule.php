@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `AdvanceRollout` automation rule will automatically advance a successful
@@ -57,7 +57,7 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      *           Required. ID of the rule. This id must be unique in the `Automation`
      *           resource to which this rule belongs. The format is
      *           `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_phases
+     *     @type string[] $source_phases
      *           Optional. Proceeds only after phase name matched any one in the list.
      *           This value must consist of lower-case letters, numbers, and hyphens,
      *           start with a letter and end with a letter or a number, and have a max
@@ -112,7 +112,7 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      * regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>repeated string source_phases = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourcePhases()
     {
@@ -127,7 +127,7 @@ class AdvanceRolloutRule extends \Google\Protobuf\Internal\Message
      * regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *
      * Generated from protobuf field <code>repeated string source_phases = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourcePhases($var)

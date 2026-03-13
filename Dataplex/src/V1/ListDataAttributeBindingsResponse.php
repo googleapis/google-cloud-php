@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List DataAttributeBindings response.
@@ -41,12 +41,12 @@ class ListDataAttributeBindingsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\DataAttributeBinding>|\Google\Protobuf\Internal\RepeatedField $data_attribute_bindings
+     *     @type \Google\Cloud\Dataplex\V1\DataAttributeBinding[] $data_attribute_bindings
      *           DataAttributeBindings under the given parent Location.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type string[] $unreachable_locations
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListDataAttributeBindingsResponse extends \Google\Protobuf\Internal\Messag
      * DataAttributeBindings under the given parent Location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataAttributeBinding data_attribute_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataAttributeBinding>
      */
     public function getDataAttributeBindings()
     {
@@ -70,7 +70,7 @@ class ListDataAttributeBindingsResponse extends \Google\Protobuf\Internal\Messag
      * DataAttributeBindings under the given parent Location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataAttributeBinding data_attribute_bindings = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataAttributeBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataAttributeBinding[] $var
      * @return $this
      */
     public function setDataAttributeBindings($var)
@@ -113,7 +113,7 @@ class ListDataAttributeBindingsResponse extends \Google\Protobuf\Internal\Messag
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachableLocations()
     {
@@ -124,7 +124,7 @@ class ListDataAttributeBindingsResponse extends \Google\Protobuf\Internal\Messag
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachableLocations($var)

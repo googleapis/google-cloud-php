@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SQLServer database structure.
@@ -28,7 +28,7 @@ class SqlServerRdbms extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\SqlServerSchema>|\Google\Protobuf\Internal\RepeatedField $schemas
+     *     @type \Google\Cloud\Datastream\V1\SqlServerSchema[] $schemas
      *           SQLServer schemas in the database server.
      * }
      */
@@ -41,7 +41,7 @@ class SqlServerRdbms extends \Google\Protobuf\Internal\Message
      * SQLServer schemas in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SqlServerSchema schemas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\SqlServerSchema>
      */
     public function getSchemas()
     {
@@ -52,7 +52,7 @@ class SqlServerRdbms extends \Google\Protobuf\Internal\Message
      * SQLServer schemas in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SqlServerSchema schemas = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\SqlServerSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\SqlServerSchema[] $var
      * @return $this
      */
     public function setSchemas($var)

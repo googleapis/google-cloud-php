@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration information for a Kerberos principal.
@@ -25,7 +25,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     /**
      * A Kerberos principal that exists in the both the keytab the KDC
      * to authenticate as. A typical principal is of the form
-     * `primary/instance&#64;REALM`, but there is no exact format.
+     * `primary/instance\@REALM`, but there is no exact format.
      *
      * Generated from protobuf field <code>string principal = 2;</code>
      */
@@ -51,7 +51,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *     @type string $principal
      *           A Kerberos principal that exists in the both the keytab the KDC
      *           to authenticate as. A typical principal is of the form
-     *           `primary/instance&#64;REALM`, but there is no exact format.
+     *           `primary/instance\@REALM`, but there is no exact format.
      *     @type string $krb5_config_gcs_uri
      *           A Cloud Storage URI that specifies the path to a
      *           krb5.conf file. It is of the form `gs://{bucket_name}/path/to/krb5.conf`,
@@ -104,7 +104,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     /**
      * A Kerberos principal that exists in the both the keytab the KDC
      * to authenticate as. A typical principal is of the form
-     * `primary/instance&#64;REALM`, but there is no exact format.
+     * `primary/instance\@REALM`, but there is no exact format.
      *
      * Generated from protobuf field <code>string principal = 2;</code>
      * @return string
@@ -117,7 +117,7 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     /**
      * A Kerberos principal that exists in the both the keytab the KDC
      * to authenticate as. A typical principal is of the form
-     * `primary/instance&#64;REALM`, but there is no exact format.
+     * `primary/instance\@REALM`, but there is no exact format.
      *
      * Generated from protobuf field <code>string principal = 2;</code>
      * @param string $var

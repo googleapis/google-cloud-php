@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a suggested query.
@@ -64,5 +64,4 @@ class SuggestedQuery extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

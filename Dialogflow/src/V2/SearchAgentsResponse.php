@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -37,7 +37,7 @@ class SearchAgentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Agent>|\Google\Protobuf\Internal\RepeatedField $agents
+     *     @type \Google\Cloud\Dialogflow\V2\Agent[] $agents
      *           The list of agents. There will be a maximum number of items returned based
      *           on the page_size field in the request.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class SearchAgentsResponse extends \Google\Protobuf\Internal\Message
      * on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Agent agents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Agent>
      */
     public function getAgents()
     {
@@ -67,7 +67,7 @@ class SearchAgentsResponse extends \Google\Protobuf\Internal\Message
      * on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Agent agents = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Agent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Agent[] $var
      * @return $this
      */
     public function setAgents($var)

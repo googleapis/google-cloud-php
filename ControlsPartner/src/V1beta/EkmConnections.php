@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The EKM connections associated with a workload
@@ -38,7 +38,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. Format:
      *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/ekmConnections`
-     *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\EkmConnection>|\Google\Protobuf\Internal\RepeatedField $ekm_connections
+     *     @type \Google\Cloud\CloudControlsPartner\V1beta\EkmConnection[] $ekm_connections
      *           The EKM connections associated with the workload
      * }
      */
@@ -79,7 +79,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
      * The EKM connections associated with the workload
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.EkmConnection ekm_connections = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudControlsPartner\V1beta\EkmConnection>
      */
     public function getEkmConnections()
     {
@@ -90,7 +90,7 @@ class EkmConnections extends \Google\Protobuf\Internal\Message
      * The EKM connections associated with the workload
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.EkmConnection ekm_connections = 2;</code>
-     * @param array<\Google\Cloud\CloudControlsPartner\V1beta\EkmConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudControlsPartner\V1beta\EkmConnection[] $var
      * @return $this
      */
     public function setEkmConnections($var)

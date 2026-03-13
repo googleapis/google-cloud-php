@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DiscoveryEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the published table.
@@ -98,5 +98,4 @@ class TableDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

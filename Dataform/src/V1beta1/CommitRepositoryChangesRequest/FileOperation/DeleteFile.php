@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest\FileOperation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the delete file operation.
@@ -30,5 +30,4 @@ class DeleteFile extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

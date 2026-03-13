@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\CompilationResultAction\Relation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains settings for relations of type `INCREMENTAL_TABLE`.
@@ -71,7 +71,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      *           relation if it already exists and is not being refreshed.
      *     @type bool $refresh_disabled
      *           Whether this table should be protected from being refreshed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unique_key_parts
+     *     @type string[] $unique_key_parts
      *           A set of columns or SQL expressions used to define row uniqueness.
      *           If any duplicates are discovered (as defined by `unique_key_parts`),
      *           only the newly selected rows (as defined by `incremental_select_query`)
@@ -80,10 +80,10 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      *           A SQL expression conditional used to limit the set of existing rows
      *           considered for a merge operation (see `unique_key_parts` for more
      *           information).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $incremental_pre_operations
+     *     @type string[] $incremental_pre_operations
      *           SQL statements to be executed before inserting new rows into the
      *           relation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $incremental_post_operations
+     *     @type string[] $incremental_post_operations
      *           SQL statements to be executed after inserting new rows into the
      *           relation.
      * }
@@ -154,7 +154,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * will be included in the relation.
      *
      * Generated from protobuf field <code>repeated string unique_key_parts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUniqueKeyParts()
     {
@@ -168,7 +168,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * will be included in the relation.
      *
      * Generated from protobuf field <code>repeated string unique_key_parts = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUniqueKeyParts($var)
@@ -214,7 +214,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * relation.
      *
      * Generated from protobuf field <code>repeated string incremental_pre_operations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncrementalPreOperations()
     {
@@ -226,7 +226,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * relation.
      *
      * Generated from protobuf field <code>repeated string incremental_pre_operations = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncrementalPreOperations($var)
@@ -242,7 +242,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * relation.
      *
      * Generated from protobuf field <code>repeated string incremental_post_operations = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncrementalPostOperations()
     {
@@ -254,7 +254,7 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
      * relation.
      *
      * Generated from protobuf field <code>repeated string incremental_post_operations = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncrementalPostOperations($var)
@@ -266,5 +266,4 @@ class IncrementalTableConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

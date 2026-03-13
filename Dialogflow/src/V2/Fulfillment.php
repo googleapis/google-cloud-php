@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * By default, your agent responds to a matched intent with a static response.
@@ -76,7 +76,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      *           Configuration for a generic web service.
      *     @type bool $enabled
      *           Optional. Whether fulfillment is enabled.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type \Google\Cloud\Dialogflow\V2\Fulfillment\Feature[] $features
      *           Optional. The field defines whether the fulfillment is enabled for certain
      *           features.
      * }
@@ -212,7 +212,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>
      */
     public function getFeatures()
     {
@@ -224,7 +224,7 @@ class Fulfillment extends \Google\Protobuf\Internal\Message
      * features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Fulfillment.Feature features = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Fulfillment\Feature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Fulfillment\Feature[] $var
      * @return $this
      */
     public function setFeatures($var)

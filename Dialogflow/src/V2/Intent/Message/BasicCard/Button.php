@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The button object that appears at the bottom of a card.
@@ -108,5 +108,4 @@ class Button extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

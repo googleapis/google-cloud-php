@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc workflow template resource.
@@ -155,9 +155,9 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a template.
      *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement $placement
      *           Required. WorkflowTemplate scheduling information.
-     *     @type array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Dataproc\V1\OrderedJob[] $jobs
      *           Required. The Directed Acyclic Graph of Jobs to submit.
-     *     @type array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dataproc\V1\TemplateParameter[] $parameters
      *           Optional. Template parameters whose values are substituted into the
      *           template. Values for parameters must be provided when the template is
      *           instantiated.
@@ -438,7 +438,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. The Directed Acyclic Graph of Jobs to submit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.OrderedJob jobs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\OrderedJob>
      */
     public function getJobs()
     {
@@ -449,7 +449,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. The Directed Acyclic Graph of Jobs to submit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.OrderedJob jobs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\OrderedJob[] $var
      * @return $this
      */
     public function setJobs($var)
@@ -466,7 +466,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * instantiated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\TemplateParameter>
      */
     public function getParameters()
     {
@@ -479,7 +479,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * instantiated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\TemplateParameter[] $var
      * @return $this
      */
     public function setParameters($var)

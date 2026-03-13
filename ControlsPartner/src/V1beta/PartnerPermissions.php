@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The permissions granted to the partner for a workload
@@ -38,7 +38,7 @@ class PartnerPermissions extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. Format:
      *           `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}/partnerPermissions`
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $partner_permissions
+     *     @type int[] $partner_permissions
      *           The partner permissions granted for the workload
      * }
      */
@@ -79,7 +79,7 @@ class PartnerPermissions extends \Google\Protobuf\Internal\Message
      * The partner permissions granted for the workload
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions.Permission partner_permissions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPartnerPermissions()
     {
@@ -90,7 +90,7 @@ class PartnerPermissions extends \Google\Protobuf\Internal\Message
      * The partner permissions granted for the workload
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.PartnerPermissions.Permission partner_permissions = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPartnerPermissions($var)

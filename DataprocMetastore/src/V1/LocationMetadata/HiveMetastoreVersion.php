@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1\LocationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification of a supported version of the Hive Metastore software.
@@ -102,5 +102,4 @@ class HiveMetastoreVersion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

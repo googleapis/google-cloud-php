@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\WorkflowInvocationAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a workflow action that will run against a Notebook runtime.
@@ -106,5 +106,4 @@ class NotebookAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

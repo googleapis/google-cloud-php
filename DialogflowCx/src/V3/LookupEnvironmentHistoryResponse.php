@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -38,7 +38,7 @@ class LookupEnvironmentHistoryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Environment>|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Environment[] $environments
      *           Represents a list of snapshots for an environment. Time of the snapshots is
      *           stored in
      *           [`update_time`][google.cloud.dialogflow.cx.v3.Environment.update_time].
@@ -58,7 +58,7 @@ class LookupEnvironmentHistoryResponse extends \Google\Protobuf\Internal\Message
      * [`update_time`][google.cloud.dialogflow.cx.v3.Environment.update_time].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Environment environments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Environment>
      */
     public function getEnvironments()
     {
@@ -71,7 +71,7 @@ class LookupEnvironmentHistoryResponse extends \Google\Protobuf\Internal\Message
      * [`update_time`][google.cloud.dialogflow.cx.v3.Environment.update_time].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Environment environments = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Environment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Environment[] $var
      * @return $this
      */
     public function setEnvironments($var)

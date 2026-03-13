@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Document>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\Dialogflow\V2\Document[] $documents
      *           The list of documents.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -52,7 +52,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * The list of documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document documents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Document>
      */
     public function getDocuments()
     {
@@ -63,7 +63,7 @@ class ListDocumentsResponse extends \Google\Protobuf\Internal\Message
      * The list of documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document documents = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Document>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Document[] $var
      * @return $this
      */
     public function setDocuments($var)

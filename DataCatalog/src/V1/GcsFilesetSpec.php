@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a Cloud Storage fileset entry.
@@ -21,9 +21,9 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
      *                               and all subdirectories
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -34,8 +34,8 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      * You can combine wildcards to match complex sets of files, for example:
      * `gs://bucket_name/[a-m]??.j*g`
@@ -57,15 +57,15 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_patterns
+     *     @type string[] $file_patterns
      *           Required. Patterns to identify a set of files in Google Cloud Storage.
      *           For more information, see [Wildcard Names]
      *           (https://cloud.google.com/storage/docs/wildcards).
      *           Note: Currently, bucket wildcards are not supported.
      *           Examples of valid `file_patterns`:
-     *            * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
+     *            * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
      *                                        directory
-     *            * `gs://bucket_name/dir/&#42;*`: matches all files in `bucket_name/dir`
+     *            * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
      *                                         and all subdirectories
      *            * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                                        `bucket_name`
@@ -76,12 +76,12 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *                                              `bucket_name`
      *            * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                            or `m` followed by `.txt` in `bucket_name`
-     *            * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                                        the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *            * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                                        the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *            * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      *           You can combine wildcards to match complex sets of files, for example:
      *           `gs://bucket_name/[a-m]??.j*g`
-     *     @type array<\Google\Cloud\DataCatalog\V1\GcsFileSpec>|\Google\Protobuf\Internal\RepeatedField $sample_gcs_file_specs
+     *     @type \Google\Cloud\DataCatalog\V1\GcsFileSpec[] $sample_gcs_file_specs
      *           Output only. Sample files contained in this fileset, not all files
      *           contained in this fileset are represented here.
      * }
@@ -97,9 +97,9 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
      *                               and all subdirectories
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -110,14 +110,14 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      * You can combine wildcards to match complex sets of files, for example:
      * `gs://bucket_name/[a-m]??.j*g`
      *
      * Generated from protobuf field <code>repeated string file_patterns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilePatterns()
     {
@@ -130,9 +130,9 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/storage/docs/wildcards).
      * Note: Currently, bucket wildcards are not supported.
      * Examples of valid `file_patterns`:
-     *  * `gs://bucket_name/dir/&#42;`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/*`: matches all files in `bucket_name/dir`
      *                              directory
-     *  * `gs://bucket_name/dir/&#42;*`: matches all files in `bucket_name/dir`
+     *  * `gs://bucket_name/dir/**`: matches all files in `bucket_name/dir`
      *                               and all subdirectories
      *  * `gs://bucket_name/file*`: matches files prefixed by `file` in
      *                              `bucket_name`
@@ -143,14 +143,14 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      *                                    `bucket_name`
      *  * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ...
      *                                  or `m` followed by `.txt` in `bucket_name`
-     *  * `gs://bucket_name/a/&#42;&#47;b`: matches all files in `bucket_name` that match
-     *                              the `a/&#42;&#47;b` pattern, such as `a/c/b`, `a/d/b`
+     *  * `gs://bucket_name/a/{@*}b`: matches all files in `bucket_name` that match
+     *                              the `a/{@*}b` pattern, such as `a/c/b`, `a/d/b`
      *  * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
      * You can combine wildcards to match complex sets of files, for example:
      * `gs://bucket_name/[a-m]??.j*g`
      *
      * Generated from protobuf field <code>repeated string file_patterns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilePatterns($var)
@@ -166,7 +166,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * contained in this fileset are represented here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.GcsFileSpec sample_gcs_file_specs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\GcsFileSpec>
      */
     public function getSampleGcsFileSpecs()
     {
@@ -178,7 +178,7 @@ class GcsFilesetSpec extends \Google\Protobuf\Internal\Message
      * contained in this fileset are represented here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.GcsFileSpec sample_gcs_file_specs = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\GcsFileSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\GcsFileSpec[] $var
      * @return $this
      */
     public function setSampleGcsFileSpecs($var)

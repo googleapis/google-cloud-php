@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration specific to search queries with data stores.
@@ -41,12 +41,12 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $boost_specs
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs[] $boost_specs
      *           Optional. Boost specifications for data stores.
      *           Maps from datastore name to their boost configuration. Do not specify
      *           more than one BoostSpecs for each datastore name. If multiple BoostSpecs
      *           are provided for the same datastore name, the behavior is undefined.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\FilterSpecs>|\Google\Protobuf\Internal\RepeatedField $filter_specs
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\FilterSpecs[] $filter_specs
      *           Optional. Filter specification for data store queries.
      *           TMaps from datastore name to the filter expression for that datastore. Do
      *           not specify more than one FilterSpecs for each datastore name. If
@@ -66,7 +66,7 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      * are provided for the same datastore name, the behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs>
      */
     public function getBoostSpecs()
     {
@@ -80,7 +80,7 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      * are provided for the same datastore name, the behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.BoostSpecs boost_specs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\BoostSpecs[] $var
      * @return $this
      */
     public function setBoostSpecs($var)
@@ -99,7 +99,7 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      * behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs filter_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\FilterSpecs>
      */
     public function getFilterSpecs()
     {
@@ -114,7 +114,7 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
      * behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SearchKnowledgeRequest.SearchConfig.FilterSpecs filter_specs = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\FilterSpecs>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig\FilterSpecs[] $var
      * @return $this
      */
     public function setFilterSpecs($var)
@@ -126,5 +126,4 @@ class SearchConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

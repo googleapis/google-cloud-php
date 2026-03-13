@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Schema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a key field within the entity's partition structure. You could
@@ -109,5 +109,4 @@ class PartitionField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Lookup Entry request using permissions in the source system.
@@ -63,10 +63,10 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           Optional. View to control which parts of an entry the service should
      *           return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_types
+     *     @type string[] $aspect_types
      *           Optional. Limits the aspects returned to the provided aspect types.
      *           It only works for CUSTOM view.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           Optional. Limits the aspects returned to those associated with the provided
      *           paths within the Entry. It only works for CUSTOM view.
      *     @type string $entry
@@ -140,7 +140,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      * It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAspectTypes()
     {
@@ -152,7 +152,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      * It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAspectTypes($var)
@@ -168,7 +168,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      * paths within the Entry. It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string paths = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -180,7 +180,7 @@ class LookupEntryRequest extends \Google\Protobuf\Internal\Message
      * paths within the Entry. It only works for CUSTOM view.
      *
      * Generated from protobuf field <code>repeated string paths = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

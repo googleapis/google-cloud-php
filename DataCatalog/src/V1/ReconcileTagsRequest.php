@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -60,7 +60,7 @@ class ReconcileTagsRequest extends \Google\Protobuf\Internal\Message
      *           If set to `true`, deletes entry tags related to a tag template
      *           not listed in the tags source from an entry. If set to `false`,
      *           unlisted tags are retained.
-     *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\DataCatalog\V1\Tag[] $tags
      *           A list of tags to apply to an entry. A tag can specify a
      *           tag template, which must be the template specified in the
      *           `ReconcileTagsRequest`.
@@ -161,7 +161,7 @@ class ReconcileTagsRequest extends \Google\Protobuf\Internal\Message
      * The sole entry and each of its columns must be mentioned at most once.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag tags = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\Tag>
      */
     public function getTags()
     {
@@ -175,7 +175,7 @@ class ReconcileTagsRequest extends \Google\Protobuf\Internal\Message
      * The sole entry and each of its columns must be mentioned at most once.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag tags = 4;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\Tag[] $var
      * @return $this
      */
     public function setTags($var)

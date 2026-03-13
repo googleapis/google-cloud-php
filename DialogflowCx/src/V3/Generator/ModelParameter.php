@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Generator;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters to be passed to the LLM. If not set, default values will be
@@ -251,5 +251,4 @@ class ModelParameter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

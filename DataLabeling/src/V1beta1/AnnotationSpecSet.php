@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An AnnotationSpecSet is a collection of label definitions. For example, in
@@ -68,10 +68,10 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. User-provided description of the annotation specification set.
      *           The description can be up to 10,000 characters long.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\AnnotationSpec>|\Google\Protobuf\Internal\RepeatedField $annotation_specs
+     *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotationSpec[] $annotation_specs
      *           Required. The array of AnnotationSpecs that you define when you create the
      *           AnnotationSpecSet. These are the possible labels for the labeling task.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type string[] $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the annotation spec set.
      * }
@@ -170,7 +170,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * AnnotationSpecSet. These are the possible labels for the labeling task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_specs = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\AnnotationSpec>
      */
     public function getAnnotationSpecs()
     {
@@ -182,7 +182,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * AnnotationSpecSet. These are the possible labels for the labeling task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_specs = 4;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\AnnotationSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\AnnotationSpec[] $var
      * @return $this
      */
     public function setAnnotationSpecs($var)
@@ -198,7 +198,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * to the annotation spec set.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockingResources()
     {
@@ -210,7 +210,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * to the annotation spec set.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockingResources($var)

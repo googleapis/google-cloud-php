@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a schema, for example, a BigQuery, GoogleSQL, or Avro schema.
@@ -30,7 +30,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\DataCatalog\V1\ColumnSchema[] $columns
      *           The unified GoogleSQL-like schema of columns.
      *           The overall maximum number of columns and nested columns is 10,000.
      *           The maximum nested depth is 15 levels.
@@ -47,7 +47,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * The maximum nested depth is 15 levels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\ColumnSchema>
      */
     public function getColumns()
     {
@@ -60,7 +60,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * The maximum nested depth is 15 levels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.ColumnSchema columns = 2;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\ColumnSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\ColumnSchema[] $var
      * @return $this
      */
     public function setColumns($var)

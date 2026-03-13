@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata describing the Session operation.
@@ -84,7 +84,7 @@ class SessionOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Short description of the operation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels associated with the operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type string[] $warnings
      *           Warnings encountered during operation execution.
      * }
      */
@@ -299,7 +299,7 @@ class SessionOperationMetadata extends \Google\Protobuf\Internal\Message
      * Warnings encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWarnings()
     {
@@ -310,7 +310,7 @@ class SessionOperationMetadata extends \Google\Protobuf\Internal\Message
      * Warnings encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWarnings($var)

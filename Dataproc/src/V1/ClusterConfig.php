@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The cluster config.
@@ -208,7 +208,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           a cluster's secondary worker instances
      *     @type \Google\Cloud\Dataproc\V1\SoftwareConfig $software_config
      *           Optional. The config settings for cluster software.
-     *     @type array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $initialization_actions
+     *     @type \Google\Cloud\Dataproc\V1\NodeInitializationAction[] $initialization_actions
      *           Optional. Commands to execute on each node after config is
      *           completed. By default, executables are run on master and all worker nodes.
      *           You can test a node's `role` metadata to run an executable on
@@ -236,7 +236,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Metastore configuration.
      *     @type \Google\Cloud\Dataproc\V1\DataprocMetricConfig $dataproc_metric_config
      *           Optional. The config for Dataproc metrics.
-     *     @type array<\Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup>|\Google\Protobuf\Internal\RepeatedField $auxiliary_node_groups
+     *     @type \Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup[] $auxiliary_node_groups
      *           Optional. The node group settings.
      * }
      */
@@ -592,7 +592,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     fi
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\NodeInitializationAction>
      */
     public function getInitializationActions()
     {
@@ -614,7 +614,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     fi
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeInitializationAction initialization_actions = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\NodeInitializationAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\NodeInitializationAction[] $var
      * @return $this
      */
     public function setInitializationActions($var)
@@ -883,7 +883,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The node group settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AuxiliaryNodeGroup auxiliary_node_groups = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup>
      */
     public function getAuxiliaryNodeGroups()
     {
@@ -894,7 +894,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Optional. The node group settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AuxiliaryNodeGroup auxiliary_node_groups = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\AuxiliaryNodeGroup[] $var
      * @return $this
      */
     public function setAuxiliaryNodeGroups($var)

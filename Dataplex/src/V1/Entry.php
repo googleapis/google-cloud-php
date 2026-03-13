@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An entry is a representation of a data resource that can be described by
@@ -52,7 +52,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * * If the aspect is attached directly to the entry:
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`
      * * If the aspect is attached to an entry's path:
-     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}\@{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -107,7 +107,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           * If the aspect is attached directly to the entry:
      *           `{project_id_or_number}.{location_id}.{aspect_type_id}`
      *           * If the aspect is attached to an entry's path:
-     *           `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
+     *           `{project_id_or_number}.{location_id}.{aspect_type_id}\@{path}`
      *     @type string $parent_entry
      *           Optional. Immutable. The resource name of the parent entry, in the format
      *           `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}`.
@@ -267,7 +267,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * * If the aspect is attached directly to the entry:
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`
      * * If the aspect is attached to an entry's path:
-     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}\@{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -284,7 +284,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * * If the aspect is attached directly to the entry:
      * `{project_id_or_number}.{location_id}.{aspect_type_id}`
      * * If the aspect is attached to an entry's path:
-     * `{project_id_or_number}.{location_id}.{aspect_type_id}&#64;{path}`
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}\@{path}`
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

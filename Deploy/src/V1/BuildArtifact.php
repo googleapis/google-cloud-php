@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of an a image to use during Skaffold rendering.
@@ -24,7 +24,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Image tag to use. This will generally be the full path to an
      * image, such as "gcr.io/my-project/busybox:1.2.3" or
-     * "gcr.io/my-project/busybox&#64;sha256:abc123".
+     * "gcr.io/my-project/busybox\@sha256:abc123".
      *
      * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -41,7 +41,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
      *     @type string $tag
      *           Optional. Image tag to use. This will generally be the full path to an
      *           image, such as "gcr.io/my-project/busybox:1.2.3" or
-     *           "gcr.io/my-project/busybox&#64;sha256:abc123".
+     *           "gcr.io/my-project/busybox\@sha256:abc123".
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +78,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Image tag to use. This will generally be the full path to an
      * image, such as "gcr.io/my-project/busybox:1.2.3" or
-     * "gcr.io/my-project/busybox&#64;sha256:abc123".
+     * "gcr.io/my-project/busybox\@sha256:abc123".
      *
      * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -91,7 +91,7 @@ class BuildArtifact extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Image tag to use. This will generally be the full path to an
      * image, such as "gcr.io/my-project/busybox:1.2.3" or
-     * "gcr.io/my-project/busybox&#64;sha256:abc123".
+     * "gcr.io/my-project/busybox\@sha256:abc123".
      *
      * Generated from protobuf field <code>string tag = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

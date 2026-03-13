@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Agents are best described as Natural Language Understanding (NLU) modules
@@ -217,7 +217,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           This field cannot be set by the
      *           [Agents.UpdateAgent][google.cloud.dialogflow.cx.v3.Agents.UpdateAgent]
      *           method.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_language_codes
+     *     @type string[] $supported_language_codes
      *           The list of all languages supported by the agent (except for the
      *           `default_language_code`).
      *     @type string $time_zone
@@ -406,7 +406,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * `default_language_code`).
      *
      * Generated from protobuf field <code>repeated string supported_language_codes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedLanguageCodes()
     {
@@ -418,7 +418,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * `default_language_code`).
      *
      * Generated from protobuf field <code>repeated string supported_language_codes = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedLanguageCodes($var)

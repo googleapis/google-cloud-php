@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each intent parameter has a type, called the entity type, which dictates
@@ -89,7 +89,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *     @type int $auto_expansion_mode
      *           Optional. Indicates whether the entity type can be automatically
      *           expanded.
-     *     @type array<\Google\Cloud\Dialogflow\V2\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $entities
      *           Optional. The collection of entity entries associated with the entity type.
      *     @type bool $enable_fuzzy_extraction
      *           Optional. Enables fuzzy entity extraction during classification.
@@ -222,7 +222,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Optional. The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\EntityType\Entity>
      */
     public function getEntities()
     {
@@ -233,7 +233,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * Optional. The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $var
      * @return $this
      */
     public function setEntities($var)

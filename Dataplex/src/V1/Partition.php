@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents partition metadata contained within entity instances.
@@ -60,7 +60,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      *           to encode "US:CA/CA#Sunnyvale so that the request URL ends
      *           with "/partitions/US%253ACA/CA%2523Sunnyvale".
      *           The name field in the response retains the encoded format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. Immutable. The set of values representing the partition, which
      *           correspond to the partition schema defined in the parent entity.
      *     @type string $location
@@ -115,7 +115,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      * correspond to the partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -127,7 +127,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      * correspond to the partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

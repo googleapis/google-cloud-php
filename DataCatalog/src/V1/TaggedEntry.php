@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Wrapper containing Entry and information about Tags
@@ -40,10 +40,10 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DataCatalog\V1\Entry $v1_entry
      *           Non-encrypted Data Catalog v1 Entry.
-     *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $present_tags
+     *     @type \Google\Cloud\DataCatalog\V1\Tag[] $present_tags
      *           Optional. Tags that should be ingested into the Data Catalog.
      *           Caller should populate template name, column and fields.
-     *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $absent_tags
+     *     @type \Google\Cloud\DataCatalog\V1\Tag[] $absent_tags
      *           Optional. Tags that should be deleted from the Data Catalog.
      *           Caller should populate template name and column only.
      * }
@@ -89,7 +89,7 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      * Caller should populate template name, column and fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\Tag>
      */
     public function getPresentTags()
     {
@@ -101,7 +101,7 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      * Caller should populate template name, column and fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag present_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\Tag[] $var
      * @return $this
      */
     public function setPresentTags($var)
@@ -117,7 +117,7 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      * Caller should populate template name and column only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\Tag>
      */
     public function getAbsentTags()
     {
@@ -129,7 +129,7 @@ class TaggedEntry extends \Google\Protobuf\Internal\Message
      * Caller should populate template name and column only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag absent_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\Tag[] $var
      * @return $this
      */
     public function setAbsentTags($var)

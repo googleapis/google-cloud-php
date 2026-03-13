@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Task\InfrastructureSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud VPC Network used to run the infrastructure.
@@ -34,7 +34,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      *           the Cloud VPC network named Default within the project is used.
      *     @type string $sub_network
      *           Optional. The Cloud VPC sub-network in which the job is run.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Optional. List of network tags to apply to the job.
      * }
      */
@@ -111,7 +111,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. List of network tags to apply to the job.
      *
      * Generated from protobuf field <code>repeated string network_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -122,7 +122,7 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. List of network tags to apply to the job.
      *
      * Generated from protobuf field <code>repeated string network_tags = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -142,5 +142,4 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

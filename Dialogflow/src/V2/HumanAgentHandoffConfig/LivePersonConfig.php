@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentHandoffConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration specific to [LivePerson](https://www.liveperson.com).
@@ -68,5 +68,4 @@ class LivePersonConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

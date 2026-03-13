@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1alpha\NetworkConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information of the customer's network configurations.
@@ -167,5 +167,4 @@ class Consumer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

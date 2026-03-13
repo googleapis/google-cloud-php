@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Payload proto for "clouddeploy.googleapis.com/deploypolicy_evaluation"
@@ -138,7 +138,7 @@ class DeployPolicyEvaluationEvent extends \Google\Protobuf\Internal\Message
      *           (3) the request doesn't comply with the policy but the policy was suspended
      *     @type int $verdict
      *           The policy verdict of the request.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $overrides
+     *     @type int[] $overrides
      *           Things that could have overridden the policy verdict. Overrides together
      *           with verdict decide whether the request is allowed.
      * }
@@ -477,7 +477,7 @@ class DeployPolicyEvaluationEvent extends \Google\Protobuf\Internal\Message
      * with verdict decide whether the request is allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicyEvaluationEvent.PolicyVerdictOverride overrides = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOverrides()
     {
@@ -489,7 +489,7 @@ class DeployPolicyEvaluationEvent extends \Google\Protobuf\Internal\Message
      * with verdict decide whether the request is allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployPolicyEvaluationEvent.PolicyVerdictOverride overrides = 13;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOverrides($var)

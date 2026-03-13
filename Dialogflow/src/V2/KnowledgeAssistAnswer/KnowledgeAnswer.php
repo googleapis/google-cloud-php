@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an answer from Knowledge. Currently supports FAQ and Generative
@@ -140,5 +140,4 @@ class KnowledgeAnswer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

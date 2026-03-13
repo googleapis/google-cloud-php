@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -38,7 +38,7 @@ class ListChangelogsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Changelog>|\Google\Protobuf\Internal\RepeatedField $changelogs
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Changelog[] $changelogs
      *           The list of changelogs. There will be a maximum number of items returned
      *           based on the page_size field in the request. The changelogs will be ordered
      *           by timestamp.
@@ -58,7 +58,7 @@ class ListChangelogsResponse extends \Google\Protobuf\Internal\Message
      * by timestamp.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Changelog changelogs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Changelog>
      */
     public function getChangelogs()
     {
@@ -71,7 +71,7 @@ class ListChangelogsResponse extends \Google\Protobuf\Internal\Message
      * by timestamp.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Changelog changelogs = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Changelog>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Changelog[] $var
      * @return $this
      */
     public function setChangelogs($var)

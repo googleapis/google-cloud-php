@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Fulfillment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generator settings used by the LLM to generate a text response.
@@ -176,5 +176,4 @@ class GeneratorSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

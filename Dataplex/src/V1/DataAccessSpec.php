@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataAccessSpec holds the access control configuration to be enforced on data
@@ -35,7 +35,7 @@ class DataAccessSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $readers
+     *     @type string[] $readers
      *           Optional. The format of strings follows the pattern followed by IAM in the
      *           bindings. user:{email}, serviceAccount:{email} group:{email}.
      *           The set of principals to be granted reader role on data
@@ -54,7 +54,7 @@ class DataAccessSpec extends \Google\Protobuf\Internal\Message
      * stored within resources.
      *
      * Generated from protobuf field <code>repeated string readers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReaders()
     {
@@ -68,7 +68,7 @@ class DataAccessSpec extends \Google\Protobuf\Internal\Message
      * stored within resources.
      *
      * Generated from protobuf field <code>repeated string readers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReaders($var)

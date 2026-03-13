@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Security policy status of the asset. Data security policy, i.e., readers,
@@ -147,5 +147,4 @@ class SecurityStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

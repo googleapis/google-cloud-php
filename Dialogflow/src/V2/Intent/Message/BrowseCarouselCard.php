@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Browse Carousel Card for Actions on Google.
@@ -37,7 +37,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem[] $items
      *           Required. List of items in the Browse Carousel Card. Minimum of two
      *           items, maximum of ten.
      *     @type int $image_display_options
@@ -55,7 +55,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      * items, maximum of ten.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem>
      */
     public function getItems()
     {
@@ -67,7 +67,7 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
      * items, maximum of ten.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BrowseCarouselCard.BrowseCarouselCardItem items = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BrowseCarouselCard\BrowseCarouselCardItem[] $var
      * @return $this
      */
     public function setItems($var)
@@ -107,5 +107,4 @@ class BrowseCarouselCard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

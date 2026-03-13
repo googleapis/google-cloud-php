@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information about how a particular
@@ -32,7 +32,7 @@ class JobExecutionStageInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $step_name
+     *     @type string[] $step_name
      *           The steps associated with the execution stage.
      *           Note that stages may have several steps, and that a given step
      *           might be run by more than one stage.
@@ -49,7 +49,7 @@ class JobExecutionStageInfo extends \Google\Protobuf\Internal\Message
      * might be run by more than one stage.
      *
      * Generated from protobuf field <code>repeated string step_name = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStepName()
     {
@@ -62,7 +62,7 @@ class JobExecutionStageInfo extends \Google\Protobuf\Internal\Message
      * might be run by more than one stage.
      *
      * Generated from protobuf field <code>repeated string step_name = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStepName($var)

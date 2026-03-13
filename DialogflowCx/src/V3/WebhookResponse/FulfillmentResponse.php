@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\WebhookResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a fulfillment response to the user.
@@ -34,7 +34,7 @@ class FulfillmentResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $messages
      *           The list of rich message responses to present to the user.
      *     @type int $merge_behavior
      *           Merge behavior for `messages`.
@@ -49,7 +49,7 @@ class FulfillmentResponse extends \Google\Protobuf\Internal\Message
      * The list of rich message responses to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>
      */
     public function getMessages()
     {
@@ -60,7 +60,7 @@ class FulfillmentResponse extends \Google\Protobuf\Internal\Message
      * The list of rich message responses to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $var
      * @return $this
      */
     public function setMessages($var)
@@ -98,5 +98,4 @@ class FulfillmentResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

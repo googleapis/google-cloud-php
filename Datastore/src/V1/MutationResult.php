@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of applying a mutation.
@@ -88,7 +88,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      *     @type bool $conflict_detected
      *           Whether a conflict was detected for this mutation. Always false when a
      *           conflict detection strategy field is not set in the mutation.
-     *     @type array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *     @type \Google\Cloud\Datastore\V1\Value[] $transform_results
      *           The results of applying each
      *           [PropertyTransform][google.datastore.v1.PropertyTransform], in the same
      *           order of the request.
@@ -283,7 +283,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      * order of the request.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\Value>
      */
     public function getTransformResults()
     {
@@ -296,7 +296,7 @@ class MutationResult extends \Google\Protobuf\Internal\Message
      * order of the request.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Value transform_results = 8;</code>
-     * @param array<\Google\Cloud\Datastore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\Value[] $var
      * @return $this
      */
     public function setTransformResults($var)

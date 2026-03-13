@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataProfileResult\Profile\Field\ProfileInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The profile information for a double type field.
@@ -76,7 +76,7 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
      *     @type float $min
      *           Output only. Minimum of non-null values in the scanned data. NaN,
      *           if the field has a NaN.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $quartiles
+     *     @type float[] $quartiles
      *           Output only. A quartile divides the number of data points into four
      *           parts, or quarters, of more-or-less equal size. Three main
      *           quartiles used are: The first quartile (Q1) splits off the lowest
@@ -198,7 +198,7 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
      * median, Q3.
      *
      * Generated from protobuf field <code>repeated double quartiles = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getQuartiles()
     {
@@ -220,7 +220,7 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
      * median, Q3.
      *
      * Generated from protobuf field <code>repeated double quartiles = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setQuartiles($var)
@@ -260,5 +260,4 @@ class DoubleFieldInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

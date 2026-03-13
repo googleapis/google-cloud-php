@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -49,7 +49,7 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the parent agent to export intents.
      *           Format: `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type string[] $intents
      *           Required. The name of the intents to export.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
@@ -109,7 +109,7 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIntents()
     {
@@ -122,7 +122,7 @@ class ExportIntentsRequest extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/intents/<IntentID>`.
      *
      * Generated from protobuf field <code>repeated string intents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIntents($var)

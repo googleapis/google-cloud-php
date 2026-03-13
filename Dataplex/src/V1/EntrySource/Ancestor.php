@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\EntrySource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about individual items in the hierarchy that is associated with
@@ -99,5 +99,4 @@ class Ancestor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

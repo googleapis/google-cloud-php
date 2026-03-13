@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\IntentCoverage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The agent's intent.
@@ -102,5 +102,4 @@ class Intent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

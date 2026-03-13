@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to the source system of the data resource that is
@@ -114,7 +114,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined labels.
      *           The maximum size of keys and values is 128 characters each.
-     *     @type array<\Google\Cloud\Dataplex\V1\EntrySource\Ancestor>|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *     @type \Google\Cloud\Dataplex\V1\EntrySource\Ancestor[] $ancestors
      *           Immutable. The entries representing the ancestors of the data resource in
      *           the source system.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -309,7 +309,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      * the source system.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntrySource.Ancestor ancestors = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\EntrySource\Ancestor>
      */
     public function getAncestors()
     {
@@ -321,7 +321,7 @@ class EntrySource extends \Google\Protobuf\Internal\Message
      * the source system.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntrySource.Ancestor ancestors = 9 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\EntrySource\Ancestor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\EntrySource\Ancestor[] $var
      * @return $this
      */
     public function setAncestors($var)

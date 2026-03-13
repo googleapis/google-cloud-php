@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Example is a piece of data and its annotation. For example, an image with
@@ -49,7 +49,7 @@ class Example extends \Google\Protobuf\Internal\Message
      *           Output only. Name of the example, in format of:
      *           projects/{project_id}/datasets/{dataset_id}/annotatedDatasets/
      *           {annotated_dataset_id}/examples/{example_id}
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\DataLabeling\V1beta1\Annotation[] $annotations
      *           Output only. Annotations for the piece of data in Example.
      *           One piece of data can have multiple annotations.
      * }
@@ -187,7 +187,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * One piece of data can have multiple annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Annotation annotations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\Annotation>
      */
     public function getAnnotations()
     {
@@ -199,7 +199,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * One piece of data can have multiple annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Annotation annotations = 5;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\Annotation[] $var
      * @return $this
      */
     public function setAnnotations($var)

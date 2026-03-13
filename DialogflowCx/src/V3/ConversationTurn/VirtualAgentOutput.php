@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ConversationTurn;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The output from the virtual agent.
@@ -74,7 +74,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Struct $session_parameters
      *           The session parameters available to the bot at this point.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TestRunDifference>|\Google\Protobuf\Internal\RepeatedField $differences
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TestRunDifference[] $differences
      *           Output only. If this is part of a [result conversation
      *           turn][TestCaseResult.conversation_turns], the list of differences
      *           between the original run and the replay for this output, if any.
@@ -88,7 +88,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Page $current_page
      *           The [Page][google.cloud.dialogflow.cx.v3.Page] on which the utterance was
      *           spoken. Only name and displayName will be set.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\Text>|\Google\Protobuf\Internal\RepeatedField $text_responses
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\Text[] $text_responses
      *           The [text][google.cloud.dialogflow.cx.v3.ResponseMessage.Text] responses
      *           from the agent for the turn.
      *     @type \Google\Rpc\Status $status
@@ -143,7 +143,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      * between the original run and the replay for this output, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestRunDifference differences = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TestRunDifference>
      */
     public function getDifferences()
     {
@@ -156,7 +156,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      * between the original run and the replay for this output, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestRunDifference differences = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TestRunDifference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TestRunDifference[] $var
      * @return $this
      */
     public function setDifferences($var)
@@ -288,7 +288,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      * from the agent for the turn.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage.Text text_responses = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\Text>
      */
     public function getTextResponses()
     {
@@ -300,7 +300,7 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
      * from the agent for the turn.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage.Text text_responses = 9;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\Text>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage\Text[] $var
      * @return $this
      */
     public function setTextResponses($var)
@@ -350,5 +350,4 @@ class VirtualAgentOutput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

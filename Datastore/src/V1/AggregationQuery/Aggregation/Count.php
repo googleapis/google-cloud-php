@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1\AggregationQuery\Aggregation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Count of entities that match the query.
@@ -175,5 +175,4 @@ class Count extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
 

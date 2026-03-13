@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1\Session;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Historical state information.
@@ -150,5 +150,4 @@ class SessionStateHistory extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

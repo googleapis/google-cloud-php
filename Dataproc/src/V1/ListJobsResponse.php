@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of jobs in a project.
@@ -45,13 +45,13 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Dataproc\V1\Job[] $jobs
      *           Output only. Jobs list.
      *     @type string $next_page_token
      *           Optional. This token is included in the response if there are more results
      *           to fetch. To fetch additional results, provide this value as the
      *           `page_token` in a subsequent <code>ListJobsRequest</code>.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. List of jobs with
      *           [kms_key][google.cloud.dataproc.v1.EncryptionConfig.kms_key]-encrypted
      *           parameters that could not be decrypted. A response to a `jobs.get` request
@@ -67,7 +67,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\Job>
      */
     public function getJobs()
     {
@@ -78,7 +78,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\Job[] $var
      * @return $this
      */
     public function setJobs($var)
@@ -126,7 +126,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * may indicate the reason for the decryption failure for a specific job.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -140,7 +140,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * may indicate the reason for the decryption failure for a specific job.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

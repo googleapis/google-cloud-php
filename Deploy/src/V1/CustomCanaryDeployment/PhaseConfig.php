@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\CustomCanaryDeployment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PhaseConfig represents the configuration for a phase in the custom
@@ -76,7 +76,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      *           regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.
      *     @type int $percentage
      *           Required. Percentage deployment for the phase.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
+     *     @type string[] $profiles
      *           Optional. Skaffold profiles to use when rendering the manifest for this
      *           phase. These are in addition to the profiles list specified in the
      *           `DeliveryPipeline` stage.
@@ -162,7 +162,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      * `DeliveryPipeline` stage.
      *
      * Generated from protobuf field <code>repeated string profiles = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProfiles()
     {
@@ -175,7 +175,7 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
      * `DeliveryPipeline` stage.
      *
      * Generated from protobuf field <code>repeated string profiles = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProfiles($var)
@@ -291,5 +291,4 @@ class PhaseConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

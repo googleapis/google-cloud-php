@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Providing examples in the generator (i.e. building a few-shot generator)
@@ -24,7 +24,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
     protected $conversation_context = null;
     /**
      * Optional. Key is the placeholder field name in input, value is the value of
-     * the placeholder. E.g. instruction contains "&#64;price", and ingested data has
+     * the placeholder. E.g. instruction contains "\@price", and ingested data has
      * <"price", "10">
      *
      * Generated from protobuf field <code>map<string, string> extra_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -48,7 +48,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
      *           Optional. Conversation transcripts.
      *     @type array|\Google\Protobuf\Internal\MapField $extra_info
      *           Optional. Key is the placeholder field name in input, value is the value of
-     *           the placeholder. E.g. instruction contains "&#64;price", and ingested data has
+     *           the placeholder. E.g. instruction contains "\@price", and ingested data has
      *           <"price", "10">
      *     @type \Google\Cloud\Dialogflow\V2\SummarizationSectionList $summarization_section_list
      *           Summarization sections.
@@ -99,7 +99,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Key is the placeholder field name in input, value is the value of
-     * the placeholder. E.g. instruction contains "&#64;price", and ingested data has
+     * the placeholder. E.g. instruction contains "\@price", and ingested data has
      * <"price", "10">
      *
      * Generated from protobuf field <code>map<string, string> extra_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -112,7 +112,7 @@ class FewShotExample extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Key is the placeholder field name in input, value is the value of
-     * the placeholder. E.g. instruction contains "&#64;price", and ingested data has
+     * the placeholder. E.g. instruction contains "\@price", and ingested data has
      * <"price", "10">
      *
      * Generated from protobuf field <code>map<string, string> extra_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

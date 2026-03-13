@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Webhook\GenericWebService;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents configuration of OAuth client credential flow for 3rd party
@@ -69,7 +69,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      *     @type string $token_endpoint
      *           Required. The token endpoint provided by the 3rd party platform to
      *           exchange an access token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Optional. The OAuth scopes to grant.
      * }
      */
@@ -194,7 +194,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Optional. The OAuth scopes to grant.
      *
      * Generated from protobuf field <code>repeated string scopes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -205,7 +205,7 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
      * Optional. The OAuth scopes to grant.
      *
      * Generated from protobuf field <code>repeated string scopes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)
@@ -217,5 +217,4 @@ class OAuthConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * EntryLink represents a link between two Entries.
@@ -79,7 +79,7 @@ class EntryLink extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the Entry Link was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the Entry Link was last updated.
-     *     @type array<\Google\Cloud\Dataplex\V1\EntryLink\EntryReference>|\Google\Protobuf\Internal\RepeatedField $entry_references
+     *     @type \Google\Cloud\Dataplex\V1\EntryLink\EntryReference[] $entry_references
      *           Required. Specifies the Entries referenced in the Entry Link. There should
      *           be exactly two entry references.
      * }
@@ -236,7 +236,7 @@ class EntryLink extends \Google\Protobuf\Internal\Message
      * be exactly two entry references.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\EntryLink\EntryReference>
      */
     public function getEntryReferences()
     {
@@ -248,7 +248,7 @@ class EntryLink extends \Google\Protobuf\Internal\Message
      * be exactly two entry references.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\EntryLink\EntryReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\EntryLink\EntryReference[] $var
      * @return $this
      */
     public function setEntryReferences($var)

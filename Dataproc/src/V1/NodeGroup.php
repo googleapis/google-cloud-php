@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataproc Node Group.
@@ -57,7 +57,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The Node group [resource name](https://aip.dev/122).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type int[] $roles
      *           Required. Node group roles.
      *     @type \Google\Cloud\Dataproc\V1\InstanceGroupConfig $node_group_config
      *           Optional. The node group instance group configuration.
@@ -106,7 +106,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      * Required. Node group roles.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeGroup.Role roles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRoles()
     {
@@ -117,7 +117,7 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      * Required. Node group roles.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.NodeGroup.Role roles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRoles($var)

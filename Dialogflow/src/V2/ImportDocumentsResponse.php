@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class ImportDocumentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Rpc\Status[] $warnings
      *           Includes details about skipped documents or any other warnings.
      * }
      */
@@ -42,7 +42,7 @@ class ImportDocumentsResponse extends \Google\Protobuf\Internal\Message
      * Includes details about skipped documents or any other warnings.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status warnings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getWarnings()
     {
@@ -53,7 +53,7 @@ class ImportDocumentsResponse extends \Google\Protobuf\Internal\Message
      * Includes details about skipped documents or any other warnings.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status warnings = 1;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setWarnings($var)

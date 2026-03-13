@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SearchKnowledgeRequest\SearchConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter specification for data store queries.
@@ -39,7 +39,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_stores
+     *     @type string[] $data_stores
      *           Optional. The data store where the filter configuration is applied.
      *           Full resource name of data store, such as
      *           projects/{project}/locations/{location}/collections/{collectionId}/
@@ -62,7 +62,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * dataStores/{dataStoreId}.
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataStores()
     {
@@ -76,7 +76,7 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
      * dataStores/{dataStoreId}.
      *
      * Generated from protobuf field <code>repeated string data_stores = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataStores($var)
@@ -118,5 +118,4 @@ class FilterSpecs extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

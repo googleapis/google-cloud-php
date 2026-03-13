@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Section level result.
@@ -55,7 +55,7 @@ class SectionDetail extends \Google\Protobuf\Internal\Message
      *           evaluation results. Either decompositions or rubrics.
      *     @type string $section_summary
      *           Output only. Summary for this section
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>|\Google\Protobuf\Internal\RepeatedField $evaluation_results
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult[] $evaluation_results
      *           Output only. List of evaluation result. The list only contains one
      *           kind of the evaluation result.
      * }
@@ -160,7 +160,7 @@ class SectionDetail extends \Google\Protobuf\Internal\Message
      * kind of the evaluation result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.EvaluationResult evaluation_results = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>
      */
     public function getEvaluationResults()
     {
@@ -172,7 +172,7 @@ class SectionDetail extends \Google\Protobuf\Internal\Message
      * kind of the evaluation result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.EvaluationResult evaluation_results = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\EvaluationResult[] $var
      * @return $this
      */
     public function setEvaluationResults($var)
@@ -184,5 +184,4 @@ class SectionDetail extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

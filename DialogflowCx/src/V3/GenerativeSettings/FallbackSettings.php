@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for Generative Fallback.
@@ -37,7 +37,7 @@ class FallbackSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $selected_prompt
      *           Display name of the selected prompt.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings\PromptTemplate>|\Google\Protobuf\Internal\RepeatedField $prompt_templates
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings\PromptTemplate[] $prompt_templates
      *           Stored prompts that can be selected, for example default templates like
      *           "conservative" or "chatty", or user defined ones.
      * }
@@ -78,7 +78,7 @@ class FallbackSettings extends \Google\Protobuf\Internal\Message
      * "conservative" or "chatty", or user defined ones.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.GenerativeSettings.FallbackSettings.PromptTemplate prompt_templates = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings\PromptTemplate>
      */
     public function getPromptTemplates()
     {
@@ -90,7 +90,7 @@ class FallbackSettings extends \Google\Protobuf\Internal\Message
      * "conservative" or "chatty", or user defined ones.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.GenerativeSettings.FallbackSettings.PromptTemplate prompt_templates = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings\PromptTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\GenerativeSettings\FallbackSettings\PromptTemplate[] $var
      * @return $this
      */
     public function setPromptTemplates($var)
@@ -102,5 +102,4 @@ class FallbackSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

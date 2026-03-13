@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\SkaffoldModules;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Storage bucket containing Skaffold Config modules.
@@ -17,7 +17,7 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Cloud Storage source paths to copy recursively. For example,
-     * providing "gs://my-bucket/dir/configs/&#42;" will result in Skaffold copying
+     * providing "gs://my-bucket/dir/configs/*" will result in Skaffold copying
      * all files within the "dir/configs" directory in the bucket "my-bucket".
      *
      * Generated from protobuf field <code>string source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -38,7 +38,7 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $source
      *           Required. Cloud Storage source paths to copy recursively. For example,
-     *           providing "gs://my-bucket/dir/configs/&#42;" will result in Skaffold copying
+     *           providing "gs://my-bucket/dir/configs/*" will result in Skaffold copying
      *           all files within the "dir/configs" directory in the bucket "my-bucket".
      *     @type string $path
      *           Optional. Relative path from the source to the Skaffold file.
@@ -51,7 +51,7 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage source paths to copy recursively. For example,
-     * providing "gs://my-bucket/dir/configs/&#42;" will result in Skaffold copying
+     * providing "gs://my-bucket/dir/configs/*" will result in Skaffold copying
      * all files within the "dir/configs" directory in the bucket "my-bucket".
      *
      * Generated from protobuf field <code>string source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -64,7 +64,7 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Cloud Storage source paths to copy recursively. For example,
-     * providing "gs://my-bucket/dir/configs/&#42;" will result in Skaffold copying
+     * providing "gs://my-bucket/dir/configs/*" will result in Skaffold copying
      * all files within the "dir/configs" directory in the bucket "my-bucket".
      *
      * Generated from protobuf field <code>string source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -106,5 +106,4 @@ class SkaffoldGCSSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

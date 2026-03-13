@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification that applies to Instance
@@ -30,7 +30,7 @@ class CloudBigtableInstanceSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec\CloudBigtableClusterSpec>|\Google\Protobuf\Internal\RepeatedField $cloud_bigtable_cluster_specs
+     *     @type \Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec\CloudBigtableClusterSpec[] $cloud_bigtable_cluster_specs
      *           The list of clusters for the Instance.
      * }
      */
@@ -43,7 +43,7 @@ class CloudBigtableInstanceSpec extends \Google\Protobuf\Internal\Message
      * The list of clusters for the Instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.CloudBigtableInstanceSpec.CloudBigtableClusterSpec cloud_bigtable_cluster_specs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec\CloudBigtableClusterSpec>
      */
     public function getCloudBigtableClusterSpecs()
     {
@@ -54,7 +54,7 @@ class CloudBigtableInstanceSpec extends \Google\Protobuf\Internal\Message
      * The list of clusters for the Instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.CloudBigtableInstanceSpec.CloudBigtableClusterSpec cloud_bigtable_cluster_specs = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec\CloudBigtableClusterSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec\CloudBigtableClusterSpec[] $var
      * @return $this
      */
     public function setCloudBigtableClusterSpecs($var)

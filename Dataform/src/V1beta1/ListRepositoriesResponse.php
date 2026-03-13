@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `ListRepositories` response message.
@@ -41,12 +41,12 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\Repository>|\Google\Protobuf\Internal\RepeatedField $repositories
+     *     @type \Google\Cloud\Dataform\V1beta1\Repository[] $repositories
      *           List of repositories.
      *     @type string $next_page_token
      *           A token which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations which could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * List of repositories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Repository repositories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\Repository>
      */
     public function getRepositories()
     {
@@ -70,7 +70,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * List of repositories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Repository repositories = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\Repository>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\Repository[] $var
      * @return $this
      */
     public function setRepositories($var)
@@ -113,7 +113,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * Locations which could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * Locations which could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

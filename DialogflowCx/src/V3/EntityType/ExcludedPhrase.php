@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\EntityType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An excluded entity phrase that should not be matched.
@@ -64,5 +64,4 @@ class ExcludedPhrase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1\PrCurve;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.datalabeling.v1beta1.PrCurve.ConfidenceMetricsEntry</code>
@@ -400,5 +400,4 @@ class ConfidenceMetricsEntry extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

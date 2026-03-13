@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CommitRepositoryChangesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single file operation to the repository.
@@ -105,5 +105,4 @@ class FileOperation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

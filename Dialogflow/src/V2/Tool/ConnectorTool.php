@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A ConnectorTool enabling using Integration Connectors Connections as tools.
@@ -17,7 +17,7 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The full resource name of the referenced Integration Connectors
-     * Connection. Format: 'projects/&#42;&#47;locations/&#42;&#47;connections/&#42;'
+     * Connection. Format: 'projects/{@*}locations/{@*}connections/*'
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -37,8 +37,8 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The full resource name of the referenced Integration Connectors
-     *           Connection. Format: 'projects/&#42;&#47;locations/&#42;&#47;connections/&#42;'
-     *     @type array<\Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *           Connection. Format: 'projects/{@*}locations/{@*}connections/*'
+     *     @type \Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action[] $actions
      *           Required. Actions for the tool to use.
      * }
      */
@@ -49,7 +49,7 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the referenced Integration Connectors
-     * Connection. Format: 'projects/&#42;&#47;locations/&#42;&#47;connections/&#42;'
+     * Connection. Format: 'projects/{@*}locations/{@*}connections/*'
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -61,7 +61,7 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full resource name of the referenced Integration Connectors
-     * Connection. Format: 'projects/&#42;&#47;locations/&#42;&#47;connections/&#42;'
+     * Connection. Format: 'projects/{@*}locations/{@*}connections/*'
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -79,7 +79,7 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
      * Required. Actions for the tool to use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool.ConnectorTool.Action actions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action>
      */
     public function getActions()
     {
@@ -90,7 +90,7 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
      * Required. Actions for the tool to use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool.ConnectorTool.Action actions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action[] $var
      * @return $this
      */
     public function setActions($var)
@@ -102,5 +102,4 @@ class ConnectorTool extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

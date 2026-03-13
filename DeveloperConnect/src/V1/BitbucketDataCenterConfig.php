@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to an instance of Bitbucket Data Center.
@@ -24,8 +24,8 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * used to verify webhook events, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -82,8 +82,8 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
      *     @type string $webhook_secret_secret_version
      *           Required. Immutable. SecretManager resource containing the webhook secret
      *           used to verify webhook events, formatted as
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      *           supported in that location). This is used to validate webhooks.
      *     @type \Google\Cloud\DeveloperConnect\V1\UserCredential $read_authorizer_credential
      *           Required. An http access token with the minimum `Repository read` access.
@@ -140,8 +140,8 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * used to verify webhook events, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -155,8 +155,8 @@ class BitbucketDataCenterConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * used to verify webhook events, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location). This is used to validate webhooks.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>

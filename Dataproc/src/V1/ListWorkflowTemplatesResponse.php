@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a request to list workflow templates in a project.
@@ -44,13 +44,13 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\WorkflowTemplate>|\Google\Protobuf\Internal\RepeatedField $templates
+     *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplate[] $templates
      *           Output only. WorkflowTemplates list.
      *     @type string $next_page_token
      *           Output only. This token is included in the response if there are more
      *           results to fetch. To fetch additional results, provide this value as the
      *           page_token in a subsequent <code>ListWorkflowTemplatesRequest</code>.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. List of workflow templates that could not be included in the
      *           response. Attempting to get one of these resources may indicate why it was
      *           not included in the list response.
@@ -65,7 +65,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * Output only. WorkflowTemplates list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowTemplate templates = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\WorkflowTemplate>
      */
     public function getTemplates()
     {
@@ -76,7 +76,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * Output only. WorkflowTemplates list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowTemplate templates = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\WorkflowTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate[] $var
      * @return $this
      */
     public function setTemplates($var)
@@ -123,7 +123,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * not included in the list response.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -136,7 +136,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * not included in the list response.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

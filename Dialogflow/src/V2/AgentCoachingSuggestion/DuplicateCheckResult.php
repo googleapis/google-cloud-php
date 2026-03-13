@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Duplication check for the suggestion.
@@ -28,7 +28,7 @@ class DuplicateCheckResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\DuplicateCheckResult\DuplicateSuggestion>|\Google\Protobuf\Internal\RepeatedField $duplicate_suggestions
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\DuplicateCheckResult\DuplicateSuggestion[] $duplicate_suggestions
      *           Output only. The duplicate suggestions.
      * }
      */
@@ -41,7 +41,7 @@ class DuplicateCheckResult extends \Google\Protobuf\Internal\Message
      * Output only. The duplicate suggestions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.DuplicateCheckResult.DuplicateSuggestion duplicate_suggestions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\DuplicateCheckResult\DuplicateSuggestion>
      */
     public function getDuplicateSuggestions()
     {
@@ -52,7 +52,7 @@ class DuplicateCheckResult extends \Google\Protobuf\Internal\Message
      * Output only. The duplicate suggestions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.DuplicateCheckResult.DuplicateSuggestion duplicate_suggestions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\DuplicateCheckResult\DuplicateSuggestion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\DuplicateCheckResult\DuplicateSuggestion[] $var
      * @return $this
      */
     public function setDuplicateSuggestions($var)
@@ -64,5 +64,4 @@ class DuplicateCheckResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

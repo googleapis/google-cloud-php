@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MongoDB Cluster structure.
@@ -28,7 +28,7 @@ class MongodbCluster extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\MongodbDatabase>|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type \Google\Cloud\Datastream\V1\MongodbDatabase[] $databases
      *           MongoDB databases in the cluster.
      * }
      */
@@ -41,7 +41,7 @@ class MongodbCluster extends \Google\Protobuf\Internal\Message
      * MongoDB databases in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbDatabase databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MongodbDatabase>
      */
     public function getDatabases()
     {
@@ -52,7 +52,7 @@ class MongodbCluster extends \Google\Protobuf\Internal\Message
      * MongoDB databases in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbDatabase databases = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MongodbDatabase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MongodbDatabase[] $var
      * @return $this
      */
     public function setDatabases($var)

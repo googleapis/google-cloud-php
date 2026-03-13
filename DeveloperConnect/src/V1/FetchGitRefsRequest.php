@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for fetching git refs.
@@ -17,7 +17,7 @@ class FetchGitRefsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of GitRepositoryLink in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -67,7 +67,7 @@ class FetchGitRefsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $git_repository_link
      *           Required. The resource name of GitRepositoryLink in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     *           `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *     @type int $ref_type
      *           Required. Type of refs to fetch.
      *     @type int $page_size
@@ -83,7 +83,7 @@ class FetchGitRefsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of GitRepositoryLink in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class FetchGitRefsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of GitRepositoryLink in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLinks/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLinks/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

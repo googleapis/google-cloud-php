@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an experiment in an environment.
@@ -166,7 +166,7 @@ class Experiment extends \Google\Protobuf\Internal\Message
      *           Maximum number of days to run the experiment/rollout. If auto-rollout is
      *           not enabled, default value and maximum will be 30 days. If auto-rollout is
      *           enabled, default value and maximum will be 6 days.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\VariantsHistory>|\Google\Protobuf\Internal\RepeatedField $variants_history
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\VariantsHistory[] $variants_history
      *           The history of updates to the experiment variants.
      * }
      */
@@ -659,7 +659,7 @@ class Experiment extends \Google\Protobuf\Internal\Message
      * The history of updates to the experiment variants.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.VariantsHistory variants_history = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\VariantsHistory>
      */
     public function getVariantsHistory()
     {
@@ -670,7 +670,7 @@ class Experiment extends \Google\Protobuf\Internal\Message
      * The history of updates to the experiment variants.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.VariantsHistory variants_history = 12;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\VariantsHistory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\VariantsHistory[] $var
      * @return $this
      */
     public function setVariantsHistory($var)

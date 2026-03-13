@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\RoutineSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input or output argument of a function or stored procedure.
@@ -140,5 +140,4 @@ class Argument extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

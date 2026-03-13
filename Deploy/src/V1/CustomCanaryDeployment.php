@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CustomCanaryDeployment represents the custom canary deployment
@@ -30,7 +30,7 @@ class CustomCanaryDeployment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Deploy\V1\CustomCanaryDeployment\PhaseConfig>|\Google\Protobuf\Internal\RepeatedField $phase_configs
+     *     @type \Google\Cloud\Deploy\V1\CustomCanaryDeployment\PhaseConfig[] $phase_configs
      *           Required. Configuration for each phase in the canary deployment in the
      *           order executed.
      * }
@@ -45,7 +45,7 @@ class CustomCanaryDeployment extends \Google\Protobuf\Internal\Message
      * order executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomCanaryDeployment.PhaseConfig phase_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\CustomCanaryDeployment\PhaseConfig>
      */
     public function getPhaseConfigs()
     {
@@ -57,7 +57,7 @@ class CustomCanaryDeployment extends \Google\Protobuf\Internal\Message
      * order executed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomCanaryDeployment.PhaseConfig phase_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Deploy\V1\CustomCanaryDeployment\PhaseConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\CustomCanaryDeployment\PhaseConfig[] $var
      * @return $this
      */
     public function setPhaseConfigs($var)

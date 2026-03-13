@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SignalProductsFilters represents a signal and list of supported products.
@@ -37,7 +37,7 @@ class SignalProductsFilters extends \Google\Protobuf\Internal\Message
      *
      *     @type int $signal_type
      *           Optional. The type of signal.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Product[] $products
      *           Optional. Product type of the resource. The version of the product will be
      *           ignored in filtering.
      * }
@@ -78,7 +78,7 @@ class SignalProductsFilters extends \Google\Protobuf\Internal\Message
      * ignored in filtering.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Product products = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Product>
      */
     public function getProducts()
     {
@@ -90,7 +90,7 @@ class SignalProductsFilters extends \Google\Protobuf\Internal\Message
      * ignored in filtering.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Product products = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Product[] $var
      * @return $this
      */
     public function setProducts($var)

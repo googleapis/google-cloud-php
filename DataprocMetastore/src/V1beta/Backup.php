@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details of a backup resource.
@@ -78,7 +78,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The revision of the service at the time of backup.
      *     @type string $description
      *           The description of the backup.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restoring_services
+     *     @type string[] $restoring_services
      *           Output only. Services that are restoring from the backup.
      * }
      */
@@ -279,7 +279,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. Services that are restoring from the backup.
      *
      * Generated from protobuf field <code>repeated string restoring_services = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRestoringServices()
     {
@@ -290,7 +290,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. Services that are restoring from the backup.
      *
      * Generated from protobuf field <code>repeated string restoring_services = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRestoringServices($var)

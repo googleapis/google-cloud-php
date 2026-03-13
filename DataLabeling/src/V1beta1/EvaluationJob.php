@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines an evaluation job that runs periodically to generate
@@ -150,7 +150,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *           labelers to annotate your data, set this to `true`. If you want to provide
      *           your own ground truth labels in the evaluation job's BigQuery table, set
      *           this to `false`.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Attempt>|\Google\Protobuf\Internal\RepeatedField $attempts
+     *     @type \Google\Cloud\DataLabeling\V1beta1\Attempt[] $attempts
      *           Output only. Every time the evaluation job runs and an error occurs, the
      *           failed attempt is appended to this array.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -433,7 +433,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      * failed attempt is appended to this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Attempt attempts = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\Attempt>
      */
     public function getAttempts()
     {
@@ -445,7 +445,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      * failed attempt is appended to this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Attempt attempts = 9;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\Attempt>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\Attempt[] $var
      * @return $this
      */
     public function setAttempts($var)

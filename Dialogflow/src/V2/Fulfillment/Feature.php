@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Fulfillment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Whether fulfillment is enabled for the specific feature.
@@ -64,5 +64,4 @@ class Feature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

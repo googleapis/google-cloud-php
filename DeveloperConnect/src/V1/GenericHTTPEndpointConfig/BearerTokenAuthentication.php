@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1\GenericHTTPEndpointConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Bearer token authentication with a token.
@@ -72,5 +72,4 @@ class BearerTokenAuthentication extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
