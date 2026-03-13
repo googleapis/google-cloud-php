@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A network VRF.
@@ -58,7 +58,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      *           The value is only meaningful when all the vlan attachments have the same
      *           QoS. This field should not be used for new integrations, use vlan
      *           attachment level qos instead. The field is left for backward-compatibility.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>|\Google\Protobuf\Internal\RepeatedField $vlan_attachments
+     *     @type \Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment[] $vlan_attachments
      *           The list of VLAN attachments for the VRF.
      * }
      */
@@ -165,7 +165,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      * The list of VLAN attachments for the VRF.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VRF.VlanAttachment vlan_attachments = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>
      */
     public function getVlanAttachments()
     {
@@ -176,7 +176,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      * The list of VLAN attachments for the VRF.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VRF.VlanAttachment vlan_attachments = 7;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment[] $var
      * @return $this
      */
     public function setVlanAttachments($var)

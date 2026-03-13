@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing tags.
@@ -35,7 +35,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Tag[] $tags
      *           The tags returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of tags, or empty if there are no
@@ -51,7 +51,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * The tags returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Tag tags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Tag>
      */
     public function getTags()
     {
@@ -62,7 +62,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * The tags returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Tag tags = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Tag[] $var
      * @return $this
      */
     public function setTags($var)

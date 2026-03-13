@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration parameters for a new instance.
@@ -142,11 +142,11 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type string $network_template
      *           Server network template name. Filled if InstanceConfig.multivlan_config is
      *           true.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
+     *     @type \Google\Cloud\BareMetalSolution\V2\LogicalInterface[] $logical_interfaces
      *           List of logical interfaces for the instance. The number of logical
      *           interfaces will be the same as number of hardware bond/nic on the chosen
      *           network template. Filled if InstanceConfig.multivlan_config is true.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssh_key_names
+     *     @type string[] $ssh_key_names
      *           List of names of ssh keys used to provision the instance.
      * }
      */
@@ -503,7 +503,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * network template. Filled if InstanceConfig.multivlan_config is true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface logical_interfaces = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>
      */
     public function getLogicalInterfaces()
     {
@@ -516,7 +516,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * network template. Filled if InstanceConfig.multivlan_config is true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface logical_interfaces = 12;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\LogicalInterface[] $var
      * @return $this
      */
     public function setLogicalInterfaces($var)
@@ -531,7 +531,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * List of names of ssh keys used to provision the instance.
      *
      * Generated from protobuf field <code>repeated string ssh_key_names = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSshKeyNames()
     {
@@ -542,7 +542,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * List of names of ssh keys used to provision the instance.
      *
      * Generated from protobuf field <code>repeated string ssh_key_names = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSshKeyNames($var)

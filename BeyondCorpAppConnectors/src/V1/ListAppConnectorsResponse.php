@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BeyondCorp.ListAppConnectors.
@@ -41,12 +41,12 @@ class ListAppConnectorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector>|\Google\Protobuf\Internal\RepeatedField $app_connectors
+     *     @type \Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector[] $app_connectors
      *           A list of BeyondCorp AppConnectors in the project.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           A list of locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListAppConnectorsResponse extends \Google\Protobuf\Internal\Message
      * A list of BeyondCorp AppConnectors in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appconnectors.v1.AppConnector app_connectors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector>
      */
     public function getAppConnectors()
     {
@@ -70,7 +70,7 @@ class ListAppConnectorsResponse extends \Google\Protobuf\Internal\Message
      * A list of BeyondCorp AppConnectors in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appconnectors.v1.AppConnector app_connectors = 1;</code>
-     * @param array<\Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector[] $var
      * @return $this
      */
     public function setAppConnectors($var)
@@ -113,7 +113,7 @@ class ListAppConnectorsResponse extends \Google\Protobuf\Internal\Message
      * A list of locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListAppConnectorsResponse extends \Google\Protobuf\Internal\Message
      * A list of locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

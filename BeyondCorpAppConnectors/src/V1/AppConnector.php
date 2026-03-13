@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A BeyondCorp connector resource that represents an application facing

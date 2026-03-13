@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A TaskGroup defines one or more Tasks that all share the same TaskSpec.
@@ -124,7 +124,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      *     @type int $scheduling_policy
      *           Scheduling policy for Tasks in the TaskGroup.
      *           The default value is AS_SOON_AS_POSSIBLE.
-     *     @type array<\Google\Cloud\Batch\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $task_environments
+     *     @type \Google\Cloud\Batch\V1\Environment[] $task_environments
      *           An array of environment variable mappings, which are passed to Tasks with
      *           matching indices. If task_environments is used then task_count should
      *           not be specified in the request (and will be ignored). Task count will be
@@ -324,7 +324,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      * index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Environment task_environments = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\Environment>
      */
     public function getTaskEnvironments()
     {
@@ -342,7 +342,7 @@ class TaskGroup extends \Google\Protobuf\Internal\Message
      * index in the TaskGroup (0 through BATCH_TASK_COUNT - 1).
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Environment task_environments = 9;</code>
-     * @param array<\Google\Cloud\Batch\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\Environment[] $var
      * @return $this
      */
     public function setTaskEnvironments($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An instance-attached disk resource.
@@ -158,11 +158,11 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *     @type bool $auto_delete
      *           Optional. Specifies whether the disk will be auto-deleted when the instance
      *           is deleted (but not when the disk is detached from the instance).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $license
+     *     @type string[] $license
      *           Optional. Any valid publicly visible licenses.
      *     @type int $disk_interface
      *           Optional. Specifies the disk interface to use for attaching this disk.
-     *     @type array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_feature
+     *     @type \Google\Cloud\BackupDR\V1\GuestOsFeature[] $guest_os_feature
      *           Optional. A list of features to enable on the guest operating system.
      *           Applicable only for bootable images.
      *     @type \Google\Cloud\BackupDR\V1\CustomerEncryptionKey $disk_encryption_key
@@ -534,7 +534,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * Optional. Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string license = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicense()
     {
@@ -545,7 +545,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * Optional. Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string license = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicense($var)
@@ -597,7 +597,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * Applicable only for bootable images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\GuestOsFeature>
      */
     public function getGuestOsFeature()
     {
@@ -609,7 +609,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * Applicable only for bootable images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeature($var)

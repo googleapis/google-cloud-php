@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceInfo represents the information/status of an app connector resource.
@@ -73,7 +73,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $time
      *           The timestamp to collect the info. It is suggested to be set by
      *           the topmost level resource only.
-     *     @type array<\Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $sub
+     *     @type \Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo[] $sub
      *           List of Info for the sub level resources.
      * }
      */
@@ -214,7 +214,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      * List of Info for the sub level resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appconnectors.v1.ResourceInfo sub = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo>
      */
     public function getSub()
     {
@@ -225,7 +225,7 @@ class ResourceInfo extends \Google\Protobuf\Internal\Message
      * List of Info for the sub level resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.appconnectors.v1.ResourceInfo sub = 5;</code>
-     * @param array<\Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo[] $var
      * @return $this
      */
     public function setSub($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2\InstanceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A network.
@@ -132,5 +132,4 @@ class NetworkAddress extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

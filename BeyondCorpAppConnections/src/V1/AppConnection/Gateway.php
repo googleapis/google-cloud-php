@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Gateway represents a user facing component that serves as an entrance to
@@ -175,5 +175,4 @@ class Gateway extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

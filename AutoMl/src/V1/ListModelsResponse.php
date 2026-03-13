@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [AutoMl.ListModels][google.cloud.automl.v1.AutoMl.ListModels].
@@ -35,7 +35,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AutoMl\V1\Model>|\Google\Protobuf\Internal\RepeatedField $model
+     *     @type \Google\Cloud\AutoMl\V1\Model[] $model
      *           List of models in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -51,7 +51,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of models in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Model model = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\Model>
      */
     public function getModel()
     {
@@ -62,7 +62,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of models in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.Model model = 1;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\Model>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\Model[] $var
      * @return $this
      */
     public function setModel($var)

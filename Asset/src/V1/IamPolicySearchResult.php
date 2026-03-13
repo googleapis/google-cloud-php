@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A result of IAM Policy search, containing information of an IAM policy.
@@ -81,7 +81,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * To search against the `policy` bindings:
      * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy:amy&#64;gmail.com`
+     *       `policy:amy\@gmail.com`
      *     - query by the policy contained roles. Example:
      *       `policy:roles/compute.admin`
      *     - query by the policy contained roles' included permissions. Example:
@@ -126,7 +126,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *           or organization, this field will be empty.
      *           To search against the `project`:
      *           * specify the `scope` field as this project in your search request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type string[] $folders
      *           The folder(s) that the IAM policy belongs to, in the form of
      *           folders/{FOLDER_NUMBER}. This field is available when the IAM policy
      *           belongs to one or more folders.
@@ -150,7 +150,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      *           To search against the `policy` bindings:
      *           * use a field query:
      *               - query by the policy contained members. Example:
-     *                 `policy:amy&#64;gmail.com`
+     *                 `policy:amy\@gmail.com`
      *               - query by the policy contained roles. Example:
      *                 `policy:roles/compute.admin`
      *               - query by the policy contained roles' included permissions. Example:
@@ -285,7 +285,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * * specify the `scope` field as this folder in your search request.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFolders()
     {
@@ -302,7 +302,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * * specify the `scope` field as this folder in your search request.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFolders($var)
@@ -359,7 +359,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * To search against the `policy` bindings:
      * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy:amy&#64;gmail.com`
+     *       `policy:amy\@gmail.com`
      *     - query by the policy contained roles. Example:
      *       `policy:roles/compute.admin`
      *     - query by the policy contained roles' included permissions. Example:
@@ -391,7 +391,7 @@ class IamPolicySearchResult extends \Google\Protobuf\Internal\Message
      * To search against the `policy` bindings:
      * * use a field query:
      *     - query by the policy contained members. Example:
-     *       `policy:amy&#64;gmail.com`
+     *       `policy:amy\@gmail.com`
      *     - query by the policy contained roles. Example:
      *       `policy:roles/compute.admin`
      *     - query by the policy contained roles' included permissions. Example:

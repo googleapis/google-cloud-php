@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Attachment refers to additional metadata that can be attached to
@@ -113,7 +113,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the attachment was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the attachment was last updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type string[] $files
      *           Required. The files that belong to this attachment.
      *           If the file ID part contains slashes, they are escaped. E.g.
      *           `projects/p1/locations/us-central1/repositories/repo1/files/sha:<sha-of-file>`.
@@ -354,7 +354,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
      * `projects/p1/locations/us-central1/repositories/repo1/files/sha:<sha-of-file>`.
      *
      * Generated from protobuf field <code>repeated string files = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFiles()
     {
@@ -367,7 +367,7 @@ class Attachment extends \Google\Protobuf\Internal\Message
      * `projects/p1/locations/us-central1/repositories/repo1/files/sha:<sha-of-file>`.
      *
      * Generated from protobuf field <code>repeated string files = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFiles($var)

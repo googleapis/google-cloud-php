@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ComputeInstanceRestoreProperties represents Compute Engine instance
@@ -208,13 +208,13 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. An optional description of this resource. Provide this property
      *           when you create the resource.
-     *     @type array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\BackupDR\V1\AttachedDisk[] $disks
      *           Optional. Array of disks associated with this instance. Persistent disks
      *           must be created before you can assign them. Source regional persistent
      *           disks will be restored with default replica zones if not specified.
      *     @type \Google\Cloud\BackupDR\V1\DisplayDevice $display_device
      *           Optional. Enables display device for the instance.
-     *     @type array<\Google\Cloud\BackupDR\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type \Google\Cloud\BackupDR\V1\AcceleratorConfig[] $guest_accelerators
      *           Optional. A list of the type and count of accelerator cards attached to the
      *           instance.
      *     @type string $hostname
@@ -237,7 +237,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *           Optional. This includes custom metadata and predefined keys.
      *     @type string $min_cpu_platform
      *           Optional. Minimum CPU platform to use for this instance.
-     *     @type array<\Google\Cloud\BackupDR\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\BackupDR\V1\NetworkInterface[] $network_interfaces
      *           Optional. An array of network configurations for this instance. These
      *           specify how interfaces are configured to interact with other network
      *           services, such as connecting to the internet. Multiple interfaces are
@@ -252,12 +252,12 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      *           If not specified, use INHERIT_FROM_SUBNETWORK as default.
      *     @type \Google\Cloud\BackupDR\V1\AllocationAffinity $allocation_affinity
      *           Optional. Specifies the reservations that this instance can consume from.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Optional. Resource policies applied to this instance.
      *           By default, no resource policies will be applied.
      *     @type \Google\Cloud\BackupDR\V1\Scheduling $scheduling
      *           Optional. Sets the scheduling options for this instance.
-     *     @type array<\Google\Cloud\BackupDR\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type \Google\Cloud\BackupDR\V1\ServiceAccount[] $service_accounts
      *           Optional. A list of service accounts, with their specified scopes,
      *           authorized for this instance. Only one service account per VM instance is
      *           supported.
@@ -498,7 +498,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * disks will be restored with default replica zones if not specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\AttachedDisk>
      */
     public function getDisks()
     {
@@ -511,7 +511,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * disks will be restored with default replica zones if not specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disks = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\AttachedDisk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -563,7 +563,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AcceleratorConfig guest_accelerators = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\AcceleratorConfig>
      */
     public function getGuestAccelerators()
     {
@@ -575,7 +575,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AcceleratorConfig guest_accelerators = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setGuestAccelerators($var)
@@ -847,7 +847,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * supported per instance. Required to restore in different project or region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interfaces = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -861,7 +861,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * supported per instance. Required to restore in different project or region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interfaces = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -1025,7 +1025,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * By default, no resource policies will be applied.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -1037,7 +1037,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * By default, no resource policies will be applied.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -1090,7 +1090,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ServiceAccount service_accounts = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\ServiceAccount>
      */
     public function getServiceAccounts()
     {
@@ -1103,7 +1103,7 @@ class ComputeInstanceRestoreProperties extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ServiceAccount service_accounts = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\ServiceAccount[] $var
      * @return $this
      */
     public function setServiceAccounts($var)

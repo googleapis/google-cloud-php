@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search all resources request.
@@ -420,7 +420,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             resources that contain `Important` as a word in any of the searchable
      *             fields and are also located in the `us-west1` region or the `global`
      *             location.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type string[] $asset_types
      *           Optional. A list of asset types that this request searches for. If empty,
      *           it will search all the asset types [supported by search
      *           APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
@@ -735,7 +735,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssetTypes()
     {
@@ -756,7 +756,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssetTypes($var)

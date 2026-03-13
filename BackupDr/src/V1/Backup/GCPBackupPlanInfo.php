@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1\Backup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GCPBackupPlanInfo captures the plan configuration details of Google Cloud
@@ -199,5 +199,4 @@ class GCPBackupPlanInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration parameters for a new volume.
@@ -112,12 +112,12 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      *           Volume protocol.
      *     @type int $size_gb
      *           The requested size of this volume, in GB.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\LunRange>|\Google\Protobuf\Internal\RepeatedField $lun_ranges
+     *     @type \Google\Cloud\BareMetalSolution\V2\VolumeConfig\LunRange[] $lun_ranges
      *           LUN ranges to be configured. Set only when protocol is PROTOCOL_FC.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $machine_ids
+     *     @type string[] $machine_ids
      *           Machine ids connected to this volume. Set only when protocol is
      *           PROTOCOL_FC.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\NfsExport>|\Google\Protobuf\Internal\RepeatedField $nfs_exports
+     *     @type \Google\Cloud\BareMetalSolution\V2\VolumeConfig\NfsExport[] $nfs_exports
      *           NFS exports. Set only when protocol is PROTOCOL_NFS.
      *     @type string $user_note
      *           User note field, it can be used by customers to add additional information
@@ -297,7 +297,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * LUN ranges to be configured. Set only when protocol is PROTOCOL_FC.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig.LunRange lun_ranges = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\LunRange>
      */
     public function getLunRanges()
     {
@@ -308,7 +308,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * LUN ranges to be configured. Set only when protocol is PROTOCOL_FC.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig.LunRange lun_ranges = 7;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\LunRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\VolumeConfig\LunRange[] $var
      * @return $this
      */
     public function setLunRanges($var)
@@ -324,7 +324,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * PROTOCOL_FC.
      *
      * Generated from protobuf field <code>repeated string machine_ids = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMachineIds()
     {
@@ -336,7 +336,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * PROTOCOL_FC.
      *
      * Generated from protobuf field <code>repeated string machine_ids = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMachineIds($var)
@@ -351,7 +351,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * NFS exports. Set only when protocol is PROTOCOL_NFS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig.NfsExport nfs_exports = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\NfsExport>
      */
     public function getNfsExports()
     {
@@ -362,7 +362,7 @@ class VolumeConfig extends \Google\Protobuf\Internal\Message
      * NFS exports. Set only when protocol is PROTOCOL_NFS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig.NfsExport nfs_exports = 9;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig\NfsExport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\VolumeConfig\NfsExport[] $var
      * @return $this
      */
     public function setNfsExports($var)

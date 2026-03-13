@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\Runnable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A barrier runnable automatically blocks the execution of subsequent
@@ -69,5 +69,4 @@ class Barrier extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

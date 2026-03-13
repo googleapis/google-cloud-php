@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A new persistent disk or a local ssd.
@@ -343,5 +343,4 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

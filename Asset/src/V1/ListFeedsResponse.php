@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.asset.v1.ListFeedsResponse</code>
@@ -26,7 +26,7 @@ class ListFeedsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\Feed>|\Google\Protobuf\Internal\RepeatedField $feeds
+     *     @type \Google\Cloud\Asset\V1\Feed[] $feeds
      *           A list of feeds.
      * }
      */
@@ -39,7 +39,7 @@ class ListFeedsResponse extends \Google\Protobuf\Internal\Message
      * A list of feeds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Feed feeds = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\Feed>
      */
     public function getFeeds()
     {
@@ -50,7 +50,7 @@ class ListFeedsResponse extends \Google\Protobuf\Internal\Message
      * A list of feeds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Feed feeds = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\Feed>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\Feed[] $var
      * @return $this
      */
     public function setFeeds($var)

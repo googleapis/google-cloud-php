@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2\VRF;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VLAN attachment details.
@@ -286,5 +286,4 @@ class VlanAttachment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

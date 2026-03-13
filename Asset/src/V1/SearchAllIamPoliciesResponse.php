@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search all IAM policies response.
@@ -37,7 +37,7 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicySearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Asset\V1\IamPolicySearchResult[] $results
      *           A list of IAM policies that match the search query. Related information
      *           such as the associated resource is returned along with the policy.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
      * such as the associated resource is returned along with the policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicySearchResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicySearchResult>
      */
     public function getResults()
     {
@@ -68,7 +68,7 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
      * such as the associated resource is returned along with the policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicySearchResult results = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicySearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicySearchResult[] $var
      * @return $this
      */
     public function setResults($var)

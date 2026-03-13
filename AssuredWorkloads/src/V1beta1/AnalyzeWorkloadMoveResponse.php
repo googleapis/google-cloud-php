@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response that includes the analysis of the hypothetical resource move.
@@ -29,7 +29,7 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blockers
+     *     @type string[] $blockers
      *           A list of blockers that should be addressed before moving the source
      *           project or project-based workload to the destination folder-based workload.
      * }
@@ -44,7 +44,7 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      * project or project-based workload to the destination folder-based workload.
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockers()
     {
@@ -56,7 +56,7 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      * project or project-based workload to the destination folder-based workload.
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockers($var)

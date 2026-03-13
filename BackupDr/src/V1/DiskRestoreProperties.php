@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DiskRestoreProperties represents the properties of a Disk restore.
@@ -145,11 +145,11 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      *           when you create the resource.
      *     @type int|string $size_gb
      *           Required. The size of the disk in GB.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           Optional. A list of publicly available licenses that are applicable to this
      *           backup. This is applicable if the original image had licenses attached,
      *           e.g. Windows image
-     *     @type array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_feature
+     *     @type \Google\Cloud\BackupDR\V1\GuestOsFeature[] $guest_os_feature
      *           Optional. A list of features to enable in the guest operating system. This
      *           is applicable only for bootable images.
      *     @type \Google\Cloud\BackupDR\V1\CustomerEncryptionKey $disk_encryption_key
@@ -176,7 +176,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      *     @type int $architecture
      *           Optional. The architecture of the source disk. Valid values are
      *           ARM64 or X86_64.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policy
+     *     @type string[] $resource_policy
      *           Optional. Resource policies applied to this disk.
      *     @type string $type
      *           Required. URL of the disk type resource describing which disk type to use
@@ -309,7 +309,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * e.g. Windows image
      *
      * Generated from protobuf field <code>repeated string licenses = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -322,7 +322,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * e.g. Windows image
      *
      * Generated from protobuf field <code>repeated string licenses = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -338,7 +338,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * is applicable only for bootable images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\GuestOsFeature>
      */
     public function getGuestOsFeature()
     {
@@ -350,7 +350,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * is applicable only for bootable images.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeature($var)
@@ -669,7 +669,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * Optional. Resource policies applied to this disk.
      *
      * Generated from protobuf field <code>repeated string resource_policy = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicy()
     {
@@ -680,7 +680,7 @@ class DiskRestoreProperties extends \Google\Protobuf\Internal\Message
      * Optional. Resource policies applied to this disk.
      *
      * Generated from protobuf field <code>repeated string resource_policy = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicy($var)

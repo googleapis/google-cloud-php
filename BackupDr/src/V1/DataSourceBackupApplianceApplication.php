@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BackupApplianceApplication describes a Source Resource when it is an

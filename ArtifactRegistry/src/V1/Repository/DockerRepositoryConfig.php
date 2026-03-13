@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1\Repository;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DockerRepositoryConfig is docker related repository details.
@@ -74,5 +74,4 @@ class DockerRepositoryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

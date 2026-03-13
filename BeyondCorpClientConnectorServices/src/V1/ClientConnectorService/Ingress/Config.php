@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The basic ingress config for ClientGateways.
@@ -38,7 +38,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *     @type int $transport_protocol
      *           Required. Immutable. The transport protocol used between the client and
      *           the server.
-     *     @type array<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config\DestinationRoute>|\Google\Protobuf\Internal\RepeatedField $destination_routes
+     *     @type \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config\DestinationRoute[] $destination_routes
      *           Required. The settings used to configure basic ClientGateways.
      * }
      */
@@ -79,7 +79,7 @@ class Config extends \Google\Protobuf\Internal\Message
      * Required. The settings used to configure basic ClientGateways.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress.Config.DestinationRoute destination_routes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config\DestinationRoute>
      */
     public function getDestinationRoutes()
     {
@@ -90,7 +90,7 @@ class Config extends \Google\Protobuf\Internal\Message
      * Required. The settings used to configure basic ClientGateways.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService.Ingress.Config.DestinationRoute destination_routes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config\DestinationRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config\DestinationRoute[] $var
      * @return $this
      */
     public function setDestinationRoutes($var)
@@ -102,5 +102,4 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

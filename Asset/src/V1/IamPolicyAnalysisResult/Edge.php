@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A directional edge.
@@ -106,5 +106,4 @@ class Edge extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

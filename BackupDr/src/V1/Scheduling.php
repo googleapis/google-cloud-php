@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sets the scheduling options for an Instance.
@@ -83,7 +83,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           if it is terminated by Compute Engine (not terminated by a user).
      *     @type bool $preemptible
      *           Optional. Defines whether the instance is preemptible.
-     *     @type array<\Google\Cloud\BackupDR\V1\Scheduling\NodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
+     *     @type \Google\Cloud\BackupDR\V1\Scheduling\NodeAffinity[] $node_affinities
      *           Optional. A set of node affinity and anti-affinity configurations.
      *           Overrides reservationAffinity.
      *     @type int $min_node_cpus
@@ -220,7 +220,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.Scheduling.NodeAffinity node_affinities = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\Scheduling\NodeAffinity>
      */
     public function getNodeAffinities()
     {
@@ -232,7 +232,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.Scheduling.NodeAffinity node_affinities = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\Scheduling\NodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\Scheduling\NodeAffinity[] $var
      * @return $this
      */
     public function setNodeAffinities($var)

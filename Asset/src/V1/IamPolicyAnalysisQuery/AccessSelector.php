@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies roles and/or permissions to analyze, to determine both the
@@ -38,9 +38,9 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type string[] $roles
      *           Optional. The roles to appear in result.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type string[] $permissions
      *           Optional. The permissions to appear in result.
      * }
      */
@@ -53,7 +53,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The roles to appear in result.
      *
      * Generated from protobuf field <code>repeated string roles = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRoles()
     {
@@ -64,7 +64,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The roles to appear in result.
      *
      * Generated from protobuf field <code>repeated string roles = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRoles($var)
@@ -79,7 +79,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The permissions to appear in result.
      *
      * Generated from protobuf field <code>repeated string permissions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermissions()
     {
@@ -90,7 +90,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The permissions to appear in result.
      *
      * Generated from protobuf field <code>repeated string permissions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermissions($var)
@@ -102,5 +102,4 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

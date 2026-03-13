@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list tags.
@@ -37,8 +37,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag*"`
      *  To filter the results of your request to tags applied to the version
      *  `1.0` in package `my-package`, append the following filter expression to
      *  your request:
@@ -99,8 +99,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *            You can also use wildcards to match any number of characters before or
      *            after the value:
      *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag*"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag*"`
      *            To filter the results of your request to tags applied to the version
      *            `1.0` in package `my-package`, append the following filter expression to
      *            your request:
@@ -160,8 +160,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag*"`
      *  To filter the results of your request to tags applied to the version
      *  `1.0` in package `my-package`, append the following filter expression to
      *  your request:
@@ -189,8 +189,8 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/&#42;tag*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/*tag*"`
      *  To filter the results of your request to tags applied to the version
      *  `1.0` in package `my-package`, append the following filter expression to
      *  your request:

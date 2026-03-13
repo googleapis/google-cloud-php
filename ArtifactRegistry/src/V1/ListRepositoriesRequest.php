@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list repositories.
@@ -46,8 +46,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo*"`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -99,8 +99,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *            You can also use wildcards to match any number of characters before or
      *            after the value:
      *             * `name="projects/my-project/locations/us-central1/repositories/my-*"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/&#42;repo"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/&#42;repo*"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/*repo"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/*repo*"`
      *     @type string $order_by
      *           Optional. The field to order the results by.
      * }
@@ -202,8 +202,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo*"`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -225,8 +225,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/&#42;repo*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/*repo*"`
      *
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

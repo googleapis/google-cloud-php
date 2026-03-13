@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An analysis result including blockers and warnings.
@@ -37,10 +37,10 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $blockers
+     *     @type \Google\Cloud\Asset\V1\MoveImpact[] $blockers
      *           Blocking information that would prevent the target resource from moving
      *           to the specified destination at runtime.
-     *     @type array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Asset\V1\MoveImpact[] $warnings
      *           Warning information indicating that moving the target resource to the
      *           specified destination might be unsafe. This can include important policy
      *           information and configuration changes, but will not block moves at runtime.
@@ -56,7 +56,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * to the specified destination at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact blockers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\MoveImpact>
      */
     public function getBlockers()
     {
@@ -68,7 +68,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * to the specified destination at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact blockers = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\MoveImpact[] $var
      * @return $this
      */
     public function setBlockers($var)
@@ -85,7 +85,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * information and configuration changes, but will not block moves at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact warnings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\MoveImpact>
      */
     public function getWarnings()
     {
@@ -98,7 +98,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * information and configuration changes, but will not block moves at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact warnings = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\MoveImpact[] $var
      * @return $this
      */
     public function setWarnings($var)

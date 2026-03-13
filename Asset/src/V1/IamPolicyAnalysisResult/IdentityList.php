@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The identities and group edges.
@@ -30,10 +30,10 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * [identities][google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList.identities].
      * The
      * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
-     * contains a group, such as `group:parent&#64;google.com`. The
+     * contains a group, such as `group:parent\@google.com`. The
      * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
-     * contains a member of the group, such as `group:child&#64;google.com` or
-     * `user:foo&#64;google.com`. This field is present only if the
+     * contains a member of the group, such as `group:child\@google.com` or
+     * `user:foo\@google.com`. This field is present only if the
      * output_group_edges option is enabled in request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Edge group_edges = 2;</code>
@@ -46,21 +46,21 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity>|\Google\Protobuf\Internal\RepeatedField $identities
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity[] $identities
      *           Only the identities that match one of the following conditions will be
      *           presented:
      *           - The identity_selector, if it is specified in request;
      *           - Otherwise, identities reachable from the policy binding's members.
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>|\Google\Protobuf\Internal\RepeatedField $group_edges
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge[] $group_edges
      *           Group identity edges of the graph starting from the binding's
      *           group members to any node of the
      *           [identities][google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList.identities].
      *           The
      *           [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
-     *           contains a group, such as `group:parent&#64;google.com`. The
+     *           contains a group, such as `group:parent\@google.com`. The
      *           [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
-     *           contains a member of the group, such as `group:child&#64;google.com` or
-     *           `user:foo&#64;google.com`. This field is present only if the
+     *           contains a member of the group, such as `group:child\@google.com` or
+     *           `user:foo\@google.com`. This field is present only if the
      *           output_group_edges option is enabled in request.
      * }
      */
@@ -76,7 +76,7 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * - Otherwise, identities reachable from the policy binding's members.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Identity identities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity>
      */
     public function getIdentities()
     {
@@ -90,7 +90,7 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * - Otherwise, identities reachable from the policy binding's members.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Identity identities = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity[] $var
      * @return $this
      */
     public function setIdentities($var)
@@ -107,14 +107,14 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * [identities][google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList.identities].
      * The
      * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
-     * contains a group, such as `group:parent&#64;google.com`. The
+     * contains a group, such as `group:parent\@google.com`. The
      * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
-     * contains a member of the group, such as `group:child&#64;google.com` or
-     * `user:foo&#64;google.com`. This field is present only if the
+     * contains a member of the group, such as `group:child\@google.com` or
+     * `user:foo\@google.com`. This field is present only if the
      * output_group_edges option is enabled in request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Edge group_edges = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>
      */
     public function getGroupEdges()
     {
@@ -127,14 +127,14 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * [identities][google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList.identities].
      * The
      * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
-     * contains a group, such as `group:parent&#64;google.com`. The
+     * contains a group, such as `group:parent\@google.com`. The
      * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
-     * contains a member of the group, such as `group:child&#64;google.com` or
-     * `user:foo&#64;google.com`. This field is present only if the
+     * contains a member of the group, such as `group:child\@google.com` or
+     * `user:foo\@google.com`. This field is present only if the
      * output_group_edges option is enabled in request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Edge group_edges = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge[] $var
      * @return $this
      */
     public function setGroupEdges($var)
@@ -146,5 +146,4 @@ class IdentityList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ComputeInstanceBackupProperties represents Compute Engine instance backup
@@ -155,9 +155,9 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      *           resource, specify `true`. If unsure, leave this set to `false`. See the
      *           https://cloud.google.com/vpc/docs/using-routes#canipforward
      *           documentation for more information.
-     *     @type array<\Google\Cloud\BackupDR\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interface
+     *     @type \Google\Cloud\BackupDR\V1\NetworkInterface[] $network_interface
      *           An array of network access configurations for this interface.
-     *     @type array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disk
+     *     @type \Google\Cloud\BackupDR\V1\AttachedDisk[] $disk
      *           An array of disks that are associated with the instances that are created
      *           from these properties.
      *     @type \Google\Cloud\BackupDR\V1\Metadata $metadata
@@ -165,7 +165,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      *           these properties. These pairs can consist of custom metadata or predefined
      *           keys. See https://cloud.google.com/compute/docs/metadata/overview for more
      *           information.
-     *     @type array<\Google\Cloud\BackupDR\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_account
+     *     @type \Google\Cloud\BackupDR\V1\ServiceAccount[] $service_account
      *           A list of service accounts with specified scopes. Access tokens for these
      *           service accounts are available to the instances that are created from
      *           these properties. Use metadata queries to obtain the access tokens for
@@ -173,7 +173,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BackupDR\V1\Scheduling $scheduling
      *           Specifies the scheduling options for the instances that are created from
      *           these properties.
-     *     @type array<\Google\Cloud\BackupDR\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerator
+     *     @type \Google\Cloud\BackupDR\V1\AcceleratorConfig[] $guest_accelerator
      *           A list of guest accelerator cards' type and count to use for instances
      *           created from these properties.
      *     @type string $min_cpu_platform
@@ -370,7 +370,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * An array of network access configurations for this interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interface = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\NetworkInterface>
      */
     public function getNetworkInterface()
     {
@@ -381,7 +381,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * An array of network access configurations for this interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkInterface network_interface = 5;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterface($var)
@@ -397,7 +397,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disk = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\AttachedDisk>
      */
     public function getDisk()
     {
@@ -409,7 +409,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AttachedDisk disk = 6;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\AttachedDisk[] $var
      * @return $this
      */
     public function setDisk($var)
@@ -469,7 +469,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * these instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ServiceAccount service_account = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\ServiceAccount>
      */
     public function getServiceAccount()
     {
@@ -483,7 +483,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * these instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ServiceAccount service_account = 8;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\ServiceAccount[] $var
      * @return $this
      */
     public function setServiceAccount($var)
@@ -537,7 +537,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * created from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AcceleratorConfig guest_accelerator = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\AcceleratorConfig>
      */
     public function getGuestAccelerator()
     {
@@ -549,7 +549,7 @@ class ComputeInstanceBackupProperties extends \Google\Protobuf\Internal\Message
      * created from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.AcceleratorConfig guest_accelerator = 10;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setGuestAccelerator($var)

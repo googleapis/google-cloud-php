@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -45,7 +45,7 @@ class AnalyzeOrgPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult>|\Google\Protobuf\Internal\RepeatedField $org_policy_results
+     *     @type \Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult[] $org_policy_results
      *           The organization policies under the
      *           [AnalyzeOrgPoliciesRequest.scope][google.cloud.asset.v1.AnalyzeOrgPoliciesRequest.scope]
      *           with the
@@ -69,7 +69,7 @@ class AnalyzeOrgPoliciesResponse extends \Google\Protobuf\Internal\Message
      * [AnalyzeOrgPoliciesRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPoliciesRequest.constraint].
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult org_policy_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult>
      */
     public function getOrgPolicyResults()
     {
@@ -83,7 +83,7 @@ class AnalyzeOrgPoliciesResponse extends \Google\Protobuf\Internal\Message
      * [AnalyzeOrgPoliciesRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPoliciesRequest.constraint].
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPoliciesResponse.OrgPolicyResult org_policy_results = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPoliciesResponse\OrgPolicyResult[] $var
      * @return $this
      */
     public function setOrgPolicyResults($var)

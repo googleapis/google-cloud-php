@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1\RemoteRepositoryConfig\UpstreamCredentials;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Username and password credentials.
@@ -106,5 +106,4 @@ class UsernamePasswordCredentials extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

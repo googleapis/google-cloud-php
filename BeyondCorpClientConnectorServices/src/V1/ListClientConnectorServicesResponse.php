@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing ClientConnectorServices.
@@ -40,11 +40,11 @@ class ListClientConnectorServicesResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService>|\Google\Protobuf\Internal\RepeatedField $client_connector_services
+     *     @type \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService[] $client_connector_services
      *           The list of ClientConnectorService.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListClientConnectorServicesResponse extends \Google\Protobuf\Internal\Mess
      * The list of ClientConnectorService.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService client_connector_services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService>
      */
     public function getClientConnectorServices()
     {
@@ -68,7 +68,7 @@ class ListClientConnectorServicesResponse extends \Google\Protobuf\Internal\Mess
      * The list of ClientConnectorService.
      *
      * Generated from protobuf field <code>repeated .google.cloud.beyondcorp.clientconnectorservices.v1.ClientConnectorService client_connector_services = 1;</code>
-     * @param array<\Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService[] $var
      * @return $this
      */
     public function setClientConnectorServices($var)
@@ -109,7 +109,7 @@ class ListClientConnectorServicesResponse extends \Google\Protobuf\Internal\Mess
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListClientConnectorServicesResponse extends \Google\Protobuf\Internal\Mess
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

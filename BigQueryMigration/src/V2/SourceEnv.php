@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the default source environment values for the translation.
@@ -50,7 +50,7 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      *     @type string $default_database
      *           The default database name to fully qualify SQL objects when their database
      *           name is missing.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $schema_search_path
+     *     @type string[] $schema_search_path
      *           The schema search path. When SQL objects are missing schema name,
      *           translation engine will search through this list to find the value.
      *     @type string $metadata_store_dataset
@@ -100,7 +100,7 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      * translation engine will search through this list to find the value.
      *
      * Generated from protobuf field <code>repeated string schema_search_path = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSchemaSearchPath()
     {
@@ -112,7 +112,7 @@ class SourceEnv extends \Google\Protobuf\Internal\Message
      * translation engine will search through this list to find the value.
      *
      * Generated from protobuf field <code>repeated string schema_search_path = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSchemaSearchPath($var)

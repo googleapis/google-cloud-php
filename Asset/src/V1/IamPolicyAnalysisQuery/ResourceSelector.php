@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the resource to analyze for access policies, which may be set
@@ -78,5 +78,4 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

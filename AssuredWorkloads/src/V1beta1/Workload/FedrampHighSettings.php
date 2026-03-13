@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings specific to resources needed for FedRAMP High.
@@ -75,5 +75,4 @@ class FedrampHighSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

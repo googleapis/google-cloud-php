@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies an identity for which to determine resource access, based on
@@ -22,10 +22,10 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
-     * "user:mike&#64;example.com",
-     * "group:admins&#64;example.com",
+     * "user:mike\@example.com",
+     * "group:admins\@example.com",
      * "domain:google.com",
-     * "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com".
+     * "serviceAccount:my-project-id\@appspot.gserviceaccount.com".
      * Notice that wildcard characters (such as * and ?) are not supported.
      * You must give a specific identity.
      *
@@ -44,10 +44,10 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      *           [IAM policy
      *           binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      *           The examples of supported forms are:
-     *           "user:mike&#64;example.com",
-     *           "group:admins&#64;example.com",
+     *           "user:mike\@example.com",
+     *           "group:admins\@example.com",
      *           "domain:google.com",
-     *           "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com".
+     *           "serviceAccount:my-project-id\@appspot.gserviceaccount.com".
      *           Notice that wildcard characters (such as * and ?) are not supported.
      *           You must give a specific identity.
      * }
@@ -62,10 +62,10 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
-     * "user:mike&#64;example.com",
-     * "group:admins&#64;example.com",
+     * "user:mike\@example.com",
+     * "group:admins\@example.com",
      * "domain:google.com",
-     * "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com".
+     * "serviceAccount:my-project-id\@appspot.gserviceaccount.com".
      * Notice that wildcard characters (such as * and ?) are not supported.
      * You must give a specific identity.
      *
@@ -82,10 +82,10 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
-     * "user:mike&#64;example.com",
-     * "group:admins&#64;example.com",
+     * "user:mike\@example.com",
+     * "group:admins\@example.com",
      * "domain:google.com",
-     * "serviceAccount:my-project-id&#64;appspot.gserviceaccount.com".
+     * "serviceAccount:my-project-id\@appspot.gserviceaccount.com".
      * Notice that wildcard characters (such as * and ?) are not supported.
      * You must give a specific identity.
      *
@@ -102,5 +102,4 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

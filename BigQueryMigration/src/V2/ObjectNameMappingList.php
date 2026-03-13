@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a map of name mappings using a list of key:value proto messages of
@@ -29,7 +29,7 @@ class ObjectNameMappingList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\ObjectNameMapping>|\Google\Protobuf\Internal\RepeatedField $name_map
+     *     @type \Google\Cloud\BigQuery\Migration\V2\ObjectNameMapping[] $name_map
      *           The elements of the object name map.
      * }
      */
@@ -42,7 +42,7 @@ class ObjectNameMappingList extends \Google\Protobuf\Internal\Message
      * The elements of the object name map.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ObjectNameMapping name_map = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\ObjectNameMapping>
      */
     public function getNameMap()
     {
@@ -53,7 +53,7 @@ class ObjectNameMappingList extends \Google\Protobuf\Internal\Message
      * The elements of the object name map.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ObjectNameMapping name_map = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\ObjectNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\ObjectNameMapping[] $var
      * @return $this
      */
     public function setNameMap($var)

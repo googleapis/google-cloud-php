@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for registering a public SSH key in a project.
@@ -31,7 +31,7 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the key, which will become the final component
      * of the key's resource name.
      * This value must match the regex:
-     *   [a-zA-Z0-9&#64;.\-_]{1,64}
+     *   [a-zA-Z0-9\@.\-_]{1,64}
      *
      * Generated from protobuf field <code>string ssh_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -73,7 +73,7 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID to use for the key, which will become the final component
      *           of the key's resource name.
      *           This value must match the regex:
-     *             [a-zA-Z0-9&#64;.\-_]{1,64}
+     *             [a-zA-Z0-9\@.\-_]{1,64}
      * }
      */
     public function __construct($data = NULL) {
@@ -147,7 +147,7 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the key, which will become the final component
      * of the key's resource name.
      * This value must match the regex:
-     *   [a-zA-Z0-9&#64;.\-_]{1,64}
+     *   [a-zA-Z0-9\@.\-_]{1,64}
      *
      * Generated from protobuf field <code>string ssh_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -161,7 +161,7 @@ class CreateSSHKeyRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the key, which will become the final component
      * of the key's resource name.
      * This value must match the regex:
-     *   [a-zA-Z0-9&#64;.\-_]{1,64}
+     *   [a-zA-Z0-9\@.\-_]{1,64}
      *
      * Generated from protobuf field <code>string ssh_key_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * InstancePolicy describes an instance type and resources attached to each VM
@@ -84,13 +84,13 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      *     @type int $provisioning_model
      *           The provisioning model.
-     *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\Accelerator[] $accelerators
      *           The accelerators attached to each VM instance.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\Disk $boot_disk
      *           Boot disk to be created and attached to each VM by this InstancePolicy.
      *           Boot disk will be deleted when the VM is deleted.
      *           Batch API now only supports booting from image.
-     *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk[] $disks
      *           Non-boot disks to be attached for each VM created by this InstancePolicy.
      *           New disks will be deleted when the VM is deleted.
      *           A non-boot disk is a disk that can be of a device with a
@@ -194,7 +194,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * The accelerators attached to each VM instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.Accelerator accelerators = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>
      */
     public function getAccelerators()
     {
@@ -205,7 +205,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * The accelerators attached to each VM instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.Accelerator accelerators = 5;</code>
-     * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\Accelerator[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -264,7 +264,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>
      */
     public function getDisks()
     {
@@ -279,7 +279,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      * storage and accessing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
-     * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -323,5 +323,4 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

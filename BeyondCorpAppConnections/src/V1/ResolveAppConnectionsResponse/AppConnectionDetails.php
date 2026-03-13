@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnections\V1\ResolveAppConnectionsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the AppConnection.
@@ -37,7 +37,7 @@ class AppConnectionDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection $app_connection
      *           A BeyondCorp AppConnection in the project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $recent_mig_vms
+     *     @type string[] $recent_mig_vms
      *           If type=GCP_REGIONAL_MIG, contains most recent VM instances, like
      *           `https://www.googleapis.com/compute/v1/projects/{project_id}/zones/{zone_id}/instances/{instance_id}`.
      * }
@@ -88,7 +88,7 @@ class AppConnectionDetails extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/{project_id}/zones/{zone_id}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>repeated string recent_mig_vms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRecentMigVms()
     {
@@ -100,7 +100,7 @@ class AppConnectionDetails extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/{project_id}/zones/{zone_id}/instances/{instance_id}`.
      *
      * Generated from protobuf field <code>repeated string recent_mig_vms = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRecentMigVms($var)
@@ -112,5 +112,4 @@ class AppConnectionDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

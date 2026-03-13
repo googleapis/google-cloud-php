@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing docker images.
@@ -35,7 +35,7 @@ class ListDockerImagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\DockerImage>|\Google\Protobuf\Internal\RepeatedField $docker_images
+     *     @type \Google\Cloud\ArtifactRegistry\V1\DockerImage[] $docker_images
      *           The docker images returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of artifacts, or empty if there are no
@@ -51,7 +51,7 @@ class ListDockerImagesResponse extends \Google\Protobuf\Internal\Message
      * The docker images returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.DockerImage docker_images = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\DockerImage>
      */
     public function getDockerImages()
     {
@@ -62,7 +62,7 @@ class ListDockerImagesResponse extends \Google\Protobuf\Internal\Message
      * The docker images returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.DockerImage docker_images = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\DockerImage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\DockerImage[] $var
      * @return $this
      */
     public function setDockerImages($var)

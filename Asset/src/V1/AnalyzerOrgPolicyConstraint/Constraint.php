@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of a constraint.
@@ -253,5 +253,4 @@ class Constraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

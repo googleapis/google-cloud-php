@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for restoring from a Backup.
@@ -17,7 +17,7 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Backup instance, in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;backupVaults/&#42;&#47;dataSources/&#42;&#47;backups/'.
+     * 'projects/{@*}locations/{@*}backupVaults/{@*}dataSources/{@*}backups/'.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -78,7 +78,7 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the Backup instance, in the format
-     *           'projects/&#42;&#47;locations/&#42;&#47;backupVaults/&#42;&#47;dataSources/&#42;&#47;backups/'.
+     *           'projects/{@*}locations/{@*}backupVaults/{@*}dataSources/{@*}backups/'.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -120,7 +120,7 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Backup instance, in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;backupVaults/&#42;&#47;dataSources/&#42;&#47;backups/'.
+     * 'projects/{@*}locations/{@*}backupVaults/{@*}dataSources/{@*}backups/'.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -132,7 +132,7 @@ class RestoreBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Backup instance, in the format
-     * 'projects/&#42;&#47;locations/&#42;&#47;backupVaults/&#42;&#47;dataSources/&#42;&#47;backups/'.
+     * 'projects/{@*}locations/{@*}backupVaults/{@*}dataSources/{@*}backups/'.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

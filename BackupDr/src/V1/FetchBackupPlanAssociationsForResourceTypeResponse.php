@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the FetchBackupPlanAssociationsForResourceType method.
@@ -35,7 +35,7 @@ class FetchBackupPlanAssociationsForResourceTypeResponse extends \Google\Protobu
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>|\Google\Protobuf\Internal\RepeatedField $backup_plan_associations
+     *     @type \Google\Cloud\BackupDR\V1\BackupPlanAssociation[] $backup_plan_associations
      *           Output only. The BackupPlanAssociations from the specified parent.
      *     @type string $next_page_token
      *           Output only. A token, which can be sent as `page_token` to retrieve the
@@ -51,7 +51,7 @@ class FetchBackupPlanAssociationsForResourceTypeResponse extends \Google\Protobu
      * Output only. The BackupPlanAssociations from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlanAssociation backup_plan_associations = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>
      */
     public function getBackupPlanAssociations()
     {
@@ -62,7 +62,7 @@ class FetchBackupPlanAssociationsForResourceTypeResponse extends \Google\Protobu
      * Output only. The BackupPlanAssociations from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupPlanAssociation backup_plan_associations = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupPlanAssociation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupPlanAssociation[] $var
      * @return $this
      */
     public function setBackupPlanAssociations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A parameter used to define custom fields in a data source definition.
@@ -134,13 +134,13 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *           Deprecated. This field has no effect.
      *     @type string $validation_regex
      *           Regular expression which can be used for parameter validation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type string[] $allowed_values
      *           All possible values for the parameter.
      *     @type \Google\Protobuf\DoubleValue $min_value
      *           For integer and double values specifies minimum allowed value.
      *     @type \Google\Protobuf\DoubleValue $max_value
      *           For integer and double values specifies maximum allowed value.
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[] $fields
      *           Deprecated. This field has no effect.
      *     @type string $validation_description
      *           Description of the requirements for this field, in case the user input does
@@ -347,7 +347,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * All possible values for the parameter.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedValues()
     {
@@ -358,7 +358,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * All possible values for the parameter.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -499,7 +499,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>
      */
     public function getFields()
     {
@@ -510,7 +510,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      * Deprecated. This field has no effect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter fields = 11;</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[] $var
      * @return $this
      */
     public function setFields($var)

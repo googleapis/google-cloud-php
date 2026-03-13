@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Virtual repository configuration.
@@ -29,7 +29,7 @@ class VirtualRepositoryConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\UpstreamPolicy>|\Google\Protobuf\Internal\RepeatedField $upstream_policies
+     *     @type \Google\Cloud\ArtifactRegistry\V1\UpstreamPolicy[] $upstream_policies
      *           Policies that configure the upstream artifacts distributed by the Virtual
      *           Repository. Upstream policies cannot be set on a standard repository.
      * }
@@ -44,7 +44,7 @@ class VirtualRepositoryConfig extends \Google\Protobuf\Internal\Message
      * Repository. Upstream policies cannot be set on a standard repository.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.UpstreamPolicy upstream_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\UpstreamPolicy>
      */
     public function getUpstreamPolicies()
     {
@@ -56,7 +56,7 @@ class VirtualRepositoryConfig extends \Google\Protobuf\Internal\Message
      * Repository. Upstream policies cannot be set on a standard repository.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.UpstreamPolicy upstream_policies = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\UpstreamPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\UpstreamPolicy[] $var
      * @return $this
      */
     public function setUpstreamPolicies($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Cloud Batch Job description.
@@ -114,7 +114,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Higher value indicates higher priority.
      *           A job with higher priority value is more likely to run earlier if all other
      *           requirements are satisfied.
-     *     @type array<\Google\Cloud\Batch\V1\TaskGroup>|\Google\Protobuf\Internal\RepeatedField $task_groups
+     *     @type \Google\Cloud\Batch\V1\TaskGroup[] $task_groups
      *           Required. TaskGroups in the Job. Only one TaskGroup is supported now.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy $allocation_policy
      *           Compute resource allocation for all TaskGroups in the Job.
@@ -138,7 +138,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The last time the Job was updated.
      *     @type \Google\Cloud\Batch\V1\LogsPolicy $logs_policy
      *           Log preservation policy for the Job.
-     *     @type array<\Google\Cloud\Batch\V1\JobNotification>|\Google\Protobuf\Internal\RepeatedField $notifications
+     *     @type \Google\Cloud\Batch\V1\JobNotification[] $notifications
      *           Notification configurations.
      * }
      */
@@ -239,7 +239,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Required. TaskGroups in the Job. Only one TaskGroup is supported now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.TaskGroup task_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\TaskGroup>
      */
     public function getTaskGroups()
     {
@@ -250,7 +250,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Required. TaskGroups in the Job. Only one TaskGroup is supported now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.TaskGroup task_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Batch\V1\TaskGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\TaskGroup[] $var
      * @return $this
      */
     public function setTaskGroups($var)
@@ -491,7 +491,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Notification configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.JobNotification notifications = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\JobNotification>
      */
     public function getNotifications()
     {
@@ -502,7 +502,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Notification configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.JobNotification notifications = 14;</code>
-     * @param array<\Google\Cloud\Batch\V1\JobNotification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\JobNotification[] $var
      * @return $this
      */
     public function setNotifications($var)

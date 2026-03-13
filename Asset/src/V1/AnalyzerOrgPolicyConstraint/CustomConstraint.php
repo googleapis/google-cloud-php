@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of a custom constraint.
@@ -78,11 +78,11 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *           * `organizations/{organization_id}/customConstraints/{custom_constraint_id}`
      *           Example :
      *           "organizations/123/customConstraints/custom.createOnlyE2TypeVms"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *     @type string[] $resource_types
      *           The Resource Instance type on which this policy applies to. Format will
      *           be of the form : "<canonical service name>/<type>" Example:
      *            * `compute.googleapis.com/Instance`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $method_types
+     *     @type int[] $method_types
      *           All the operations being applied for this constraint.
      *     @type string $condition
      *           Organization Policy condition/expression. For example:
@@ -141,7 +141,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceTypes()
     {
@@ -154,7 +154,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceTypes($var)
@@ -169,7 +169,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      * All the operations being applied for this constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint.MethodType method_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMethodTypes()
     {
@@ -180,7 +180,7 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
      * All the operations being applied for this constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicyConstraint.CustomConstraint.MethodType method_types = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMethodTypes($var)
@@ -300,5 +300,4 @@ class CustomConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

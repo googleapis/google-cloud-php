@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to the listing of subscriptions.
@@ -34,7 +34,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription[] $subscriptions
      *           The list of subscriptions.
      *     @type string $next_page_token
      *           Next page token.
@@ -49,7 +49,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * The list of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription subscriptions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>
      */
     public function getSubscriptions()
     {
@@ -60,7 +60,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * The list of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription subscriptions = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription[] $var
      * @return $this
      */
     public function setSubscriptions($var)

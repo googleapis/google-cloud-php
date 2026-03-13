@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output only. A row in the confusion matrix.
@@ -31,7 +31,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $example_count
+     *     @type int[] $example_count
      *           Output only. Value of the specific cell in the confusion matrix.
      *           The number of values each row has (i.e. the length of the row) is equal
      *           to the length of the `annotation_spec_id` field or, if that one is not
@@ -50,7 +50,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * populated, length of the [display_name][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      *
      * Generated from protobuf field <code>repeated int32 example_count = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getExampleCount()
     {
@@ -64,7 +64,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * populated, length of the [display_name][google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.display_name] field.
      *
      * Generated from protobuf field <code>repeated int32 example_count = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setExampleCount($var)
@@ -76,5 +76,4 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

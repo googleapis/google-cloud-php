@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A result of Resource Search, containing information of a cloud resource.
@@ -444,7 +444,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * Use a field query. Example: `project:12345`
      *           * Use a free text query. Example: `12345`
      *           * Specify the `scope` field as this project in your search request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type string[] $folders
      *           The folder(s) that this resource belongs to, in the form of
      *           folders/{FOLDER_NUMBER}. This field is available when the resource
      *           belongs to one or more folders.
@@ -492,7 +492,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - query by a given label. Example: `labels.env:prod`
      *               - query by a given label's existence. Example: `labels.env:*`
      *           * Use a free text query. Example: `prod`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Network tags associated with this resource. Like labels, network tags are a
      *           type of annotations used to group Google Cloud resources. See [Labelling
      *           Google Cloud
@@ -517,7 +517,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           To search against the `kms_key`:
      *           * Use a field query. Example: `kmsKey:key`
      *           * Use a free text query. Example: `key`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_keys
+     *     @type string[] $kms_keys
      *           The Cloud KMS
      *           [CryptoKey](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys)
      *           names or
@@ -590,14 +590,14 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `parentFullResourceName:"project-name"`
      *           * Use a free text query. Example:
      *           `project-name`
-     *     @type array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $versioned_resources
+     *     @type \Google\Cloud\Asset\V1\VersionedResource[] $versioned_resources
      *           Versioned resource representations of this resource. This is repeated
      *           because there could be multiple versions of resource representations during
      *           version migration.
      *           This `versioned_resources` field is not searchable. Some attributes of the
      *           resource representations are exposed in `additional_attributes` field, so
      *           as to allow users to search on them.
-     *     @type array<\Google\Cloud\Asset\V1\AttachedResource>|\Google\Protobuf\Internal\RepeatedField $attached_resources
+     *     @type \Google\Cloud\Asset\V1\AttachedResource[] $attached_resources
      *           Attached resources of this resource. For example, an OSConfig
      *           Inventory is an attached resource of a Compute Instance. This field is
      *           repeated because a resource could have multiple attached resources.
@@ -611,7 +611,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
      *           See [supported relationship
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *     @type string[] $tag_keys
      *           This field is only present for the purpose of backward compatibility.
      *           Use the `tags` field instead.
      *           TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
@@ -622,7 +622,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagKeys:"env"`
      *           * Use a free text query. Example:
      *               - `env`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
+     *     @type string[] $tag_values
      *           This field is only present for the purpose of backward compatibility.
      *           Use the `tags` field instead.
      *           TagValue namespaced names, in the format of
@@ -635,7 +635,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagValues="123456789/env/prod"`
      *           * Use a free text query. Example:
      *               - `prod`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_value_ids
+     *     @type string[] $tag_value_ids
      *           This field is only present for the purpose of backward compatibility.
      *           Use the `tags` field instead.
      *           TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
@@ -644,7 +644,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagValueIds="tagValues/456"`
      *           * Use a free text query. Example:
      *               - `456`
-     *     @type array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\Asset\V1\Tag[] $tags
      *           The tags directly attached to this resource.
      *           To search against the `tags`:
      *           * Use a field query. Example:
@@ -659,7 +659,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagValueIds="tagValues/456"`
      *           * Use a free text query. Example:
      *               - `env/prod`
-     *     @type array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *     @type \Google\Cloud\Asset\V1\EffectiveTagDetails[] $effective_tags
      *           The effective tags on this resource. All of the tags that are both attached
      *           to and inherited by a resource are collectively called the effective
      *           tags. For more information, see [tag
@@ -675,7 +675,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `effectiveTagValues:"123456789/env/prod*"`
      *               - `effectiveTagValues="123456789/env/prod"`
      *               - `effectiveTagValueIds="tagValues/456"`
-     *     @type array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $enrichments
+     *     @type \Google\Cloud\Asset\V1\AssetEnrichment[] $enrichments
      *           Enrichments of the asset. Currently supported enrichment types with
      *           SearchAllResources API:
      *           * RESOURCE_OWNERS
@@ -833,7 +833,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Specify the `scope` field as this folder in your search request.
      *
      * Generated from protobuf field <code>repeated string folders = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFolders()
     {
@@ -850,7 +850,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Specify the `scope` field as this folder in your search request.
      *
      * Generated from protobuf field <code>repeated string folders = 17;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFolders($var)
@@ -1063,7 +1063,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -1082,7 +1082,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -1163,7 +1163,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example: `key`
      *
      * Generated from protobuf field <code>repeated string kms_keys = 28;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKmsKeys()
     {
@@ -1182,7 +1182,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * Use a free text query. Example: `key`
      *
      * Generated from protobuf field <code>repeated string kms_keys = 28;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKmsKeys($var)
@@ -1468,7 +1468,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\VersionedResource>
      */
     public function getVersionedResources()
     {
@@ -1484,7 +1484,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
-     * @param array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\VersionedResource[] $var
      * @return $this
      */
     public function setVersionedResources($var)
@@ -1504,7 +1504,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AttachedResource>
      */
     public function getAttachedResources()
     {
@@ -1520,7 +1520,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
-     * @param array<\Google\Cloud\Asset\V1\AttachedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AttachedResource[] $var
      * @return $this
      */
     public function setAttachedResources($var)
@@ -1580,7 +1580,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `env`
      *
      * Generated from protobuf field <code>repeated string tag_keys = 23 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getTagKeys()
@@ -1604,7 +1604,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `env`
      *
      * Generated from protobuf field <code>repeated string tag_keys = 23 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -1634,7 +1634,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `prod`
      *
      * Generated from protobuf field <code>repeated string tag_values = 25 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getTagValues()
@@ -1660,7 +1660,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `prod`
      *
      * Generated from protobuf field <code>repeated string tag_values = 25 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -1686,7 +1686,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `456`
      *
      * Generated from protobuf field <code>repeated string tag_value_ids = 26 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getTagValueIds()
@@ -1708,7 +1708,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `456`
      *
      * Generated from protobuf field <code>repeated string tag_value_ids = 26 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */
@@ -1740,7 +1740,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `env/prod`
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag tags = 29;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\Tag>
      */
     public function getTags()
     {
@@ -1764,7 +1764,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `env/prod`
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag tags = 29;</code>
-     * @param array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\Tag[] $var
      * @return $this
      */
     public function setTags($var)
@@ -1793,7 +1793,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `effectiveTagValueIds="tagValues/456"`
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 30;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\EffectiveTagDetails>
      */
     public function getEffectiveTags()
     {
@@ -1818,7 +1818,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `effectiveTagValueIds="tagValues/456"`
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 30;</code>
-     * @param array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\EffectiveTagDetails[] $var
      * @return $this
      */
     public function setEffectiveTags($var)
@@ -1850,7 +1850,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AssetEnrichment>
      */
     public function getEnrichments()
     {
@@ -1878,7 +1878,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AssetEnrichment enrichments = 31;</code>
-     * @param array<\Google\Cloud\Asset\V1\AssetEnrichment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AssetEnrichment[] $var
      * @return $this
      */
     public function setEnrichments($var)

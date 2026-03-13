@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for getting all available OS images.
@@ -35,7 +35,7 @@ class ListOSImagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\OSImage>|\Google\Protobuf\Internal\RepeatedField $os_images
+     *     @type \Google\Cloud\BareMetalSolution\V2\OSImage[] $os_images
      *           The OS images available.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListOSImagesResponse extends \Google\Protobuf\Internal\Message
      * The OS images available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.OSImage os_images = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\OSImage>
      */
     public function getOsImages()
     {
@@ -62,7 +62,7 @@ class ListOSImagesResponse extends \Google\Protobuf\Internal\Message
      * The OS images available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.OSImage os_images = 1;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\OSImage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\OSImage[] $var
      * @return $this
      */
     public function setOsImages($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `StandardSchedule` defines a schedule that run within the confines of a
@@ -115,13 +115,13 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      *           GMI while taking a backup and 5GB/S while doing a restore. Given the amount
      *           of parallel backups and restore we are targeting, this will potentially
      *           take the backup time to mins and hours (in worst case scenario).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_week
+     *     @type int[] $days_of_week
      *           Optional. Specifies days of week like, MONDAY or TUESDAY, on which jobs
      *           will run.
      *           This is required for `recurrence_type`, `WEEKLY` and is not applicable
      *           otherwise. A validation error will occur if a value is supplied and
      *           `recurrence_type` is not `WEEKLY`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_month
+     *     @type int[] $days_of_month
      *           Optional. Specifies days of months like 1, 5, or 14 on which jobs will run.
      *           Values for `days_of_month` are only applicable for `recurrence_type`,
      *           `MONTHLY` and `YEARLY`. A validation error will occur if other values are
@@ -133,7 +133,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      *           e.g. `LAST`.
      *           This field is only applicable for `recurrence_type`, `MONTHLY` and
      *           `YEARLY`. A validation error will occur if other values are supplied.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $months
+     *     @type int[] $months
      *           Optional. Specifies the months of year, like `FEBRUARY` and/or `MAY`, on
      *           which jobs will run.
      *           This field is only applicable when `recurrence_type` is `YEARLY`. A
@@ -233,7 +233,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * `recurrence_type` is not `WEEKLY`.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfWeek()
     {
@@ -248,7 +248,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * `recurrence_type` is not `WEEKLY`.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfWeek($var)
@@ -266,7 +266,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * supplied.
      *
      * Generated from protobuf field <code>repeated int32 days_of_month = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfMonth()
     {
@@ -280,7 +280,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * supplied.
      *
      * Generated from protobuf field <code>repeated int32 days_of_month = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfMonth($var)
@@ -344,7 +344,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * validation error will occur if other values are supplied.
      *
      * Generated from protobuf field <code>repeated .google.type.Month months = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMonths()
     {
@@ -358,7 +358,7 @@ class StandardSchedule extends \Google\Protobuf\Internal\Message
      * validation error will occur if other values are supplied.
      *
      * Generated from protobuf field <code>repeated .google.type.Month months = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMonths($var)

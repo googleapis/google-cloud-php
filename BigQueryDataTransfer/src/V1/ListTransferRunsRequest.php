@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to list data transfer runs.
@@ -81,7 +81,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      *           retrieved. Format of transfer configuration resource name is:
      *           `projects/{project_id}/transferConfigs/{config_id}` or
      *           `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $states
+     *     @type int[] $states
      *           When specified, only transfer runs with requested states are returned.
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -136,7 +136,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * When specified, only transfer runs with requested states are returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferState states = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getStates()
     {
@@ -147,7 +147,7 @@ class ListTransferRunsRequest extends \Google\Protobuf\Internal\Message
      * When specified, only transfer runs with requested states are returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferState states = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setStates($var)

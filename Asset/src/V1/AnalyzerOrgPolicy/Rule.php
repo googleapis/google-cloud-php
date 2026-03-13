@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzerOrgPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This rule message is a customized version of the one defined in the
@@ -325,5 +325,4 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

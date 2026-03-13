@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing npm packages.
@@ -35,7 +35,7 @@ class ListNpmPackagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\NpmPackage>|\Google\Protobuf\Internal\RepeatedField $npm_packages
+     *     @type \Google\Cloud\ArtifactRegistry\V1\NpmPackage[] $npm_packages
      *           The npm packages returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of artifacts, or empty if there are no
@@ -51,7 +51,7 @@ class ListNpmPackagesResponse extends \Google\Protobuf\Internal\Message
      * The npm packages returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.NpmPackage npm_packages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\NpmPackage>
      */
     public function getNpmPackages()
     {
@@ -62,7 +62,7 @@ class ListNpmPackagesResponse extends \Google\Protobuf\Internal\Message
      * The npm packages returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.NpmPackage npm_packages = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\NpmPackage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\NpmPackage[] $var
      * @return $this
      */
     public function setNpmPackages($var)

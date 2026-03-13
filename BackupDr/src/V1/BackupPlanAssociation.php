@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A BackupPlanAssociation represents a single BackupPlanAssociation which
@@ -129,7 +129,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the instance was updated.
      *     @type int $state
      *           Output only. The BackupPlanAssociation resource state.
-     *     @type array<\Google\Cloud\BackupDR\V1\RuleConfigInfo>|\Google\Protobuf\Internal\RepeatedField $rules_config_info
+     *     @type \Google\Cloud\BackupDR\V1\RuleConfigInfo[] $rules_config_info
      *           Output only. The config info related to backup rules.
      *     @type string $data_source
      *           Output only. Resource name of data source which will be used as storage
@@ -377,7 +377,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      * Output only. The config info related to backup rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.RuleConfigInfo rules_config_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\RuleConfigInfo>
      */
     public function getRulesConfigInfo()
     {
@@ -388,7 +388,7 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      * Output only. The config info related to backup rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.RuleConfigInfo rules_config_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\RuleConfigInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\RuleConfigInfo[] $var
      * @return $this
      */
     public function setRulesConfigInfo($var)

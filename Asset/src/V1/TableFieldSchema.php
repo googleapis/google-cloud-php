@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A field in TableSchema.
@@ -87,7 +87,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *     @type string $mode
      *           The field mode. Possible values include NULLABLE, REQUIRED and
      *           REPEATED. The default value is NULLABLE.
-     *     @type array<\Google\Cloud\Asset\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Asset\V1\TableFieldSchema[] $fields
      *           Describes the nested schema fields if the type property is set
      *           to RECORD.
      * }
@@ -214,7 +214,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * to RECORD.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.TableFieldSchema fields = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\TableFieldSchema>
      */
     public function getFields()
     {
@@ -226,7 +226,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * to RECORD.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.TableFieldSchema fields = 4;</code>
-     * @param array<\Google\Cloud\Asset\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\TableFieldSchema[] $var
      * @return $this
      */
     public function setFields($var)

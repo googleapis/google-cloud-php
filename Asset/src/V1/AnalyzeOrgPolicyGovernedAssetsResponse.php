@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -42,7 +42,7 @@ class AnalyzeOrgPolicyGovernedAssetsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset>|\Google\Protobuf\Internal\RepeatedField $governed_assets
+     *     @type \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset[] $governed_assets
      *           The list of the analyzed governed assets.
      *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint $constraint
      *           The definition of the constraint in the request.
@@ -60,7 +60,7 @@ class AnalyzeOrgPolicyGovernedAssetsResponse extends \Google\Protobuf\Internal\M
      * The list of the analyzed governed assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset governed_assets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset>
      */
     public function getGovernedAssets()
     {
@@ -71,7 +71,7 @@ class AnalyzeOrgPolicyGovernedAssetsResponse extends \Google\Protobuf\Internal\M
      * The list of the analyzed governed assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset governed_assets = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse\GovernedAsset[] $var
      * @return $this
      */
     public function setGovernedAssets($var)

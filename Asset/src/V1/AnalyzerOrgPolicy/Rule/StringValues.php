@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The string values for the list constraints.
@@ -34,9 +34,9 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type string[] $allowed_values
      *           List of values allowed at this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $denied_values
+     *     @type string[] $denied_values
      *           List of values denied at this resource.
      * }
      */
@@ -49,7 +49,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values allowed at this resource.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedValues()
     {
@@ -60,7 +60,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values allowed at this resource.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -75,7 +75,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values denied at this resource.
      *
      * Generated from protobuf field <code>repeated string denied_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeniedValues()
     {
@@ -86,7 +86,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values denied at this resource.
      *
      * Generated from protobuf field <code>repeated string denied_values = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeniedValues($var)
@@ -98,5 +98,4 @@ class StringValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

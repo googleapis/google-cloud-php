@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An identity under analysis.
@@ -20,9 +20,9 @@ class Identity extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For
      * example, they might be formatted like the following:
-     * - user:foo&#64;google.com
-     * - group:group1&#64;google.com
-     * - serviceAccount:s1&#64;prj1.iam.gserviceaccount.com
+     * - user:foo\@google.com
+     * - group:group1\@google.com
+     * - serviceAccount:s1\@prj1.iam.gserviceaccount.com
      * - projectOwner:some_project_id
      * - domain:google.com
      * - allUsers
@@ -48,9 +48,9 @@ class Identity extends \Google\Protobuf\Internal\Message
      *           [IAM policy
      *           binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For
      *           example, they might be formatted like the following:
-     *           - user:foo&#64;google.com
-     *           - group:group1&#64;google.com
-     *           - serviceAccount:s1&#64;prj1.iam.gserviceaccount.com
+     *           - user:foo\@google.com
+     *           - group:group1\@google.com
+     *           - serviceAccount:s1\@prj1.iam.gserviceaccount.com
      *           - projectOwner:some_project_id
      *           - domain:google.com
      *           - allUsers
@@ -68,9 +68,9 @@ class Identity extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For
      * example, they might be formatted like the following:
-     * - user:foo&#64;google.com
-     * - group:group1&#64;google.com
-     * - serviceAccount:s1&#64;prj1.iam.gserviceaccount.com
+     * - user:foo\@google.com
+     * - group:group1\@google.com
+     * - serviceAccount:s1\@prj1.iam.gserviceaccount.com
      * - projectOwner:some_project_id
      * - domain:google.com
      * - allUsers
@@ -88,9 +88,9 @@ class Identity extends \Google\Protobuf\Internal\Message
      * [IAM policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding). For
      * example, they might be formatted like the following:
-     * - user:foo&#64;google.com
-     * - group:group1&#64;google.com
-     * - serviceAccount:s1&#64;prj1.iam.gserviceaccount.com
+     * - user:foo\@google.com
+     * - group:group1\@google.com
+     * - serviceAccount:s1\@prj1.iam.gserviceaccount.com
      * - projectOwner:some_project_id
      * - domain:google.com
      * - allUsers
@@ -144,5 +144,4 @@ class Identity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

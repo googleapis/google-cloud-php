@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Network template.
@@ -50,9 +50,9 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/serverNetworkTemplate/{server_network_template}`
      *           Generally, the {server_network_template} follows the syntax of
      *           "bond<interface_type_index><bond_mode>" or "nic<interface_type_index>".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_instance_types
+     *     @type string[] $applicable_instance_types
      *           Instance types this template is applicable to.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $logical_interfaces
+     *     @type \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface[] $logical_interfaces
      *           Logical interfaces.
      * }
      */
@@ -99,7 +99,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Instance types this template is applicable to.
      *
      * Generated from protobuf field <code>repeated string applicable_instance_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableInstanceTypes()
     {
@@ -110,7 +110,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Instance types this template is applicable to.
      *
      * Generated from protobuf field <code>repeated string applicable_instance_types = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableInstanceTypes($var)
@@ -125,7 +125,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Logical interfaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.ServerNetworkTemplate.LogicalInterface logical_interfaces = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface>
      */
     public function getLogicalInterfaces()
     {
@@ -136,7 +136,7 @@ class ServerNetworkTemplate extends \Google\Protobuf\Internal\Message
      * Logical interfaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.ServerNetworkTemplate.LogicalInterface logical_interfaces = 3;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\ServerNetworkTemplate\LogicalInterface[] $var
      * @return $this
      */
     public function setLogicalInterfaces($var)

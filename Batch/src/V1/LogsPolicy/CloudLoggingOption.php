@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\LogsPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `CloudLoggingOption` contains additional settings for Cloud Logging logs
@@ -93,5 +93,4 @@ class CloudLoggingOption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
