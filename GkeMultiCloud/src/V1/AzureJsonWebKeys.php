@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AzureJsonWebKeys is a valid JSON Web Key Set as specififed in RFC 7517.
@@ -30,7 +30,7 @@ class AzureJsonWebKeys extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\Jwk>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\GkeMultiCloud\V1\Jwk[] $keys
      *           The public component of the keys used by the cluster to sign token
      *           requests.
      * }
@@ -45,7 +45,7 @@ class AzureJsonWebKeys extends \Google\Protobuf\Internal\Message
      * requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Jwk keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\Jwk>
      */
     public function getKeys()
     {
@@ -57,7 +57,7 @@ class AzureJsonWebKeys extends \Google\Protobuf\Internal\Message
      * requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.Jwk keys = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\Jwk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\Jwk[] $var
      * @return $this
      */
     public function setKeys($var)

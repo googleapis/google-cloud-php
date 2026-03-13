@@ -59,6 +59,3 @@ class Management
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Management::class, \Google\Cloud\GkeHub\ConfigManagement\V1\MembershipSpec_Management::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identities of a group-type subject for Attached clusters.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttachedClusterGroup extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the group, e.g. `my-group&#64;domain.com`.
+     * Required. The name of the group, e.g. `my-group\@domain.com`.
      *
      * Generated from protobuf field <code>string group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +29,7 @@ class AttachedClusterGroup extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $group
-     *           Required. The name of the group, e.g. `my-group&#64;domain.com`.
+     *           Required. The name of the group, e.g. `my-group\@domain.com`.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class AttachedClusterGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the group, e.g. `my-group&#64;domain.com`.
+     * Required. The name of the group, e.g. `my-group\@domain.com`.
      *
      * Generated from protobuf field <code>string group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -49,7 +49,7 @@ class AttachedClusterGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the group, e.g. `my-group&#64;domain.com`.
+     * Required. The name of the group, e.g. `my-group\@domain.com`.
      *
      * Generated from protobuf field <code>string group = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

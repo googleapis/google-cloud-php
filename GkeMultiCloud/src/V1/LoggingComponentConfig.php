@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that describe the Logging component configuration in a cluster.
@@ -28,7 +28,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $enable_components
+     *     @type int[] $enable_components
      *           The components to be enabled.
      * }
      */
@@ -41,7 +41,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * The components to be enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEnableComponents()
     {
@@ -52,7 +52,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * The components to be enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEnableComponents($var)

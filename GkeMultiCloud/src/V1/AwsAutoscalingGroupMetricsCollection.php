@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration related to CloudWatch metrics collection in an AWS
@@ -43,7 +43,7 @@ class AwsAutoscalingGroupMetricsCollection extends \Google\Protobuf\Internal\Mes
      *     @type string $granularity
      *           Required. The frequency at which EC2 Auto Scaling sends aggregated data to
      *           AWS CloudWatch. The only valid value is "1Minute".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type string[] $metrics
      *           Optional. The metrics to enable. For a list of valid metrics, see
      *           https://docs.aws.amazon.com/autoscaling/ec2/APIReference/API_EnableMetricsCollection.html.
      *           If you specify Granularity and don't specify any metrics, all metrics are
@@ -90,7 +90,7 @@ class AwsAutoscalingGroupMetricsCollection extends \Google\Protobuf\Internal\Mes
      * enabled.
      *
      * Generated from protobuf field <code>repeated string metrics = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetrics()
     {
@@ -104,7 +104,7 @@ class AwsAutoscalingGroupMetricsCollection extends \Google\Protobuf\Internal\Mes
      * enabled.
      *
      * Generated from protobuf field <code>repeated string metrics = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetrics($var)
