@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1\Rollout;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Strategy used to delete a service. This strategy is a placeholder only
@@ -31,5 +31,4 @@ class DeleteServiceStrategy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

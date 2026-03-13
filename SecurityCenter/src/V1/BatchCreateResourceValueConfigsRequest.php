@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to create multiple resource value configs
@@ -58,7 +58,7 @@ class BatchCreateResourceValueConfigsRequest extends \Google\Protobuf\Internal\M
      *           Required. Resource name of the new ResourceValueConfig's parent.
      *           The parent field in the CreateResourceValueConfigRequest
      *           messages must either be empty or match this field.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest[] $requests
      *           Required. The resource value configs to be created.
      * }
      */
@@ -101,7 +101,7 @@ class BatchCreateResourceValueConfigsRequest extends \Google\Protobuf\Internal\M
      * Required. The resource value configs to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CreateResourceValueConfigRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest>
      */
     public function getRequests()
     {
@@ -112,7 +112,7 @@ class BatchCreateResourceValueConfigsRequest extends \Google\Protobuf\Internal\M
      * Required. The resource value configs to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CreateResourceValueConfigRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\CreateResourceValueConfigRequest[] $var
      * @return $this
      */
     public function setRequests($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -43,13 +43,13 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $certificates
+     *     @type \Google\Cloud\Security\PrivateCA\V1\Certificate[] $certificates
      *           The list of [Certificates][google.cloud.security.privateca.v1.Certificate].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListCertificatesRequest.page_token][google.cloud.security.privateca.v1.ListCertificatesRequest.page_token]
      *           to retrieve the next page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
      */
@@ -62,7 +62,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * The list of [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.Certificate certificates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\Certificate>
      */
     public function getCertificates()
     {
@@ -73,7 +73,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * The list of [Certificates][google.cloud.security.privateca.v1.Certificate].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.Certificate certificates = 1;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\Certificate[] $var
      * @return $this
      */
     public function setCertificates($var)
@@ -118,7 +118,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -129,7 +129,7 @@ class ListCertificatesResponse extends \Google\Protobuf\Internal\Message
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

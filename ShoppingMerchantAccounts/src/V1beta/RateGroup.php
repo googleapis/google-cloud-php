@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Shipping rate group definitions. Only the last one is allowed to have an
@@ -71,7 +71,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_shipping_labels
+     *     @type string[] $applicable_shipping_labels
      *           Required. A list of [shipping
      *           labels](https://support.google.com/merchants/answer/6324504) defining the
      *           products to which this rate group applies to. This is a disjunction: only
@@ -84,10 +84,10 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      *           A table defining the rate group, when `single_value` is not
      *           expressive enough. Can only be set if `single_value` is not
      *           set.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Table>|\Google\Protobuf\Internal\RepeatedField $subtables
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Table[] $subtables
      *           Optional. A list of subtables referred to by `main_table`. Can only
      *           be set if `main_table` is set.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\CarrierRate>|\Google\Protobuf\Internal\RepeatedField $carrier_rates
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\CarrierRate[] $carrier_rates
      *           Optional. A list of carrier rates that can be referred to by
      *           `main_table` or `single_value`.
      *     @type string $name
@@ -108,7 +108,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * empty for the last rate group of a service.
      *
      * Generated from protobuf field <code>repeated string applicable_shipping_labels = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableShippingLabels()
     {
@@ -123,7 +123,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * empty for the last rate group of a service.
      *
      * Generated from protobuf field <code>repeated string applicable_shipping_labels = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableShippingLabels($var)
@@ -217,7 +217,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * be set if `main_table` is set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Table subtables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Table>
      */
     public function getSubtables()
     {
@@ -229,7 +229,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * be set if `main_table` is set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Table subtables = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Table>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Table[] $var
      * @return $this
      */
     public function setSubtables($var)
@@ -245,7 +245,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * `main_table` or `single_value`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CarrierRate carrier_rates = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\CarrierRate>
      */
     public function getCarrierRates()
     {
@@ -257,7 +257,7 @@ class RateGroup extends \Google\Protobuf\Internal\Message
      * `main_table` or `single_value`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.CarrierRate carrier_rates = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\CarrierRate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\CarrierRate[] $var
      * @return $this
      */
     public function setCarrierRates($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceHealth\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents impact to assets at organizational level. It is a read-only view
@@ -65,7 +65,7 @@ class OrganizationImpact extends \Google\Protobuf\Internal\Message
      *           ID](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id).<br>
      *           `organization_impact_id` - ID of the [OrganizationImpact
      *           resource](/service-health/docs/reference/rest/v1beta/organizations.locations.organizationImpacts#OrganizationImpact).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type string[] $events
      *           Output only. A list of event names impacting the asset.
      *     @type \Google\Cloud\ServiceHealth\V1\Asset $asset
      *           Output only. Google Cloud asset possibly impacted by the specified events.
@@ -124,7 +124,7 @@ class OrganizationImpact extends \Google\Protobuf\Internal\Message
      * Output only. A list of event names impacting the asset.
      *
      * Generated from protobuf field <code>repeated string events = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEvents()
     {
@@ -135,7 +135,7 @@ class OrganizationImpact extends \Google\Protobuf\Internal\Message
      * Output only. A list of event names impacting the asset.
      *
      * Generated from protobuf field <code>repeated string events = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEvents($var)

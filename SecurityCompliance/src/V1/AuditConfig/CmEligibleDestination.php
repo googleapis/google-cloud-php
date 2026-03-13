@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1\AuditConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The destination details where audit reports are
@@ -76,5 +76,4 @@ class CmEligibleDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

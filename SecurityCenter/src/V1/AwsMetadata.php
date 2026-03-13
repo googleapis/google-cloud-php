@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AWS metadata associated with the resource, only applicable if the finding's
@@ -44,7 +44,7 @@ class AwsMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganization $organization
      *           The AWS organization associated with the resource.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganizationalUnit>|\Google\Protobuf\Internal\RepeatedField $organizational_units
+     *     @type \Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganizationalUnit[] $organizational_units
      *           A list of AWS organizational units associated with the resource, ordered
      *           from lowest level (closest to the account) to highest level.
      *     @type \Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsAccount $account
@@ -97,7 +97,7 @@ class AwsMetadata extends \Google\Protobuf\Internal\Message
      * from lowest level (closest to the account) to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit organizational_units = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganizationalUnit>
      */
     public function getOrganizationalUnits()
     {
@@ -109,7 +109,7 @@ class AwsMetadata extends \Google\Protobuf\Internal\Message
      * from lowest level (closest to the account) to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AwsMetadata.AwsOrganizationalUnit organizational_units = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganizationalUnit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\AwsMetadata\AwsOrganizationalUnit[] $var
      * @return $this
      */
     public function setOrganizationalUnits($var)

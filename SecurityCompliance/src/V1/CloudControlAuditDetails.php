@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details for a cloud control audit.
@@ -68,7 +68,7 @@ class CloudControlAuditDetails extends \Google\Protobuf\Internal\Message
      *           Output only. The overall status of the findings for the control.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ReportSummary $report_summary
      *           Output only. The summary of the report.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FindingDetails>|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\FindingDetails[] $findings
      *           Output only. The findings for the control.
      * }
      */
@@ -221,7 +221,7 @@ class CloudControlAuditDetails extends \Google\Protobuf\Internal\Message
      * Output only. The findings for the control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FindingDetails findings = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\FindingDetails>
      */
     public function getFindings()
     {
@@ -232,7 +232,7 @@ class CloudControlAuditDetails extends \Google\Protobuf\Internal\Message
      * Output only. The findings for the control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FindingDetails findings = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FindingDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\FindingDetails[] $var
      * @return $this
      */
     public function setFindings($var)

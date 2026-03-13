@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [Certificate][google.cloud.security.privateca.v1.Certificate] corresponds
@@ -20,7 +20,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -28,7 +28,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * used to issue this certificate, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * `projects/{@*}locations/{@*}certificateTemplates/*`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
      * This template must be in the same location as the
@@ -123,7 +123,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     *           `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *     @type string $pem_csr
      *           Immutable. A pem-encoded X.509 certificate signing request (CSR).
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateConfig $config
@@ -132,7 +132,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     @type string $issuer_certificate_authority
      *           Output only. The resource name of the issuing
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *     @type \Google\Protobuf\Duration $lifetime
      *           Required. Immutable. The desired lifetime of a certificate. Used to create
      *           the "not_before_time" and "not_after_time" fields inside an X.509
@@ -142,7 +142,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           Immutable. The resource name for a
      *           [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      *           used to issue this certificate, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     *           `projects/{@*}locations/{@*}certificateTemplates/*`.
      *           If this is specified, the caller must have the necessary permission to
      *           use this template. If this is omitted, no template will be used.
      *           This template must be in the same location as the
@@ -161,7 +161,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           Output only. The pem-encoded, signed X.509 certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription $certificate_description
      *           Output only. A structured description of the issued X.509 certificate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
+     *     @type string[] $pem_certificate_chain
      *           Output only. The chain that may be used to verify the X.509 certificate.
      *           Expected to be in issuer-to-root order according to RFC 5246.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -182,7 +182,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -195,7 +195,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -276,7 +276,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -289,7 +289,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the issuing
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string issuer_certificate_authority = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -349,7 +349,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * used to issue this certificate, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * `projects/{@*}locations/{@*}certificateTemplates/*`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
      * This template must be in the same location as the
@@ -367,7 +367,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Immutable. The resource name for a
      * [CertificateTemplate][google.cloud.security.privateca.v1.CertificateTemplate]
      * used to issue this certificate, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;certificateTemplates/&#42;`.
+     * `projects/{@*}locations/{@*}certificateTemplates/*`.
      * If this is specified, the caller must have the necessary permission to
      * use this template. If this is omitted, no template will be used.
      * This template must be in the same location as the
@@ -526,7 +526,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPemCertificateChain()
     {
@@ -538,7 +538,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPemCertificateChain($var)

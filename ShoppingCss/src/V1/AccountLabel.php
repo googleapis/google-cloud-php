@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Label assigned by CSS domain or CSS group to one of its sub-accounts.
@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class AccountLabel extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the label.
+     * Identifier. The resource name of the label.
      * Format: accounts/{account}/labels/{label}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -60,7 +60,7 @@ class AccountLabel extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the label.
+     *           Identifier. The resource name of the label.
      *           Format: accounts/{account}/labels/{label}
      *     @type int|string $label_id
      *           Output only. The ID of the label.
@@ -80,10 +80,10 @@ class AccountLabel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the label.
+     * Identifier. The resource name of the label.
      * Format: accounts/{account}/labels/{label}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -92,10 +92,10 @@ class AccountLabel extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the label.
+     * Identifier. The resource name of the label.
      * Format: accounts/{account}/labels/{label}
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

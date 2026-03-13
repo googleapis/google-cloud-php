@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListPullRequestFileDiffsResponse is the response containing file diffs
@@ -35,7 +35,7 @@ class ListPullRequestFileDiffsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\FileDiff>|\Google\Protobuf\Internal\RepeatedField $file_diffs
+     *     @type \Google\Cloud\SecureSourceManager\V1\FileDiff[] $file_diffs
      *           The list of pull request file diffs.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -50,7 +50,7 @@ class ListPullRequestFileDiffsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull request file diffs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.FileDiff file_diffs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\FileDiff>
      */
     public function getFileDiffs()
     {
@@ -61,7 +61,7 @@ class ListPullRequestFileDiffsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull request file diffs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.FileDiff file_diffs = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\FileDiff>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\FileDiff[] $var
      * @return $this
      */
     public function setFileDiffs($var)

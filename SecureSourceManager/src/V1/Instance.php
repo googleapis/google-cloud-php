@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that represents a Secure Source Manager instance.
@@ -68,7 +68,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $state_note = 0;
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      *
      * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -118,7 +118,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           instance state.
      *     @type string $kms_key
      *           Optional. Immutable. Customer-managed encryption key name, in the format
-     *           projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     *           projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      *     @type \Google\Cloud\SecureSourceManager\V1\Instance\HostConfig $host_config
      *           Output only. A list of hostnames for this instance.
      *     @type \Google\Cloud\SecureSourceManager\V1\Instance\WorkforceIdentityFederationConfig $workforce_identity_federation_config
@@ -363,7 +363,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      *
      * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -375,7 +375,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      *
      * Generated from protobuf field <code>string kms_key = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

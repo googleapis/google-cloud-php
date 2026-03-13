@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container associated with the finding.
@@ -62,7 +62,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *     @type string $image_id
      *           Optional container image ID, if provided by the container runtime. Uniquely
      *           identifies the container image launched using a container image digest.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Label>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Cloud\SecurityCenter\V2\Label[] $labels
      *           Container labels, as provided by the container runtime.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time that the container was created.
@@ -159,7 +159,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Container labels, as provided by the container runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Label labels = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Label>
      */
     public function getLabels()
     {
@@ -170,7 +170,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Container labels, as provided by the container runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Label labels = 4;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Label>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Label[] $var
      * @return $this
      */
     public function setLabels($var)

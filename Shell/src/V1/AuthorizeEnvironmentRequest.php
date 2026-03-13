@@ -5,8 +5,8 @@
 namespace Google\Cloud\Shell\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class AuthorizeEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should receive the credentials, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -53,7 +53,7 @@ class AuthorizeEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource that should receive the credentials, for example
      *           `users/me/environments/default` or
-     *           `users/someone&#64;example.com/environments/default`.
+     *           `users/someone\@example.com/environments/default`.
      *     @type string $access_token
      *           The OAuth access token that should be sent to the environment.
      *     @type string $id_token
@@ -71,7 +71,7 @@ class AuthorizeEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should receive the credentials, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -84,7 +84,7 @@ class AuthorizeEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should receive the credentials, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Shell\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should be started, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -49,13 +49,13 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource that should be started, for example
      *           `users/me/environments/default` or
-     *           `users/someone&#64;example.com/environments/default`.
+     *           `users/someone\@example.com/environments/default`.
      *     @type string $access_token
      *           The initial access token passed to the environment. If this is present and
      *           valid, the environment will be pre-authenticated with gcloud so that the
      *           user can run gcloud commands in Cloud Shell without having to log in. This
      *           code can be updated later by calling AuthorizeEnvironment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type string[] $public_keys
      *           Public keys that should be added to the environment before it is started.
      * }
      */
@@ -67,7 +67,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should be started, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -80,7 +80,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that should be started, for example
      * `users/me/environments/default` or
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -130,7 +130,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      * Public keys that should be added to the environment before it is started.
      *
      * Generated from protobuf field <code>repeated string public_keys = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPublicKeys()
     {
@@ -141,7 +141,7 @@ class StartEnvironmentRequest extends \Google\Protobuf\Internal\Message
      * Public keys that should be added to the environment before it is started.
      *
      * Generated from protobuf field <code>repeated string public_keys = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPublicKeys($var)

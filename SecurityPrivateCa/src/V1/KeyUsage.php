@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [KeyUsage][google.cloud.security.privateca.v1.KeyUsage] describes key usage
@@ -47,7 +47,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      *           Describes high-level ways in which a key may be used.
      *     @type \Google\Cloud\Security\PrivateCA\V1\KeyUsage\ExtendedKeyUsageOptions $extended_key_usage
      *           Detailed scenarios in which a key may be used.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $unknown_extended_key_usages
+     *     @type \Google\Cloud\Security\PrivateCA\V1\ObjectId[] $unknown_extended_key_usages
      *           Used to describe extended key usages that are not listed in the
      *           [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
      *           message.
@@ -136,7 +136,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId unknown_extended_key_usages = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\ObjectId>
      */
     public function getUnknownExtendedKeyUsages()
     {
@@ -149,7 +149,7 @@ class KeyUsage extends \Google\Protobuf\Internal\Message
      * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId unknown_extended_key_usages = 3;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\ObjectId[] $var
      * @return $this
      */
     public function setUnknownExtendedKeyUsages($var)

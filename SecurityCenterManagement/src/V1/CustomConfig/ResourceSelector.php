@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1\CustomConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource for selecting resource type.
@@ -28,7 +28,7 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *     @type string[] $resource_types
      *           Optional. The resource types to run the detector on.
      * }
      */
@@ -41,7 +41,7 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      * Optional. The resource types to run the detector on.
      *
      * Generated from protobuf field <code>repeated string resource_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceTypes()
     {
@@ -52,7 +52,7 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
      * Optional. The resource types to run the detector on.
      *
      * Generated from protobuf field <code>repeated string resource_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceTypes($var)
@@ -64,5 +64,4 @@ class ResourceSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

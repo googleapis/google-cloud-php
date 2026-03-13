@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a subordinate CA's issuers. This is either a resource name to a
@@ -33,7 +33,7 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      *           This field is used for information and usability purposes only. The
      *           resource name is in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *     @type \Google\Cloud\Security\PrivateCA\V1\SubordinateConfig\SubordinateConfigChain $pem_issuer_chain
      *           Required. Contains the PEM certificate chain for the issuers of this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority],
@@ -52,7 +52,7 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      * This field is used for information and usability purposes only. The
      * resource name is in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -74,7 +74,7 @@ class SubordinateConfig extends \Google\Protobuf\Internal\Message
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
      * This field is used for information and usability purposes only. The
      * resource name is in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string certificate_authority = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

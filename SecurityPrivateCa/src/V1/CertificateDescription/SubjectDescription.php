@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateDescription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * These values describe fields in an issued X.509 certificate such as the
@@ -301,5 +301,4 @@ class SubjectDescription extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

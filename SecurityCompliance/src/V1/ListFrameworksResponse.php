@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [ListFrameworks][].
@@ -36,7 +36,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\Framework>|\Google\Protobuf\Internal\RepeatedField $frameworks
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\Framework[] $frameworks
      *           The list of framework resources.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
@@ -52,7 +52,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
      * The list of framework resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Framework frameworks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\Framework>
      */
     public function getFrameworks()
     {
@@ -63,7 +63,7 @@ class ListFrameworksResponse extends \Google\Protobuf\Internal\Message
      * The list of framework resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Framework frameworks = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\Framework>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Framework[] $var
      * @return $this
      */
     public function setFrameworks($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a particular IAM binding, which captures a member's role addition,
@@ -31,7 +31,7 @@ class IamBinding extends \Google\Protobuf\Internal\Message
     protected $role = '';
     /**
      * A single identity requesting access for a Cloud Platform resource, for
-     * example, "foo&#64;google.com".
+     * example, "foo\@google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      */
@@ -50,7 +50,7 @@ class IamBinding extends \Google\Protobuf\Internal\Message
      *           For example, "roles/viewer", "roles/editor", or "roles/owner".
      *     @type string $member
      *           A single identity requesting access for a Cloud Platform resource, for
-     *           example, "foo&#64;google.com".
+     *           example, "foo\@google.com".
      * }
      */
     public function __construct($data = NULL) {
@@ -114,7 +114,7 @@ class IamBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * A single identity requesting access for a Cloud Platform resource, for
-     * example, "foo&#64;google.com".
+     * example, "foo\@google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      * @return string
@@ -126,7 +126,7 @@ class IamBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * A single identity requesting access for a Cloud Platform resource, for
-     * example, "foo&#64;google.com".
+     * example, "foo\@google.com".
      *
      * Generated from protobuf field <code>string member = 3;</code>
      * @param string $var

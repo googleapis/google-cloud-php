@@ -20,38 +20,7 @@ class Asset
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-‹
-*google/cloud/securitycenter/v1/asset.protogoogle.cloud.securitycenter.v1+google/cloud/securitycenter/v1/folder.proto3google/cloud/securitycenter/v1/security_marks.protogoogle/protobuf/struct.protogoogle/protobuf/timestamp.proto"¸
-Asset
-name (	b
-security_center_properties (2>.google.cloud.securitycenter.v1.Asset.SecurityCenterPropertiesZ
-resource_properties (2=.google.cloud.securitycenter.v1.Asset.ResourcePropertiesEntryE
-security_marks (2-.google.cloud.securitycenter.v1.SecurityMarks/
-create_time	 (2.google.protobuf.Timestamp/
-update_time
- (2.google.protobuf.TimestampC
-
-iam_policy (2/.google.cloud.securitycenter.v1.Asset.IamPolicy
-canonical_name (	¹
-SecurityCenterProperties
-resource_name (	
-resource_type (	
-resource_parent (	
-resource_project (	
-resource_owners (	
-resource_display_name (	$
-resource_parent_display_name (	%
-resource_project_display_name (	7
-folders
- (2&.google.cloud.securitycenter.v1.Folder 
-	IamPolicy
-policy_blob (	Q
-ResourcePropertiesEntry
-key (	%
-value (2.google.protobuf.Value:8:©êA¥
-#securitycenter.googleapis.com/Asset+organizations/{organization}/assets/{asset}folders/{folder}/assets/{asset}!projects/{project}/assets/{asset}*assets2assetBØ
-"com.google.cloud.securitycenter.v1PZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpbªGoogle.Cloud.SecurityCenter.V1ÊGoogle\\Cloud\\SecurityCenter\\V1ê!Google::Cloud::SecurityCenter::V1bproto3'
+            "\x0A\x8B\x0C\x0A*google/cloud/securitycenter/v1/asset.proto\x12\x1Egoogle.cloud.securitycenter.v1\x1A+google/cloud/securitycenter/v1/folder.proto\x1A3google/cloud/securitycenter/v1/security_marks.proto\x1A\x1Cgoogle/protobuf/struct.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\"\xB8\x08\x0A\x05Asset\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12b\x0A\x1Asecurity_center_properties\x18\x02 \x01(\x0B2>.google.cloud.securitycenter.v1.Asset.SecurityCenterProperties\x12Z\x0A\x13resource_properties\x18\x07 \x03(\x0B2=.google.cloud.securitycenter.v1.Asset.ResourcePropertiesEntry\x12E\x0A\x0Esecurity_marks\x18\x08 \x01(\x0B2-.google.cloud.securitycenter.v1.SecurityMarks\x12/\x0A\x0Bcreate_time\x18\x09 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12/\x0A\x0Bupdate_time\x18\x0A \x01(\x0B2\x1A.google.protobuf.Timestamp\x12C\x0A\x0Aiam_policy\x18\x0B \x01(\x0B2/.google.cloud.securitycenter.v1.Asset.IamPolicy\x12\x16\x0A\x0Ecanonical_name\x18\x0D \x01(\x09\x1A\xB9\x02\x0A\x18SecurityCenterProperties\x12\x15\x0A\x0Dresource_name\x18\x01 \x01(\x09\x12\x15\x0A\x0Dresource_type\x18\x02 \x01(\x09\x12\x17\x0A\x0Fresource_parent\x18\x03 \x01(\x09\x12\x18\x0A\x10resource_project\x18\x04 \x01(\x09\x12\x17\x0A\x0Fresource_owners\x18\x05 \x03(\x09\x12\x1D\x0A\x15resource_display_name\x18\x06 \x01(\x09\x12\$\x0A\x1Cresource_parent_display_name\x18\x07 \x01(\x09\x12%\x0A\x1Dresource_project_display_name\x18\x08 \x01(\x09\x127\x0A\x07folders\x18\x0A \x03(\x0B2&.google.cloud.securitycenter.v1.Folder\x1A \x0A\x09IamPolicy\x12\x13\x0A\x0Bpolicy_blob\x18\x01 \x01(\x09\x1AQ\x0A\x17ResourcePropertiesEntry\x12\x0B\x0A\x03key\x18\x01 \x01(\x09\x12%\x0A\x05value\x18\x02 \x01(\x0B2\x16.google.protobuf.Value:\x028\x01:\xA9\x01\xEAA\xA5\x01\x0A#securitycenter.googleapis.com/Asset\x12+organizations/{organization}/assets/{asset}\x12\x1Ffolders/{folder}/assets/{asset}\x12!projects/{project}/assets/{asset}*\x06assets2\x05assetB\xD8\x01\x0A\"com.google.cloud.securitycenter.v1P\x01ZJcloud.google.com/go/securitycenter/apiv1/securitycenterpb;securitycenterpb\xAA\x02\x1EGoogle.Cloud.SecurityCenter.V1\xCA\x02\x1EGoogle\\Cloud\\SecurityCenter\\V1\xEA\x02!Google::Cloud::SecurityCenter::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

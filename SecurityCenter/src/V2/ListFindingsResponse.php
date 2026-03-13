@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing findings.
@@ -41,7 +41,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult>|\Google\Protobuf\Internal\RepeatedField $list_findings_results
+     *     @type \Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult[] $list_findings_results
      *           Findings matching the list request.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -59,7 +59,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * Findings matching the list request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ListFindingsResponse.ListFindingsResult list_findings_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult>
      */
     public function getListFindingsResults()
     {
@@ -70,7 +70,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * Findings matching the list request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ListFindingsResponse.ListFindingsResult list_findings_results = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult[] $var
      * @return $this
      */
     public function setListFindingsResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Online return policy](https://support.google.com/merchants/answer/10220642)
@@ -150,22 +150,22 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      *           groups, follow the instructions provided in the [Return policy label]
      *           (https://support.google.com/merchants/answer/9445425). The label can
      *           contain up to 50 characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $countries
+     *     @type string[] $countries
      *           Required. Immutable. The countries of sale where the return policy applies.
      *           The values must be a valid 2 letter ISO 3166 code.
      *     @type \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\Policy $policy
      *           Optional. The return policy.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\SeasonalOverride>|\Google\Protobuf\Internal\RepeatedField $seasonal_overrides
+     *     @type \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\SeasonalOverride[] $seasonal_overrides
      *           Optional. Overrides to the general policy for orders placed during a
      *           specific set of time intervals.
      *     @type \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\RestockingFee $restocking_fee
      *           Optional. The restocking fee that applies to all return reason categories.
      *           This would be treated as a free restocking fee if the value is not set.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $return_methods
+     *     @type int[] $return_methods
      *           Optional. The return methods of how customers can return an item. This
      *           value is required to not be empty unless the type of return policy is
      *           noReturns.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $item_conditions
+     *     @type int[] $item_conditions
      *           Optional. The item conditions accepted for returns must not be empty unless
      *           the type of return policy is 'noReturns'.
      *     @type \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\ReturnShippingFee $return_shipping_fee
@@ -294,7 +294,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * The values must be a valid 2 letter ISO 3166 code.
      *
      * Generated from protobuf field <code>repeated string countries = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCountries()
     {
@@ -306,7 +306,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * The values must be a valid 2 letter ISO 3166 code.
      *
      * Generated from protobuf field <code>repeated string countries = 4 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCountries($var)
@@ -358,7 +358,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * specific set of time intervals.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.SeasonalOverride seasonal_overrides = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\SeasonalOverride>
      */
     public function getSeasonalOverrides()
     {
@@ -370,7 +370,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * specific set of time intervals.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.SeasonalOverride seasonal_overrides = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\SeasonalOverride>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy\SeasonalOverride[] $var
      * @return $this
      */
     public function setSeasonalOverrides($var)
@@ -425,7 +425,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * noReturns.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.ReturnMethod return_methods = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getReturnMethods()
     {
@@ -438,7 +438,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * noReturns.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.ReturnMethod return_methods = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setReturnMethods($var)
@@ -454,7 +454,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * the type of return policy is 'noReturns'.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.ItemCondition item_conditions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getItemConditions()
     {
@@ -466,7 +466,7 @@ class OnlineReturnPolicy extends \Google\Protobuf\Internal\Message
      * the type of return policy is 'noReturns'.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy.ItemCondition item_conditions = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setItemConditions($var)

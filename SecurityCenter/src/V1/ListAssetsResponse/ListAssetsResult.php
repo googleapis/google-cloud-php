@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\ListAssetsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result containing the Asset and its State.
@@ -108,5 +108,4 @@ class ListAssetsResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

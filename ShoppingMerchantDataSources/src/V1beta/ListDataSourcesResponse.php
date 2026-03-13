@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListDataSources method.
@@ -35,7 +35,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\DataSources\V1beta\DataSource>|\Google\Protobuf\Internal\RepeatedField $data_sources
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\DataSource[] $data_sources
      *           The data sources from the specified account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * The data sources from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.DataSource data_sources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\DataSources\V1beta\DataSource>
      */
     public function getDataSources()
     {
@@ -62,7 +62,7 @@ class ListDataSourcesResponse extends \Google\Protobuf\Internal\Message
      * The data sources from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.DataSource data_sources = 1;</code>
-     * @param array<\Google\Shopping\Merchant\DataSources\V1beta\DataSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\DataSource[] $var
      * @return $this
      */
     public function setDataSources($var)

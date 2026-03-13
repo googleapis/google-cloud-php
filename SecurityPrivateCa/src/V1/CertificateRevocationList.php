@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -21,8 +21,8 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
-     *    certificateRevocationLists/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/*certificateAuthorities/{@*}
+     *    certificateRevocationLists/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -101,11 +101,11 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
-     *              certificateRevocationLists/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}caPools/*certificateAuthorities/{@*}
+     *              certificateRevocationLists/*`.
      *     @type int|string $sequence_number
      *           Output only. The CRL sequence number that appears in pem_crl.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $revoked_certificates
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate[] $revoked_certificates
      *           Output only. The revoked serial numbers that appear in pem_crl.
      *     @type string $pem_crl
      *           Output only. The PEM-encoded X.509 CRL.
@@ -141,8 +141,8 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
-     *    certificateRevocationLists/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/*certificateAuthorities/{@*}
+     *    certificateRevocationLists/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -155,8 +155,8 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateRevocationList][google.cloud.security.privateca.v1.CertificateRevocationList]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;certificateAuthorities/&#42;&#47;
-     *    certificateRevocationLists/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/*certificateAuthorities/{@*}
+     *    certificateRevocationLists/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -200,7 +200,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The revoked serial numbers that appear in pem_crl.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate revoked_certificates = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate>
      */
     public function getRevokedCertificates()
     {
@@ -211,7 +211,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The revoked serial numbers that appear in pem_crl.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate revoked_certificates = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate[] $var
      * @return $this
      */
     public function setRevokedCertificates($var)

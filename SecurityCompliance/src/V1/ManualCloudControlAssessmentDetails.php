@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details for a manual cloud control assessment.
@@ -28,7 +28,7 @@ class ManualCloudControlAssessmentDetails extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $manual_cloud_control_guide
+     *     @type string[] $manual_cloud_control_guide
      *           The guide for assessing a cloud control manually.
      * }
      */
@@ -41,7 +41,7 @@ class ManualCloudControlAssessmentDetails extends \Google\Protobuf\Internal\Mess
      * The guide for assessing a cloud control manually.
      *
      * Generated from protobuf field <code>repeated string manual_cloud_control_guide = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getManualCloudControlGuide()
     {
@@ -52,7 +52,7 @@ class ManualCloudControlAssessmentDetails extends \Google\Protobuf\Internal\Mess
      * The guide for assessing a cloud control manually.
      *
      * Generated from protobuf field <code>repeated string manual_cloud_control_guide = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setManualCloudControlGuide($var)

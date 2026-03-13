@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -49,7 +49,7 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecretManager\V1beta2\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type \Google\Cloud\SecretManager\V1beta2\SecretVersion[] $versions
      *           The list of
      *           [SecretVersions][google.cloud.secretmanager.v1beta2.SecretVersion] sorted
      *           in reverse by create_time (newest first).
@@ -76,7 +76,7 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      * in reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.SecretVersion versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecretManager\V1beta2\SecretVersion>
      */
     public function getVersions()
     {
@@ -89,7 +89,7 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      * in reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.SecretVersion versions = 1;</code>
-     * @param array<\Google\Cloud\SecretManager\V1beta2\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecretManager\V1beta2\SecretVersion[] $var
      * @return $this
      */
     public function setVersions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\ExternalSystem;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the ticket, if any, that is being used to track the
@@ -249,5 +249,4 @@ class TicketInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

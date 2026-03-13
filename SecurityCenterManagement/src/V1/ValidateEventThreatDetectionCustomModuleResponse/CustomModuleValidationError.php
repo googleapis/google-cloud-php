@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An error encountered while validating the uploaded configuration of an
@@ -211,5 +211,4 @@ class CustomModuleValidationError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

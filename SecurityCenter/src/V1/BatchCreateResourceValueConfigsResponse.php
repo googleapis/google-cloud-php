@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BatchCreateResourceValueConfigs
@@ -28,7 +28,7 @@ class BatchCreateResourceValueConfigsResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ResourceValueConfig>|\Google\Protobuf\Internal\RepeatedField $resource_value_configs
+     *     @type \Google\Cloud\SecurityCenter\V1\ResourceValueConfig[] $resource_value_configs
      *           The resource value configs created
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateResourceValueConfigsResponse extends \Google\Protobuf\Internal\
      * The resource value configs created
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourceValueConfig resource_value_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ResourceValueConfig>
      */
     public function getResourceValueConfigs()
     {
@@ -52,7 +52,7 @@ class BatchCreateResourceValueConfigsResponse extends \Google\Protobuf\Internal\
      * The resource value configs created
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourceValueConfig resource_value_configs = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ResourceValueConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ResourceValueConfig[] $var
      * @return $this
      */
     public function setResourceValueConfigs($var)

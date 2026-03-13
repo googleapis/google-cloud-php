@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListAccountLabels` method.
@@ -35,7 +35,7 @@ class ListAccountLabelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Css\V1\AccountLabel>|\Google\Protobuf\Internal\RepeatedField $account_labels
+     *     @type \Google\Shopping\Css\V1\AccountLabel[] $account_labels
      *           The labels from the specified account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAccountLabelsResponse extends \Google\Protobuf\Internal\Message
      * The labels from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.AccountLabel account_labels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\AccountLabel>
      */
     public function getAccountLabels()
     {
@@ -62,7 +62,7 @@ class ListAccountLabelsResponse extends \Google\Protobuf\Internal\Message
      * The labels from the specified account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.AccountLabel account_labels = 1;</code>
-     * @param array<\Google\Shopping\Css\V1\AccountLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\AccountLabel[] $var
      * @return $this
      */
     public function setAccountLabels($var)

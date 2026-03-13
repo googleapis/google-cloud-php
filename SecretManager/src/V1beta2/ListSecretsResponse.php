@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -47,7 +47,7 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecretManager\V1beta2\Secret>|\Google\Protobuf\Internal\RepeatedField $secrets
+     *     @type \Google\Cloud\SecretManager\V1beta2\Secret[] $secrets
      *           The list of [Secrets][google.cloud.secretmanager.v1beta2.Secret] sorted in
      *           reverse by create_time (newest first).
      *     @type string $next_page_token
@@ -71,7 +71,7 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      * reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.Secret secrets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecretManager\V1beta2\Secret>
      */
     public function getSecrets()
     {
@@ -83,7 +83,7 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      * reverse by create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.Secret secrets = 1;</code>
-     * @param array<\Google\Cloud\SecretManager\V1beta2\Secret>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecretManager\V1beta2\Secret[] $var
      * @return $this
      */
     public function setSecrets($var)

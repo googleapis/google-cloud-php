@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Kubernetes object related to the finding, uniquely identified by GKNN.
@@ -68,7 +68,7 @@ class Object extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Kubernetes object name. For details see
      *           https://kubernetes.io/docs/concepts/overview/working-with-objects/names/.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type \Google\Cloud\SecurityCenter\V2\Container[] $containers
      *           Pod containers associated with this finding, if any.
      * }
      */
@@ -191,7 +191,7 @@ class Object extends \Google\Protobuf\Internal\Message
      * Pod containers associated with this finding, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Container containers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Container>
      */
     public function getContainers()
     {
@@ -202,7 +202,7 @@ class Object extends \Google\Protobuf\Internal\Message
      * Pod containers associated with this finding, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Container containers = 5;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Container[] $var
      * @return $this
      */
     public function setContainers($var)
@@ -214,5 +214,4 @@ class Object extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

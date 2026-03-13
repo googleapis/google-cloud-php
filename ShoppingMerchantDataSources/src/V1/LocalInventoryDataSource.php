@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The local inventory data source type is only available for file inputs and

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for GenerateConfigReport method.
@@ -53,10 +53,10 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      *           Name of the service this report belongs to.
      *     @type string $id
      *           ID of the service configuration this report belongs to.
-     *     @type array<\Google\Cloud\ServiceManagement\V1\ChangeReport>|\Google\Protobuf\Internal\RepeatedField $change_reports
+     *     @type \Google\Cloud\ServiceManagement\V1\ChangeReport[] $change_reports
      *           list of ChangeReport, each corresponding to comparison between two
      *           service configurations.
-     *     @type array<\Google\Cloud\ServiceManagement\V1\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $diagnostics
+     *     @type \Google\Cloud\ServiceManagement\V1\Diagnostic[] $diagnostics
      *           Errors / Linter warnings associated with the service definition this
      *           report
      *           belongs to.
@@ -124,7 +124,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * service configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ChangeReport change_reports = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceManagement\V1\ChangeReport>
      */
     public function getChangeReports()
     {
@@ -136,7 +136,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * service configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ChangeReport change_reports = 3;</code>
-     * @param array<\Google\Cloud\ServiceManagement\V1\ChangeReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceManagement\V1\ChangeReport[] $var
      * @return $this
      */
     public function setChangeReports($var)
@@ -153,7 +153,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * belongs to.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.Diagnostic diagnostics = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceManagement\V1\Diagnostic>
      */
     public function getDiagnostics()
     {
@@ -166,7 +166,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * belongs to.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.Diagnostic diagnostics = 4;</code>
-     * @param array<\Google\Cloud\ServiceManagement\V1\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceManagement\V1\Diagnostic[] $var
      * @return $this
      */
     public function setDiagnostics($var)

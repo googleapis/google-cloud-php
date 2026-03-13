@@ -33,8 +33,9 @@ use Google\Shopping\Css\V1\GetCssProductRequest;
  * inserting, updating, or deleting a product input, it may take several
  * minutes before the updated final product can be retrieved.
  *
- * @param string $formattedName The name of the CSS product to retrieve. Please see
- *                              {@see CssProductsServiceClient::cssProductName()} for help formatting this field.
+ * @param string $formattedName The name of the CSS product to retrieve.
+ *                              Format: `accounts/{account}/cssProducts/{css_product}`
+ *                              Please see {@see CssProductsServiceClient::cssProductName()} for help formatting this field.
  */
 function get_css_product_sample(string $formattedName): void
 {

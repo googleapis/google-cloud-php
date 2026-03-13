@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HostConfig has different instance endpoints.
@@ -166,5 +166,4 @@ class HostConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\File;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Path of the file in terms of underlying disk/partition identifiers.
@@ -106,5 +106,4 @@ class DiskPath extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

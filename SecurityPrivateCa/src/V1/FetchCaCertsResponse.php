@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -31,7 +31,7 @@ class FetchCaCertsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain>|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain[] $ca_certs
      *           The PEM encoded CA certificate chains of all certificate authorities in
      *           this [CaPool][google.cloud.security.privateca.v1.CaPool] in the ENABLED,
      *           DISABLED, or STAGED states.
@@ -48,7 +48,7 @@ class FetchCaCertsResponse extends \Google\Protobuf\Internal\Message
      * DISABLED, or STAGED states.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.FetchCaCertsResponse.CertChain ca_certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain>
      */
     public function getCaCerts()
     {
@@ -61,7 +61,7 @@ class FetchCaCertsResponse extends \Google\Protobuf\Internal\Message
      * DISABLED, or STAGED states.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.FetchCaCertsResponse.CertChain ca_certs = 1;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\FetchCaCertsResponse\CertChain[] $var
      * @return $this
      */
     public function setCaCerts($var)

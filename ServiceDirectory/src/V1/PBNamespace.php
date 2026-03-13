@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceDirectory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A container for [services][google.cloud.servicedirectory.v1.Service].
@@ -19,7 +19,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the namespace in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -48,7 +48,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the namespace in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
+     *           `projects/{@*}locations/{@*}namespaces/*`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Resource labels associated with this namespace.
      *           No more than 64 user labels can be associated with a given resource. Label
@@ -65,7 +65,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the namespace in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -77,7 +77,7 @@ class PBNamespace extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the namespace in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

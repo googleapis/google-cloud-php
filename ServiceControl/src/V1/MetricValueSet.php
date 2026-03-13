@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a set of metric values in the same metric.
@@ -38,7 +38,7 @@ class MetricValueSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $metric_name
      *           The metric name defined in the service configuration.
-     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValue>|\Google\Protobuf\Internal\RepeatedField $metric_values
+     *     @type \Google\Cloud\ServiceControl\V1\MetricValue[] $metric_values
      *           The values in this metric.
      * }
      */
@@ -77,7 +77,7 @@ class MetricValueSet extends \Google\Protobuf\Internal\Message
      * The values in this metric.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValue metric_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\MetricValue>
      */
     public function getMetricValues()
     {
@@ -88,7 +88,7 @@ class MetricValueSet extends \Google\Protobuf\Internal\Message
      * The values in this metric.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValue metric_values = 2;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\MetricValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\MetricValue[] $var
      * @return $this
      */
     public function setMetricValues($var)

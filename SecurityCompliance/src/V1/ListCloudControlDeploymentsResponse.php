@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [ListCloudControlDeployments][].
@@ -35,7 +35,7 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment>|\Google\Protobuf\Internal\RepeatedField $cloud_control_deployments
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment[] $cloud_control_deployments
      *           The list of cloud control deployments.
      *     @type string $next_page_token
      *           A token that identifies the next page of results that the server
@@ -51,7 +51,7 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
      * The list of cloud control deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment cloud_control_deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment>
      */
     public function getCloudControlDeployments()
     {
@@ -62,7 +62,7 @@ class ListCloudControlDeploymentsResponse extends \Google\Protobuf\Internal\Mess
      * The list of cloud control deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeployment cloud_control_deployments = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeployment[] $var
      * @return $this
      */
     public function setCloudControlDeployments($var)

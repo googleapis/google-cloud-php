@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1\Distribution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing buckets with exponentially growing width.
@@ -164,5 +164,4 @@ class ExponentialBuckets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

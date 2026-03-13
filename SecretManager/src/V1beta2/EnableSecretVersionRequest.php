@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,8 +19,8 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] to enable
-     * in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * in the format `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,8 +61,8 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name of the
      *           [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] to enable
-     *           in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           in the format `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *     @type string $etag
      *           Optional. Etag of the
      *           [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion]. The
@@ -78,8 +78,8 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] to enable
-     * in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * in the format `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -92,8 +92,8 @@ class EnableSecretVersionRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] to enable
-     * in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * in the format `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

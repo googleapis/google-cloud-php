@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The group information for methods in the CSS API. The quota is shared
@@ -72,7 +72,7 @@ class QuotaGroup extends \Google\Protobuf\Internal\Message
      *           Output only. The maximum number of calls allowed per day for the group.
      *     @type int|string $quota_minute_limit
      *           Output only. The maximum number of calls allowed per minute for the group.
-     *     @type array<\Google\Shopping\Css\V1\MethodDetails>|\Google\Protobuf\Internal\RepeatedField $method_details
+     *     @type \Google\Shopping\Css\V1\MethodDetails[] $method_details
      *           Output only. List of all methods group quota applies to.
      * }
      */
@@ -199,7 +199,7 @@ class QuotaGroup extends \Google\Protobuf\Internal\Message
      * Output only. List of all methods group quota applies to.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.MethodDetails method_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\MethodDetails>
      */
     public function getMethodDetails()
     {
@@ -210,7 +210,7 @@ class QuotaGroup extends \Google\Protobuf\Internal\Message
      * Output only. List of all methods group quota applies to.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.MethodDetails method_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Css\V1\MethodDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\MethodDetails[] $var
      * @return $this
      */
     public function setMethodDetails($var)

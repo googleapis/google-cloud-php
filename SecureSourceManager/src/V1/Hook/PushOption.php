@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\Hook;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.securesourcemanager.v1.Hook.PushOption</code>
@@ -74,5 +74,4 @@ class PushOption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

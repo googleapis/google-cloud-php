@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $effective_event_threat_detection_custom_modules
+     *     @type \Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule[] $effective_event_threat_detection_custom_modules
      *           The list of effective Event Threat Detection custom modules.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
@@ -52,7 +52,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
      * The list of effective Event Threat Detection custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule effective_event_threat_detection_custom_modules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule>
      */
     public function getEffectiveEventThreatDetectionCustomModules()
     {
@@ -63,7 +63,7 @@ class ListEffectiveEventThreatDetectionCustomModulesResponse extends \Google\Pro
      * The list of effective Event Threat Detection custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule effective_event_threat_detection_custom_modules = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenterManagement\V1\EffectiveEventThreatDetectionCustomModule[] $var
      * @return $this
      */
     public function setEffectiveEventThreatDetectionCustomModules($var)

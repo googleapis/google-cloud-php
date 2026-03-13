@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents what's commonly known as an _indicator of compromise_ (IoC) in
@@ -51,14 +51,14 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type string[] $ip_addresses
      *           The list of IP addresses that are associated with the finding.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type string[] $domains
      *           List of domains associated to the Finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
+     *     @type \Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature[] $signatures
      *           The list of matched signatures indicating that the given
      *           process is present in the environment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           The list of URIs associated to the Findings.
      * }
      */
@@ -71,7 +71,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * The list of IP addresses that are associated with the finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpAddresses()
     {
@@ -82,7 +82,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * The list of IP addresses that are associated with the finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -97,7 +97,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * List of domains associated to the Finding.
      *
      * Generated from protobuf field <code>repeated string domains = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDomains()
     {
@@ -108,7 +108,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * List of domains associated to the Finding.
      *
      * Generated from protobuf field <code>repeated string domains = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDomains($var)
@@ -124,7 +124,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * process is present in the environment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Indicator.ProcessSignature signatures = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature>
      */
     public function getSignatures()
     {
@@ -136,7 +136,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * process is present in the environment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Indicator.ProcessSignature signatures = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature[] $var
      * @return $this
      */
     public function setSignatures($var)
@@ -151,7 +151,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * The list of URIs associated to the Findings.
      *
      * Generated from protobuf field <code>repeated string uris = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -162,7 +162,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * The list of URIs associated to the Findings.
      *
      * Generated from protobuf field <code>repeated string uris = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)

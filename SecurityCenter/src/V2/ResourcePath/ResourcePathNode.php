@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\ResourcePath;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A node within the resource path. Each node represents a resource within the
@@ -133,5 +133,4 @@ class ResourcePathNode extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

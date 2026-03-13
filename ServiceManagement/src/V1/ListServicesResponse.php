@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `ListServices` method.
@@ -34,7 +34,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ServiceManagement\V1\ManagedService>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\ServiceManagement\V1\ManagedService[] $services
      *           The returned services will only have the name field set.
      *     @type string $next_page_token
      *           Token that can be passed to `ListServices` to resume a paginated query.
@@ -49,7 +49,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The returned services will only have the name field set.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceManagement\V1\ManagedService>
      */
     public function getServices()
     {
@@ -60,7 +60,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The returned services will only have the name field set.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ManagedService services = 1;</code>
-     * @param array<\Google\Cloud\ServiceManagement\V1\ManagedService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceManagement\V1\ManagedService[] $var
      * @return $this
      */
     public function setServices($var)
