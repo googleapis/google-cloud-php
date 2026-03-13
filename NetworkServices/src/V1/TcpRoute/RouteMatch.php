@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\TcpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RouteMatch defines the predicate used to match requests to a given action.
@@ -125,5 +125,4 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

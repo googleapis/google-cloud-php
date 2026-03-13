@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to be given to a tour optimization solver which defines the
@@ -272,7 +272,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           By default, the solving mode is `DEFAULT_SOLVE` (0).
      *     @type int $search_mode
      *           Search mode used to solve the request.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $injected_first_solution_routes
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentRoute[] $injected_first_solution_routes
      *           Guide the optimization algorithm in finding a first solution that is
      *           similar to a previous solution.
      *           The model is constrained when the first solution is built.
@@ -306,7 +306,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           If the injected solution is not feasible, a validation error is not
      *           necessarily returned and an error indicating infeasibility may be returned
      *           instead.
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $refresh_details_routes
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentRoute[] $refresh_details_routes
      *           If non-empty, the given routes will be refreshed, without modifying their
      *           underlying sequence of visits or travel times: only other details will be
      *           updated. This does not solve the model.
@@ -618,7 +618,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * instead.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute injected_first_solution_routes = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentRoute>
      */
     public function getInjectedFirstSolutionRoutes()
     {
@@ -653,7 +653,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * instead.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute injected_first_solution_routes = 7;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentRoute[] $var
      * @return $this
      */
     public function setInjectedFirstSolutionRoutes($var)
@@ -727,7 +727,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * regardless of whether the related shipments or vehicles are ignored.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute refresh_details_routes = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentRoute>
      */
     public function getRefreshDetailsRoutes()
     {
@@ -749,7 +749,7 @@ class OptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * regardless of whether the related shipments or vehicles are ignored.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentRoute refresh_details_routes = 9;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentRoute[] $var
      * @return $this
      */
     public function setRefreshDetailsRoutes($var)

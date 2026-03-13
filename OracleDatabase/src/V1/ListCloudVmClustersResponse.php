@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `CloudVmCluster.List`.
@@ -34,7 +34,7 @@ class ListCloudVmClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\CloudVmCluster>|\Google\Protobuf\Internal\RepeatedField $cloud_vm_clusters
+     *     @type \Google\Cloud\OracleDatabase\V1\CloudVmCluster[] $cloud_vm_clusters
      *           The list of VM Clusters.
      *     @type string $next_page_token
      *           A token to fetch the next page of results.
@@ -49,7 +49,7 @@ class ListCloudVmClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of VM Clusters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CloudVmCluster cloud_vm_clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\CloudVmCluster>
      */
     public function getCloudVmClusters()
     {
@@ -60,7 +60,7 @@ class ListCloudVmClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of VM Clusters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CloudVmCluster cloud_vm_clusters = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\CloudVmCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\CloudVmCluster[] $var
      * @return $this
      */
     public function setCloudVmClusters($var)

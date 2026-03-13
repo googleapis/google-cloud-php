@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification for modifying HTTP header in HTTP request and HTTP
@@ -49,7 +49,7 @@ class HeaderModifier extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $add
      *           Add the headers with given map where key is the name of the header, value
      *           is the value of the header.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $remove
+     *     @type string[] $remove
      *           Remove headers (matching by header names) specified in the list.
      * }
      */
@@ -118,7 +118,7 @@ class HeaderModifier extends \Google\Protobuf\Internal\Message
      * Remove headers (matching by header names) specified in the list.
      *
      * Generated from protobuf field <code>repeated string remove = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRemove()
     {
@@ -129,7 +129,7 @@ class HeaderModifier extends \Google\Protobuf\Internal\Message
      * Remove headers (matching by header names) specified in the list.
      *
      * Generated from protobuf field <code>repeated string remove = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRemove($var)
@@ -141,5 +141,4 @@ class HeaderModifier extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

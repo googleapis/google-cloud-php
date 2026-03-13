@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results of active probing from the last run of the test.
@@ -120,7 +120,7 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      *           destination address.
      *           The absence of this field *must not* be used as an indication that the
      *           destination is part of the Google network.
-     *     @type array<\Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse>|\Google\Protobuf\Internal\RepeatedField $edge_responses
+     *     @type \Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse[] $edge_responses
      *           Probing results for all edge devices.
      *     @type bool $probed_all_devices
      *           Whether all relevant edge devices were probed.
@@ -433,7 +433,7 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      * Probing results for all edge devices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse edge_responses = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse>
      */
     public function getEdgeResponses()
     {
@@ -444,7 +444,7 @@ class ProbingDetails extends \Google\Protobuf\Internal\Message
      * Probing results for all edge devices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ProbingDetails.SingleEdgeResponse edge_responses = 10;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\ProbingDetails\SingleEdgeResponse[] $var
      * @return $this
      */
     public function setEdgeResponses($var)

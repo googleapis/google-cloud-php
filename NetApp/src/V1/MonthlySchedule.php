@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Make a snapshot once a month e.g. at 2nd 04:00, 7th 05:20, 24th 23:50

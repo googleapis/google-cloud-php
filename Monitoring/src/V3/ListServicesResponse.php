@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListServices` response.
@@ -36,7 +36,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\Monitoring\V3\Service[] $services
      *           The `Service`s matching the specified filter.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
@@ -53,7 +53,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The `Service`s matching the specified filter.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Service services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\Service>
      */
     public function getServices()
     {
@@ -64,7 +64,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The `Service`s matching the specified filter.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Service services = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\Service[] $var
      * @return $this
      */
     public function setServices($var)

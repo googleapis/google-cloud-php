@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition\SqlCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A test that checks if the number of rows in the result set
@@ -103,5 +103,4 @@ class RowCountTest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

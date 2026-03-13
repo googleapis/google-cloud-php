@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing payload files of an import job.
@@ -41,12 +41,12 @@ class ListImportDataFilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportDataFile>|\Google\Protobuf\Internal\RepeatedField $import_data_files
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportDataFile[] $import_data_files
      *           The list of import data files.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListImportDataFilesResponse extends \Google\Protobuf\Internal\Message
      * The list of import data files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportDataFile import_data_files = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportDataFile>
      */
     public function getImportDataFiles()
     {
@@ -70,7 +70,7 @@ class ListImportDataFilesResponse extends \Google\Protobuf\Internal\Message
      * The list of import data files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportDataFile import_data_files = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportDataFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportDataFile[] $var
      * @return $this
      */
     public function setImportDataFiles($var)
@@ -113,7 +113,7 @@ class ListImportDataFilesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListImportDataFilesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The protocol for the `ListAlertPolicies` response.
@@ -43,7 +43,7 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy>|\Google\Protobuf\Internal\RepeatedField $alert_policies
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy[] $alert_policies
      *           The returned alert policies.
      *     @type string $next_page_token
      *           If there might be more results than were returned, then this field is set
@@ -63,7 +63,7 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The returned alert policies.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy alert_policies = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\AlertPolicy>
      */
     public function getAlertPolicies()
     {
@@ -74,7 +74,7 @@ class ListAlertPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The returned alert policies.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy alert_policies = 3;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy[] $var
      * @return $this
      */
     public function setAlertPolicies($var)

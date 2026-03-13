@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ImageVersions in a project and location.
@@ -34,7 +34,7 @@ class ListImageVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion>|\Google\Protobuf\Internal\RepeatedField $image_versions
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion[] $image_versions
      *           The list of supported ImageVersions in a location.
      *     @type string $next_page_token
      *           The page token used to query for the next page if one exists.
@@ -49,7 +49,7 @@ class ListImageVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of supported ImageVersions in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.ImageVersion image_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion>
      */
     public function getImageVersions()
     {
@@ -60,7 +60,7 @@ class ListImageVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of supported ImageVersions in a location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.ImageVersion image_versions = 1;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\ImageVersion[] $var
      * @return $this
      */
     public function setImageVersions($var)

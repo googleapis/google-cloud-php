@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1\MaliciousUriFilterResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information regarding malicious URI and its location within the input
@@ -39,7 +39,7 @@ class MaliciousUriMatchedItem extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Malicious URI.
-     *     @type array<\Google\Cloud\ModelArmor\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type \Google\Cloud\ModelArmor\V1\RangeInfo[] $locations
      *           List of locations where Malicious URI is identified.
      *           The `locations` field is supported only for plaintext content i.e.
      *           ByteItemType.PLAINTEXT_UTF8
@@ -82,7 +82,7 @@ class MaliciousUriMatchedItem extends \Google\Protobuf\Internal\Message
      * ByteItemType.PLAINTEXT_UTF8
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.RangeInfo locations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\RangeInfo>
      */
     public function getLocations()
     {
@@ -95,7 +95,7 @@ class MaliciousUriMatchedItem extends \Google\Protobuf\Internal\Message
      * ByteItemType.PLAINTEXT_UTF8
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.RangeInfo locations = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\RangeInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\RangeInfo[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -107,5 +107,4 @@ class MaliciousUriMatchedItem extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

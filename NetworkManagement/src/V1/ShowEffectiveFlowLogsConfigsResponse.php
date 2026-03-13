@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ShowEffectiveFlowLogsConfigs` method.
@@ -40,11 +40,11 @@ class ShowEffectiveFlowLogsConfigsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig>|\Google\Protobuf\Internal\RepeatedField $effective_flow_logs_configs
+     *     @type \Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig[] $effective_flow_logs_configs
      *           List of Effective Vpc Flow Logs configurations.
      *     @type string $next_page_token
      *           Page token to fetch the next set of configurations.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached (when querying all locations with `-`).
      * }
      */
@@ -57,7 +57,7 @@ class ShowEffectiveFlowLogsConfigsResponse extends \Google\Protobuf\Internal\Mes
      * List of Effective Vpc Flow Logs configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.EffectiveVpcFlowLogsConfig effective_flow_logs_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig>
      */
     public function getEffectiveFlowLogsConfigs()
     {
@@ -68,7 +68,7 @@ class ShowEffectiveFlowLogsConfigsResponse extends \Google\Protobuf\Internal\Mes
      * List of Effective Vpc Flow Logs configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.EffectiveVpcFlowLogsConfig effective_flow_logs_configs = 1;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\EffectiveVpcFlowLogsConfig[] $var
      * @return $this
      */
     public function setEffectiveFlowLogsConfigs($var)
@@ -109,7 +109,7 @@ class ShowEffectiveFlowLogsConfigsResponse extends \Google\Protobuf\Internal\Mes
      * Locations that could not be reached (when querying all locations with `-`).
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ShowEffectiveFlowLogsConfigsResponse extends \Google\Protobuf\Internal\Mes
      * Locations that could not be reached (when querying all locations with `-`).
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

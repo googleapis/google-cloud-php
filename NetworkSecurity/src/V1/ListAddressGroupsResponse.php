@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response returned by the ListAddressGroups method.
@@ -42,13 +42,13 @@ class ListAddressGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkSecurity\V1\AddressGroup>|\Google\Protobuf\Internal\RepeatedField $address_groups
+     *     @type \Google\Cloud\NetworkSecurity\V1\AddressGroup[] $address_groups
      *           List of AddressGroups resources.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `next_page_token` is included. To get the next set of results, call this
      *           method again using the value of `next_page_token` as `page_token`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -61,7 +61,7 @@ class ListAddressGroupsResponse extends \Google\Protobuf\Internal\Message
      * List of AddressGroups resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AddressGroup address_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\AddressGroup>
      */
     public function getAddressGroups()
     {
@@ -72,7 +72,7 @@ class ListAddressGroupsResponse extends \Google\Protobuf\Internal\Message
      * List of AddressGroups resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AddressGroup address_groups = 1;</code>
-     * @param array<\Google\Cloud\NetworkSecurity\V1\AddressGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkSecurity\V1\AddressGroup[] $var
      * @return $this
      */
     public function setAddressGroups($var)
@@ -117,7 +117,7 @@ class ListAddressGroupsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListAddressGroupsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

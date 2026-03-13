@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `ListVehicles` response message.
@@ -44,7 +44,7 @@ class ListVehiclesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $vehicles
+     *     @type \Google\Maps\FleetEngine\V1\Vehicle[] $vehicles
      *           Vehicles matching the criteria in the request.
      *           The maximum number of vehicles returned is determined by the `page_size`
      *           field in the request.
@@ -67,7 +67,7 @@ class ListVehiclesResponse extends \Google\Protobuf\Internal\Message
      * field in the request.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Vehicle vehicles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\Vehicle>
      */
     public function getVehicles()
     {
@@ -80,7 +80,7 @@ class ListVehiclesResponse extends \Google\Protobuf\Internal\Message
      * field in the request.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Vehicle vehicles = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\Vehicle[] $var
      * @return $this
      */
     public function setVehicles($var)

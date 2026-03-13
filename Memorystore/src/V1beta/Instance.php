@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Memorystore instance.
@@ -183,7 +183,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. In-transit encryption mode of the instance.
      *     @type int $shard_count
      *           Optional. Number of shards for the instance.
-     *     @type array<\Google\Cloud\Memorystore\V1beta\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $discovery_endpoints
+     *     @type \Google\Cloud\Memorystore\V1beta\DiscoveryEndpoint[] $discovery_endpoints
      *           Output only. Endpoints clients can connect to the instance through.
      *           Currently only one discovery endpoint is supported.
      *     @type int $node_type
@@ -201,10 +201,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           node allocation.
      *     @type bool $deletion_protection_enabled
      *           Optional. If set to true deletion of the instance will fail.
-     *     @type array<\Google\Cloud\Memorystore\V1beta\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *     @type \Google\Cloud\Memorystore\V1beta\PscAutoConnection[] $psc_auto_connections
      *           Required. Immutable. User inputs and resource details of the auto-created
      *           PSC connections.
-     *     @type array<\Google\Cloud\Memorystore\V1beta\Instance\InstanceEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\Memorystore\V1beta\Instance\InstanceEndpoint[] $endpoints
      *           Optional. Endpoints for the instance.
      *     @type int $mode
      *           Optional. The mode config for the instance.
@@ -550,7 +550,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Currently only one discovery endpoint is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.DiscoveryEndpoint discovery_endpoints = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1beta\DiscoveryEndpoint>
      */
     public function getDiscoveryEndpoints()
     {
@@ -562,7 +562,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Currently only one discovery endpoint is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.DiscoveryEndpoint discovery_endpoints = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Memorystore\V1beta\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1beta\DiscoveryEndpoint[] $var
      * @return $this
      */
     public function setDiscoveryEndpoints($var)
@@ -802,7 +802,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * PSC connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.PscAutoConnection psc_auto_connections = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1beta\PscAutoConnection>
      */
     public function getPscAutoConnections()
     {
@@ -814,7 +814,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * PSC connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.PscAutoConnection psc_auto_connections = 20 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\Memorystore\V1beta\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1beta\PscAutoConnection[] $var
      * @return $this
      */
     public function setPscAutoConnections($var)
@@ -829,7 +829,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance.InstanceEndpoint endpoints = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1beta\Instance\InstanceEndpoint>
      */
     public function getEndpoints()
     {
@@ -840,7 +840,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance.InstanceEndpoint endpoints = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Memorystore\V1beta\Instance\InstanceEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1beta\Instance\InstanceEndpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)

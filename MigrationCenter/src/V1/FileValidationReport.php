@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that aggregates the validation errors found in an import job file.
@@ -49,12 +49,12 @@ class FileValidationReport extends \Google\Protobuf\Internal\Message
      *
      *     @type string $file_name
      *           The name of the file.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportRowError>|\Google\Protobuf\Internal\RepeatedField $row_errors
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportRowError[] $row_errors
      *           Partial list of rows that encountered validation error.
      *     @type bool $partial_report
      *           Flag indicating that processing was aborted due to maximum number of
      *           errors.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $file_errors
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportError[] $file_errors
      *           List of file level errors.
      * }
      */
@@ -93,7 +93,7 @@ class FileValidationReport extends \Google\Protobuf\Internal\Message
      * Partial list of rows that encountered validation error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportRowError row_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportRowError>
      */
     public function getRowErrors()
     {
@@ -104,7 +104,7 @@ class FileValidationReport extends \Google\Protobuf\Internal\Message
      * Partial list of rows that encountered validation error.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportRowError row_errors = 2;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportRowError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportRowError[] $var
      * @return $this
      */
     public function setRowErrors($var)
@@ -147,7 +147,7 @@ class FileValidationReport extends \Google\Protobuf\Internal\Message
      * List of file level errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError file_errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportError>
      */
     public function getFileErrors()
     {
@@ -158,7 +158,7 @@ class FileValidationReport extends \Google\Protobuf\Internal\Message
      * List of file level errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError file_errors = 4;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportError[] $var
      * @return $this
      */
     public function setFileErrors($var)

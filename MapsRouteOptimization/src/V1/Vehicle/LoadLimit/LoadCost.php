@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cost of moving one unit of load during a `Transition`.
@@ -241,5 +241,4 @@ class LoadCost extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

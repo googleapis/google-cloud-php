@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Local attached disk resource.
@@ -142,7 +142,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *           If not specified, the server chooses a default device name to apply to this
      *           disk, in the form persistent-disk-x, where x is a number assigned by Google
      *           Compute Engine. This field is only applicable for persistent disks.
-     *     @type array<\Google\Cloud\Notebooks\V1\LocalDisk\RuntimeGuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type \Google\Cloud\Notebooks\V1\LocalDisk\RuntimeGuestOsFeature[] $guest_os_features
      *           Output only. Indicates a list of features to enable on the guest operating system.
      *           Applicable only for bootable images. Read  Enabling guest operating
      *           system features to see a list of available options.
@@ -167,7 +167,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      *           * `SCSI`
      *     @type string $kind
      *           Output only. Type of the resource. Always compute#attachedDisk for attached disks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           Output only. Any valid publicly visible licenses.
      *     @type string $mode
      *           The mode in which to attach this disk, either `READ_WRITE` or `READ_ONLY`.
@@ -293,7 +293,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      * system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.LocalDisk.RuntimeGuestOsFeature guest_os_features = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\LocalDisk\RuntimeGuestOsFeature>
      */
     public function getGuestOsFeatures()
     {
@@ -306,7 +306,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      * system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.LocalDisk.RuntimeGuestOsFeature guest_os_features = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Notebooks\V1\LocalDisk\RuntimeGuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\LocalDisk\RuntimeGuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -461,7 +461,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      * Output only. Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -472,7 +472,7 @@ class LocalDisk extends \Google\Protobuf\Internal\Message
      * Output only. Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)

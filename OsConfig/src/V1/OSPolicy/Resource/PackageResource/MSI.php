@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicy\Resource\PackageResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An MSI package. MSI packages only support INSTALLED state.
@@ -39,7 +39,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\OsConfig\V1\OSPolicy\Resource\File $source
      *           Required. The MSI package.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type string[] $properties
      *           Additional properties to use during installation.
      *           This should be in the format of Property=Setting.
      *           Appended to the defaults of `ACTION=INSTALL
@@ -94,7 +94,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      * REBOOT=ReallySuppress`.
      *
      * Generated from protobuf field <code>repeated string properties = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProperties()
     {
@@ -108,7 +108,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      * REBOOT=ReallySuppress`.
      *
      * Generated from protobuf field <code>repeated string properties = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProperties($var)
@@ -120,5 +120,4 @@ class MSI extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memcache\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a Memcached Node.
@@ -98,5 +98,4 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

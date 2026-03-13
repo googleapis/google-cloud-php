@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A configuration to generate a response for GetEffectiveVpcFlowLogsConfig
@@ -121,7 +121,7 @@ class EffectiveVpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      *           Configures whether all, none or a subset of metadata fields should be
      *           added to the reported VPC flow logs.
      *           Default value is INCLUDE_ALL_METADATA.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metadata_fields
+     *     @type string[] $metadata_fields
      *           Custom metadata fields to include in the reported VPC flow logs.
      *           Can only be specified if "metadata" was set to CUSTOM_METADATA.
      *     @type string $filter_expr
@@ -358,7 +358,7 @@ class EffectiveVpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      * Can only be specified if "metadata" was set to CUSTOM_METADATA.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetadataFields()
     {
@@ -370,7 +370,7 @@ class EffectiveVpcFlowLogsConfig extends \Google\Protobuf\Internal\Message
      * Can only be specified if "metadata" was set to CUSTOM_METADATA.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetadataFields($var)

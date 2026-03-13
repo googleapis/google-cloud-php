@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Backups that generated and managed by memorystore.
@@ -84,5 +84,4 @@ class ManagedBackupSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

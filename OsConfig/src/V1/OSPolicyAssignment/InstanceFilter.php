@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicyAssignment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filters to select target VMs for an assignment.
@@ -58,15 +58,15 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      *     @type bool $all
      *           Target all VMs in the project. If true, no other criteria is
      *           permitted.
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>|\Google\Protobuf\Internal\RepeatedField $inclusion_labels
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet[] $inclusion_labels
      *           List of label sets used for VM inclusion.
      *           If the list has more than one `LabelSet`, the VM is included if any
      *           of the label sets are applicable for the VM.
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>|\Google\Protobuf\Internal\RepeatedField $exclusion_labels
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet[] $exclusion_labels
      *           List of label sets used for VM exclusion.
      *           If the list has more than one label set, the VM is excluded if any
      *           of the label sets are applicable for the VM.
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter\Inventory>|\Google\Protobuf\Internal\RepeatedField $inventories
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter\Inventory[] $inventories
      *           List of inventories to select VMs.
      *           A VM is selected if its inventory data matches at least one of the
      *           following inventories.
@@ -111,7 +111,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * of the label sets are applicable for the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.LabelSet inclusion_labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>
      */
     public function getInclusionLabels()
     {
@@ -124,7 +124,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * of the label sets are applicable for the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.LabelSet inclusion_labels = 2;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet[] $var
      * @return $this
      */
     public function setInclusionLabels($var)
@@ -141,7 +141,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * of the label sets are applicable for the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.LabelSet exclusion_labels = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>
      */
     public function getExclusionLabels()
     {
@@ -154,7 +154,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * of the label sets are applicable for the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.LabelSet exclusion_labels = 3;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment\LabelSet[] $var
      * @return $this
      */
     public function setExclusionLabels($var)
@@ -171,7 +171,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * following inventories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.InstanceFilter.Inventory inventories = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter\Inventory>
      */
     public function getInventories()
     {
@@ -184,7 +184,7 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
      * following inventories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment.InstanceFilter.Inventory inventories = 4;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter\Inventory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter\Inventory[] $var
      * @return $this
      */
     public function setInventories($var)
@@ -196,5 +196,4 @@ class InstanceFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

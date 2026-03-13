@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NFS exports.
@@ -28,7 +28,7 @@ class NfsExportList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\NfsExport>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\MigrationCenter\V1\NfsExport[] $entries
      *           NFS export entries.
      * }
      */
@@ -41,7 +41,7 @@ class NfsExportList extends \Google\Protobuf\Internal\Message
      * NFS export entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.NfsExport entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\NfsExport>
      */
     public function getEntries()
     {
@@ -52,7 +52,7 @@ class NfsExportList extends \Google\Protobuf\Internal\Message
      * NFS export entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.NfsExport entries = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\NfsExport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\NfsExport[] $var
      * @return $this
      */
     public function setEntries($var)

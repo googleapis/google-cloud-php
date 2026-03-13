@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A description of a notification channel. The descriptor includes
@@ -96,11 +96,11 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *           A human-readable description of the notification channel
      *           type. The description may include a description of the properties
      *           of the channel and pointers to external documentation.
-     *     @type array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type \Google\Api\LabelDescriptor[] $labels
      *           The set of labels that must be defined to identify a particular
      *           channel of the corresponding type. Each label includes a
      *           description for how that field should be populated.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_tiers
+     *     @type int[] $supported_tiers
      *           The tiers that support this notification channel; the project service tier
      *           must be one of the supported_tiers.
      *     @type int $launch_stage
@@ -240,7 +240,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * description for how that field should be populated.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\LabelDescriptor>
      */
     public function getLabels()
     {
@@ -253,7 +253,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * description for how that field should be populated.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @param array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\LabelDescriptor[] $var
      * @return $this
      */
     public function setLabels($var)
@@ -269,7 +269,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * must be one of the supported_tiers.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      * @deprecated
      */
     public function getSupportedTiers()
@@ -285,7 +285,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * must be one of the supported_tiers.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      * @deprecated
      */

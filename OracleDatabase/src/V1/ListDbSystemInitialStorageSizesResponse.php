@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `DbSystemInitialStorageSizes.List`.
@@ -34,7 +34,7 @@ class ListDbSystemInitialStorageSizesResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\DbSystemInitialStorageSize>|\Google\Protobuf\Internal\RepeatedField $db_system_initial_storage_sizes
+     *     @type \Google\Cloud\OracleDatabase\V1\DbSystemInitialStorageSize[] $db_system_initial_storage_sizes
      *           The list of DbSystemInitialStorageSizes.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListDbSystemInitialStorageSizesResponse extends \Google\Protobuf\Internal\
      * The list of DbSystemInitialStorageSizes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbSystemInitialStorageSize db_system_initial_storage_sizes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\DbSystemInitialStorageSize>
      */
     public function getDbSystemInitialStorageSizes()
     {
@@ -60,7 +60,7 @@ class ListDbSystemInitialStorageSizesResponse extends \Google\Protobuf\Internal\
      * The list of DbSystemInitialStorageSizes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbSystemInitialStorageSize db_system_initial_storage_sizes = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\DbSystemInitialStorageSize>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\DbSystemInitialStorageSize[] $var
      * @return $this
      */
     public function setDbSystemInitialStorageSizes($var)

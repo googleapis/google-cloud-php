@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Hybrid Replication parameters for the volume.
@@ -103,7 +103,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      *     @type string $peer_svm_name
      *           Required. Name of the user's local source vserver svm to be peered with the
      *           destination vserver svm.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $peer_ip_addresses
+     *     @type string[] $peer_ip_addresses
      *           Required. List of node ip addresses to be peered with.
      *     @type string $cluster_location
      *           Optional. Name of source cluster location associated with the Hybrid
@@ -239,7 +239,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      * Required. List of node ip addresses to be peered with.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPeerIpAddresses()
     {
@@ -250,7 +250,7 @@ class HybridReplicationParameters extends \Google\Protobuf\Internal\Message
      * Required. List of node ip addresses to be peered with.
      *
      * Generated from protobuf field <code>repeated string peer_ip_addresses = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPeerIpAddresses($var)

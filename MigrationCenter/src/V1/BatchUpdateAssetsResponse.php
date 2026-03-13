@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for updating a list of assets.
@@ -29,7 +29,7 @@ class BatchUpdateAssetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type \Google\Cloud\MigrationCenter\V1\Asset[] $assets
      *           Update asset content.
      *           The content only includes values after field mask being applied.
      * }
@@ -44,7 +44,7 @@ class BatchUpdateAssetsResponse extends \Google\Protobuf\Internal\Message
      * The content only includes values after field mask being applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Asset assets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\Asset>
      */
     public function getAssets()
     {
@@ -56,7 +56,7 @@ class BatchUpdateAssetsResponse extends \Google\Protobuf\Internal\Message
      * The content only includes values after field mask being applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.Asset assets = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\Asset[] $var
      * @return $this
      */
     public function setAssets($var)

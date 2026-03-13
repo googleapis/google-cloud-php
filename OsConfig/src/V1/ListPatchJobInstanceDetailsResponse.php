@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response message for listing the instances details for a patch job.
@@ -34,7 +34,7 @@ class ListPatchJobInstanceDetailsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OsConfig\V1\PatchJobInstanceDetails>|\Google\Protobuf\Internal\RepeatedField $patch_job_instance_details
+     *     @type \Google\Cloud\OsConfig\V1\PatchJobInstanceDetails[] $patch_job_instance_details
      *           A list of instance status.
      *     @type string $next_page_token
      *           A pagination token that can be used to get the next page of results.
@@ -49,7 +49,7 @@ class ListPatchJobInstanceDetailsResponse extends \Google\Protobuf\Internal\Mess
      * A list of instance status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchJobInstanceDetails patch_job_instance_details = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\PatchJobInstanceDetails>
      */
     public function getPatchJobInstanceDetails()
     {
@@ -60,7 +60,7 @@ class ListPatchJobInstanceDetailsResponse extends \Google\Protobuf\Internal\Mess
      * A list of instance status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchJobInstanceDetails patch_job_instance_details = 1;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\PatchJobInstanceDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\PatchJobInstanceDetails[] $var
      * @return $this
      */
     public function setPatchJobInstanceDetails($var)

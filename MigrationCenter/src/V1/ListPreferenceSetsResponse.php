@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing preference sets.
@@ -40,11 +40,11 @@ class ListPreferenceSetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\PreferenceSet>|\Google\Protobuf\Internal\RepeatedField $preference_sets
+     *     @type \Google\Cloud\MigrationCenter\V1\PreferenceSet[] $preference_sets
      *           The list of PreferenceSets
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListPreferenceSetsResponse extends \Google\Protobuf\Internal\Message
      * The list of PreferenceSets
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PreferenceSet preference_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\PreferenceSet>
      */
     public function getPreferenceSets()
     {
@@ -68,7 +68,7 @@ class ListPreferenceSetsResponse extends \Google\Protobuf\Internal\Message
      * The list of PreferenceSets
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PreferenceSet preference_sets = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\PreferenceSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\PreferenceSet[] $var
      * @return $this
      */
     public function setPreferenceSets($var)
@@ -109,7 +109,7 @@ class ListPreferenceSetsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListPreferenceSetsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

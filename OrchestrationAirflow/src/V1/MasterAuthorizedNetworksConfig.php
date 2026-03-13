@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for the master authorized networks feature. Enabled
@@ -40,7 +40,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Optional. Whether or not master authorized networks feature is enabled.
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $cidr_blocks
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $cidr_blocks
      *           Up to 50 external networks that could access Kubernetes master through
      *           HTTPS.
      * }
@@ -81,7 +81,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock>
      */
     public function getCidrBlocks()
     {
@@ -93,7 +93,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 2;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $var
      * @return $this
      */
     public function setCidrBlocks($var)

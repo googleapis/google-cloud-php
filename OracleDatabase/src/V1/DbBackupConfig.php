@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Backup Options for the Database.
@@ -73,7 +73,7 @@ class DbBackupConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $auto_backup_enabled
      *           Optional. If set to true, enables automatic backups on the database.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\DbBackupConfig\BackupDestinationDetails>|\Google\Protobuf\Internal\RepeatedField $backup_destination_details
+     *     @type \Google\Cloud\OracleDatabase\V1\DbBackupConfig\BackupDestinationDetails[] $backup_destination_details
      *           Optional. Details of the database backup destinations.
      *     @type int $retention_period_days
      *           Optional. The number of days an automatic backup is retained before being
@@ -129,7 +129,7 @@ class DbBackupConfig extends \Google\Protobuf\Internal\Message
      * Optional. Details of the database backup destinations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbBackupConfig.BackupDestinationDetails backup_destination_details = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\DbBackupConfig\BackupDestinationDetails>
      */
     public function getBackupDestinationDetails()
     {
@@ -140,7 +140,7 @@ class DbBackupConfig extends \Google\Protobuf\Internal\Message
      * Optional. Details of the database backup destinations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbBackupConfig.BackupDestinationDetails backup_destination_details = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\DbBackupConfig\BackupDestinationDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\DbBackupConfig\BackupDestinationDetails[] $var
      * @return $this
      */
     public function setBackupDestinationDetails($var)

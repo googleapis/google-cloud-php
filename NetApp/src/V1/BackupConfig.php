@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BackupConfig contains backup related config on a volume.
@@ -51,7 +51,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_policies
+     *     @type string[] $backup_policies
      *           Optional. When specified, schedule backups will be created based on the
      *           policy configuration.
      *     @type string $backup_vault
@@ -76,7 +76,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      * policy configuration.
      *
      * Generated from protobuf field <code>repeated string backup_policies = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBackupPolicies()
     {
@@ -88,7 +88,7 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
      * policy configuration.
      *
      * Generated from protobuf field <code>repeated string backup_policies = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBackupPolicies($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListReplicationsResponse is the result of ListReplicationsRequest.
@@ -41,12 +41,12 @@ class ListReplicationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetApp\V1\Replication>|\Google\Protobuf\Internal\RepeatedField $replications
+     *     @type \Google\Cloud\NetApp\V1\Replication[] $replications
      *           A list of replications in the project for the specified volume.
      *     @type string $next_page_token
      *           The token you can use to retrieve the next page of results. Not returned
      *           if there are no more results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListReplicationsResponse extends \Google\Protobuf\Internal\Message
      * A list of replications in the project for the specified volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.Replication replications = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\Replication>
      */
     public function getReplications()
     {
@@ -70,7 +70,7 @@ class ListReplicationsResponse extends \Google\Protobuf\Internal\Message
      * A list of replications in the project for the specified volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.Replication replications = 1;</code>
-     * @param array<\Google\Cloud\NetApp\V1\Replication>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\Replication[] $var
      * @return $this
      */
     public function setReplications($var)
@@ -113,7 +113,7 @@ class ListReplicationsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListReplicationsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

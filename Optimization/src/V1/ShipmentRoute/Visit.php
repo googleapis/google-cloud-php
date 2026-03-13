@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A visit performed during a route. This visit corresponds to a pickup or a
@@ -171,7 +171,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           Copy of the corresponding
      *           [VisitRequest.label][google.cloud.optimization.v1.Shipment.VisitRequest.label],
      *           if specified in the `VisitRequest`.
-     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $arrival_loads
+     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[] $arrival_loads
      *           Deprecated: Use
      *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]
      *           instead. Vehicle loads upon arrival at the visit location, for each type
@@ -184,7 +184,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           Deprecated: Use
      *           [ShipmentRoute.Transition.delay_duration][google.cloud.optimization.v1.ShipmentRoute.Transition.delay_duration]
      *           instead. Delay occurring before the visit starts.
-     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
+     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[] $demands
      *           Deprecated: Use
      *           [Visit.load_demands][google.cloud.optimization.v1.ShipmentRoute.Visit.load_demands]
      *           instead.
@@ -486,7 +486,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * and that don't have any non-zero demand on the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity arrival_loads = 9 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\CapacityQuantity>
      * @deprecated
      */
     public function getArrivalLoads()
@@ -508,7 +508,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * and that don't have any non-zero demand on the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity arrival_loads = 9 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[] $var
      * @return $this
      * @deprecated
      */
@@ -579,7 +579,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\CapacityQuantity>
      * @deprecated
      */
     public function getDemands()
@@ -596,7 +596,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[] $var
      * @return $this
      * @deprecated
      */
@@ -612,5 +612,4 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

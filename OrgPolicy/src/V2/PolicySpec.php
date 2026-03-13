@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a Google Cloud policy specification which is used to specify
@@ -90,7 +90,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *           Output only. The time stamp this was previously updated. This
      *           represents the last time a call to `CreatePolicy` or `UpdatePolicy` was
      *           made for that policy.
-     *     @type array<\Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule[] $rules
      *           In policies for boolean constraints, the following requirements apply:
      *             - There must be one and only one policy rule where condition is unset.
      *             - Boolean policy rules with conditions must set `enforced` to the
@@ -207,7 +207,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *     true for a target resource take precedence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.PolicySpec.PolicyRule rules = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule>
      */
     public function getRules()
     {
@@ -223,7 +223,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *     true for a target resource take precedence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.PolicySpec.PolicyRule rules = 3;</code>
-     * @param array<\Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

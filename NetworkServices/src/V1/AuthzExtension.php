@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `AuthzExtension` is a resource that allows traffic forwarding
@@ -200,7 +200,7 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      *           The following variables are supported in the metadata Struct:
      *           `{forwarding_rule_id}` - substituted with the forwarding rule's fully
      *             qualified resource name.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forward_headers
+     *     @type string[] $forward_headers
      *           Optional. List of the HTTP headers to forward to the extension
      *           (from the client). If omitted, all headers are sent.
      *           Each element is a string indicating the header name.
@@ -620,7 +620,7 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      * Each element is a string indicating the header name.
      *
      * Generated from protobuf field <code>repeated string forward_headers = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getForwardHeaders()
     {
@@ -633,7 +633,7 @@ class AuthzExtension extends \Google\Protobuf\Internal\Message
      * Each element is a string indicating the header name.
      *
      * Generated from protobuf field <code>repeated string forward_headers = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setForwardHeaders($var)

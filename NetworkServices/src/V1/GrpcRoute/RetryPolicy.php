@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specifications for retries.
@@ -52,7 +52,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $retry_conditions
+     *     @type string[] $retry_conditions
      *           - connect-failure: Router will retry on failures connecting to Backend
      *              Services, for example due to connection timeouts.
      *           - refused-stream: Router will retry if the backend service resets the
@@ -98,7 +98,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      *    header is set to unavailable
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRetryConditions()
     {
@@ -124,7 +124,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      *    header is set to unavailable
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRetryConditions($var)
@@ -164,5 +164,4 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

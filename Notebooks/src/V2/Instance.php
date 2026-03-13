@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of a notebook instance.
@@ -31,7 +31,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $proxy_uri = '';
     /**
      * Optional. Input only. The owner of this instance after creation. Format:
-     * `alias&#64;example.com`
+     * `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
@@ -126,9 +126,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $proxy_uri
      *           Output only. The proxy endpoint that is used to access the Jupyter
      *           notebook.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_owners
+     *     @type string[] $instance_owners
      *           Optional. Input only. The owner of this instance after creation. Format:
-     *           `alias&#64;example.com`
+     *           `alias\@example.com`
      *           Currently supports one owner only. If not specified, all of the service
      *           account users of your VM instance's service account can use
      *           the instance.
@@ -137,7 +137,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           request.
      *     @type int $state
      *           Output only. The state of this instance.
-     *     @type array<\Google\Cloud\Notebooks\V2\UpgradeHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $upgrade_history
+     *     @type \Google\Cloud\Notebooks\V2\UpgradeHistoryEntry[] $upgrade_history
      *           Output only. The upgrade history of this instance.
      *     @type string $id
      *           Output only. Unique ID of the resource.
@@ -260,13 +260,13 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Input only. The owner of this instance after creation. Format:
-     * `alias&#64;example.com`
+     * `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
      *
      * Generated from protobuf field <code>repeated string instance_owners = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceOwners()
     {
@@ -275,13 +275,13 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Input only. The owner of this instance after creation. Format:
-     * `alias&#64;example.com`
+     * `alias\@example.com`
      * Currently supports one owner only. If not specified, all of the service
      * account users of your VM instance's service account can use
      * the instance.
      *
      * Generated from protobuf field <code>repeated string instance_owners = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceOwners($var)
@@ -350,7 +350,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. The upgrade history of this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.UpgradeHistoryEntry upgrade_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V2\UpgradeHistoryEntry>
      */
     public function getUpgradeHistory()
     {
@@ -361,7 +361,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. The upgrade history of this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v2.UpgradeHistoryEntry upgrade_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Notebooks\V2\UpgradeHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V2\UpgradeHistoryEntry[] $var
      * @return $this
      */
     public function setUpgradeHistory($var)

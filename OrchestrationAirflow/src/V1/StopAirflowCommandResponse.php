@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to StopAirflowCommandRequest.
@@ -36,7 +36,7 @@ class StopAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $is_done
      *           Whether the execution is still running.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $output
+     *     @type string[] $output
      *           Output message from stopping execution request.
      * }
      */
@@ -75,7 +75,7 @@ class StopAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      * Output message from stopping execution request.
      *
      * Generated from protobuf field <code>repeated string output = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOutput()
     {
@@ -86,7 +86,7 @@ class StopAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      * Output message from stopping execution request.
      *
      * Generated from protobuf field <code>repeated string output = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOutput($var)

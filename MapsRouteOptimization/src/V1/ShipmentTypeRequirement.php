@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies requirements between shipments based on their shipment_type.
@@ -46,10 +46,10 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_shipment_type_alternatives
+     *     @type string[] $required_shipment_type_alternatives
      *           List of alternative shipment types required by the
      *           `dependent_shipment_types`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dependent_shipment_types
+     *     @type string[] $dependent_shipment_types
      *           All shipments with a type in the `dependent_shipment_types` field require
      *           at least one shipment of type `required_shipment_type_alternatives` to be
      *           visited on the same route.
@@ -69,7 +69,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * `dependent_shipment_types`.
      *
      * Generated from protobuf field <code>repeated string required_shipment_type_alternatives = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequiredShipmentTypeAlternatives()
     {
@@ -81,7 +81,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * `dependent_shipment_types`.
      *
      * Generated from protobuf field <code>repeated string required_shipment_type_alternatives = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequiredShipmentTypeAlternatives($var)
@@ -100,7 +100,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * are not allowed.
      *
      * Generated from protobuf field <code>repeated string dependent_shipment_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDependentShipmentTypes()
     {
@@ -115,7 +115,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * are not allowed.
      *
      * Generated from protobuf field <code>repeated string dependent_shipment_types = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDependentShipmentTypes($var)

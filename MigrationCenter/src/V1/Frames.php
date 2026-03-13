@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of frame data.
@@ -28,7 +28,7 @@ class Frames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\AssetFrame>|\Google\Protobuf\Internal\RepeatedField $frames_data
+     *     @type \Google\Cloud\MigrationCenter\V1\AssetFrame[] $frames_data
      *           A repeated field of asset data.
      * }
      */
@@ -41,7 +41,7 @@ class Frames extends \Google\Protobuf\Internal\Message
      * A repeated field of asset data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AssetFrame frames_data = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\AssetFrame>
      */
     public function getFramesData()
     {
@@ -52,7 +52,7 @@ class Frames extends \Google\Protobuf\Internal\Message
      * A repeated field of asset data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AssetFrame frames_data = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\AssetFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\AssetFrame[] $var
      * @return $this
      */
     public function setFramesData($var)

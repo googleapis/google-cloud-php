@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An instance-attached disk resource.
@@ -141,7 +141,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Google Compute Engine.This field is only applicable for persistent disks.
      *     @type int|string $disk_size_gb
      *           Indicates the size of the disk in base-2 GB.
-     *     @type array<\Google\Cloud\Notebooks\V1\Instance\Disk\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type \Google\Cloud\Notebooks\V1\Instance\Disk\GuestOsFeature[] $guest_os_features
      *           Indicates a list of features to enable on the guest operating system.
      *           Applicable only for bootable images. Read  Enabling guest operating
      *           system features to see a list of available options.
@@ -162,7 +162,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           Type of the resource. Always compute#attachedDisk for attached
      *           disks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
      *           A License represents billing and aggregate usage data for public
      *           and marketplace images.
@@ -313,7 +313,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.Disk.GuestOsFeature guest_os_features = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Instance\Disk\GuestOsFeature>
      */
     public function getGuestOsFeatures()
     {
@@ -326,7 +326,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Instance.Disk.GuestOsFeature guest_os_features = 5;</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Instance\Disk\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Instance\Disk\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -443,7 +443,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * and marketplace images.
      *
      * Generated from protobuf field <code>repeated string licenses = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -456,7 +456,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * and marketplace images.
      *
      * Generated from protobuf field <code>repeated string licenses = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -562,5 +562,4 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

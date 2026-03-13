@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\Shipment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * When performing a visit, a predefined amount may be added to the vehicle
@@ -75,5 +75,4 @@ class Load extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\Instance\Disk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Guest OS features for boot disk.
@@ -96,5 +96,4 @@ class GuestOsFeature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

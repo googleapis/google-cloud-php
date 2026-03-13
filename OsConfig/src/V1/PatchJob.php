@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A high level representation of a patch job that is either in progress
@@ -23,7 +23,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
 {
     /**
      * Unique identifier for this patch job in the form
-     * `projects/&#42;&#47;patchJobs/&#42;`
+     * `projects/{@*}patchJobs/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -126,7 +126,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Unique identifier for this patch job in the form
-     *           `projects/&#42;&#47;patchJobs/&#42;`
+     *           `projects/{@*}patchJobs/*`
      *     @type string $display_name
      *           Display name for this patch job. This is not a unique identifier.
      *     @type string $description
@@ -169,7 +169,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Unique identifier for this patch job in the form
-     * `projects/&#42;&#47;patchJobs/&#42;`
+     * `projects/{@*}patchJobs/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -181,7 +181,7 @@ class PatchJob extends \Google\Protobuf\Internal\Message
 
     /**
      * Unique identifier for this patch job in the form
-     * `projects/&#42;&#47;patchJobs/&#42;`
+     * `projects/{@*}patchJobs/*`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

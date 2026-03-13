@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Memorystore instance.
@@ -312,7 +312,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. In-transit encryption mode of the instance.
      *     @type int $shard_count
      *           Optional. Number of shards for the instance.
-     *     @type array<\Google\Cloud\Memorystore\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $discovery_endpoints
+     *     @type \Google\Cloud\Memorystore\V1\DiscoveryEndpoint[] $discovery_endpoints
      *           Output only. Deprecated: The discovery_endpoints parameter is deprecated.
      *           As a result, it will not be populated if the connections are created using
      *           endpoints parameter. Instead of this parameter, for discovery, use
@@ -334,12 +334,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           node allocation.
      *     @type bool $deletion_protection_enabled
      *           Optional. If set to true deletion of the instance will fail.
-     *     @type array<\Google\Cloud\Memorystore\V1\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *     @type \Google\Cloud\Memorystore\V1\PscAutoConnection[] $psc_auto_connections
      *           Optional. Immutable. Deprecated: Use the
      *           endpoints.connections.psc_auto_connection value instead.
-     *     @type array<\Google\Cloud\Memorystore\V1\PscAttachmentDetail>|\Google\Protobuf\Internal\RepeatedField $psc_attachment_details
+     *     @type \Google\Cloud\Memorystore\V1\PscAttachmentDetail[] $psc_attachment_details
      *           Output only. Service attachment details to configure PSC connections.
-     *     @type array<\Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint[] $endpoints
      *           Optional. Endpoints for the instance.
      *     @type int $mode
      *           Optional. The mode config for the instance.
@@ -380,7 +380,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $effective_maintenance_version
      *           Output only. This field represents the actual maintenance version of the
      *           instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_maintenance_versions
+     *     @type string[] $available_maintenance_versions
      *           Output only. This field is used to determine the available maintenance
      *           versions for the self service update.
      *     @type bool $allow_fewer_zones_deployment
@@ -801,7 +801,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * with connectionType CONNECTION_TYPE_DISCOVERY.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\DiscoveryEndpoint>
      * @deprecated
      */
     public function getDiscoveryEndpoints()
@@ -821,7 +821,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * with connectionType CONNECTION_TYPE_DISCOVERY.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.DiscoveryEndpoint discovery_endpoints = 12 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\DiscoveryEndpoint[] $var
      * @return $this
      * @deprecated
      */
@@ -1065,7 +1065,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * endpoints.connections.psc_auto_connection value instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\PscAutoConnection>
      * @deprecated
      */
     public function getPscAutoConnections()
@@ -1081,7 +1081,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * endpoints.connections.psc_auto_connection value instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAutoConnection psc_auto_connections = 20 [deprecated = true, (.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\PscAutoConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\PscAutoConnection[] $var
      * @return $this
      * @deprecated
      */
@@ -1100,7 +1100,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Service attachment details to configure PSC connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAttachmentDetail psc_attachment_details = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\PscAttachmentDetail>
      */
     public function getPscAttachmentDetails()
     {
@@ -1111,7 +1111,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Service attachment details to configure PSC connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.PscAttachmentDetail psc_attachment_details = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\PscAttachmentDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\PscAttachmentDetail[] $var
      * @return $this
      */
     public function setPscAttachmentDetails($var)
@@ -1126,7 +1126,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.Instance.InstanceEndpoint endpoints = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint>
      */
     public function getEndpoints()
     {
@@ -1137,7 +1137,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. Endpoints for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.Instance.InstanceEndpoint endpoints = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\Instance\InstanceEndpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -1711,7 +1711,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * versions for the self service update.
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableMaintenanceVersions()
     {
@@ -1723,7 +1723,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * versions for the self service update.
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableMaintenanceVersions($var)

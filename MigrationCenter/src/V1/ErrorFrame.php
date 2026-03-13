@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a frame which failed to be processed due to an error.
@@ -48,7 +48,7 @@ class ErrorFrame extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The identifier of the ErrorFrame.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\FrameViolationEntry>|\Google\Protobuf\Internal\RepeatedField $violations
+     *     @type \Google\Cloud\MigrationCenter\V1\FrameViolationEntry[] $violations
      *           Output only. All the violations that were detected for the frame.
      *     @type \Google\Cloud\MigrationCenter\V1\AssetFrame $original_frame
      *           Output only. The frame that was originally reported.
@@ -91,7 +91,7 @@ class ErrorFrame extends \Google\Protobuf\Internal\Message
      * Output only. All the violations that were detected for the frame.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.FrameViolationEntry violations = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\FrameViolationEntry>
      */
     public function getViolations()
     {
@@ -102,7 +102,7 @@ class ErrorFrame extends \Google\Protobuf\Internal\Message
      * Output only. All the violations that were detected for the frame.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.FrameViolationEntry violations = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\FrameViolationEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\FrameViolationEntry[] $var
      * @return $this
      */
     public function setViolations($var)

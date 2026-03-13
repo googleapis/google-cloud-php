@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Single /etc/hosts entry.
@@ -36,7 +36,7 @@ class HostsEntry extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ip
      *           IP (raw, IPv4/6 agnostic).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $host_names
+     *     @type string[] $host_names
      *           List of host names / aliases.
      * }
      */
@@ -75,7 +75,7 @@ class HostsEntry extends \Google\Protobuf\Internal\Message
      * List of host names / aliases.
      *
      * Generated from protobuf field <code>repeated string host_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHostNames()
     {
@@ -86,7 +86,7 @@ class HostsEntry extends \Google\Protobuf\Internal\Message
      * List of host names / aliases.
      *
      * Generated from protobuf field <code>repeated string host_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHostNames($var)

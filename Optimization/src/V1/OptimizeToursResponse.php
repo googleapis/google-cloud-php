@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response after solving a tour optimization problem containing the routes
@@ -71,16 +71,16 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $routes
+     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute[] $routes
      *           Routes computed for each vehicle; the i-th route corresponds to the i-th
      *           vehicle in the model.
      *     @type string $request_label
      *           Copy of the
      *           [OptimizeToursRequest.label][google.cloud.optimization.v1.OptimizeToursRequest.label],
      *           if a label was specified in the request.
-     *     @type array<\Google\Cloud\Optimization\V1\SkippedShipment>|\Google\Protobuf\Internal\RepeatedField $skipped_shipments
+     *     @type \Google\Cloud\Optimization\V1\SkippedShipment[] $skipped_shipments
      *           The list of all shipments skipped.
-     *     @type array<\Google\Cloud\Optimization\V1\OptimizeToursValidationError>|\Google\Protobuf\Internal\RepeatedField $validation_errors
+     *     @type \Google\Cloud\Optimization\V1\OptimizeToursValidationError[] $validation_errors
      *           List of all the validation errors that we were able to detect
      *           independently. See the "MULTIPLE ERRORS" explanation for the
      *           [OptimizeToursValidationError][google.cloud.optimization.v1.OptimizeToursValidationError]
@@ -105,7 +105,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * vehicle in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute routes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentRoute>
      */
     public function getRoutes()
     {
@@ -117,7 +117,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * vehicle in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute routes = 1;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentRoute[] $var
      * @return $this
      */
     public function setRoutes($var)
@@ -162,7 +162,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * The list of all shipments skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.SkippedShipment skipped_shipments = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\SkippedShipment>
      */
     public function getSkippedShipments()
     {
@@ -173,7 +173,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * The list of all shipments skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.SkippedShipment skipped_shipments = 4;</code>
-     * @param array<\Google\Cloud\Optimization\V1\SkippedShipment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\SkippedShipment[] $var
      * @return $this
      */
     public function setSkippedShipments($var)
@@ -191,7 +191,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\OptimizeToursValidationError>
      */
     public function getValidationErrors()
     {
@@ -205,7 +205,7 @@ class OptimizeToursResponse extends \Google\Protobuf\Internal\Message
      * message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.OptimizeToursValidationError validation_errors = 5;</code>
-     * @param array<\Google\Cloud\Optimization\V1\OptimizeToursValidationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\OptimizeToursValidationError[] $var
      * @return $this
      */
     public function setValidationErrors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta\SdpFinding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Location of this Sensitive Data Protection Finding within input content.
@@ -138,5 +138,4 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

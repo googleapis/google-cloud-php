@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties of a PluggableDatabase.
@@ -128,7 +128,7 @@ class PluggableDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the pluggable database.
      *     @type string $pdb_name
      *           Required. The database name.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\PluggableDatabaseNodeLevelDetails>|\Google\Protobuf\Internal\RepeatedField $pdb_node_level_details
+     *     @type \Google\Cloud\OracleDatabase\V1\PluggableDatabaseNodeLevelDetails[] $pdb_node_level_details
      *           Optional. Pluggable Database Node Level Details
      *     @type \Google\Cloud\OracleDatabase\V1\DatabaseManagementConfig $database_management_config
      *           Output only. The configuration of the Database Management service.
@@ -423,7 +423,7 @@ class PluggableDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. Pluggable Database Node Level Details
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.PluggableDatabaseNodeLevelDetails pdb_node_level_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\PluggableDatabaseNodeLevelDetails>
      */
     public function getPdbNodeLevelDetails()
     {
@@ -434,7 +434,7 @@ class PluggableDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. Pluggable Database Node Level Details
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.PluggableDatabaseNodeLevelDetails pdb_node_level_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\PluggableDatabaseNodeLevelDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\PluggableDatabaseNodeLevelDetails[] $var
      * @return $this
      */
     public function setPdbNodeLevelDetails($var)

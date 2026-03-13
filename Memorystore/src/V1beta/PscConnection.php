@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User created Psc connection configuration.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RouteMatch defines specifications used to match requests. If multiple match
@@ -65,10 +65,10 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      *     @type bool $ignore_case
      *           Specifies if prefix_match and full_path_match matches are case sensitive.
      *           The default value is false.
-     *     @type array<\Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch[] $headers
      *           Specifies a list of HTTP request headers to match against. ALL of the
      *           supplied headers must be matched.
-     *     @type array<\Google\Cloud\NetworkServices\V1\HttpRoute\QueryParameterMatch>|\Google\Protobuf\Internal\RepeatedField $query_parameters
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\QueryParameterMatch[] $query_parameters
      *           Specifies a list of query parameters to match against. ALL of the query
      *           parameters must be matched.
      * }
@@ -224,7 +224,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * supplied headers must be matched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.HeaderMatch headers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch>
      */
     public function getHeaders()
     {
@@ -236,7 +236,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * supplied headers must be matched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.HeaderMatch headers = 5;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\HeaderMatch[] $var
      * @return $this
      */
     public function setHeaders($var)
@@ -252,7 +252,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * parameters must be matched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch query_parameters = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\HttpRoute\QueryParameterMatch>
      */
     public function getQueryParameters()
     {
@@ -264,7 +264,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * parameters must be matched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.QueryParameterMatch query_parameters = 6;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\HttpRoute\QueryParameterMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\QueryParameterMatch[] $var
      * @return $this
      */
     public function setQueryParameters($var)
@@ -284,5 +284,4 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

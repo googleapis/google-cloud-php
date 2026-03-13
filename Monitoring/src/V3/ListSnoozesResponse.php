@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The results of a successful `ListSnoozes` call, containing the matching
@@ -36,7 +36,7 @@ class ListSnoozesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\Snooze>|\Google\Protobuf\Internal\RepeatedField $snoozes
+     *     @type \Google\Cloud\Monitoring\V3\Snooze[] $snoozes
      *           `Snooze`s matching this list call.
      *     @type string $next_page_token
      *           Page token for repeated calls to `ListSnoozes`, to fetch additional pages
@@ -52,7 +52,7 @@ class ListSnoozesResponse extends \Google\Protobuf\Internal\Message
      * `Snooze`s matching this list call.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Snooze snoozes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\Snooze>
      */
     public function getSnoozes()
     {
@@ -63,7 +63,7 @@ class ListSnoozesResponse extends \Google\Protobuf\Internal\Message
      * `Snooze`s matching this list call.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Snooze snoozes = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\Snooze>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\Snooze[] $var
      * @return $this
      */
     public function setSnoozes($var)

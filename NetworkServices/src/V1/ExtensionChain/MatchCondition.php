@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\ExtensionChain;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conditions under which this chain is invoked for a request.
@@ -76,5 +76,4 @@ class MatchCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

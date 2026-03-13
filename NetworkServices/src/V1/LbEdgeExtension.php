@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `LbEdgeExtension` is a resource that lets the extension service influence
@@ -102,12 +102,12 @@ class LbEdgeExtension extends \Google\Protobuf\Internal\Message
      *           The format must comply with [the requirements for
      *           labels](https://cloud.google.com/compute/docs/labeling-resources#requirements)
      *           for Google Cloud resources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
+     *     @type string[] $forwarding_rules
      *           Required. A list of references to the forwarding rules to which this
      *           service extension is attached. At least one forwarding rule is required.
      *           Only one `LbEdgeExtension` resource can be associated with a forwarding
      *           rule.
-     *     @type array<\Google\Cloud\NetworkServices\V1\ExtensionChain>|\Google\Protobuf\Internal\RepeatedField $extension_chains
+     *     @type \Google\Cloud\NetworkServices\V1\ExtensionChain[] $extension_chains
      *           Required. A set of ordered extension chains that contain the match
      *           conditions and extensions to execute. Match conditions for each extension
      *           chain are evaluated in sequence for a given request. The first extension
@@ -292,7 +292,7 @@ class LbEdgeExtension extends \Google\Protobuf\Internal\Message
      * rule.
      *
      * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getForwardingRules()
     {
@@ -306,7 +306,7 @@ class LbEdgeExtension extends \Google\Protobuf\Internal\Message
      * rule.
      *
      * Generated from protobuf field <code>repeated string forwarding_rules = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setForwardingRules($var)
@@ -326,7 +326,7 @@ class LbEdgeExtension extends \Google\Protobuf\Internal\Message
      * Limited to 5 extension chains per resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain extension_chains = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\ExtensionChain>
      */
     public function getExtensionChains()
     {
@@ -342,7 +342,7 @@ class LbEdgeExtension extends \Google\Protobuf\Internal\Message
      * Limited to 5 extension chains per resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.ExtensionChain extension_chains = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\ExtensionChain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\ExtensionChain[] $var
      * @return $this
      */
     public function setExtensionChains($var)

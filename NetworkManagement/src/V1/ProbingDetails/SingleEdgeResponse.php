@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1\ProbingDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Probing results for a single edge device.
@@ -282,5 +282,4 @@ class SingleEdgeResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

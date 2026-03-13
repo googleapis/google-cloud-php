@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Various properties and settings associated with Exadata VM cluster.
@@ -232,7 +232,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Optional. Grid Infrastructure Version.
      *     @type \Google\Type\TimeZone $time_zone
      *           Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssh_public_keys
+     *     @type string[] $ssh_public_keys
      *           Optional. SSH public keys to be stored with cluster.
      *     @type int $node_count
      *           Optional. Number of database servers.
@@ -278,13 +278,13 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Required. Number of enabled CPU cores.
      *     @type string $system_version
      *           Optional. Operating system version of the image.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scan_ip_ids
+     *     @type string[] $scan_ip_ids
      *           Output only. OCIDs of scan IPs.
      *     @type string $scan_dns_record_id
      *           Output only. OCID of scan DNS record.
      *     @type string $oci_url
      *           Output only. Deep link to the OCI console to view this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $db_server_ocids
+     *     @type string[] $db_server_ocids
      *           Optional. OCID of database servers.
      *     @type string $compartment_id
      *           Output only. Compartment ID of cluster.
@@ -419,7 +419,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Optional. SSH public keys to be stored with cluster.
      *
      * Generated from protobuf field <code>repeated string ssh_public_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSshPublicKeys()
     {
@@ -430,7 +430,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Optional. SSH public keys to be stored with cluster.
      *
      * Generated from protobuf field <code>repeated string ssh_public_keys = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSshPublicKeys($var)
@@ -983,7 +983,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Output only. OCIDs of scan IPs.
      *
      * Generated from protobuf field <code>repeated string scan_ip_ids = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScanIpIds()
     {
@@ -994,7 +994,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Output only. OCIDs of scan IPs.
      *
      * Generated from protobuf field <code>repeated string scan_ip_ids = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScanIpIds($var)
@@ -1061,7 +1061,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Optional. OCID of database servers.
      *
      * Generated from protobuf field <code>repeated string db_server_ocids = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDbServerOcids()
     {
@@ -1072,7 +1072,7 @@ class CloudVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Optional. OCID of database servers.
      *
      * Generated from protobuf field <code>repeated string db_server_ocids = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDbServerOcids($var)

@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rules to generate time breaks for a vehicle (e.g. lunch breaks). A break
@@ -43,9 +43,9 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\RouteOptimization\V1\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $break_requests
+     *     @type \Google\Maps\RouteOptimization\V1\BreakRule\BreakRequest[] $break_requests
      *           Sequence of breaks. See the `BreakRequest` message.
-     *     @type array<\Google\Maps\RouteOptimization\V1\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $frequency_constraints
+     *     @type \Google\Maps\RouteOptimization\V1\BreakRule\FrequencyConstraint[] $frequency_constraints
      *           Several `FrequencyConstraint` may apply. They must all be satisfied by
      *           the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      * }
@@ -59,7 +59,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * Sequence of breaks. See the `BreakRequest` message.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BreakRule.BreakRequest break_requests = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\BreakRule\BreakRequest>
      */
     public function getBreakRequests()
     {
@@ -70,7 +70,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * Sequence of breaks. See the `BreakRequest` message.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BreakRule.BreakRequest break_requests = 1;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\BreakRule\BreakRequest[] $var
      * @return $this
      */
     public function setBreakRequests($var)
@@ -86,7 +86,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BreakRule.FrequencyConstraint frequency_constraints = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\BreakRule\FrequencyConstraint>
      */
     public function getFrequencyConstraints()
     {
@@ -98,7 +98,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BreakRule.FrequencyConstraint frequency_constraints = 2;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\BreakRule\FrequencyConstraint[] $var
      * @return $this
      */
     public function setFrequencyConstraints($var)

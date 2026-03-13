@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prompt injection and Jailbreak Filter Result.
@@ -53,7 +53,7 @@ class PiAndJailbreakFilterResult extends \Google\Protobuf\Internal\Message
      *     @type int $execution_state
      *           Output only. Reports whether Prompt injection and Jailbreak filter was
      *           successfully executed or not.
-     *     @type array<\Google\Cloud\ModelArmor\V1beta\MessageItem>|\Google\Protobuf\Internal\RepeatedField $message_items
+     *     @type \Google\Cloud\ModelArmor\V1beta\MessageItem[] $message_items
      *           Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution state is skipped then this field provides
@@ -104,7 +104,7 @@ class PiAndJailbreakFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.MessageItem message_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1beta\MessageItem>
      */
     public function getMessageItems()
     {
@@ -118,7 +118,7 @@ class PiAndJailbreakFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.MessageItem message_items = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1beta\MessageItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1beta\MessageItem[] $var
      * @return $this
      */
     public function setMessageItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter matches L4 traffic.
@@ -186,5 +186,4 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

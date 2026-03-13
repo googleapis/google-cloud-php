@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1\ProbingDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Representation of a network edge location as per
@@ -65,5 +65,4 @@ class EdgeLocation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

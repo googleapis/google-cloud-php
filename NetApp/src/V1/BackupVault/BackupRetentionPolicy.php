@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1\BackupVault;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Retention policy for backups in the backup vault
@@ -236,5 +236,4 @@ class BackupRetentionPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

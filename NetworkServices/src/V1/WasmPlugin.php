@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `WasmPlugin` is a resource representing a service executing
@@ -137,7 +137,7 @@ class WasmPlugin extends \Google\Protobuf\Internal\Message
      *           the request fails.
      *           Note: In a `GET` request, this field is populated only if the field
      *           `GetWasmPluginRequest.view` is set to `WASM_PLUGIN_VIEW_FULL`.
-     *     @type array<\Google\Cloud\NetworkServices\V1\WasmPlugin\UsedBy>|\Google\Protobuf\Internal\RepeatedField $used_by
+     *     @type \Google\Cloud\NetworkServices\V1\WasmPlugin\UsedBy[] $used_by
      *           Output only. List of all
      *           [extensions](https://cloud.google.com/service-extensions/docs/overview)
      *           that use this `WasmPlugin` resource.
@@ -434,7 +434,7 @@ class WasmPlugin extends \Google\Protobuf\Internal\Message
      * that use this `WasmPlugin` resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.WasmPlugin.UsedBy used_by = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\WasmPlugin\UsedBy>
      */
     public function getUsedBy()
     {
@@ -447,7 +447,7 @@ class WasmPlugin extends \Google\Protobuf\Internal\Message
      * that use this `WasmPlugin` resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.WasmPlugin.UsedBy used_by = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\WasmPlugin\UsedBy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\WasmPlugin\UsedBy[] $var
      * @return $this
      */
     public function setUsedBy($var)

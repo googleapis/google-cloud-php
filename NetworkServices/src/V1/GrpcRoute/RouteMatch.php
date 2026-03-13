@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Criteria for matching traffic. A RouteMatch will be considered to match
@@ -39,7 +39,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\MethodMatch $method
      *           Optional. A gRPC method to match against. If this field is empty or
      *           omitted, will match all methods.
-     *     @type array<\Google\Cloud\NetworkServices\V1\GrpcRoute\HeaderMatch>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type \Google\Cloud\NetworkServices\V1\GrpcRoute\HeaderMatch[] $headers
      *           Optional. Specifies a collection of headers to match.
      * }
      */
@@ -90,7 +90,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Optional. Specifies a collection of headers to match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.HeaderMatch headers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\GrpcRoute\HeaderMatch>
      */
     public function getHeaders()
     {
@@ -101,7 +101,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Optional. Specifies a collection of headers to match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.GrpcRoute.HeaderMatch headers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\GrpcRoute\HeaderMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\GrpcRoute\HeaderMatch[] $var
      * @return $this
      */
     public function setHeaders($var)
@@ -113,5 +113,4 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

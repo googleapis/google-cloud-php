@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RestoreBackupFilesRequest restores files from a backup to a volume.
@@ -56,7 +56,7 @@ class RestoreBackupFilesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $backup
      *           Required. The backup resource name, in the format
      *           `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_list
+     *     @type string[] $file_list
      *           Required. List of files to be restored, specified by their absolute path in
      *           the source volume.
      *     @type string $restore_destination_path
@@ -130,7 +130,7 @@ class RestoreBackupFilesRequest extends \Google\Protobuf\Internal\Message
      * the source volume.
      *
      * Generated from protobuf field <code>repeated string file_list = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFileList()
     {
@@ -142,7 +142,7 @@ class RestoreBackupFilesRequest extends \Google\Protobuf\Internal\Message
      * the source volume.
      *
      * Generated from protobuf field <code>repeated string file_list = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFileList($var)

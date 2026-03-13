@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the Autonomous Database resource.
@@ -169,12 +169,12 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      *           Optional. The source Autonomous Database configuration for the standby
      *           Autonomous Database. The source Autonomous Database is configured while
      *           creating the Peer Autonomous Database and can't be updated after creation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $peer_autonomous_databases
+     *     @type string[] $peer_autonomous_databases
      *           Output only. The peer Autonomous Database names of the given Autonomous
      *           Database.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The date and time that the Autonomous Database was created.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disaster_recovery_supported_locations
+     *     @type string[] $disaster_recovery_supported_locations
      *           Output only. List of supported GCP region to clone the Autonomous Database
      *           for disaster recovery. Format: `project/{project}/locations/{location}`.
      * }
@@ -551,7 +551,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      * Database.
      *
      * Generated from protobuf field <code>repeated string peer_autonomous_databases = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPeerAutonomousDatabases()
     {
@@ -563,7 +563,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      * Database.
      *
      * Generated from protobuf field <code>repeated string peer_autonomous_databases = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPeerAutonomousDatabases($var)
@@ -615,7 +615,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      * for disaster recovery. Format: `project/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>repeated string disaster_recovery_supported_locations = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisasterRecoverySupportedLocations()
     {
@@ -627,7 +627,7 @@ class AutonomousDatabase extends \Google\Protobuf\Internal\Message
      * for disaster recovery. Format: `project/{project}/locations/{location}`.
      *
      * Generated from protobuf field <code>repeated string disaster_recovery_supported_locations = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisasterRecoverySupportedLocations($var)

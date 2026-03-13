@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\TimeSeriesData;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A point's value columns and time interval. Each point has one or more
@@ -36,7 +36,7 @@ class PointData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\TypedValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\Monitoring\V3\TypedValue[] $values
      *           The values that make up the point.
      *     @type \Google\Cloud\Monitoring\V3\TimeInterval $time_interval
      *           The time interval associated with the point.
@@ -51,7 +51,7 @@ class PointData extends \Google\Protobuf\Internal\Message
      * The values that make up the point.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TypedValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\TypedValue>
      */
     public function getValues()
     {
@@ -62,7 +62,7 @@ class PointData extends \Google\Protobuf\Internal\Message
      * The values that make up the point.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TypedValue values = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\TypedValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\TypedValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -110,5 +110,4 @@ class PointData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Reservation Affinity for consuming Zonal reservation.
@@ -44,7 +44,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           Optional. Type of reservation to consume
      *     @type string $key
      *           Optional. Corresponds to the label key of reservation resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Optional. Corresponds to the label values of reservation resource.
      * }
      */
@@ -109,7 +109,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of reservation resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -120,7 +120,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of reservation resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

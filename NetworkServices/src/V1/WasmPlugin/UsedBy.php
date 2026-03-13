@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\WasmPlugin;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a resource that uses the `WasmPlugin` resource.
@@ -72,5 +72,4 @@ class UsedBy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

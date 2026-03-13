@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deprecated: Use top level
@@ -47,9 +47,9 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $break_requests
+     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\BreakRequest[] $break_requests
      *           Sequence of breaks. See the `BreakRequest` message.
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $frequency_constraints
+     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\FrequencyConstraint[] $frequency_constraints
      *           Several `FrequencyConstraint` may apply. They must all be satisfied by
      *           the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      * }
@@ -63,7 +63,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * Sequence of breaks. See the `BreakRequest` message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule.BreakRequest break_requests = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\BreakRequest>
      */
     public function getBreakRequests()
     {
@@ -74,7 +74,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * Sequence of breaks. See the `BreakRequest` message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule.BreakRequest break_requests = 1;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\BreakRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\BreakRequest[] $var
      * @return $this
      */
     public function setBreakRequests($var)
@@ -90,7 +90,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule.FrequencyConstraint frequency_constraints = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\FrequencyConstraint>
      */
     public function getFrequencyConstraints()
     {
@@ -102,7 +102,7 @@ class BreakRule extends \Google\Protobuf\Internal\Message
      * the `BreakRequest`s of this `BreakRule`. See `FrequencyConstraint`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule.FrequencyConstraint frequency_constraints = 2;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\FrequencyConstraint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule\FrequencyConstraint[] $var
      * @return $this
      */
     public function setFrequencyConstraints($var)
@@ -114,5 +114,4 @@ class BreakRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

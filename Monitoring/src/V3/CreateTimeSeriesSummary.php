@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary of the result of a failed request to write data to a time series.
@@ -44,7 +44,7 @@ class CreateTimeSeriesSummary extends \Google\Protobuf\Internal\Message
      *           The number of points in the request.
      *     @type int $success_point_count
      *           The number of points that were successfully written.
-     *     @type array<\Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary\Error[] $errors
      *           The number of points that failed to be written. Order is not guaranteed.
      * }
      */
@@ -109,7 +109,7 @@ class CreateTimeSeriesSummary extends \Google\Protobuf\Internal\Message
      * The number of points that failed to be written. Order is not guaranteed.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.CreateTimeSeriesSummary.Error errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary\Error>
      */
     public function getErrors()
     {
@@ -120,7 +120,7 @@ class CreateTimeSeriesSummary extends \Google\Protobuf\Internal\Message
      * The number of points that failed to be written. Order is not guaranteed.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.CreateTimeSeriesSummary.Error errors = 3;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\CreateTimeSeriesSummary\Error[] $var
      * @return $this
      */
     public function setErrors($var)

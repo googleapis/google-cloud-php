@@ -5,8 +5,8 @@
 namespace Google\Cloud\MediaTranslation\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides information to the speech translation that specifies how to process

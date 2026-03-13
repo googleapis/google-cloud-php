@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of data points that describes the time-varying values
@@ -129,7 +129,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           this time series is an alignment or reduction of other time series.
      *           When creating a time series, this field is optional. If present, it must be
      *           the same as the type of the data in the `points` field.
-     *     @type array<\Google\Cloud\Monitoring\V3\Point>|\Google\Protobuf\Internal\RepeatedField $points
+     *     @type \Google\Cloud\Monitoring\V3\Point[] $points
      *           The data points of this time series. When listing time series, points are
      *           returned in reverse time order.
      *           When creating a time series, this field must contain exactly one point and
@@ -358,7 +358,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\Point>
      */
     public function getPoints()
     {
@@ -375,7 +375,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Point points = 5;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\Point>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\Point[] $var
      * @return $this
      */
     public function setPoints($var)

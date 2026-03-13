@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response returned from the [ListConstraints]
@@ -35,7 +35,7 @@ class ListConstraintsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OrgPolicy\V2\Constraint>|\Google\Protobuf\Internal\RepeatedField $constraints
+     *     @type \Google\Cloud\OrgPolicy\V2\Constraint[] $constraints
      *           The collection of constraints that are available on the targeted resource.
      *     @type string $next_page_token
      *           Page token used to retrieve the next page. This is currently not used.
@@ -50,7 +50,7 @@ class ListConstraintsResponse extends \Google\Protobuf\Internal\Message
      * The collection of constraints that are available on the targeted resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Constraint constraints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OrgPolicy\V2\Constraint>
      */
     public function getConstraints()
     {
@@ -61,7 +61,7 @@ class ListConstraintsResponse extends \Google\Protobuf\Internal\Message
      * The collection of constraints that are available on the targeted resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Constraint constraints = 1;</code>
-     * @param array<\Google\Cloud\OrgPolicy\V2\Constraint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OrgPolicy\V2\Constraint[] $var
      * @return $this
      */
     public function setConstraints($var)

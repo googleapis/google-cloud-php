@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2\PolicySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A rule used to express this policy.
@@ -346,5 +346,4 @@ class PolicyRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

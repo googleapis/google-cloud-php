@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summarizes information about the spokes associated with a hub.
@@ -47,13 +47,13 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeTypeCount>|\Google\Protobuf\Internal\RepeatedField $spoke_type_counts
+     *     @type \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeTypeCount[] $spoke_type_counts
      *           Output only. Counts the number of spokes of each type that are
      *           associated with a specific hub.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateCount>|\Google\Protobuf\Internal\RepeatedField $spoke_state_counts
+     *     @type \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateCount[] $spoke_state_counts
      *           Output only. Counts the number of spokes that are in each state
      *           and associated with a given hub.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateReasonCount>|\Google\Protobuf\Internal\RepeatedField $spoke_state_reason_counts
+     *     @type \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateReasonCount[] $spoke_state_reason_counts
      *           Output only. Counts the number of spokes that are inactive for each
      *           possible reason and associated with a given hub.
      * }
@@ -68,7 +68,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * associated with a specific hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeTypeCount spoke_type_counts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeTypeCount>
      */
     public function getSpokeTypeCounts()
     {
@@ -80,7 +80,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * associated with a specific hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeTypeCount spoke_type_counts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeTypeCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeTypeCount[] $var
      * @return $this
      */
     public function setSpokeTypeCounts($var)
@@ -96,7 +96,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * and associated with a given hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateCount spoke_state_counts = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateCount>
      */
     public function getSpokeStateCounts()
     {
@@ -108,7 +108,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * and associated with a given hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateCount spoke_state_counts = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateCount[] $var
      * @return $this
      */
     public function setSpokeStateCounts($var)
@@ -124,7 +124,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * possible reason and associated with a given hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateReasonCount spoke_state_reason_counts = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateReasonCount>
      */
     public function getSpokeStateReasonCounts()
     {
@@ -136,7 +136,7 @@ class SpokeSummary extends \Google\Protobuf\Internal\Message
      * possible reason and associated with a given hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.SpokeSummary.SpokeStateReasonCount spoke_state_reason_counts = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateReasonCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\SpokeSummary\SpokeStateReasonCount[] $var
      * @return $this
      */
     public function setSpokeStateReasonCounts($var)

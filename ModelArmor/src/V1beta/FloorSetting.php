@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing FloorSetting resource
@@ -81,7 +81,7 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      *           Required. ModelArmor filter configuration.
      *     @type bool $enable_floor_setting_enforcement
      *           Optional. Floor Settings enforcement status.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $integrated_services
+     *     @type int[] $integrated_services
      *           Optional. List of integrated services for which the floor setting is
      *           applicable.
      *     @type \Google\Cloud\ModelArmor\V1beta\AiPlatformFloorSetting $ai_platform_floor_setting
@@ -270,7 +270,7 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      * applicable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.FloorSetting.IntegratedService integrated_services = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIntegratedServices()
     {
@@ -282,7 +282,7 @@ class FloorSetting extends \Google\Protobuf\Internal\Message
      * applicable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.FloorSetting.IntegratedService integrated_services = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIntegratedServices($var)

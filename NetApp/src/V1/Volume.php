@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Volume provides a filesystem that you can mount.
@@ -313,11 +313,11 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Required. Capacity in GIB of the volume
      *     @type \Google\Cloud\NetApp\V1\ExportPolicy $export_policy
      *           Optional. Export policy of the volume
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $protocols
+     *     @type int[] $protocols
      *           Required. Protocols required for the volume
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $smb_settings
+     *     @type int[] $smb_settings
      *           Optional. SMB share settings for the volume.
-     *     @type array<\Google\Cloud\NetApp\V1\MountOption>|\Google\Protobuf\Internal\RepeatedField $mount_options
+     *     @type \Google\Cloud\NetApp\V1\MountOption[] $mount_options
      *           Output only. Mount options of this volume
      *     @type string $unix_permissions
      *           Optional. Default unix style permission (e.g. 777) the mount point will be
@@ -358,7 +358,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           relationship.
      *     @type \Google\Cloud\NetApp\V1\BackupConfig $backup_config
      *           BackupConfig of the volume.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_actions
+     *     @type int[] $restricted_actions
      *           Optional. List of actions that are restricted on this volume.
      *     @type bool $large_capacity
      *           Optional. Flag indicating if the volume will be a large capacity volume or
@@ -385,7 +385,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type int|string $hot_tier_size_used_gib
      *           Output only. Total hot tier data rounded down to the nearest GiB used by
      *           the Volume. This field is only used for flex Service Level
-     *     @type array<\Google\Cloud\NetApp\V1\BlockDevice>|\Google\Protobuf\Internal\RepeatedField $block_devices
+     *     @type \Google\Cloud\NetApp\V1\BlockDevice[] $block_devices
      *           Optional. Block devices for the volume.
      *           Currently, only one block device is permitted per Volume.
      * }
@@ -709,7 +709,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Required. Protocols required for the volume
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.Protocols protocols = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getProtocols()
     {
@@ -720,7 +720,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Required. Protocols required for the volume
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.Protocols protocols = 12 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setProtocols($var)
@@ -735,7 +735,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Optional. SMB share settings for the volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.SMBSettings smb_settings = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSmbSettings()
     {
@@ -746,7 +746,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Optional. SMB share settings for the volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.SMBSettings smb_settings = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSmbSettings($var)
@@ -761,7 +761,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Output only. Mount options of this volume
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.MountOption mount_options = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\MountOption>
      */
     public function getMountOptions()
     {
@@ -772,7 +772,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Output only. Mount options of this volume
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.MountOption mount_options = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetApp\V1\MountOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\MountOption[] $var
      * @return $this
      */
     public function setMountOptions($var)
@@ -1247,7 +1247,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Optional. List of actions that are restricted on this volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.RestrictedAction restricted_actions = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRestrictedActions()
     {
@@ -1258,7 +1258,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Optional. List of actions that are restricted on this volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.RestrictedAction restricted_actions = 31 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRestrictedActions($var)
@@ -1574,7 +1574,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Currently, only one block device is permitted per Volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetApp\V1\BlockDevice>
      */
     public function getBlockDevices()
     {
@@ -1586,7 +1586,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Currently, only one block device is permitted per Volume.
      *
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetApp\V1\BlockDevice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetApp\V1\BlockDevice[] $var
      * @return $this
      */
     public function setBlockDevices($var)

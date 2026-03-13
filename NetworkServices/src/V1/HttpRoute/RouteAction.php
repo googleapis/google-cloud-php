@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specifications for routing traffic and applying associated policies.
@@ -125,7 +125,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\HttpRoute\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\Destination[] $destinations
      *           The destination to which traffic should be forwarded.
      *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\Redirect $redirect
      *           If set, the request is directed as configured by this field.
@@ -187,7 +187,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * The destination to which traffic should be forwarded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.Destination destinations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\HttpRoute\Destination>
      */
     public function getDestinations()
     {
@@ -198,7 +198,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * The destination to which traffic should be forwarded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.Destination destinations = 1;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\HttpRoute\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\Destination[] $var
      * @return $this
      */
     public function setDestinations($var)
@@ -692,5 +692,4 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

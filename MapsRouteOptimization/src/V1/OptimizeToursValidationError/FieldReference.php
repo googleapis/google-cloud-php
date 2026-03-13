@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\OptimizeToursValidationError;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a context for the validation error. A `FieldReference` always
@@ -191,5 +191,4 @@ class FieldReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

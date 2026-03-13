@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\Inventory;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information about a Windows application that is retrieved from the
@@ -220,5 +220,4 @@ class WindowsApplication extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

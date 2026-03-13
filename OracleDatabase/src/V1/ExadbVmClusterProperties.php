@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties of an ExadbVmCluster.
@@ -180,7 +180,7 @@ class ExadbVmClusterProperties extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Prefix for VM cluster host names.
      *     @type string $hostname
      *           Output only. The hostname of the ExadbVmCluster.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssh_public_keys
+     *     @type string[] $ssh_public_keys
      *           Required. Immutable. The SSH public keys for the ExadbVmCluster.
      *     @type \Google\Cloud\OracleDatabase\V1\DataCollectionOptionsCommon $data_collection_options
      *           Optional. Immutable. Indicates user preference for data collection options.
@@ -503,7 +503,7 @@ class ExadbVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The SSH public keys for the ExadbVmCluster.
      *
      * Generated from protobuf field <code>repeated string ssh_public_keys = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSshPublicKeys()
     {
@@ -514,7 +514,7 @@ class ExadbVmClusterProperties extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The SSH public keys for the ExadbVmCluster.
      *
      * Generated from protobuf field <code>repeated string ssh_public_keys = 11 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSshPublicKeys($var)

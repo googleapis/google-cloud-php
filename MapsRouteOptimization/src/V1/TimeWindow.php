@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Time windows constrain the time of an event, such as the arrival time at a

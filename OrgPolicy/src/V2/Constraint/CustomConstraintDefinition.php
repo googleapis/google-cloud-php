@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2\Constraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom constraint definition. Defines this as a managed constraint.
@@ -60,11 +60,11 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *     @type string[] $resource_types
      *           The resource instance type on which this policy applies. Format will be
      *           of the form : `<service name>/<type>` Example:
      *            * `compute.googleapis.com/Instance`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $method_types
+     *     @type int[] $method_types
      *           All the operations being applied for this constraint.
      *     @type string $condition
      *           Org policy condition/expression. For example:
@@ -91,7 +91,7 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceTypes()
     {
@@ -104,7 +104,7 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
      *  * `compute.googleapis.com/Instance`.
      *
      * Generated from protobuf field <code>repeated string resource_types = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceTypes($var)
@@ -119,7 +119,7 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
      * All the operations being applied for this constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition.MethodType method_types = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMethodTypes()
     {
@@ -130,7 +130,7 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
      * All the operations being applied for this constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Constraint.CustomConstraintDefinition.MethodType method_types = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMethodTypes($var)
@@ -232,5 +232,4 @@ class CustomConstraintDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the selection and configuration of software inside the environment.

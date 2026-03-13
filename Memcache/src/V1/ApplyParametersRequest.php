@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memcache\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for [ApplyParameters][google.cloud.memcache.v1.CloudMemcache.ApplyParameters].
@@ -67,7 +67,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the Memcached instance for which parameter group updates
      *           should be applied.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $node_ids
+     *     @type string[] $node_ids
      *           Nodes to which the instance-level parameter group is applied.
      *     @type bool $apply_all
      *           Whether to apply instance-level parameter group to all nodes. If set to
@@ -112,7 +112,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      * Nodes to which the instance-level parameter group is applied.
      *
      * Generated from protobuf field <code>repeated string node_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNodeIds()
     {
@@ -123,7 +123,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      * Nodes to which the instance-level parameter group is applied.
      *
      * Generated from protobuf field <code>repeated string node_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNodeIds($var)

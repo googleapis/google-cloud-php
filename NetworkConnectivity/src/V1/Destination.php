@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Destination` resource. It specifies the IP prefix and the associated
@@ -129,7 +129,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      *     @type string $ip_prefix
      *           Required. Immutable. The IP prefix that represents your workload on another
      *           CSP.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Destination\DestinationEndpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\NetworkConnectivity\V1\Destination\DestinationEndpoint[] $endpoints
      *           Required. Unordered list. The list of `DestinationEndpoint` resources
      *           configured for the IP prefix.
      *     @type \Google\Cloud\NetworkConnectivity\V1\StateTimeline $state_timeline
@@ -380,7 +380,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * configured for the IP prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Destination.DestinationEndpoint endpoints = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\Destination\DestinationEndpoint>
      */
     public function getEndpoints()
     {
@@ -392,7 +392,7 @@ class Destination extends \Google\Protobuf\Internal\Message
      * configured for the IP prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Destination.DestinationEndpoint endpoints = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\Destination\DestinationEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\Destination\DestinationEndpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)

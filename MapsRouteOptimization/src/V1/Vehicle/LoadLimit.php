@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\Vehicle;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a load limit applying to a vehicle, e.g. "this truck may only
@@ -392,5 +392,4 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
