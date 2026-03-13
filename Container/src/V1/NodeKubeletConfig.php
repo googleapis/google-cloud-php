@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Node kubelet configs.
@@ -345,7 +345,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      *           https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-rotation
      *           The value must be an integer between 2 and 10, inclusive.
      *           The default value is 5 if unspecified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_unsafe_sysctls
+     *     @type string[] $allowed_unsafe_sysctls
      *           Optional. Defines a comma-separated allowlist of unsafe sysctls or sysctl
      *           patterns (ending in `*`).
      *           The unsafe namespaced sysctl groups are `kernel.shm*`, `kernel.msg*`,
@@ -967,7 +967,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedUnsafeSysctls()
     {
@@ -987,7 +987,7 @@ class NodeKubeletConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated string allowed_unsafe_sysctls = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedUnsafeSysctls($var)

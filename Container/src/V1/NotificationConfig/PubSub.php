@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NotificationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pub/Sub specific notification config.
@@ -154,5 +154,4 @@ class PubSub extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

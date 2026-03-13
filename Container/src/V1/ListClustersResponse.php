@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListClustersResponse is the result of ListClustersRequest.
@@ -36,10 +36,10 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\Cluster>|\Google\Protobuf\Internal\RepeatedField $clusters
+     *     @type \Google\Cloud\Container\V1\Cluster[] $clusters
      *           A list of clusters in the project in the specified zone, or
      *           across all ones.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_zones
+     *     @type string[] $missing_zones
      *           If any zones are listed here, the list of clusters returned
      *           may be missing those zones.
      * }
@@ -54,7 +54,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * across all ones.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.Cluster clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\Cluster>
      */
     public function getClusters()
     {
@@ -66,7 +66,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * across all ones.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.Cluster clusters = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\Cluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\Cluster[] $var
      * @return $this
      */
     public function setClusters($var)
@@ -82,7 +82,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * may be missing those zones.
      *
      * Generated from protobuf field <code>repeated string missing_zones = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMissingZones()
     {
@@ -94,7 +94,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * may be missing those zones.
      *
      * Generated from protobuf field <code>repeated string missing_zones = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMissingZones($var)

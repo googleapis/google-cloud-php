@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CertificateAuthorityDomainConfig configures one or more fully qualified
@@ -35,7 +35,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fqdns
+     *     @type string[] $fqdns
      *           List of fully qualified domain names (FQDN).
      *           Specifying port is supported.
      *           Wildcards are NOT supported.
@@ -60,7 +60,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * - 10.0.1.2:5000
      *
      * Generated from protobuf field <code>repeated string fqdns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFqdns()
     {
@@ -76,7 +76,7 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
      * - 10.0.1.2:5000
      *
      * Generated from protobuf field <code>repeated string fqdns = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFqdns($var)
@@ -127,5 +127,4 @@ class CertificateAuthorityDomainConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

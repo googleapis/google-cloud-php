@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ControlPlaneEndpointsConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IP endpoints configuration.
@@ -66,7 +66,7 @@ class IPEndpointsConfig extends \Google\Protobuf\Internal\Message
     protected $private_endpoint = '';
     /**
      * Subnet to provision the master's private endpoint during cluster
-     * creation. Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format. It is
+     * creation. Specified in projects/{@*}regions/{@*}subnetworks/* format. It is
      * invalid to specify both
      * [PrivateClusterConfig.privateEndpointSubnetwork][] and this field at the
      * same time.
@@ -108,7 +108,7 @@ class IPEndpointsConfig extends \Google\Protobuf\Internal\Message
      *           Only populated if enabled.
      *     @type string $private_endpoint_subnetwork
      *           Subnet to provision the master's private endpoint during cluster
-     *           creation. Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format. It is
+     *           creation. Specified in projects/{@*}regions/{@*}subnetworks/* format. It is
      *           invalid to specify both
      *           [PrivateClusterConfig.privateEndpointSubnetwork][] and this field at the
      *           same time.
@@ -343,7 +343,7 @@ class IPEndpointsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Subnet to provision the master's private endpoint during cluster
-     * creation. Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format. It is
+     * creation. Specified in projects/{@*}regions/{@*}subnetworks/* format. It is
      * invalid to specify both
      * [PrivateClusterConfig.privateEndpointSubnetwork][] and this field at the
      * same time.
@@ -358,7 +358,7 @@ class IPEndpointsConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Subnet to provision the master's private endpoint during cluster
-     * creation. Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format. It is
+     * creation. Specified in projects/{@*}regions/{@*}subnetworks/* format. It is
      * invalid to specify both
      * [PrivateClusterConfig.privateEndpointSubnetwork][] and this field at the
      * same time.
@@ -376,5 +376,4 @@ class IPEndpointsConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

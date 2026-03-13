@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PrivateRegistryAccessConfig contains access configuration for
@@ -37,7 +37,7 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Private registry access is enabled.
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig>|\Google\Protobuf\Internal\RepeatedField $certificate_authority_domain_config
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig[] $certificate_authority_domain_config
      *           Private registry access configuration.
      * }
      */
@@ -76,7 +76,7 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
      * Private registry access configuration.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig certificate_authority_domain_config = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig>
      */
     public function getCertificateAuthorityDomainConfig()
     {
@@ -87,7 +87,7 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
      * Private registry access configuration.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig certificate_authority_domain_config = 2;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\PrivateRegistryAccessConfig\CertificateAuthorityDomainConfig[] $var
      * @return $this
      */
     public function setCertificateAuthorityDomainConfig($var)
@@ -99,5 +99,4 @@ class PrivateRegistryAccessConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

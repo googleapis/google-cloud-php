@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources)
@@ -52,7 +52,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           SPECIFIC_RESERVATION by name, specify
      *           "compute.googleapis.com/reservation-name" as the key and specify the name
      *           of your reservation as its value.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Corresponds to the label value(s) of reservation resource(s).
      * }
      */
@@ -123,7 +123,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Corresponds to the label value(s) of reservation resource(s).
      *
      * Generated from protobuf field <code>repeated string values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -134,7 +134,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Corresponds to the label value(s) of reservation resource(s).
      *
      * Generated from protobuf field <code>repeated string values = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

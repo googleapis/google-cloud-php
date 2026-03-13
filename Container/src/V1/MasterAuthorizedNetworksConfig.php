@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration options for the master authorized networks feature. Enabled
@@ -52,7 +52,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Whether or not master authorized networks is enabled.
-     *     @type array<\Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $cidr_blocks
+     *     @type \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $cidr_blocks
      *           cidr_blocks define up to 50 external networks that could access
      *           Kubernetes master through HTTPS.
      *     @type bool $gcp_public_cidrs_access_enabled
@@ -97,7 +97,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * Kubernetes master through HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock>
      */
     public function getCidrBlocks()
     {
@@ -109,7 +109,7 @@ class MasterAuthorizedNetworksConfig extends \Google\Protobuf\Internal\Message
      * Kubernetes master through HTTPS.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.MasterAuthorizedNetworksConfig.CidrBlock cidr_blocks = 2;</code>
-     * @param array<\Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\MasterAuthorizedNetworksConfig\CidrBlock[] $var
      * @return $this
      */
     public function setCidrBlocks($var)
