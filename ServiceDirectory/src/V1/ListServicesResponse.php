@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceDirectory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ServiceDirectory\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Cloud\ServiceDirectory\V1\Service[] $services
      *           The list of services.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -52,7 +52,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The list of services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Service services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceDirectory\V1\Service>
      */
     public function getServices()
     {
@@ -63,7 +63,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The list of services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Service services = 1;</code>
-     * @param array<\Google\Cloud\ServiceDirectory\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceDirectory\V1\Service[] $var
      * @return $this
      */
     public function setServices($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conveys information about a Kubernetes access review (such as one returned
@@ -283,5 +283,4 @@ class AccessReview extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

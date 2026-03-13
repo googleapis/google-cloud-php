@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Pub/Sub topic which Secret Manager will publish to when control plane
@@ -18,7 +18,7 @@ class Topic extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * in the following format: `projects/{@*}topics/*`. For publication to succeed,
      * the Secret Manager service agent must have the `pubsub.topic.publish`
      * permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.
@@ -35,7 +35,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the Pub/Sub topic that will be published to,
-     *           in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     *           in the following format: `projects/{@*}topics/*`. For publication to succeed,
      *           the Secret Manager service agent must have the `pubsub.topic.publish`
      *           permission on the topic. The Pub/Sub Publisher role
      *           (`roles/pubsub.publisher`) includes this permission.
@@ -48,7 +48,7 @@ class Topic extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * in the following format: `projects/{@*}topics/*`. For publication to succeed,
      * the Secret Manager service agent must have the `pubsub.topic.publish`
      * permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.
@@ -63,7 +63,7 @@ class Topic extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Pub/Sub topic that will be published to,
-     * in the following format: `projects/&#42;&#47;topics/&#42;`. For publication to succeed,
+     * in the following format: `projects/{@*}topics/*`. For publication to succeed,
      * the Secret Manager service agent must have the `pubsub.topic.publish`
      * permission on the topic. The Pub/Sub Publisher role
      * (`roles/pubsub.publisher`) includes this permission.

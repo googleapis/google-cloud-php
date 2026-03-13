@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A table defining the rate group, when `single_value` is not
@@ -56,7 +56,7 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1\Headers $column_headers
      *           Headers of the table's columns. Optional: if not set then the table has
      *           only one dimension.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Row[] $rows
      *           Required. The list of rows that constitute the table. Must have the same
      *           length as `row_headers`.
      * }
@@ -181,7 +181,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * length as `row_headers`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Row rows = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\Row>
      */
     public function getRows()
     {
@@ -193,7 +193,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * length as `row_headers`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Row rows = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\Row[] $var
      * @return $this
      */
     public function setRows($var)

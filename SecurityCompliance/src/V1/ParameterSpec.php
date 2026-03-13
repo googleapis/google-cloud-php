@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parameter specification for the cloud control.
@@ -92,9 +92,9 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      *           Required. The parameter value type.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParamValue $default_value
      *           Optional. The default value of the parameter.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule[] $substitution_rules
      *           Optional. The list of parameter substitutions.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $sub_parameters
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec[] $sub_parameters
      *           Optional. The parameter specification for `oneOf` attributes.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\Validation $validation
      *           Optional. The permitted set of values for the parameter.
@@ -279,7 +279,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * Optional. The list of parameter substitutions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule substitution_rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule>
      */
     public function getSubstitutionRules()
     {
@@ -290,7 +290,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * Optional. The list of parameter substitutions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSubstitutionRule substitution_rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\ParameterSubstitutionRule[] $var
      * @return $this
      */
     public function setSubstitutionRules($var)
@@ -305,7 +305,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * Optional. The parameter specification for `oneOf` attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec sub_parameters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>
      */
     public function getSubParameters()
     {
@@ -316,7 +316,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * Optional. The parameter specification for `oneOf` attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec sub_parameters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec[] $var
      * @return $this
      */
     public function setSubParameters($var)

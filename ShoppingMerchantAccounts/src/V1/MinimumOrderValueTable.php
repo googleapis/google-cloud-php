@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Table of per store minimum order values for the pickup fulfillment type.
@@ -32,7 +32,7 @@ class MinimumOrderValueTable extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\MinimumOrderValueTable\StoreCodeSetWithMov>|\Google\Protobuf\Internal\RepeatedField $store_code_set_with_movs
+     *     @type \Google\Shopping\Merchant\Accounts\V1\MinimumOrderValueTable\StoreCodeSetWithMov[] $store_code_set_with_movs
      *           Required. A list of store code sets sharing the same minimum order value
      *           (MOV). At least two sets are required and the last one must be empty, which
      *           signifies 'MOV for all other stores'. Each store code can only appear once
@@ -53,7 +53,7 @@ class MinimumOrderValueTable extends \Google\Protobuf\Internal\Message
      * currency.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.MinimumOrderValueTable.StoreCodeSetWithMov store_code_set_with_movs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\MinimumOrderValueTable\StoreCodeSetWithMov>
      */
     public function getStoreCodeSetWithMovs()
     {
@@ -68,7 +68,7 @@ class MinimumOrderValueTable extends \Google\Protobuf\Internal\Message
      * currency.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.MinimumOrderValueTable.StoreCodeSetWithMov store_code_set_with_movs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\MinimumOrderValueTable\StoreCodeSetWithMov>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\MinimumOrderValueTable\StoreCodeSetWithMov[] $var
      * @return $this
      */
     public function setStoreCodeSetWithMovs($var)

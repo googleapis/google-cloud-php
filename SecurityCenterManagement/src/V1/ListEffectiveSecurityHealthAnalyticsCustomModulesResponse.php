@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse extends \Google\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveSecurityHealthAnalyticsCustomModule>|\Google\Protobuf\Internal\RepeatedField $effective_security_health_analytics_custom_modules
+     *     @type \Google\Cloud\SecurityCenterManagement\V1\EffectiveSecurityHealthAnalyticsCustomModule[] $effective_security_health_analytics_custom_modules
      *           The list of effective Security Health Analytics custom modules.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
@@ -52,7 +52,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse extends \Google\
      * The list of effective Security Health Analytics custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule effective_security_health_analytics_custom_modules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenterManagement\V1\EffectiveSecurityHealthAnalyticsCustomModule>
      */
     public function getEffectiveSecurityHealthAnalyticsCustomModules()
     {
@@ -63,7 +63,7 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse extends \Google\
      * The list of effective Security Health Analytics custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule effective_security_health_analytics_custom_modules = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenterManagement\V1\EffectiveSecurityHealthAnalyticsCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenterManagement\V1\EffectiveSecurityHealthAnalyticsCustomModule[] $var
      * @return $this
      */
     public function setEffectiveSecurityHealthAnalyticsCustomModules($var)

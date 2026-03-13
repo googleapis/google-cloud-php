@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains compliance information about a security standard indicating unmet
@@ -47,7 +47,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
      *           OWASP.
      *     @type string $version
      *           Version of the standard or benchmark, for example, 1.1
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type string[] $ids
      *           Policies within the standard or benchmark, for example, A.12.4.1
      * }
      */
@@ -114,7 +114,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
      * Policies within the standard or benchmark, for example, A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIds()
     {
@@ -125,7 +125,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
      * Policies within the standard or benchmark, for example, A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIds($var)

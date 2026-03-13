@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The impact of the issue on a region.
@@ -102,5 +102,4 @@ class Impact extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

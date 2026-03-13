@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of stores your products are delivered from.
@@ -53,7 +53,7 @@ class StoreConfig extends \Google\Protobuf\Internal\Message
      *     @type int $store_service_type
      *           Indicates whether all stores, or selected stores, listed by this
      *           merchant provide local delivery.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $store_codes
+     *     @type string[] $store_codes
      *           Optional. A list of store codes that provide local delivery.
      *           If empty, then `all_stores` must be true.
      *     @type \Google\Shopping\Merchant\Accounts\V1beta\Service\StoreConfig\CutoffConfig $cutoff_config
@@ -111,7 +111,7 @@ class StoreConfig extends \Google\Protobuf\Internal\Message
      * If empty, then `all_stores` must be true.
      *
      * Generated from protobuf field <code>repeated string store_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoreCodes()
     {
@@ -123,7 +123,7 @@ class StoreConfig extends \Google\Protobuf\Internal\Message
      * If empty, then `all_stores` must be true.
      *
      * Generated from protobuf field <code>repeated string store_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoreCodes($var)
@@ -209,5 +209,4 @@ class StoreConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

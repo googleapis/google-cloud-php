@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details for a cloud control group.
@@ -122,7 +122,7 @@ class CloudControlGroupAuditDetails extends \Google\Protobuf\Internal\Message
      *           Output only. The ID of the regulatory control.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ControlFamily $control_family
      *           Output only. The control family.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>|\Google\Protobuf\Internal\RepeatedField $cloud_control_details
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails[] $cloud_control_details
      *           Output only. The details for the cloud controls within this group.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ReportSummary $report_summary
      *           Output only. The summary of the report.
@@ -433,7 +433,7 @@ class CloudControlGroupAuditDetails extends \Google\Protobuf\Internal\Message
      * Output only. The details for the cloud controls within this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlAuditDetails cloud_control_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>
      */
     public function getCloudControlDetails()
     {
@@ -444,7 +444,7 @@ class CloudControlGroupAuditDetails extends \Google\Protobuf\Internal\Message
      * Output only. The details for the cloud controls within this group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlAuditDetails cloud_control_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails[] $var
      * @return $this
      */
     public function setCloudControlDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Conversions\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListConversionSources method.
@@ -34,7 +34,7 @@ class ListConversionSourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Conversions\V1\ConversionSource>|\Google\Protobuf\Internal\RepeatedField $conversion_sources
+     *     @type \Google\Shopping\Merchant\Conversions\V1\ConversionSource[] $conversion_sources
      *           List of conversion sources.
      *     @type string $next_page_token
      *           Token to be used to fetch the next results page.
@@ -49,7 +49,7 @@ class ListConversionSourcesResponse extends \Google\Protobuf\Internal\Message
      * List of conversion sources.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.conversions.v1.ConversionSource conversion_sources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Conversions\V1\ConversionSource>
      */
     public function getConversionSources()
     {
@@ -60,7 +60,7 @@ class ListConversionSourcesResponse extends \Google\Protobuf\Internal\Message
      * List of conversion sources.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.conversions.v1.ConversionSource conversion_sources = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Conversions\V1\ConversionSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Conversions\V1\ConversionSource[] $var
      * @return $this
      */
     public function setConversionSources($var)

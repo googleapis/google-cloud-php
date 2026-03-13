@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [ObjectId][google.cloud.security.privateca.v1.ObjectId] specifies an
@@ -31,7 +31,7 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $object_id_path
+     *     @type int[] $object_id_path
      *           Required. The parts of an OID path. The most significant parts of the path
      *           come first.
      * }
@@ -46,7 +46,7 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      * come first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getObjectIdPath()
     {
@@ -58,7 +58,7 @@ class ObjectId extends \Google\Protobuf\Internal\Message
      * come first.
      *
      * Generated from protobuf field <code>repeated int32 object_id_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setObjectIdPath($var)

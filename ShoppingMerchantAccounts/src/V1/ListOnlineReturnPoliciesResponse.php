@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListOnlineReturnPolicies` method.
@@ -35,7 +35,7 @@ class ListOnlineReturnPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy>|\Google\Protobuf\Internal\RepeatedField $online_return_policies
+     *     @type \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy[] $online_return_policies
      *           The retrieved return policies.
      *     @type string $next_page_token
      *           A token, which can be sent as `pageToken` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListOnlineReturnPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The retrieved return policies.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy online_return_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy>
      */
     public function getOnlineReturnPolicies()
     {
@@ -62,7 +62,7 @@ class ListOnlineReturnPoliciesResponse extends \Google\Protobuf\Internal\Message
      * The retrieved return policies.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OnlineReturnPolicy online_return_policies = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\OnlineReturnPolicy[] $var
      * @return $this
      */
     public function setOnlineReturnPolicies($var)

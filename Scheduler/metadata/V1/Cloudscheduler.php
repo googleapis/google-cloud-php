@@ -22,50 +22,7 @@ class Cloudscheduler
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-€
-.google/cloud/scheduler/v1/cloudscheduler.protogoogle.cloud.scheduler.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/scheduler/v1/job.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"s
-ListJobsRequest9
-parent (	B)àAúA#!cloudscheduler.googleapis.com/Job
-	page_size (
-
-page_token (	"Y
-ListJobsResponse,
-jobs (2.google.cloud.scheduler.v1.Job
-next_page_token (	"H
-GetJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"
-CreateJobRequest9
-parent (	B)àAúA#!cloudscheduler.googleapis.com/Job0
-job (2.google.cloud.scheduler.v1.JobBàA"u
-UpdateJobRequest0
-job (2.google.cloud.scheduler.v1.JobBàA/
-update_mask (2.google.protobuf.FieldMask"K
-DeleteJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"J
-PauseJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"K
-ResumeJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job"H
-RunJobRequest7
-name (	B)àAúA#
-!cloudscheduler.googleapis.com/Job2³
-
-CloudSchedulerž
-ListJobs*.google.cloud.scheduler.v1.ListJobsRequest+.google.cloud.scheduler.v1.ListJobsResponse"9ÚAparent‚Óä“*(/v1/{parent=projects/*/locations/*}/jobs‹
-GetJob(.google.cloud.scheduler.v1.GetJobRequest.google.cloud.scheduler.v1.Job"7ÚAname‚Óä“*(/v1/{name=projects/*/locations/*/jobs/*}œ
-	CreateJob+.google.cloud.scheduler.v1.CreateJobRequest.google.cloud.scheduler.v1.Job"BÚA
-parent,job‚Óä“/"(/v1/{parent=projects/*/locations/*}/jobs:job¥
-	UpdateJob+.google.cloud.scheduler.v1.UpdateJobRequest.google.cloud.scheduler.v1.Job"KÚAjob,update_mask‚Óä“32,/v1/{job.name=projects/*/locations/*/jobs/*}:job‰
-	DeleteJob+.google.cloud.scheduler.v1.DeleteJobRequest.google.protobuf.Empty"7ÚAname‚Óä“**(/v1/{name=projects/*/locations/*/jobs/*}˜
-PauseJob*.google.cloud.scheduler.v1.PauseJobRequest.google.cloud.scheduler.v1.Job"@ÚAname‚Óä“3"./v1/{name=projects/*/locations/*/jobs/*}:pause:*›
-	ResumeJob+.google.cloud.scheduler.v1.ResumeJobRequest.google.cloud.scheduler.v1.Job"AÚAname‚Óä“4"//v1/{name=projects/*/locations/*/jobs/*}:resume:*’
-RunJob(.google.cloud.scheduler.v1.RunJobRequest.google.cloud.scheduler.v1.Job">ÚAname‚Óä“1",/v1/{name=projects/*/locations/*/jobs/*}:run:*QÊAcloudscheduler.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBz
-com.google.cloud.scheduler.v1BSchedulerProtoPZ;cloud.google.com/go/scheduler/apiv1/schedulerpb;schedulerpb¢	SCHEDULERbproto3'
+            "\x0A\x80\x14\x0A.google/cloud/scheduler/v1/cloudscheduler.proto\x12\x19google.cloud.scheduler.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A#google/cloud/scheduler/v1/job.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\"s\x0A\x0FListJobsRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x12!cloudscheduler.googleapis.com/Job\x12\x11\x0A\x09page_size\x18\x05 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x06 \x01(\x09\"Y\x0A\x10ListJobsResponse\x12,\x0A\x04jobs\x18\x01 \x03(\x0B2\x1E.google.cloud.scheduler.v1.Job\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"H\x0A\x0DGetJobRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudscheduler.googleapis.com/Job\"\x7F\x0A\x10CreateJobRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x12!cloudscheduler.googleapis.com/Job\x120\x0A\x03job\x18\x02 \x01(\x0B2\x1E.google.cloud.scheduler.v1.JobB\x03\xE0A\x02\"u\x0A\x10UpdateJobRequest\x120\x0A\x03job\x18\x01 \x01(\x0B2\x1E.google.cloud.scheduler.v1.JobB\x03\xE0A\x02\x12/\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMask\"K\x0A\x10DeleteJobRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudscheduler.googleapis.com/Job\"J\x0A\x0FPauseJobRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudscheduler.googleapis.com/Job\"K\x0A\x10ResumeJobRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudscheduler.googleapis.com/Job\"H\x0A\x0DRunJobRequest\x127\x0A\x04name\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!cloudscheduler.googleapis.com/Job2\xB3\x0A\x0A\x0ECloudScheduler\x12\x9E\x01\x0A\x08ListJobs\x12*.google.cloud.scheduler.v1.ListJobsRequest\x1A+.google.cloud.scheduler.v1.ListJobsResponse\"9\xDAA\x06parent\x82\xD3\xE4\x93\x02*\x12(/v1/{parent=projects/*/locations/*}/jobs\x12\x8B\x01\x0A\x06GetJob\x12(.google.cloud.scheduler.v1.GetJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\"7\xDAA\x04name\x82\xD3\xE4\x93\x02*\x12(/v1/{name=projects/*/locations/*/jobs/*}\x12\x9C\x01\x0A\x09CreateJob\x12+.google.cloud.scheduler.v1.CreateJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\"B\xDAA\x0Aparent,job\x82\xD3\xE4\x93\x02/\"(/v1/{parent=projects/*/locations/*}/jobs:\x03job\x12\xA5\x01\x0A\x09UpdateJob\x12+.google.cloud.scheduler.v1.UpdateJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\"K\xDAA\x0Fjob,update_mask\x82\xD3\xE4\x93\x0232,/v1/{job.name=projects/*/locations/*/jobs/*}:\x03job\x12\x89\x01\x0A\x09DeleteJob\x12+.google.cloud.scheduler.v1.DeleteJobRequest\x1A\x16.google.protobuf.Empty\"7\xDAA\x04name\x82\xD3\xE4\x93\x02**(/v1/{name=projects/*/locations/*/jobs/*}\x12\x98\x01\x0A\x08PauseJob\x12*.google.cloud.scheduler.v1.PauseJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\"@\xDAA\x04name\x82\xD3\xE4\x93\x023\"./v1/{name=projects/*/locations/*/jobs/*}:pause:\x01*\x12\x9B\x01\x0A\x09ResumeJob\x12+.google.cloud.scheduler.v1.ResumeJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\"A\xDAA\x04name\x82\xD3\xE4\x93\x024\"//v1/{name=projects/*/locations/*/jobs/*}:resume:\x01*\x12\x92\x01\x0A\x06RunJob\x12(.google.cloud.scheduler.v1.RunJobRequest\x1A\x1E.google.cloud.scheduler.v1.Job\">\xDAA\x04name\x82\xD3\xE4\x93\x021\",/v1/{name=projects/*/locations/*/jobs/*}:run:\x01*\x1AQ\xCAA\x1Dcloudscheduler.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformBz\x0A\x1Dcom.google.cloud.scheduler.v1B\x0ESchedulerProtoP\x01Z;cloud.google.com/go/scheduler/apiv1/schedulerpb;schedulerpb\xA2\x02\x09SCHEDULERb\x06proto3"
         , true);
 
         static::$is_initialized = true;

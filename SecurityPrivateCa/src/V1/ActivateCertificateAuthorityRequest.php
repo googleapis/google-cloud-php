@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -80,7 +80,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
      *     @type string $name
      *           Required. The resource name for this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *     @type string $pem_ca_certificate
      *           Required. The signed CA certificate issued from
      *           [FetchCertificateAuthorityCsrResponse.pem_csr][google.cloud.security.privateca.v1.FetchCertificateAuthorityCsrResponse.pem_csr].
@@ -109,7 +109,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -122,7 +122,7 @@ class ActivateCertificateAuthorityRequest extends \Google\Protobuf\Internal\Mess
     /**
      * Required. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

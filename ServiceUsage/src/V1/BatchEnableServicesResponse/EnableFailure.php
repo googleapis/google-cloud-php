@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceUsage\V1\BatchEnableServicesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides error messages for the failing services.
@@ -98,5 +98,4 @@ class EnableFailure extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

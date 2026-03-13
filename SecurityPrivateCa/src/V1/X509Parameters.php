@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [X509Parameters][google.cloud.security.privateca.v1.X509Parameters] is
@@ -78,16 +78,16 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      *           are relevant in a CA certificate. If not specified, a default basic
      *           constraints extension with `is_ca=false` will be added for leaf
      *           certificates.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $policy_ids
+     *     @type \Google\Cloud\Security\PrivateCA\V1\ObjectId[] $policy_ids
      *           Optional. Describes the X.509 certificate policy object identifiers, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_ocsp_servers
+     *     @type string[] $aia_ocsp_servers
      *           Optional. Describes Online Certificate Status Protocol (OCSP) endpoint
      *           addresses that appear in the "Authority Information Access" extension in
      *           the certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\X509Parameters\NameConstraints $name_constraints
      *           Optional. Describes the X.509 name constraints extension.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $additional_extensions
+     *     @type \Google\Cloud\Security\PrivateCA\V1\X509Extension[] $additional_extensions
      *           Optional. Describes custom X.509 extensions.
      * }
      */
@@ -183,7 +183,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId policy_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\ObjectId>
      */
     public function getPolicyIds()
     {
@@ -195,7 +195,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.ObjectId policy_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\ObjectId[] $var
      * @return $this
      */
     public function setPolicyIds($var)
@@ -212,7 +212,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAiaOcspServers()
     {
@@ -225,7 +225,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAiaOcspServers($var)
@@ -276,7 +276,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * Optional. Describes custom X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension additional_extensions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\X509Extension>
      */
     public function getAdditionalExtensions()
     {
@@ -287,7 +287,7 @@ class X509Parameters extends \Google\Protobuf\Internal\Message
      * Optional. Describes custom X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension additional_extensions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\X509Extension[] $var
      * @return $this
      */
     public function setAdditionalExtensions($var)

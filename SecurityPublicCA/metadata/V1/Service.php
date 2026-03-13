@@ -20,15 +20,7 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Security\Publicca\V1\Resources::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-“
-/google/cloud/security/publicca/v1/service.proto!google.cloud.security.publicca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto1google/cloud/security/publicca/v1/resources.proto"¿
-CreateExternalAccountKeyRequestB
-parent (	B2àAúA,*publicca.googleapis.com/ExternalAccountKeyX
-external_account_key (25.google.cloud.security.publicca.v1.ExternalAccountKeyBàA2ý
-!PublicCertificateAuthorityServiceŠ
-CreateExternalAccountKeyB.google.cloud.security.publicca.v1.CreateExternalAccountKeyRequest5.google.cloud.security.publicca.v1.ExternalAccountKey"sÚAparent,external_account_key‚Óä“O"7/v1/{parent=projects/*/locations/*}/externalAccountKeys:external_account_keyKÊApublicca.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBê
-%com.google.cloud.security.publicca.v1BServiceProtoPZAcloud.google.com/go/security/publicca/apiv1/publiccapb;publiccapbª!Google.Cloud.Security.PublicCA.V1Ê!Google\\Cloud\\Security\\PublicCA\\V1ê%Google::Cloud::Security::PublicCA::V1bproto3'
+            "\x0A\x93\x08\x0A/google/cloud/security/publicca/v1/service.proto\x12!google.cloud.security.publicca.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A1google/cloud/security/publicca/v1/resources.proto\"\xBF\x01\x0A\x1FCreateExternalAccountKeyRequest\x12B\x0A\x06parent\x18\x01 \x01(\x09B2\xE0A\x02\xFAA,\x12*publicca.googleapis.com/ExternalAccountKey\x12X\x0A\x14external_account_key\x18\x02 \x01(\x0B25.google.cloud.security.publicca.v1.ExternalAccountKeyB\x03\xE0A\x022\xFD\x02\x0A!PublicCertificateAuthorityService\x12\x8A\x02\x0A\x18CreateExternalAccountKey\x12B.google.cloud.security.publicca.v1.CreateExternalAccountKeyRequest\x1A5.google.cloud.security.publicca.v1.ExternalAccountKey\"s\xDAA\x1Bparent,external_account_key\x82\xD3\xE4\x93\x02O\"7/v1/{parent=projects/*/locations/*}/externalAccountKeys:\x14external_account_key\x1AK\xCAA\x17publicca.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xEA\x01\x0A%com.google.cloud.security.publicca.v1B\x0CServiceProtoP\x01ZAcloud.google.com/go/security/publicca/apiv1/publiccapb;publiccapb\xAA\x02!Google.Cloud.Security.PublicCA.V1\xCA\x02!Google\\Cloud\\Security\\PublicCA\\V1\xEA\x02%Google::Cloud::Security::PublicCA::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

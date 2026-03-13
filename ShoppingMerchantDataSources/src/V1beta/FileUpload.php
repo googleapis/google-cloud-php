@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The file upload of a specific data source, that is, the result of the
@@ -83,7 +83,7 @@ class FileUpload extends \Google\Protobuf\Internal\Message
      *           Output only. The data source id.
      *     @type int $processing_state
      *           Output only. The processing state of the data source.
-     *     @type array<\Google\Shopping\Merchant\DataSources\V1beta\FileUpload\Issue>|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\FileUpload\Issue[] $issues
      *           Output only. The list of issues occurring in the data source.
      *     @type int|string $items_total
      *           Output only. The number of items in the data source that were processed.
@@ -186,7 +186,7 @@ class FileUpload extends \Google\Protobuf\Internal\Message
      * Output only. The list of issues occurring in the data source.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.FileUpload.Issue issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\DataSources\V1beta\FileUpload\Issue>
      */
     public function getIssues()
     {
@@ -197,7 +197,7 @@ class FileUpload extends \Google\Protobuf\Internal\Message
      * Output only. The list of issues occurring in the data source.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.FileUpload.Issue issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\DataSources\V1beta\FileUpload\Issue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\FileUpload\Issue[] $var
      * @return $this
      */
     public function setIssues($var)

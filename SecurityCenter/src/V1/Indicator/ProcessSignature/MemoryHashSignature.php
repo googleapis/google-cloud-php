@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A signature corresponding to memory page hashes.
@@ -37,7 +37,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      *
      *     @type string $binary_family
      *           The binary family.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection>|\Google\Protobuf\Internal\RepeatedField $detections
+     *     @type \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection[] $detections
      *           The list of memory hash detections contributing to the binary family
      *           match.
      * }
@@ -78,7 +78,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      * match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature.MemoryHashSignature.Detection detections = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection>
      */
     public function getDetections()
     {
@@ -90,7 +90,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      * match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature.MemoryHashSignature.Detection detections = 4;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection[] $var
      * @return $this
      */
     public function setDetections($var)
@@ -102,5 +102,4 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

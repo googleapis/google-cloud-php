@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata of a Secure Source Manager Hook.
@@ -88,7 +88,7 @@ class Hook extends \Google\Protobuf\Internal\Message
      *     @type bool $disabled
      *           Optional. Determines if the hook disabled or not.
      *           Set to true to stop sending traffic.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type int[] $events
      *           Optional. The events that trigger hook on.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Create timestamp.
@@ -195,7 +195,7 @@ class Hook extends \Google\Protobuf\Internal\Message
      * Optional. The events that trigger hook on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Hook.HookEventType events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEvents()
     {
@@ -206,7 +206,7 @@ class Hook extends \Google\Protobuf\Internal\Message
      * Optional. The events that trigger hook on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Hook.HookEventType events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEvents($var)

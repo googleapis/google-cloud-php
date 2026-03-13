@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\SubordinateConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message describes a subordinate CA's issuer certificate chain. This
@@ -29,7 +29,7 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificates
+     *     @type string[] $pem_certificates
      *           Required. Expected to be in leaf-to-root order according to RFC 5246.
      * }
      */
@@ -42,7 +42,7 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
      * Required. Expected to be in leaf-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificates = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPemCertificates()
     {
@@ -53,7 +53,7 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
      * Required. Expected to be in leaf-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificates = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPemCertificates($var)
@@ -65,5 +65,4 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

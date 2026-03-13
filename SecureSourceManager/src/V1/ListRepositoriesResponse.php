@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.securesourcemanager.v1.ListRepositoriesResponse</code>
@@ -32,7 +32,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\Repository>|\Google\Protobuf\Internal\RepeatedField $repositories
+     *     @type \Google\Cloud\SecureSourceManager\V1\Repository[] $repositories
      *           The list of repositories.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -47,7 +47,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * The list of repositories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Repository repositories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\Repository>
      */
     public function getRepositories()
     {
@@ -58,7 +58,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * The list of repositories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.Repository repositories = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\Repository>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\Repository[] $var
      * @return $this
      */
     public function setRepositories($var)

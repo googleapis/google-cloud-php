@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -30,7 +30,7 @@ class ValidateEventThreatDetectionCustomModuleResponse extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\CustomModuleValidationError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\CustomModuleValidationError[] $errors
      *           A list of errors returned by the validator. If the list is empty, there
      *           were no errors.
      * }
@@ -45,7 +45,7 @@ class ValidateEventThreatDetectionCustomModuleResponse extends \Google\Protobuf\
      * were no errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\CustomModuleValidationError>
      */
     public function getErrors()
     {
@@ -57,7 +57,7 @@ class ValidateEventThreatDetectionCustomModuleResponse extends \Google\Protobuf\
      * were no errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.ValidateEventThreatDetectionCustomModuleResponse.CustomModuleValidationError errors = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\CustomModuleValidationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenterManagement\V1\ValidateEventThreatDetectionCustomModuleResponse\CustomModuleValidationError[] $var
      * @return $this
      */
     public function setErrors($var)

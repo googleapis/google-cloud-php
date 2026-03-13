@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -19,8 +19,8 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -41,8 +41,8 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource name of the
      *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\SecretManager\V1\SecretPayload $payload
      *           Secret payload
      * }
@@ -55,8 +55,8 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -69,8 +69,8 @@ class AccessSecretVersionResponse extends \Google\Protobuf\Internal\Message
     /**
      * The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] in the format
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

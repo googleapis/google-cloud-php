@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Exfiltration represents a data exfiltration attempt from one or more sources
@@ -46,11 +46,11 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type \Google\Cloud\SecurityCenter\V1\ExfilResource[] $sources
      *           If there are multiple sources, then the data is considered "joined" between
      *           them. For instance, BigQuery can join multiple tables, and each
      *           table would be considered a source.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $targets
+     *     @type \Google\Cloud\SecurityCenter\V1\ExfilResource[] $targets
      *           If there are multiple targets, each target would get a complete copy of the
      *           "joined" source data.
      *     @type int|string $total_exfiltrated_bytes
@@ -68,7 +68,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * table would be considered a source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource sources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ExfilResource>
      */
     public function getSources()
     {
@@ -81,7 +81,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * table would be considered a source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource sources = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ExfilResource[] $var
      * @return $this
      */
     public function setSources($var)
@@ -97,7 +97,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * "joined" source data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource targets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ExfilResource>
      */
     public function getTargets()
     {
@@ -109,7 +109,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * "joined" source data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource targets = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ExfilResource[] $var
      * @return $this
      */
     public function setTargets($var)

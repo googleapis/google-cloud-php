@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListPrograms method.
@@ -35,7 +35,7 @@ class ListProgramsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Program>|\Google\Protobuf\Internal\RepeatedField $programs
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Program[] $programs
      *           The programs for the given account.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page. If this
@@ -51,7 +51,7 @@ class ListProgramsResponse extends \Google\Protobuf\Internal\Message
      * The programs for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Program programs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Program>
      */
     public function getPrograms()
     {
@@ -62,7 +62,7 @@ class ListProgramsResponse extends \Google\Protobuf\Internal\Message
      * The programs for the given account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Program programs = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Program>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Program[] $var
      * @return $this
      */
     public function setPrograms($var)

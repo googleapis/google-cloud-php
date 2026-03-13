@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message to list resource value configs
@@ -35,7 +35,7 @@ class ListResourceValueConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\ResourceValueConfig>|\Google\Protobuf\Internal\RepeatedField $resource_value_configs
+     *     @type \Google\Cloud\SecurityCenter\V2\ResourceValueConfig[] $resource_value_configs
      *           The resource value configs from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListResourceValueConfigsResponse extends \Google\Protobuf\Internal\Message
      * The resource value configs from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ResourceValueConfig resource_value_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\ResourceValueConfig>
      */
     public function getResourceValueConfigs()
     {
@@ -62,7 +62,7 @@ class ListResourceValueConfigsResponse extends \Google\Protobuf\Internal\Message
      * The resource value configs from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ResourceValueConfig resource_value_configs = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\ResourceValueConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\ResourceValueConfig[] $var
      * @return $this
      */
     public function setResourceValueConfigs($var)

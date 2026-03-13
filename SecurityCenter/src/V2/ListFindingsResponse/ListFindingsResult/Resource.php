@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\ListFindingsResponse\ListFindingsResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to the Google Cloud resource that is
@@ -461,5 +461,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

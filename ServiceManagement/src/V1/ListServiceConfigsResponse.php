@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListServiceConfigs method.
@@ -34,7 +34,7 @@ class ListServiceConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Api\Service>|\Google\Protobuf\Internal\RepeatedField $service_configs
+     *     @type \Google\Api\Service[] $service_configs
      *           The list of service configuration resources.
      *     @type string $next_page_token
      *           The token of the next page of results.
@@ -49,7 +49,7 @@ class ListServiceConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of service configuration resources.
      *
      * Generated from protobuf field <code>repeated .google.api.Service service_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Service>
      */
     public function getServiceConfigs()
     {
@@ -60,7 +60,7 @@ class ListServiceConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of service configuration resources.
      *
      * Generated from protobuf field <code>repeated .google.api.Service service_configs = 1;</code>
-     * @param array<\Google\Api\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Service[] $var
      * @return $this
      */
     public function setServiceConfigs($var)

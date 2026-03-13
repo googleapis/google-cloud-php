@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\ListFindingsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result containing the Finding and its StateChange.
@@ -152,5 +152,4 @@ class ListFindingsResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

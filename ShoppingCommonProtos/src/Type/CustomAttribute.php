@@ -5,8 +5,8 @@
 namespace Google\Shopping\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message that represents custom attributes. Exactly one of `value` or
@@ -48,7 +48,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *     @type string $value
      *           The value of the attribute. If `value` is not empty, `group_values` must be
      *           empty.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $group_values
+     *     @type \Google\Shopping\Type\CustomAttribute[] $group_values
      *           Subattributes within this attribute group.  If
      *           `group_values` is not empty, `value` must be empty.
      * }
@@ -137,7 +137,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * `group_values` is not empty, `value` must be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute group_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getGroupValues()
     {
@@ -149,7 +149,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * `group_values` is not empty, `value` must be empty.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute group_values = 3;</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setGroupValues($var)

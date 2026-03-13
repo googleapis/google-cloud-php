@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The audit configuration for Compliance Manager.
@@ -29,7 +29,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\AuditConfig\CmEligibleDestination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\AuditConfig\CmEligibleDestination[] $destinations
      *           Required. The list of destinations that can be selected for uploading audit
      *           reports to.
      * }
@@ -44,7 +44,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * reports to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.AuditConfig.CmEligibleDestination destinations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\AuditConfig\CmEligibleDestination>
      */
     public function getDestinations()
     {
@@ -56,7 +56,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * reports to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.AuditConfig.CmEligibleDestination destinations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\AuditConfig\CmEligibleDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\AuditConfig\CmEligibleDestination[] $var
      * @return $this
      */
     public function setDestinations($var)

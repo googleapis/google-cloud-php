@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A path that an attacker could take to reach an exposed resource.
@@ -44,9 +44,9 @@ class AttackPath extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The attack path name, for example,
      *            `organizations/12/simulation/34/valuedResources/56/attackPaths/78`
-     *     @type array<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathNode>|\Google\Protobuf\Internal\RepeatedField $path_nodes
+     *     @type \Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathNode[] $path_nodes
      *           A list of nodes that exist in this attack path.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathEdge>|\Google\Protobuf\Internal\RepeatedField $edges
+     *     @type \Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathEdge[] $edges
      *           A list of the edges between nodes in this attack path.
      * }
      */
@@ -87,7 +87,7 @@ class AttackPath extends \Google\Protobuf\Internal\Message
      * A list of nodes that exist in this attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AttackPath.AttackPathNode path_nodes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathNode>
      */
     public function getPathNodes()
     {
@@ -98,7 +98,7 @@ class AttackPath extends \Google\Protobuf\Internal\Message
      * A list of nodes that exist in this attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AttackPath.AttackPathNode path_nodes = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathNode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathNode[] $var
      * @return $this
      */
     public function setPathNodes($var)
@@ -113,7 +113,7 @@ class AttackPath extends \Google\Protobuf\Internal\Message
      * A list of the edges between nodes in this attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AttackPath.AttackPathEdge edges = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathEdge>
      */
     public function getEdges()
     {
@@ -124,7 +124,7 @@ class AttackPath extends \Google\Protobuf\Internal\Message
      * A list of the edges between nodes in this attack path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.AttackPath.AttackPathEdge edges = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathEdge>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\AttackPath\AttackPathEdge[] $var
      * @return $this
      */
     public function setEdges($var)

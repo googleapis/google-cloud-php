@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attack path simulation
@@ -53,7 +53,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
      *           `organizations/123/simulations/456`
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time simulation was created
-     *     @type array<\Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata>|\Google\Protobuf\Internal\RepeatedField $resource_value_configs_metadata
+     *     @type \Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata[] $resource_value_configs_metadata
      *           Resource value configurations' metadata used in this simulation. Maximum of
      *           100.
      *     @type int $cloud_provider
@@ -134,7 +134,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
      * 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ResourceValueConfigMetadata resource_value_configs_metadata = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata>
      */
     public function getResourceValueConfigsMetadata()
     {
@@ -146,7 +146,7 @@ class Simulation extends \Google\Protobuf\Internal\Message
      * 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ResourceValueConfigMetadata resource_value_configs_metadata = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\ResourceValueConfigMetadata[] $var
      * @return $this
      */
     public function setResourceValueConfigsMetadata($var)

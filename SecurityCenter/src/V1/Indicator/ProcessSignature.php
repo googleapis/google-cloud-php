@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Indicator;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates what signature matched this process.
@@ -139,5 +139,4 @@ class ProcessSignature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

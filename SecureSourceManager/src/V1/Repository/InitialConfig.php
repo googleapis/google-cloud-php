@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\Repository;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Repository initialization configuration.
@@ -172,7 +172,7 @@ class InitialConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $default_branch
      *           Default branch name of the repository.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gitignores
+     *     @type string[] $gitignores
      *           List of gitignore template names user can choose from.
      *           Valid values: actionscript, ada, agda, android,
      *           anjuta, ansible, appcelerator-titanium, app-engine, archives,
@@ -371,7 +371,7 @@ class InitialConfig extends \Google\Protobuf\Internal\Message
      * yeoman, yii, zend-framework, zephir.
      *
      * Generated from protobuf field <code>repeated string gitignores = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGitignores()
     {
@@ -414,7 +414,7 @@ class InitialConfig extends \Google\Protobuf\Internal\Message
      * yeoman, yii, zend-framework, zephir.
      *
      * Generated from protobuf field <code>repeated string gitignores = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGitignores($var)
@@ -662,5 +662,4 @@ class InitialConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

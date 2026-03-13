@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -35,7 +35,7 @@ class ListFrameworkComplianceSummariesResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummary>|\Google\Protobuf\Internal\RepeatedField $framework_compliance_summaries
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummary[] $framework_compliance_summaries
      *           The list of framework compliance summaries.
      *     @type string $next_page_token
      *           Output only. The token to retrieve the next page of results.
@@ -50,7 +50,7 @@ class ListFrameworkComplianceSummariesResponse extends \Google\Protobuf\Internal
      * The list of framework compliance summaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkComplianceSummary framework_compliance_summaries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummary>
      */
     public function getFrameworkComplianceSummaries()
     {
@@ -61,7 +61,7 @@ class ListFrameworkComplianceSummariesResponse extends \Google\Protobuf\Internal
      * The list of framework compliance summaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkComplianceSummary framework_compliance_summaries = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummary[] $var
      * @return $this
      */
     public function setFrameworkComplianceSummaries($var)

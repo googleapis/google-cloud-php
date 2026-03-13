@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [ListControlComplianceSummaries][].
@@ -34,7 +34,7 @@ class ListControlComplianceSummariesResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ControlComplianceSummary>|\Google\Protobuf\Internal\RepeatedField $control_compliance_summaries
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\ControlComplianceSummary[] $control_compliance_summaries
      *           The list of control compliance details.
      *     @type string $next_page_token
      *           Output only. The token to retrieve the next page of results.
@@ -49,7 +49,7 @@ class ListControlComplianceSummariesResponse extends \Google\Protobuf\Internal\M
      * The list of control compliance details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ControlComplianceSummary control_compliance_summaries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\ControlComplianceSummary>
      */
     public function getControlComplianceSummaries()
     {
@@ -60,7 +60,7 @@ class ListControlComplianceSummariesResponse extends \Google\Protobuf\Internal\M
      * The list of control compliance details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ControlComplianceSummary control_compliance_summaries = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ControlComplianceSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\ControlComplianceSummary[] $var
      * @return $this
      */
     public function setControlComplianceSummaries($var)

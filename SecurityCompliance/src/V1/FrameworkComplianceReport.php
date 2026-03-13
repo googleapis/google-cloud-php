@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [GetFrameworkComplianceReport][].
@@ -104,9 +104,9 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      *           The control assessment details of the framework.
      *     @type int $framework_type
      *           The type of framework.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_cloud_providers
+     *     @type int[] $supported_cloud_providers
      *           The list of cloud providers supported by the framework.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $framework_categories
+     *     @type int[] $framework_categories
      *           The list of framework categories supported.
      *     @type string $framework_display_name
      *           Optional. The display name for the framework.
@@ -116,7 +116,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      *           The latest major revision ID of the framework.
      *     @type int|string $minor_revision_id
      *           The latest minor revision ID of the latest major revision of the framework.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails>|\Google\Protobuf\Internal\RepeatedField $target_resource_details
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails[] $target_resource_details
      *           The target resource details of the framework.
      * }
      */
@@ -279,7 +279,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The list of cloud providers supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedCloudProviders()
     {
@@ -290,7 +290,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The list of cloud providers supported by the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedCloudProviders($var)
@@ -305,7 +305,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The list of framework categories supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkCategory framework_categories = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getFrameworkCategories()
     {
@@ -316,7 +316,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The list of framework categories supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkCategory framework_categories = 7;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setFrameworkCategories($var)
@@ -435,7 +435,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The target resource details of the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceDetails target_resource_details = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails>
      */
     public function getTargetResourceDetails()
     {
@@ -446,7 +446,7 @@ class FrameworkComplianceReport extends \Google\Protobuf\Internal\Message
      * The target resource details of the framework.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceDetails target_resource_details = 12;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceDetails[] $var
      * @return $this
      */
     public function setTargetResourceDetails($var)

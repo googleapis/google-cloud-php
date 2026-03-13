@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2\Replication;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A replication policy that replicates the
@@ -104,5 +104,4 @@ class Automatic extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

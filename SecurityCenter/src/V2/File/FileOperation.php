@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\File;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operation(s) performed on a file.
@@ -64,5 +64,4 @@ class FileOperation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\ResourceValueConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource value mapping for Sensitive Data Protection findings
@@ -108,5 +108,4 @@ class SensitiveDataProtectionMapping extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

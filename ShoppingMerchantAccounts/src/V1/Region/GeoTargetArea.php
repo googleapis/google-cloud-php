@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\Region;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of geotargets that defines the region area.
@@ -30,7 +30,7 @@ class GeoTargetArea extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $geotarget_criteria_ids
+     *     @type int[]|string[] $geotarget_criteria_ids
      *           Required. A non-empty list of [location
      *           IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
      *           They must all be of the same location type (for example, state).
@@ -47,7 +47,7 @@ class GeoTargetArea extends \Google\Protobuf\Internal\Message
      * They must all be of the same location type (for example, state).
      *
      * Generated from protobuf field <code>repeated int64 geotarget_criteria_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getGeotargetCriteriaIds()
     {
@@ -60,7 +60,7 @@ class GeoTargetArea extends \Google\Protobuf\Internal\Message
      * They must all be of the same location type (for example, state).
      *
      * Generated from protobuf field <code>repeated int64 geotarget_criteria_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setGeotargetCriteriaIds($var)
@@ -72,5 +72,4 @@ class GeoTargetArea extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

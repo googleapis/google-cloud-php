@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the Report method.
@@ -61,7 +61,7 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      *           See
      *           [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
      *           for the definition of a service name.
-     *     @type array<\Google\Cloud\ServiceControl\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\Cloud\ServiceControl\V1\Operation[] $operations
      *           Operations to be reported.
      *           Typically the service should report one operation per request.
      *           Putting multiple operations into a single request is allowed, but should
@@ -129,7 +129,7 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      * for partial failure behavior.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.Operation operations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\Operation>
      */
     public function getOperations()
     {
@@ -148,7 +148,7 @@ class ReportRequest extends \Google\Protobuf\Internal\Message
      * for partial failure behavior.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.Operation operations = 2;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\Operation[] $var
      * @return $this
      */
     public function setOperations($var)

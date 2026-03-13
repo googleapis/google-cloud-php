@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * These values are used to create the distinguished name and subject
@@ -123,5 +123,4 @@ class SubjectConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

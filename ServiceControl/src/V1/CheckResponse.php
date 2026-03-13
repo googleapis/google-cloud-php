@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the Check method.
@@ -61,7 +61,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      *           The same operation_id value used in the
      *           [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
      *           and diagnostics purposes.
-     *     @type array<\Google\Cloud\ServiceControl\V1\CheckError>|\Google\Protobuf\Internal\RepeatedField $check_errors
+     *     @type \Google\Cloud\ServiceControl\V1\CheckError[] $check_errors
      *           Indicate the decision of the check.
      *           If no check errors are present, the service should process the operation.
      *           Otherwise the service should use the list of errors to determine the
@@ -116,7 +116,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      * appropriate action.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.CheckError check_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\CheckError>
      */
     public function getCheckErrors()
     {
@@ -130,7 +130,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      * appropriate action.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.CheckError check_errors = 2;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\CheckError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\CheckError[] $var
      * @return $this
      */
     public function setCheckErrors($var)

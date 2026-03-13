@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\Certificate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes fields that are relavent to the revocation of a
@@ -125,5 +125,4 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

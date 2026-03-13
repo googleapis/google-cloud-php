@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A signature corresponding to a YARA rule.
@@ -64,5 +64,4 @@ class YaraRuleSignature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

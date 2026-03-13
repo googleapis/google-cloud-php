@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListChildAccounts` method.
@@ -35,7 +35,7 @@ class ListChildAccountsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Css\V1\Account>|\Google\Protobuf\Internal\RepeatedField $accounts
+     *     @type \Google\Shopping\Css\V1\Account[] $accounts
      *           The CSS/MC accounts returned for the specified CSS parent account.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListChildAccountsResponse extends \Google\Protobuf\Internal\Message
      * The CSS/MC accounts returned for the specified CSS parent account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.Account accounts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\Account>
      */
     public function getAccounts()
     {
@@ -62,7 +62,7 @@ class ListChildAccountsResponse extends \Google\Protobuf\Internal\Message
      * The CSS/MC accounts returned for the specified CSS parent account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.Account accounts = 1;</code>
-     * @param array<\Google\Shopping\Css\V1\Account>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\Account[] $var
      * @return $this
      */
     public function setAccounts($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Include a list of cells.
@@ -30,7 +30,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\Value>|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Value[] $cells
      *           Required. The list of cells that constitute the row. Must have the same
      *           length as `columnHeaders` for two-dimensional tables, a length of 1 for
      *           one-dimensional tables.
@@ -47,7 +47,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * one-dimensional tables.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Value cells = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\Value>
      */
     public function getCells()
     {
@@ -60,7 +60,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * one-dimensional tables.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Value cells = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\Value[] $var
      * @return $this
      */
     public function setCells($var)

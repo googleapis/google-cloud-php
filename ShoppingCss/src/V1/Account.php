@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about CSS/MC account.
@@ -94,10 +94,10 @@ class Account extends \Google\Protobuf\Internal\Message
      *           Note: For MC sub-accounts, this is also the CSS domain that is the parent
      *           resource of the MCA account, since we are effectively flattening the
      *           hierarchy."
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $label_ids
+     *     @type int[]|string[] $label_ids
      *           Manually created label IDs assigned to the CSS/MC account by a CSS parent
      *           account.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $automatic_label_ids
+     *     @type int[]|string[] $automatic_label_ids
      *           Automatically created label IDs assigned to the MC account by
      *           CSS Center.
      *     @type int $account_type
@@ -286,7 +286,7 @@ class Account extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated int64 label_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLabelIds()
     {
@@ -298,7 +298,7 @@ class Account extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated int64 label_ids = 6;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLabelIds($var)
@@ -314,7 +314,7 @@ class Account extends \Google\Protobuf\Internal\Message
      * CSS Center.
      *
      * Generated from protobuf field <code>repeated int64 automatic_label_ids = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getAutomaticLabelIds()
     {
@@ -326,7 +326,7 @@ class Account extends \Google\Protobuf\Internal\Message
      * CSS Center.
      *
      * Generated from protobuf field <code>repeated int64 automatic_label_ids = 7;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setAutomaticLabelIds($var)

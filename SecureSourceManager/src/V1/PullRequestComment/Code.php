@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The comment on a code line.
@@ -252,5 +252,4 @@ class Code extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing BigQuery exports.
@@ -35,7 +35,7 @@ class ListBigQueryExportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\BigQueryExport>|\Google\Protobuf\Internal\RepeatedField $big_query_exports
+     *     @type \Google\Cloud\SecurityCenter\V2\BigQueryExport[] $big_query_exports
      *           The BigQuery exports from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListBigQueryExportsResponse extends \Google\Protobuf\Internal\Message
      * The BigQuery exports from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.BigQueryExport big_query_exports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\BigQueryExport>
      */
     public function getBigQueryExports()
     {
@@ -62,7 +62,7 @@ class ListBigQueryExportsResponse extends \Google\Protobuf\Internal\Message
      * The BigQuery exports from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.BigQueryExport big_query_exports = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\BigQueryExport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\BigQueryExport[] $var
      * @return $this
      */
     public function setBigQueryExports($var)

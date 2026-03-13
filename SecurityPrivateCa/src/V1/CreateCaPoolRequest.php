@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -86,7 +86,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the location associated with the
      *           [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/{@*}locations/*`.
      *     @type string $ca_pool_id
      *           Required. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`
@@ -115,7 +115,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -128,7 +128,7 @@ class CreateCaPoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the location associated with the
      * [CaPool][google.cloud.security.privateca.v1.CaPool], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

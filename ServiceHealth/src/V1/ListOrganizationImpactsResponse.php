@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceHealth\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to request for listing projects under an organization affected by an
@@ -46,7 +46,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ServiceHealth\V1\OrganizationImpact>|\Google\Protobuf\Internal\RepeatedField $organization_impacts
+     *     @type \Google\Cloud\ServiceHealth\V1\OrganizationImpact[] $organization_impacts
      *           Output only. List of
      *           [impacts](/service-health/docs/reference/rest/v1beta/organizations.locations.organizationImpacts#OrganizationImpact)
      *           for an organization affected by service health events.
@@ -55,7 +55,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      *           sets. Provide this value in a subsequent request as `page_token` to
      *           retrieve the next page.
      *           If this field is not present, there are no subsequent results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      * for an organization affected by service health events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.OrganizationImpact organization_impacts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceHealth\V1\OrganizationImpact>
      */
     public function getOrganizationImpacts()
     {
@@ -83,7 +83,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      * for an organization affected by service health events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicehealth.v1.OrganizationImpact organization_impacts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ServiceHealth\V1\OrganizationImpact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceHealth\V1\OrganizationImpact[] $var
      * @return $this
      */
     public function setOrganizationImpacts($var)
@@ -130,7 +130,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -141,7 +141,7 @@ class ListOrganizationImpactsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

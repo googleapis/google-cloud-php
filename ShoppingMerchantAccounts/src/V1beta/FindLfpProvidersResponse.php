@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the FindLfpProviders method.
@@ -35,7 +35,7 @@ class FindLfpProvidersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\LfpProvider>|\Google\Protobuf\Internal\RepeatedField $lfp_providers
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\LfpProvider[] $lfp_providers
      *           The LFP providers from the specified merchant in the specified country.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class FindLfpProvidersResponse extends \Google\Protobuf\Internal\Message
      * The LFP providers from the specified merchant in the specified country.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.LfpProvider lfp_providers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\LfpProvider>
      */
     public function getLfpProviders()
     {
@@ -62,7 +62,7 @@ class FindLfpProvidersResponse extends \Google\Protobuf\Internal\Message
      * The LFP providers from the specified merchant in the specified country.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.LfpProvider lfp_providers = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\LfpProvider>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\LfpProvider[] $var
      * @return $this
      */
     public function setLfpProviders($var)

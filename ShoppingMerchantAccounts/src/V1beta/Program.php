@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines participation in a given program for the specified account.
@@ -71,14 +71,14 @@ class Program extends \Google\Protobuf\Internal\Message
      *           Output only. The URL of a Merchant Center help page describing the program.
      *     @type int $state
      *           Output only. The participation state of the account in the program.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $active_region_codes
+     *     @type string[] $active_region_codes
      *           Output only. The regions in which the account is actively participating in
      *           the program. Active regions are defined as those where all program
      *           requirements affecting the regions have been met.
      *           Region codes are defined by [CLDR](https://cldr.unicode.org/). This is
      *           either a country where the program applies specifically to that country or
      *           `001` when the program applies globally.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Program\Requirement>|\Google\Protobuf\Internal\RepeatedField $unmet_requirements
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Program\Requirement[] $unmet_requirements
      *           Output only. The requirements that the account has not yet satisfied that
      *           are affecting participation in the program.
      * }
@@ -177,7 +177,7 @@ class Program extends \Google\Protobuf\Internal\Message
      * `001` when the program applies globally.
      *
      * Generated from protobuf field <code>repeated string active_region_codes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActiveRegionCodes()
     {
@@ -193,7 +193,7 @@ class Program extends \Google\Protobuf\Internal\Message
      * `001` when the program applies globally.
      *
      * Generated from protobuf field <code>repeated string active_region_codes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActiveRegionCodes($var)
@@ -209,7 +209,7 @@ class Program extends \Google\Protobuf\Internal\Message
      * are affecting participation in the program.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Program.Requirement unmet_requirements = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Program\Requirement>
      */
     public function getUnmetRequirements()
     {
@@ -221,7 +221,7 @@ class Program extends \Google\Protobuf\Internal\Message
      * are affecting participation in the program.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Program.Requirement unmet_requirements = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Program\Requirement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Program\Requirement[] $var
      * @return $this
      */
     public function setUnmetRequirements($var)
