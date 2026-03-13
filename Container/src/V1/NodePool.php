@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NodePool contains the name and configuration for a cluster's node pool.
@@ -195,7 +195,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           The list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
      *           in which the NodePool's nodes should be located.
@@ -213,7 +213,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           The version of Kubernetes running on this NodePool's nodes. If unspecified,
      *           it defaults as described
      *           [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
+     *     @type string[] $instance_group_urls
      *           Output only. The resource URLs of the [managed instance
      *           groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with this node pool.
@@ -233,7 +233,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\MaxPodsConstraint $max_pods_constraint
      *           The constraint on the maximum number of pods that can be run
      *           simultaneously on a node in the node pool.
-     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Container\V1\StatusCondition[] $conditions
      *           Which conditions caused the current node pool state.
      *     @type int $pod_ipv4_cidr_size
      *           Output only. The pod CIDR block size per node in this node pool.
@@ -368,7 +368,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -386,7 +386,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -499,7 +499,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * blue and green resources.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceGroupUrls()
     {
@@ -514,7 +514,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * blue and green resources.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 102 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceGroupUrls($var)
@@ -703,7 +703,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Which conditions caused the current node pool state.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\StatusCondition>
      */
     public function getConditions()
     {
@@ -714,7 +714,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Which conditions caused the current node pool state.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
-     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\StatusCondition[] $var
      * @return $this
      */
     public function setConditions($var)

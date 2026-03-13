@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Gets the current Kubernetes Engine service configuration.
@@ -36,7 +36,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
     protected $zone = '';
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      */
@@ -93,7 +93,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
      *           the name field.
      *     @type string $name
      *           The name (project and location) of the server config to get,
-     *           specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           specified in the format `projects/{@*}locations/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -177,7 +177,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @return string
@@ -189,7 +189,7 @@ class GetServerConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project and location) of the server config to get,
-     * specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string name = 4;</code>
      * @param string $var

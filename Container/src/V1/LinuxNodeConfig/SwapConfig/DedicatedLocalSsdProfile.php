@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provisions a new, separate local NVMe SSD exclusively for swap.
@@ -64,5 +64,4 @@ class DedicatedLocalSsdProfile extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

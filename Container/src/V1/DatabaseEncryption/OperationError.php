@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\DatabaseEncryption;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * OperationError records errors seen from CloudKMS keys
@@ -143,5 +143,4 @@ class OperationError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines writable cgroups configuration.
@@ -64,5 +64,4 @@ class WritableCgroups extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

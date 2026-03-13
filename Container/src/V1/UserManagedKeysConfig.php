@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UserManagedKeysConfig holds the resource address to Keys which are used
@@ -99,12 +99,12 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      *     @type string $etcd_peer_ca
      *           Resource path of the Certificate Authority Service caPool to use for the
      *           etcd peer CA in this cluster.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_signing_keys
+     *     @type string[] $service_account_signing_keys
      *           The Cloud KMS cryptoKeyVersions to use for signing service account JWTs
      *           issued by this cluster.
      *           Format:
      *           `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_verification_keys
+     *     @type string[] $service_account_verification_keys
      *           The Cloud KMS cryptoKeyVersions to use for verifying service account JWTs
      *           issued by this cluster.
      *           Format:
@@ -115,7 +115,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      *     @type string $control_plane_disk_encryption_key
      *           The Cloud KMS cryptoKey to use for Confidential Hyperdisk on the control
      *           plane nodes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $control_plane_disk_encryption_key_versions
+     *     @type string[] $control_plane_disk_encryption_key_versions
      *           Output only. All of the versions of the Cloud KMS cryptoKey that are used
      *           by Confidential Hyperdisks on the control plane nodes.
      *     @type string $gkeops_etcd_backup_encryption_key
@@ -219,7 +219,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}`
      *
      * Generated from protobuf field <code>repeated string service_account_signing_keys = 13 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccountSigningKeys()
     {
@@ -233,7 +233,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}`
      *
      * Generated from protobuf field <code>repeated string service_account_signing_keys = 13 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccountSigningKeys($var)
@@ -251,7 +251,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}`
      *
      * Generated from protobuf field <code>repeated string service_account_verification_keys = 14 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccountVerificationKeys()
     {
@@ -265,7 +265,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{cryptoKey}/cryptoKeyVersions/{cryptoKeyVersion}`
      *
      * Generated from protobuf field <code>repeated string service_account_verification_keys = 14 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccountVerificationKeys($var)
@@ -337,7 +337,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * by Confidential Hyperdisks on the control plane nodes.
      *
      * Generated from protobuf field <code>repeated string control_plane_disk_encryption_key_versions = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getControlPlaneDiskEncryptionKeyVersions()
     {
@@ -349,7 +349,7 @@ class UserManagedKeysConfig extends \Google\Protobuf\Internal\Message
      * by Confidential Hyperdisks on the control plane nodes.
      *
      * Generated from protobuf field <code>repeated string control_plane_disk_encryption_key_versions = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setControlPlaneDiskEncryptionKeyVersions($var)
