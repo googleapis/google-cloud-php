@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of a query execution. The design is generic for all dialects.
@@ -58,9 +58,9 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Column>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Column[] $columns
      *           The columns in the result set, in order.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Row[] $rows
      *           The rows returned by the query.
      *     @type int|string $total_row_count
      *           The total number of rows in the full result set, if known.
@@ -85,7 +85,7 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      * The columns in the result set, in order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Column columns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Column>
      */
     public function getColumns()
     {
@@ -96,7 +96,7 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      * The columns in the result set, in order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Column columns = 1;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Column>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Column[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -111,7 +111,7 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      * The rows returned by the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Row rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Row>
      */
     public function getRows()
     {
@@ -122,7 +122,7 @@ class ExecutedQueryResult extends \Google\Protobuf\Internal\Message
      * The rows returned by the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Row rows = 2;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Row[] $var
      * @return $this
      */
     public function setRows($var)

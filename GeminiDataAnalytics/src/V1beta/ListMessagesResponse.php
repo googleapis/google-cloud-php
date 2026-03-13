@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing chat messages.
@@ -34,7 +34,7 @@ class ListMessagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage[] $messages
      *           The list of chat messages.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListMessagesResponse extends \Google\Protobuf\Internal\Message
      * The list of chat messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StorageMessage messages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage>
      */
     public function getMessages()
     {
@@ -60,7 +60,7 @@ class ListMessagesResponse extends \Google\Protobuf\Internal\Message
      * The list of chat messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.StorageMessage messages = 1;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\StorageMessage[] $var
      * @return $this
      */
     public function setMessages($var)

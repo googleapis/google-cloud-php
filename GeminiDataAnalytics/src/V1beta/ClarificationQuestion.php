@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single question to the user to help clarify their query.
@@ -51,7 +51,7 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
      *           Required. The natural language question to ask the user.
      *     @type int $selection_mode
      *           Required. The selection mode for this question.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type string[] $options
      *           Required. A list of distinct options for the user to choose from.
      *           The number of options is limited to a maximum of 5.
      *     @type int $clarification_question_type
@@ -120,7 +120,7 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
      * The number of options is limited to a maximum of 5.
      *
      * Generated from protobuf field <code>repeated string options = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOptions()
     {
@@ -132,7 +132,7 @@ class ClarificationQuestion extends \Google\Protobuf\Internal\Message
      * The number of options is limited to a maximum of 5.
      *
      * Generated from protobuf field <code>repeated string options = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOptions($var)

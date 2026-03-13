@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message from the system in response to the user. This message can also be a

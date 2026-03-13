@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a single column in the result set.
@@ -98,5 +98,4 @@ class Column extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

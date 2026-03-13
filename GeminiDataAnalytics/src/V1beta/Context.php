@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of context to apply to this conversation
@@ -83,17 +83,17 @@ class Context extends \Google\Protobuf\Internal\Message
      *           Required. Data sources that are available for answering the question.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ConversationOptions $options
      *           Optional. Additional options for the conversation.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $example_queries
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $example_queries
      *           Optional. A list of example queries, providing examples of relevant and
      *           commonly used SQL queries and their corresponding natural language queries
      *           optionally present. Currently only used for BigQuery data sources.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>|\Google\Protobuf\Internal\RepeatedField $looker_golden_queries
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery[] $looker_golden_queries
      *           Optional. A list of golden queries, providing examples of relevant and
      *           commonly used Looker queries and their corresponding natural language
      *           queries optionally present.
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $glossary_terms
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm[] $glossary_terms
      *           Optional. Term definitions (currently, only user authored)
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship>|\Google\Protobuf\Internal\RepeatedField $schema_relationships
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship[] $schema_relationships
      *           Optional. Relationships between table schema, including referencing and
      *           referenced columns.
      * }
@@ -215,7 +215,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * optionally present. Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>
      */
     public function getExampleQueries()
     {
@@ -228,7 +228,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * optionally present. Currently only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $var
      * @return $this
      */
     public function setExampleQueries($var)
@@ -245,7 +245,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * queries optionally present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>
      */
     public function getLookerGoldenQueries()
     {
@@ -258,7 +258,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * queries optionally present.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerGoldenQuery looker_golden_queries = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerGoldenQuery[] $var
      * @return $this
      */
     public function setLookerGoldenQueries($var)
@@ -273,7 +273,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * Optional. Term definitions (currently, only user authored)
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm>
      */
     public function getGlossaryTerms()
     {
@@ -284,7 +284,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * Optional. Term definitions (currently, only user authored)
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.GlossaryTerm glossary_terms = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\GlossaryTerm[] $var
      * @return $this
      */
     public function setGlossaryTerms($var)
@@ -300,7 +300,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * referenced columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship schema_relationships = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship>
      */
     public function getSchemaRelationships()
     {
@@ -312,7 +312,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * referenced columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship schema_relationships = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship[] $var
      * @return $this
      */
     public function setSchemaRelationships($var)
