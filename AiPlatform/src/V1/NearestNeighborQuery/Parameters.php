@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that can be overrided in each query to tune query latency and
@@ -119,5 +119,4 @@ class Parameters extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

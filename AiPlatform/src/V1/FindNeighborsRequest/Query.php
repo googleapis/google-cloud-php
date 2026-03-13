@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FindNeighborsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A query to find a number of the nearest neighbors (most similar vectors)
@@ -309,5 +309,4 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

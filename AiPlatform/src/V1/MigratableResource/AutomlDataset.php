@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigratableResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents one Dataset in automl.googleapis.com.
@@ -106,5 +106,4 @@ class AutomlDataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

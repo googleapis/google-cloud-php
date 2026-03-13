@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigrateResourceRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for migrating Dataset in automl.googleapis.com to Vertex AI's
@@ -111,5 +111,4 @@ class MigrateAutomlDatasetConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

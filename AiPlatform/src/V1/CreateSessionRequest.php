@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -30,6 +30,17 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Session session = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $session = null;
+    /**
+     * Optional. The user defined ID to use for session, which will become the
+     * final component of the session resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9-]`. The first character must be a letter, and the last character
+     * must be a letter or number.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $session_id = '';
 
     /**
      * @param string                              $parent  Required. The resource name of the location to create the session in.
@@ -50,6 +61,32 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * @param string                              $parent    Required. The resource name of the location to create the session in.
+     *                                                       Format:
+     *                                                       `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+     *                                                       Please see {@see SessionServiceClient::reasoningEngineName()} for help formatting this field.
+     * @param \Google\Cloud\AIPlatform\V1\Session $session   Required. The session to create.
+     * @param string                              $sessionId Optional. The user defined ID to use for session, which will become the
+     *                                                       final component of the session resource name. If not provided, Vertex AI
+     *                                                       will generate a value for this ID.
+     *
+     *                                                       This value may be up to 63 characters, and valid characters are
+     *                                                       `[a-z0-9-]`. The first character must be a letter, and the last character
+     *                                                       must be a letter or number.
+     *
+     * @return \Google\Cloud\AIPlatform\V1\CreateSessionRequest
+     *
+     * @experimental
+     */
+    public static function buildFromParentSessionSessionId(string $parent, \Google\Cloud\AIPlatform\V1\Session $session, string $sessionId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSession($session)
+            ->setSessionId($sessionId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
@@ -61,6 +98,13 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
      *     @type \Google\Cloud\AIPlatform\V1\Session $session
      *           Required. The session to create.
+     *     @type string $session_id
+     *           Optional. The user defined ID to use for session, which will become the
+     *           final component of the session resource name. If not provided, Vertex AI
+     *           will generate a value for this ID.
+     *           This value may be up to 63 characters, and valid characters are
+     *           `[a-z0-9-]`. The first character must be a letter, and the last character
+     *           must be a letter or number.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,6 +174,42 @@ class CreateSessionRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\Session::class);
         $this->session = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user defined ID to use for session, which will become the
+     * final component of the session resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9-]`. The first character must be a letter, and the last character
+     * must be a letter or number.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSessionId()
+    {
+        return $this->session_id;
+    }
+
+    /**
+     * Optional. The user defined ID to use for session, which will become the
+     * final component of the session resource name. If not provided, Vertex AI
+     * will generate a value for this ID.
+     * This value may be up to 63 characters, and valid characters are
+     * `[a-z0-9-]`. The first character must be a letter, and the last character
+     * must be a letter or number.
+     *
+     * Generated from protobuf field <code>string session_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSessionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->session_id = $var;
 
         return $this;
     }

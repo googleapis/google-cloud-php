@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Model Registry Model and Online Prediction Endpoint associated with
@@ -18,13 +18,13 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
      * When tuning from a base model, the version ID will be 1.
      * For continuous tuning, if the provided tuned_model_display_name is set and
      * different from parent model's display name, the tuned model will have a new
      * parent model with version 1. Otherwise the version id will be incremented
      * by 1 from the last version ID in the parent model. E.g.,
-     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * `projects/{project}/locations/{location}/models/{model}\@{last_version_id +
      * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -54,18 +54,18 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      *
      *     @type string $model
      *           Output only. The resource name of the TunedModel. Format:
-     *           `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     *           `projects/{project}/locations/{location}/models/{model}\@{version_id}`
      *           When tuning from a base model, the version ID will be 1.
      *           For continuous tuning, if the provided tuned_model_display_name is set and
      *           different from parent model's display name, the tuned model will have a new
      *           parent model with version 1. Otherwise the version id will be incremented
      *           by 1 from the last version ID in the parent model. E.g.,
-     *           `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     *           `projects/{project}/locations/{location}/models/{model}\@{last_version_id +
      *           1}`
      *     @type string $endpoint
      *           Output only. A resource name of an Endpoint. Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`.
-     *     @type array<\Google\Cloud\AIPlatform\V1\TunedModelCheckpoint>|\Google\Protobuf\Internal\RepeatedField $checkpoints
+     *     @type \Google\Cloud\AIPlatform\V1\TunedModelCheckpoint[] $checkpoints
      *           Output only. The checkpoints associated with this TunedModel.
      *           This field is only populated for tuning jobs that enable intermediate
      *           checkpoints.
@@ -78,13 +78,13 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
      * When tuning from a base model, the version ID will be 1.
      * For continuous tuning, if the provided tuned_model_display_name is set and
      * different from parent model's display name, the tuned model will have a new
      * parent model with version 1. Otherwise the version id will be incremented
      * by 1 from the last version ID in the parent model. E.g.,
-     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * `projects/{project}/locations/{location}/models/{model}\@{last_version_id +
      * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -97,13 +97,13 @@ class TunedModel extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The resource name of the TunedModel. Format:
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model}\@{version_id}`
      * When tuning from a base model, the version ID will be 1.
      * For continuous tuning, if the provided tuned_model_display_name is set and
      * different from parent model's display name, the tuned model will have a new
      * parent model with version 1. Otherwise the version id will be incremented
      * by 1 from the last version ID in the parent model. E.g.,
-     * `projects/{project}/locations/{location}/models/{model}&#64;{last_version_id +
+     * `projects/{project}/locations/{location}/models/{model}\@{last_version_id +
      * 1}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -152,7 +152,7 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      * checkpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TunedModelCheckpoint checkpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TunedModelCheckpoint>
      */
     public function getCheckpoints()
     {
@@ -165,7 +165,7 @@ class TunedModel extends \Google\Protobuf\Internal\Message
      * checkpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TunedModelCheckpoint checkpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TunedModelCheckpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TunedModelCheckpoint[] $var
      * @return $this
      */
     public function setCheckpoints($var)

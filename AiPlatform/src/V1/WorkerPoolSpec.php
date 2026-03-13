@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the spec of a worker pool in a job.
@@ -61,9 +61,9 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. The specification of a single machine.
      *     @type int|string $replica_count
      *           Optional. The number of worker replicas to use for this worker pool.
-     *     @type array<\Google\Cloud\AIPlatform\V1\NfsMount>|\Google\Protobuf\Internal\RepeatedField $nfs_mounts
+     *     @type \Google\Cloud\AIPlatform\V1\NfsMount[] $nfs_mounts
      *           Optional. List of NFS mount spec.
-     *     @type array<\Google\Cloud\AIPlatform\V1\LustreMount>|\Google\Protobuf\Internal\RepeatedField $lustre_mounts
+     *     @type \Google\Cloud\AIPlatform\V1\LustreMount[] $lustre_mounts
      *           Optional. List of Lustre mounts.
      *     @type \Google\Cloud\AIPlatform\V1\DiskSpec $disk_spec
      *           Disk spec.
@@ -202,7 +202,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      * Optional. List of NFS mount spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NfsMount>
      */
     public function getNfsMounts()
     {
@@ -213,7 +213,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      * Optional. List of NFS mount spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NfsMount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NfsMount[] $var
      * @return $this
      */
     public function setNfsMounts($var)
@@ -228,7 +228,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      * Optional. List of Lustre mounts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LustreMount lustre_mounts = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\LustreMount>
      */
     public function getLustreMounts()
     {
@@ -239,7 +239,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      * Optional. List of Lustre mounts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LustreMount lustre_mounts = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\LustreMount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\LustreMount[] $var
      * @return $this
      */
     public function setLustreMounts($var)

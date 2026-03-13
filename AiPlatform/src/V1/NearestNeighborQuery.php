@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A query to find a number of similar entities.
@@ -66,9 +66,9 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      *     @type int $neighbor_count
      *           Optional. The number of similar entities to be retrieved from feature view
      *           for each query.
-     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter>|\Google\Protobuf\Internal\RepeatedField $string_filters
+     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter[] $string_filters
      *           Optional. The list of string filters.
-     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $numeric_filters
+     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter[] $numeric_filters
      *           Optional. The list of numeric filters.
      *     @type int $per_crowding_attribute_neighbor_count
      *           Optional. Crowding is a constraint on a neighbor list produced by nearest
@@ -182,7 +182,7 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      * Optional. The list of string filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.StringFilter string_filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter>
      */
     public function getStringFilters()
     {
@@ -193,7 +193,7 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      * Optional. The list of string filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.StringFilter string_filters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\StringFilter[] $var
      * @return $this
      */
     public function setStringFilters($var)
@@ -208,7 +208,7 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      * Optional. The list of numeric filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>
      */
     public function getNumericFilters()
     {
@@ -219,7 +219,7 @@ class NearestNeighborQuery extends \Google\Protobuf\Internal\Message
      * Optional. The list of numeric filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborQuery.NumericFilter numeric_filters = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborQuery\NumericFilter[] $var
      * @return $this
      */
     public function setNumericFilters($var)

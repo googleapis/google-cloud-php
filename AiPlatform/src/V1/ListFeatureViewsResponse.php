@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListFeatureViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureView>|\Google\Protobuf\Internal\RepeatedField $feature_views
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureView[] $feature_views
      *           The FeatureViews matching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -56,7 +56,7 @@ class ListFeatureViewsResponse extends \Google\Protobuf\Internal\Message
      * The FeatureViews matching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureView feature_views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureView>
      */
     public function getFeatureViews()
     {
@@ -67,7 +67,7 @@ class ListFeatureViewsResponse extends \Google\Protobuf\Internal\Message
      * The FeatureViews matching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureView feature_views = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureView>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureView[] $var
      * @return $this
      */
     public function setFeatureViews($var)

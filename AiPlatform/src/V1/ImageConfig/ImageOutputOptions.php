@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ImageConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The image output format for generated images.
@@ -118,5 +118,4 @@ class ImageOutputOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

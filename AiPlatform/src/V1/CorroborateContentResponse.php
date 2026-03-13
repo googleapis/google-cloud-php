@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for CorroborateContent.
@@ -39,7 +39,7 @@ class CorroborateContentResponse extends \Google\Protobuf\Internal\Message
      *     @type float $corroboration_score
      *           Confidence score of corroborating content. Value is [0,1] with 1 is the
      *           most confidence.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Claim>|\Google\Protobuf\Internal\RepeatedField $claims
+     *     @type \Google\Cloud\AIPlatform\V1\Claim[] $claims
      *           Claims that are extracted from the input content and facts that support the
      *           claims.
      * }
@@ -92,7 +92,7 @@ class CorroborateContentResponse extends \Google\Protobuf\Internal\Message
      * claims.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Claim claims = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Claim>
      */
     public function getClaims()
     {
@@ -104,7 +104,7 @@ class CorroborateContentResponse extends \Google\Protobuf\Internal\Message
      * claims.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Claim claims = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Claim>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Claim[] $var
      * @return $this
      */
     public function setClaims($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\BatchPredictionJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration defining how to transform batch prediction input instances to
@@ -168,7 +168,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *              column instead of the instance feature columns.
      *           The input must be JSONL with objects at each line, CSV, BigQuery
      *           or TfRecord.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_fields
+     *     @type string[] $included_fields
      *           Fields that will be included in the prediction instance that is
      *           sent to the Model.
      *           If
@@ -180,7 +180,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           must be empty.
      *           The input must be JSONL with objects at each line, BigQuery
      *           or TfRecord.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_fields
+     *     @type string[] $excluded_fields
      *           Fields that will be excluded in the prediction instance that is
      *           sent to the Model.
      *           Excluded will be attached to the batch prediction output if
@@ -362,7 +362,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string included_fields = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludedFields()
     {
@@ -383,7 +383,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string included_fields = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludedFields($var)
@@ -407,7 +407,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string excluded_fields = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedFields()
     {
@@ -427,7 +427,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * or TfRecord.
      *
      * Generated from protobuf field <code>repeated string excluded_fields = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedFields($var)
@@ -439,5 +439,4 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighbors;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A neighbor of the query vector.
@@ -154,5 +154,4 @@ class Neighbor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

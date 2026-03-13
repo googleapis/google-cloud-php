@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SlackChannel contains the Slack channel ID and the time range to import.
@@ -152,5 +152,4 @@ class SlackChannel extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

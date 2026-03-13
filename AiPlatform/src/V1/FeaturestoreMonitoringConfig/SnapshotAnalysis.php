@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeaturestoreMonitoringConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of the Featurestore's Snapshot Analysis Based Monitoring.
@@ -187,5 +187,4 @@ class SnapshotAnalysis extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

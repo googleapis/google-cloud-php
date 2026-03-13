@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagEmbeddingModelConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config representing a model hosted on Vertex Prediction Endpoint.
@@ -164,5 +164,4 @@ class VertexPredictionEndpoint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

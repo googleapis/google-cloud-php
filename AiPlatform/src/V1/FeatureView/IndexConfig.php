@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for vector indexing.
@@ -77,7 +77,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Column of embedding. This column contains the source data to
      *           create index for vector search. embedding_column must be set when using
      *           vector search.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $filter_columns
+     *     @type string[] $filter_columns
      *           Optional. Columns of features that're used to filter vector search
      *           results.
      *     @type string $crowding_column
@@ -208,7 +208,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * results.
      *
      * Generated from protobuf field <code>repeated string filter_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilterColumns()
     {
@@ -220,7 +220,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * results.
      *
      * Generated from protobuf field <code>repeated string filter_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilterColumns($var)
@@ -344,5 +344,4 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

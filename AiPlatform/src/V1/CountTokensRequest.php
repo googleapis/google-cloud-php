@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for [PredictionService.CountTokens][].
@@ -26,7 +26,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -102,17 +102,17 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Optional. The name of the publisher model requested to serve the
      *           prediction. Format:
-     *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $instances
+     *           `projects/{project}/locations/{location}/publishers/{@*}models/*`
+     *     @type \Google\Protobuf\Value[] $instances
      *           Optional. The instances that are the input to token counting call.
      *           Schema is identical to the prediction schema of the underlying model.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $contents
      *           Optional. Input content.
      *     @type \Google\Cloud\AIPlatform\V1\Content $system_instruction
      *           Optional. The user provided system instructions for the model.
      *           Note: only text should be used in parts and content in each part will be in
      *           a separate paragraph.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\AIPlatform\V1\Tool[] $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
      *           A `Tool` is a piece of code that enables the system to interact with
@@ -161,7 +161,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -174,7 +174,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the publisher model requested to serve the
      * prediction. Format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *
      * Generated from protobuf field <code>string model = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -193,7 +193,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * Schema is identical to the prediction schema of the underlying model.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getInstances()
     {
@@ -205,7 +205,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * Schema is identical to the prediction schema of the underlying model.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -220,7 +220,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getContents()
     {
@@ -231,7 +231,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * Optional. Input content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setContents($var)
@@ -290,7 +290,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tool>
      */
     public function getTools()
     {
@@ -305,7 +305,7 @@ class CountTokensRequest extends \Google\Protobuf\Internal\Message
      * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)

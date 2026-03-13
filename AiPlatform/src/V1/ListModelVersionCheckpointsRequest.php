@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -18,10 +18,10 @@ class ListModelVersionCheckpointsRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * Required. The name of the model version to list checkpoints for.
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version}`
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     * `projects/{project}/locations/{location}/models/{model}\@{version}`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@2`
      * or
-     * `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the latest version will be
      * used.
      *
@@ -74,10 +74,10 @@ class ListModelVersionCheckpointsRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $name
      *           Required. The name of the model version to list checkpoints for.
-     *           `projects/{project}/locations/{location}/models/{model}&#64;{version}`
-     *           Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *           `projects/{project}/locations/{location}/models/{model}\@{version}`
+     *           Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *           or
-     *           `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *           `projects/{project}/locations/{location}/models/{model}\@golden`
      *           If no version ID or alias is specified, the latest version will be
      *           used.
      *     @type int $page_size
@@ -98,10 +98,10 @@ class ListModelVersionCheckpointsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The name of the model version to list checkpoints for.
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version}`
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     * `projects/{project}/locations/{location}/models/{model}\@{version}`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@2`
      * or
-     * `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the latest version will be
      * used.
      *
@@ -115,10 +115,10 @@ class ListModelVersionCheckpointsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The name of the model version to list checkpoints for.
-     * `projects/{project}/locations/{location}/models/{model}&#64;{version}`
-     * Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     * `projects/{project}/locations/{location}/models/{model}\@{version}`
+     * Example: `projects/{project}/locations/{location}/models/{model}\@2`
      * or
-     * `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     * `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the latest version will be
      * used.
      *

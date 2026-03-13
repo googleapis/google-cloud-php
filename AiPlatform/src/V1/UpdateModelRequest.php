@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,11 +20,11 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The Model which replaces the resource on the server.
      * When Model Versioning is enabled, the model.name will be used to determine
      * whether to update the model or model version.
-     * 1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     * 1. model.name with the \@ value, e.g. models/123\@1, refers to a version
      * specific update.
-     * 2. model.name without the &#64; value, e.g. models/123, refers to a model
+     * 2. model.name without the \@ value, e.g. models/123, refers to a model
      * update.
-     * 3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     * 3. model.name with \@-, e.g. models/123\@-, refers to a model update.
      * 4. Supported model fields: display_name, description; supported
      * version-specific fields: version_description. Labels are supported in both
      * scenarios. Both the model labels and the version labels are merged when a
@@ -92,11 +92,11 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      *           Required. The Model which replaces the resource on the server.
      *           When Model Versioning is enabled, the model.name will be used to determine
      *           whether to update the model or model version.
-     *           1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     *           1. model.name with the \@ value, e.g. models/123\@1, refers to a version
      *           specific update.
-     *           2. model.name without the &#64; value, e.g. models/123, refers to a model
+     *           2. model.name without the \@ value, e.g. models/123, refers to a model
      *           update.
-     *           3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     *           3. model.name with \@-, e.g. models/123\@-, refers to a model update.
      *           4. Supported model fields: display_name, description; supported
      *           version-specific fields: version_description. Labels are supported in both
      *           scenarios. Both the model labels and the version labels are merged when a
@@ -122,11 +122,11 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The Model which replaces the resource on the server.
      * When Model Versioning is enabled, the model.name will be used to determine
      * whether to update the model or model version.
-     * 1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     * 1. model.name with the \@ value, e.g. models/123\@1, refers to a version
      * specific update.
-     * 2. model.name without the &#64; value, e.g. models/123, refers to a model
+     * 2. model.name without the \@ value, e.g. models/123, refers to a model
      * update.
-     * 3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     * 3. model.name with \@-, e.g. models/123\@-, refers to a model update.
      * 4. Supported model fields: display_name, description; supported
      * version-specific fields: version_description. Labels are supported in both
      * scenarios. Both the model labels and the version labels are merged when a
@@ -160,11 +160,11 @@ class UpdateModelRequest extends \Google\Protobuf\Internal\Message
      * Required. The Model which replaces the resource on the server.
      * When Model Versioning is enabled, the model.name will be used to determine
      * whether to update the model or model version.
-     * 1. model.name with the &#64; value, e.g. models/123&#64;1, refers to a version
+     * 1. model.name with the \@ value, e.g. models/123\@1, refers to a version
      * specific update.
-     * 2. model.name without the &#64; value, e.g. models/123, refers to a model
+     * 2. model.name without the \@ value, e.g. models/123, refers to a model
      * update.
-     * 3. model.name with &#64;-, e.g. models/123&#64;-, refers to a model update.
+     * 3. model.name with \@-, e.g. models/123\@-, refers to a model update.
      * 4. Supported model fields: display_name, description; supported
      * version-specific fields: version_description. Labels are supported in both
      * scenarios. Both the model labels and the version labels are merged when a

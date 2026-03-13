@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration (stopping conditions) for automated stopping of a Study.
@@ -573,5 +573,4 @@ class StudyStoppingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

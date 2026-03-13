@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Trial;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message representing a parameter to be tuned.
@@ -132,5 +132,4 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

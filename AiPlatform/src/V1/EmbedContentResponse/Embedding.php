@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\EmbedContentResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of floats representing an embedding.
@@ -28,7 +28,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type float[] $values
      *           Embedding vector values.
      * }
      */
@@ -41,7 +41,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * Embedding vector values.
      *
      * Generated from protobuf field <code>repeated float values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * Embedding vector values.
      *
      * Generated from protobuf field <code>repeated float values = 1;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class Embedding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

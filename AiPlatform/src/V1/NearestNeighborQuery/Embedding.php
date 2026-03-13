@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The embedding vector.
@@ -28,7 +28,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $value
+     *     @type float[] $value
      *           Optional. Individual value in the embedding.
      * }
      */
@@ -41,7 +41,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * Optional. Individual value in the embedding.
      *
      * Generated from protobuf field <code>repeated float value = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getValue()
     {
@@ -52,7 +52,7 @@ class Embedding extends \Google\Protobuf\Internal\Message
      * Optional. Individual value in the embedding.
      *
      * Generated from protobuf field <code>repeated float value = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setValue($var)
@@ -64,5 +64,4 @@ class Embedding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

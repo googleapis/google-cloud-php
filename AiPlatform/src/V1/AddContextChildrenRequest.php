@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -60,7 +60,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent Context.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_contexts
+     *     @type string[] $child_contexts
      *           The resource names of the child Contexts.
      * }
      */
@@ -103,7 +103,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      * The resource names of the child Contexts.
      *
      * Generated from protobuf field <code>repeated string child_contexts = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChildContexts()
     {
@@ -114,7 +114,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      * The resource names of the child Contexts.
      *
      * Generated from protobuf field <code>repeated string child_contexts = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChildContexts($var)

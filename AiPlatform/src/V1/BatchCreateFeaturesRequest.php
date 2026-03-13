@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -72,7 +72,7 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
      *           batch of Features under. Format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`
      *           `projects/{project}/locations/{location}/featureGroups/{feature_group}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\CreateFeatureRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\AIPlatform\V1\CreateFeatureRequest[] $requests
      *           Required. The request message specifying the Features to create. All
      *           Features must be created under the same parent EntityType / FeatureGroup.
      *           The `parent` field in each child request message can be omitted. If
@@ -125,7 +125,7 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
      * value in this request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateFeatureRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\CreateFeatureRequest>
      */
     public function getRequests()
     {
@@ -140,7 +140,7 @@ class BatchCreateFeaturesRequest extends \Google\Protobuf\Internal\Message
      * value in this request message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateFeatureRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\CreateFeatureRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\CreateFeatureRequest[] $var
      * @return $this
      */
     public function setRequests($var)

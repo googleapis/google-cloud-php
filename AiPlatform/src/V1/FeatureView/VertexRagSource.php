@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Vertex Rag source for features that need to be synced to Online
@@ -135,5 +135,4 @@ class VertexRagSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message representing a Measurement of a Trial. A Measurement contains
@@ -51,7 +51,7 @@ class Measurement extends \Google\Protobuf\Internal\Message
      *     @type int|string $step_count
      *           Output only. The number of steps the machine learning model has been
      *           trained for. Must be non-negative.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\AIPlatform\V1\Measurement\Metric[] $metrics
      *           Output only. A list of metrics got by evaluating the objective functions
      *           using suggested Parameter values.
      * }
@@ -132,7 +132,7 @@ class Measurement extends \Google\Protobuf\Internal\Message
      * using suggested Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Measurement\Metric>
      */
     public function getMetrics()
     {
@@ -144,7 +144,7 @@ class Measurement extends \Google\Protobuf\Internal\Message
      * using suggested Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Measurement\Metric[] $var
      * @return $this
      */
     public function setMetrics($var)

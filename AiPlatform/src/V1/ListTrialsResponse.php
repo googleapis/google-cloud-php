@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class ListTrialsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $trials
+     *     @type \Google\Cloud\AIPlatform\V1\Trial[] $trials
      *           The Trials associated with the Study.
      *     @type string $next_page_token
      *           Pass this token as the `page_token` field of the request for a
@@ -54,7 +54,7 @@ class ListTrialsResponse extends \Google\Protobuf\Internal\Message
      * The Trials associated with the Study.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial trials = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Trial>
      */
     public function getTrials()
     {
@@ -65,7 +65,7 @@ class ListTrialsResponse extends \Google\Protobuf\Internal\Message
      * The Trials associated with the Study.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial trials = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Trial[] $var
      * @return $this
      */
     public function setTrials($var)

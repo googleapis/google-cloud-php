@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigratableResource\DataLabelingDataset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents one AnnotatedDataset in datalabeling.googleapis.com.
@@ -106,5 +106,4 @@ class DataLabelingAnnotatedDataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

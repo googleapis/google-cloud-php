@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for FeatureViews created in Optimized FeatureOnlineStore.
@@ -90,5 +90,4 @@ class OptimizedConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

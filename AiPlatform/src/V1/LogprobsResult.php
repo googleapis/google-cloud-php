@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Logprobs Result
@@ -35,9 +35,9 @@ class LogprobsResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\LogprobsResult\TopCandidates>|\Google\Protobuf\Internal\RepeatedField $top_candidates
+     *     @type \Google\Cloud\AIPlatform\V1\LogprobsResult\TopCandidates[] $top_candidates
      *           Length = total number of decoding steps.
-     *     @type array<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>|\Google\Protobuf\Internal\RepeatedField $chosen_candidates
+     *     @type \Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate[] $chosen_candidates
      *           Length = total number of decoding steps.
      *           The chosen candidates may or may not be in top_candidates.
      * }
@@ -51,7 +51,7 @@ class LogprobsResult extends \Google\Protobuf\Internal\Message
      * Length = total number of decoding steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.TopCandidates top_candidates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\LogprobsResult\TopCandidates>
      */
     public function getTopCandidates()
     {
@@ -62,7 +62,7 @@ class LogprobsResult extends \Google\Protobuf\Internal\Message
      * Length = total number of decoding steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.TopCandidates top_candidates = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\LogprobsResult\TopCandidates>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\LogprobsResult\TopCandidates[] $var
      * @return $this
      */
     public function setTopCandidates($var)
@@ -78,7 +78,7 @@ class LogprobsResult extends \Google\Protobuf\Internal\Message
      * The chosen candidates may or may not be in top_candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.Candidate chosen_candidates = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>
      */
     public function getChosenCandidates()
     {
@@ -90,7 +90,7 @@ class LogprobsResult extends \Google\Protobuf\Internal\Message
      * The chosen candidates may or may not be in top_candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.LogprobsResult.Candidate chosen_candidates = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\LogprobsResult\Candidate[] $var
      * @return $this
      */
     public function setChosenCandidates($var)

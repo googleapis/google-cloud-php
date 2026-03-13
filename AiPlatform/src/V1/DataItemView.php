@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A container for a single DataItem and Annotations on it.
@@ -49,7 +49,7 @@ class DataItemView extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\DataItem $data_item
      *           The DataItem.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\AIPlatform\V1\Annotation[] $annotations
      *           The Annotations on the DataItem. If too many Annotations should be returned
      *           for the DataItem, this field will be truncated per annotations_limit in
      *           request. If it was, then the has_truncated_annotations will be set to true.
@@ -109,7 +109,7 @@ class DataItemView extends \Google\Protobuf\Internal\Message
      * request. If it was, then the has_truncated_annotations will be set to true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Annotation annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Annotation>
      */
     public function getAnnotations()
     {
@@ -122,7 +122,7 @@ class DataItemView extends \Google\Protobuf\Internal\Message
      * request. If it was, then the has_truncated_annotations will be set to true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Annotation annotations = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Annotation[] $var
      * @return $this
      */
     public function setAnnotations($var)

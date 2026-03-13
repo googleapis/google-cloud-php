@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The spec of a Python packaged code.
@@ -67,15 +67,15 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      *           the list of [pre-built containers for
      *           training](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers).
      *           You must use an image from this list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $package_uris
+     *     @type string[] $package_uris
      *           Required. The Google Cloud Storage location of the Python package files
      *           which are the training program and its dependent packages. The maximum
      *           number of package URIs is 100.
      *     @type string $python_module
      *           Required. The Python module name to run after installing the packages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Command line arguments to be passed to the Python task.
-     *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\AIPlatform\V1\EnvVar[] $env
      *           Environment variables to be passed to the python module.
      *           Maximum limit is 100.
      * }
@@ -127,7 +127,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * number of package URIs is 100.
      *
      * Generated from protobuf field <code>repeated string package_uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPackageUris()
     {
@@ -140,7 +140,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * number of package URIs is 100.
      *
      * Generated from protobuf field <code>repeated string package_uris = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPackageUris($var)
@@ -181,7 +181,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * Command line arguments to be passed to the Python task.
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -192,7 +192,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * Command line arguments to be passed to the Python task.
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -208,7 +208,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * Maximum limit is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EnvVar>
      */
     public function getEnv()
     {
@@ -220,7 +220,7 @@ class PythonPackageSpec extends \Google\Protobuf\Internal\Message
      * Maximum limit is 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 5;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)

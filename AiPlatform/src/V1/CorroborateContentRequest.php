@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for CorroborateContent.
@@ -83,7 +83,7 @@ class CorroborateContentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\Content $content
      *           Optional. Input content to corroborate, only text format is supported for
      *           now.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Fact>|\Google\Protobuf\Internal\RepeatedField $facts
+     *     @type \Google\Cloud\AIPlatform\V1\Fact[] $facts
      *           Optional. Facts used to generate the text can also be used to corroborate
      *           the text.
      *     @type \Google\Cloud\AIPlatform\V1\CorroborateContentRequest\Parameters $parameters
@@ -171,7 +171,7 @@ class CorroborateContentRequest extends \Google\Protobuf\Internal\Message
      * the text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Fact facts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Fact>
      */
     public function getFacts()
     {
@@ -183,7 +183,7 @@ class CorroborateContentRequest extends \Google\Protobuf\Internal\Message
      * the text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Fact facts = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Fact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Fact[] $var
      * @return $this
      */
     public function setFacts($var)

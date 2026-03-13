@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Open fine tuning pipelines.
@@ -28,7 +28,7 @@ class OpenFineTuningPipelines extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>|\Google\Protobuf\Internal\RepeatedField $fine_tuning_pipelines
+     *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences[] $fine_tuning_pipelines
      *           Required. Regional resource references to fine tuning pipelines.
      * }
      */
@@ -41,7 +41,7 @@ class OpenFineTuningPipelines extends \Google\Protobuf\Internal\Message
      * Required. Regional resource references to fine tuning pipelines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences fine_tuning_pipelines = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>
      */
     public function getFineTuningPipelines()
     {
@@ -52,7 +52,7 @@ class OpenFineTuningPipelines extends \Google\Protobuf\Internal\Message
      * Required. Regional resource references to fine tuning pipelines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences fine_tuning_pipelines = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences[] $var
      * @return $this
      */
     public function setFineTuningPipelines($var)
@@ -64,5 +64,4 @@ class OpenFineTuningPipelines extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -68,7 +68,7 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      *           The TensorboardTimeSeries referenced by
      *           [time_series][google.cloud.aiplatform.v1.BatchReadTensorboardTimeSeriesDataRequest.time_series]
      *           must be sub resources of this Tensorboard.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $time_series
+     *     @type string[] $time_series
      *           Required. The resource names of the TensorboardTimeSeries to read data
      *           from. Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
@@ -121,7 +121,7 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *
      * Generated from protobuf field <code>repeated string time_series = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTimeSeries()
     {
@@ -134,7 +134,7 @@ class BatchReadTensorboardTimeSeriesDataRequest extends \Google\Protobuf\Interna
      * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      *
      * Generated from protobuf field <code>repeated string time_series = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTimeSeries($var)

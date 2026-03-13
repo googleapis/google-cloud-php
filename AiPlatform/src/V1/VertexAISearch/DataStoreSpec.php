@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\VertexAISearch;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Define data stores within engine to filter on in a search call and
@@ -116,5 +116,4 @@ class DataStoreSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

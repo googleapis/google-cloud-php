@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataset distribution for Supervised Tuning.
@@ -92,7 +92,7 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      *           Output only. The 5th percentile of the values in the population.
      *     @type float $p95
      *           Output only. The 95th percentile of the values in the population.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution\DatasetBucket>|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type \Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution\DatasetBucket[] $buckets
      *           Output only. Defines the histogram bucket.
      * }
      */
@@ -313,7 +313,7 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      * Output only. Defines the histogram bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution.DatasetBucket buckets = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution\DatasetBucket>
      */
     public function getBuckets()
     {
@@ -324,7 +324,7 @@ class SupervisedTuningDatasetDistribution extends \Google\Protobuf\Internal\Mess
      * Output only. Defines the histogram bucket.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SupervisedTuningDatasetDistribution.DatasetBucket buckets = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution\DatasetBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SupervisedTuningDatasetDistribution\DatasetBucket[] $var
      * @return $this
      */
     public function setBuckets($var)

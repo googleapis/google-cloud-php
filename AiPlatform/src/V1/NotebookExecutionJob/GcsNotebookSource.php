@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NotebookExecutionJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Cloud Storage uri for the input notebook.
@@ -110,5 +110,4 @@ class GcsNotebookSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

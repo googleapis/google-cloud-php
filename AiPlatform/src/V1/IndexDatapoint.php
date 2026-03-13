@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A datapoint of Index.
@@ -73,17 +73,17 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $datapoint_id
      *           Required. Unique identifier of the datapoint.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $feature_vector
+     *     @type float[] $feature_vector
      *           Required. Feature embedding vector for dense index. An array of numbers
      *           with the length of [NearestNeighborSearchConfig.dimensions].
      *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\SparseEmbedding $sparse_embedding
      *           Optional. Feature embedding vector for sparse index.
-     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $restricts
+     *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction[] $restricts
      *           Optional. List of Restrict of the datapoint, used to perform "restricted
      *           searches" where boolean rule are used to filter the subset of the database
      *           eligible for matching. This uses categorical tokens. See:
      *           https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
-     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $numeric_restricts
+     *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction[] $numeric_restricts
      *           Optional. List of Restrict of the datapoint, used to perform "restricted
      *           searches" where boolean rule are used to filter the subset of the database
      *           eligible for matching. This uses numeric comparisons.
@@ -130,7 +130,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * with the length of [NearestNeighborSearchConfig.dimensions].
      *
      * Generated from protobuf field <code>repeated float feature_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getFeatureVector()
     {
@@ -142,7 +142,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * with the length of [NearestNeighborSearchConfig.dimensions].
      *
      * Generated from protobuf field <code>repeated float feature_vector = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setFeatureVector($var)
@@ -196,7 +196,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>
      */
     public function getRestricts()
     {
@@ -210,7 +210,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/vertex-ai/docs/matching-engine/filtering
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.Restriction restricts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint\Restriction[] $var
      * @return $this
      */
     public function setRestricts($var)
@@ -227,7 +227,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * eligible for matching. This uses numeric comparisons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>
      */
     public function getNumericRestricts()
     {
@@ -240,7 +240,7 @@ class IndexDatapoint extends \Google\Protobuf\Internal\Message
      * eligible for matching. This uses numeric comparisons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint.NumericRestriction numeric_restricts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint\NumericRestriction[] $var
      * @return $this
      */
     public function setNumericRestricts($var)

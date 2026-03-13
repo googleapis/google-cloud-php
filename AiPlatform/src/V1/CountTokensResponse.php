@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [PredictionService.CountTokens][].
@@ -46,7 +46,7 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      *     @type int $total_billable_characters
      *           The total number of billable characters counted across all instances from
      *           the request.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $prompt_tokens_details
+     *     @type \Google\Cloud\AIPlatform\V1\ModalityTokenCount[] $prompt_tokens_details
      *           Output only. List of modalities that were processed in the request input.
      * }
      */
@@ -113,7 +113,7 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      * Output only. List of modalities that were processed in the request input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>
      */
     public function getPromptTokensDetails()
     {
@@ -124,7 +124,7 @@ class CountTokensResponse extends \Google\Protobuf\Internal\Message
      * Output only. List of modalities that were processed in the request input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModalityTokenCount prompt_tokens_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ModalityTokenCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ModalityTokenCount[] $var
      * @return $this
      */
     public function setPromptTokensDetails($var)

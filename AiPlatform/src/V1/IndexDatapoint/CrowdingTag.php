@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\IndexDatapoint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Crowding tag is a constraint on a neighbor list produced by nearest
@@ -82,5 +82,4 @@ class CrowdingTag extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

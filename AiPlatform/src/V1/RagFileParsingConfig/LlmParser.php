@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagFileParsingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the advanced parsing for RagFiles.
@@ -160,5 +160,4 @@ class LlmParser extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

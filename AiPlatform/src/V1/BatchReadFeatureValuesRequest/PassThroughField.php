@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describe pass-through fields in read_instance source.
@@ -72,5 +72,4 @@ class PassThroughField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
