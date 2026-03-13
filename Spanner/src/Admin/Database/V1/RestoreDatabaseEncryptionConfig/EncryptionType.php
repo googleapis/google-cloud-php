@@ -69,6 +69,3 @@ class EncryptionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EncryptionType::class, \Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig_EncryptionType::class);
-

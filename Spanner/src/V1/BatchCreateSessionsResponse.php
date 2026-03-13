@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -29,7 +29,7 @@ class BatchCreateSessionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $session
+     *     @type \Google\Cloud\Spanner\V1\Session[] $session
      *           The freshly created sessions.
      * }
      */
@@ -42,7 +42,7 @@ class BatchCreateSessionsResponse extends \Google\Protobuf\Internal\Message
      * The freshly created sessions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Session session = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Session>
      */
     public function getSession()
     {
@@ -53,7 +53,7 @@ class BatchCreateSessionsResponse extends \Google\Protobuf\Internal\Message
      * The freshly created sessions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Session session = 1;</code>
-     * @param array<\Google\Cloud\Spanner\V1\Session>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Session[] $var
      * @return $this
      */
     public function setSession($var)

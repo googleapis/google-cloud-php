@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A partition end record serves as a notification that the client should stop
@@ -204,5 +204,4 @@ class PartitionEndRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

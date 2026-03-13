@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord\PartitionEventRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes move-out of the key ranges out of the change stream partition
@@ -82,5 +82,4 @@ class MoveOutEvent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

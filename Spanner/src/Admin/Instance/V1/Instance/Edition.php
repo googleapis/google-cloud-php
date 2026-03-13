@@ -67,6 +67,3 @@ class Edition
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Edition::class, \Google\Cloud\Spanner\Admin\Instance\V1\Instance_Edition::class);
-

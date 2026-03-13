@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An isolated set of Cloud Spanner resources that databases can define
@@ -153,12 +153,12 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time at which the instance partition was most recently
      *           updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_databases
+     *     @type string[] $referencing_databases
      *           Output only. The names of the databases that reference this
      *           instance partition. Referencing databases should share the parent instance.
      *           The existence of any referencing database prevents the instance partition
      *           from being deleted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_backups
+     *     @type string[] $referencing_backups
      *           Output only. Deprecated: This field is not populated.
      *           Output only. The names of the backups that reference this instance
      *           partition. Referencing backups should share the parent instance. The
@@ -505,7 +505,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      * from being deleted.
      *
      * Generated from protobuf field <code>repeated string referencing_databases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencingDatabases()
     {
@@ -519,7 +519,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      * from being deleted.
      *
      * Generated from protobuf field <code>repeated string referencing_databases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencingDatabases($var)
@@ -538,7 +538,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      * being deleted.
      *
      * Generated from protobuf field <code>repeated string referencing_backups = 11 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getReferencingBackups()
@@ -557,7 +557,7 @@ class InstancePartition extends \Google\Protobuf\Internal\Message
      * being deleted.
      *
      * Generated from protobuf field <code>repeated string referencing_backups = 11 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */

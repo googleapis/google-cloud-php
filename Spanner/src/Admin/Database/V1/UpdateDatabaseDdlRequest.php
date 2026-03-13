@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Enqueues the given DDL statements to be applied, in order but not
@@ -117,7 +117,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Required. The database to update.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type string[] $statements
      *           Required. DDL statements to be applied to the database.
      *     @type string $operation_id
      *           If empty, the new update request is assigned an
@@ -195,7 +195,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * Required. DDL statements to be applied to the database.
      *
      * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStatements()
     {
@@ -206,7 +206,7 @@ class UpdateDatabaseDdlRequest extends \Google\Protobuf\Internal\Message
      * Required. DDL statements to be applied to the database.
      *
      * Generated from protobuf field <code>repeated string statements = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStatements($var)
