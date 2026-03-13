@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.apigateway.v1",
+    "libraryPackage": "Google\\Cloud\\ApiGateway\\V1",
+    "services": {
+        "ApiGatewayService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ApiGatewayServiceGapicClient",
+                    "rpcs": {
+                        "CreateApi": {
+                            "methods": [
+                                "createApi"
+                            ]
+                        },
+                        "CreateApiConfig": {
+                            "methods": [
+                                "createApiConfig"
+                            ]
+                        },
+                        "CreateGateway": {
+                            "methods": [
+                                "createGateway"
+                            ]
+                        },
+                        "DeleteApi": {
+                            "methods": [
+                                "deleteApi"
+                            ]
+                        },
+                        "DeleteApiConfig": {
+                            "methods": [
+                                "deleteApiConfig"
+                            ]
+                        },
+                        "DeleteGateway": {
+                            "methods": [
+                                "deleteGateway"
+                            ]
+                        },
+                        "GetApi": {
+                            "methods": [
+                                "getApi"
+                            ]
+                        },
+                        "GetApiConfig": {
+                            "methods": [
+                                "getApiConfig"
+                            ]
+                        },
+                        "GetGateway": {
+                            "methods": [
+                                "getGateway"
+                            ]
+                        },
+                        "ListApiConfigs": {
+                            "methods": [
+                                "listApiConfigs"
+                            ]
+                        },
+                        "ListApis": {
+                            "methods": [
+                                "listApis"
+                            ]
+                        },
+                        "ListGateways": {
+                            "methods": [
+                                "listGateways"
+                            ]
+                        },
+                        "UpdateApi": {
+                            "methods": [
+                                "updateApi"
+                            ]
+                        },
+                        "UpdateApiConfig": {
+                            "methods": [
+                                "updateApiConfig"
+                            ]
+                        },
+                        "UpdateGateway": {
+                            "methods": [
+                                "updateGateway"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

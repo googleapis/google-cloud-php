@@ -1,0 +1,58 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.marketingplatform.admin.v1alpha",
+    "libraryPackage": "Google\\Ads\\MarketingPlatform\\Admin\\V1alpha",
+    "services": {
+        "MarketingplatformAdminService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MarketingplatformAdminServiceGapicClient",
+                    "rpcs": {
+                        "CreateAnalyticsAccountLink": {
+                            "methods": [
+                                "createAnalyticsAccountLink"
+                            ]
+                        },
+                        "DeleteAnalyticsAccountLink": {
+                            "methods": [
+                                "deleteAnalyticsAccountLink"
+                            ]
+                        },
+                        "FindSalesPartnerManagedClients": {
+                            "methods": [
+                                "findSalesPartnerManagedClients"
+                            ]
+                        },
+                        "GetOrganization": {
+                            "methods": [
+                                "getOrganization"
+                            ]
+                        },
+                        "ListAnalyticsAccountLinks": {
+                            "methods": [
+                                "listAnalyticsAccountLinks"
+                            ]
+                        },
+                        "ListOrganizations": {
+                            "methods": [
+                                "listOrganizations"
+                            ]
+                        },
+                        "ReportPropertyUsage": {
+                            "methods": [
+                                "reportPropertyUsage"
+                            ]
+                        },
+                        "SetPropertyServiceLevel": {
+                            "methods": [
+                                "setPropertyServiceLevel"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
