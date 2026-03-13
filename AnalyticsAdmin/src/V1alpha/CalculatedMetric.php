@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A definition for a calculated metric.
@@ -100,7 +100,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      *           from external APIs. For example, "calcMetric:{calculated_metric_id}".
      *     @type int $metric_unit
      *           Required. The type for the calculated metric's value.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_metric_type
+     *     @type int[] $restricted_metric_type
      *           Output only. Types of restricted data that this metric contains.
      *     @type string $formula
      *           Required. The calculated metric's definition. Maximum number of unique
@@ -267,7 +267,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      * Output only. Types of restricted data that this metric contains.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CalculatedMetric.RestrictedMetricType restricted_metric_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRestrictedMetricType()
     {
@@ -278,7 +278,7 @@ class CalculatedMetric extends \Google\Protobuf\Internal\Message
      * Output only. Types of restricted data that this metric contains.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CalculatedMetric.RestrictedMetricType restricted_metric_type = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRestrictedMetricType($var)

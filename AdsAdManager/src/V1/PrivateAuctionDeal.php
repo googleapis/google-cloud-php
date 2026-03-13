@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `PrivateAuctionDeal` resource.
@@ -152,7 +152,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      *           Optional. The end time of the `PrivateAuctionDeal`.
      *     @type \Google\Type\Money $floor_price
      *           Required. The floor price of the `PrivateAuctionDeal`.
-     *     @type array<\Google\Ads\AdManager\V1\Size>|\Google\Protobuf\Internal\RepeatedField $creative_sizes
+     *     @type \Google\Ads\AdManager\V1\Size[] $creative_sizes
      *           Optional. The expected creative sizes of the `PrivateAuctionDeal`.
      *     @type int $status
      *           Output only. The status of the `PrivateAuctionDeal`.
@@ -503,7 +503,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      * Optional. The expected creative sizes of the `PrivateAuctionDeal`.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size creative_sizes = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Size>
      */
     public function getCreativeSizes()
     {
@@ -514,7 +514,7 @@ class PrivateAuctionDeal extends \Google\Protobuf\Internal\Message
      * Optional. The expected creative sizes of the `PrivateAuctionDeal`.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size creative_sizes = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\Size>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Size[] $var
      * @return $this
      */
     public function setCreativeSizes($var)

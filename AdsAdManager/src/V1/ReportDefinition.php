@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of how a report should be run.
@@ -144,13 +144,13 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type int[] $dimensions
      *           Required. The list of dimensions to report on. If empty, the report will
      *           have no dimensions, and any metrics will be totals.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type int[] $metrics
      *           Required. The list of metrics to report on. If empty, the report will have
      *           no metrics.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $filters
      *           Optional. The filters for this report.
      *     @type int $time_zone_source
      *           Optional. Where to get the time zone for this report. Defaults to using the
@@ -168,22 +168,22 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *     @type \Google\Ads\AdManager\V1\ReportDefinition\DateRange $comparison_date_range
      *           Optional. The comparison date range of this report. If unspecified, the
      *           report won't have any comparison metrics.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $custom_dimension_key_ids
+     *     @type int[]|string[] $custom_dimension_key_ids
      *           Optional. Custom Dimension keys that represent CUSTOM_DIMENSION_*
      *           dimensions. The index of this repeated field corresponds to the index on
      *           each dimension. For example, custom_dimension_key_ids[0] describes
      *           CUSTOM_DIMENSION_0_VALUE_ID and CUSTOM_DIMENSION_0_VALUE.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $line_item_custom_field_ids
+     *     @type int[]|string[] $line_item_custom_field_ids
      *           Optional. Custom field IDs that represent LINE_ITEM_CUSTOM_FIELD_*
      *           dimensions. The index of this repeated field corresponds to the index on
      *           each dimension. For example, line_item_custom_field_ids[0] describes
      *           LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID and LINE_ITEM_CUSTOM_FIELD_0_VALUE.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $order_custom_field_ids
+     *     @type int[]|string[] $order_custom_field_ids
      *           Optional. Custom field IDs that represent ORDER_CUSTOM_FIELD_*
      *           dimensions. The index of this repeated field corresponds to the index on
      *           each dimension. For example, order_custom_field_ids[0] describes
      *           ORDER_CUSTOM_FIELD_0_OPTION_ID and ORDER_CUSTOM_FIELD_0_VALUE.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $creative_custom_field_ids
+     *     @type int[]|string[] $creative_custom_field_ids
      *           Optional. Custom field IDs that represent CREATIVE_CUSTOM_FIELD_*
      *           dimensions. The index of this repeated field corresponds to the index on
      *           each dimension. For example, creative_custom_field_ids[0] describes
@@ -197,10 +197,10 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      *           "PREVIOUS PERIOD" is specified in comparison_date_range, then each quarter
      *           column will also include comparison values for its relative previous
      *           quarter.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Flag>|\Google\Protobuf\Internal\RepeatedField $flags
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Flag[] $flags
      *           Optional. List of flags for this report. Used to flag rows in a result set
      *           based on a set of defined filters.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\Sort>|\Google\Protobuf\Internal\RepeatedField $sorts
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\Sort[] $sorts
      *           Optional. Default sorts to apply to this report.
      * }
      */
@@ -214,7 +214,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * have no dimensions, and any metrics will be totals.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Dimension dimensions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDimensions()
     {
@@ -226,7 +226,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * have no dimensions, and any metrics will be totals.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Dimension dimensions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -242,7 +242,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * no metrics.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Metric metrics = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMetrics()
     {
@@ -254,7 +254,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * no metrics.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Metric metrics = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -269,7 +269,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Optional. The filters for this report.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Filter>
      */
     public function getFilters()
     {
@@ -280,7 +280,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Optional. The filters for this report.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Filter filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Filter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Filter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -460,7 +460,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * CUSTOM_DIMENSION_0_VALUE_ID and CUSTOM_DIMENSION_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 custom_dimension_key_ids = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getCustomDimensionKeyIds()
     {
@@ -474,7 +474,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * CUSTOM_DIMENSION_0_VALUE_ID and CUSTOM_DIMENSION_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 custom_dimension_key_ids = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setCustomDimensionKeyIds($var)
@@ -492,7 +492,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID and LINE_ITEM_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 line_item_custom_field_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getLineItemCustomFieldIds()
     {
@@ -506,7 +506,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * LINE_ITEM_CUSTOM_FIELD_0_OPTION_ID and LINE_ITEM_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 line_item_custom_field_ids = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setLineItemCustomFieldIds($var)
@@ -524,7 +524,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * ORDER_CUSTOM_FIELD_0_OPTION_ID and ORDER_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 order_custom_field_ids = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getOrderCustomFieldIds()
     {
@@ -538,7 +538,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * ORDER_CUSTOM_FIELD_0_OPTION_ID and ORDER_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 order_custom_field_ids = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setOrderCustomFieldIds($var)
@@ -556,7 +556,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * CREATIVE_CUSTOM_FIELD_0_OPTION_ID and CREATIVE_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 creative_custom_field_ids = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getCreativeCustomFieldIds()
     {
@@ -570,7 +570,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * CREATIVE_CUSTOM_FIELD_0_OPTION_ID and CREATIVE_CUSTOM_FIELD_0_VALUE.
      *
      * Generated from protobuf field <code>repeated int64 creative_custom_field_ids = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setCreativeCustomFieldIds($var)
@@ -648,7 +648,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * based on a set of defined filters.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Flag flags = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Flag>
      */
     public function getFlags()
     {
@@ -660,7 +660,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * based on a set of defined filters.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Flag flags = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Flag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Flag[] $var
      * @return $this
      */
     public function setFlags($var)
@@ -675,7 +675,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Optional. Default sorts to apply to this report.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Sort sorts = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\Sort>
      */
     public function getSorts()
     {
@@ -686,7 +686,7 @@ class ReportDefinition extends \Google\Protobuf\Internal\Message
      * Optional. Default sorts to apply to this report.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.Sort sorts = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\Sort>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\Sort[] $var
      * @return $this
      */
     public function setSorts($var)

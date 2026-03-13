@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a simple filter that a user must satisfy to be a member of the

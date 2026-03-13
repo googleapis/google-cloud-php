@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MaintenanceWindow specifies a preferred day and time for maintenance.
@@ -112,5 +112,4 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

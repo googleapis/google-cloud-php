@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Service resource is a logical component of an application that can share
@@ -24,7 +24,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Service resource in the API.
      * Example: `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -32,7 +32,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Relative name of the service within the application.
      * Example: `default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
@@ -75,11 +75,11 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Full path to the Service resource in the API.
      *           Example: `apps/myapp/services/default`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $id
      *           Relative name of the service within the application.
      *           Example: `default`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Cloud\AppEngine\V1\TrafficSplit $split
      *           Mapping that defines fractional HTTP traffic diversion to
      *           different versions within the service.
@@ -106,7 +106,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Service resource in the API.
      * Example: `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -119,7 +119,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Service resource in the API.
      * Example: `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -136,7 +136,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Relative name of the service within the application.
      * Example: `default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @return string
@@ -149,7 +149,7 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * Relative name of the service within the application.
      * Example: `default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @param string $var

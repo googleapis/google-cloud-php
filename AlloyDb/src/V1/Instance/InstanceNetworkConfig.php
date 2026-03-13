@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata related to instance-level network configuration.
@@ -63,7 +63,7 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig\AuthorizedNetwork>|\Google\Protobuf\Internal\RepeatedField $authorized_external_networks
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig\AuthorizedNetwork[] $authorized_external_networks
      *           Optional. A list of external network authorized to access this instance.
      *     @type bool $enable_public_ip
      *           Optional. Enabling public ip for the instance.
@@ -95,7 +95,7 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
      * Optional. A list of external network authorized to access this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.InstanceNetworkConfig.AuthorizedNetwork authorized_external_networks = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig\AuthorizedNetwork>
      */
     public function getAuthorizedExternalNetworks()
     {
@@ -106,7 +106,7 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
      * Optional. A list of external network authorized to access this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.InstanceNetworkConfig.AuthorizedNetwork authorized_external_networks = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig\AuthorizedNetwork>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Instance\InstanceNetworkConfig\AuthorizedNetwork[] $var
      * @return $this
      */
     public function setAuthorizedExternalNetworks($var)
@@ -244,5 +244,4 @@ class InstanceNetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

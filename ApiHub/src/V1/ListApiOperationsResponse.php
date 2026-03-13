@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListApiOperations][google.cloud.apihub.v1.ApiHub.ListApiOperations]
@@ -36,7 +36,7 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $api_operations
+     *     @type \Google\Cloud\ApiHub\V1\ApiOperation[] $api_operations
      *           The operations corresponding to an API version.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
      * The operations corresponding to an API version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ApiOperation api_operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\ApiOperation>
      */
     public function getApiOperations()
     {
@@ -63,7 +63,7 @@ class ListApiOperationsResponse extends \Google\Protobuf\Internal\Message
      * The operations corresponding to an API version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ApiOperation api_operations = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\ApiOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\ApiOperation[] $var
      * @return $this
      */
     public function setApiOperations($var)

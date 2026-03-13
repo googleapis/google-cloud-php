@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from the
@@ -36,7 +36,7 @@ class ListUserListGlobalLicenseCustomerInfosResponse extends \Google\Protobuf\In
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\UserListGlobalLicenseCustomerInfo>|\Google\Protobuf\Internal\RepeatedField $user_list_global_license_customer_infos
+     *     @type \Google\Ads\DataManager\V1\UserListGlobalLicenseCustomerInfo[] $user_list_global_license_customer_infos
      *           The customer information for the given license in the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListUserListGlobalLicenseCustomerInfosResponse extends \Google\Protobuf\In
      * The customer information for the given license in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListGlobalLicenseCustomerInfo user_list_global_license_customer_infos = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserListGlobalLicenseCustomerInfo>
      */
     public function getUserListGlobalLicenseCustomerInfos()
     {
@@ -63,7 +63,7 @@ class ListUserListGlobalLicenseCustomerInfosResponse extends \Google\Protobuf\In
      * The customer information for the given license in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListGlobalLicenseCustomerInfo user_list_global_license_customer_infos = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\UserListGlobalLicenseCustomerInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserListGlobalLicenseCustomerInfo[] $var
      * @return $this
      */
     public function setUserListGlobalLicenseCustomerInfos($var)

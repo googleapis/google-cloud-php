@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1\OperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Diagnostic information from configuration processing.
@@ -98,5 +98,4 @@ class Diagnostic extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

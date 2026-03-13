@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\DecoratedText;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Either a toggle-style switch or a checkbox inside a `decoratedText` widget.
@@ -241,5 +241,4 @@ class SwitchControl extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

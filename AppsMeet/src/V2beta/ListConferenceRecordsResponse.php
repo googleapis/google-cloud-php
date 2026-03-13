@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListConferenceRecords method.
@@ -35,7 +35,7 @@ class ListConferenceRecordsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Meet\V2beta\ConferenceRecord>|\Google\Protobuf\Internal\RepeatedField $conference_records
+     *     @type \Google\Apps\Meet\V2beta\ConferenceRecord[] $conference_records
      *           List of conferences in one page.
      *     @type string $next_page_token
      *           Token to be circulated back for further List call if current List does NOT
@@ -51,7 +51,7 @@ class ListConferenceRecordsResponse extends \Google\Protobuf\Internal\Message
      * List of conferences in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2beta.ConferenceRecord conference_records = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Meet\V2beta\ConferenceRecord>
      */
     public function getConferenceRecords()
     {
@@ -62,7 +62,7 @@ class ListConferenceRecordsResponse extends \Google\Protobuf\Internal\Message
      * List of conferences in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2beta.ConferenceRecord conference_records = 1;</code>
-     * @param array<\Google\Apps\Meet\V2beta\ConferenceRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Meet\V2beta\ConferenceRecord[] $var
      * @return $this
      */
     public function setConferenceRecords($var)

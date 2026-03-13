@@ -32,7 +32,7 @@ class MembershipRole
      * - Add or remove members.
      * - Modify space details.
      * - Turn history on or off.
-     * - Mention everyone in the space with `&#64;all`.
+     * - Mention everyone in the space with `\@all`.
      * - Manage Chat apps and webhooks installed in the space.
      * In direct messages and unnamed group conversations, everyone
      * has this role.
@@ -108,5 +108,4 @@ class MembershipRole
         return constant($const);
     }
 }
-
 

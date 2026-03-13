@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Browser Targeting.
@@ -39,10 +39,10 @@ class BrowserTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_browsers
+     *     @type string[] $targeted_browsers
      *           Optional. A list of browser resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_browsers
+     *     @type string[] $excluded_browsers
      *           Optional. A list of browser resource names that should be excluded.
      * }
      */
@@ -56,7 +56,7 @@ class BrowserTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_browsers = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedBrowsers()
     {
@@ -68,7 +68,7 @@ class BrowserTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_browsers = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedBrowsers($var)
@@ -83,7 +83,7 @@ class BrowserTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of browser resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_browsers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedBrowsers()
     {
@@ -94,7 +94,7 @@ class BrowserTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of browser resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_browsers = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedBrowsers($var)

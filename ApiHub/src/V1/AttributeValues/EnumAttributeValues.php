@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\AttributeValues;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The attribute values of data type enum.
@@ -28,7 +28,7 @@ class EnumAttributeValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\ApiHub\V1\Attribute\AllowedValue[] $values
      *           Required. The attribute values in case attribute data type is enum.
      * }
      */
@@ -41,7 +41,7 @@ class EnumAttributeValues extends \Google\Protobuf\Internal\Message
      * Required. The attribute values in case attribute data type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute.AllowedValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class EnumAttributeValues extends \Google\Protobuf\Internal\Message
      * Required. The attribute values in case attribute data type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute.AllowedValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Attribute\AllowedValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class EnumAttributeValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

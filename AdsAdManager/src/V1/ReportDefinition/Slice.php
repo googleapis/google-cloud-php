@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Use to specify a slice of data.
@@ -110,5 +110,4 @@ class Slice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

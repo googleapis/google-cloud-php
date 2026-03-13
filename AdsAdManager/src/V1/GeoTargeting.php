@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a list of targeted and excluded geos.
@@ -34,9 +34,9 @@ class GeoTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_geos
+     *     @type string[] $targeted_geos
      *           Optional. A list of geo resource names that should be targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_geos
+     *     @type string[] $excluded_geos
      *           Optional. A list of geo resource names that should be excluded.
      * }
      */
@@ -49,7 +49,7 @@ class GeoTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of geo resource names that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_geos = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedGeos()
     {
@@ -60,7 +60,7 @@ class GeoTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of geo resource names that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_geos = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedGeos($var)
@@ -75,7 +75,7 @@ class GeoTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of geo resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_geos = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedGeos()
     {
@@ -86,7 +86,7 @@ class GeoTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of geo resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_geos = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedGeos($var)

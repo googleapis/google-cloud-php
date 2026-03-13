@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta\SpaceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines restrictions for features when the meeting is moderated.
@@ -166,5 +166,4 @@ class ModerationRestrictions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

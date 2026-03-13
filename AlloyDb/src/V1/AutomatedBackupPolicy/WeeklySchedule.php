@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\AutomatedBackupPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A weekly schedule starts a backup at prescribed start times within a
@@ -44,12 +44,12 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Type\TimeOfDay>|\Google\Protobuf\Internal\RepeatedField $start_times
+     *     @type \Google\Type\TimeOfDay[] $start_times
      *           The times during the day to start a backup. The start times are assumed
      *           to be in UTC and to be an exact hour (e.g., 04:00:00).
      *           If no start times are provided, a single fixed start time is chosen
      *           arbitrarily.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_week
+     *     @type int[] $days_of_week
      *           The days of the week to perform a backup.
      *           If this field is left empty, the default of every day of the week is
      *           used.
@@ -67,7 +67,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * arbitrarily.
      *
      * Generated from protobuf field <code>repeated .google.type.TimeOfDay start_times = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Type\TimeOfDay>
      */
     public function getStartTimes()
     {
@@ -81,7 +81,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * arbitrarily.
      *
      * Generated from protobuf field <code>repeated .google.type.TimeOfDay start_times = 1;</code>
-     * @param array<\Google\Type\TimeOfDay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Type\TimeOfDay[] $var
      * @return $this
      */
     public function setStartTimes($var)
@@ -98,7 +98,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * used.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfWeek()
     {
@@ -111,7 +111,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * used.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfWeek($var)
@@ -123,5 +123,4 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

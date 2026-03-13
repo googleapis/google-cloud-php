@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `PrivateAuction` resource.
@@ -87,7 +87,7 @@ class PrivateAuction extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of the `PrivateAuction`. This attribute has a
      *           maximum length of 4096 bytes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $seller_contact_users
+     *     @type string[] $seller_contact_users
      *           Optional. The resource names of the seller contact users associated with
      *           this `PrivateAuction`. Format: `networks/{network_code}/users/{user_id}`
      *     @type bool $archived
@@ -250,7 +250,7 @@ class PrivateAuction extends \Google\Protobuf\Internal\Message
      * this `PrivateAuction`. Format: `networks/{network_code}/users/{user_id}`
      *
      * Generated from protobuf field <code>repeated string seller_contact_users = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSellerContactUsers()
     {
@@ -262,7 +262,7 @@ class PrivateAuction extends \Google\Protobuf\Internal\Message
      * this `PrivateAuction`. Format: `networks/{network_code}/users/{user_id}`
      *
      * Generated from protobuf field <code>repeated string seller_contact_users = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSellerContactUsers($var)

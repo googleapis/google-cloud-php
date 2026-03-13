@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a version of the API resource in API hub. This is also referred
@@ -173,22 +173,22 @@ class Version extends \Google\Protobuf\Internal\Message
      *           Optional. The description of the version.
      *     @type \Google\Cloud\ApiHub\V1\Documentation $documentation
      *           Optional. The documentation of the version.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $specs
+     *     @type string[] $specs
      *           Output only. The specs associated with this version.
      *           Note that an API version can be associated with multiple specs.
      *           Format is
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $api_operations
+     *     @type string[] $api_operations
      *           Output only. The operations contained in the API version.
      *           These operations will be added to the version when a new spec is
      *           added or when an existing spec is updated. Format is
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $definitions
+     *     @type string[] $definitions
      *           Output only. The definitions contained in the API version.
      *           These definitions will be added to the version when a new spec is
      *           added or when an existing spec is updated. Format is
      *           `projects/{project}/locations/{location}/apis/{api}/versions/{version}/definitions/{definition}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deployments
+     *     @type string[] $deployments
      *           Optional. The deployments linked to this API version.
      *           Note: A particular API version could be deployed to multiple deployments
      *           (for dev deployment, UAT deployment, etc)
@@ -236,7 +236,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           particular deployment linked to the version.
      *           Format is
      *           `projects/{project}/locations/{location}/deployments/{deployment}`
-     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *     @type \Google\Cloud\ApiHub\V1\SourceMetadata[] $source_metadata
      *           Output only. The list of sources and metadata from the sources of the
      *           version.
      * }
@@ -371,7 +371,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
      *
      * Generated from protobuf field <code>repeated string specs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSpecs()
     {
@@ -385,7 +385,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/specs/{spec}`
      *
      * Generated from protobuf field <code>repeated string specs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSpecs($var)
@@ -403,7 +403,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`
      *
      * Generated from protobuf field <code>repeated string api_operations = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApiOperations()
     {
@@ -417,7 +417,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`
      *
      * Generated from protobuf field <code>repeated string api_operations = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApiOperations($var)
@@ -435,7 +435,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/definitions/{definition}`
      *
      * Generated from protobuf field <code>repeated string definitions = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDefinitions()
     {
@@ -449,7 +449,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apis/{api}/versions/{version}/definitions/{definition}`
      *
      * Generated from protobuf field <code>repeated string definitions = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDefinitions($var)
@@ -468,7 +468,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>repeated string deployments = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeployments()
     {
@@ -483,7 +483,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>repeated string deployments = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeployments($var)
@@ -787,7 +787,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SourceMetadata>
      */
     public function getSourceMetadata()
     {
@@ -799,7 +799,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SourceMetadata[] $var
      * @return $this
      */
     public function setSourceMetadata($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The audience member to be operated on.
@@ -37,7 +37,7 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_references
+     *     @type string[] $destination_references
      *           Optional. Defines which
      *           [Destination][google.ads.datamanager.v1.Destination] to send the audience
      *           member to.
@@ -70,7 +70,7 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      * member to.
      *
      * Generated from protobuf field <code>repeated string destination_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationReferences()
     {
@@ -83,7 +83,7 @@ class AudienceMember extends \Google\Protobuf\Internal\Message
      * member to.
      *
      * Generated from protobuf field <code>repeated string destination_references = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationReferences($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to upload audience members to the provided destinations. Returns an
@@ -73,9 +73,9 @@ class IngestEventsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Ads\DataManager\V1\Destination[] $destinations
      *           Required. The list of destinations to send the events to.
-     *     @type array<\Google\Ads\DataManager\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Ads\DataManager\V1\Event[] $events
      *           Required. The list of events to send to the specified destinations. At most
      *           2000 [Event][google.ads.datamanager.v1.Event] resources
      *           can be sent in a single request.
@@ -110,7 +110,7 @@ class IngestEventsRequest extends \Google\Protobuf\Internal\Message
      * Required. The list of destinations to send the events to.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Destination destinations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\Destination>
      */
     public function getDestinations()
     {
@@ -121,7 +121,7 @@ class IngestEventsRequest extends \Google\Protobuf\Internal\Message
      * Required. The list of destinations to send the events to.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Destination destinations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\DataManager\V1\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\Destination[] $var
      * @return $this
      */
     public function setDestinations($var)
@@ -138,7 +138,7 @@ class IngestEventsRequest extends \Google\Protobuf\Internal\Message
      * can be sent in a single request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Event events = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\Event>
      */
     public function getEvents()
     {
@@ -151,7 +151,7 @@ class IngestEventsRequest extends \Google\Protobuf\Internal\Message
      * can be sent in a single request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Event events = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\DataManager\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\Event[] $var
      * @return $this
      */
     public function setEvents($var)

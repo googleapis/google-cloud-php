@@ -193,4 +193,3 @@ class Icon
     }
 }
 
-

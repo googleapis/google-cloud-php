@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\CustomEmoji;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Payload data for the custom emoji.
@@ -114,5 +114,4 @@ class CustomEmojiPayload extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListApiDeployments.
@@ -35,7 +35,7 @@ class ListApiDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApigeeRegistry\V1\ApiDeployment>|\Google\Protobuf\Internal\RepeatedField $api_deployments
+     *     @type \Google\Cloud\ApigeeRegistry\V1\ApiDeployment[] $api_deployments
      *           The deployments from the specified publisher.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListApiDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The deployments from the specified publisher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeregistry.v1.ApiDeployment api_deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApigeeRegistry\V1\ApiDeployment>
      */
     public function getApiDeployments()
     {
@@ -62,7 +62,7 @@ class ListApiDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The deployments from the specified publisher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeregistry.v1.ApiDeployment api_deployments = 1;</code>
-     * @param array<\Google\Cloud\ApigeeRegistry\V1\ApiDeployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApigeeRegistry\V1\ApiDeployment[] $var
      * @return $this
      */
     public function setApiDeployments($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource message representing an Audience.
@@ -103,7 +103,7 @@ class Audience extends \Google\Protobuf\Internal\Message
      *           Immutable. Specifies how long an exclusion lasts for users that meet the
      *           exclusion filter. It is applied to all EXCLUDE filter clauses and is
      *           ignored when there is no EXCLUDE filter clause in the Audience.
-     *     @type array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $filter_clauses
+     *     @type \Google\Analytics\Admin\V1alpha\AudienceFilterClause[] $filter_clauses
      *           Required. Immutable. Unordered list. Filter clauses that define the
      *           Audience. All clauses will be AND’ed together.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -324,7 +324,7 @@ class Audience extends \Google\Protobuf\Internal\Message
      * Audience. All clauses will be AND’ed together.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>
      */
     public function getFilterClauses()
     {
@@ -336,7 +336,7 @@ class Audience extends \Google\Protobuf\Internal\Message
      * Audience. All clauses will be AND’ed together.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceFilterClause filter_clauses = 8 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AudienceFilterClause>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AudienceFilterClause[] $var
      * @return $this
      */
     public function setFilterClauses($var)

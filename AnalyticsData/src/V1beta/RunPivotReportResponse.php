@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response pivot report table corresponding to a pivot request.
@@ -109,7 +109,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\PivotHeader>|\Google\Protobuf\Internal\RepeatedField $pivot_headers
+     *     @type \Google\Analytics\Data\V1beta\PivotHeader[] $pivot_headers
      *           Summarizes the columns and rows created by a pivot. Each pivot in the
      *           request produces one header in the response. If we have a request like
      *           this:
@@ -143,15 +143,15 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *                   "dimensionValues": [{ "value": "scroll" }]
      *                 }]
      *               }]
-     *     @type array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type \Google\Analytics\Data\V1beta\DimensionHeader[] $dimension_headers
      *           Describes dimension columns. The number of DimensionHeaders and ordering of
      *           DimensionHeaders matches the dimensions present in rows.
-     *     @type array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type \Google\Analytics\Data\V1beta\MetricHeader[] $metric_headers
      *           Describes metric columns. The number of MetricHeaders and ordering of
      *           MetricHeaders matches the metrics present in rows.
-     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Analytics\Data\V1beta\Row[] $rows
      *           Rows of dimension value combinations and metric values in the report.
-     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $aggregates
+     *     @type \Google\Analytics\Data\V1beta\Row[] $aggregates
      *           Aggregation of metric values. Can be totals, minimums, or maximums. The
      *           returned aggregations are controlled by the metric_aggregations in the
      *           pivot. The type of aggregation returned in each row is shown by the
@@ -207,7 +207,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *     }]
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotHeader pivot_headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\PivotHeader>
      */
     public function getPivotHeaders()
     {
@@ -250,7 +250,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      *     }]
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotHeader pivot_headers = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\PivotHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\PivotHeader[] $var
      * @return $this
      */
     public function setPivotHeaders($var)
@@ -266,7 +266,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionHeader dimension_headers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\DimensionHeader>
      */
     public function getDimensionHeaders()
     {
@@ -278,7 +278,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionHeader dimension_headers = 2;</code>
-     * @param array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\DimensionHeader[] $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -294,7 +294,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricHeader metric_headers = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\MetricHeader>
      */
     public function getMetricHeaders()
     {
@@ -306,7 +306,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricHeader metric_headers = 3;</code>
-     * @param array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\MetricHeader[] $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -321,7 +321,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row rows = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Row>
      */
     public function getRows()
     {
@@ -332,7 +332,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row rows = 4;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Row[] $var
      * @return $this
      */
     public function setRows($var)
@@ -350,7 +350,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * dimension_values which are set to "RESERVED_<MetricAggregation>".
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row aggregates = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Row>
      */
     public function getAggregates()
     {
@@ -364,7 +364,7 @@ class RunPivotReportResponse extends \Google\Protobuf\Internal\Message
      * dimension_values which are set to "RESERVED_<MetricAggregation>".
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row aggregates = 5;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Row[] $var
      * @return $this
      */
     public function setAggregates($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BatchGetAccessBindings RPC.
@@ -28,7 +28,7 @@ class BatchGetAccessBindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessBinding>|\Google\Protobuf\Internal\RepeatedField $access_bindings
+     *     @type \Google\Analytics\Admin\V1alpha\AccessBinding[] $access_bindings
      *           The requested access bindings.
      * }
      */
@@ -41,7 +41,7 @@ class BatchGetAccessBindingsResponse extends \Google\Protobuf\Internal\Message
      * The requested access bindings.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessBinding access_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessBinding>
      */
     public function getAccessBindings()
     {
@@ -52,7 +52,7 @@ class BatchGetAccessBindingsResponse extends \Google\Protobuf\Internal\Message
      * The requested access bindings.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessBinding access_bindings = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessBinding[] $var
      * @return $this
      */
     public function setAccessBindings($var)

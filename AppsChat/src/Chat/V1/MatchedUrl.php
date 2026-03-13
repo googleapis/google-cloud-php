@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A matched URL in a Chat message. Chat apps can preview matched URLs. For more

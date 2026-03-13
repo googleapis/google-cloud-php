@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the restrictions on the key.
@@ -40,7 +40,7 @@ class Restrictions extends \Google\Protobuf\Internal\Message
      *           The Android apps that are allowed to use the key.
      *     @type \Google\Cloud\ApiKeys\V2\IosKeyRestrictions $ios_key_restrictions
      *           The iOS apps that are allowed to use the key.
-     *     @type array<\Google\Cloud\ApiKeys\V2\ApiTarget>|\Google\Protobuf\Internal\RepeatedField $api_targets
+     *     @type \Google\Cloud\ApiKeys\V2\ApiTarget[] $api_targets
      *           A restriction for a specific service and optionally one or
      *           more specific methods. Requests are allowed if they
      *           match any of these restrictions. If no restrictions are
@@ -183,7 +183,7 @@ class Restrictions extends \Google\Protobuf\Internal\Message
      * specified, all targets are allowed.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.ApiTarget api_targets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiKeys\V2\ApiTarget>
      */
     public function getApiTargets()
     {
@@ -197,7 +197,7 @@ class Restrictions extends \Google\Protobuf\Internal\Message
      * specified, all targets are allowed.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.ApiTarget api_targets = 5;</code>
-     * @param array<\Google\Cloud\ApiKeys\V2\ApiTarget>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiKeys\V2\ApiTarget[] $var
      * @return $this
      */
     public function setApiTargets($var)

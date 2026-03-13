@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the fetch report result rows endpoint.
@@ -67,16 +67,16 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ReportDataTable\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Ads\AdManager\V1\ReportDataTable\Row[] $rows
      *           Up to `page_size` rows of report data.
      *     @type \Google\Protobuf\Timestamp $run_time
      *           The time at which the report was scheduled to run. For non-scheduled
      *           reports, this is the time at which the report was requested to be run.
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange[] $date_ranges
      *           The computed fixed date ranges this report includes.
      *           Only returned with the first page of results (when page_token is not
      *           included in the request).
-     *     @type array<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>|\Google\Protobuf\Internal\RepeatedField $comparison_date_ranges
+     *     @type \Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange[] $comparison_date_ranges
      *           The computed comparison fixed date ranges this report includes.
      *           Only returned with the first page of results (when page_token is not
      *           included in the request).
@@ -99,7 +99,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * Up to `page_size` rows of report data.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDataTable.Row rows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDataTable\Row>
      */
     public function getRows()
     {
@@ -110,7 +110,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * Up to `page_size` rows of report data.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDataTable.Row rows = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDataTable\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDataTable\Row[] $var
      * @return $this
      */
     public function setRows($var)
@@ -165,7 +165,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * included in the request).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRange date_ranges = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>
      */
     public function getDateRanges()
     {
@@ -178,7 +178,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * included in the request).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRange date_ranges = 3;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange[] $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -195,7 +195,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * included in the request).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRange comparison_date_ranges = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>
      */
     public function getComparisonDateRanges()
     {
@@ -208,7 +208,7 @@ class FetchReportResultRowsResponse extends \Google\Protobuf\Internal\Message
      * included in the request).
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportDefinition.DateRange.FixedDateRange comparison_date_ranges = 4;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportDefinition\DateRange\FixedDateRange[] $var
      * @return $this
      */
     public function setComparisonDateRanges($var)

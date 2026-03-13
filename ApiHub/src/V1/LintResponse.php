@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * LintResponse contains the response from the linter.
@@ -58,9 +58,9 @@ class LintResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Issue>|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Cloud\ApiHub\V1\Issue[] $issues
      *           Optional. Array of issues found in the analyzed document.
-     *     @type array<\Google\Cloud\ApiHub\V1\LintResponse\SummaryEntry>|\Google\Protobuf\Internal\RepeatedField $summary
+     *     @type \Google\Cloud\ApiHub\V1\LintResponse\SummaryEntry[] $summary
      *           Optional. Summary of all issue types and counts for each severity level.
      *     @type int $state
      *           Required. Lint state represents success or failure for linting.
@@ -81,7 +81,7 @@ class LintResponse extends \Google\Protobuf\Internal\Message
      * Optional. Array of issues found in the analyzed document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Issue issues = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Issue>
      */
     public function getIssues()
     {
@@ -92,7 +92,7 @@ class LintResponse extends \Google\Protobuf\Internal\Message
      * Optional. Array of issues found in the analyzed document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Issue issues = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Issue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Issue[] $var
      * @return $this
      */
     public function setIssues($var)
@@ -107,7 +107,7 @@ class LintResponse extends \Google\Protobuf\Internal\Message
      * Optional. Summary of all issue types and counts for each severity level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.LintResponse.SummaryEntry summary = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\LintResponse\SummaryEntry>
      */
     public function getSummary()
     {
@@ -118,7 +118,7 @@ class LintResponse extends \Google\Protobuf\Internal\Message
      * Optional. Summary of all issue types and counts for each severity level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.LintResponse.SummaryEntry summary = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\LintResponse\SummaryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\LintResponse\SummaryEntry[] $var
      * @return $this
      */
     public function setSummary($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details of the Application Integration endpoint to be triggered for
@@ -19,9 +19,9 @@ class ApplicationIntegrationEndpointDetails extends \Google\Protobuf\Internal\Me
     /**
      * Required. The endpoint URI should be a valid REST URI for triggering an
      * Application Integration. Format:
-     * `https://integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      * or
-     * `https://{location}-integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://{location}-integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,9 +42,9 @@ class ApplicationIntegrationEndpointDetails extends \Google\Protobuf\Internal\Me
      *     @type string $uri
      *           Required. The endpoint URI should be a valid REST URI for triggering an
      *           Application Integration. Format:
-     *           `https://integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     *           `https://integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      *           or
-     *           `https://{location}-integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     *           `https://{location}-integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      *     @type string $trigger_id
      *           Required. The API trigger ID of the Application Integration workflow.
      * }
@@ -57,9 +57,9 @@ class ApplicationIntegrationEndpointDetails extends \Google\Protobuf\Internal\Me
     /**
      * Required. The endpoint URI should be a valid REST URI for triggering an
      * Application Integration. Format:
-     * `https://integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      * or
-     * `https://{location}-integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://{location}-integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -72,9 +72,9 @@ class ApplicationIntegrationEndpointDetails extends \Google\Protobuf\Internal\Me
     /**
      * Required. The endpoint URI should be a valid REST URI for triggering an
      * Application Integration. Format:
-     * `https://integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      * or
-     * `https://{location}-integrations.googleapis.com/v1/{name=projects/&#42;&#47;locations/&#42;&#47;integrations/&#42;}:execute`
+     * `https://{location}-integrations.googleapis.com/v1/{name=projects/{@*}locations/{@*}integrations/*}:execute`
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A notification object for notifying customers about security and privacy
@@ -63,7 +63,7 @@ class Notification extends \Google\Protobuf\Internal\Message
      *           or projects/{project}/locations/{location}/notifications/{notification}.
      *     @type \Google\Cloud\AdvisoryNotifications\V1\Subject $subject
      *           The subject line of the notification.
-     *     @type array<\Google\Cloud\AdvisoryNotifications\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\AdvisoryNotifications\V1\Message[] $messages
      *           A list of messages in the notification.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time the notification was created.
@@ -148,7 +148,7 @@ class Notification extends \Google\Protobuf\Internal\Message
      * A list of messages in the notification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Message messages = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AdvisoryNotifications\V1\Message>
      */
     public function getMessages()
     {
@@ -159,7 +159,7 @@ class Notification extends \Google\Protobuf\Internal\Message
      * A list of messages in the notification.
      *
      * Generated from protobuf field <code>repeated .google.cloud.advisorynotifications.v1.Message messages = 3;</code>
-     * @param array<\Google\Cloud\AdvisoryNotifications\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AdvisoryNotifications\V1\Message[] $var
      * @return $this
      */
     public function setMessages($var)

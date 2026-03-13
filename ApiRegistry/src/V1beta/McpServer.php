@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiRegistry\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an MCP Server. MCP Servers act as endpoints that expose a
@@ -81,7 +81,7 @@ class McpServer extends \Google\Protobuf\Internal\Message
      *           Optional. A human readable name for the MCP server.
      *     @type string $description
      *           Optional. A human-readable description of the MCP Server's functionality.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $urls
+     *     @type string[] $urls
      *           The base URL of the MCP server. Example: [geolocation.googleapis.com/mcp].
      *     @type \Google\Protobuf\Struct $capabilities
      *           The capabilities that a server may support. Known capabilities defined in
@@ -192,7 +192,7 @@ class McpServer extends \Google\Protobuf\Internal\Message
      * The base URL of the MCP server. Example: [geolocation.googleapis.com/mcp].
      *
      * Generated from protobuf field <code>repeated string urls = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUrls()
     {
@@ -203,7 +203,7 @@ class McpServer extends \Google\Protobuf\Internal\Message
      * The base URL of the MCP server. Example: [geolocation.googleapis.com/mcp].
      *
      * Generated from protobuf field <code>repeated string urls = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUrls($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A text object containing the English text and its localized copies.

@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Virtual place where conferences are held. Only one active conference can be

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition\Filter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter on a specific field.
@@ -64,7 +64,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      *           Required. The field to filter on.
      *     @type int $operation
      *           Required. The operation of this filter.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $values
      *           Required. Values to filter to.
      *     @type \Google\Ads\AdManager\V1\ReportDefinition\Slice $slice
      *           Optional. Use to filter on a specific slice of data.
@@ -147,7 +147,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      * Required. Values to filter to.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getValues()
     {
@@ -158,7 +158,7 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
      * Required. Values to filter to.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -282,5 +282,4 @@ class FieldFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

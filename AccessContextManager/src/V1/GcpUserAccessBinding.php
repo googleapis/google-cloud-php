@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restricts access to Cloud Console and Google Cloud APIs for a set of users
@@ -68,7 +68,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      *           to point at the changed group. This field does not accept group email
      *           addresses or aliases.
      *           Example: "01d520gv4vjcrht"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type string[] $access_levels
      *           Required. Access level that a user must have to be granted access. Only one access
      *           level is supported, not multiple. This repeated field must have exactly
      *           one element.
@@ -159,7 +159,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      * Example: "accessPolicies/9522/accessLevels/device_trusted"
      *
      * Generated from protobuf field <code>repeated string access_levels = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAccessLevels()
     {
@@ -173,7 +173,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      * Example: "accessPolicies/9522/accessLevels/device_trusted"
      *
      * Generated from protobuf field <code>repeated string access_levels = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAccessLevels($var)

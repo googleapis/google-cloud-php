@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User Domain Targeting
@@ -34,9 +34,9 @@ class UserDomainTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_user_domains
+     *     @type string[] $targeted_user_domains
      *           Optional. A list of user domains that should be targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_user_domains
+     *     @type string[] $excluded_user_domains
      *           Optional. A list of user domains that should be excluded.
      * }
      */
@@ -49,7 +49,7 @@ class UserDomainTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of user domains that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_user_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedUserDomains()
     {
@@ -60,7 +60,7 @@ class UserDomainTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of user domains that should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_user_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedUserDomains($var)
@@ -75,7 +75,7 @@ class UserDomainTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of user domains that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_user_domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedUserDomains()
     {
@@ -86,7 +86,7 @@ class UserDomainTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of user domains that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_user_domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedUserDomains($var)

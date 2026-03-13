@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\Plugin;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The information related to the service implemented by the plugin
@@ -73,5 +73,4 @@ class HostingService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

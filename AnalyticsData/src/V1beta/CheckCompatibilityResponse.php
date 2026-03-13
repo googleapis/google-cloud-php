@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The compatibility response with the compatibility of each dimension & metric.
@@ -34,9 +34,9 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\DimensionCompatibility>|\Google\Protobuf\Internal\RepeatedField $dimension_compatibilities
+     *     @type \Google\Analytics\Data\V1beta\DimensionCompatibility[] $dimension_compatibilities
      *           The compatibility of each dimension.
-     *     @type array<\Google\Analytics\Data\V1beta\MetricCompatibility>|\Google\Protobuf\Internal\RepeatedField $metric_compatibilities
+     *     @type \Google\Analytics\Data\V1beta\MetricCompatibility[] $metric_compatibilities
      *           The compatibility of each metric.
      * }
      */
@@ -49,7 +49,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each dimension.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionCompatibility dimension_compatibilities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\DimensionCompatibility>
      */
     public function getDimensionCompatibilities()
     {
@@ -60,7 +60,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each dimension.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionCompatibility dimension_compatibilities = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\DimensionCompatibility>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\DimensionCompatibility[] $var
      * @return $this
      */
     public function setDimensionCompatibilities($var)
@@ -75,7 +75,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each metric.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricCompatibility metric_compatibilities = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\MetricCompatibility>
      */
     public function getMetricCompatibilities()
     {
@@ -86,7 +86,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each metric.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricCompatibility metric_compatibilities = 2;</code>
-     * @param array<\Google\Analytics\Data\V1beta\MetricCompatibility>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\MetricCompatibility[] $var
      * @return $this
      */
     public function setMetricCompatibilities($var)

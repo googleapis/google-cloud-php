@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for DM API MarketingDataInsightsService.RetrieveInsights
@@ -28,7 +28,7 @@ class RetrieveInsightsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight>|\Google\Protobuf\Internal\RepeatedField $marketing_data_insights
+     *     @type \Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight[] $marketing_data_insights
      *           Contains the insights for the marketing data.
      * }
      */
@@ -41,7 +41,7 @@ class RetrieveInsightsResponse extends \Google\Protobuf\Internal\Message
      * Contains the insights for the marketing data.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RetrieveInsightsResponse.MarketingDataInsight marketing_data_insights = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight>
      */
     public function getMarketingDataInsights()
     {
@@ -52,7 +52,7 @@ class RetrieveInsightsResponse extends \Google\Protobuf\Internal\Message
      * Contains the insights for the marketing data.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RetrieveInsightsResponse.MarketingDataInsight marketing_data_insights = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight[] $var
      * @return $this
      */
     public function setMarketingDataInsights($var)

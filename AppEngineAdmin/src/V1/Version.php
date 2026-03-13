@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Version resource is a specific set of source code and configuration files
@@ -19,7 +19,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Version resource in the API.  Example:
      * `apps/myapp/services/default/versions/v1`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -126,14 +126,14 @@ class Version extends \Google\Protobuf\Internal\Message
     protected $serving_status = 0;
     /**
      * Email address of the user who created this version.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string created_by = 16;</code>
      */
     protected $created_by = '';
     /**
      * Time that this version was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 17;</code>
      */
@@ -141,7 +141,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Total size in bytes of all the files that are included in this version
      * and currently hosted on the App Engine disk.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>int64 disk_usage_bytes = 18;</code>
      */
@@ -267,7 +267,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Serving URL for this version. Example:
      * "https://myversion-dot-myservice-dot-myapp.appspot.com"
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string version_url = 109;</code>
      */
@@ -303,7 +303,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Full path to the Version resource in the API.  Example:
      *           `apps/myapp/services/default/versions/v1`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $id
      *           Relative name of the version within the service.  Example: `v1`.
      *           Version names can contain only lowercase letters, numbers, or hyphens.
@@ -321,7 +321,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           A service with manual scaling runs continuously, allowing you to perform
      *           complex initialization and rely on the state of its memory over time.
      *           Manually scaled versions are sometimes referred to as "backends".
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $inbound_services
+     *     @type int[] $inbound_services
      *           Before an application can receive email or XMPP messages, the application
      *           must be configured to enable the service.
      *     @type string $instance_class
@@ -333,7 +333,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AppEngine\V1\Network $network
      *           Extra network settings.
      *           Only applicable in the App Engine flexible environment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type string[] $zones
      *           The Google Compute Engine zones that are supported by this version in the
      *           App Engine flexible environment. Deprecated.
      *     @type \Google\Cloud\AppEngine\V1\Resources $resources
@@ -363,14 +363,14 @@ class Version extends \Google\Protobuf\Internal\Message
      *           `SERVING_STATUS_UNSPECIFIED` is an invalid value. Defaults to `SERVING`.
      *     @type string $created_by
      *           Email address of the user who created this version.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Time that this version was created.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type int|string $disk_usage_bytes
      *           Total size in bytes of all the files that are included in this version
      *           and currently hosted on the App Engine disk.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $runtime_api_version
      *           The version of the API in the given runtime environment. Please see the
      *           app.yaml reference for valid values at
@@ -381,15 +381,15 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The identity that the deployed version will run as.
      *           Admin API will use the App Engine Appspot service account as default if
      *           this field is neither provided in app.yaml file nor through CLI flag.
-     *     @type array<\Google\Cloud\AppEngine\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $handlers
+     *     @type \Google\Cloud\AppEngine\V1\UrlMap[] $handlers
      *           An ordered list of URL-matching patterns that should be applied to incoming
      *           requests. The first matching URL handles the request and other request
      *           handlers are not attempted.
      *           Only returned in `GET` requests if `view=FULL` is set.
-     *     @type array<\Google\Cloud\AppEngine\V1\ErrorHandler>|\Google\Protobuf\Internal\RepeatedField $error_handlers
+     *     @type \Google\Cloud\AppEngine\V1\ErrorHandler[] $error_handlers
      *           Custom static error pages. Limited to 10KB per page.
      *           Only returned in `GET` requests if `view=FULL` is set.
-     *     @type array<\Google\Cloud\AppEngine\V1\Library>|\Google\Protobuf\Internal\RepeatedField $libraries
+     *     @type \Google\Cloud\AppEngine\V1\Library[] $libraries
      *           Configuration for third-party Python runtime libraries that are required
      *           by the application.
      *           Only returned in `GET` requests if `view=FULL` is set.
@@ -432,7 +432,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *     @type string $version_url
      *           Serving URL for this version. Example:
      *           "https://myversion-dot-myservice-dot-myapp.appspot.com"
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Cloud\AppEngine\V1\EndpointsApiService $endpoints_api_service
      *           Cloud Endpoints configuration.
      *           If endpoints_api_service is set, the Cloud Endpoints Extensible Service
@@ -451,7 +451,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Version resource in the API.  Example:
      * `apps/myapp/services/default/versions/v1`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -464,7 +464,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Version resource in the API.  Example:
      * `apps/myapp/services/default/versions/v1`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -620,7 +620,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * must be configured to enable the service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.InboundServiceType inbound_services = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getInboundServices()
     {
@@ -632,7 +632,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * must be configured to enable the service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.InboundServiceType inbound_services = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setInboundServices($var)
@@ -720,7 +720,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * App Engine flexible environment. Deprecated.
      *
      * Generated from protobuf field <code>repeated string zones = 118;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getZones()
     {
@@ -732,7 +732,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * App Engine flexible environment. Deprecated.
      *
      * Generated from protobuf field <code>repeated string zones = 118;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setZones($var)
@@ -1003,7 +1003,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Email address of the user who created this version.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string created_by = 16;</code>
      * @return string
@@ -1015,7 +1015,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Email address of the user who created this version.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string created_by = 16;</code>
      * @param string $var
@@ -1031,7 +1031,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this version was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 17;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -1053,7 +1053,7 @@ class Version extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this version was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 17;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -1070,7 +1070,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Total size in bytes of all the files that are included in this version
      * and currently hosted on the App Engine disk.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>int64 disk_usage_bytes = 18;</code>
      * @return int|string
@@ -1083,7 +1083,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Total size in bytes of all the files that are included in this version
      * and currently hosted on the App Engine disk.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>int64 disk_usage_bytes = 18;</code>
      * @param int|string $var
@@ -1190,7 +1190,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlMap handlers = 100;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\UrlMap>
      */
     public function getHandlers()
     {
@@ -1204,7 +1204,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlMap handlers = 100;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\UrlMap>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\UrlMap[] $var
      * @return $this
      */
     public function setHandlers($var)
@@ -1220,7 +1220,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ErrorHandler error_handlers = 101;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\ErrorHandler>
      */
     public function getErrorHandlers()
     {
@@ -1232,7 +1232,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ErrorHandler error_handlers = 101;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\ErrorHandler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\ErrorHandler[] $var
      * @return $this
      */
     public function setErrorHandlers($var)
@@ -1249,7 +1249,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Library libraries = 102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\Library>
      */
     public function getLibraries()
     {
@@ -1262,7 +1262,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Only returned in `GET` requests if `view=FULL` is set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Library libraries = 102;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\Library>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\Library[] $var
      * @return $this
      */
     public function setLibraries($var)
@@ -1606,7 +1606,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Serving URL for this version. Example:
      * "https://myversion-dot-myservice-dot-myapp.appspot.com"
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string version_url = 109;</code>
      * @return string
@@ -1619,7 +1619,7 @@ class Version extends \Google\Protobuf\Internal\Message
     /**
      * Serving URL for this version. Example:
      * "https://myversion-dot-myservice-dot-myapp.appspot.com"
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string version_url = 109;</code>
      * @param string $var

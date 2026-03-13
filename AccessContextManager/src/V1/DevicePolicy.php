@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `DevicePolicy` specifies device specific restrictions necessary to acquire a
@@ -71,11 +71,11 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      *     @type bool $require_screenlock
      *           Whether or not screenlock is required for the DevicePolicy to be true.
      *           Defaults to `false`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_encryption_statuses
+     *     @type int[] $allowed_encryption_statuses
      *           Allowed encryptions statuses, an empty list allows all statuses.
-     *     @type array<\Google\Identity\AccessContextManager\V1\OsConstraint>|\Google\Protobuf\Internal\RepeatedField $os_constraints
+     *     @type \Google\Identity\AccessContextManager\V1\OsConstraint[] $os_constraints
      *           Allowed OS versions, an empty list allows all types and all versions.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_device_management_levels
+     *     @type int[] $allowed_device_management_levels
      *           Allowed device management levels, an empty list allows all management
      *           levels.
      *     @type bool $require_admin_approval
@@ -121,7 +121,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * Allowed encryptions statuses, an empty list allows all statuses.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.type.DeviceEncryptionStatus allowed_encryption_statuses = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedEncryptionStatuses()
     {
@@ -132,7 +132,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * Allowed encryptions statuses, an empty list allows all statuses.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.type.DeviceEncryptionStatus allowed_encryption_statuses = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedEncryptionStatuses($var)
@@ -147,7 +147,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * Allowed OS versions, an empty list allows all types and all versions.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.OsConstraint os_constraints = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\OsConstraint>
      */
     public function getOsConstraints()
     {
@@ -158,7 +158,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * Allowed OS versions, an empty list allows all types and all versions.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.OsConstraint os_constraints = 3;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\OsConstraint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\OsConstraint[] $var
      * @return $this
      */
     public function setOsConstraints($var)
@@ -174,7 +174,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * levels.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.type.DeviceManagementLevel allowed_device_management_levels = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedDeviceManagementLevels()
     {
@@ -186,7 +186,7 @@ class DevicePolicy extends \Google\Protobuf\Internal\Message
      * levels.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.type.DeviceManagementLevel allowed_device_management_levels = 6;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedDeviceManagementLevels($var)

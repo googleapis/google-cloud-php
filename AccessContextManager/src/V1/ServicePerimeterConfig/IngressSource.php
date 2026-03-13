@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The source that [IngressPolicy]
@@ -176,5 +176,4 @@ class IngressSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

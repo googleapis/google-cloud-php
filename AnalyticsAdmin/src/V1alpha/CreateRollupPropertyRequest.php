@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for CreateRollupProperty RPC.
@@ -37,7 +37,7 @@ class CreateRollupPropertyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Analytics\Admin\V1alpha\Property $rollup_property
      *           Required. The roll-up property to create.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_properties
+     *     @type string[] $source_properties
      *           Optional. The resource names of properties that will be sources to the
      *           created roll-up property.
      * }
@@ -88,7 +88,7 @@ class CreateRollupPropertyRequest extends \Google\Protobuf\Internal\Message
      * created roll-up property.
      *
      * Generated from protobuf field <code>repeated string source_properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceProperties()
     {
@@ -100,7 +100,7 @@ class CreateRollupPropertyRequest extends \Google\Protobuf\Internal\Message
      * created roll-up property.
      *
      * Generated from protobuf field <code>repeated string source_properties = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceProperties($var)

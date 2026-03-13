@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The cart data associated with the event.
@@ -64,7 +64,7 @@ class CartData extends \Google\Protobuf\Internal\Message
      *           Center feed of the items.where your items are uploaded.
      *     @type float $transaction_discount
      *           Optional. The sum of all discounts associated with the transaction.
-     *     @type array<\Google\Ads\DataManager\V1\Item>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Ads\DataManager\V1\Item[] $items
      *           Optional. The list of items associated with the event.
      * }
      */
@@ -185,7 +185,7 @@ class CartData extends \Google\Protobuf\Internal\Message
      * Optional. The list of items associated with the event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Item items = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\Item>
      */
     public function getItems()
     {
@@ -196,7 +196,7 @@ class CartData extends \Google\Protobuf\Internal\Message
      * Optional. The list of items associated with the event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.Item items = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\Item>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\Item[] $var
      * @return $this
      */
     public function setItems($var)

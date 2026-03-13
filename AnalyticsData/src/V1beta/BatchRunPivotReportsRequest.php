@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The batch request containing multiple pivot report requests.
@@ -51,7 +51,7 @@ class BatchRunPivotReportsRequest extends \Google\Protobuf\Internal\Message
      *           RunPivotReportRequest may either be unspecified or consistent with this
      *           property.
      *           Example: properties/1234
-     *     @type array<\Google\Analytics\Data\V1beta\RunPivotReportRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Analytics\Data\V1beta\RunPivotReportRequest[] $requests
      *           Individual requests. Each request has a separate pivot report response.
      *           Each batch request is allowed up to 5 requests.
      * }
@@ -106,7 +106,7 @@ class BatchRunPivotReportsRequest extends \Google\Protobuf\Internal\Message
      * Each batch request is allowed up to 5 requests.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportRequest requests = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\RunPivotReportRequest>
      */
     public function getRequests()
     {
@@ -118,7 +118,7 @@ class BatchRunPivotReportsRequest extends \Google\Protobuf\Internal\Message
      * Each batch request is allowed up to 5 requests.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportRequest requests = 2;</code>
-     * @param array<\Google\Analytics\Data\V1beta\RunPivotReportRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\RunPivotReportRequest[] $var
      * @return $this
      */
     public function setRequests($var)

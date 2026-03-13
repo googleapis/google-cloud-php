@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Refers to each unique join or leave session when a user joins a conference

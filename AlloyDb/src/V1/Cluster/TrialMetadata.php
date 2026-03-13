@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information and all metadata related to TRIAL clusters.
@@ -206,5 +206,4 @@ class TrialMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Network resource.
@@ -101,7 +101,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           reporting.
      *     @type string $currency_code
      *           Output only. Primary currency code, in ISO-4217 format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_currency_codes
+     *     @type string[] $secondary_currency_codes
      *           Optional. Currency codes that can be used as an alternative to the primary
      *           currency code for trafficking Line Items.
      *     @type string $effective_root_ad_unit
@@ -334,7 +334,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * currency code for trafficking Line Items.
      *
      * Generated from protobuf field <code>repeated string secondary_currency_codes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondaryCurrencyCodes()
     {
@@ -346,7 +346,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * currency code for trafficking Line Items.
      *
      * Generated from protobuf field <code>repeated string secondary_currency_codes = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondaryCurrencyCodes($var)

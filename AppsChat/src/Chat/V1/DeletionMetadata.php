@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a deleted message. A message is deleted when `delete_time`

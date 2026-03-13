@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\ConfigVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config variable value of data type multi select.
@@ -28,7 +28,7 @@ class MultiSelectValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\ApiHub\V1\ConfigValueOption[] $values
      *           Optional. The config variable value of data type multi select.
      * }
      */
@@ -41,7 +41,7 @@ class MultiSelectValues extends \Google\Protobuf\Internal\Message
      * Optional. The config variable value of data type multi select.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\ConfigValueOption>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class MultiSelectValues extends \Google\Protobuf\Internal\Message
      * Optional. The config variable value of data type multi select.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption values = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\ConfigValueOption[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class MultiSelectValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

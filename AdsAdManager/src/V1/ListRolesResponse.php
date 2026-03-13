@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListRolesRequest` containing matching `Role` objects.
@@ -49,7 +49,7 @@ class ListRolesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\Role>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type \Google\Ads\AdManager\V1\Role[] $roles
      *           The `Role` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -75,7 +75,7 @@ class ListRolesResponse extends \Google\Protobuf\Internal\Message
      * The `Role` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Role roles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Role>
      */
     public function getRoles()
     {
@@ -86,7 +86,7 @@ class ListRolesResponse extends \Google\Protobuf\Internal\Message
      * The `Role` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Role roles = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\Role>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Role[] $var
      * @return $this
      */
     public function setRoles($var)

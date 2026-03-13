@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An external API represents an API being provided by external sources. This
@@ -92,9 +92,9 @@ class ExternalApi extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Description of the external API. Max length is 2000 characters
      *           (Unicode Code Points).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type string[] $endpoints
      *           Optional. List of endpoints on which this API is accessible.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           Optional. List of paths served by this API.
      *     @type \Google\Cloud\ApiHub\V1\Documentation $documentation
      *           Optional. Documentation of the external API.
@@ -202,7 +202,7 @@ class ExternalApi extends \Google\Protobuf\Internal\Message
      * Optional. List of endpoints on which this API is accessible.
      *
      * Generated from protobuf field <code>repeated string endpoints = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEndpoints()
     {
@@ -213,7 +213,7 @@ class ExternalApi extends \Google\Protobuf\Internal\Message
      * Optional. List of endpoints on which this API is accessible.
      *
      * Generated from protobuf field <code>repeated string endpoints = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -228,7 +228,7 @@ class ExternalApi extends \Google\Protobuf\Internal\Message
      * Optional. List of paths served by this API.
      *
      * Generated from protobuf field <code>repeated string paths = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -239,7 +239,7 @@ class ExternalApi extends \Google\Protobuf\Internal\Message
      * Optional. List of paths served by this API.
      *
      * Generated from protobuf field <code>repeated string paths = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)

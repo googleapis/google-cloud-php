@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * See usage below for notes.
@@ -29,7 +29,7 @@ class CreateInstanceRequests extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\CreateInstanceRequest>|\Google\Protobuf\Internal\RepeatedField $create_instance_requests
+     *     @type \Google\Cloud\AlloyDb\V1\CreateInstanceRequest[] $create_instance_requests
      *           Required. Primary and read replica instances to be created. This list
      *           should not be empty.
      * }
@@ -44,7 +44,7 @@ class CreateInstanceRequests extends \Google\Protobuf\Internal\Message
      * should not be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.CreateInstanceRequest create_instance_requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\CreateInstanceRequest>
      */
     public function getCreateInstanceRequests()
     {
@@ -56,7 +56,7 @@ class CreateInstanceRequests extends \Google\Protobuf\Internal\Message
      * should not be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.CreateInstanceRequest create_instance_requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\CreateInstanceRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\CreateInstanceRequest[] $var
      * @return $this
      */
     public function setCreateInstanceRequests($var)

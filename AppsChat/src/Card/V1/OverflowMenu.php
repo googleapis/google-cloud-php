@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A widget that presents a pop-up menu with one or more actions that users can
@@ -34,7 +34,7 @@ class OverflowMenu extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\OverflowMenu\OverflowMenuItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Apps\Card\V1\OverflowMenu\OverflowMenuItem[] $items
      *           Required. The list of menu options.
      * }
      */
@@ -47,7 +47,7 @@ class OverflowMenu extends \Google\Protobuf\Internal\Message
      * Required. The list of menu options.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.OverflowMenu.OverflowMenuItem items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\OverflowMenu\OverflowMenuItem>
      */
     public function getItems()
     {
@@ -58,7 +58,7 @@ class OverflowMenu extends \Google\Protobuf\Internal\Message
      * Required. The list of menu options.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.OverflowMenu.OverflowMenuItem items = 1;</code>
-     * @param array<\Google\Apps\Card\V1\OverflowMenu\OverflowMenuItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\OverflowMenu\OverflowMenuItem[] $var
      * @return $this
      */
     public function setItems($var)

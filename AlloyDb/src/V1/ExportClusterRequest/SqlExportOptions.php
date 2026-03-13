@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\ExportClusterRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for exporting data in SQL format.
@@ -48,7 +48,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tables
+     *     @type string[] $tables
      *           Optional. Tables to export from.
      *     @type bool $schema_only
      *           Optional. If true, only export the schema.
@@ -69,7 +69,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * Optional. Tables to export from.
      *
      * Generated from protobuf field <code>repeated string tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTables()
     {
@@ -80,7 +80,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * Optional. Tables to export from.
      *
      * Generated from protobuf field <code>repeated string tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTables($var)
@@ -204,5 +204,4 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

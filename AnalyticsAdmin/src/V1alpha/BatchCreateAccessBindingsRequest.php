@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for BatchCreateAccessBindings RPC.
@@ -45,7 +45,7 @@ class BatchCreateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      *           match this field. Formats:
      *           - accounts/{account}
      *           - properties/{property}
-     *     @type array<\Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest[] $requests
      *           Required. The requests specifying the access bindings to create.
      *           A maximum of 1000 access bindings can be created in a batch.
      * }
@@ -94,7 +94,7 @@ class BatchCreateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 access bindings can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CreateAccessBindingRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest>
      */
     public function getRequests()
     {
@@ -106,7 +106,7 @@ class BatchCreateAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 access bindings can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CreateAccessBindingRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\CreateAccessBindingRequest[] $var
      * @return $this
      */
     public function setRequests($var)

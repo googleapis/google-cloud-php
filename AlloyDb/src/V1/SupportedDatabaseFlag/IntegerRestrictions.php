@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restrictions on INTEGER type values.
@@ -172,5 +172,4 @@ class IntegerRestrictions extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
 

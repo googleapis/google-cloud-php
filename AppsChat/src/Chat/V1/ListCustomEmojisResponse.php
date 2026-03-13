@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to list custom emojis.
@@ -35,7 +35,7 @@ class ListCustomEmojisResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\CustomEmoji>|\Google\Protobuf\Internal\RepeatedField $custom_emojis
+     *     @type \Google\Apps\Chat\V1\CustomEmoji[] $custom_emojis
      *           Unordered list. List of custom emojis.
      *     @type string $next_page_token
      *           A token that you can send as `pageToken` to retrieve the next page of
@@ -51,7 +51,7 @@ class ListCustomEmojisResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. List of custom emojis.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CustomEmoji custom_emojis = 1 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\CustomEmoji>
      */
     public function getCustomEmojis()
     {
@@ -62,7 +62,7 @@ class ListCustomEmojisResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. List of custom emojis.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.CustomEmoji custom_emojis = 1 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<\Google\Apps\Chat\V1\CustomEmoji>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\CustomEmoji[] $var
      * @return $this
      */
     public function setCustomEmojis($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The
@@ -19,7 +19,7 @@ class ListHostProjectRegistrationsRequest extends \Google\Protobuf\Internal\Mess
 {
     /**
      * Required. The parent, which owns this collection of host projects.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -92,7 +92,7 @@ class ListHostProjectRegistrationsRequest extends \Google\Protobuf\Internal\Mess
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of host projects.
-     *           Format: `projects/&#42;&#47;locations/&#42;`
+     *           Format: `projects/{@*}locations/*`
      *     @type int $page_size
      *           Optional. The maximum number of host project registrations to return. The
      *           service may return fewer than this value. If unspecified, at most 50 host
@@ -130,7 +130,7 @@ class ListHostProjectRegistrationsRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. The parent, which owns this collection of host projects.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -142,7 +142,7 @@ class ListHostProjectRegistrationsRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. The parent, which owns this collection of host projects.
-     * Format: `projects/&#42;&#47;locations/&#42;`
+     * Format: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

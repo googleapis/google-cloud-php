@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Policy for egress from perimeter.
@@ -167,5 +167,4 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

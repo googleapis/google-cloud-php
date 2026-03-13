@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Error counts for each type of error.
@@ -29,7 +29,7 @@ class ErrorInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\ErrorCount>|\Google\Protobuf\Internal\RepeatedField $error_counts
+     *     @type \Google\Ads\DataManager\V1\ErrorCount[] $error_counts
      *           A list of errors and counts per error reason. May not be populated
      *           in all cases.
      * }
@@ -44,7 +44,7 @@ class ErrorInfo extends \Google\Protobuf\Internal\Message
      * in all cases.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ErrorCount error_counts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\ErrorCount>
      */
     public function getErrorCounts()
     {
@@ -56,7 +56,7 @@ class ErrorInfo extends \Google\Protobuf\Internal\Message
      * in all cases.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ErrorCount error_counts = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\ErrorCount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\ErrorCount[] $var
      * @return $this
      */
     public function setErrorCounts($var)

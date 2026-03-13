@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restrictions on STRING type values
@@ -29,7 +29,7 @@ class StringRestrictions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type string[] $allowed_values
      *           The list of allowed values, if bounded. This field will be empty
      *           if there is a unbounded number of allowed values.
      * }
@@ -44,7 +44,7 @@ class StringRestrictions extends \Google\Protobuf\Internal\Message
      * if there is a unbounded number of allowed values.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedValues()
     {
@@ -56,7 +56,7 @@ class StringRestrictions extends \Google\Protobuf\Internal\Message
      * if there is a unbounded number of allowed values.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -68,5 +68,4 @@ class StringRestrictions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

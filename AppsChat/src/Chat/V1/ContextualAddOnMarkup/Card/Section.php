@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\ContextualAddOnMarkup\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A section contains a collection of widgets that are rendered
@@ -55,7 +55,7 @@ class Section extends \Google\Protobuf\Internal\Message
      *           [Formatting
      *           text in Google Workspace
      *           Add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).
-     *     @type array<\Google\Apps\Chat\V1\WidgetMarkup>|\Google\Protobuf\Internal\RepeatedField $widgets
+     *     @type \Google\Apps\Chat\V1\WidgetMarkup[] $widgets
      *           A section must contain at least one widget.
      * }
      */
@@ -110,7 +110,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * A section must contain at least one widget.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup widgets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\WidgetMarkup>
      */
     public function getWidgets()
     {
@@ -121,7 +121,7 @@ class Section extends \Google\Protobuf\Internal\Message
      * A section must contain at least one widget.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup widgets = 2;</code>
-     * @param array<\Google\Apps\Chat\V1\WidgetMarkup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\WidgetMarkup[] $var
      * @return $this
      */
     public function setWidgets($var)
@@ -133,5 +133,4 @@ class Section extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

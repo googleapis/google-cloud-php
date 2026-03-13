@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dimensions' values in a single pivot.
@@ -37,7 +37,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\PivotDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $pivot_dimension_headers
+     *     @type \Google\Analytics\Data\V1beta\PivotDimensionHeader[] $pivot_dimension_headers
      *           The size is the same as the cardinality of the corresponding dimension
      *           combinations.
      *     @type int $row_count
@@ -56,7 +56,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      * combinations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotDimensionHeader pivot_dimension_headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\PivotDimensionHeader>
      */
     public function getPivotDimensionHeaders()
     {
@@ -68,7 +68,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      * combinations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotDimensionHeader pivot_dimension_headers = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\PivotDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\PivotDimensionHeader[] $var
      * @return $this
      */
     public function setPivotDimensionHeaders($var)

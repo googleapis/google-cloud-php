@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A user in Google Chat.
@@ -34,7 +34,7 @@ class User extends \Google\Protobuf\Internal\Message
      * in the Admin SDK Directory API.
      * - the user's email address can be used as an alias for `{user}` in API
      * requests. For example, if the People API Person profile ID for
-     * `user&#64;example.com` is `123456789`, you can use `users/user&#64;example.com` as
+     * `user\@example.com` is `123456789`, you can use `users/user\@example.com` as
      * an alias to reference `users/123456789`. Only the canonical resource name
      * (for example `users/123456789`) will be returned from the API.
      *
@@ -88,7 +88,7 @@ class User extends \Google\Protobuf\Internal\Message
      *           in the Admin SDK Directory API.
      *           - the user's email address can be used as an alias for `{user}` in API
      *           requests. For example, if the People API Person profile ID for
-     *           `user&#64;example.com` is `123456789`, you can use `users/user&#64;example.com` as
+     *           `user\@example.com` is `123456789`, you can use `users/user\@example.com` as
      *           an alias to reference `users/123456789`. Only the canonical resource name
      *           (for example `users/123456789`) will be returned from the API.
      *     @type string $display_name
@@ -122,7 +122,7 @@ class User extends \Google\Protobuf\Internal\Message
      * in the Admin SDK Directory API.
      * - the user's email address can be used as an alias for `{user}` in API
      * requests. For example, if the People API Person profile ID for
-     * `user&#64;example.com` is `123456789`, you can use `users/user&#64;example.com` as
+     * `user\@example.com` is `123456789`, you can use `users/user\@example.com` as
      * an alias to reference `users/123456789`. Only the canonical resource name
      * (for example `users/123456789`) will be returned from the API.
      *
@@ -149,7 +149,7 @@ class User extends \Google\Protobuf\Internal\Message
      * in the Admin SDK Directory API.
      * - the user's email address can be used as an alias for `{user}` in API
      * requests. For example, if the People API Person profile ID for
-     * `user&#64;example.com` is `123456789`, you can use `users/user&#64;example.com` as
+     * `user\@example.com` is `123456789`, you can use `users/user\@example.com` as
      * an alias to reference `users/123456789`. Only the canonical resource name
      * (for example `users/123456789`) will be returned from the API.
      *

@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\OverflowMenu;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An option that users can invoke in an overflow menu.
@@ -200,5 +200,4 @@ class OverflowMenuItem extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

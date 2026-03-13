@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operating System Targeting
@@ -50,16 +50,16 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_operating_systems
+     *     @type string[] $targeted_operating_systems
      *           Optional. A list of operating system resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_operating_systems
+     *     @type string[] $excluded_operating_systems
      *           Optional. A list of operating system resource names that should be
      *           excluded.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_operating_system_versions
+     *     @type string[] $targeted_operating_system_versions
      *           Optional. A list of operating system version resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_operating_system_versions
+     *     @type string[] $excluded_operating_system_versions
      *           Optional. A list of operating system version resource names that should be
      *           excluded.
      * }
@@ -74,7 +74,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_operating_systems = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedOperatingSystems()
     {
@@ -86,7 +86,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_operating_systems = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedOperatingSystems($var)
@@ -102,7 +102,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_operating_systems = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedOperatingSystems()
     {
@@ -114,7 +114,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_operating_systems = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedOperatingSystems($var)
@@ -130,7 +130,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_operating_system_versions = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedOperatingSystemVersions()
     {
@@ -142,7 +142,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_operating_system_versions = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedOperatingSystemVersions($var)
@@ -158,7 +158,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_operating_system_versions = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedOperatingSystemVersions()
     {
@@ -170,7 +170,7 @@ class OperatingSystemTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_operating_system_versions = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedOperatingSystemVersions($var)

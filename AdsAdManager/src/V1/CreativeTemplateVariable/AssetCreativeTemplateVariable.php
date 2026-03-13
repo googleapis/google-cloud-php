@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\CreativeTemplateVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a file asset variable defined in a creative template.
@@ -32,7 +32,7 @@ class AssetCreativeTemplateVariable extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $mime_types
+     *     @type int[] $mime_types
      *           Optional. The set of allowed MIME types. If unspecified, all MIME types
      *           are allowed.
      * }
@@ -47,7 +47,7 @@ class AssetCreativeTemplateVariable extends \Google\Protobuf\Internal\Message
      * are allowed.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable.AssetCreativeTemplateVariable.MimeType mime_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMimeTypes()
     {
@@ -59,7 +59,7 @@ class AssetCreativeTemplateVariable extends \Google\Protobuf\Internal\Message
      * are allowed.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable.AssetCreativeTemplateVariable.MimeType mime_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMimeTypes($var)
@@ -71,5 +71,4 @@ class AssetCreativeTemplateVariable extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

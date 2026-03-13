@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PscInstanceConfig contains PSC related configuration at an
@@ -66,18 +66,18 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      *           Service Connect (PSC) is enabled for the instance.
      *           The name of the resource will be in the format of
      *           `projects/<alloydb-tenant-project-number>/regions/<region-name>/serviceAttachments/<service-attachment-name>`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_consumer_projects
+     *     @type string[] $allowed_consumer_projects
      *           Optional. List of consumer projects that are allowed to create
      *           PSC endpoints to service-attachments to this instance.
      *     @type string $psc_dns_name
      *           Output only. The DNS name of the instance for PSC connectivity.
      *           Name convention: <uid>.<uid>.<region>.alloydb-psc.goog
-     *     @type array<\Google\Cloud\AlloyDb\V1\Instance\PscInterfaceConfig>|\Google\Protobuf\Internal\RepeatedField $psc_interface_configs
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\PscInterfaceConfig[] $psc_interface_configs
      *           Optional. Configurations for setting up PSC interfaces attached to the
      *           instance which are used for outbound connectivity. Only primary instances
      *           can have PSC interface attached. Currently we only support 0 or 1 PSC
      *           interface.
-     *     @type array<\Google\Cloud\AlloyDb\V1\Instance\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *     @type \Google\Cloud\AlloyDb\V1\Instance\PscAutoConnectionConfig[] $psc_auto_connections
      *           Optional. Configurations for setting up PSC service automation.
      * }
      */
@@ -123,7 +123,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * PSC endpoints to service-attachments to this instance.
      *
      * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedConsumerProjects()
     {
@@ -135,7 +135,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * PSC endpoints to service-attachments to this instance.
      *
      * Generated from protobuf field <code>repeated string allowed_consumer_projects = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedConsumerProjects($var)
@@ -181,7 +181,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.PscInterfaceConfig psc_interface_configs = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Instance\PscInterfaceConfig>
      */
     public function getPscInterfaceConfigs()
     {
@@ -195,7 +195,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.PscInterfaceConfig psc_interface_configs = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Instance\PscInterfaceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Instance\PscInterfaceConfig[] $var
      * @return $this
      */
     public function setPscInterfaceConfigs($var)
@@ -210,7 +210,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * Optional. Configurations for setting up PSC service automation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.PscAutoConnectionConfig psc_auto_connections = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Instance\PscAutoConnectionConfig>
      */
     public function getPscAutoConnections()
     {
@@ -221,7 +221,7 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
      * Optional. Configurations for setting up PSC service automation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Instance.PscAutoConnectionConfig psc_auto_connections = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Instance\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Instance\PscAutoConnectionConfig[] $var
      * @return $this
      */
     public function setPscAutoConnections($var)
@@ -233,5 +233,4 @@ class PscInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

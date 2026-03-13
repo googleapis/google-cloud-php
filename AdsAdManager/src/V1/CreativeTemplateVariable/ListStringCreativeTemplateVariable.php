@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\CreativeTemplateVariable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a list variable defined in a creative template. This is similar
@@ -63,7 +63,7 @@ class ListStringCreativeTemplateVariable extends \Google\Protobuf\Internal\Messa
      *     @type string $sample_value
      *           Optional. Sample value that is used when previewing the template in the
      *           UI.
-     *     @type array<\Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable\VariableChoice>|\Google\Protobuf\Internal\RepeatedField $choices
+     *     @type \Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable\VariableChoice[] $choices
      *           Optional. The selectable values that the user can choose from.
      *     @type bool $allow_other_choice
      *           Optional. `True` if a user can specify an 'other' value. For example, if
@@ -157,7 +157,7 @@ class ListStringCreativeTemplateVariable extends \Google\Protobuf\Internal\Messa
      * Optional. The selectable values that the user can choose from.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable.ListStringCreativeTemplateVariable.VariableChoice choices = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable\VariableChoice>
      */
     public function getChoices()
     {
@@ -168,7 +168,7 @@ class ListStringCreativeTemplateVariable extends \Google\Protobuf\Internal\Messa
      * Optional. The selectable values that the user can choose from.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable.ListStringCreativeTemplateVariable.VariableChoice choices = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable\VariableChoice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreativeTemplateVariable\ListStringCreativeTemplateVariable\VariableChoice[] $var
      * @return $this
      */
     public function setChoices($var)
@@ -222,5 +222,4 @@ class ListStringCreativeTemplateVariable extends \Google\Protobuf\Internal\Messa
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Timing information for the stage execution.
@@ -214,5 +214,4 @@ class StageSchedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

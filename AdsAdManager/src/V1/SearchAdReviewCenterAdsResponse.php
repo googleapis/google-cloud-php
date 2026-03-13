@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `SearchAdReviewCenterAds` method.
@@ -35,7 +35,7 @@ class SearchAdReviewCenterAdsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\AdReviewCenterAd>|\Google\Protobuf\Internal\RepeatedField $ad_review_center_ads
+     *     @type \Google\Ads\AdManager\V1\AdReviewCenterAd[] $ad_review_center_ads
      *           The AdReviewCenterAds that match the search request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class SearchAdReviewCenterAdsResponse extends \Google\Protobuf\Internal\Message
      * The AdReviewCenterAds that match the search request.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdReviewCenterAd ad_review_center_ads = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdReviewCenterAd>
      */
     public function getAdReviewCenterAds()
     {
@@ -62,7 +62,7 @@ class SearchAdReviewCenterAdsResponse extends \Google\Protobuf\Internal\Message
      * The AdReviewCenterAds that match the search request.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdReviewCenterAd ad_review_center_ads = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\AdReviewCenterAd>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdReviewCenterAd[] $var
      * @return $this
      */
     public function setAdReviewCenterAds($var)

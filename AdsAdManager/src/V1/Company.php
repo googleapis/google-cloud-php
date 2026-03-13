@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Company` resource.
@@ -163,12 +163,12 @@ class Company extends \Google\Protobuf\Internal\Message
      *           Optional. The credit status of the `Company`.
      *           This attribute defaults to `ACTIVE` if basic settings are enabled and
      *           `ON_HOLD` if advance settings are enabled.
-     *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $applied_labels
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
      *           Optional. The labels that are directly applied to the `Company`.
      *     @type string $primary_contact
      *           Optional. The resource names of primary Contact of the `Company`.
      *           Format: "networks/{network_code}/contacts/{contact_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_teams
+     *     @type string[] $applied_teams
      *           Optional. The resource names of Teams that are directly associated with the
      *           `Company`. Format: "networks/{network_code}/teams/{team_id}"
      *     @type int|string $third_party_company_id
@@ -593,7 +593,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The labels that are directly applied to the `Company`.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
      */
     public function getAppliedLabels()
     {
@@ -604,7 +604,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * Optional. The labels that are directly applied to the `Company`.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
      * @return $this
      */
     public function setAppliedLabels($var)
@@ -658,7 +658,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * `Company`. Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAppliedTeams()
     {
@@ -670,7 +670,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * `Company`. Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAppliedTeams($var)

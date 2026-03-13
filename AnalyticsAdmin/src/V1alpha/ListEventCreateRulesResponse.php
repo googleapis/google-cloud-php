@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListEventCreateRules RPC.
@@ -36,7 +36,7 @@ class ListEventCreateRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\EventCreateRule>|\Google\Protobuf\Internal\RepeatedField $event_create_rules
+     *     @type \Google\Analytics\Admin\V1alpha\EventCreateRule[] $event_create_rules
      *           List of EventCreateRules. These will be ordered stably, but in an arbitrary
      *           order.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListEventCreateRulesResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.EventCreateRule event_create_rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\EventCreateRule>
      */
     public function getEventCreateRules()
     {
@@ -66,7 +66,7 @@ class ListEventCreateRulesResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.EventCreateRule event_create_rules = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\EventCreateRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\EventCreateRule[] $var
      * @return $this
      */
     public function setEventCreateRules($var)

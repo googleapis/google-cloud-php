@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The HTTP referrers (websites) that are allowed to use the key.
@@ -29,7 +29,7 @@ class BrowserKeyRestrictions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_referrers
+     *     @type string[] $allowed_referrers
      *           A list of regular expressions for the referrer URLs that are allowed
      *           to make API calls with this key.
      * }
@@ -44,7 +44,7 @@ class BrowserKeyRestrictions extends \Google\Protobuf\Internal\Message
      * to make API calls with this key.
      *
      * Generated from protobuf field <code>repeated string allowed_referrers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedReferrers()
     {
@@ -56,7 +56,7 @@ class BrowserKeyRestrictions extends \Google\Protobuf\Internal\Message
      * to make API calls with this key.
      *
      * Generated from protobuf field <code>repeated string allowed_referrers = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedReferrers($var)

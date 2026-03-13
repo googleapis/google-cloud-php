@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListCustomTargetingKeysRequest` containing matching
@@ -50,7 +50,7 @@ class ListCustomTargetingKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CustomTargetingKey>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_keys
+     *     @type \Google\Ads\AdManager\V1\CustomTargetingKey[] $custom_targeting_keys
      *           The `CustomTargetingKey` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListCustomTargetingKeysResponse extends \Google\Protobuf\Internal\Message
      * The `CustomTargetingKey` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingKey custom_targeting_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomTargetingKey>
      */
     public function getCustomTargetingKeys()
     {
@@ -87,7 +87,7 @@ class ListCustomTargetingKeysResponse extends \Google\Protobuf\Internal\Message
      * The `CustomTargetingKey` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingKey custom_targeting_keys = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomTargetingKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomTargetingKey[] $var
      * @return $this
      */
     public function setCustomTargetingKeys($var)

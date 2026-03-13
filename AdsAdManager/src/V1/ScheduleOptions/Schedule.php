@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ScheduleOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The schedule for the report
@@ -303,5 +303,4 @@ class Schedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

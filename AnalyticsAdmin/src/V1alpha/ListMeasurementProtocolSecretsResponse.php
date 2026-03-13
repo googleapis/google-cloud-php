@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListMeasurementProtocolSecret RPC
@@ -35,7 +35,7 @@ class ListMeasurementProtocolSecretsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret>|\Google\Protobuf\Internal\RepeatedField $measurement_protocol_secrets
+     *     @type \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret[] $measurement_protocol_secrets
      *           A list of secrets for the parent stream specified in the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListMeasurementProtocolSecretsResponse extends \Google\Protobuf\Internal\M
      * A list of secrets for the parent stream specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secrets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret>
      */
     public function getMeasurementProtocolSecrets()
     {
@@ -62,7 +62,7 @@ class ListMeasurementProtocolSecretsResponse extends \Google\Protobuf\Internal\M
      * A list of secrets for the parent stream specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secrets = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret[] $var
      * @return $this
      */
     public function setMeasurementProtocolSecrets($var)

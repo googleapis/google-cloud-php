@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each card is made up of widgets.
@@ -66,7 +66,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *               "knownIcon": "EMAIL"
      *             },
      *             "topLabel": "Email Address",
-     *             "text": "sasha&#64;example.com",
+     *             "text": "sasha\@example.com",
      *             "bottomLabel": "This is a new Email address!",
      *             "switchControl": {
      *               "name": "has_send_welcome_email_to_sasha",
@@ -437,7 +437,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *     "knownIcon": "EMAIL"
      *   },
      *   "topLabel": "Email Address",
-     *   "text": "sasha&#64;example.com",
+     *   "text": "sasha\@example.com",
      *   "bottomLabel": "This is a new Email address!",
      *   "switchControl": {
      *     "name": "has_send_welcome_email_to_sasha",
@@ -470,7 +470,7 @@ class Widget extends \Google\Protobuf\Internal\Message
      *     "knownIcon": "EMAIL"
      *   },
      *   "topLabel": "Email Address",
-     *   "text": "sasha&#64;example.com",
+     *   "text": "sasha\@example.com",
      *   "bottomLabel": "This is a new Email address!",
      *   "switchControl": {
      *     "name": "has_send_welcome_email_to_sasha",

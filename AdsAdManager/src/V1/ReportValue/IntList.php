@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportValue;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of integer values.
@@ -28,7 +28,7 @@ class IntList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type int[]|string[] $values
      *           The values
      * }
      */
@@ -41,7 +41,7 @@ class IntList extends \Google\Protobuf\Internal\Message
      * The values
      *
      * Generated from protobuf field <code>repeated int64 values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class IntList extends \Google\Protobuf\Internal\Message
      * The values
      *
      * Generated from protobuf field <code>repeated int64 values = 1;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class IntList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

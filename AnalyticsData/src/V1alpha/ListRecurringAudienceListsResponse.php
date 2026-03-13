@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of all recurring audience lists for a property.
@@ -35,7 +35,7 @@ class ListRecurringAudienceListsResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\RecurringAudienceList>|\Google\Protobuf\Internal\RepeatedField $recurring_audience_lists
+     *     @type \Google\Analytics\Data\V1alpha\RecurringAudienceList[] $recurring_audience_lists
      *           Each recurring audience list for a property.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListRecurringAudienceListsResponse extends \Google\Protobuf\Internal\Messa
      * Each recurring audience list for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.RecurringAudienceList recurring_audience_lists = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\RecurringAudienceList>
      */
     public function getRecurringAudienceLists()
     {
@@ -62,7 +62,7 @@ class ListRecurringAudienceListsResponse extends \Google\Protobuf\Internal\Messa
      * Each recurring audience list for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.RecurringAudienceList recurring_audience_lists = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\RecurringAudienceList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\RecurringAudienceList[] $var
      * @return $this
      */
     public function setRecurringAudienceLists($var)

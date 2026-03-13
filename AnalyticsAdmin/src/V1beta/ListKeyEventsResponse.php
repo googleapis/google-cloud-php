@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListKeyEvents RPC.
@@ -35,7 +35,7 @@ class ListKeyEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1beta\KeyEvent>|\Google\Protobuf\Internal\RepeatedField $key_events
+     *     @type \Google\Analytics\Admin\V1beta\KeyEvent[] $key_events
      *           The requested Key Events
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListKeyEventsResponse extends \Google\Protobuf\Internal\Message
      * The requested Key Events
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.KeyEvent key_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\KeyEvent>
      */
     public function getKeyEvents()
     {
@@ -62,7 +62,7 @@ class ListKeyEventsResponse extends \Google\Protobuf\Internal\Message
      * The requested Key Events
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.KeyEvent key_events = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\KeyEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\KeyEvent[] $var
      * @return $this
      */
     public function setKeyEvents($var)

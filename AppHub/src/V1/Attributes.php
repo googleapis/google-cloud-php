@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Consumer provided attributes.
@@ -57,11 +57,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Optional. User-defined criticality information.
      *     @type \Google\Cloud\AppHub\V1\Environment $environment
      *           Optional. User-defined environment information.
-     *     @type array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $developer_owners
+     *     @type \Google\Cloud\AppHub\V1\ContactInfo[] $developer_owners
      *           Optional. Developer team that owns development and coding.
-     *     @type array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $operator_owners
+     *     @type \Google\Cloud\AppHub\V1\ContactInfo[] $operator_owners
      *           Optional. Operator team that ensures runtime and operations.
-     *     @type array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $business_owners
+     *     @type \Google\Cloud\AppHub\V1\ContactInfo[] $business_owners
      *           Optional. Business team that ensures user needs are met and value is
      *           delivered
      * }
@@ -147,7 +147,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Optional. Developer team that owns development and coding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo developer_owners = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppHub\V1\ContactInfo>
      */
     public function getDeveloperOwners()
     {
@@ -158,7 +158,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Optional. Developer team that owns development and coding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo developer_owners = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppHub\V1\ContactInfo[] $var
      * @return $this
      */
     public function setDeveloperOwners($var)
@@ -173,7 +173,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Optional. Operator team that ensures runtime and operations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo operator_owners = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppHub\V1\ContactInfo>
      */
     public function getOperatorOwners()
     {
@@ -184,7 +184,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Optional. Operator team that ensures runtime and operations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo operator_owners = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppHub\V1\ContactInfo[] $var
      * @return $this
      */
     public function setOperatorOwners($var)
@@ -200,7 +200,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * delivered
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo business_owners = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppHub\V1\ContactInfo>
      */
     public function getBusinessOwners()
     {
@@ -212,7 +212,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * delivered
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ContactInfo business_owners = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AppHub\V1\ContactInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppHub\V1\ContactInfo[] $var
      * @return $this
      */
     public function setBusinessOwners($var)

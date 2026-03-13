@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListWorkloads.
@@ -40,11 +40,11 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppHub\V1\Workload>|\Google\Protobuf\Internal\RepeatedField $workloads
+     *     @type \Google\Cloud\AppHub\V1\Workload[] $workloads
      *           List of Workloads.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * List of Workloads.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.Workload workloads = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppHub\V1\Workload>
      */
     public function getWorkloads()
     {
@@ -68,7 +68,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * List of Workloads.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.Workload workloads = 1;</code>
-     * @param array<\Google\Cloud\AppHub\V1\Workload>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppHub\V1\Workload[] $var
      * @return $this
      */
     public function setWorkloads($var)
@@ -109,7 +109,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListWorkloadsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

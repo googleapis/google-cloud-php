@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of all report tasks for a property.
@@ -35,7 +35,7 @@ class ListReportTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\ReportTask>|\Google\Protobuf\Internal\RepeatedField $report_tasks
+     *     @type \Google\Analytics\Data\V1alpha\ReportTask[] $report_tasks
      *           Each report task for a property.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListReportTasksResponse extends \Google\Protobuf\Internal\Message
      * Each report task for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.ReportTask report_tasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\ReportTask>
      */
     public function getReportTasks()
     {
@@ -62,7 +62,7 @@ class ListReportTasksResponse extends \Google\Protobuf\Internal\Message
      * Each report task for a property.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.ReportTask report_tasks = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\ReportTask>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\ReportTask[] $var
      * @return $this
      */
     public function setReportTasks($var)

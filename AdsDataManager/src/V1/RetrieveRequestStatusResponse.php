@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from the
@@ -30,7 +30,7 @@ class RetrieveRequestStatusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\RequestStatusPerDestination>|\Google\Protobuf\Internal\RepeatedField $request_status_per_destination
+     *     @type \Google\Ads\DataManager\V1\RequestStatusPerDestination[] $request_status_per_destination
      *           A list of request statuses per destination. The order of the statuses
      *           matches the order of the destinations in the original request.
      * }
@@ -45,7 +45,7 @@ class RetrieveRequestStatusResponse extends \Google\Protobuf\Internal\Message
      * matches the order of the destinations in the original request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RequestStatusPerDestination request_status_per_destination = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\RequestStatusPerDestination>
      */
     public function getRequestStatusPerDestination()
     {
@@ -57,7 +57,7 @@ class RetrieveRequestStatusResponse extends \Google\Protobuf\Internal\Message
      * matches the order of the destinations in the original request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.RequestStatusPerDestination request_status_per_destination = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\RequestStatusPerDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\RequestStatusPerDestination[] $var
      * @return $this
      */
     public function setRequestStatusPerDestination($var)

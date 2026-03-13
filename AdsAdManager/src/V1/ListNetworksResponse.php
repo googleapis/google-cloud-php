@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListNetworks` method.
@@ -47,7 +47,7 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\Network>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Ads\AdManager\V1\Network[] $networks
      *           The `Network`s a user has access to.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -71,7 +71,7 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
      * The `Network`s a user has access to.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Network networks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Network>
      */
     public function getNetworks()
     {
@@ -82,7 +82,7 @@ class ListNetworksResponse extends \Google\Protobuf\Internal\Message
      * The `Network`s a user has access to.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Network networks = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\Network>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Network[] $var
      * @return $this
      */
     public function setNetworks($var)
