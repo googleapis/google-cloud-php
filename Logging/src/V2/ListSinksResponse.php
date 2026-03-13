@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result returned from `ListSinks`.
@@ -36,7 +36,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Logging\V2\LogSink>|\Google\Protobuf\Internal\RepeatedField $sinks
+     *     @type \Google\Cloud\Logging\V2\LogSink[] $sinks
      *           A list of sinks.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -53,7 +53,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * A list of sinks.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\LogSink>
      */
     public function getSinks()
     {
@@ -64,7 +64,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * A list of sinks.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
-     * @param array<\Google\Cloud\Logging\V2\LogSink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\LogSink[] $var
      * @return $this
      */
     public function setSinks($var)

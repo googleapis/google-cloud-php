@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the set of ACLs for a given Kafka Resource Pattern, which consists
@@ -34,9 +34,9 @@ class Acl extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -107,10 +107,10 @@ class Acl extends \Google\Protobuf\Internal\Message
      *             `consumerGroupPrefixed/{resource_name}`
      *             `transactionalIdPrefixed/{resource_name}`
      *           For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *             `allTopics` (represents `topic/&#42;`)
-     *             `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *             `allTransactionalIds` (represents `transactionalId/&#42;`)
-     *     @type array<\Google\Cloud\ManagedKafka\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $acl_entries
+     *             `allTopics` (represents `topic/*`)
+     *             `allConsumerGroups` (represents `consumerGroup/*`)
+     *             `allTransactionalIds` (represents `transactionalId/*`)
+     *     @type \Google\Cloud\ManagedKafka\V1\AclEntry[] $acl_entries
      *           Required. The ACL entries that apply to the resource pattern. The maximum
      *           number of allowed entries 100.
      *     @type string $etag
@@ -156,9 +156,9 @@ class Acl extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -186,9 +186,9 @@ class Acl extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -207,7 +207,7 @@ class Acl extends \Google\Protobuf\Internal\Message
      * number of allowed entries 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.AclEntry acl_entries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\AclEntry>
      */
     public function getAclEntries()
     {
@@ -219,7 +219,7 @@ class Acl extends \Google\Protobuf\Internal\Message
      * number of allowed entries 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.AclEntry acl_entries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\AclEntry[] $var
      * @return $this
      */
     public function setAclEntries($var)

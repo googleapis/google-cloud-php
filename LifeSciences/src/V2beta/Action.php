@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a single action that runs a Docker container.
@@ -119,9 +119,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *   <li><code>/google/logs/output</code> The combined standard output and
      *   standard error of all actions run as part of the pipeline
      *   execution.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stdout</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stdout</code> The complete contents of
      *   each individual action's standard output.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stderr</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stderr</code> The complete contents of
      *   each individual action's standard error output.</li>
      * </ul>
      *
@@ -250,7 +250,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           appropriate credentials must be specified in the
      *           [google.cloud.lifesciences.v2beta.Action.credentials][google.cloud.lifesciences.v2beta.Action.credentials]
      *           field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type string[] $commands
      *           If specified, overrides the `CMD` specified in the container. If the
      *           container also has an `ENTRYPOINT` the values are used as entrypoint
      *           arguments. Otherwise, they are used as a command and arguments to run
@@ -292,7 +292,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           The host port number must be less than 65536. If it is zero, an unused
      *           random port is assigned. To determine the resulting port number, consult
      *           the `ContainerStartedEvent` in the operation metadata.
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Mount>|\Google\Protobuf\Internal\RepeatedField $mounts
+     *     @type \Google\Cloud\LifeSciences\V2beta\Mount[] $mounts
      *           A list of mounts to make available to the action.
      *           In addition to the values specified here, every action has a special
      *           virtual disk mounted under `/google` that contains log files and other
@@ -303,9 +303,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *             <li><code>/google/logs/output</code> The combined standard output and
      *             standard error of all actions run as part of the pipeline
      *             execution.</li>
-     *             <li><code>/google/logs/action/&#42;&#47;stdout</code> The complete contents of
+     *             <li><code>/google/logs/action/{@*}stdout</code> The complete contents of
      *             each individual action's standard output.</li>
-     *             <li><code>/google/logs/action/&#42;&#47;stderr</code> The complete contents of
+     *             <li><code>/google/logs/action/{@*}stderr</code> The complete contents of
      *             each individual action's standard error output.</li>
      *           </ul>
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -456,7 +456,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * inside the container.
      *
      * Generated from protobuf field <code>repeated string commands = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommands()
     {
@@ -470,7 +470,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * inside the container.
      *
      * Generated from protobuf field <code>repeated string commands = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommands($var)
@@ -686,14 +686,14 @@ class Action extends \Google\Protobuf\Internal\Message
      *   <li><code>/google/logs/output</code> The combined standard output and
      *   standard error of all actions run as part of the pipeline
      *   execution.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stdout</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stdout</code> The complete contents of
      *   each individual action's standard output.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stderr</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stderr</code> The complete contents of
      *   each individual action's standard error output.</li>
      * </ul>
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Mount mounts = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Mount>
      */
     public function getMounts()
     {
@@ -711,14 +711,14 @@ class Action extends \Google\Protobuf\Internal\Message
      *   <li><code>/google/logs/output</code> The combined standard output and
      *   standard error of all actions run as part of the pipeline
      *   execution.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stdout</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stdout</code> The complete contents of
      *   each individual action's standard output.</li>
-     *   <li><code>/google/logs/action/&#42;&#47;stderr</code> The complete contents of
+     *   <li><code>/google/logs/action/{@*}stderr</code> The complete contents of
      *   each individual action's standard error output.</li>
      * </ul>
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Mount mounts = 9;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Mount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Mount[] $var
      * @return $this
      */
     public function setMounts($var)

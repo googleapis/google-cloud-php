@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Context represents an independent schema grouping in a schema registry
@@ -47,7 +47,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *           * Up to 255 characters.
      *           * Allowed characters: letters (uppercase or lowercase), numbers, and the
      *           following special characters: `.`, `-`, `_`, `+`, `%`, and `~`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subjects
+     *     @type string[] $subjects
      *           Optional. The subjects of the context.
      * }
      */
@@ -96,7 +96,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * Optional. The subjects of the context.
      *
      * Generated from protobuf field <code>repeated string subjects = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubjects()
     {
@@ -107,7 +107,7 @@ class Context extends \Google\Protobuf\Internal\Message
      * Optional. The subjects of the context.
      *
      * Generated from protobuf field <code>repeated string subjects = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubjects($var)

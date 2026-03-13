@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The occurrence provides details of a secret.
@@ -55,9 +55,9 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      *
      *     @type int $kind
      *           Type of secret.
-     *     @type array<\Grafeas\V1\SecretLocation>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type \Grafeas\V1\SecretLocation[] $locations
      *           Locations where the secret is detected.
-     *     @type array<\Grafeas\V1\SecretStatus>|\Google\Protobuf\Internal\RepeatedField $statuses
+     *     @type \Grafeas\V1\SecretStatus[] $statuses
      *           Status of the secret.
      *     @type \Google\Protobuf\Any $data
      *           Scan result of the secret.
@@ -101,7 +101,7 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      * Locations where the secret is detected.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SecretLocation locations = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\SecretLocation>
      */
     public function getLocations()
     {
@@ -112,7 +112,7 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      * Locations where the secret is detected.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SecretLocation locations = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Grafeas\V1\SecretLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\SecretLocation[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -127,7 +127,7 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      * Status of the secret.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SecretStatus statuses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\SecretStatus>
      */
     public function getStatuses()
     {
@@ -138,7 +138,7 @@ class SecretOccurrence extends \Google\Protobuf\Internal\Message
      * Status of the secret.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SecretStatus statuses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Grafeas\V1\SecretStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\SecretStatus[] $var
      * @return $this
      */
     public function setStatuses($var)

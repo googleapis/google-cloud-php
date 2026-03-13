@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parameters to WriteLogEntries.
@@ -200,7 +200,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *           entries in `entries`. If a log entry already has a label with the same key
      *           as a label in this parameter, then the log entry's label is not changed.
      *           See [LogEntry][google.logging.v2.LogEntry].
-     *     @type array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Logging\V2\LogEntry[] $entries
      *           Required. The log entries to send to Logging. The order of log
      *           entries in this list does not matter. Values supplied in this method's
      *           `log_name`, `resource`, and `labels` fields are copied into those log
@@ -393,7 +393,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * list, rather than calling this method for each individual log entry.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\LogEntry>
      */
     public function getEntries()
     {
@@ -424,7 +424,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * list, rather than calling this method for each individual log entry.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\LogEntry[] $var
      * @return $this
      */
     public function setEntries($var)

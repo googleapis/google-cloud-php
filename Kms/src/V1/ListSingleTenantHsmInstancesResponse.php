@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -49,7 +49,7 @@ class ListSingleTenantHsmInstancesResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\SingleTenantHsmInstance>|\Google\Protobuf\Internal\RepeatedField $single_tenant_hsm_instances
+     *     @type \Google\Cloud\Kms\V1\SingleTenantHsmInstance[] $single_tenant_hsm_instances
      *           The list of
      *           [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
      *     @type string $next_page_token
@@ -75,7 +75,7 @@ class ListSingleTenantHsmInstancesResponse extends \Google\Protobuf\Internal\Mes
      * [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.SingleTenantHsmInstance single_tenant_hsm_instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\SingleTenantHsmInstance>
      */
     public function getSingleTenantHsmInstances()
     {
@@ -87,7 +87,7 @@ class ListSingleTenantHsmInstancesResponse extends \Google\Protobuf\Internal\Mes
      * [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.SingleTenantHsmInstance single_tenant_hsm_instances = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\SingleTenantHsmInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\SingleTenantHsmInstance[] $var
      * @return $this
      */
     public function setSingleTenantHsmInstances($var)

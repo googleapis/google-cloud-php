@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [Persistent disk](https://cloud.google.com/compute/docs/disks) used as the

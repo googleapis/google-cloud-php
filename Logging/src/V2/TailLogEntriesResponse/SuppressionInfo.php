@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2\TailLogEntriesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about entries that were omitted from the session.
@@ -98,7 +98,4 @@ class SuppressionInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SuppressionInfo::class, \Google\Cloud\Logging\V2\TailLogEntriesResponse_SuppressionInfo::class);
 

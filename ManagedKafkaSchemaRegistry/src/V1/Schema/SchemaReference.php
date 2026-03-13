@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SchemaReference is a reference to a schema.
@@ -132,5 +132,4 @@ class SchemaReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class FetchModelServersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $model_servers
+     *     @type string[] $model_servers
      *           Output only. List of available model servers. Open-source model servers use
      *           simplified, lowercase names (e.g., `vllm`).
      *     @type string $next_page_token
@@ -61,7 +61,7 @@ class FetchModelServersResponse extends \Google\Protobuf\Internal\Message
      * simplified, lowercase names (e.g., `vllm`).
      *
      * Generated from protobuf field <code>repeated string model_servers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getModelServers()
     {
@@ -73,7 +73,7 @@ class FetchModelServersResponse extends \Google\Protobuf\Internal\Message
      * simplified, lowercase names (e.g., `vllm`).
      *
      * Generated from protobuf field <code>repeated string model_servers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setModelServers($var)

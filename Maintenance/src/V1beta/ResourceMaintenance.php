@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceMaintenance is a resource that represents a maintenance operation
@@ -174,7 +174,7 @@ class ResourceMaintenance extends \Google\Protobuf\Internal\Message
      *           maintenance, either
      *            proactively before maintenance was scheduled with maintenance policy or
      *            with reactive controls after it was scheduled (see controls field)
-     *     @type array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceControl>|\Google\Protobuf\Internal\RepeatedField $controls
+     *     @type \Google\Cloud\Maintenance\Api\V1beta\MaintenanceControl[] $controls
      *           Output only. The controls of the maintenance.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels on the resource, which can be used for categorization.
@@ -622,7 +622,7 @@ class ResourceMaintenance extends \Google\Protobuf\Internal\Message
      * Output only. The controls of the maintenance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceControl controls = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceControl>
      */
     public function getControls()
     {
@@ -633,7 +633,7 @@ class ResourceMaintenance extends \Google\Protobuf\Internal\Message
      * Output only. The controls of the maintenance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceControl controls = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceControl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Maintenance\Api\V1beta\MaintenanceControl[] $var
      * @return $this
      */
     public function setControls($var)

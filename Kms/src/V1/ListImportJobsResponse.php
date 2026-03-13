@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -47,7 +47,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\ImportJob>|\Google\Protobuf\Internal\RepeatedField $import_jobs
+     *     @type \Google\Cloud\Kms\V1\ImportJob[] $import_jobs
      *           The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -70,7 +70,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ImportJob import_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\ImportJob>
      */
     public function getImportJobs()
     {
@@ -81,7 +81,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ImportJob import_jobs = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\ImportJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\ImportJob[] $var
      * @return $this
      */
     public function setImportJobs($var)

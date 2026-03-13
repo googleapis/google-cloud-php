@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\Inventory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about a resource protected by a Cloud KMS key.
@@ -124,7 +124,7 @@ class ProtectedResource extends \Google\Protobuf\Internal\Message
      *           to Asset Inventory. If there are multiple key versions protecting the
      *           resource, then this is same value as the first element of
      *           crypto_key_versions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $crypto_key_versions
+     *     @type string[] $crypto_key_versions
      *           The names of the Cloud KMS
      *           [CryptoKeyVersion](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys.cryptoKeyVersions?hl=en)
      *           used to protect this resource via CMEK. This field is empty if the
@@ -378,7 +378,7 @@ class ProtectedResource extends \Google\Protobuf\Internal\Message
      * crypto_key_version.
      *
      * Generated from protobuf field <code>repeated string crypto_key_versions = 10 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCryptoKeyVersions()
     {
@@ -394,7 +394,7 @@ class ProtectedResource extends \Google\Protobuf\Internal\Message
      * crypto_key_version.
      *
      * Generated from protobuf field <code>repeated string crypto_key_versions = 10 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCryptoKeyVersions($var)

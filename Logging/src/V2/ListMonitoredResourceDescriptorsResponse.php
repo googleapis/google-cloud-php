@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result returned from ListMonitoredResourceDescriptors.
@@ -36,7 +36,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $resource_descriptors
+     *     @type \Google\Api\MonitoredResourceDescriptor[] $resource_descriptors
      *           A list of resource descriptors.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
@@ -53,7 +53,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * A list of resource descriptors.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MonitoredResourceDescriptor>
      */
     public function getResourceDescriptors()
     {
@@ -64,7 +64,7 @@ class ListMonitoredResourceDescriptorsResponse extends \Google\Protobuf\Internal
      * A list of resource descriptors.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor resource_descriptors = 1;</code>
-     * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MonitoredResourceDescriptor[] $var
      * @return $this
      */
     public function setResourceDescriptors($var)

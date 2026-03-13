@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An instance of an analysis type that has been found on a resource.
@@ -25,7 +25,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. A URI that represents the resource for which the
      * occurrence applies. For example,
-     * `https://gcr.io/project/image&#64;sha256:123abc` for a Docker image.
+     * `https://gcr.io/project/image\@sha256:123abc` for a Docker image.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      */
@@ -83,7 +83,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
      *     @type string $resource_uri
      *           Required. Immutable. A URI that represents the resource for which the
      *           occurrence applies. For example,
-     *           `https://gcr.io/project/image&#64;sha256:123abc` for a Docker image.
+     *           `https://gcr.io/project/image\@sha256:123abc` for a Docker image.
      *     @type string $note_name
      *           Required. Immutable. The analysis note associated with this occurrence, in
      *           the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`. This field can be
@@ -162,7 +162,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. A URI that represents the resource for which the
      * occurrence applies. For example,
-     * `https://gcr.io/project/image&#64;sha256:123abc` for a Docker image.
+     * `https://gcr.io/project/image\@sha256:123abc` for a Docker image.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @return string
@@ -175,7 +175,7 @@ class Occurrence extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. A URI that represents the resource for which the
      * occurrence applies. For example,
-     * `https://gcr.io/project/image&#64;sha256:123abc` for a Docker image.
+     * `https://gcr.io/project/image\@sha256:123abc` for a Docker image.
      *
      * Generated from protobuf field <code>string resource_uri = 2;</code>
      * @param string $var

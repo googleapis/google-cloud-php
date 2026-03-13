@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The document moderation response message.
@@ -44,7 +44,7 @@ class ModerateTextResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Language\V2\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $moderation_categories
+     *     @type \Google\Cloud\Language\V2\ClassificationCategory[] $moderation_categories
      *           Harmful and sensitive categories representing the input document.
      *     @type string $language_code
      *           The language of the text, which will be the same as the language specified
@@ -65,7 +65,7 @@ class ModerateTextResponse extends \Google\Protobuf\Internal\Message
      * Harmful and sensitive categories representing the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.ClassificationCategory moderation_categories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V2\ClassificationCategory>
      */
     public function getModerationCategories()
     {
@@ -76,7 +76,7 @@ class ModerateTextResponse extends \Google\Protobuf\Internal\Message
      * Harmful and sensitive categories representing the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.ClassificationCategory moderation_categories = 1;</code>
-     * @param array<\Google\Cloud\Language\V2\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V2\ClassificationCategory[] $var
      * @return $this
      */
     public function setModerationCategories($var)

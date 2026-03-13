@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\ImportJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The public key component of the wrapping key. For details of the type of
@@ -82,5 +82,4 @@ class WrappingPublicKey extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

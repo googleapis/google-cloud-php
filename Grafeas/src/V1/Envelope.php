@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MUST match
@@ -38,7 +38,7 @@ class Envelope extends \Google\Protobuf\Internal\Message
      *
      *     @type string $payload
      *     @type string $payload_type
-     *     @type array<\Grafeas\V1\EnvelopeSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
+     *     @type \Grafeas\V1\EnvelopeSignature[] $signatures
      * }
      */
     public function __construct($data = NULL) {
@@ -92,7 +92,7 @@ class Envelope extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.EnvelopeSignature signatures = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\EnvelopeSignature>
      */
     public function getSignatures()
     {
@@ -101,7 +101,7 @@ class Envelope extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.EnvelopeSignature signatures = 3;</code>
-     * @param array<\Grafeas\V1\EnvelopeSignature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\EnvelopeSignature[] $var
      * @return $this
      */
     public function setSignatures($var)

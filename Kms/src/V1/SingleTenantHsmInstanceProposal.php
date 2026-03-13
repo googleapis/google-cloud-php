@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -21,7 +21,7 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;&#47;proposals/&#42;`.
+     * the format `projects/{@*}locations/{@*}singleTenantHsmInstances/{@*}proposals/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -80,7 +80,7 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in
-     *           the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;&#47;proposals/&#42;`.
+     *           the format `projects/{@*}locations/{@*}singleTenantHsmInstances/{@*}proposals/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the
      *           [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
@@ -196,7 +196,7 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;&#47;proposals/&#42;`.
+     * the format `projects/{@*}locations/{@*}singleTenantHsmInstances/{@*}proposals/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -209,7 +209,7 @@ class SingleTenantHsmInstanceProposal extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;&#47;proposals/&#42;`.
+     * the format `projects/{@*}locations/{@*}singleTenantHsmInstances/{@*}proposals/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3\PolicyBinding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Target is the full resource name of the resource to which the policy will
@@ -133,5 +133,4 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

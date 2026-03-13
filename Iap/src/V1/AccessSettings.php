@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Access related settings for IAP protected apps.
@@ -81,7 +81,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Iap\V1\WorkforceIdentitySettings $workforce_identity_settings
      *           Optional. Settings to configure the workforce identity federation,
      *           including workforce pools and OAuth 2.0 settings.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $identity_sources
+     *     @type int[] $identity_sources
      *           Optional. Identity sources that IAP can use to authenticate the end user.
      *           Only one identity source can be configured.
      * }
@@ -316,7 +316,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Only one identity source can be configured.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AccessSettings.IdentitySource identity_sources = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIdentitySources()
     {
@@ -328,7 +328,7 @@ class AccessSettings extends \Google\Protobuf\Internal\Message
      * Only one identity source can be configured.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AccessSettings.IdentitySource identity_sources = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIdentitySources($var)

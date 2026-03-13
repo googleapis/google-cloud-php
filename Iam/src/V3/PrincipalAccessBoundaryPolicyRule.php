@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Principal access boundary policy rule that defines the resource boundary.
@@ -54,7 +54,7 @@ class PrincipalAccessBoundaryPolicyRule extends \Google\Protobuf\Internal\Messag
      *     @type string $description
      *           Optional. The description of the principal access boundary policy rule.
      *           Must be less than or equal to 256 characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type string[] $resources
      *           Required. A list of Resource Manager resources. If a resource is listed in
      *           the rule, then the rule applies for that resource and its descendants. The
      *           number of resources in a policy is limited to 500 across all rules in the
@@ -116,7 +116,7 @@ class PrincipalAccessBoundaryPolicyRule extends \Google\Protobuf\Internal\Messag
      *   or `//cloudresourcemanager.googleapis.com/projects/my-project-id`.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResources()
     {
@@ -136,7 +136,7 @@ class PrincipalAccessBoundaryPolicyRule extends \Google\Protobuf\Internal\Messag
      *   or `//cloudresourcemanager.googleapis.com/projects/my-project-id`.
      *
      * Generated from protobuf field <code>repeated string resources = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResources($var)

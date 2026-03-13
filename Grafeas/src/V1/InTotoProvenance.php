@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoProvenance</code>
@@ -56,7 +56,7 @@ class InTotoProvenance extends \Google\Protobuf\Internal\Message
      *           such that re-running this recipe results in bit-for-bit identical output
      *           (if the build is reproducible).
      *     @type \Grafeas\V1\Metadata $metadata
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $materials
+     *     @type string[] $materials
      *           The collection of artifacts that influenced the build including sources,
      *           dependencies, build tools, base images, and so on. This is considered to be
      *           incomplete unless metadata.completeness.materials is true. Unset or null is
@@ -185,7 +185,7 @@ class InTotoProvenance extends \Google\Protobuf\Internal\Message
      * equivalent to empty.
      *
      * Generated from protobuf field <code>repeated string materials = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMaterials()
     {
@@ -199,7 +199,7 @@ class InTotoProvenance extends \Google\Protobuf\Internal\Message
      * equivalent to empty.
      *
      * Generated from protobuf field <code>repeated string materials = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMaterials($var)

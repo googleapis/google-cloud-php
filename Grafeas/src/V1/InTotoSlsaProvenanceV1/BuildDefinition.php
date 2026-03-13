@@ -5,8 +5,8 @@
 namespace Grafeas\V1\InTotoSlsaProvenanceV1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoSlsaProvenanceV1.BuildDefinition</code>
@@ -39,7 +39,7 @@ class BuildDefinition extends \Google\Protobuf\Internal\Message
      *     @type string $build_type
      *     @type \Google\Protobuf\Struct $external_parameters
      *     @type \Google\Protobuf\Struct $internal_parameters
-     *     @type array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $resolved_dependencies
+     *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $resolved_dependencies
      * }
      */
     public function __construct($data = NULL) {
@@ -135,7 +135,7 @@ class BuildDefinition extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor resolved_dependencies = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>
      */
     public function getResolvedDependencies()
     {
@@ -144,7 +144,7 @@ class BuildDefinition extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor resolved_dependencies = 4;</code>
-     * @param array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $var
      * @return $this
      */
     public function setResolvedDependencies($var)
@@ -156,5 +156,4 @@ class BuildDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

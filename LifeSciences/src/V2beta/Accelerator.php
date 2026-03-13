@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Carries information about an accelerator that can be attached to a VM.

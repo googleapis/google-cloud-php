@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of
@@ -19,7 +19,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -41,7 +41,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for the
      *           [KeyRing][google.cloud.kms.v1.KeyRing] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which this [KeyRing][google.cloud.kms.v1.KeyRing]
      *           was created.
@@ -55,7 +55,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -68,7 +68,7 @@ class KeyRing extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [KeyRing][google.cloud.kms.v1.KeyRing] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

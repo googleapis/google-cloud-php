@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Slurm [login
@@ -122,11 +122,11 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           [Labels](https://cloud.google.com/compute/docs/labeling-resources) that
      *           should be applied to each login node instance.
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>|\Google\Protobuf\Internal\RepeatedField $storage_configs
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\StorageConfig[] $storage_configs
      *           Optional. How [storage
      *           resources][google.cloud.hypercomputecluster.v1beta.StorageResource] should
      *           be mounted on each login node.
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\ComputeInstance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\ComputeInstance[] $instances
      *           Output only. Information about the login node instances that were created
      *           in Compute Engine.
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\BootDisk $boot_disk
@@ -346,7 +346,7 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * be mounted on each login node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.StorageConfig storage_configs = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>
      */
     public function getStorageConfigs()
     {
@@ -359,7 +359,7 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * be mounted on each login node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.StorageConfig storage_configs = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\StorageConfig[] $var
      * @return $this
      */
     public function setStorageConfigs($var)
@@ -375,7 +375,7 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * in Compute Engine.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.ComputeInstance instances = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\ComputeInstance>
      */
     public function getInstances()
     {
@@ -387,7 +387,7 @@ class SlurmLoginNodes extends \Google\Protobuf\Internal\Message
      * in Compute Engine.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.ComputeInstance instances = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\ComputeInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\ComputeInstance[] $var
      * @return $this
      */
     public function setInstances($var)

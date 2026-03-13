@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoSlsaProvenanceV1</code>
@@ -42,7 +42,7 @@ class InTotoSlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
      *     @type string $type
      *           InToto spec defined at
      *           https://github.com/in-toto/attestation/tree/main/spec#statement
-     *     @type array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $subject
+     *     @type \Grafeas\V1\Subject[] $subject
      *     @type string $predicate_type
      *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\SlsaProvenanceV1 $predicate
      * }
@@ -82,7 +82,7 @@ class InTotoSlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Subject>
      */
     public function getSubject()
     {
@@ -91,7 +91,7 @@ class InTotoSlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 2;</code>
-     * @param array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Subject[] $var
      * @return $this
      */
     public function setSubject($var)

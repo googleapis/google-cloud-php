@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IAM policy binding resource.
@@ -99,7 +99,7 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * supported attributes in any subexpression are `principal.type` and
      * `principal.subject`. An example expression is: "principal.type ==
      * 'iam.googleapis.com/ServiceAccount'" or "principal.subject ==
-     * 'bob&#64;example.com'".
+     * 'bob\@example.com'".
      * Allowed operations for `principal.subject`:
      * - `principal.subject == <principal subject string>`
      * - `principal.subject != <principal subject string>`
@@ -187,7 +187,7 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      *           supported attributes in any subexpression are `principal.type` and
      *           `principal.subject`. An example expression is: "principal.type ==
      *           'iam.googleapis.com/ServiceAccount'" or "principal.subject ==
-     *           'bob&#64;example.com'".
+     *           'bob\@example.com'".
      *           Allowed operations for `principal.subject`:
      *           - `principal.subject == <principal subject string>`
      *           - `principal.subject != <principal subject string>`
@@ -507,7 +507,7 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * supported attributes in any subexpression are `principal.type` and
      * `principal.subject`. An example expression is: "principal.type ==
      * 'iam.googleapis.com/ServiceAccount'" or "principal.subject ==
-     * 'bob&#64;example.com'".
+     * 'bob\@example.com'".
      * Allowed operations for `principal.subject`:
      * - `principal.subject == <principal subject string>`
      * - `principal.subject != <principal subject string>`
@@ -555,7 +555,7 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
      * supported attributes in any subexpression are `principal.type` and
      * `principal.subject`. An example expression is: "principal.type ==
      * 'iam.googleapis.com/ServiceAccount'" or "principal.subject ==
-     * 'bob&#64;example.com'".
+     * 'bob\@example.com'".
      * Allowed operations for `principal.subject`:
      * - `principal.subject == <principal subject string>`
      * - `principal.subject != <principal subject string>`

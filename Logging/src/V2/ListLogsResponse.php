@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result returned from ListLogs.
@@ -38,7 +38,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $log_names
+     *     @type string[] $log_names
      *           A list of log names. For example,
      *           `"projects/my-project/logs/syslog"` or
      *           `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
@@ -59,7 +59,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *
      * Generated from protobuf field <code>repeated string log_names = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLogNames()
     {
@@ -72,7 +72,7 @@ class ListLogsResponse extends \Google\Protobuf\Internal\Message
      * `"organizations/123/logs/cloudresourcemanager.googleapis.com%2Factivity"`.
      *
      * Generated from protobuf field <code>repeated string log_names = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLogNames($var)

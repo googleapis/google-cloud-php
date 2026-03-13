@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\Credentials\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.iam.credentials.v1.SignJwtRequest</code>
@@ -84,7 +84,7 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
      *           are requested, in the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $delegates
+     *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
      *           on its next service account in the chain. The last service account in the
@@ -147,7 +147,7 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
      * character is required; replacing it with a project ID is invalid.
      *
      * Generated from protobuf field <code>repeated string delegates = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDelegates()
     {
@@ -166,7 +166,7 @@ class SignJwtRequest extends \Google\Protobuf\Internal\Message
      * character is required; replacing it with a project ID is invalid.
      *
      * Generated from protobuf field <code>repeated string delegates = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDelegates($var)

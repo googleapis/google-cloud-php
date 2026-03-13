@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
@@ -46,7 +46,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [ImportJob][google.cloud.kms.v1.ImportJob] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}importJobs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -132,7 +132,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
      * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
      * in the future. Supported resources:
-     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     * * `"projects/{@*}locations/{@*}singleTenantHsmInstances/*"`
      *
      * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -147,7 +147,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for this
      *           [ImportJob][google.cloud.kms.v1.ImportJob] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}importJobs/*`.
      *     @type int $import_method
      *           Required. Immutable. The wrapping method to be used for incoming key
      *           material.
@@ -193,7 +193,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      *           stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
      *           apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
      *           in the future. Supported resources:
-     *           * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     *           * `"projects/{@*}locations/{@*}singleTenantHsmInstances/*"`
      * }
      */
     public function __construct($data = NULL) {
@@ -204,7 +204,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [ImportJob][google.cloud.kms.v1.ImportJob] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}importJobs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -217,7 +217,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [ImportJob][google.cloud.kms.v1.ImportJob] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;importJobs/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}importJobs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -572,7 +572,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
      * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
      * in the future. Supported resources:
-     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     * * `"projects/{@*}locations/{@*}singleTenantHsmInstances/*"`
      *
      * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -589,7 +589,7 @@ class ImportJob extends \Google\Protobuf\Internal\Message
      * stored in HSM_SINGLE_TENANT. Note, this list is non-exhaustive and may
      * apply to additional [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel]
      * in the future. Supported resources:
-     * * `"projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;"`
+     * * `"projects/{@*}locations/{@*}singleTenantHsmInstances/*"`
      *
      * Generated from protobuf field <code>string crypto_key_backend = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

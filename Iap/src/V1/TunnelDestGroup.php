@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A TunnelDestGroup.
@@ -44,9 +44,9 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. Identifier for the TunnelDestGroup. Must be unique within the
      *           project and contain only lower case letters (a-z) and dashes (-).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cidrs
+     *     @type string[] $cidrs
      *           Optional. Unordered list. List of CIDRs that this group applies to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fqdns
+     *     @type string[] $fqdns
      *           Optional. Unordered list. List of FQDNs that this group applies to.
      * }
      */
@@ -87,7 +87,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      * Optional. Unordered list. List of CIDRs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string cidrs = 2 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCidrs()
     {
@@ -98,7 +98,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      * Optional. Unordered list. List of CIDRs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string cidrs = 2 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCidrs($var)
@@ -113,7 +113,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      * Optional. Unordered list. List of FQDNs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string fqdns = 3 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFqdns()
     {
@@ -124,7 +124,7 @@ class TunnelDestGroup extends \Google\Protobuf\Internal\Message
      * Optional. Unordered list. List of FQDNs that this group applies to.
      *
      * Generated from protobuf field <code>repeated string fqdns = 3 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFqdns($var)

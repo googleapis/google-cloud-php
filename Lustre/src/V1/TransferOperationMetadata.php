@@ -5,8 +5,8 @@
 namespace Google\Cloud\Lustre\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the metadata of the long-running transfer operation.
@@ -54,7 +54,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The progress of the transfer operation.
      *     @type int $transfer_type
      *           Output only. The type of transfer occurring.
-     *     @type array<\Google\Cloud\Lustre\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $error_summaries
+     *     @type \Google\Cloud\Lustre\V1\ErrorSummary[] $error_summaries
      *           Output only. Error summary about the transfer operation
      * }
      */
@@ -253,7 +253,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Error summary about the transfer operation
      *
      * Generated from protobuf field <code>repeated .google.cloud.lustre.v1.ErrorSummary error_summaries = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Lustre\V1\ErrorSummary>
      */
     public function getErrorSummaries()
     {
@@ -264,7 +264,7 @@ class TransferOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Error summary about the transfer operation
      *
      * Generated from protobuf field <code>repeated .google.cloud.lustre.v1.ErrorSummary error_summaries = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Lustre\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Lustre\V1\ErrorSummary[] $var
      * @return $this
      */
     public function setErrorSummaries($var)

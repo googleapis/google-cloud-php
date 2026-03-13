@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Occurrence that represents a single "attestation". The authenticity of an
@@ -62,12 +62,12 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      *     @type string $serialized_payload
      *           Required. The serialized payload that is verified by one or more
      *           `signatures`.
-     *     @type array<\Grafeas\V1\Signature>|\Google\Protobuf\Internal\RepeatedField $signatures
+     *     @type \Grafeas\V1\Signature[] $signatures
      *           One or more signatures over `serialized_payload`.  Verifier implementations
      *           should consider this attestation message verified if at least one
      *           `signature` verifies `serialized_payload`.  See `Signature` in common.proto
      *           for more details on signature structure and verification.
-     *     @type array<\Grafeas\V1\Jwt>|\Google\Protobuf\Internal\RepeatedField $jwts
+     *     @type \Grafeas\V1\Jwt[] $jwts
      *           One or more JWTs encoding a self-contained attestation.
      *           Each JWT encodes the payload that it verifies within the JWT itself.
      *           Verifier implementation SHOULD ignore the `serialized_payload` field
@@ -119,7 +119,7 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      * for more details on signature structure and verification.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Signature signatures = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Signature>
      */
     public function getSignatures()
     {
@@ -133,7 +133,7 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      * for more details on signature structure and verification.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Signature signatures = 2;</code>
-     * @param array<\Grafeas\V1\Signature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Signature[] $var
      * @return $this
      */
     public function setSignatures($var)
@@ -156,7 +156,7 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      * implementations.  The JWT itself is opaque to Grafeas.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Jwt jwts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Jwt>
      */
     public function getJwts()
     {
@@ -175,7 +175,7 @@ class AttestationOccurrence extends \Google\Protobuf\Internal\Message
      * implementations.  The JWT itself is opaque to Grafeas.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Jwt jwts = 3;</code>
-     * @param array<\Grafeas\V1\Jwt>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Jwt[] $var
      * @return $this
      */
     public function setJwts($var)

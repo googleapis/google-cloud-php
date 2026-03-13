@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for OAuth login&consent flow behavior as well as for OAuth
@@ -45,7 +45,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      *           https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
      *           Note: IAP does not verify that the id token's hd claim matches this value
      *           since access behavior is managed by IAM policies.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $programmatic_clients
+     *     @type string[] $programmatic_clients
      *           Optional. List of client ids allowed to use IAP programmatically.
      * }
      */
@@ -137,7 +137,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of client ids allowed to use IAP programmatically.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProgrammaticClients()
     {
@@ -148,7 +148,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of client ids allowed to use IAP programmatically.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProgrammaticClients($var)

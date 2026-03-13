@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A type of analysis that can be done for a resource.
@@ -91,7 +91,7 @@ class Note extends \Google\Protobuf\Internal\Message
      *     @type int $kind
      *           Output only. The type of analysis. This field can be used as a filter in
      *           list requests.
-     *     @type array<\Grafeas\V1\RelatedUrl>|\Google\Protobuf\Internal\RepeatedField $related_url
+     *     @type \Grafeas\V1\RelatedUrl[] $related_url
      *           URLs associated with this note.
      *     @type \Google\Protobuf\Timestamp $expiration_time
      *           Time of expiration for this note. Empty if note does not expire.
@@ -101,7 +101,7 @@ class Note extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time this note was last updated. This field can be used as
      *           a filter in list requests.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_note_names
+     *     @type string[] $related_note_names
      *           Other notes related to this note.
      *     @type \Grafeas\V1\VulnerabilityNote $vulnerability
      *           A note describing a package vulnerability.
@@ -248,7 +248,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * URLs associated with this note.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.RelatedUrl related_url = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\RelatedUrl>
      */
     public function getRelatedUrl()
     {
@@ -259,7 +259,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * URLs associated with this note.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.RelatedUrl related_url = 5;</code>
-     * @param array<\Grafeas\V1\RelatedUrl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\RelatedUrl[] $var
      * @return $this
      */
     public function setRelatedUrl($var)
@@ -386,7 +386,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * Other notes related to this note.
      *
      * Generated from protobuf field <code>repeated string related_note_names = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedNoteNames()
     {
@@ -397,7 +397,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * Other notes related to this note.
      *
      * Generated from protobuf field <code>repeated string related_note_names = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedNoteNames($var)

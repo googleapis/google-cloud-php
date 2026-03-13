@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The occurrence representing an SBOM reference as applied to a specific
@@ -51,7 +51,7 @@ class SBOMReferenceOccurrence extends \Google\Protobuf\Internal\Message
      *           The kind of payload that SbomReferenceIntotoPayload takes. Since it's in
      *           the intoto format, this value is expected to be
      *           'application/vnd.in-toto+json'.
-     *     @type array<\Grafeas\V1\EnvelopeSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
+     *     @type \Grafeas\V1\EnvelopeSignature[] $signatures
      *           The signatures over the payload.
      * }
      */
@@ -130,7 +130,7 @@ class SBOMReferenceOccurrence extends \Google\Protobuf\Internal\Message
      * The signatures over the payload.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.EnvelopeSignature signatures = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\EnvelopeSignature>
      */
     public function getSignatures()
     {
@@ -141,7 +141,7 @@ class SBOMReferenceOccurrence extends \Google\Protobuf\Internal\Message
      * The signatures over the payload.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.EnvelopeSignature signatures = 3;</code>
-     * @param array<\Grafeas\V1\EnvelopeSignature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\EnvelopeSignature[] $var
      * @return $this
      */
     public function setSignatures($var)

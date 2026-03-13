@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data for an IAM policy.
@@ -138,7 +138,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the `Policy` was last updated.
      *     @type \Google\Protobuf\Timestamp $delete_time
      *           Output only. The time when the `Policy` was deleted. Empty if the policy is not deleted.
-     *     @type array<\Google\Cloud\Iam\V2\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Iam\V2\PolicyRule[] $rules
      *           A list of rules that specify the behavior of the `Policy`. All of the rules
      *           should be of the `kind` specified in the `Policy`.
      *     @type string $managing_authority
@@ -450,7 +450,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * should be of the `kind` specified in the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.iam.v2.PolicyRule rules = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iam\V2\PolicyRule>
      */
     public function getRules()
     {
@@ -462,7 +462,7 @@ class Policy extends \Google\Protobuf\Internal\Message
      * should be of the `kind` specified in the `Policy`.
      *
      * Generated from protobuf field <code>repeated .google.iam.v2.PolicyRule rules = 10;</code>
-     * @param array<\Google\Cloud\Iam\V2\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iam\V2\PolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to create occurrences in batch.
@@ -55,7 +55,7 @@ class BatchCreateOccurrencesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The name of the project in the form of `projects/[PROJECT_ID]`, under which
      *           the occurrences are to be created.
-     *     @type array<\Grafeas\V1\Occurrence>|\Google\Protobuf\Internal\RepeatedField $occurrences
+     *     @type \Grafeas\V1\Occurrence[] $occurrences
      *           The occurrences to create. Max allowed length is 1000.
      * }
      */
@@ -96,7 +96,7 @@ class BatchCreateOccurrencesRequest extends \Google\Protobuf\Internal\Message
      * The occurrences to create. Max allowed length is 1000.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Occurrence occurrences = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Occurrence>
      */
     public function getOccurrences()
     {
@@ -107,7 +107,7 @@ class BatchCreateOccurrencesRequest extends \Google\Protobuf\Internal\Message
      * The occurrences to create. Max allowed length is 1000.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Occurrence occurrences = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Grafeas\V1\Occurrence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Occurrence[] $var
      * @return $this
      */
     public function setOccurrences($var)
