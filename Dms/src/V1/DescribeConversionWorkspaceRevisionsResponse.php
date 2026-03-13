@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for 'DescribeConversionWorkspaceRevisions' request.
@@ -28,7 +28,7 @@ class DescribeConversionWorkspaceRevisionsResponse extends \Google\Protobuf\Inte
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudDms\V1\ConversionWorkspace>|\Google\Protobuf\Internal\RepeatedField $revisions
+     *     @type \Google\Cloud\CloudDms\V1\ConversionWorkspace[] $revisions
      *           The list of conversion workspace revisions.
      * }
      */
@@ -41,7 +41,7 @@ class DescribeConversionWorkspaceRevisionsResponse extends \Google\Protobuf\Inte
      * The list of conversion workspace revisions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConversionWorkspace revisions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\ConversionWorkspace>
      */
     public function getRevisions()
     {
@@ -52,7 +52,7 @@ class DescribeConversionWorkspaceRevisionsResponse extends \Google\Protobuf\Inte
      * The list of conversion workspace revisions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.ConversionWorkspace revisions = 1;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\ConversionWorkspace>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\ConversionWorkspace[] $var
      * @return $this
      */
     public function setRevisions($var)

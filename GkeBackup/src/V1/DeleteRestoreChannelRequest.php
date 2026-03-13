@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for DeleteRestoreChannel.
@@ -17,7 +17,7 @@ class DeleteRestoreChannelRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Fully qualified RestoreChannel name.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * Format: `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,7 +55,7 @@ class DeleteRestoreChannelRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Fully qualified RestoreChannel name.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *           Format: `projects/{@*}locations/{@*}restoreChannels/*`
      *     @type string $etag
      *           Optional. If provided, this value must match the current value of the
      *           target RestoreChannel's
@@ -70,7 +70,7 @@ class DeleteRestoreChannelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Fully qualified RestoreChannel name.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * Format: `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -82,7 +82,7 @@ class DeleteRestoreChannelRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Fully qualified RestoreChannel name.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * Format: `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

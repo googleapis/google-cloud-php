@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult\RankSignals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom clearbox signal represented by name and value pair.
@@ -102,5 +102,4 @@ class CustomSignal extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

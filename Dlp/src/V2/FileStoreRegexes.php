@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of regular expressions to determine what file store to match
@@ -31,7 +31,7 @@ class FileStoreRegexes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\FileStoreRegex>|\Google\Protobuf\Internal\RepeatedField $patterns
+     *     @type \Google\Cloud\Dlp\V2\FileStoreRegex[] $patterns
      *           Required. The group of regular expression patterns to match against one or
      *           more file stores. Maximum of 100 entries. The sum of all regular
      *           expression's length can't exceed 10 KiB.
@@ -48,7 +48,7 @@ class FileStoreRegexes extends \Google\Protobuf\Internal\Message
      * expression's length can't exceed 10 KiB.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreRegex patterns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileStoreRegex>
      */
     public function getPatterns()
     {
@@ -61,7 +61,7 @@ class FileStoreRegexes extends \Google\Protobuf\Internal\Message
      * expression's length can't exceed 10 KiB.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreRegex patterns = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileStoreRegex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileStoreRegex[] $var
      * @return $this
      */
     public function setPatterns($var)

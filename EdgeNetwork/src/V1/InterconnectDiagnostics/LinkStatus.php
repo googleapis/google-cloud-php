@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing the status for each link on the Interconnect.
@@ -51,7 +51,7 @@ class LinkStatus extends \Google\Protobuf\Internal\Message
      *           The unique ID for this link assigned during turn up by Google.
      *     @type \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLACPStatus $lacp_status
      *           Describing the state of a LACP link.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLLDPStatus>|\Google\Protobuf\Internal\RepeatedField $lldp_statuses
+     *     @type \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLLDPStatus[] $lldp_statuses
      *           A list of LinkLLDPStatus objects, used to describe LLDP status of each
      *           peer for each link on the Interconnect.
      *     @type \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\PacketCounts $packet_counts
@@ -130,7 +130,7 @@ class LinkStatus extends \Google\Protobuf\Internal\Message
      * peer for each link on the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus lldp_statuses = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLLDPStatus>
      */
     public function getLldpStatuses()
     {
@@ -142,7 +142,7 @@ class LinkStatus extends \Google\Protobuf\Internal\Message
      * peer for each link on the Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.InterconnectDiagnostics.LinkLLDPStatus lldp_statuses = 3;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLLDPStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics\LinkLLDPStatus[] $var
      * @return $this
      */
     public function setLldpStatuses($var)
@@ -190,5 +190,4 @@ class LinkStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

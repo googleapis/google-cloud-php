@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2\ListRuntimesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a runtime and any special information (e.g., deprecation status)
@@ -71,7 +71,7 @@ class Runtime extends \Google\Protobuf\Internal\Message
      *           The user facing name, eg 'Go 1.13', 'Node.js 12', etc.
      *     @type int $stage
      *           The stage of life this runtime is in, e.g., BETA, GA, etc.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type string[] $warnings
      *           Warning messages, e.g., a deprecation warning.
      *     @type int $environment
      *           The environment for the runtime.
@@ -168,7 +168,7 @@ class Runtime extends \Google\Protobuf\Internal\Message
      * Warning messages, e.g., a deprecation warning.
      *
      * Generated from protobuf field <code>repeated string warnings = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWarnings()
     {
@@ -179,7 +179,7 @@ class Runtime extends \Google\Protobuf\Internal\Message
      * Warning messages, e.g., a deprecation warning.
      *
      * Generated from protobuf field <code>repeated string warnings = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWarnings($var)
@@ -289,5 +289,4 @@ class Runtime extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter that merges multiple other filters using the given operator.
@@ -38,7 +38,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type int $op
      *           The operator for combining multiple filters.
-     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Filter[] $filters
      *           The list of filters to combine.
      *           Requires:
      *           * At least one filter is present.
@@ -81,7 +81,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      * * At least one filter is present.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Filter filters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\StructuredQuery\Filter>
      */
     public function getFilters()
     {
@@ -94,7 +94,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      * * At least one filter is present.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Filter filters = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery\Filter[] $var
      * @return $this
      */
     public function setFilters($var)
@@ -106,7 +106,4 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompositeFilter::class, \Google\Cloud\Firestore\V1\StructuredQuery_CompositeFilter::class);
 

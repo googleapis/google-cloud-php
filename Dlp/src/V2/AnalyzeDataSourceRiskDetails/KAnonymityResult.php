@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of the k-anonymity computation.
@@ -28,7 +28,7 @@ class KAnonymityResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $equivalence_class_histogram_buckets
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket[] $equivalence_class_histogram_buckets
      *           Histogram of k-anonymity equivalence classes.
      * }
      */
@@ -41,7 +41,7 @@ class KAnonymityResult extends \Google\Protobuf\Internal\Message
      * Histogram of k-anonymity equivalence classes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket equivalence_class_histogram_buckets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket>
      */
     public function getEquivalenceClassHistogramBuckets()
     {
@@ -52,7 +52,7 @@ class KAnonymityResult extends \Google\Protobuf\Internal\Message
      * Histogram of k-anonymity equivalence classes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityHistogramBucket equivalence_class_histogram_buckets = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityHistogramBucket[] $var
      * @return $this
      */
     public function setEquivalenceClassHistogramBuckets($var)
@@ -64,5 +64,4 @@ class KAnonymityResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

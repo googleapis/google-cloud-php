@@ -5,8 +5,8 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates a location in the source code of the service for which errors are

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sends an email when the job completes. The email goes to IAM project owners
@@ -32,5 +32,4 @@ class JobNotificationEmails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

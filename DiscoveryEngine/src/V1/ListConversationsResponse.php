@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListConversations method.
@@ -34,7 +34,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Conversation>|\Google\Protobuf\Internal\RepeatedField $conversations
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Conversation[] $conversations
      *           All the Conversations for a given data store.
      *     @type string $next_page_token
      *           Pagination token, if not returned indicates the last page.
@@ -49,7 +49,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * All the Conversations for a given data store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Conversation conversations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Conversation>
      */
     public function getConversations()
     {
@@ -60,7 +60,7 @@ class ListConversationsResponse extends \Google\Protobuf\Internal\Message
      * All the Conversations for a given data store.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Conversation conversations = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Conversation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Conversation[] $var
      * @return $this
      */
     public function setConversations($var)

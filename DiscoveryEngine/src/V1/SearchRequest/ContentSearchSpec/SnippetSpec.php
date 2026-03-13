@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest\ContentSearchSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification for configuring snippets in a search response.
@@ -166,5 +166,4 @@ class SnippetSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

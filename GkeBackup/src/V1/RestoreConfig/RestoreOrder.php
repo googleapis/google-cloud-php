@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allows customers to specify dependencies between resources
@@ -31,7 +31,7 @@ class RestoreOrder extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder\GroupKindDependency>|\Google\Protobuf\Internal\RepeatedField $group_kind_dependencies
+     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder\GroupKindDependency[] $group_kind_dependencies
      *           Optional. Contains a list of group kind dependency pairs provided
      *           by the customer, that is used by Backup for GKE to
      *           generate a group kind restore order.
@@ -48,7 +48,7 @@ class RestoreOrder extends \Google\Protobuf\Internal\Message
      * generate a group kind restore order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder.GroupKindDependency group_kind_dependencies = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder\GroupKindDependency>
      */
     public function getGroupKindDependencies()
     {
@@ -61,7 +61,7 @@ class RestoreOrder extends \Google\Protobuf\Internal\Message
      * generate a group kind restore order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.RestoreOrder.GroupKindDependency group_kind_dependencies = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder\GroupKindDependency>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder\GroupKindDependency[] $var
      * @return $this
      */
     public function setGroupKindDependencies($var)
@@ -73,5 +73,4 @@ class RestoreOrder extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

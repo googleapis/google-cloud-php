@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom information type provided by the user. Used to find domain-specific
@@ -89,7 +89,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\StoredType $stored_type
      *           Load an existing `StoredInfoType` resource for use in
      *           `InspectDataSource`. Not currently supported in `InspectContent`.
-     *     @type array<\Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule>|\Google\Protobuf\Internal\RepeatedField $detection_rules
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[] $detection_rules
      *           Set of detection rules to apply to all findings of this CustomInfoType.
      *           Rules are applied in order that they are specified. Not supported for the
      *           `surrogate_type` CustomInfoType.
@@ -319,7 +319,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule>
      */
     public function getDetectionRules()
     {
@@ -332,7 +332,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      * `surrogate_type` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
-     * @param array<\Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[] $var
      * @return $this
      */
     public function setDetectionRules($var)

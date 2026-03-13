@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for Recommend method.
@@ -53,7 +53,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\RecommendResponse\RecommendationResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\DiscoveryEngine\V1\RecommendResponse\RecommendationResult[] $results
      *           A list of recommended Documents. The order represents the ranking (from the
      *           most relevant Document to the least).
      *     @type string $attribution_token
@@ -61,7 +61,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent][google.cloud.discoveryengine.v1.UserEvent] logs resulting from
      *           this recommendation, which enables accurate attribution of recommendation
      *           model performance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_ids
+     *     @type string[] $missing_ids
      *           IDs of documents in the request that were missing from the default Branch
      *           associated with the requested ServingConfig.
      *     @type bool $validate_only
@@ -80,7 +80,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      * most relevant Document to the least).
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecommendResponse.RecommendationResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RecommendResponse\RecommendationResult>
      */
     public function getResults()
     {
@@ -92,7 +92,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      * most relevant Document to the least).
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecommendResponse.RecommendationResult results = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\RecommendResponse\RecommendationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\RecommendResponse\RecommendationResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -140,7 +140,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      * associated with the requested ServingConfig.
      *
      * Generated from protobuf field <code>repeated string missing_ids = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMissingIds()
     {
@@ -152,7 +152,7 @@ class RecommendResponse extends \Google\Protobuf\Internal\Message
      * associated with the requested ServingConfig.
      *
      * Generated from protobuf field <code>repeated string missing_ids = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMissingIds($var)

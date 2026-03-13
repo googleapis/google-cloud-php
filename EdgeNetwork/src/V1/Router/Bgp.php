@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\Router;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BGP information specific to this router.
@@ -102,5 +102,4 @@ class Bgp extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

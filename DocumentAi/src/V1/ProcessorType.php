@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A processor type is responsible for performing a certain document
@@ -74,14 +74,14 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *           The processor type, such as: `OCR_PROCESSOR`, `INVOICE_PROCESSOR`.
      *     @type string $category
      *           The processor category, used by UI to group processor types.
-     *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $available_locations
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo[] $available_locations
      *           The locations in which this processor is available.
      *     @type bool $allow_creation
      *           Whether the processor type allows creation. If true, users can create a
      *           processor of this processor type. Otherwise, users need to request access.
      *     @type int $launch_stage
      *           Launch stage of the processor type
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sample_document_uris
+     *     @type string[] $sample_document_uris
      *           A set of Cloud Storage URIs of sample documents for this processor.
      * }
      */
@@ -174,7 +174,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      * The locations in which this processor is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorType.LocationInfo available_locations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>
      */
     public function getAvailableLocations()
     {
@@ -185,7 +185,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      * The locations in which this processor is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorType.LocationInfo available_locations = 4;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo[] $var
      * @return $this
      */
     public function setAvailableLocations($var)
@@ -254,7 +254,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      * A set of Cloud Storage URIs of sample documents for this processor.
      *
      * Generated from protobuf field <code>repeated string sample_document_uris = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSampleDocumentUris()
     {
@@ -265,7 +265,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      * A set of Cloud Storage URIs of sample documents for this processor.
      *
      * Generated from protobuf field <code>repeated string sample_document_uris = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSampleDocumentUris($var)

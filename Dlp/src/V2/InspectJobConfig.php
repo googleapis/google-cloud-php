@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Controls what and how to inspect for findings.
@@ -56,7 +56,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      *           If provided, will be used as the default for all values in InspectConfig.
      *           `inspect_config` will be merged into the values persisted as part of the
      *           template.
-     *     @type array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Dlp\V2\Action[] $actions
      *           Actions to execute at the completion of the job.
      * }
      */
@@ -171,7 +171,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Action>
      */
     public function getActions()
     {
@@ -182,7 +182,7 @@ class InspectJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Action[] $var
      * @return $this
      */
     public function setActions($var)

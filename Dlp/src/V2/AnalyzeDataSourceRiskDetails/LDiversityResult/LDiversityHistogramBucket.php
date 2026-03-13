@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Histogram of l-diversity equivalence class sensitive value frequencies.
@@ -63,7 +63,7 @@ class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
      *           classes in this bucket.
      *     @type int|string $bucket_size
      *           Total number of equivalence classes in this bucket.
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass[] $bucket_values
      *           Sample of equivalence classes in this bucket. The total number of
      *           classes returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -162,7 +162,7 @@ class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
      * classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass bucket_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass>
      */
     public function getBucketValues()
     {
@@ -174,7 +174,7 @@ class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
      * classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.LDiversityResult.LDiversityEquivalenceClass bucket_values = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\LDiversityResult\LDiversityEquivalenceClass[] $var
      * @return $this
      */
     public function setBucketValues($var)
@@ -212,5 +212,4 @@ class LDiversityHistogramBucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

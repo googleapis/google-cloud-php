@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Database;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encryption configuration for a new database being created from another
@@ -141,7 +141,4 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EncryptionConfig::class, \Google\Cloud\Firestore\Admin\V1\Database_EncryptionConfig::class);
 

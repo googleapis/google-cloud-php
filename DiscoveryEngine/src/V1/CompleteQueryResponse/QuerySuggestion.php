@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Suggestions as search queries.
@@ -38,7 +38,7 @@ class QuerySuggestion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $suggestion
      *           The suggestion for the query.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $completable_field_paths
+     *     @type string[] $completable_field_paths
      *           The unique document field paths that serve as the source of this
      *           suggestion if it was generated from completable fields.
      *           This field is only populated for the document-completable model.
@@ -81,7 +81,7 @@ class QuerySuggestion extends \Google\Protobuf\Internal\Message
      * This field is only populated for the document-completable model.
      *
      * Generated from protobuf field <code>repeated string completable_field_paths = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCompletableFieldPaths()
     {
@@ -94,7 +94,7 @@ class QuerySuggestion extends \Google\Protobuf\Internal\Message
      * This field is only populated for the document-completable model.
      *
      * Generated from protobuf field <code>repeated string completable_field_paths = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCompletableFieldPaths($var)
@@ -106,5 +106,4 @@ class QuerySuggestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Version of a StoredInfoType, including the configuration used to build it,
@@ -73,7 +73,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Stored info type version state. Read-only, updated by the system
      *           during dictionary creation.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           Errors that occurred when creating this storedInfoType version, or
      *           anomalies detected in the storedInfoType data that render it unusable. Only
      *           the five most recent errors will be displayed, with the most recent error
@@ -210,7 +210,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * not the source of the error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -231,7 +231,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * not the source of the error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)

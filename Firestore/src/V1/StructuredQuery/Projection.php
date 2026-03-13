@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The projection of document's fields to return.
@@ -30,7 +30,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\FieldReference>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference[] $fields
      *           The fields to return.
      *           If empty, all fields are returned. To only return the name
      *           of the document, use `['__name__']`.
@@ -47,7 +47,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      * of the document, use `['__name__']`.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.FieldReference fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\StructuredQuery\FieldReference>
      */
     public function getFields()
     {
@@ -60,7 +60,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      * of the document, use `['__name__']`.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.FieldReference fields = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\FieldReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference[] $var
      * @return $this
      */
     public function setFields($var)
@@ -72,7 +72,4 @@ class Projection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Projection::class, \Google\Cloud\Firestore\V1\StructuredQuery_Projection::class);
 

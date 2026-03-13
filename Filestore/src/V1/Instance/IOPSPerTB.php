@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IOPS per TB.
@@ -65,5 +65,4 @@ class IOPSPerTB extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

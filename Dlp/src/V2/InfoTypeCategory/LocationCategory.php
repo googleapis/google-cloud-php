@@ -415,4 +415,3 @@ class LocationCategory
     }
 }
 
-

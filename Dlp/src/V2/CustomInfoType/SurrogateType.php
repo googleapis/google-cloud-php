@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CustomInfoType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for detecting output from deidentification transformations
@@ -37,5 +37,4 @@ class SurrogateType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

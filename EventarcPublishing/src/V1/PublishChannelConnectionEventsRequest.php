@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\Publishing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for the PublishChannelConnectionEvents method.
@@ -49,10 +49,10 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      *     @type string $channel_connection
      *           The channel_connection that the events are published from. For example:
      *           `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
-     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Protobuf\Any[] $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
      *           If this field is set, then the `text_events` fields must not be set.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text_events
+     *     @type string[] $text_events
      *           The text representation of events to publish.
      *           CloudEvent v1.0 in JSON format is the only allowed type. Refer to
      *           https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
@@ -98,7 +98,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * If this field is set, then the `text_events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Any>
      */
     public function getEvents()
     {
@@ -110,7 +110,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * If this field is set, then the `text_events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
-     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[] $var
      * @return $this
      */
     public function setEvents($var)
@@ -129,7 +129,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * If this field is set, then the `events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated string text_events = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTextEvents()
     {
@@ -144,7 +144,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * If this field is set, then the `events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated string text_events = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTextEvents($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1\EngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PerformanceTarget gives hints on how to evaluate the performance of a
@@ -85,5 +85,4 @@ class PerformanceTarget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

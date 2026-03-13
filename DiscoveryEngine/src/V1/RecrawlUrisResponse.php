@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,9 +36,9 @@ class RecrawlUrisResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo>|\Google\Protobuf\Internal\RepeatedField $failure_samples
+     *     @type \Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo[] $failure_samples
      *           Details for a sample of up to 10 `failed_uris`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_uris
+     *     @type string[] $failed_uris
      *           URIs that were not crawled before the LRO terminated.
      * }
      */
@@ -51,7 +51,7 @@ class RecrawlUrisResponse extends \Google\Protobuf\Internal\Message
      * Details for a sample of up to 10 `failed_uris`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo failure_samples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo>
      */
     public function getFailureSamples()
     {
@@ -62,7 +62,7 @@ class RecrawlUrisResponse extends \Google\Protobuf\Internal\Message
      * Details for a sample of up to 10 `failed_uris`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.RecrawlUrisResponse.FailureInfo failure_samples = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\RecrawlUrisResponse\FailureInfo[] $var
      * @return $this
      */
     public function setFailureSamples($var)
@@ -77,7 +77,7 @@ class RecrawlUrisResponse extends \Google\Protobuf\Internal\Message
      * URIs that were not crawled before the LRO terminated.
      *
      * Generated from protobuf field <code>repeated string failed_uris = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedUris()
     {
@@ -88,7 +88,7 @@ class RecrawlUrisResponse extends \Google\Protobuf\Internal\Message
      * URIs that were not crawled before the LRO terminated.
      *
      * Generated from protobuf field <code>repeated string failed_uris = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedUris($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\AnswerGenerationSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Answer generation prompt specification.
@@ -64,5 +64,4 @@ class PromptSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each Stage of the deployment process
@@ -68,7 +68,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           Resource of the Stage
      *     @type string $resource_uri
      *           Link to the current Stage resource
-     *     @type array<\Google\Cloud\Functions\V2\StateMessage>|\Google\Protobuf\Internal\RepeatedField $state_messages
+     *     @type \Google\Cloud\Functions\V2\StateMessage[] $state_messages
      *           State messages from the current Stage.
      * }
      */
@@ -211,7 +211,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * State messages from the current Stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.StateMessage state_messages = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\StateMessage>
      */
     public function getStateMessages()
     {
@@ -222,7 +222,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * State messages from the current Stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.StateMessage state_messages = 6;</code>
-     * @param array<\Google\Cloud\Functions\V2\StateMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\StateMessage[] $var
      * @return $this
      */
     public function setStateMessages($var)

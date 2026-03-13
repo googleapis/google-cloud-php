@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Query understanding information.
@@ -28,7 +28,7 @@ class QueryUnderstandingInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo\QueryClassificationInfo>|\Google\Protobuf\Internal\RepeatedField $query_classification_info
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo\QueryClassificationInfo[] $query_classification_info
      *           Query classification information.
      * }
      */
@@ -41,7 +41,7 @@ class QueryUnderstandingInfo extends \Google\Protobuf\Internal\Message
      * Query classification information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.QueryUnderstandingInfo.QueryClassificationInfo query_classification_info = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo\QueryClassificationInfo>
      */
     public function getQueryClassificationInfo()
     {
@@ -52,7 +52,7 @@ class QueryUnderstandingInfo extends \Google\Protobuf\Internal\Message
      * Query classification information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.QueryUnderstandingInfo.QueryClassificationInfo query_classification_info = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo\QueryClassificationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo\QueryClassificationInfo[] $var
      * @return $this
      */
     public function setQueryClassificationInfo($var)
@@ -64,5 +64,4 @@ class QueryUnderstandingInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

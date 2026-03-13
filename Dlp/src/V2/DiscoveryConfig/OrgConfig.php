@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DiscoveryConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Project and scan location information. Only set when the parent is an org.
@@ -116,5 +116,4 @@ class OrgConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the parsed layout of a document as a collection of blocks that
@@ -29,7 +29,7 @@ class DocumentLayout extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>|\Google\Protobuf\Internal\RepeatedField $blocks
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock[] $blocks
      *           List of blocks in the document.
      * }
      */
@@ -42,7 +42,7 @@ class DocumentLayout extends \Google\Protobuf\Internal\Message
      * List of blocks in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock blocks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>
      */
     public function getBlocks()
     {
@@ -53,7 +53,7 @@ class DocumentLayout extends \Google\Protobuf\Internal\Message
      * List of blocks in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock blocks = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock[] $var
      * @return $this
      */
     public function setBlocks($var)
@@ -65,5 +65,4 @@ class DocumentLayout extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

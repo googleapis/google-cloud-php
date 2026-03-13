@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -90,7 +90,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Database to export. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type string[] $collection_ids
      *           IDs of the collection groups to export. Unspecified means all
      *           collection groups. Each collection group in this list must be unique.
      *     @type string $output_uri_prefix
@@ -102,7 +102,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *           guidelines: https://cloud.google.com/storage/docs/naming.
      *           If the URI is a bucket (without a namespace path), a prefix will be
      *           generated based on the start time.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *     @type string[] $namespace_ids
      *           An empty list represents all namespaces. This is the preferred
      *           usage for databases that don't use namespaces.
      *           An empty string element represents the default namespace. This should be
@@ -156,7 +156,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * collection groups. Each collection group in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCollectionIds()
     {
@@ -168,7 +168,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * collection groups. Each collection group in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCollectionIds($var)
@@ -227,7 +227,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * to include them. Each namespace in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNamespaceIds()
     {
@@ -242,7 +242,7 @@ class ExportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * to include them. Each namespace in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNamespaceIds($var)

@@ -81,6 +81,3 @@ class TargetChangeType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetChangeType::class, \Google\Cloud\Firestore\V1\TargetChange_TargetChangeType::class);
-

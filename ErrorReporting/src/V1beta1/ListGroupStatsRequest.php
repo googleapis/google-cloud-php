@@ -5,8 +5,8 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a set of `ErrorGroupStats` to return.
@@ -187,7 +187,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      *           Regions](https://cloud.google.com/logging/docs/region-support). `global` is
      *           the default when unspecified. Use `-` as a wildcard to request group stats
      *           from all regions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $group_id
+     *     @type string[] $group_id
      *           Optional. List all [ErrorGroupStats]
      *           [google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats] with these
      *           IDs. The `group_id` is a unique identifier for a particular error group.
@@ -306,7 +306,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGroupId()
     {
@@ -323,7 +323,7 @@ class ListGroupStatsRequest extends \Google\Protobuf\Internal\Message
      * (https://cloud.google.com/terms/cloud-privacy-notice).
      *
      * Generated from protobuf field <code>repeated string group_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGroupId($var)

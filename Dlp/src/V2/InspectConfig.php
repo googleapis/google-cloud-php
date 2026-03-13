@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration description of the scanning process.
@@ -114,7 +114,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type \Google\Cloud\Dlp\V2\InfoType[] $info_types
      *           Restricts what info_types to look for. The values must correspond to
      *           InfoType values returned by ListInfoTypes or listed at
      *           https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference.
@@ -131,7 +131,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           results and the lowest chance of a false positive. For more information,
      *           see [Match
      *           likelihood](https://cloud.google.com/sensitive-data-protection/docs/likelihood).
-     *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>|\Google\Protobuf\Internal\RepeatedField $min_likelihood_per_info_type
+     *     @type \Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood[] $min_likelihood_per_info_type
      *           Minimum likelihood per infotype. For each infotype, a user can specify a
      *           minimum likelihood. The system only returns a finding if its likelihood is
      *           above this threshold. If this field is not set, the system uses the
@@ -158,13 +158,13 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type bool $exclude_info_types
      *           When true, excludes type information of the findings.
      *           This is not used for data profiling.
-     *     @type array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $custom_info_types
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType[] $custom_info_types
      *           CustomInfoTypes provided by the user. See
      *           https://cloud.google.com/sensitive-data-protection/docs/creating-custom-infotypes
      *           to learn more.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $content_options
+     *     @type int[] $content_options
      *           Deprecated and unused.
-     *     @type array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $rule_set
+     *     @type \Google\Cloud\Dlp\V2\InspectionRuleSet[] $rule_set
      *           Set of rules to apply to the findings for this InspectConfig.
      *           Exclusion rules, contained in the set are executed in the end, other
      *           rules are executed in the order they are specified for each info type.
@@ -187,7 +187,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoType>
      */
     public function getInfoTypes()
     {
@@ -206,7 +206,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoType[] $var
      * @return $this
      */
     public function setInfoTypes($var)
@@ -260,7 +260,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * InspectConfig min_likelihood.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood min_likelihood_per_info_type = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>
      */
     public function getMinLikelihoodPerInfoType()
     {
@@ -274,7 +274,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * InspectConfig min_likelihood.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.InfoTypeLikelihood min_likelihood_per_info_type = 11;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InspectConfig\InfoTypeLikelihood[] $var
      * @return $this
      */
     public function setMinLikelihoodPerInfoType($var)
@@ -411,7 +411,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\CustomInfoType>
      */
     public function getCustomInfoTypes()
     {
@@ -424,7 +424,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
-     * @param array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType[] $var
      * @return $this
      */
     public function setCustomInfoTypes($var)
@@ -439,7 +439,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * Deprecated and unused.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getContentOptions()
     {
@@ -450,7 +450,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * Deprecated and unused.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setContentOptions($var)
@@ -467,7 +467,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * rules are executed in the order they are specified for each info type.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectionRuleSet>
      */
     public function getRuleSet()
     {
@@ -480,7 +480,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * rules are executed in the order they are specified for each info type.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InspectionRuleSet[] $var
      * @return $this
      */
     public function setRuleSet($var)

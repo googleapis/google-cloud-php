@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Chunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata of the current chunk. This field is only populated on
@@ -44,13 +44,13 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $previous_chunks
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk[] $previous_chunks
      *           The previous chunks of the current chunk. The number is controlled by
      *           [SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec.num_previous_chunks].
      *           This field is only populated on
      *           [SearchService.Search][google.cloud.discoveryengine.v1.SearchService.Search]
      *           API.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $next_chunks
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk[] $next_chunks
      *           The next chunks of the current chunk. The number is controlled by
      *           [SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks][google.cloud.discoveryengine.v1.SearchRequest.ContentSearchSpec.ChunkSpec.num_next_chunks].
      *           This field is only populated on
@@ -71,7 +71,7 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk previous_chunks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Chunk>
      */
     public function getPreviousChunks()
     {
@@ -86,7 +86,7 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk previous_chunks = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Chunk[] $var
      * @return $this
      */
     public function setPreviousChunks($var)
@@ -105,7 +105,7 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk next_chunks = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Chunk>
      */
     public function getNextChunks()
     {
@@ -120,7 +120,7 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
      * API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk next_chunks = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Chunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Chunk[] $var
      * @return $this
      */
     public function setNextChunks($var)
@@ -132,5 +132,4 @@ class ChunkMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DateTime;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Time zone of the date time object.
@@ -68,5 +68,4 @@ class TimeZone extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

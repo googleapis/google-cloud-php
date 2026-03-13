@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Trigger is not used as an independent entity, it is retrieved as part of a
@@ -57,7 +57,7 @@ class TriggerEntity extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the trigger.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $triggering_events
+     *     @type string[] $triggering_events
      *           The DML, DDL, or database events that fire the trigger, for example
      *           INSERT, UPDATE.
      *     @type string $trigger_type
@@ -105,7 +105,7 @@ class TriggerEntity extends \Google\Protobuf\Internal\Message
      * INSERT, UPDATE.
      *
      * Generated from protobuf field <code>repeated string triggering_events = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTriggeringEvents()
     {
@@ -117,7 +117,7 @@ class TriggerEntity extends \Google\Protobuf\Internal\Message
      * INSERT, UPDATE.
      *
      * Generated from protobuf field <code>repeated string triggering_events = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTriggeringEvents($var)

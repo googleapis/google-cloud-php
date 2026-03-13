@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\RecommendResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RecommendationResult represents a generic recommendation result with
@@ -163,5 +163,4 @@ class RecommendationResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

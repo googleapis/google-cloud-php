@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1\DnsSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for an arbitrary DNS provider.
@@ -38,11 +38,11 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $name_servers
+     *     @type string[] $name_servers
      *           Required. A list of name servers that store the DNS zone for this domain. Each name
      *           server is a domain name, with Unicode domain names expressed in
      *           Punycode format.
-     *     @type array<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $ds_records
+     *     @type \Google\Cloud\Domains\V1\DnsSettings\DsRecord[] $ds_records
      *           The list of DS records for this domain, which are used to enable DNSSEC.
      *           The domain's DNS provider can provide the values to set here. If this
      *           field is empty, DNSSEC is disabled.
@@ -59,7 +59,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * Punycode format.
      *
      * Generated from protobuf field <code>repeated string name_servers = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNameServers()
     {
@@ -72,7 +72,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * Punycode format.
      *
      * Generated from protobuf field <code>repeated string name_servers = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNameServers($var)
@@ -89,7 +89,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * field is empty, DNSSEC is disabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.DsRecord ds_records = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>
      */
     public function getDsRecords()
     {
@@ -102,7 +102,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * field is empty, DNSSEC is disabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.DsRecord ds_records = 2;</code>
-     * @param array<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Domains\V1\DnsSettings\DsRecord[] $var
      * @return $this
      */
     public function setDsRecords($var)
@@ -114,5 +114,4 @@ class CustomDns extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

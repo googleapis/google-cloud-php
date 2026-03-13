@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the operation of restoring a volume from a VolumeBackup.
@@ -17,7 +17,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/{@*}volumeRestores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -46,7 +46,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full name of the VolumeBackup from which the volume will
      * be restored. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -109,7 +109,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Full name of the VolumeRestore resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
+     *           Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/{@*}volumeRestores/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -122,7 +122,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
      *     @type string $volume_backup
      *           Output only. The full name of the VolumeBackup from which the volume will
      *           be restored. Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     *           `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *     @type \Google\Cloud\GkeBackup\V1\NamespacedName $target_pvc
      *           Output only. The reference to the target Kubernetes PVC to be restored.
      *     @type string $volume_handle
@@ -153,7 +153,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/{@*}volumeRestores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -165,7 +165,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Full name of the VolumeRestore resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;&#47;restores/&#42;&#47;volumeRestores/&#42;`
+     * Format: `projects/{@*}locations/{@*}restorePlans/{@*}restores/{@*}volumeRestores/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -286,7 +286,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full name of the VolumeBackup from which the volume will
      * be restored. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -299,7 +299,7 @@ class VolumeRestore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full name of the VolumeBackup from which the volume will
      * be restored. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;&#47;volumeBackups/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/{@*}volumeBackups/*`.
      *
      * Generated from protobuf field <code>string volume_backup = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -54,6 +54,3 @@ class ServerValue
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServerValue::class, \Google\Cloud\Firestore\V1\DocumentTransform_FieldTransform_ServerValue::class);
-

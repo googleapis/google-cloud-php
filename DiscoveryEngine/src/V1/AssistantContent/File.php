@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AssistantContent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A file, e.g., an audio summary.
@@ -98,5 +98,4 @@ class File extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ListDataStoresResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\DataStore>|\Google\Protobuf\Internal\RepeatedField $data_stores
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DataStore[] $data_stores
      *           All the customer's [DataStore][google.cloud.discoveryengine.v1.DataStore]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -57,7 +57,7 @@ class ListDataStoresResponse extends \Google\Protobuf\Internal\Message
      * All the customer's [DataStore][google.cloud.discoveryengine.v1.DataStore]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DataStore data_stores = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\DataStore>
      */
     public function getDataStores()
     {
@@ -68,7 +68,7 @@ class ListDataStoresResponse extends \Google\Protobuf\Internal\Message
      * All the customer's [DataStore][google.cloud.discoveryengine.v1.DataStore]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DataStore data_stores = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\DataStore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\DataStore[] $var
      * @return $this
      */
     public function setDataStores($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fixed IOPS (input/output operations per second) parameters.
@@ -64,5 +64,4 @@ class FixedIOPS extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

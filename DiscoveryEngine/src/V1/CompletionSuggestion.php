@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Autocomplete suggestions that are imported from Customer.
@@ -71,7 +71,7 @@ class CompletionSuggestion extends \Google\Protobuf\Internal\Message
      *           be used to deduplicate semantically identical suggestions.
      *     @type float $group_score
      *           The score of this suggestion within its group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alternative_phrases
+     *     @type string[] $alternative_phrases
      *           Alternative matching phrases for this suggestion.
      * }
      */
@@ -258,7 +258,7 @@ class CompletionSuggestion extends \Google\Protobuf\Internal\Message
      * Alternative matching phrases for this suggestion.
      *
      * Generated from protobuf field <code>repeated string alternative_phrases = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAlternativePhrases()
     {
@@ -269,7 +269,7 @@ class CompletionSuggestion extends \Google\Protobuf\Internal\Message
      * Alternative matching phrases for this suggestion.
      *
      * Generated from protobuf field <code>repeated string alternative_phrases = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAlternativePhrases($var)

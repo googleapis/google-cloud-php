@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Image quality scores for the page image.
@@ -36,7 +36,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      *
      *     @type float $quality_score
      *           The overall quality score. Range `[0, 1]` where `1` is perfect quality.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect>|\Google\Protobuf\Internal\RepeatedField $detected_defects
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect[] $detected_defects
      *           A list of detected defects.
      * }
      */
@@ -75,7 +75,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      * A list of detected defects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.ImageQualityScores.DetectedDefect detected_defects = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect>
      */
     public function getDetectedDefects()
     {
@@ -86,7 +86,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      * A list of detected defects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.ImageQualityScores.DetectedDefect detected_defects = 2;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores\DetectedDefect[] $var
      * @return $this
      */
     public function setDetectedDefects($var)
@@ -98,5 +98,4 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

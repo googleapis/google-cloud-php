@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ListCustomModelsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the parent Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to fetch the models
      * from.
      *
@@ -35,7 +35,7 @@ class ListCustomModelsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $data_store
      *           Required. The resource name of the parent Data Store, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *           This field is used to identify the data store where to fetch the models
      *           from.
      * }
@@ -47,7 +47,7 @@ class ListCustomModelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to fetch the models
      * from.
      *
@@ -61,7 +61,7 @@ class ListCustomModelsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent Data Store, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      * This field is used to identify the data store where to fetch the models
      * from.
      *

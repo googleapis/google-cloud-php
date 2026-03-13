@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to configure rule type FilterTableColumns.
@@ -39,9 +39,9 @@ class FilterTableColumns extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_columns
+     *     @type string[] $include_columns
      *           Optional. List of columns to be included for a particular table.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_columns
+     *     @type string[] $exclude_columns
      *           Optional. List of columns to be excluded for a particular table.
      * }
      */
@@ -54,7 +54,7 @@ class FilterTableColumns extends \Google\Protobuf\Internal\Message
      * Optional. List of columns to be included for a particular table.
      *
      * Generated from protobuf field <code>repeated string include_columns = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeColumns()
     {
@@ -65,7 +65,7 @@ class FilterTableColumns extends \Google\Protobuf\Internal\Message
      * Optional. List of columns to be included for a particular table.
      *
      * Generated from protobuf field <code>repeated string include_columns = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeColumns($var)
@@ -80,7 +80,7 @@ class FilterTableColumns extends \Google\Protobuf\Internal\Message
      * Optional. List of columns to be excluded for a particular table.
      *
      * Generated from protobuf field <code>repeated string exclude_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeColumns()
     {
@@ -91,7 +91,7 @@ class FilterTableColumns extends \Google\Protobuf\Internal\Message
      * Optional. List of columns to be excluded for a particular table.
      *
      * Generated from protobuf field <code>repeated string exclude_columns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeColumns($var)

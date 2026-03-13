@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single DDL statement for a specific entity
@@ -60,7 +60,7 @@ class EntityDdl extends \Google\Protobuf\Internal\Message
      *           The actual ddl code.
      *     @type int $entity_type
      *           The entity type (if the DDL is for a sub entity).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $issue_id
+     *     @type string[] $issue_id
      *           EntityIssues found for this ddl.
      * }
      */
@@ -177,7 +177,7 @@ class EntityDdl extends \Google\Protobuf\Internal\Message
      * EntityIssues found for this ddl.
      *
      * Generated from protobuf field <code>repeated string issue_id = 100;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIssueId()
     {
@@ -188,7 +188,7 @@ class EntityDdl extends \Google\Protobuf\Internal\Message
      * EntityIssues found for this ddl.
      *
      * Generated from protobuf field <code>repeated string issue_id = 100;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIssueId($var)

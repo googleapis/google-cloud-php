@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of the trigger resource.
@@ -149,7 +149,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *           Output only. The creation time.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
-     *     @type array<\Google\Cloud\Eventarc\V1\EventFilter>|\Google\Protobuf\Internal\RepeatedField $event_filters
+     *     @type \Google\Cloud\Eventarc\V1\EventFilter[] $event_filters
      *           Required. Unordered list. The list of filters that applies to event
      *           attributes. Only events that match all the provided filters are sent to the
      *           destination.
@@ -337,7 +337,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Eventarc\V1\EventFilter>
      */
     public function getEventFilters()
     {
@@ -350,7 +350,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      * destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Eventarc\V1\EventFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Eventarc\V1\EventFilter[] $var
      * @return $this
      */
     public function setEventFilters($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\Backup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about the GKE cluster from which this Backup was created.
@@ -18,8 +18,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The source cluster from which this Backup was created.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
@@ -50,8 +50,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $cluster
      *           Output only. The source cluster from which this Backup was created.
      *           Valid formats:
-     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *             - `projects/{@*}locations/{@*}clusters/*`
+     *             - `projects/{@*}zones/{@*}clusters/*`
      *           This is inherited from the parent BackupPlan's
      *           [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *     @type string $k8s_version
@@ -73,8 +73,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The source cluster from which this Backup was created.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
@@ -89,8 +89,8 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The source cluster from which this Backup was created.
      * Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      * This is inherited from the parent BackupPlan's
      * [cluster][google.cloud.gkebackup.v1.BackupPlan.cluster] field.
      *
@@ -231,5 +231,4 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

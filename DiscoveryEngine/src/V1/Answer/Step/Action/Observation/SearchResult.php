@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult</code>
@@ -67,10 +67,10 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           URI for the document.
      *     @type string $title
      *           Title.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\SnippetInfo>|\Google\Protobuf\Internal\RepeatedField $snippet_info
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\SnippetInfo[] $snippet_info
      *           If citation_type is DOCUMENT_LEVEL_CITATION, populate document
      *           level snippets.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo>|\Google\Protobuf\Internal\RepeatedField $chunk_info
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo[] $chunk_info
      *           If citation_type is CHUNK_LEVEL_CITATION and chunk mode is on,
      *           populate chunk info.
      *     @type \Google\Protobuf\Struct $struct_data
@@ -168,7 +168,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * level snippets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult.SnippetInfo snippet_info = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\SnippetInfo>
      */
     public function getSnippetInfo()
     {
@@ -180,7 +180,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * level snippets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult.SnippetInfo snippet_info = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\SnippetInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\SnippetInfo[] $var
      * @return $this
      */
     public function setSnippetInfo($var)
@@ -196,7 +196,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * populate chunk info.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult.ChunkInfo chunk_info = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo>
      */
     public function getChunkInfo()
     {
@@ -208,7 +208,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * populate chunk info.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step.Action.Observation.SearchResult.ChunkInfo chunk_info = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult\ChunkInfo[] $var
      * @return $this
      */
     public function setChunkInfo($var)
@@ -262,5 +262,4 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

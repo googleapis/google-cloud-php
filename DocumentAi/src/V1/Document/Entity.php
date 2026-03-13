@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An entity that could be a phrase in the text or a property that belongs to
@@ -128,7 +128,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           not be converted or the type (e.g. address) is not supported for certain
      *           parsers. This field is also only populated for certain supported document
      *           types.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[] $properties
      *           Optional. Entities can be nested to form a hierarchical data structure
      *           representing the content in the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
@@ -402,7 +402,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Entity>
      */
     public function getProperties()
     {
@@ -414,7 +414,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[] $var
      * @return $this
      */
     public function setProperties($var)
@@ -516,5 +516,4 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

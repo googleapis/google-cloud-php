@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `Registration` resource facilitates managing and configuring domain name
@@ -29,7 +29,7 @@ class Registration extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. Name of the `Registration` resource, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;registrations/<domain_name>`.
+     * `projects/{@*}locations/{@*}registrations/<domain_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -123,7 +123,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. Name of the `Registration` resource, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;registrations/<domain_name>`.
+     *           `projects/{@*}locations/{@*}registrations/<domain_name>`.
      *     @type string $domain_name
      *           Required. Immutable. The domain name. Unicode domain names must be expressed in Punycode format.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -132,7 +132,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           Output only. The expiration timestamp of the `Registration`.
      *     @type int $state
      *           Output only. The state of the `Registration`
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type int[] $issues
      *           Output only. The set of issues with the `Registration` that require attention.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with the `Registration`.
@@ -157,7 +157,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           to the `contact_settings` that have not been confirmed. To confirm the
      *           changes, the `registrant_contact` must follow the instructions in the
      *           email they receive.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type int[] $supported_privacy
      *           Output only. Set of options for the `contact_settings.privacy` field that this
      *           `Registration` supports.
      * }
@@ -169,7 +169,7 @@ class Registration extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Name of the `Registration` resource, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;registrations/<domain_name>`.
+     * `projects/{@*}locations/{@*}registrations/<domain_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -181,7 +181,7 @@ class Registration extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Name of the `Registration` resource, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;registrations/<domain_name>`.
+     * `projects/{@*}locations/{@*}registrations/<domain_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -323,7 +323,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * Output only. The set of issues with the `Registration` that require attention.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.Registration.Issue issues = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIssues()
     {
@@ -334,7 +334,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * Output only. The set of issues with the `Registration` that require attention.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.Registration.Issue issues = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIssues($var)
@@ -546,7 +546,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `Registration` supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedPrivacy()
     {
@@ -558,7 +558,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `Registration` supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedPrivacy($var)

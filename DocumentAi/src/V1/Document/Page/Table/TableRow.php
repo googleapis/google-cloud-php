@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page\Table;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A row of table cells.
@@ -28,7 +28,7 @@ class TableRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell>|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell[] $cells
      *           Cells that make up this row.
      * }
      */
@@ -41,7 +41,7 @@ class TableRow extends \Google\Protobuf\Internal\Message
      * Cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Table.TableCell cells = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell>
      */
     public function getCells()
     {
@@ -52,7 +52,7 @@ class TableRow extends \Google\Protobuf\Internal\Message
      * Cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Table.TableCell cells = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell[] $var
      * @return $this
      */
     public function setCells($var)
@@ -64,5 +64,4 @@ class TableRow extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

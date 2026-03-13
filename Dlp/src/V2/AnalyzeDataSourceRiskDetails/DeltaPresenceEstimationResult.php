@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of the δ-presence computation. Note that these results are an
@@ -36,7 +36,7 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $delta_presence_estimation_histogram
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket[] $delta_presence_estimation_histogram
      *           The intervals [min_probability, max_probability) do not overlap. If a
      *           value doesn't correspond to any such interval, the associated frequency
      *           is zero. For example, the following records:
@@ -63,7 +63,7 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
      * nor larger or equal to 0.4.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationHistogramBucket delta_presence_estimation_histogram = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket>
      */
     public function getDeltaPresenceEstimationHistogram()
     {
@@ -81,7 +81,7 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
      * nor larger or equal to 0.4.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationHistogramBucket delta_presence_estimation_histogram = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket[] $var
      * @return $this
      */
     public function setDeltaPresenceEstimationHistogram($var)
@@ -93,5 +93,4 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

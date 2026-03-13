@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the
@@ -36,7 +36,7 @@ class ListProcessorVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorVersion>|\Google\Protobuf\Internal\RepeatedField $processor_versions
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersion[] $processor_versions
      *           The list of processors.
      *     @type string $next_page_token
      *           Points to the next processor, otherwise empty.
@@ -51,7 +51,7 @@ class ListProcessorVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of processors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersion processor_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\ProcessorVersion>
      */
     public function getProcessorVersions()
     {
@@ -62,7 +62,7 @@ class ListProcessorVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of processors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersion processor_versions = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\ProcessorVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\ProcessorVersion[] $var
      * @return $this
      */
     public function setProcessorVersions($var)

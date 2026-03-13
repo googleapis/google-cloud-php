@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata of a [Document][google.cloud.discoveryengine.v1.Document].
@@ -210,5 +210,4 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
