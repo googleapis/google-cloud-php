@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VM networking options.
@@ -37,7 +37,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * If the specified network is configured for custom subnet creation, the
      * name of the subnetwork to attach the instance to must be specified here.
-     * The value is prefixed with `regions/&#42;&#47;subnetworks/` unless it contains a
+     * The value is prefixed with `regions/{@*}subnetworks/` unless it contains a
      * `/`, in which case it is assumed to be a fully specified subnetwork
      * resource URL.
      * If the `*` character appears in the value, it is replaced with the region
@@ -67,7 +67,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $subnetwork
      *           If the specified network is configured for custom subnet creation, the
      *           name of the subnetwork to attach the instance to must be specified here.
-     *           The value is prefixed with `regions/&#42;&#47;subnetworks/` unless it contains a
+     *           The value is prefixed with `regions/{@*}subnetworks/` unless it contains a
      *           `/`, in which case it is assumed to be a fully specified subnetwork
      *           resource URL.
      *           If the `*` character appears in the value, it is replaced with the region
@@ -148,7 +148,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * If the specified network is configured for custom subnet creation, the
      * name of the subnetwork to attach the instance to must be specified here.
-     * The value is prefixed with `regions/&#42;&#47;subnetworks/` unless it contains a
+     * The value is prefixed with `regions/{@*}subnetworks/` unless it contains a
      * `/`, in which case it is assumed to be a fully specified subnetwork
      * resource URL.
      * If the `*` character appears in the value, it is replaced with the region
@@ -165,7 +165,7 @@ class Network extends \Google\Protobuf\Internal\Message
     /**
      * If the specified network is configured for custom subnet creation, the
      * name of the subnetwork to attach the instance to must be specified here.
-     * The value is prefixed with `regions/&#42;&#47;subnetworks/` unless it contains a
+     * The value is prefixed with `regions/{@*}subnetworks/` unless it contains a
      * `/`, in which case it is assumed to be a fully specified subnetwork
      * resource URL.
      * If the `*` character appears in the value, it is replaced with the region

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from ListTunnelDestGroups.
@@ -35,7 +35,7 @@ class ListTunnelDestGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Iap\V1\TunnelDestGroup>|\Google\Protobuf\Internal\RepeatedField $tunnel_dest_groups
+     *     @type \Google\Cloud\Iap\V1\TunnelDestGroup[] $tunnel_dest_groups
      *           TunnelDestGroup existing in the project.
      *     @type string $next_page_token
      *           A token that you can send as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListTunnelDestGroupsResponse extends \Google\Protobuf\Internal\Message
      * TunnelDestGroup existing in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.TunnelDestGroup tunnel_dest_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iap\V1\TunnelDestGroup>
      */
     public function getTunnelDestGroups()
     {
@@ -62,7 +62,7 @@ class ListTunnelDestGroupsResponse extends \Google\Protobuf\Internal\Message
      * TunnelDestGroup existing in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.TunnelDestGroup tunnel_dest_groups = 1;</code>
-     * @param array<\Google\Cloud\Iap\V1\TunnelDestGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iap\V1\TunnelDestGroup[] $var
      * @return $this
      */
     public function setTunnelDestGroups($var)

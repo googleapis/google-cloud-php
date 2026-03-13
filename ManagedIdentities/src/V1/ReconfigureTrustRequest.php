@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedIdentities\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -71,7 +71,7 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      *     @type string $target_domain_name
      *           Required. The fully-qualified target domain name which will be in trust with current
      *           domain.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
+     *     @type string[] $target_dns_ip_addresses
      *           Required. The target DNS server IP addresses to resolve the remote domain involved
      *           in the trust.
      * }
@@ -142,7 +142,7 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      * in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetDnsIpAddresses()
     {
@@ -154,7 +154,7 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      * in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetDnsIpAddresses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedIdentities\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a relationship between two domains. This allows a controller in
@@ -107,7 +107,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      *           Optional. The trust authentication type, which decides whether the trusted side has
      *           forest/domain wide access or selective access to an approved set of
      *           resources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
+     *     @type string[] $target_dns_ip_addresses
      *           Required. The target DNS server IP addresses which can resolve the remote domain
      *           involved in the trust.
      *     @type string $trust_handshake_secret
@@ -247,7 +247,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * involved in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetDnsIpAddresses()
     {
@@ -259,7 +259,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * involved in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetDnsIpAddresses($var)

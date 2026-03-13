@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * WorkforceIdentitySettings allows customers to configure workforce pools and
@@ -37,7 +37,7 @@ class WorkforceIdentitySettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $workforce_pools
+     *     @type string[] $workforce_pools
      *           The workforce pool resources. Only one workforce pool is accepted.
      *     @type \Google\Cloud\Iap\V1\OAuth2 $oauth2
      *           OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity
@@ -53,7 +53,7 @@ class WorkforceIdentitySettings extends \Google\Protobuf\Internal\Message
      * The workforce pool resources. Only one workforce pool is accepted.
      *
      * Generated from protobuf field <code>repeated string workforce_pools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWorkforcePools()
     {
@@ -64,7 +64,7 @@ class WorkforceIdentitySettings extends \Google\Protobuf\Internal\Message
      * The workforce pool resources. Only one workforce pool is accepted.
      *
      * Generated from protobuf field <code>repeated string workforce_pools = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWorkforcePools($var)

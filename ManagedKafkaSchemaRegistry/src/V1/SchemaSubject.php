@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Subject defines the evolution scope of schemas as a holder of schema
@@ -51,7 +51,7 @@ class SchemaSubject extends \Google\Protobuf\Internal\Message
      *           * Up to 255 UTF-8 bytes.
      *           * Allowed characters: letters (uppercase or lowercase), numbers, and the
      *           following special characters: `.`, `-`, `_`, `+`, `%`, and `~`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type string[] $versions
      *           The versions of the subject.
      * }
      */
@@ -104,7 +104,7 @@ class SchemaSubject extends \Google\Protobuf\Internal\Message
      * The versions of the subject.
      *
      * Generated from protobuf field <code>repeated string versions = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVersions()
     {
@@ -115,7 +115,7 @@ class SchemaSubject extends \Google\Protobuf\Internal\Message
      * The versions of the subject.
      *
      * Generated from protobuf field <code>repeated string versions = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVersions($var)

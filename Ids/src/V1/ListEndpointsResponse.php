@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ids\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.ids.v1.ListEndpointsResponse</code>
@@ -39,12 +39,12 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ids\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\Ids\V1\Endpoint[] $endpoints
      *           The list of endpoints response.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of endpoints response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ids.v1.Endpoint endpoints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ids\V1\Endpoint>
      */
     public function getEndpoints()
     {
@@ -68,7 +68,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of endpoints response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ids.v1.Endpoint endpoints = 1;</code>
-     * @param array<\Google\Cloud\Ids\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ids\V1\Endpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -111,7 +111,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -122,7 +122,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

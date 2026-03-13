@@ -22,27 +22,7 @@ class Lustre
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-à
-#google/cloud/lustre/v1/lustre.protogoogle.cloud.lustre.v1google/api/client.protogoogle/api/resource.proto%google/cloud/lustre/v1/instance.proto%google/cloud/lustre/v1/transfer.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto2Å
-Lustre¬
-ListInstances,.google.cloud.lustre.v1.ListInstancesRequest-.google.cloud.lustre.v1.ListInstancesResponse">ÚAparent‚Óä“/-/v1/{parent=projects/*/locations/*}/instances™
-GetInstance*.google.cloud.lustre.v1.GetInstanceRequest .google.cloud.lustre.v1.Instance"<ÚAname‚Óä“/-/v1/{name=projects/*/locations/*/instances/*}Ý
-CreateInstance-.google.cloud.lustre.v1.CreateInstanceRequest.google.longrunning.Operation"}ÊA
-InstanceOperationMetadataÚAparent,instance,instance_id‚Óä“9"-/v1/{parent=projects/*/locations/*}/instances:instanceß
-UpdateInstance-.google.cloud.lustre.v1.UpdateInstanceRequest.google.longrunning.Operation"ÊA
-InstanceOperationMetadataÚAinstance,update_mask‚Óä“B26/v1/{instance.name=projects/*/locations/*/instances/*}:instanceÉ
-DeleteInstance-.google.cloud.lustre.v1.DeleteInstanceRequest.google.longrunning.Operation"iÊA*
-google.protobuf.EmptyOperationMetadataÚAname‚Óä“/*-/v1/{name=projects/*/locations/*/instances/*}Í
-
-ImportData).google.cloud.lustre.v1.ImportDataRequest.google.longrunning.Operation"uÊA(
-ImportDataResponseImportDataMetadataÚAname‚Óä“="8/v1/{name=projects/*/locations/*/instances/*}:importData:*Æ
-
-ExportData).google.cloud.lustre.v1.ExportDataRequest.google.longrunning.Operation"nÊA(
-ExportDataResponseExportDataMetadata‚Óä“="8/v1/{name=projects/*/locations/*/instances/*}:exportData:*IÊAlustre.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformBŒ
-com.google.cloud.lustre.v1BLustreProtoPZ2cloud.google.com/go/lustre/apiv1/lustrepb;lustrepbêAY
-!iam.googleapis.com/ServiceAccount4projects/{project}/serviceAccounts/{service_account}êAN
-compute.googleapis.com/Network,projects/{project}/global/networks/{network}bproto3'
+            "\x0A\xE0\x0F\x0A#google/cloud/lustre/v1/lustre.proto\x12\x16google.cloud.lustre.v1\x1A\x17google/api/client.proto\x1A\x19google/api/resource.proto\x1A%google/cloud/lustre/v1/instance.proto\x1A%google/cloud/lustre/v1/transfer.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto2\xC5\x0B\x0A\x06Lustre\x12\xAC\x01\x0A\x0DListInstances\x12,.google.cloud.lustre.v1.ListInstancesRequest\x1A-.google.cloud.lustre.v1.ListInstancesResponse\">\xDAA\x06parent\x82\xD3\xE4\x93\x02/\x12-/v1/{parent=projects/*/locations/*}/instances\x12\x99\x01\x0A\x0BGetInstance\x12*.google.cloud.lustre.v1.GetInstanceRequest\x1A .google.cloud.lustre.v1.Instance\"<\xDAA\x04name\x82\xD3\xE4\x93\x02/\x12-/v1/{name=projects/*/locations/*/instances/*}\x12\xDD\x01\x0A\x0ECreateInstance\x12-.google.cloud.lustre.v1.CreateInstanceRequest\x1A\x1D.google.longrunning.Operation\"}\xCAA\x1D\x0A\x08Instance\x12\x11OperationMetadata\xDAA\x1Bparent,instance,instance_id\x82\xD3\xE4\x93\x029\"-/v1/{parent=projects/*/locations/*}/instances:\x08instance\x12\xDF\x01\x0A\x0EUpdateInstance\x12-.google.cloud.lustre.v1.UpdateInstanceRequest\x1A\x1D.google.longrunning.Operation\"\x7F\xCAA\x1D\x0A\x08Instance\x12\x11OperationMetadata\xDAA\x14instance,update_mask\x82\xD3\xE4\x93\x02B26/v1/{instance.name=projects/*/locations/*/instances/*}:\x08instance\x12\xC9\x01\x0A\x0EDeleteInstance\x12-.google.cloud.lustre.v1.DeleteInstanceRequest\x1A\x1D.google.longrunning.Operation\"i\xCAA*\x0A\x15google.protobuf.Empty\x12\x11OperationMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02/*-/v1/{name=projects/*/locations/*/instances/*}\x12\xCD\x01\x0A\x0AImportData\x12).google.cloud.lustre.v1.ImportDataRequest\x1A\x1D.google.longrunning.Operation\"u\xCAA(\x0A\x12ImportDataResponse\x12\x12ImportDataMetadata\xDAA\x04name\x82\xD3\xE4\x93\x02=\"8/v1/{name=projects/*/locations/*/instances/*}:importData:\x01*\x12\xC6\x01\x0A\x0AExportData\x12).google.cloud.lustre.v1.ExportDataRequest\x1A\x1D.google.longrunning.Operation\"n\xCAA(\x0A\x12ExportDataResponse\x12\x12ExportDataMetadata\x82\xD3\xE4\x93\x02=\"8/v1/{name=projects/*/locations/*/instances/*}:exportData:\x01*\x1AI\xCAA\x15lustre.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\x8C\x02\x0A\x1Acom.google.cloud.lustre.v1B\x0BLustreProtoP\x01Z2cloud.google.com/go/lustre/apiv1/lustrepb;lustrepb\xEAAY\x0A!iam.googleapis.com/ServiceAccount\x124projects/{project}/serviceAccounts/{service_account}\xEAAN\x0A\x1Ecompute.googleapis.com/Network\x12,projects/{project}/global/networks/{network}b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class CreateSingleTenantHsmInstanceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the location associated with the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance], in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -72,7 +72,7 @@ class CreateSingleTenantHsmInstanceRequest extends \Google\Protobuf\Internal\Mes
      *     @type string $parent
      *           Required. The resource name of the location associated with the
      *           [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance], in
-     *           the format `projects/&#42;&#47;locations/&#42;`.
+     *           the format `projects/{@*}locations/*`.
      *     @type string $single_tenant_hsm_instance_id
      *           Optional. It must be unique within a location and match the regular
      *           expression `[a-zA-Z0-9_-]{1,63}`.
@@ -90,7 +90,7 @@ class CreateSingleTenantHsmInstanceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the location associated with the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance], in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -103,7 +103,7 @@ class CreateSingleTenantHsmInstanceRequest extends \Google\Protobuf\Internal\Mes
     /**
      * Required. The resource name of the location associated with the
      * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance], in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

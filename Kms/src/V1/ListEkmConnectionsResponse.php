@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -47,7 +47,7 @@ class ListEkmConnectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\EkmConnection>|\Google\Protobuf\Internal\RepeatedField $ekm_connections
+     *     @type \Google\Cloud\Kms\V1\EkmConnection[] $ekm_connections
      *           The list of [EkmConnections][google.cloud.kms.v1.EkmConnection].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -70,7 +70,7 @@ class ListEkmConnectionsResponse extends \Google\Protobuf\Internal\Message
      * The list of [EkmConnections][google.cloud.kms.v1.EkmConnection].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection ekm_connections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\EkmConnection>
      */
     public function getEkmConnections()
     {
@@ -81,7 +81,7 @@ class ListEkmConnectionsResponse extends \Google\Protobuf\Internal\Message
      * The list of [EkmConnections][google.cloud.kms.v1.EkmConnection].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection ekm_connections = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\EkmConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\EkmConnection[] $var
      * @return $this
      */
     public function setEkmConnections($var)

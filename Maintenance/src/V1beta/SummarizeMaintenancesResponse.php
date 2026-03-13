@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SummarizeMaintenances custom method.
@@ -42,13 +42,13 @@ class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary>|\Google\Protobuf\Internal\RepeatedField $maintenances
+     *     @type \Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary[] $maintenances
      *           The resulting summaries.
      *     @type string $next_page_token
      *           If present, the next page token can be provided to a subsequent
      *           SummarizeMaintenances call to list the next page.
      *           If empty, there are no more pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -61,7 +61,7 @@ class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message
      * The resulting summaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceSummary maintenances = 10509;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary>
      */
     public function getMaintenances()
     {
@@ -72,7 +72,7 @@ class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message
      * The resulting summaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceSummary maintenances = 10509;</code>
-     * @param array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary[] $var
      * @return $this
      */
     public function setMaintenances($var)
@@ -117,7 +117,7 @@ class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 10511 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class SummarizeMaintenancesResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 10511 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

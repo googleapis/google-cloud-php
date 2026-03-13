@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides information about the analysis status of a discovered resource.
@@ -100,7 +100,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *     @type int $analysis_status
      *           The status of discovery for the resource.
      *     @type \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted $analysis_completed
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $analysis_error
+     *     @type \Google\Rpc\Status[] $analysis_error
      *           Indicates any errors encountered during analysis of a resource. There
      *           could be 0 or more of these errors.
      *     @type \Google\Rpc\Status $analysis_status_error
@@ -117,7 +117,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The status of an SBOM generation.
      *     @type \Grafeas\V1\DiscoveryOccurrence\VulnerabilityAttestation $vulnerability_attestation
      *           The status of an vulnerability attestation generation.
-     *     @type array<\Grafeas\V1\DiscoveryOccurrence\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Grafeas\V1\DiscoveryOccurrence\File[] $files
      *           Files that make up the resource described by the occurrence.
      *     @type \Google\Protobuf\Timestamp $last_vulnerability_update_time
      *           The last time vulnerability scan results changed.
@@ -217,7 +217,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * could be 0 or more of these errors.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getAnalysisError()
     {
@@ -229,7 +229,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * could be 0 or more of these errors.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setAnalysisError($var)
@@ -454,7 +454,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Files that make up the resource described by the occurrence.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\DiscoveryOccurrence\File>
      */
     public function getFiles()
     {
@@ -465,7 +465,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Files that make up the resource described by the occurrence.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.DiscoveryOccurrence.File files = 11;</code>
-     * @param array<\Grafeas\V1\DiscoveryOccurrence\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\DiscoveryOccurrence\File[] $var
      * @return $this
      */
     public function setFiles($var)

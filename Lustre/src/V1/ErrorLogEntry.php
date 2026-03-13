@@ -5,8 +5,8 @@
 namespace Google\Cloud\Lustre\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An entry describing an error that has occurred.
@@ -38,7 +38,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Required. A URL that refers to the target (a data source, a data sink,
      *           or an object) with which the error is associated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $error_details
+     *     @type string[] $error_details
      *           A list of messages that carry the error details.
      * }
      */
@@ -79,7 +79,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      * A list of messages that carry the error details.
      *
      * Generated from protobuf field <code>repeated string error_details = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getErrorDetails()
     {
@@ -90,7 +90,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      * A list of messages that carry the error details.
      *
      * Generated from protobuf field <code>repeated string error_details = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setErrorDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1\TrustConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A configuration for the Google Certificate Authority Service.
@@ -80,5 +80,4 @@ class CertificateAuthorityServiceConfig extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

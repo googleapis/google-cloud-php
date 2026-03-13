@@ -5,8 +5,8 @@
 namespace Google\LongRunning;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -44,11 +44,11 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\LongRunning\Operation[] $operations
      *           A list of operations that matches the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Unreachable resources. Populated when the request sets
      *           `ListOperationsRequest.return_partial_success` and reads across
      *           collections e.g. when attempting to list all resources across all supported
@@ -64,7 +64,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of operations that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\LongRunning\Operation>
      */
     public function getOperations()
     {
@@ -75,7 +75,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * A list of operations that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\LongRunning\Operation[] $var
      * @return $this
      */
     public function setOperations($var)
@@ -119,7 +119,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -133,7 +133,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      * locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

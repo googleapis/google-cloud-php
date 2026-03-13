@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The TLS configuration for the Kafka cluster.
@@ -27,7 +27,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * short names. These are applied in order by Kafka.
      * Refer to the Apache Kafka documentation for `ssl.principal.mapping.rules`
      * for the precise formatting details and syntax.
-     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1&#64;example.com/,DEFAULT"
+     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1\@example.com/,DEFAULT"
      * This is a static Kafka broker configuration. Setting or modifying this
      * field will trigger a rolling restart of the Kafka brokers to apply
      * the change. An empty string means no rules are applied (Kafka default).
@@ -50,7 +50,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      *           short names. These are applied in order by Kafka.
      *           Refer to the Apache Kafka documentation for `ssl.principal.mapping.rules`
      *           for the precise formatting details and syntax.
-     *           Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1&#64;example.com/,DEFAULT"
+     *           Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1\@example.com/,DEFAULT"
      *           This is a static Kafka broker configuration. Setting or modifying this
      *           field will trigger a rolling restart of the Kafka brokers to apply
      *           the change. An empty string means no rules are applied (Kafka default).
@@ -104,7 +104,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * short names. These are applied in order by Kafka.
      * Refer to the Apache Kafka documentation for `ssl.principal.mapping.rules`
      * for the precise formatting details and syntax.
-     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1&#64;example.com/,DEFAULT"
+     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1\@example.com/,DEFAULT"
      * This is a static Kafka broker configuration. Setting or modifying this
      * field will trigger a rolling restart of the Kafka brokers to apply
      * the change. An empty string means no rules are applied (Kafka default).
@@ -122,7 +122,7 @@ class TlsConfig extends \Google\Protobuf\Internal\Message
      * short names. These are applied in order by Kafka.
      * Refer to the Apache Kafka documentation for `ssl.principal.mapping.rules`
      * for the precise formatting details and syntax.
-     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1&#64;example.com/,DEFAULT"
+     * Example: "RULE:^CN=(.*?),OU=ServiceUsers.*$/$1\@example.com/,DEFAULT"
      * This is a static Kafka broker configuration. Setting or modifying this
      * field will trigger a rolling restart of the Kafka brokers to apply
      * the change. An empty string means no rules are applied (Kafka default).

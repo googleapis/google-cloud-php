@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sources of CA certificates to install in the broker's truststore.
@@ -29,7 +29,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\V1\TrustConfig\CertificateAuthorityServiceConfig>|\Google\Protobuf\Internal\RepeatedField $cas_configs
+     *     @type \Google\Cloud\ManagedKafka\V1\TrustConfig\CertificateAuthorityServiceConfig[] $cas_configs
      *           Optional. Configuration for the Google Certificate Authority Service.
      *           Maximum 10.
      * }
@@ -44,7 +44,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      * Maximum 10.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.TrustConfig.CertificateAuthorityServiceConfig cas_configs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\TrustConfig\CertificateAuthorityServiceConfig>
      */
     public function getCasConfigs()
     {
@@ -56,7 +56,7 @@ class TrustConfig extends \Google\Protobuf\Internal\Message
      * Maximum 10.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.TrustConfig.CertificateAuthorityServiceConfig cas_configs = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\TrustConfig\CertificateAuthorityServiceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\TrustConfig\CertificateAuthorityServiceConfig[] $var
      * @return $this
      */
     public function setCasConfigs($var)

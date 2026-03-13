@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregate is a <group, count> pair.
@@ -106,5 +106,4 @@ class Aggregate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

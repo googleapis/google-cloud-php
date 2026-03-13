@@ -5,8 +5,8 @@
 namespace Grafeas\V1\InTotoSlsaProvenanceV1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoSlsaProvenanceV1.BuildMetadata</code>
@@ -129,5 +129,4 @@ class BuildMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\Inventory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A warning message that indicates potential problems with the response data.

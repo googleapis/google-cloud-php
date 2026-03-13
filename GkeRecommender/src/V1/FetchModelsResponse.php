@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class FetchModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type string[] $models
      *           Output only. List of available models. Open-source models follow the
      *           Huggingface Hub `owner/model_name` format.
      *     @type string $next_page_token
@@ -61,7 +61,7 @@ class FetchModelsResponse extends \Google\Protobuf\Internal\Message
      * Huggingface Hub `owner/model_name` format.
      *
      * Generated from protobuf field <code>repeated string models = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getModels()
     {
@@ -73,7 +73,7 @@ class FetchModelsResponse extends \Google\Protobuf\Internal\Message
      * Huggingface Hub `owner/model_name` format.
      *
      * Generated from protobuf field <code>repeated string models = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setModels($var)

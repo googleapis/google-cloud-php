@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Slurm partitions in the cluster. Partitions are groups of
@@ -43,7 +43,7 @@ class SlurmPartition extends \Google\Protobuf\Internal\Message
      *           Required. ID of the partition, which is how users will identify it. Must
      *           conform to [RFC-1034](https://datatracker.ietf.org/doc/html/rfc1034)
      *           (lower-case, alphanumeric, and at most 63 characters).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $node_set_ids
+     *     @type string[] $node_set_ids
      *           Required. IDs of the nodesets that make up this partition. Values must
      *           match
      *           [SlurmNodeSet.id][google.cloud.hypercomputecluster.v1beta.SlurmNodeSet.id].
@@ -90,7 +90,7 @@ class SlurmPartition extends \Google\Protobuf\Internal\Message
      * [SlurmNodeSet.id][google.cloud.hypercomputecluster.v1beta.SlurmNodeSet.id].
      *
      * Generated from protobuf field <code>repeated string node_set_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNodeSetIds()
     {
@@ -103,7 +103,7 @@ class SlurmPartition extends \Google\Protobuf\Internal\Message
      * [SlurmNodeSet.id][google.cloud.hypercomputecluster.v1beta.SlurmNodeSet.id].
      *
      * Generated from protobuf field <code>repeated string node_set_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNodeSetIds($var)

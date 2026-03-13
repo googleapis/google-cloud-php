@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The text annotations response message.
@@ -73,14 +73,14 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Language\V1\Sentence>|\Google\Protobuf\Internal\RepeatedField $sentences
+     *     @type \Google\Cloud\Language\V1\Sentence[] $sentences
      *           Sentences in the input document. Populated if the user enables
      *           [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
-     *     @type array<\Google\Cloud\Language\V1\Token>|\Google\Protobuf\Internal\RepeatedField $tokens
+     *     @type \Google\Cloud\Language\V1\Token[] $tokens
      *           Tokens, along with their syntactic information, in the input document.
      *           Populated if the user enables
      *           [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
-     *     @type array<\Google\Cloud\Language\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\Language\V1\Entity[] $entities
      *           Entities, along with their semantic information, in the input document.
      *           Populated if the user enables
      *           [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entities].
@@ -92,9 +92,9 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      *           in the request or, if not specified, the automatically-detected language.
      *           See [Document.language][google.cloud.language.v1.Document.language] field
      *           for more details.
-     *     @type array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type \Google\Cloud\Language\V1\ClassificationCategory[] $categories
      *           Categories identified in the input document.
-     *     @type array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $moderation_categories
+     *     @type \Google\Cloud\Language\V1\ClassificationCategory[] $moderation_categories
      *           Harmful and sensitive categories identified in the input document.
      * }
      */
@@ -108,7 +108,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Sentence>
      */
     public function getSentences()
     {
@@ -120,7 +120,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
-     * @param array<\Google\Cloud\Language\V1\Sentence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Sentence[] $var
      * @return $this
      */
     public function setSentences($var)
@@ -137,7 +137,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Token>
      */
     public function getTokens()
     {
@@ -150,7 +150,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_syntax][google.cloud.language.v1.AnnotateTextRequest.Features.extract_syntax].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
-     * @param array<\Google\Cloud\Language\V1\Token>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Token[] $var
      * @return $this
      */
     public function setTokens($var)
@@ -167,7 +167,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Entity entities = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Entity>
      */
     public function getEntities()
     {
@@ -180,7 +180,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * [AnnotateTextRequest.Features.extract_entities][google.cloud.language.v1.AnnotateTextRequest.Features.extract_entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Entity entities = 3;</code>
-     * @param array<\Google\Cloud\Language\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Entity[] $var
      * @return $this
      */
     public function setEntities($var)
@@ -265,7 +265,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Categories identified in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\ClassificationCategory>
      */
     public function getCategories()
     {
@@ -276,7 +276,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Categories identified in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 6;</code>
-     * @param array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\ClassificationCategory[] $var
      * @return $this
      */
     public function setCategories($var)
@@ -291,7 +291,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Harmful and sensitive categories identified in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory moderation_categories = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\ClassificationCategory>
      */
     public function getModerationCategories()
     {
@@ -302,7 +302,7 @@ class AnnotateTextResponse extends \Google\Protobuf\Internal\Message
      * Harmful and sensitive categories identified in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory moderation_categories = 7;</code>
-     * @param array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\ClassificationCategory[] $var
      * @return $this
      */
     public function setModerationCategories($var)

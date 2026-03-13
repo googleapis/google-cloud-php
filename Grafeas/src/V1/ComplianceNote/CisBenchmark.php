@@ -5,8 +5,8 @@
 namespace Grafeas\V1\ComplianceNote;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A compliance check that is a CIS benchmark.
@@ -84,5 +84,4 @@ class CisBenchmark extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

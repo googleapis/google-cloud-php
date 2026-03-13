@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The syntax analysis response message.
@@ -43,9 +43,9 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Language\V1\Sentence>|\Google\Protobuf\Internal\RepeatedField $sentences
+     *     @type \Google\Cloud\Language\V1\Sentence[] $sentences
      *           Sentences in the input document.
-     *     @type array<\Google\Cloud\Language\V1\Token>|\Google\Protobuf\Internal\RepeatedField $tokens
+     *     @type \Google\Cloud\Language\V1\Token[] $tokens
      *           Tokens, along with their syntactic information, in the input document.
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
@@ -63,7 +63,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Sentences in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Sentence>
      */
     public function getSentences()
     {
@@ -74,7 +74,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Sentences in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Sentence sentences = 1;</code>
-     * @param array<\Google\Cloud\Language\V1\Sentence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Sentence[] $var
      * @return $this
      */
     public function setSentences($var)
@@ -89,7 +89,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Tokens, along with their syntactic information, in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Token>
      */
     public function getTokens()
     {
@@ -100,7 +100,7 @@ class AnalyzeSyntaxResponse extends \Google\Protobuf\Internal\Message
      * Tokens, along with their syntactic information, in the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Token tokens = 2;</code>
-     * @param array<\Google\Cloud\Language\V1\Token>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Token[] $var
      * @return $this
      */
     public function setTokens($var)

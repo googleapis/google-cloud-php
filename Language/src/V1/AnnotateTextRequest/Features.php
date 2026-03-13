@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V1\AnnotateTextRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * All available features for sentiment, syntax, and semantic analysis.
@@ -283,5 +283,4 @@ class Features extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

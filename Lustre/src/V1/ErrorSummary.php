@@ -5,8 +5,8 @@
 namespace Google\Cloud\Lustre\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A summary of errors by error code, plus a count and sample error log
@@ -47,7 +47,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      *           Required.
      *     @type int|string $error_count
      *           Required. Count of this type of error.
-     *     @type array<\Google\Cloud\Lustre\V1\ErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $error_log_entries
+     *     @type \Google\Cloud\Lustre\V1\ErrorLogEntry[] $error_log_entries
      *           Error samples.
      *           At most 5 error log entries are recorded for a given
      *           error code for a single transfer operation.
@@ -116,7 +116,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      * error code for a single transfer operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lustre.v1.ErrorLogEntry error_log_entries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Lustre\V1\ErrorLogEntry>
      */
     public function getErrorLogEntries()
     {
@@ -129,7 +129,7 @@ class ErrorSummary extends \Google\Protobuf\Internal\Message
      * error code for a single transfer operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lustre.v1.ErrorLogEntry error_log_entries = 3;</code>
-     * @param array<\Google\Cloud\Lustre\V1\ErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Lustre\V1\ErrorLogEntry[] $var
      * @return $this
      */
     public function setErrorLogEntries($var)

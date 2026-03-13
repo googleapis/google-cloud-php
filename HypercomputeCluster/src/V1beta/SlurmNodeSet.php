@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Slurm nodesets in the cluster. Nodesets are groups of
@@ -80,7 +80,7 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      *           Optional. ID of the compute resource on which this nodeset will run. Must
      *           match a key in the cluster's
      *           [compute_resources](Cluster.compute_resources).
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>|\Google\Protobuf\Internal\RepeatedField $storage_configs
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\StorageConfig[] $storage_configs
      *           Optional. How [storage
      *           resources][google.cloud.hypercomputecluster.v1beta.StorageResource] should
      *           be mounted on each compute node.
@@ -202,7 +202,7 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      * be mounted on each compute node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.StorageConfig storage_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>
      */
     public function getStorageConfigs()
     {
@@ -215,7 +215,7 @@ class SlurmNodeSet extends \Google\Protobuf\Internal\Message
      * be mounted on each compute node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.StorageConfig storage_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\StorageConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\StorageConfig[] $var
      * @return $this
      */
     public function setStorageConfigs($var)

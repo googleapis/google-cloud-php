@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for creating notes in batch.
@@ -28,7 +28,7 @@ class BatchCreateNotesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $notes
+     *     @type \Grafeas\V1\Note[] $notes
      *           The notes that were created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateNotesResponse extends \Google\Protobuf\Internal\Message
      * The notes that were created.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Note notes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Note>
      */
     public function getNotes()
     {
@@ -52,7 +52,7 @@ class BatchCreateNotesResponse extends \Google\Protobuf\Internal\Message
      * The notes that were created.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Note notes = 1;</code>
-     * @param array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Note[] $var
      * @return $this
      */
     public function setNotes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The entity-level sentiment analysis response message.
@@ -37,7 +37,7 @@ class AnalyzeEntitySentimentResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Language\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\Language\V1\Entity[] $entities
      *           The recognized entities in the input document with associated sentiments.
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
@@ -55,7 +55,7 @@ class AnalyzeEntitySentimentResponse extends \Google\Protobuf\Internal\Message
      * The recognized entities in the input document with associated sentiments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Entity entities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V1\Entity>
      */
     public function getEntities()
     {
@@ -66,7 +66,7 @@ class AnalyzeEntitySentimentResponse extends \Google\Protobuf\Internal\Message
      * The recognized entities in the input document with associated sentiments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.Entity entities = 1;</code>
-     * @param array<\Google\Cloud\Language\V1\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V1\Entity[] $var
      * @return $this
      */
     public function setEntities($var)

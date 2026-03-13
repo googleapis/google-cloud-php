@@ -5,8 +5,8 @@
 namespace Grafeas\V1\InTotoSlsaProvenanceV1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoSlsaProvenanceV1.ProvenanceBuilder</code>
@@ -34,7 +34,7 @@ class ProvenanceBuilder extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *     @type array|\Google\Protobuf\Internal\MapField $version
-     *     @type array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $builder_dependencies
+     *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $builder_dependencies
      * }
      */
     public function __construct($data = NULL) {
@@ -88,7 +88,7 @@ class ProvenanceBuilder extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor builder_dependencies = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>
      */
     public function getBuilderDependencies()
     {
@@ -97,7 +97,7 @@ class ProvenanceBuilder extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor builder_dependencies = 3;</code>
-     * @param array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $var
      * @return $this
      */
     public function setBuilderDependencies($var)
@@ -109,5 +109,4 @@ class ProvenanceBuilder extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the layer a package was found in.
@@ -64,7 +64,7 @@ class LayerDetails extends \Google\Protobuf\Internal\Message
      *     @type string $command
      *           The layer build command that was used to build the layer. This may not be
      *           found in all layers depending on how the container image is built.
-     *     @type array<\Grafeas\V1\BaseImage>|\Google\Protobuf\Internal\RepeatedField $base_images
+     *     @type \Grafeas\V1\BaseImage[] $base_images
      *           The base images the layer is found within.
      * }
      */
@@ -185,7 +185,7 @@ class LayerDetails extends \Google\Protobuf\Internal\Message
      * The base images the layer is found within.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.BaseImage base_images = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\BaseImage>
      */
     public function getBaseImages()
     {
@@ -196,7 +196,7 @@ class LayerDetails extends \Google\Protobuf\Internal\Message
      * The base images the layer is found within.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.BaseImage base_images = 4;</code>
-     * @param array<\Grafeas\V1\BaseImage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\BaseImage[] $var
      * @return $this
      */
     public function setBaseImages($var)

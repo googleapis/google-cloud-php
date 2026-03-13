@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a repository in which log entries are stored.
@@ -140,13 +140,13 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *     @type bool $analytics_enabled
      *           Whether log analytics is enabled for this bucket.
      *           Once enabled, log analytics features cannot be disabled.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_fields
+     *     @type string[] $restricted_fields
      *           Log entry field paths that are denied access in this bucket.
      *           The following fields and their children are eligible: `textPayload`,
      *           `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
      *           Restricting a repeated field will restrict all values. Adding a parent will
      *           block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
-     *     @type array<\Google\Cloud\Logging\V2\IndexConfig>|\Google\Protobuf\Internal\RepeatedField $index_configs
+     *     @type \Google\Cloud\Logging\V2\IndexConfig[] $index_configs
      *           A list of indexed fields and related configuration data.
      *     @type \Google\Cloud\Logging\V2\CmekSettings $cmek_settings
      *           The CMEK settings of the log bucket. If present, new log entries written to
@@ -425,7 +425,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
      *
      * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRestrictedFields()
     {
@@ -440,7 +440,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
      *
      * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRestrictedFields($var)
@@ -455,7 +455,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * A list of indexed fields and related configuration data.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.IndexConfig index_configs = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\IndexConfig>
      */
     public function getIndexConfigs()
     {
@@ -466,7 +466,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * A list of indexed fields and related configuration data.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.IndexConfig index_configs = 17;</code>
-     * @param array<\Google\Cloud\Logging\V2\IndexConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\IndexConfig[] $var
      * @return $this
      */
     public function setIndexConfigs($var)

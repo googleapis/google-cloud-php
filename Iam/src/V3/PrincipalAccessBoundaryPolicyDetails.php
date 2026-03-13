@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Principal access boundary policy details
@@ -39,7 +39,7 @@ class PrincipalAccessBoundaryPolicyDetails extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicyRule[] $rules
      *           Required. A list of principal access boundary policy rules. The number of
      *           rules in a policy is limited to 500.
      *     @type string $enforcement_version
@@ -60,7 +60,7 @@ class PrincipalAccessBoundaryPolicyDetails extends \Google\Protobuf\Internal\Mes
      * rules in a policy is limited to 500.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PrincipalAccessBoundaryPolicyRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicyRule>
      */
     public function getRules()
     {
@@ -72,7 +72,7 @@ class PrincipalAccessBoundaryPolicyDetails extends \Google\Protobuf\Internal\Mes
      * rules in a policy is limited to 500.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PrincipalAccessBoundaryPolicyRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicyRule[] $var
      * @return $this
      */
     public function setRules($var)

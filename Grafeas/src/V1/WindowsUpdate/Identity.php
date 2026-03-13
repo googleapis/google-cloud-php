@@ -5,8 +5,8 @@
 namespace Grafeas\V1\WindowsUpdate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The unique identifier of the update.
@@ -98,5 +98,4 @@ class Identity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

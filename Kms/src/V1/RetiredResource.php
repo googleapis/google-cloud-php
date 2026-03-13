@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RetiredResource resource represents the record of a deleted
@@ -21,7 +21,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifier. The resource name for this
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -29,7 +29,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the original
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] that was deleted in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string original_resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -57,11 +57,11 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. Identifier. The resource name for this
      *           [RetiredResource][google.cloud.kms.v1.RetiredResource] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     *           `projects/{@*}locations/{@*}retiredResources/*`.
      *     @type string $original_resource
      *           Output only. The full resource name of the original
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey] that was deleted in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *     @type string $resource_type
      *           Output only. The resource type of the original deleted resource.
      *     @type \Google\Protobuf\Timestamp $delete_time
@@ -77,7 +77,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifier. The resource name for this
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -90,7 +90,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Identifier. The resource name for this
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -107,7 +107,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the original
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] that was deleted in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string original_resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -120,7 +120,7 @@ class RetiredResource extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The full resource name of the original
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] that was deleted in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string original_resource = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

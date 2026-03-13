@@ -5,8 +5,8 @@
 namespace Grafeas\V1\SlsaProvenance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Steps taken to build the artifact.
@@ -290,5 +290,4 @@ class SlsaRecipe extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

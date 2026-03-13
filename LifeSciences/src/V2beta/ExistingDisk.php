@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for an existing disk to be attached to the VM.

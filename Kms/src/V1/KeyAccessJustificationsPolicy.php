@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -36,7 +36,7 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_access_reasons
+     *     @type int[] $allowed_access_reasons
      *           The list of allowed reasons for access to a
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey]. Zero allowed access reasons
      *           means all encrypt, decrypt, and sign operations for the
@@ -57,7 +57,7 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
      * fail.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.AccessReason allowed_access_reasons = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedAccessReasons()
     {
@@ -72,7 +72,7 @@ class KeyAccessJustificationsPolicy extends \Google\Protobuf\Internal\Message
      * fail.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.AccessReason allowed_access_reasons = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedAccessReasons($var)

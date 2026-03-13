@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
@@ -26,7 +26,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -170,7 +170,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for this
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      *     @type int $state
      *           The current state of the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
@@ -250,7 +250,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -263,7 +263,7 @@ class CryptoKeyVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

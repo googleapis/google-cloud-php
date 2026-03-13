@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -18,7 +18,7 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -84,7 +84,7 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     *           to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     *           to list, in the format `projects/{@*}locations/{@*}keyRings/*`.
      *     @type int $page_size
      *           Optional. Optional limit on the number of
      *           [ImportJobs][google.cloud.kms.v1.ImportJob] to include in the response.
@@ -115,7 +115,7 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -127,7 +127,7 @@ class ListImportJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the [KeyRing][google.cloud.kms.v1.KeyRing]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}keyRings/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
