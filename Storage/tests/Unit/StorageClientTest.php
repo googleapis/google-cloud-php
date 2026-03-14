@@ -208,6 +208,39 @@ class StorageClientTest extends TestCase
         $this->assertInstanceOf(Bucket::class, $createdBucket);
     }
 
+    public function testCreateBucketWithEncryptionEnforcementConfig()
+    {
+        $bucket = 'bucket';
+        $encryptionConfig = [
+            'encryption' => [
+                'defaultKmsKeyName' => 'key',
+                'googleManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+                'customerManagedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+                'customerSuppliedEncryptionEnforcementConfig' => [
+                    'restrictionMode' => 'FullyRestricted'
+                ],
+            ],
+        ];
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->connection
+            ->insertBucket([
+                'project' => self::PROJECT,
+                'encryption' => $encryptionConfig['encryption'],
+                'name' => $bucket
+            ])
+            ->willReturn(['name' => $bucket] + $encryptionConfig);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $createdBucket = $this->client->createBucket($bucket, $encryptionConfig);
+        $this->assertInstanceOf(Bucket::class, $createdBucket);
+        $this->assertEquals($encryptionConfig['encryption'], $createdBucket->info()['encryption']);
+    }
+
     public function testCreatesBucketWithLifecycleBuilder()
     {
         $bucket = 'bucket';
