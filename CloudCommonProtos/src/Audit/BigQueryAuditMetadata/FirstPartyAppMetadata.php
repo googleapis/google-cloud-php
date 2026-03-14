@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * First party (Google) application specific request metadata.
@@ -72,5 +72,4 @@ class FirstPartyAppMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

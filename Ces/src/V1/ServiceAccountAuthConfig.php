@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations for authentication using a custom service account.
@@ -22,7 +22,7 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      * The service account must have the
      * `roles/iam.serviceAccountTokenCreator` role granted to the
      * CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,8 +48,8 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      *           The service account must have the
      *           `roles/iam.serviceAccountTokenCreator` role granted to the
      *           CES service agent
-     *           `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
+     *     @type string[] $scopes
      *           Optional. The OAuth scopes to grant. If not specified, the default scope
      *           `https://www.googleapis.com/auth/cloud-platform` is used.
      * }
@@ -66,7 +66,7 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      * The service account must have the
      * `roles/iam.serviceAccountTokenCreator` role granted to the
      * CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -83,7 +83,7 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      * The service account must have the
      * `roles/iam.serviceAccountTokenCreator` role granted to the
      * CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>string service_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -102,7 +102,7 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/auth/cloud-platform` is used.
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -114,7 +114,7 @@ class ServiceAccountAuthConfig extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/auth/cloud-platform` is used.
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

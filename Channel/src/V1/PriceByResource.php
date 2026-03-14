@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents price by resource type.
@@ -44,7 +44,7 @@ class PriceByResource extends \Google\Protobuf\Internal\Message
      *           Resource Type. Example: SEAT
      *     @type \Google\Cloud\Channel\V1\Price $price
      *           Price of the Offer. Present if there are no price phases.
-     *     @type array<\Google\Cloud\Channel\V1\PricePhase>|\Google\Protobuf\Internal\RepeatedField $price_phases
+     *     @type \Google\Cloud\Channel\V1\PricePhase[] $price_phases
      *           Specifies the price by time range.
      * }
      */
@@ -119,7 +119,7 @@ class PriceByResource extends \Google\Protobuf\Internal\Message
      * Specifies the price by time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PricePhase price_phases = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\PricePhase>
      */
     public function getPricePhases()
     {
@@ -130,7 +130,7 @@ class PriceByResource extends \Google\Protobuf\Internal\Message
      * Specifies the price by time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PricePhase price_phases = 3;</code>
-     * @param array<\Google\Cloud\Channel\V1\PricePhase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\PricePhase[] $var
      * @return $this
      */
     public function setPricePhases($var)

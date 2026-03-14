@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -92,7 +92,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *     @type string $offer
      *           Required. New Offer.
      *           Format: accounts/{account_id}/offers/{offer_id}.
-     *     @type array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Channel\V1\Parameter[] $parameters
      *           Optional. Parameters needed to purchase the Offer. To view the available
      *           Parameters refer to the
      *           [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions]
@@ -191,7 +191,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Parameter>
      */
     public function getParameters()
     {
@@ -205,7 +205,7 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      * from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Channel\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

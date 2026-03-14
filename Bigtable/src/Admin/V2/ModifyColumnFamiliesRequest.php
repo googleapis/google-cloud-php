@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -71,7 +71,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The unique name of the table whose families should be modified.
      *           Values are of the form
      *           `projects/{project}/instances/{instance}/tables/{table}`.
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification>|\Google\Protobuf\Internal\RepeatedField $modifications
+     *     @type \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[] $modifications
      *           Required. Modifications to be atomically applied to the specified table's
      *           families. Entries are applied in order, meaning that earlier modifications
      *           can be masked by later ones (in the case of repeated updates to the same
@@ -122,7 +122,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      * family, for example).
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification>
      */
     public function getModifications()
     {
@@ -136,7 +136,7 @@ class ModifyColumnFamiliesRequest extends \Google\Protobuf\Internal\Message
      * family, for example).
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.ModifyColumnFamiliesRequest.Modification modifications = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\ModifyColumnFamiliesRequest\Modification[] $var
      * @return $this
      */
     public function setModifications($var)

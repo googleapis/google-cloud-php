@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for summarization.
@@ -111,5 +111,4 @@ class SummarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

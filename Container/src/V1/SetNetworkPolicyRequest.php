@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetNetworkPolicyRequest enables/disables network policy for a cluster.
@@ -50,7 +50,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
     protected $network_policy = null;
     /**
      * The name (project, location, cluster name) of the cluster to set networking
-     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * policy. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -119,7 +119,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
      *           Required. Configuration options for the NetworkPolicy feature.
      *     @type string $name
      *           The name (project, location, cluster name) of the cluster to set networking
-     *           policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           policy. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -273,7 +273,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to set networking
-     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * policy. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -285,7 +285,7 @@ class SetNetworkPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster name) of the cluster to set networking
-     * policy. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * policy. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

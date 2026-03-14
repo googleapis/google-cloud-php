@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A span is a unit of work or a single operation during the request processing.
@@ -68,7 +68,7 @@ class Span extends \Google\Protobuf\Internal\Message
      *           Output only. The duration of the span.
      *     @type \Google\Protobuf\Struct $attributes
      *           Output only. Key-value attributes associated with the span.
-     *     @type array<\Google\Cloud\Ces\V1\Span>|\Google\Protobuf\Internal\RepeatedField $child_spans
+     *     @type \Google\Cloud\Ces\V1\Span[] $child_spans
      *           Output only. The child spans that are nested under this span.
      * }
      */
@@ -251,7 +251,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Output only. The child spans that are nested under this span.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Span child_spans = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Span>
      */
     public function getChildSpans()
     {
@@ -262,7 +262,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Output only. The child spans that are nested under this span.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Span child_spans = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Ces\V1\Span>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Span[] $var
      * @return $this
      */
     public function setChildSpans($var)

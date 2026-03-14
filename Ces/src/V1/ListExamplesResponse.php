@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Ces\V1\Example>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\Ces\V1\Example[] $examples
      *           The list of examples.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -56,7 +56,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * The list of examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Example examples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Example>
      */
     public function getExamples()
     {
@@ -67,7 +67,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * The list of examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Example examples = 1;</code>
-     * @param array<\Google\Cloud\Ces\V1\Example>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Example[] $var
      * @return $this
      */
     public function setExamples($var)

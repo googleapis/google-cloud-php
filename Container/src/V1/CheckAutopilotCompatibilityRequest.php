@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CheckAutopilotCompatibilityRequest requests getting the blockers for the
@@ -18,7 +18,7 @@ class CheckAutopilotCompatibilityRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -32,7 +32,7 @@ class CheckAutopilotCompatibilityRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to retrieve.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class CheckAutopilotCompatibilityRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -54,7 +54,7 @@ class CheckAutopilotCompatibilityRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * The name (project, location, cluster) of the cluster to retrieve.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

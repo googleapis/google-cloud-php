@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListSkuGroups.
@@ -37,7 +37,7 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\SkuGroup>|\Google\Protobuf\Internal\RepeatedField $sku_groups
+     *     @type \Google\Cloud\Channel\V1\SkuGroup[] $sku_groups
      *           The list of SKU groups requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -55,7 +55,7 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
      * The list of SKU groups requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.SkuGroup sku_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\SkuGroup>
      */
     public function getSkuGroups()
     {
@@ -66,7 +66,7 @@ class ListSkuGroupsResponse extends \Google\Protobuf\Internal\Message
      * The list of SKU groups requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.SkuGroup sku_groups = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\SkuGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\SkuGroup[] $var
      * @return $this
      */
     public function setSkuGroups($var)

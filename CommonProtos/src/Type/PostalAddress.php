@@ -5,8 +5,8 @@
 namespace Google\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a postal address, e.g. for postal delivery or payments addresses.
@@ -201,7 +201,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *     @type string $sublocality
      *           Optional. Sublocality of the address.
      *           For example, this can be neighborhoods, boroughs, districts.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $address_lines
+     *     @type string[] $address_lines
      *           Unstructured address lines describing the lower levels of an address.
      *           Because values in address_lines do not have type information and may
      *           sometimes contain multiple values in a single field (e.g.
@@ -221,7 +221,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      *           then geocoding is the recommended way to handle completely unstructured
      *           addresses (as opposed to guessing which parts of the address should be
      *           localities or administrative areas).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $recipients
+     *     @type string[] $recipients
      *           Optional. The recipient at the address.
      *           This field may, under certain circumstances, contain multiline information.
      *           For example, it might contain "care of" information.
@@ -528,7 +528,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * localities or administrative areas).
      *
      * Generated from protobuf field <code>repeated string address_lines = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAddressLines()
     {
@@ -557,7 +557,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * localities or administrative areas).
      *
      * Generated from protobuf field <code>repeated string address_lines = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAddressLines($var)
@@ -574,7 +574,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * For example, it might contain "care of" information.
      *
      * Generated from protobuf field <code>repeated string recipients = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRecipients()
     {
@@ -587,7 +587,7 @@ class PostalAddress extends \Google\Protobuf\Internal\Message
      * For example, it might contain "care of" information.
      *
      * Generated from protobuf field <code>repeated string recipients = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRecipients($var)

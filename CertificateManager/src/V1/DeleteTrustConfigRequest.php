@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `DeleteTrustConfig` method.
@@ -17,7 +17,7 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the TrustConfig to delete. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +54,7 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the TrustConfig to delete. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}trustConfigs/*`.
      *     @type string $etag
      *           The current etag of the TrustConfig.
      *           If an etag is provided and does not match the current etag of the resource,
@@ -68,7 +68,7 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the TrustConfig to delete. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -80,7 +80,7 @@ class DeleteTrustConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the TrustConfig to delete. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;trustConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}trustConfigs/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice\DataPoint\ConversationMeasure;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Average QA normalized score for the tag.
@@ -98,5 +98,4 @@ class QaTagScore extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

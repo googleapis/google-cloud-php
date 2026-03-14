@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -37,7 +37,7 @@ class RunSessionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Ces\V1\SessionConfig $config
      *           Required. The configuration for the session.
-     *     @type array<\Google\Cloud\Ces\V1\SessionInput>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\Ces\V1\SessionInput[] $inputs
      *           Required. Inputs for the session.
      * }
      */
@@ -86,7 +86,7 @@ class RunSessionRequest extends \Google\Protobuf\Internal\Message
      * Required. Inputs for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.SessionInput inputs = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\SessionInput>
      */
     public function getInputs()
     {
@@ -97,7 +97,7 @@ class RunSessionRequest extends \Google\Protobuf\Internal\Message
      * Required. Inputs for the session.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.SessionInput inputs = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\SessionInput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\SessionInput[] $var
      * @return $this
      */
     public function setInputs($var)

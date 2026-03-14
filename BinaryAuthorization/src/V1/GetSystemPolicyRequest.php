@@ -5,8 +5,8 @@
 namespace Google\Cloud\BinaryAuthorization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to read the current system policy.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetSystemPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The resource name, in the format `locations/&#42;&#47;policy`.
+     * Required. The resource name, in the format `locations/{@*}policy`.
      * Note that the system policy is not associated with a project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -45,7 +45,7 @@ class GetSystemPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The resource name, in the format `locations/&#42;&#47;policy`.
+     *           Required. The resource name, in the format `locations/{@*}policy`.
      *           Note that the system policy is not associated with a project.
      * }
      */
@@ -55,7 +55,7 @@ class GetSystemPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name, in the format `locations/&#42;&#47;policy`.
+     * Required. The resource name, in the format `locations/{@*}policy`.
      * Note that the system policy is not associated with a project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -67,7 +67,7 @@ class GetSystemPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name, in the format `locations/&#42;&#47;policy`.
+     * Required. The resource name, in the format `locations/{@*}policy`.
      * Note that the system policy is not associated with a project.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\Allocation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The share setting for reservation.
@@ -38,7 +38,7 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type int $share_type
      *           Type of sharing for this shared-reservation
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type string[] $projects
      *           A List of Project names to specify consumer projects for this
      *           shared-reservation. This is only valid when share_type's value is
      *           SPECIFIC_PROJECTS.
@@ -81,7 +81,7 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
      * SPECIFIC_PROJECTS.
      *
      * Generated from protobuf field <code>repeated string projects = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjects()
     {
@@ -94,7 +94,7 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
      * SPECIFIC_PROJECTS.
      *
      * Generated from protobuf field <code>repeated string projects = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjects($var)
@@ -106,5 +106,4 @@ class ShareSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

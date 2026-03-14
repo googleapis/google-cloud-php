@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $channel_partner_links
+     *     @type \Google\Cloud\Channel\V1\ChannelPartnerLink[] $channel_partner_links
      *           The Channel partner links for a reseller.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The Channel partner links for a reseller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerLink channel_partner_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\ChannelPartnerLink>
      */
     public function getChannelPartnerLinks()
     {
@@ -67,7 +67,7 @@ class ListChannelPartnerLinksResponse extends \Google\Protobuf\Internal\Message
      * The Channel partner links for a reseller.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ChannelPartnerLink channel_partner_links = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\ChannelPartnerLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ChannelPartnerLink[] $var
      * @return $this
      */
     public function setChannelPartnerLinks($var)

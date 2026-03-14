@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\SoleTenantConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the NodeAffinity key, values, and affinity operator according to
@@ -46,7 +46,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      *           Key for NodeAffinity.
      *     @type int $operator
      *           Operator for NodeAffinity.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Values for NodeAffinity.
      * }
      */
@@ -111,7 +111,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      * Values for NodeAffinity.
      *
      * Generated from protobuf field <code>repeated string values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -122,7 +122,7 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
      * Values for NodeAffinity.
      *
      * Generated from protobuf field <code>repeated string values = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -134,5 +134,4 @@ class NodeAffinity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

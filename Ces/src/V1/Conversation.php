@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A conversation represents an interaction between an end user and the CES app.
@@ -119,7 +119,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when the conversation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. Timestamp when the conversation was completed.
-     *     @type array<\Google\Cloud\Ces\V1\Conversation\Turn>|\Google\Protobuf\Internal\RepeatedField $turns
+     *     @type \Google\Cloud\Ces\V1\Conversation\Turn[] $turns
      *           Required. The turns in the conversation.
      *     @type int $turn_count
      *           Output only. The number of turns in the conversation.
@@ -128,7 +128,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           [input_types][google.cloud.ces.v1.Conversation.input_types] instead.
      *     @type int $source
      *           Output only. Indicate the source of the conversation.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $input_types
+     *     @type int[] $input_types
      *           Output only. The input types of the conversation.
      *     @type string $entry_agent
      *           Output only. The agent that initially handles the conversation. If not
@@ -144,7 +144,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
      *     @type string $language_code
      *           Output only. The language code of the conversation.
-     *     @type array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Ces\V1\Message[] $messages
      *           Deprecated. Use turns instead.
      * }
      */
@@ -259,7 +259,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Required. The turns in the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.Turn turns = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Conversation\Turn>
      */
     public function getTurns()
     {
@@ -270,7 +270,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Required. The turns in the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.Turn turns = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Ces\V1\Conversation\Turn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Conversation\Turn[] $var
      * @return $this
      */
     public function setTurns($var)
@@ -371,7 +371,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Output only. The input types of the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.InputType input_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getInputTypes()
     {
@@ -382,7 +382,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Output only. The input types of the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Conversation.InputType input_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setInputTypes($var)
@@ -513,7 +513,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use turns instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 2 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Message>
      * @deprecated
      */
     public function getMessages()
@@ -528,7 +528,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use turns instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 2 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Message[] $var
      * @return $this
      * @deprecated
      */

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An access control list.
@@ -37,7 +37,7 @@ class BigQueryAcl extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Iam\V1\Policy $policy
      *           IAM policy for the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $authorized_views
+     *     @type string[] $authorized_views
      *           List of authorized views for a dataset.
      *           Format: `projects/<project_id>/datasets/<dataset_id>/tables/<view_id>`.
      * }
@@ -88,7 +88,7 @@ class BigQueryAcl extends \Google\Protobuf\Internal\Message
      * Format: `projects/<project_id>/datasets/<dataset_id>/tables/<view_id>`.
      *
      * Generated from protobuf field <code>repeated string authorized_views = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAuthorizedViews()
     {
@@ -100,7 +100,7 @@ class BigQueryAcl extends \Google\Protobuf\Internal\Message
      * Format: `projects/<project_id>/datasets/<dataset_id>/tables/<view_id>`.
      *
      * Generated from protobuf field <code>repeated string authorized_views = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAuthorizedViews($var)
@@ -112,5 +112,4 @@ class BigQueryAcl extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

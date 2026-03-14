@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for controlling how IPs are allocated in the cluster.
@@ -358,7 +358,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           Output only. The utilization of the cluster default IPv4 range for the
      *           pod. The ratio is Usage/[Total number of IPs in the secondary range],
      *           Usage=numNodes*numZones*podIPsPerNode.
-     *     @type array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $additional_ip_ranges_configs
+     *     @type \Google\Cloud\Container\V1\AdditionalIPRangesConfig[] $additional_ip_ranges_configs
      *           Output only. The additional IP ranges that are added to the cluster.
      *           These IP ranges can be used by new node pools to allocate node and pod IPs
      *           automatically.
@@ -1097,7 +1097,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Once a range is removed it will not show up in IPAllocationPolicy.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>
      */
     public function getAdditionalIpRangesConfigs()
     {
@@ -1112,7 +1112,7 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Once a range is removed it will not show up in IPAllocationPolicy.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AdditionalIPRangesConfig[] $var
      * @return $this
      */
     public function setAdditionalIpRangesConfigs($var)

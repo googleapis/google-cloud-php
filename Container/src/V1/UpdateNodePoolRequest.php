@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UpdateNodePoolRequests update a node pool's image and/or version.
@@ -75,7 +75,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      */
@@ -342,8 +342,8 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool) of the node pool to
      *           update. Specified in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *           `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
+     *     @type string[] $locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available)
      *           in which the node pool's nodes should be located. Changing the locations
@@ -398,7 +398,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Google Compute Engine resources.
      *     @type \Google\Cloud\Container\V1\WindowsNodeConfig $windows_node_config
      *           Parameters that can be configured on Windows nodes.
-     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Container\V1\AcceleratorConfig[] $accelerators
      *           A list of hardware accelerators to be attached to each node.
      *           See
      *           https://cloud.google.com/compute/docs/gpus
@@ -428,7 +428,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           config.
      *     @type \Google\Cloud\Container\V1\NodePool\QueuedProvisioning $queued_provisioning
      *           Specifies the configuration of queued provisioning.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
+     *     @type string[] $storage_pools
      *           List of Storage Pools where boot disks are provisioned.
      *           Existing Storage Pools will be replaced with storage-pools.
      *     @type \Google\Protobuf\Duration $max_run_duration
@@ -670,7 +670,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      * @return string
@@ -683,7 +683,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool) of the node pool to
      * update. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 8;</code>
      * @param string $var
@@ -712,7 +712,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * consistently, use a separate API call for location changes.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -734,7 +734,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * consistently, use a separate API call for location changes.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -1338,7 +1338,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AcceleratorConfig>
      */
     public function getAccelerators()
     {
@@ -1352,7 +1352,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 35;</code>
-     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -1580,7 +1580,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Existing Storage Pools will be replaced with storage-pools.
      *
      * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoragePools()
     {
@@ -1592,7 +1592,7 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Existing Storage Pools will be replaced with storage-pools.
      *
      * Generated from protobuf field <code>repeated string storage_pools = 43;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoragePools($var)

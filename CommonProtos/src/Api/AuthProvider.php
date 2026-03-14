@@ -5,8 +5,8 @@
 namespace Google\Api;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for an authentication provider, including support for
@@ -30,7 +30,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
      * Usually a URL or an email address.
      * Example: https://securetoken.google.com
-     * Example: 1234567-compute&#64;developer.gserviceaccount.com
+     * Example: 1234567-compute\@developer.gserviceaccount.com
      *
      * Generated from protobuf field <code>string issuer = 2;</code>
      */
@@ -114,7 +114,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *           https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
      *           Usually a URL or an email address.
      *           Example: https://securetoken.google.com
-     *           Example: 1234567-compute&#64;developer.gserviceaccount.com
+     *           Example: 1234567-compute\@developer.gserviceaccount.com
      *     @type string $jwks_uri
      *           URL of the provider's public key set to validate signature of the JWT. See
      *           [OpenID
@@ -146,7 +146,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *     @type string $authorization_url
      *           Redirect URL if JWT token is required but not present or is expired.
      *           Implement authorizationUrl of securityDefinitions in OpenAPI spec.
-     *     @type array<\Google\Api\JwtLocation>|\Google\Protobuf\Internal\RepeatedField $jwt_locations
+     *     @type \Google\Api\JwtLocation[] $jwt_locations
      *           Defines the locations to extract the JWT.  For now it is only used by the
      *           Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations]
      *           (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations)
@@ -204,7 +204,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
      * Usually a URL or an email address.
      * Example: https://securetoken.google.com
-     * Example: 1234567-compute&#64;developer.gserviceaccount.com
+     * Example: 1234567-compute\@developer.gserviceaccount.com
      *
      * Generated from protobuf field <code>string issuer = 2;</code>
      * @return string
@@ -219,7 +219,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1
      * Usually a URL or an email address.
      * Example: https://securetoken.google.com
-     * Example: 1234567-compute&#64;developer.gserviceaccount.com
+     * Example: 1234567-compute\@developer.gserviceaccount.com
      *
      * Generated from protobuf field <code>string issuer = 2;</code>
      * @param string $var
@@ -379,7 +379,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *    - query: access_token
      *
      * Generated from protobuf field <code>repeated .google.api.JwtLocation jwt_locations = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\JwtLocation>
      */
     public function getJwtLocations()
     {
@@ -404,7 +404,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      *    - query: access_token
      *
      * Generated from protobuf field <code>repeated .google.api.JwtLocation jwt_locations = 6;</code>
-     * @param array<\Google\Api\JwtLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\JwtLocation[] $var
      * @return $this
      */
     public function setJwtLocations($var)

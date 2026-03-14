@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single question to be scored by the Insights QA feature.
@@ -112,9 +112,9 @@ class QaQuestion extends \Google\Protobuf\Internal\Message
      *           Question text. E.g., "Did the agent greet the customer?"
      *     @type string $answer_instructions
      *           Instructions describing how to determine the answer.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaQuestion\AnswerChoice>|\Google\Protobuf\Internal\RepeatedField $answer_choices
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaQuestion\AnswerChoice[] $answer_choices
      *           A list of valid answers to the question, which the LLM must choose from.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           User-defined list of arbitrary tags for the question. Used for
      *           grouping/organization and for weighting the score of each question.
      *     @type int $order
@@ -321,7 +321,7 @@ class QaQuestion extends \Google\Protobuf\Internal\Message
      * A list of valid answers to the question, which the LLM must choose from.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice answer_choices = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaQuestion\AnswerChoice>
      */
     public function getAnswerChoices()
     {
@@ -332,7 +332,7 @@ class QaQuestion extends \Google\Protobuf\Internal\Message
      * A list of valid answers to the question, which the LLM must choose from.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaQuestion.AnswerChoice answer_choices = 6;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaQuestion\AnswerChoice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaQuestion\AnswerChoice[] $var
      * @return $this
      */
     public function setAnswerChoices($var)
@@ -348,7 +348,7 @@ class QaQuestion extends \Google\Protobuf\Internal\Message
      * grouping/organization and for weighting the score of each question.
      *
      * Generated from protobuf field <code>repeated string tags = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -360,7 +360,7 @@ class QaQuestion extends \Google\Protobuf\Internal\Message
      * grouping/organization and for weighting the score of each question.
      *
      * Generated from protobuf field <code>repeated string tags = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

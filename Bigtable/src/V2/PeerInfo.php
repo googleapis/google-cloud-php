@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PeerInfo contains information about the peer that the client is

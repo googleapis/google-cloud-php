@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\Type\PBString\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deprecated: prefer the equivalent `Utf8Bytes`.
@@ -31,7 +31,4 @@ class Utf8Raw extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Utf8Raw::class, \Google\Cloud\Bigtable\V2\Type_String_Encoding_Utf8Raw::class);
 

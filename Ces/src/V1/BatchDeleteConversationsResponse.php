@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -42,11 +42,11 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deleted_conversations
+     *     @type string[] $deleted_conversations
      *           The list of conversations that were successfully deleted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_conversations
+     *     @type string[] $failed_conversations
      *           The list of conversations that failed to be deleted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $error_messages
+     *     @type string[] $error_messages
      *           Optional. A list of error messages associated with conversations that
      *           failed to be deleted.
      * }
@@ -60,7 +60,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations that were successfully deleted.
      *
      * Generated from protobuf field <code>repeated string deleted_conversations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeletedConversations()
     {
@@ -71,7 +71,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations that were successfully deleted.
      *
      * Generated from protobuf field <code>repeated string deleted_conversations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeletedConversations($var)
@@ -86,7 +86,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations that failed to be deleted.
      *
      * Generated from protobuf field <code>repeated string failed_conversations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedConversations()
     {
@@ -97,7 +97,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversations that failed to be deleted.
      *
      * Generated from protobuf field <code>repeated string failed_conversations = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedConversations($var)
@@ -113,7 +113,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * failed to be deleted.
      *
      * Generated from protobuf field <code>repeated string error_messages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getErrorMessages()
     {
@@ -125,7 +125,7 @@ class BatchDeleteConversationsResponse extends \Google\Protobuf\Internal\Message
      * failed to be deleted.
      *
      * Generated from protobuf field <code>repeated string error_messages = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setErrorMessages($var)

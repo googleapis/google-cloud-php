@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response once an attestation has been successfully verified, containing a
@@ -38,7 +38,7 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $oidc_claims_token
      *           Output only. Same as claims_token, but as a string.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type \Google\Rpc\Status[] $partial_errors
      *           Output only. A list of messages that carry the partial error details
      *           related to VerifyAttestation.
      * }
@@ -79,7 +79,7 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
      * related to VerifyAttestation.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getPartialErrors()
     {
@@ -91,7 +91,7 @@ class VerifyAttestationResponse extends \Google\Protobuf\Internal\Message
      * related to VerifyAttestation.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setPartialErrors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message indicating that the client should stop reading from the stream.
@@ -64,10 +64,10 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Rpc\Status $status
      *           The status of the stream.
-     *     @type array<\Google\Cloud\Bigtable\V2\StreamContinuationToken>|\Google\Protobuf\Internal\RepeatedField $continuation_tokens
+     *     @type \Google\Cloud\Bigtable\V2\StreamContinuationToken[] $continuation_tokens
      *           If non-empty, contains the information needed to resume reading their
      *           associated partitions.
-     *     @type array<\Google\Cloud\Bigtable\V2\StreamPartition>|\Google\Protobuf\Internal\RepeatedField $new_partitions
+     *     @type \Google\Cloud\Bigtable\V2\StreamPartition[] $new_partitions
      *           If non-empty, contains the new partitions to start reading from, which
      *           are related to but not necessarily identical to the partitions for the
      *           above `continuation_tokens`.
@@ -119,7 +119,7 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      * associated partitions.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamContinuationToken continuation_tokens = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\StreamContinuationToken>
      */
     public function getContinuationTokens()
     {
@@ -131,7 +131,7 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      * associated partitions.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamContinuationToken continuation_tokens = 2;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\StreamContinuationToken>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\StreamContinuationToken[] $var
      * @return $this
      */
     public function setContinuationTokens($var)
@@ -148,7 +148,7 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      * above `continuation_tokens`.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamPartition new_partitions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\StreamPartition>
      */
     public function getNewPartitions()
     {
@@ -161,7 +161,7 @@ class CloseStream extends \Google\Protobuf\Internal\Message
      * above `continuation_tokens`.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.StreamPartition new_partitions = 3;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\StreamPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\StreamPartition[] $var
      * @return $this
      */
     public function setNewPartitions($var)
@@ -173,7 +173,4 @@ class CloseStream extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CloseStream::class, \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse_CloseStream::class);
 

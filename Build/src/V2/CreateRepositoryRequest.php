@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for creating a Repository.
@@ -33,7 +33,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -78,7 +78,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID to use for the repository, which will become the final
      *           component of the repository's resource name. This ID should be unique in
      *           the connection. Allows alphanumeric characters and any of
-     *           -._~%!$&'()*+,;=&#64;.
+     *           -._~%!$&'()*+,;=\@.
      * }
      */
     public function __construct($data = NULL) {
@@ -156,7 +156,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -170,7 +170,7 @@ class CreateRepositoryRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string repository_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

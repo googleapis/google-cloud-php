@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\BlueGreenSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Autoscaled rollout policy utilizes the cluster autoscaler during
@@ -83,5 +83,4 @@ class AutoscaledRolloutPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

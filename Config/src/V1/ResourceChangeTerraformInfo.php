@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Terraform info of a ResourceChange.
@@ -60,7 +60,7 @@ class ResourceChangeTerraformInfo extends \Google\Protobuf\Internal\Message
      *           Output only. TF resource name.
      *     @type string $provider
      *           Output only. TF resource provider.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type string[] $actions
      *           Output only. TF resource actions.
      * }
      */
@@ -177,7 +177,7 @@ class ResourceChangeTerraformInfo extends \Google\Protobuf\Internal\Message
      * Output only. TF resource actions.
      *
      * Generated from protobuf field <code>repeated string actions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActions()
     {
@@ -188,7 +188,7 @@ class ResourceChangeTerraformInfo extends \Google\Protobuf\Internal\Message
      * Output only. TF resource actions.
      *
      * Generated from protobuf field <code>repeated string actions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActions($var)

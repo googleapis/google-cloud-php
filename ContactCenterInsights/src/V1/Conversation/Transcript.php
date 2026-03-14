@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message representing the transcript of a conversation.
@@ -28,7 +28,7 @@ class Transcript extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment>|\Google\Protobuf\Internal\RepeatedField $transcript_segments
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment[] $transcript_segments
      *           A list of sequential transcript segments that comprise the conversation.
      * }
      */
@@ -41,7 +41,7 @@ class Transcript extends \Google\Protobuf\Internal\Message
      * A list of sequential transcript segments that comprise the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment transcript_segments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment>
      */
     public function getTranscriptSegments()
     {
@@ -52,7 +52,7 @@ class Transcript extends \Google\Protobuf\Internal\Message
      * A list of sequential transcript segments that comprise the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment transcript_segments = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment[] $var
      * @return $this
      */
     public function setTranscriptSegments($var)
@@ -64,5 +64,4 @@ class Transcript extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

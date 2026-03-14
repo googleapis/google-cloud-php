@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataset deletion event.
@@ -106,5 +106,4 @@ class DatasetDeletion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

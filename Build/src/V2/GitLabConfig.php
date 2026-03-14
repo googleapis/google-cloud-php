@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to gitlab.com or an instance of GitLab
@@ -26,7 +26,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * of a GitLab Enterprise project, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -80,7 +80,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
      *     @type string $webhook_secret_secret_version
      *           Required. Immutable. SecretManager resource containing the webhook secret
      *           of a GitLab Enterprise project, formatted as
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\Build\V2\UserCredential $read_authorizer_credential
      *           Required. A GitLab personal access token with the minimum `read_api` scope
      *           access.
@@ -135,7 +135,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * of a GitLab Enterprise project, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -148,7 +148,7 @@ class GitLabConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. Immutable. SecretManager resource containing the webhook secret
      * of a GitLab Enterprise project, formatted as
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

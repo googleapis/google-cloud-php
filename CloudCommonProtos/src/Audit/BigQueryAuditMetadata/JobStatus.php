@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of a job.
@@ -45,7 +45,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      *           State of the job.
      *     @type \Google\Rpc\Status $error_result
      *           Job error, if the job failed.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Errors encountered during the running of the job. Does not necessarily
      *           mean that the job has completed or was unsuccessful.
      * }
@@ -122,7 +122,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      * mean that the job has completed or was unsuccessful.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -134,7 +134,7 @@ class JobStatus extends \Google\Protobuf\Internal\Message
      * mean that the job has completed or was unsuccessful.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 3;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -146,5 +146,4 @@ class JobStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

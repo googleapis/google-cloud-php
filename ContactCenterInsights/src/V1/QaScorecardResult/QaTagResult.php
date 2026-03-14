@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaScorecardResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tags and their corresponding results.
@@ -196,5 +196,4 @@ class QaTagResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

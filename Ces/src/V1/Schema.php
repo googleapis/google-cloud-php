@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a select subset of an OpenAPI 3.0 schema object.
@@ -168,7 +168,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           Required. The type of the data.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. Properties of Type.OBJECT.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
+     *     @type string[] $required
      *           Optional. Required properties of Type.OBJECT.
      *     @type string $description
      *           Optional. The description of the data.
@@ -179,15 +179,15 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type bool $unique_items
      *           Optional. Indicate the items in the array must be unique. Only applies to
      *           TYPE.ARRAY.
-     *     @type array<\Google\Cloud\Ces\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $prefix_items
+     *     @type \Google\Cloud\Ces\V1\Schema[] $prefix_items
      *           Optional. Schemas of initial elements of Type.ARRAY.
      *     @type \Google\Cloud\Ces\V1\Schema $additional_properties
      *           Optional. Can either be a boolean or an object, controls the presence of
      *           additional properties.
-     *     @type array<\Google\Cloud\Ces\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
+     *     @type \Google\Cloud\Ces\V1\Schema[] $any_of
      *           Optional. The value should be validated against any (one or more) of the
      *           subschemas in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enum
+     *     @type string[] $enum
      *           Optional. Possible values of the element of primitive type with enum
      *           format. Examples:
      *           1. We can define direction as :
@@ -293,7 +293,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Required properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>repeated string required = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequired()
     {
@@ -304,7 +304,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Required properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>repeated string required = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequired($var)
@@ -435,7 +435,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Schemas of initial elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Schema prefix_items = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Schema>
      */
     public function getPrefixItems()
     {
@@ -446,7 +446,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Schemas of initial elements of Type.ARRAY.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Schema prefix_items = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Schema[] $var
      * @return $this
      */
     public function setPrefixItems($var)
@@ -500,7 +500,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * subschemas in the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Schema any_of = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Schema>
      */
     public function getAnyOf()
     {
@@ -512,7 +512,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * subschemas in the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Schema any_of = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Schema[] $var
      * @return $this
      */
     public function setAnyOf($var)
@@ -532,7 +532,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEnum()
     {
@@ -548,7 +548,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEnum($var)

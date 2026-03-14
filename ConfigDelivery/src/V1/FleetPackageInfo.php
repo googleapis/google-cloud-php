@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfigDelivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * FleetPackageInfo represents the status of the `FleetPackage` across all the
@@ -58,7 +58,7 @@ class FleetPackageInfo extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/fleetPackages/{fleet_package}/rollouts/{rollout}`.
      *     @type int $state
      *           Optional. Output only. The current state of the `FleetPackage`.
-     *     @type array<\Google\Cloud\ConfigDelivery\V1\FleetPackageError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\ConfigDelivery\V1\FleetPackageError[] $errors
      *           Optional. Output only. Errors encountered during configuration deployment
      *           (if any).
      * }
@@ -155,7 +155,7 @@ class FleetPackageInfo extends \Google\Protobuf\Internal\Message
      * (if any).
      *
      * Generated from protobuf field <code>repeated .google.cloud.configdelivery.v1.FleetPackageError errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfigDelivery\V1\FleetPackageError>
      */
     public function getErrors()
     {
@@ -167,7 +167,7 @@ class FleetPackageInfo extends \Google\Protobuf\Internal\Message
      * (if any).
      *
      * Generated from protobuf field <code>repeated .google.cloud.configdelivery.v1.FleetPackageError errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfigDelivery\V1\FleetPackageError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfigDelivery\V1\FleetPackageError[] $var
      * @return $this
      */
     public function setErrors($var)

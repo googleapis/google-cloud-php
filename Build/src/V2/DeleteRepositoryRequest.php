@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for deleting a Repository.
@@ -17,7 +17,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the Repository to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,7 +60,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the Repository to delete.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     *           Format: `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *     @type string $etag
      *           The current etag of the repository.
      *           If an etag is provided and does not match the current etag of the
@@ -76,7 +76,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Repository to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -88,7 +88,7 @@ class DeleteRepositoryRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the Repository to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;repositories/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * State of the latest attempt to authorize a domain for certificate
@@ -179,5 +179,4 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

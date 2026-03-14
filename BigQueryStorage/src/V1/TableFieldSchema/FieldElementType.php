@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Storage\V1\TableFieldSchema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the type of a field element.
@@ -64,5 +64,4 @@ class FieldElementType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

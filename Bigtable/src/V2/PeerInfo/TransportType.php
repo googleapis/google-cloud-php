@@ -98,6 +98,3 @@ class TransportType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TransportType::class, \Google\Cloud\Bigtable\V2\PeerInfo_TransportType::class);
-

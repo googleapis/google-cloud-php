@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata from Dialogflow relating to the current transcript segment.
@@ -68,5 +68,4 @@ class DialogflowSegmentMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

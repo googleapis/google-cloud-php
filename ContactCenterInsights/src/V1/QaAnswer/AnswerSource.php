@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A question may have multiple answers from varying sources, one of which
@@ -110,5 +110,4 @@ class AnswerSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

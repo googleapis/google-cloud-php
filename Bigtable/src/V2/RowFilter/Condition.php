@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\RowFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A RowFilter which evaluates one of two possible RowFilters, depending on
@@ -183,7 +183,4 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Bigtable\V2\RowFilter_Condition::class);
 

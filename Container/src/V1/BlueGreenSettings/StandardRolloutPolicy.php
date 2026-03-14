@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\BlueGreenSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Standard rollout policy is the default policy for blue-green.
@@ -152,5 +152,4 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

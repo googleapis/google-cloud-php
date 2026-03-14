@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a 'ListResources' call. Contains a list of Resources.
@@ -42,13 +42,13 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Config\V1\Resource>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\Config\V1\Resource[] $resources
      *           List of [Resources][google.cloud.config.v1.Resource].
      *     @type string $next_page_token
      *           A token to request the next page of resources from the 'ListResources'
      *           method. The value of an empty string means that there are no more resources
      *           to return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -61,7 +61,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      * List of [Resources][google.cloud.config.v1.Resource].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Resource resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\Resource>
      */
     public function getResources()
     {
@@ -72,7 +72,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      * List of [Resources][google.cloud.config.v1.Resource].
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.Resource resources = 1;</code>
-     * @param array<\Google\Cloud\Config\V1\Resource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\Resource[] $var
      * @return $this
      */
     public function setResources($var)
@@ -117,7 +117,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListResourcesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

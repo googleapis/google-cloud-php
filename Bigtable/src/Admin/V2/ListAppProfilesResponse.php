@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BigtableInstanceAdmin.ListAppProfiles.
@@ -45,13 +45,13 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\AppProfile>|\Google\Protobuf\Internal\RepeatedField $app_profiles
+     *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile[] $app_profiles
      *           The list of requested app profiles.
      *     @type string $next_page_token
      *           Set if not all app profiles could be returned in a single response.
      *           Pass this value to `page_token` in another request to get the next
      *           page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *     @type string[] $failed_locations
      *           Locations from which AppProfile information could not be retrieved,
      *           due to an outage or some other transient condition.
      *           AppProfiles from these locations may be missing from `app_profiles`.
@@ -67,7 +67,7 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested app profiles.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.AppProfile app_profiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\AppProfile>
      */
     public function getAppProfiles()
     {
@@ -78,7 +78,7 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested app profiles.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.AppProfile app_profiles = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\AppProfile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\AppProfile[] $var
      * @return $this
      */
     public function setAppProfiles($var)
@@ -126,7 +126,7 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedLocations()
     {
@@ -140,7 +140,7 @@ class ListAppProfilesResponse extends \Google\Protobuf\Internal\Message
      * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedLocations($var)

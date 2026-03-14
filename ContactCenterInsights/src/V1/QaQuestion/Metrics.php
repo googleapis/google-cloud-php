@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\QaQuestion;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A wrapper representing metrics calculated against a test-set on a LLM that
@@ -69,5 +69,4 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

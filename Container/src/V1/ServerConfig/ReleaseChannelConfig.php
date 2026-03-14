@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ServerConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ReleaseChannelConfig exposes configuration for a release channel.
@@ -50,7 +50,7 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      *           The release channel this configuration applies to.
      *     @type string $default_version
      *           The default version for newly created clusters on the channel.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type string[] $valid_versions
      *           List of valid versions for the channel.
      *     @type string $upgrade_target_version
      *           The auto upgrade target version for clusters on the channel.
@@ -117,7 +117,7 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      * List of valid versions for the channel.
      *
      * Generated from protobuf field <code>repeated string valid_versions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValidVersions()
     {
@@ -128,7 +128,7 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      * List of valid versions for the channel.
      *
      * Generated from protobuf field <code>repeated string valid_versions = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValidVersions($var)
@@ -166,5 +166,4 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

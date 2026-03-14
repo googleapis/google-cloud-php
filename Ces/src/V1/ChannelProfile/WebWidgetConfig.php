@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\ChannelProfile;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for configuration for the web widget.
@@ -176,5 +176,4 @@ class WebWidgetConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

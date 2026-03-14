@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListSkus.
@@ -34,7 +34,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type \Google\Cloud\Channel\V1\Sku[] $skus
      *           The list of SKUs requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -49,7 +49,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Sku skus = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\Sku>
      */
     public function getSkus()
     {
@@ -60,7 +60,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Sku skus = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\Sku[] $var
      * @return $this
      */
     public function setSkus($var)

@@ -5,8 +5,8 @@
 namespace Google\Iam\V1\Logging;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Audit log information specific to Cloud IAM. This message is serialized

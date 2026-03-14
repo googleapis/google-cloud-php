@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadRowsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a piece of a row's contents returned as part of the read
@@ -121,7 +121,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *           only allow values of `timestamp_micros` which are multiples of
      *           1000.  Timestamps are only set in the first CellChunk per cell
      *           (for cells split into multiple chunks).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type string[] $labels
      *           Labels applied to the cell by a
      *           [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
      *           on the first CellChunk per cell.
@@ -389,7 +389,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * on the first CellChunk per cell.
      *
      * Generated from protobuf field <code>repeated string labels = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLabels()
     {
@@ -402,7 +402,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * on the first CellChunk per cell.
      *
      * Generated from protobuf field <code>repeated string labels = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLabels($var)
@@ -554,7 +554,4 @@ class CellChunk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CellChunk::class, \Google\Cloud\Bigtable\V2\ReadRowsResponse_CellChunk::class);
 

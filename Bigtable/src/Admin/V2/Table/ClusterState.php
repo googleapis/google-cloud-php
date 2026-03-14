@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Table;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The state of a table's data in a particular cluster.
@@ -40,7 +40,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      *
      *     @type int $replication_state
      *           Output only. The state of replication for the table in this cluster.
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_info
+     *     @type \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo[] $encryption_info
      *           Output only. The encryption information for the table in this cluster.
      *           If the encryption key protecting this resource is customer managed, then
      *           its version can be rotated in Cloud Key Management Service (Cloud KMS).
@@ -87,7 +87,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      * changes propagate from Cloud KMS.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\EncryptionInfo>
      */
     public function getEncryptionInfo()
     {
@@ -102,7 +102,7 @@ class ClusterState extends \Google\Protobuf\Internal\Message
      * changes propagate from Cloud KMS.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.EncryptionInfo encryption_info = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\EncryptionInfo[] $var
      * @return $this
      */
     public function setEncryptionInfo($var)
@@ -114,7 +114,4 @@ class ClusterState extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClusterState::class, \Google\Cloud\Bigtable\Admin\V2\Table_ClusterState::class);
 

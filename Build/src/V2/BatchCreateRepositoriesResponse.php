@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response of creating repositories in batch.
@@ -28,7 +28,7 @@ class BatchCreateRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Build\V2\Repository>|\Google\Protobuf\Internal\RepeatedField $repositories
+     *     @type \Google\Cloud\Build\V2\Repository[] $repositories
      *           Repository resources created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * Repository resources created.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.Repository repositories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Build\V2\Repository>
      */
     public function getRepositories()
     {
@@ -52,7 +52,7 @@ class BatchCreateRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * Repository resources created.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudbuild.v2.Repository repositories = 1;</code>
-     * @param array<\Google\Cloud\Build\V2\Repository>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Build\V2\Repository[] $var
      * @return $this
      */
     public function setRepositories($var)

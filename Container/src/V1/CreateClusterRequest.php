@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CreateClusterRequest creates a cluster.
@@ -43,7 +43,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     protected $cluster = null;
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      */
@@ -109,7 +109,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
      *           resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
      *     @type string $parent
      *           The parent (project and location) where the cluster will be created.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           Specified in the format `projects/{@*}locations/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -231,7 +231,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @return string
@@ -243,7 +243,7 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent (project and location) where the cluster will be created.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 5;</code>
      * @param string $var

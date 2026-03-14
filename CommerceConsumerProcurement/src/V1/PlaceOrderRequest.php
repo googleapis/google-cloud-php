@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -58,7 +58,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
      *           This field has the form  `billingAccounts/{billing-account-id}`.
      *     @type string $display_name
      *           Required. The user-specified name of the order being placed.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemInfo>|\Google\Protobuf\Internal\RepeatedField $line_item_info
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemInfo[] $line_item_info
      *           Optional. Places order for offer. Required when an offer-based order is
      *           being placed.
      *     @type string $request_id
@@ -133,7 +133,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
      * being placed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItemInfo line_item_info = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemInfo>
      */
     public function getLineItemInfo()
     {
@@ -145,7 +145,7 @@ class PlaceOrderRequest extends \Google\Protobuf\Internal\Message
      * being placed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItemInfo line_item_info = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItemInfo[] $var
      * @return $this
      */
     public function setLineItemInfo($var)

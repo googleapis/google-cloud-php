@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A reference list.
@@ -100,13 +100,13 @@ class ReferenceList extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when the reference list was last updated.
      *     @type string $description
      *           Required. A user-provided description of the reference list.
-     *     @type array<\Google\Cloud\Chronicle\V1\ReferenceListEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Chronicle\V1\ReferenceListEntry[] $entries
      *           Required. The entries of the reference list.
      *           When listed, they are returned in the order that was specified at creation
      *           or update. The combined size of the values of the reference list may not
      *           exceed 6MB.
      *           This is returned only when the view is REFERENCE_LIST_VIEW_FULL.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type string[] $rules
      *           Output only. The resource names for the associated self-authored Rules that
      *           use this reference list. This is returned only when the view is
      *           REFERENCE_LIST_VIEW_FULL.
@@ -253,7 +253,7 @@ class ReferenceList extends \Google\Protobuf\Internal\Message
      * This is returned only when the view is REFERENCE_LIST_VIEW_FULL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.ReferenceListEntry entries = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Chronicle\V1\ReferenceListEntry>
      */
     public function getEntries()
     {
@@ -268,7 +268,7 @@ class ReferenceList extends \Google\Protobuf\Internal\Message
      * This is returned only when the view is REFERENCE_LIST_VIEW_FULL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.chronicle.v1.ReferenceListEntry entries = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Chronicle\V1\ReferenceListEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Chronicle\V1\ReferenceListEntry[] $var
      * @return $this
      */
     public function setEntries($var)
@@ -285,7 +285,7 @@ class ReferenceList extends \Google\Protobuf\Internal\Message
      * REFERENCE_LIST_VIEW_FULL.
      *
      * Generated from protobuf field <code>repeated string rules = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRules()
     {
@@ -298,7 +298,7 @@ class ReferenceList extends \Google\Protobuf\Internal\Message
      * REFERENCE_LIST_VIEW_FULL.
      *
      * Generated from protobuf field <code>repeated string rules = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRules($var)

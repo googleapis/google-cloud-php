@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for BigtableService.MutateRows.
@@ -36,7 +36,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[] $entries
      *           One or more results for Entries from the batch request.
      *     @type \Google\Cloud\Bigtable\V2\RateLimitInfo $rate_limit_info
      *           Information about how client should limit the rate (QPS). Primirily used by
@@ -53,7 +53,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * One or more results for Entries from the batch request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry>
      */
     public function getEntries()
     {
@@ -64,7 +64,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * One or more results for Entries from the batch request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[] $var
      * @return $this
      */
     public function setEntries($var)

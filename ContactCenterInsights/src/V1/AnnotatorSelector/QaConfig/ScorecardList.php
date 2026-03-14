@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\AnnotatorSelector\QaConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container for a list of scorecards.
@@ -28,7 +28,7 @@ class ScorecardList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $qa_scorecard_revisions
+     *     @type string[] $qa_scorecard_revisions
      *           List of QaScorecardRevisions.
      * }
      */
@@ -41,7 +41,7 @@ class ScorecardList extends \Google\Protobuf\Internal\Message
      * List of QaScorecardRevisions.
      *
      * Generated from protobuf field <code>repeated string qa_scorecard_revisions = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQaScorecardRevisions()
     {
@@ -52,7 +52,7 @@ class ScorecardList extends \Google\Protobuf\Internal\Message
      * List of QaScorecardRevisions.
      *
      * Generated from protobuf field <code>repeated string qa_scorecard_revisions = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQaScorecardRevisions($var)
@@ -64,5 +64,4 @@ class ScorecardList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
