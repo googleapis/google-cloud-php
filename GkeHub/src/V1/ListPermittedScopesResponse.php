@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of permitted Scopes.
@@ -36,7 +36,7 @@ class ListPermittedScopesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\Scope>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type \Google\Cloud\GkeHub\V1\Scope[] $scopes
      *           The list of permitted Scopes
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
@@ -53,7 +53,7 @@ class ListPermittedScopesResponse extends \Google\Protobuf\Internal\Message
      * The list of permitted Scopes
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Scope scopes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\Scope>
      */
     public function getScopes()
     {
@@ -64,7 +64,7 @@ class ListPermittedScopesResponse extends \Google\Protobuf\Internal\Message
      * The list of permitted Scopes
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Scope scopes = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\Scope>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\Scope[] $var
      * @return $this
      */
     public function setScopes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataStore captures global settings and configs at the DataStore level.
@@ -198,7 +198,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type int $industry_vertical
      *           Immutable. The industry vertical that the data store registers.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $solution_types
+     *     @type int[] $solution_types
      *           The solutions that the data store enrolls. Available solutions for each
      *           [industry_vertical][google.cloud.discoveryengine.v1.DataStore.industry_vertical]:
      *           * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`.
@@ -383,7 +383,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *   solutions cannot be enrolled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SolutionType solution_types = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSolutionTypes()
     {
@@ -398,7 +398,7 @@ class DataStore extends \Google\Protobuf\Internal\Message
      *   solutions cannot be enrolled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SolutionType solution_types = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSolutionTypes($var)

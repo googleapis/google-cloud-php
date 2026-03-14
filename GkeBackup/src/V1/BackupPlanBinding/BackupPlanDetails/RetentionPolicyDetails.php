@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\BackupPlanBinding\BackupPlanDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RetentionPolicyDetails defines a Backup retention policy for a
@@ -151,5 +151,4 @@ class RetentionPolicyDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

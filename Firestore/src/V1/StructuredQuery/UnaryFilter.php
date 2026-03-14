@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\StructuredQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter with a single operand.
@@ -106,7 +106,4 @@ class UnaryFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UnaryFilter::class, \Google\Cloud\Firestore\V1\StructuredQuery_UnaryFilter::class);
 

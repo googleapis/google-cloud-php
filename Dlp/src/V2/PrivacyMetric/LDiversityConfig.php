@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\PrivacyMetric;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * l-diversity metric, used for analysis of reidentification risk.
@@ -36,7 +36,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *     @type \Google\Cloud\Dlp\V2\FieldId[] $quasi_ids
      *           Set of quasi-identifiers indicating how equivalence classes are
      *           defined for the l-diversity computation. When multiple fields are
      *           specified, they are considered a single composite key.
@@ -55,7 +55,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      * specified, they are considered a single composite key.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FieldId>
      */
     public function getQuasiIds()
     {
@@ -68,7 +68,7 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
      * specified, they are considered a single composite key.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId quasi_ids = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FieldId[] $var
      * @return $this
      */
     public function setQuasiIds($var)
@@ -116,5 +116,4 @@ class LDiversityConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of namespaced Kubernetes resources.
@@ -28,7 +28,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $namespaced_names
+     *     @type \Google\Cloud\GkeBackup\V1\NamespacedName[] $namespaced_names
      *           Optional. A list of namespaced Kubernetes resources.
      * }
      */
@@ -41,7 +41,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      * Optional. A list of namespaced Kubernetes resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\NamespacedName>
      */
     public function getNamespacedNames()
     {
@@ -52,7 +52,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      * Optional. A list of namespaced Kubernetes resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\NamespacedName[] $var
      * @return $this
      */
     public function setNamespacedNames($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Evaluation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluation metrics, either in aggregate or about a specific entity.
@@ -404,5 +404,4 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

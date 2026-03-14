@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of fleet namespaces.
@@ -36,7 +36,7 @@ class ListScopeNamespacesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\PBNamespace>|\Google\Protobuf\Internal\RepeatedField $scope_namespaces
+     *     @type \Google\Cloud\GkeHub\V1\PBNamespace[] $scope_namespaces
      *           The list of fleet namespaces
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
@@ -53,7 +53,7 @@ class ListScopeNamespacesResponse extends \Google\Protobuf\Internal\Message
      * The list of fleet namespaces
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Namespace scope_namespaces = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\PBNamespace>
      */
     public function getScopeNamespaces()
     {
@@ -64,7 +64,7 @@ class ListScopeNamespacesResponse extends \Google\Protobuf\Internal\Message
      * The list of fleet namespaces
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Namespace scope_namespaces = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\PBNamespace>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\PBNamespace[] $var
      * @return $this
      */
     public function setScopeNamespaces($var)

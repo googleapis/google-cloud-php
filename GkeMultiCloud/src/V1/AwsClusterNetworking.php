@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClusterNetworking defines cluster-wide networking configuration.
@@ -63,11 +63,11 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      *           Required. The VPC associated with the cluster. All component clusters
      *           (i.e. control plane and node pools) run on a single VPC.
      *           This field cannot be changed after creation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pod_address_cidr_blocks
+     *     @type string[] $pod_address_cidr_blocks
      *           Required. All pods in the cluster are assigned an IPv4 address from these
      *           ranges. Only a single range is supported. This field cannot be changed
      *           after creation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_address_cidr_blocks
+     *     @type string[] $service_address_cidr_blocks
      *           Required. All services in the cluster are assigned an IPv4 address from
      *           these ranges. Only a single range is supported. This field cannot be
      *           changed after creation.
@@ -120,7 +120,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      * after creation.
      *
      * Generated from protobuf field <code>repeated string pod_address_cidr_blocks = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPodAddressCidrBlocks()
     {
@@ -133,7 +133,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      * after creation.
      *
      * Generated from protobuf field <code>repeated string pod_address_cidr_blocks = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPodAddressCidrBlocks($var)
@@ -150,7 +150,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      * changed after creation.
      *
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAddressCidrBlocks()
     {
@@ -163,7 +163,7 @@ class AwsClusterNetworking extends \Google\Protobuf\Internal\Message
      * changed after creation.
      *
      * Generated from protobuf field <code>repeated string service_address_cidr_blocks = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAddressCidrBlocks($var)

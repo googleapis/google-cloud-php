@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A position in a query result set.
@@ -37,7 +37,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\Firestore\V1\Value[] $values
      *           The values that represent a position, in the order they appear in
      *           the order by clause of a query.
      *           Can contain fewer values than specified in the order by clause.
@@ -57,7 +57,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      * Can contain fewer values than specified in the order by clause.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Value>
      */
     public function getValues()
     {
@@ -70,7 +70,7 @@ class Cursor extends \Google\Protobuf\Internal\Message
      * Can contain fewer values than specified in the order by clause.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value values = 1;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Value[] $var
      * @return $this
      */
     public function setValues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request of `GenerateSourceUploadUrl` method.
@@ -17,7 +17,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location in which the Google Cloud Storage signed
-     * URL should be generated, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * URL should be generated, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -32,7 +32,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
      * The Google Cloud Functions service account
-     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-{project_number}\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      * Key/KeyRing/Project/Organization (least access preferred).
@@ -58,7 +58,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location in which the Google Cloud Storage signed
-     *           URL should be generated, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           URL should be generated, specified in the format `projects/{@*}locations/*`.
      *     @type string $kms_key_name
      *           Resource name of a KMS crypto key (managed by the user) used to
      *           encrypt/decrypt function source code objects in intermediate Cloud Storage
@@ -69,7 +69,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      *           It must match the pattern
      *           `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
      *           The Google Cloud Functions service account
-     *           (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     *           (service-{project_number}\@gcf-admin-robot.iam.gserviceaccount.com) must be
      *           granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      *           (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      *           Key/KeyRing/Project/Organization (least access preferred).
@@ -87,7 +87,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location in which the Google Cloud Storage signed
-     * URL should be generated, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * URL should be generated, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -99,7 +99,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location in which the Google Cloud Storage signed
-     * URL should be generated, specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * URL should be generated, specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -123,7 +123,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
      * The Google Cloud Functions service account
-     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-{project_number}\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      * Key/KeyRing/Project/Organization (least access preferred).
@@ -146,7 +146,7 @@ class GenerateUploadUrlRequest extends \Google\Protobuf\Internal\Message
      * It must match the pattern
      * `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.
      * The Google Cloud Functions service account
-     * (service-{project_number}&#64;gcf-admin-robot.iam.gserviceaccount.com) must be
+     * (service-{project_number}\@gcf-admin-robot.iam.gserviceaccount.com) must be
      * granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter
      * (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the
      * Key/KeyRing/Project/Organization (least access preferred).

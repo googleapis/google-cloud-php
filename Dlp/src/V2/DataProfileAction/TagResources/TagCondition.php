@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfileAction\TagResources;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The tag to attach to profiles matching the condition. At most one
@@ -120,5 +120,4 @@ class TagCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

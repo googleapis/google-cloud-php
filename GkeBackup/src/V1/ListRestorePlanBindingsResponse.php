@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListRestorePlanBindings.
@@ -44,7 +44,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeBackup\V1\RestorePlanBinding>|\Google\Protobuf\Internal\RepeatedField $restore_plan_bindings
+     *     @type \Google\Cloud\GkeBackup\V1\RestorePlanBinding[] $restore_plan_bindings
      *           The list of RestorePlanBindings matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
@@ -52,7 +52,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      *           in a subsequent `ListRestorePlanBindings` call to retrieve the next page of
      *           results. If this field is omitted or empty, then there are no more results
      *           to return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -65,7 +65,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      * The list of RestorePlanBindings matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestorePlanBinding restore_plan_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\RestorePlanBinding>
      */
     public function getRestorePlanBindings()
     {
@@ -76,7 +76,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      * The list of RestorePlanBindings matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestorePlanBinding restore_plan_bindings = 1;</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\RestorePlanBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\RestorePlanBinding[] $var
      * @return $this
      */
     public function setRestorePlanBindings($var)
@@ -125,7 +125,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -136,7 +136,7 @@ class ListRestorePlanBindingsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

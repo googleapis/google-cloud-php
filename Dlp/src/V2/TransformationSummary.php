@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary of a single transformation.
@@ -74,13 +74,13 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      *           Set if the transformation was limited to a specific FieldId.
      *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $transformation
      *           The specific transformation these stats apply to.
-     *     @type array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $field_transformations
+     *     @type \Google\Cloud\Dlp\V2\FieldTransformation[] $field_transformations
      *           The field transformation that was applied.
      *           If multiple field transformations are requested for a single field,
      *           this list will contain all of them; otherwise, only one is supplied.
      *     @type \Google\Cloud\Dlp\V2\RecordSuppression $record_suppress
      *           The specific suppression option these stats apply to.
-     *     @type array<\Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[] $results
      *           Collection of all transformations that took place or had an error.
      *     @type int|string $transformed_bytes
      *           Total size in bytes that were transformed in some way.
@@ -205,7 +205,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * this list will contain all of them; otherwise, only one is supplied.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldTransformation field_transformations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FieldTransformation>
      */
     public function getFieldTransformations()
     {
@@ -218,7 +218,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * this list will contain all of them; otherwise, only one is supplied.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldTransformation field_transformations = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FieldTransformation[] $var
      * @return $this
      */
     public function setFieldTransformations($var)
@@ -269,7 +269,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * Collection of all transformations that took place or had an error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult>
      */
     public function getResults()
     {
@@ -280,7 +280,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * Collection of all transformations that took place or had an error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[] $var
      * @return $this
      */
     public function setResults($var)

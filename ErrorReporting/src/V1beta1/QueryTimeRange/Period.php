@@ -85,6 +85,3 @@ class Period
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Period::class, \Google\Cloud\ErrorReporting\V1beta1\QueryTimeRange_Period::class);
-

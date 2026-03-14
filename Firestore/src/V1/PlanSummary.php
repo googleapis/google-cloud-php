@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Planning phase information for the query.
@@ -32,7 +32,7 @@ class PlanSummary extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $indexes_used
+     *     @type \Google\Protobuf\Struct[] $indexes_used
      *           The indexes selected for the query. For example:
      *            [
      *              {"query_scope": "Collection", "properties": "(foo ASC, __name__ ASC)"},
@@ -53,7 +53,7 @@ class PlanSummary extends \Google\Protobuf\Internal\Message
      *  ]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct indexes_used = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getIndexesUsed()
     {
@@ -68,7 +68,7 @@ class PlanSummary extends \Google\Protobuf\Internal\Message
      *  ]
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct indexes_used = 1;</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setIndexesUsed($var)

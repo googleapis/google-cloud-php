@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Field;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The index configuration for this field.
@@ -55,7 +55,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type \Google\Cloud\Firestore\Admin\V1\Index[] $indexes
      *           The indexes supported for this field.
      *     @type bool $uses_ancestor_config
      *           Output only. When true, the `Field`'s index configuration is set from the
@@ -83,7 +83,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * The indexes supported for this field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index indexes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\Index>
      */
     public function getIndexes()
     {
@@ -94,7 +94,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * The indexes supported for this field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index indexes = 1;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\Index[] $var
      * @return $this
      */
     public function setIndexes($var)
@@ -202,7 +202,4 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexConfig::class, \Google\Cloud\Firestore\Admin\V1\Field_IndexConfig::class);
 

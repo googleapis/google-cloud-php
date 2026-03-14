@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\ConfigManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An ACM created error representing a problem syncing configurations
@@ -44,7 +44,7 @@ class SyncError extends \Google\Protobuf\Internal\Message
      *           An ACM defined error code
      *     @type string $error_message
      *           A description of the error
-     *     @type array<\Google\Cloud\GkeHub\ConfigManagement\V1\ErrorResource>|\Google\Protobuf\Internal\RepeatedField $error_resources
+     *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\ErrorResource[] $error_resources
      *           A list of config(s) associated with the error, if any
      * }
      */
@@ -109,7 +109,7 @@ class SyncError extends \Google\Protobuf\Internal\Message
      * A list of config(s) associated with the error, if any
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ErrorResource error_resources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\ConfigManagement\V1\ErrorResource>
      */
     public function getErrorResources()
     {
@@ -120,7 +120,7 @@ class SyncError extends \Google\Protobuf\Internal\Message
      * A list of config(s) associated with the error, if any
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ErrorResource error_resources = 3;</code>
-     * @param array<\Google\Cloud\GkeHub\ConfigManagement\V1\ErrorResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\ConfigManagement\V1\ErrorResource[] $var
      * @return $this
      */
     public function setErrorResources($var)

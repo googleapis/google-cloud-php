@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of regular expressions to determine what tables to match
@@ -30,7 +30,7 @@ class BigQueryRegexes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\BigQueryRegex>|\Google\Protobuf\Internal\RepeatedField $patterns
+     *     @type \Google\Cloud\Dlp\V2\BigQueryRegex[] $patterns
      *           A single BigQuery regular expression pattern to match against one or more
      *           tables, datasets, or projects that contain BigQuery tables.
      * }
@@ -45,7 +45,7 @@ class BigQueryRegexes extends \Google\Protobuf\Internal\Message
      * tables, datasets, or projects that contain BigQuery tables.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BigQueryRegex patterns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\BigQueryRegex>
      */
     public function getPatterns()
     {
@@ -57,7 +57,7 @@ class BigQueryRegexes extends \Google\Protobuf\Internal\Message
      * tables, datasets, or projects that contain BigQuery tables.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BigQueryRegex patterns = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\BigQueryRegex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\BigQueryRegex[] $var
      * @return $this
      */
     public function setPatterns($var)

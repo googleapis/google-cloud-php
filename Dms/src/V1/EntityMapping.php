@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the mappings of a database entity.
@@ -72,7 +72,7 @@ class EntityMapping extends \Google\Protobuf\Internal\Message
      *           Type of source entity.
      *     @type int $draft_type
      *           Type of draft entity.
-     *     @type array<\Google\Cloud\CloudDms\V1\EntityMappingLogEntry>|\Google\Protobuf\Internal\RepeatedField $mapping_log
+     *     @type \Google\Cloud\CloudDms\V1\EntityMappingLogEntry[] $mapping_log
      *           Entity mapping log entries.
      *           Multiple rules can be effective and contribute changes to a converted
      *           entity, such as a rule can handle the entity name, another rule can handle
@@ -205,7 +205,7 @@ class EntityMapping extends \Google\Protobuf\Internal\Message
      * logged along with the reason preventing them to do so.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityMappingLogEntry mapping_log = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\EntityMappingLogEntry>
      */
     public function getMappingLog()
     {
@@ -220,7 +220,7 @@ class EntityMapping extends \Google\Protobuf\Internal\Message
      * logged along with the reason preventing them to do so.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.EntityMappingLogEntry mapping_log = 3;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\EntityMappingLogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\EntityMappingLogEntry[] $var
      * @return $this
      */
     public function setMappingLog($var)

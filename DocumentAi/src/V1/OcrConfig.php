@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for Document OCR.
@@ -92,7 +92,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      *           Enables intelligent document quality scores after OCR. Can help with
      *           diagnosing why OCR responses are of poor quality for a given input.
      *           Adds additional latency comparable to regular OCR to the process call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advanced_ocr_options
+     *     @type string[] $advanced_ocr_options
      *           A list of advanced OCR options to further fine-tune OCR behavior. Current
      *           valid values are:
      *           - `legacy_layout`: a heuristics layout detection algorithm, which serves as
@@ -221,7 +221,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvancedOcrOptions()
     {
@@ -237,7 +237,7 @@ class OcrConfig extends \Google\Protobuf\Internal\Message
      * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvancedOcrOptions($var)

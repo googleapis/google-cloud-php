@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1\DocumentTransform;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A transformation of a field of the document.
@@ -411,7 +411,4 @@ class FieldTransform extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FieldTransform::class, \Google\Cloud\Firestore\V1\DocumentTransform_FieldTransform::class);
 

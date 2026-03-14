@@ -5,8 +5,8 @@
 namespace Google\Cloud\GSuiteAddOns\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to get Google Workspace add-ons authorization information.

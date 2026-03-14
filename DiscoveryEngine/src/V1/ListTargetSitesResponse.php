@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -44,7 +44,7 @@ class ListTargetSitesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\TargetSite>|\Google\Protobuf\Internal\RepeatedField $target_sites
+     *     @type \Google\Cloud\DiscoveryEngine\V1\TargetSite[] $target_sites
      *           List of TargetSites.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -63,7 +63,7 @@ class ListTargetSitesResponse extends \Google\Protobuf\Internal\Message
      * List of TargetSites.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.TargetSite target_sites = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\TargetSite>
      */
     public function getTargetSites()
     {
@@ -74,7 +74,7 @@ class ListTargetSitesResponse extends \Google\Protobuf\Internal\Message
      * List of TargetSites.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.TargetSite target_sites = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\TargetSite>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\TargetSite[] $var
      * @return $this
      */
     public function setTargetSites($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for ListBackups.
@@ -17,7 +17,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The BackupPlan that contains the Backups to list.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -87,7 +87,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The BackupPlan that contains the Backups to list.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     *           Format: `projects/{@*}locations/{@*}backupPlans/*`
      *     @type int $page_size
      *           Optional. The target number of results to return in a single response.
      *           If not specified, a default value will be chosen by the service.
@@ -118,7 +118,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The BackupPlan that contains the Backups to list.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -130,7 +130,7 @@ class ListBackupsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The BackupPlan that contains the Backups to list.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

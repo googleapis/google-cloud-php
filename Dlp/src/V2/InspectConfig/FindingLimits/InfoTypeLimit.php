@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\InspectConfig\FindingLimits;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Max findings configuration per infoType, per content item or long
@@ -121,5 +121,4 @@ class InfoTypeLimit extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

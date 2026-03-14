@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Citation metadata.
@@ -28,7 +28,7 @@ class CitationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Citation>|\Google\Protobuf\Internal\RepeatedField $citations
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Citation[] $citations
      *           Citations for segments.
      * }
      */
@@ -41,7 +41,7 @@ class CitationMetadata extends \Google\Protobuf\Internal\Message
      * Citations for segments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Citation citations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Citation>
      */
     public function getCitations()
     {
@@ -52,7 +52,7 @@ class CitationMetadata extends \Google\Protobuf\Internal\Message
      * Citations for segments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Citation citations = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Citation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Citation[] $var
      * @return $this
      */
     public function setCitations($var)
@@ -64,5 +64,4 @@ class CitationMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

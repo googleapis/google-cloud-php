@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of values to filter by in ConditionalColumnSetValue
@@ -45,7 +45,7 @@ class ValueListFilter extends \Google\Protobuf\Internal\Message
      *     @type int $value_present_list
      *           Required. Indicates whether the filter matches rows with values that are
      *           present in the list or those with values not present in it.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. The list to be used to filter by
      *     @type bool $ignore_case
      *           Required. Whether to ignore case when filtering by values. Defaults to
@@ -89,7 +89,7 @@ class ValueListFilter extends \Google\Protobuf\Internal\Message
      * Required. The list to be used to filter by
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -100,7 +100,7 @@ class ValueListFilter extends \Google\Protobuf\Internal\Message
      * Required. The list to be used to filter by
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

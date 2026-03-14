@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The file cluster summary.
@@ -80,7 +80,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\FileClusterType $file_cluster_type
      *           The file cluster type.
-     *     @type array<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $file_store_info_type_summaries
+     *     @type \Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary[] $file_store_info_type_summaries
      *           InfoTypes detected in this cluster.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
      *           The sensitivity score of this cluster. The score will be SENSITIVITY_LOW
@@ -88,14 +88,14 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\DataRiskLevel $data_risk_level
      *           The data risk level of this cluster. RISK_LOW if nothing has been
      *           scanned.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           A list of errors detected while scanning this cluster. The list is
      *           truncated to 10 per cluster.
-     *     @type array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $file_extensions_scanned
+     *     @type \Google\Cloud\Dlp\V2\FileExtensionInfo[] $file_extensions_scanned
      *           A sample of file types scanned in this cluster. Empty if no files were
      *           scanned. File extensions can be derived from the file name or the file
      *           content.
-     *     @type array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $file_extensions_seen
+     *     @type \Google\Cloud\Dlp\V2\FileExtensionInfo[] $file_extensions_seen
      *           A sample of file types seen in this cluster. Empty if no files were seen.
      *           File extensions can be derived from the file name or the file content.
      *     @type bool $no_files_exist
@@ -149,7 +149,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * InfoTypes detected in this cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreInfoTypeSummary file_store_info_type_summaries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>
      */
     public function getFileStoreInfoTypeSummaries()
     {
@@ -160,7 +160,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * InfoTypes detected in this cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreInfoTypeSummary file_store_info_type_summaries = 2;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary[] $var
      * @return $this
      */
     public function setFileStoreInfoTypeSummaries($var)
@@ -252,7 +252,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * truncated to 10 per cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -264,7 +264,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * truncated to 10 per cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -281,7 +281,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_scanned = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileExtensionInfo>
      */
     public function getFileExtensionsScanned()
     {
@@ -294,7 +294,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_scanned = 7;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileExtensionInfo[] $var
      * @return $this
      */
     public function setFileExtensionsScanned($var)
@@ -310,7 +310,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * File extensions can be derived from the file name or the file content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_seen = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileExtensionInfo>
      */
     public function getFileExtensionsSeen()
     {
@@ -322,7 +322,7 @@ class FileClusterSummary extends \Google\Protobuf\Internal\Message
      * File extensions can be derived from the file name or the file content.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileExtensionInfo file_extensions_seen = 8;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileExtensionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileExtensionInfo[] $var
      * @return $this
      */
     public function setFileExtensionsSeen($var)

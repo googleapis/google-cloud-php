@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\PrivacyMetric\KMapEstimationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A column with a semantic tag attached.
@@ -203,5 +203,4 @@ class TaggedField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

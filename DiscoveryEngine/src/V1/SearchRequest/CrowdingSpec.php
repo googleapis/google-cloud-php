@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification for crowding. Crowding improves the diversity of search
@@ -160,5 +160,4 @@ class CrowdingSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

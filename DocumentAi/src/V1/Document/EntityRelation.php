@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Relationship between
@@ -133,5 +133,4 @@ class EntityRelation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

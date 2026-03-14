@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SpotConfig has configuration info for Spot node.
@@ -29,7 +29,7 @@ class SpotConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_types
+     *     @type string[] $instance_types
      *           Required. A list of instance types for creating spot node pool.
      * }
      */
@@ -42,7 +42,7 @@ class SpotConfig extends \Google\Protobuf\Internal\Message
      * Required. A list of instance types for creating spot node pool.
      *
      * Generated from protobuf field <code>repeated string instance_types = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceTypes()
     {
@@ -53,7 +53,7 @@ class SpotConfig extends \Google\Protobuf\Internal\Message
      * Required. A list of instance types for creating spot node pool.
      *
      * Generated from protobuf field <code>repeated string instance_types = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceTypes($var)

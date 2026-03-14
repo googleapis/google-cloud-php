@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of Memberships bound to a Scope.
@@ -42,9 +42,9 @@ class ListBoundMembershipsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $memberships
+     *     @type \Google\Cloud\GkeHub\V1\Membership[] $memberships
      *           The list of Memberships bound to the given Scope.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           List of locations that could not be reached while fetching this list.
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
@@ -61,7 +61,7 @@ class ListBoundMembershipsResponse extends \Google\Protobuf\Internal\Message
      * The list of Memberships bound to the given Scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Membership memberships = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\Membership>
      */
     public function getMemberships()
     {
@@ -72,7 +72,7 @@ class ListBoundMembershipsResponse extends \Google\Protobuf\Internal\Message
      * The list of Memberships bound to the given Scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.Membership memberships = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\Membership[] $var
      * @return $this
      */
     public function setMemberships($var)
@@ -87,7 +87,7 @@ class ListBoundMembershipsResponse extends \Google\Protobuf\Internal\Message
      * List of locations that could not be reached while fetching this list.
      *
      * Generated from protobuf field <code>repeated string unreachable = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -98,7 +98,7 @@ class ListBoundMembershipsResponse extends \Google\Protobuf\Internal\Message
      * List of locations that could not be reached while fetching this list.
      *
      * Generated from protobuf field <code>repeated string unreachable = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The first-class citizen for Document AI. Each processor defines how to
@@ -107,7 +107,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      *           Output only. The state of the processor.
      *     @type string $default_processor_version
      *           The default processor version.
-     *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>|\Google\Protobuf\Internal\RepeatedField $processor_version_aliases
+     *     @type \Google\Cloud\DocumentAI\V1\ProcessorVersionAlias[] $processor_version_aliases
      *           Output only. The processor version aliases.
      *     @type string $process_endpoint
      *           Output only. Immutable. The http endpoint that can be called to invoke
@@ -268,7 +268,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      * Output only. The processor version aliases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersionAlias processor_version_aliases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>
      */
     public function getProcessorVersionAliases()
     {
@@ -279,7 +279,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      * Output only. The processor version aliases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.ProcessorVersionAlias processor_version_aliases = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\ProcessorVersionAlias>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\ProcessorVersionAlias[] $var
      * @return $this
      */
     public function setProcessorVersionAliases($var)

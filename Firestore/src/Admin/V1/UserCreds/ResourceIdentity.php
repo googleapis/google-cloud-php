@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\UserCreds;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a Resource Identity principal.
@@ -68,7 +68,4 @@ class ResourceIdentity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResourceIdentity::class, \Google\Cloud\Firestore\Admin\V1\UserCreds_ResourceIdentity::class);
 

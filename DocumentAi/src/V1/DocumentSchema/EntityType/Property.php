@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines properties that can be part of the entity type.
@@ -212,5 +212,4 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

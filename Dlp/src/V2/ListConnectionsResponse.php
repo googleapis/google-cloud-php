@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListConnections.
@@ -35,7 +35,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Dlp\V2\Connection[] $connections
      *           List of connections.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results. An empty value means there are
@@ -51,7 +51,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * List of connections.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Connection connections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Connection>
      */
     public function getConnections()
     {
@@ -62,7 +62,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * List of connections.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Connection connections = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Connection[] $var
      * @return $this
      */
     public function setConnections($var)

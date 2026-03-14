@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The transformation to apply to the field.
@@ -44,7 +44,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Dlp\V2\FieldId[] $fields
      *           Required. Input field(s) to apply the transformation to.
      *           When you have columns that reference their position within a list,
      *           omit the index from the FieldId. FieldId name matching ignores the index.
@@ -76,7 +76,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FieldId>
      */
     public function getFields()
     {
@@ -90,7 +90,7 @@ class FieldTransformation extends \Google\Protobuf\Internal\Message
      * For example, instead of "contact.nums[0].type", use "contact.nums.type".
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FieldId[] $var
      * @return $this
      */
     public function setFields($var)

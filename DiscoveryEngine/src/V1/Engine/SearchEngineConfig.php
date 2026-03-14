@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations for a Search Engine.
@@ -46,7 +46,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      *           Defaults to
      *           [SearchTier.SEARCH_TIER_STANDARD][google.cloud.discoveryengine.v1.SearchTier.SEARCH_TIER_STANDARD]
      *           if not specified.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $search_add_ons
+     *     @type int[] $search_add_ons
      *           The add-on that this search engine enables.
      * }
      */
@@ -95,7 +95,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      * The add-on that this search engine enables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchAddOn search_add_ons = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSearchAddOns()
     {
@@ -106,7 +106,7 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
      * The add-on that this search engine enables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchAddOn search_add_ons = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSearchAddOns($var)
@@ -118,5 +118,4 @@ class SearchEngineConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

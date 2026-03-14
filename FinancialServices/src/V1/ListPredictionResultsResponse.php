@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for retrieving a list of PredictionResults
@@ -42,13 +42,13 @@ class ListPredictionResultsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\FinancialServices\V1\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $prediction_results
+     *     @type \Google\Cloud\FinancialServices\V1\PredictionResult[] $prediction_results
      *           List of PredictionResult resources
      *     @type string $next_page_token
      *           This token should be passed to the next ListPredictionResultsRequest to
      *           retrieve the next page of PredictionResults (empty indicicates we are
      *           done).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -61,7 +61,7 @@ class ListPredictionResultsResponse extends \Google\Protobuf\Internal\Message
      * List of PredictionResult resources
      *
      * Generated from protobuf field <code>repeated .google.cloud.financialservices.v1.PredictionResult prediction_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\FinancialServices\V1\PredictionResult>
      */
     public function getPredictionResults()
     {
@@ -72,7 +72,7 @@ class ListPredictionResultsResponse extends \Google\Protobuf\Internal\Message
      * List of PredictionResult resources
      *
      * Generated from protobuf field <code>repeated .google.cloud.financialservices.v1.PredictionResult prediction_results = 1;</code>
-     * @param array<\Google\Cloud\FinancialServices\V1\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\FinancialServices\V1\PredictionResult[] $var
      * @return $this
      */
     public function setPredictionResults($var)
@@ -117,7 +117,7 @@ class ListPredictionResultsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListPredictionResultsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

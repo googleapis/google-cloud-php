@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Unstructured data linked to this document.
@@ -52,7 +52,7 @@ class Content extends \Google\Protobuf\Internal\Message
      *           1,000,000 bytes (1 MB / ~0.95 MiB).
      *           Note: As with all `bytes` fields, this field is represented as pure
      *           binary in Protocol Buffers and base64-encoded string in JSON. For
-     *           example, `abc123!?$*&()'-=&#64;~` should be represented as
+     *           example, `abc123!?$*&()'-=\@~` should be represented as
      *           `YWJjMTIzIT8kKiYoKSctPUB+` in JSON. See
      *           https://developers.google.com/protocol-buffers/docs/proto3#json.
      *     @type string $uri
@@ -91,7 +91,7 @@ class Content extends \Google\Protobuf\Internal\Message
      * 1,000,000 bytes (1 MB / ~0.95 MiB).
      * Note: As with all `bytes` fields, this field is represented as pure
      * binary in Protocol Buffers and base64-encoded string in JSON. For
-     * example, `abc123!?$*&()'-=&#64;~` should be represented as
+     * example, `abc123!?$*&()'-=\@~` should be represented as
      * `YWJjMTIzIT8kKiYoKSctPUB+` in JSON. See
      * https://developers.google.com/protocol-buffers/docs/proto3#json.
      *
@@ -113,7 +113,7 @@ class Content extends \Google\Protobuf\Internal\Message
      * 1,000,000 bytes (1 MB / ~0.95 MiB).
      * Note: As with all `bytes` fields, this field is represented as pure
      * binary in Protocol Buffers and base64-encoded string in JSON. For
-     * example, `abc123!?$*&()'-=&#64;~` should be represented as
+     * example, `abc123!?$*&()'-=\@~` should be represented as
      * `YWJjMTIzIT8kKiYoKSctPUB+` in JSON. See
      * https://developers.google.com/protocol-buffers/docs/proto3#json.
      *
@@ -235,5 +235,4 @@ class Content extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

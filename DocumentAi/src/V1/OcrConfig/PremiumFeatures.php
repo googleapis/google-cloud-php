@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\OcrConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations for premium OCR features.
@@ -136,5 +136,4 @@ class PremiumFeatures extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

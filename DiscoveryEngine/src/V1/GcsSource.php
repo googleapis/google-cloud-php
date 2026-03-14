@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Storage location for input content.
@@ -19,7 +19,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Cloud Storage URIs to input files. Each URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`.
+     * files, such as `gs://bucket/directory/*.json`.
      * A request can contain at most 100 files (or 100,000 files if `data_schema`
      * is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is
      * `content`).
@@ -58,11 +58,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_uris
+     *     @type string[] $input_uris
      *           Required. Cloud Storage URIs to input files. Each URI can be up to
      *           2000 characters long. URIs can match the full object path (for example,
      *           `gs://bucket/directory/object.json`) or a pattern matching one or more
-     *           files, such as `gs://bucket/directory/&#42;.json`.
+     *           files, such as `gs://bucket/directory/*.json`.
      *           A request can contain at most 100 files (or 100,000 files if `data_schema`
      *           is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is
      *           `content`).
@@ -97,13 +97,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Cloud Storage URIs to input files. Each URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`.
+     * files, such as `gs://bucket/directory/*.json`.
      * A request can contain at most 100 files (or 100,000 files if `data_schema`
      * is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is
      * `content`).
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInputUris()
     {
@@ -114,13 +114,13 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * Required. Cloud Storage URIs to input files. Each URI can be up to
      * 2000 characters long. URIs can match the full object path (for example,
      * `gs://bucket/directory/object.json`) or a pattern matching one or more
-     * files, such as `gs://bucket/directory/&#42;.json`.
+     * files, such as `gs://bucket/directory/*.json`.
      * A request can contain at most 100 files (or 100,000 files if `data_schema`
      * is `content`). Each file can be up to 2 GB (or 100 MB if `data_schema` is
      * `content`).
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInputUris($var)

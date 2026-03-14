@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Image Quality Defects
@@ -134,5 +134,4 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

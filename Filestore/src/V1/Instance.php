@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Filestore instance.
@@ -187,10 +187,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The service tier of the instance.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Resource labels to represent user provided metadata.
-     *     @type array<\Google\Cloud\Filestore\V1\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $file_shares
+     *     @type \Google\Cloud\Filestore\V1\FileShareConfig[] $file_shares
      *           File system shares on the instance.
      *           For this version, only a single file share is supported.
-     *     @type array<\Google\Cloud\Filestore\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\Filestore\V1\NetworkConfig[] $networks
      *           VPC networks to which the instance is connected.
      *           For this version, only a single network is supported.
      *     @type string $etag
@@ -202,7 +202,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. Reserved for future use.
      *     @type string $kms_key_name
      *           KMS key name used for data encryption.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
+     *     @type int[] $suspension_reasons
      *           Output only. Field indicates all the reasons the instance is in "SUSPENDED"
      *           state.
      *     @type \Google\Cloud\Filestore\V1\Replication $replication
@@ -440,7 +440,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single file share is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.FileShareConfig file_shares = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Filestore\V1\FileShareConfig>
      */
     public function getFileShares()
     {
@@ -452,7 +452,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single file share is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.FileShareConfig file_shares = 10;</code>
-     * @param array<\Google\Cloud\Filestore\V1\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Filestore\V1\FileShareConfig[] $var
      * @return $this
      */
     public function setFileShares($var)
@@ -468,7 +468,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single network is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig networks = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Filestore\V1\NetworkConfig>
      */
     public function getNetworks()
     {
@@ -480,7 +480,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single network is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig networks = 11;</code>
-     * @param array<\Google\Cloud\Filestore\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Filestore\V1\NetworkConfig[] $var
      * @return $this
      */
     public function setNetworks($var)
@@ -639,7 +639,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSuspensionReasons()
     {
@@ -651,7 +651,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.Instance.SuspensionReason suspension_reasons = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSuspensionReasons($var)

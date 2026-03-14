@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AttachedClusters.ListAttachedClusters` method.
@@ -36,7 +36,7 @@ class ListAttachedClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AttachedCluster>|\Google\Protobuf\Internal\RepeatedField $attached_clusters
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedCluster[] $attached_clusters
      *           A list of [AttachedCluster][google.cloud.gkemulticloud.v1.AttachedCluster]
      *           resources in the specified Google Cloud Platform project and region region.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListAttachedClustersResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud Platform project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedCluster attached_clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AttachedCluster>
      */
     public function getAttachedClusters()
     {
@@ -66,7 +66,7 @@ class ListAttachedClustersResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud Platform project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedCluster attached_clusters = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AttachedCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedCluster[] $var
      * @return $this
      */
     public function setAttachedClusters($var)

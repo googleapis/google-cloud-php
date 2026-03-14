@@ -5,8 +5,8 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a set of requested error group stats.
@@ -45,7 +45,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats>|\Google\Protobuf\Internal\RepeatedField $error_group_stats
+     *     @type \Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats[] $error_group_stats
      *           The error group stats which match the given request.
      *     @type string $next_page_token
      *           If non-empty, more results are available.
@@ -67,7 +67,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * The error group stats which match the given request.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats>
      */
     public function getErrorGroupStats()
     {
@@ -78,7 +78,7 @@ class ListGroupStatsResponse extends \Google\Protobuf\Internal\Message
      * The error group stats which match the given request.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouderrorreporting.v1beta1.ErrorGroupStats error_group_stats = 1;</code>
-     * @param array<\Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ErrorReporting\V1beta1\ErrorGroupStats[] $var
      * @return $this
      */
     public function setErrorGroupStats($var)

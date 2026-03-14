@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
@@ -84,11 +84,11 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type string[] $collection_ids
      *           Which collection IDs are being imported.
      *     @type string $input_uri_prefix
      *           The location of the documents being imported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *     @type string[] $namespace_ids
      *           Which namespace IDs are being imported.
      * }
      */
@@ -273,7 +273,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCollectionIds()
     {
@@ -284,7 +284,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCollectionIds($var)
@@ -325,7 +325,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which namespace IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNamespaceIds()
     {
@@ -336,7 +336,7 @@ class ImportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which namespace IDs are being imported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNamespaceIds($var)

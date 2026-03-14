@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MembershipBinding is a subresource of a Membership, representing
@@ -73,7 +73,7 @@ class MembershipBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $scope
      *           A Scope resource name in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     *           `projects/{@*}locations/{@*}scopes/*`.
      *     @type string $name
      *           The resource name for the membershipbinding itself
      *           `projects/{project}/locations/{location}/memberships/{membership}/bindings/{membershipbinding}`
@@ -101,7 +101,7 @@ class MembershipBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * A Scope resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     * `projects/{@*}locations/{@*}scopes/*`.
      *
      * Generated from protobuf field <code>string scope = 3 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -118,7 +118,7 @@ class MembershipBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * A Scope resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     * `projects/{@*}locations/{@*}scopes/*`.
      *
      * Generated from protobuf field <code>string scope = 3 [(.google.api.resource_reference) = {</code>
      * @param string $var

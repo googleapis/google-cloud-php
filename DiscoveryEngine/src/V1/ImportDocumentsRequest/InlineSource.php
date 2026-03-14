@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\ImportDocumentsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for ImportDocuments method.
@@ -30,7 +30,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Document>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Document[] $documents
      *           Required. A list of documents to update/create. Each document must have a
      *           valid [Document.id][google.cloud.discoveryengine.v1.Document.id].
      *           Recommended max of 100 items.
@@ -47,7 +47,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Recommended max of 100 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document documents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Document>
      */
     public function getDocuments()
     {
@@ -60,7 +60,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Recommended max of 100 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Document documents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Document>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Document[] $var
      * @return $this
      */
     public function setDocuments($var)
@@ -72,5 +72,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

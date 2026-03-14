@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for 'DescribeDatabaseEntities' request.
@@ -35,7 +35,7 @@ class DescribeDatabaseEntitiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudDms\V1\DatabaseEntity>|\Google\Protobuf\Internal\RepeatedField $database_entities
+     *     @type \Google\Cloud\CloudDms\V1\DatabaseEntity[] $database_entities
      *           The list of database entities for the conversion workspace.
      *     @type string $next_page_token
      *           A token which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class DescribeDatabaseEntitiesResponse extends \Google\Protobuf\Internal\Message
      * The list of database entities for the conversion workspace.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.DatabaseEntity database_entities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\DatabaseEntity>
      */
     public function getDatabaseEntities()
     {
@@ -62,7 +62,7 @@ class DescribeDatabaseEntitiesResponse extends \Google\Protobuf\Internal\Message
      * The list of database entities for the conversion workspace.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.DatabaseEntity database_entities = 1;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\DatabaseEntity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\DatabaseEntity[] $var
      * @return $this
      */
     public function setDatabaseEntities($var)

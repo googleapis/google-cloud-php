@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * External session proto definition.
@@ -17,7 +17,7 @@ class Session extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -83,7 +83,7 @@ class Session extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;`
+     *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
      *     @type string $display_name
      *           Optional. The display name of the session.
      *           This field is used to identify the session in the UI.
@@ -92,9 +92,9 @@ class Session extends \Google\Protobuf\Internal\Message
      *           The state of the session.
      *     @type string $user_pseudo_id
      *           A unique identifier for tracking users.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Session\Turn>|\Google\Protobuf\Internal\RepeatedField $turns
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Session\Turn[] $turns
      *           Turns.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type string[] $labels
      *           Optional. The labels for the session.
      *           Can be set as filter in ListSessionsRequest.
      *     @type \Google\Protobuf\Timestamp $start_time
@@ -113,7 +113,7 @@ class Session extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -125,7 +125,7 @@ class Session extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -225,7 +225,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Turns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Session.Turn turns = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Session\Turn>
      */
     public function getTurns()
     {
@@ -236,7 +236,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Turns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Session.Turn turns = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Session\Turn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Session\Turn[] $var
      * @return $this
      */
     public function setTurns($var)
@@ -252,7 +252,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Can be set as filter in ListSessionsRequest.
      *
      * Generated from protobuf field <code>repeated string labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLabels()
     {
@@ -264,7 +264,7 @@ class Session extends \Google\Protobuf\Internal\Message
      * Can be set as filter in ListSessionsRequest.
      *
      * Generated from protobuf field <code>repeated string labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLabels($var)

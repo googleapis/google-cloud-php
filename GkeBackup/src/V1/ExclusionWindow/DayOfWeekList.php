@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\ExclusionWindow;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Holds repeated DaysOfWeek values as a container.
@@ -28,7 +28,7 @@ class DayOfWeekList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_week
+     *     @type int[] $days_of_week
      *           Optional. A list of days of week.
      * }
      */
@@ -41,7 +41,7 @@ class DayOfWeekList extends \Google\Protobuf\Internal\Message
      * Optional. A list of days of week.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfWeek()
     {
@@ -52,7 +52,7 @@ class DayOfWeekList extends \Google\Protobuf\Internal\Message
      * Optional. A list of days of week.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfWeek($var)
@@ -64,5 +64,4 @@ class DayOfWeekList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

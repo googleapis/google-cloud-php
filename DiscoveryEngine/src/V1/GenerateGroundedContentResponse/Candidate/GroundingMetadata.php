@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Citation for the generated content.
@@ -64,23 +64,23 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\RetrievalMetadata>|\Google\Protobuf\Internal\RepeatedField $retrieval_metadata
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\RetrievalMetadata[] $retrieval_metadata
      *           Retrieval metadata to provide an understanding in the
      *           retrieval steps performed by the model. There can be multiple such
      *           messages which can correspond to different parts of the retrieval. This
      *           is a mechanism used to ensure transparency to our users.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\FactChunk>|\Google\Protobuf\Internal\RepeatedField $support_chunks
+     *     @type \Google\Cloud\DiscoveryEngine\V1\FactChunk[] $support_chunks
      *           List of chunks to be attributed across all claims in the candidate.
      *           These are derived from the grounding sources supplied in the request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $web_search_queries
+     *     @type string[] $web_search_queries
      *           Web search queries for the following-up web search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\SearchEntryPoint $search_entry_point
      *           Google search entry for the following-up web searches.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_support
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport[] $grounding_support
      *           GroundingSupport across all claims in the answer candidate.
      *           An support to a fact indicates that the claim is supported by
      *           the fact.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata>|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata[] $images
      *           Images from the web search.
      * }
      */
@@ -96,7 +96,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * is a mechanism used to ensure transparency to our users.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.RetrievalMetadata retrieval_metadata = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\RetrievalMetadata>
      */
     public function getRetrievalMetadata()
     {
@@ -110,7 +110,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * is a mechanism used to ensure transparency to our users.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.RetrievalMetadata retrieval_metadata = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\RetrievalMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\RetrievalMetadata[] $var
      * @return $this
      */
     public function setRetrievalMetadata($var)
@@ -126,7 +126,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * These are derived from the grounding sources supplied in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.FactChunk support_chunks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\FactChunk>
      */
     public function getSupportChunks()
     {
@@ -138,7 +138,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * These are derived from the grounding sources supplied in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.FactChunk support_chunks = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\FactChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\FactChunk[] $var
      * @return $this
      */
     public function setSupportChunks($var)
@@ -153,7 +153,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Web search queries for the following-up web search.
      *
      * Generated from protobuf field <code>repeated string web_search_queries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWebSearchQueries()
     {
@@ -164,7 +164,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Web search queries for the following-up web search.
      *
      * Generated from protobuf field <code>repeated string web_search_queries = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWebSearchQueries($var)
@@ -217,7 +217,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * the fact.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.GroundingSupport grounding_support = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport>
      */
     public function getGroundingSupport()
     {
@@ -230,7 +230,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * the fact.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.GroundingSupport grounding_support = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\GroundingSupport[] $var
      * @return $this
      */
     public function setGroundingSupport($var)
@@ -245,7 +245,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Images from the web search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata>
      */
     public function getImages()
     {
@@ -256,7 +256,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Images from the web search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentResponse.Candidate.GroundingMetadata.ImageMetadata images = 9;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata[] $var
      * @return $this
      */
     public function setImages($var)
@@ -268,5 +268,4 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

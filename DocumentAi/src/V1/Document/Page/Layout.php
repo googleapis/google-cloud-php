@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Page;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Visual element describing a layout unit on a page.
@@ -214,5 +214,4 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

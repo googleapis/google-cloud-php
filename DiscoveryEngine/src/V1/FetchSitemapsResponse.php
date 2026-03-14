@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -30,7 +30,7 @@ class FetchSitemapsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse\SitemapMetadata>|\Google\Protobuf\Internal\RepeatedField $sitemaps_metadata
+     *     @type \Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse\SitemapMetadata[] $sitemaps_metadata
      *           List of [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s fetched.
      * }
      */
@@ -43,7 +43,7 @@ class FetchSitemapsResponse extends \Google\Protobuf\Internal\Message
      * List of [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s fetched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.FetchSitemapsResponse.SitemapMetadata sitemaps_metadata = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse\SitemapMetadata>
      */
     public function getSitemapsMetadata()
     {
@@ -54,7 +54,7 @@ class FetchSitemapsResponse extends \Google\Protobuf\Internal\Message
      * List of [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s fetched.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.FetchSitemapsResponse.SitemapMetadata sitemaps_metadata = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse\SitemapMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse\SitemapMetadata[] $var
      * @return $this
      */
     public function setSitemapsMetadata($var)

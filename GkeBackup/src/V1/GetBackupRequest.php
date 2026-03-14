@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GetBackup.
@@ -17,7 +17,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Full name of the Backup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Full name of the Backup resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     *           Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Backup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Full name of the Backup resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * Format: `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

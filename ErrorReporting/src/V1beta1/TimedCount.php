@@ -5,8 +5,8 @@
 namespace Google\Cloud\ErrorReporting\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The number of errors in a given time period.

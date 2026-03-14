@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CustomInfoType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message defining a custom regular expression.
@@ -41,7 +41,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      *           Pattern defining the regular expression. Its syntax
      *           (https://github.com/google/re2/wiki/Syntax) can be found under the
      *           google/re2 repository on GitHub.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $group_indexes
+     *     @type int[] $group_indexes
      *           The index of the submatch to extract as findings. When not
      *           specified, the entire match is returned. No more than 3 may be included.
      * }
@@ -86,7 +86,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      * specified, the entire match is returned. No more than 3 may be included.
      *
      * Generated from protobuf field <code>repeated int32 group_indexes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getGroupIndexes()
     {
@@ -98,7 +98,7 @@ class Regex extends \Google\Protobuf\Internal\Message
      * specified, the entire match is returned. No more than 3 may be included.
      *
      * Generated from protobuf field <code>repeated int32 group_indexes = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setGroupIndexes($var)
@@ -110,5 +110,4 @@ class Regex extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

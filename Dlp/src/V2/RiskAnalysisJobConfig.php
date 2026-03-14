@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a risk analysis job. See
@@ -47,7 +47,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      *           Privacy metric to compute.
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $source_table
      *           Input dataset to compute metrics over.
-     *     @type array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Dlp\V2\Action[] $actions
      *           Actions to execute at the completion of the job. Are executed in the order
      *           provided.
      * }
@@ -134,7 +134,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      * provided.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Action>
      */
     public function getActions()
     {
@@ -146,7 +146,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      * provided.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 3;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Action[] $var
      * @return $this
      */
     public function setActions($var)
