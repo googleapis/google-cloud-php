@@ -60,11 +60,6 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "CreateEnvironment": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "CreateLake": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -85,11 +80,6 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "DeleteEnvironment": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "DeleteLake": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -106,11 +96,6 @@
                     "retry_params_name": "no_retry_1_params"
                 },
                 "GetAsset": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_1_codes",
-                    "retry_params_name": "retry_policy_1_params"
-                },
-                "GetEnvironment": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -145,11 +130,6 @@
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
                 },
-                "ListEnvironments": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_2_codes",
-                    "retry_params_name": "retry_policy_2_params"
-                },
                 "ListJobs": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_2_codes",
@@ -164,11 +144,6 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_2_codes",
                     "retry_params_name": "retry_policy_2_params"
-                },
-                "ListSessions": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
                 },
                 "ListTasks": {
                     "timeout_millis": 60000,
@@ -195,11 +170,6 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
-                "UpdateEnvironment": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_1_codes",
-                    "retry_params_name": "no_retry_1_params"
-                },
                 "UpdateLake": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -215,6 +185,16 @@
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "GetLocation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetIamPolicy": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -226,16 +206,6 @@
                     "retry_params_name": "no_retry_params"
                 },
                 "TestIamPermissions": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
-                },
-                "GetLocation": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
-                },
-                "ListLocations": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

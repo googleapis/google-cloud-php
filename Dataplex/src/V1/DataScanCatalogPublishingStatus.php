@@ -10,14 +10,15 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * The status of publishing the data scan result as Dataplex Universal Catalog
- * metadata.
+ * metadata. Multiple DataScan log events may exist, each with different
+ * publishing information depending on the type of publishing triggered.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.DataScanCatalogPublishingStatus</code>
  */
 class DataScanCatalogPublishingStatus extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Execution state for catalog publishing.
+     * Output only. Execution state for publishing.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -30,7 +31,7 @@ class DataScanCatalogPublishingStatus extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $state
-     *           Output only. Execution state for catalog publishing.
+     *           Output only. Execution state for publishing.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +40,7 @@ class DataScanCatalogPublishingStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Execution state for catalog publishing.
+     * Output only. Execution state for publishing.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -50,7 +51,7 @@ class DataScanCatalogPublishingStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Execution state for catalog publishing.
+     * Output only. Execution state for publishing.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

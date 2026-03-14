@@ -16,7 +16,7 @@ class DatascansCommon
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\xF9\x02\x0A/google/cloud/dataplex/v1/datascans_common.proto\x12\x18google.cloud.dataplex.v1\"\xB1\x01\x0A\x1FDataScanCatalogPublishingStatus\x12S\x0A\x05state\x18\x01 \x01(\x0E2?.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus.StateB\x03\xE0A\x03\"9\x0A\x05State\x12\x15\x0A\x11STATE_UNSPECIFIED\x10\x00\x12\x0D\x0A\x09SUCCEEDED\x10\x01\x12\x0A\x0A\x06FAILED\x10\x02Bp\x0A\x1Ccom.google.cloud.dataplex.v1B\x14DataScansCommonProtoP\x01Z8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbb\x06proto3"
+            "\x0A\x86\x03\x0A/google/cloud/dataplex/v1/datascans_common.proto\x12\x18google.cloud.dataplex.v1\"\xBE\x01\x0A\x1FDataScanCatalogPublishingStatus\x12S\x0A\x05state\x18\x01 \x01(\x0E2?.google.cloud.dataplex.v1.DataScanCatalogPublishingStatus.StateB\x03\xE0A\x03\"F\x0A\x05State\x12\x15\x0A\x11STATE_UNSPECIFIED\x10\x00\x12\x0D\x0A\x09SUCCEEDED\x10\x01\x12\x0A\x0A\x06FAILED\x10\x02\x12\x0B\x0A\x07SKIPPED\x10\x03Bp\x0A\x1Ccom.google.cloud.dataplex.v1B\x14DataScansCommonProtoP\x01Z8cloud.google.com/go/dataplex/apiv1/dataplexpb;dataplexpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -42,25 +42,6 @@ return [
                     ],
                 ],
             ],
-            'CreateEnvironment' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Dataplex\V1\Environment',
-                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
-                'headerParams' => [
-                    [
-                        'keyName' => 'parent',
-                        'fieldAccessors' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'CreateLake' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dataplex\V1\Lake',
@@ -119,25 +100,6 @@ return [
                 ],
             ],
             'DeleteAsset' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteEnvironment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
@@ -233,26 +195,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateEnvironment' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Cloud\Dataplex\V1\Environment',
-                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
-                'headerParams' => [
-                    [
-                        'keyName' => 'environment.name',
-                        'fieldAccessors' => [
-                            'getEnvironment',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'UpdateLake' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dataplex\V1\Lake',
@@ -328,18 +270,6 @@ return [
             'GetAsset' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\Asset',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetEnvironment' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Dataplex\V1\Environment',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -437,26 +367,6 @@ return [
                     ],
                 ],
             ],
-            'ListEnvironments' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getEnvironments',
-                ],
-                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Dataplex\V1\ListEnvironmentsResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'parent',
-                        'fieldAccessors' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -508,26 +418,6 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\ListLakesResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'parent',
-                        'fieldAccessors' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSessions' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getSessions',
-                ],
-                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Dataplex\V1\ListSessionsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -609,6 +499,40 @@ return [
                     ],
                 ],
             ],
+            'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'ListLocations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLocations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'GetIamPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\Policy',
@@ -648,43 +572,8 @@ return [
                 ],
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
-            'GetLocation' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Location\Location',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.cloud.location.Locations',
-            ],
-            'ListLocations' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getLocations',
-                ],
-                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.cloud.location.Locations',
-            ],
             'templateMap' => [
                 'asset' => 'projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/assets/{asset}',
-                'environment' => 'projects/{project}/locations/{location}/lakes/{lake}/environments/{environment}',
                 'job' => 'projects/{project}/locations/{location}/lakes/{lake}/tasks/{task}/jobs/{job}',
                 'lake' => 'projects/{project}/locations/{location}/lakes/{lake}',
                 'location' => 'projects/{project}/locations/{location}',

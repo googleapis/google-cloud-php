@@ -29,12 +29,8 @@ use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 
 /**
- * Gets the access control policy for a contentitem resource. A `NOT_FOUND`
- * error is returned if the resource does not exist. An empty policy is
- * returned if the resource exists but does not have a policy set on it.
- *
- * Caller must have Google IAM `dataplex.content.getIamPolicy` permission
- * on the resource.
+ * Gets the access control policy for a resource. Returns an empty policy
+if the resource exists and does not have a policy set.
  *
  * @param string $resource REQUIRED: The resource for which the policy is being requested.
  *                         See the operation documentation for the appropriate value for this field.
