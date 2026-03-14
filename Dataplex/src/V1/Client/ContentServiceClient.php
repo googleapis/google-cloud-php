@@ -29,17 +29,10 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
-use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Dataplex\V1\Content;
-use Google\Cloud\Dataplex\V1\CreateContentRequest;
-use Google\Cloud\Dataplex\V1\DeleteContentRequest;
-use Google\Cloud\Dataplex\V1\GetContentRequest;
-use Google\Cloud\Dataplex\V1\ListContentRequest;
-use Google\Cloud\Dataplex\V1\UpdateContentRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -48,7 +41,6 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -57,27 +49,10 @@ use Psr\Log\LoggerInterface;
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
- *
- * Many parameters require resource names to be formatted in a particular way. To
- * assist with these names, this class includes a format method for each type of
- * name, and additionally a parseName method to extract the individual identifiers
- * contained within formatted names that are returned by the API.
- *
- * @method PromiseInterface<Content> createContentAsync(CreateContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<void> deleteContentAsync(DeleteContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Content> getContentAsync(GetContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listContentAsync(ListContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Content> updateContentAsync(UpdateContentRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class ContentServiceClient
 {
     use GapicClientTrait;
-    use ResourceHelperTrait;
 
     /** The name of the service. */
     private const SERVICE_NAME = 'google.cloud.dataplex.v1.ContentService';
@@ -99,7 +74,7 @@ final class ContentServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [];
 
     private static function getClientDefaults()
     {
@@ -118,71 +93,6 @@ final class ContentServiceClient
                 ],
             ],
         ];
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a content
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $lake
-     * @param string $content
-     *
-     * @return string The formatted content resource.
-     */
-    public static function contentName(string $project, string $location, string $lake, string $content): string
-    {
-        return self::getPathTemplate('content')->render([
-            'project' => $project,
-            'location' => $location,
-            'lake' => $lake,
-            'content' => $content,
-        ]);
-    }
-
-    /**
-     * Formats a string containing the fully-qualified path to represent a lake
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $lake
-     *
-     * @return string The formatted lake resource.
-     */
-    public static function lakeName(string $project, string $location, string $lake): string
-    {
-        return self::getPathTemplate('lake')->render([
-            'project' => $project,
-            'location' => $location,
-            'lake' => $lake,
-        ]);
-    }
-
-    /**
-     * Parses a formatted name string and returns an associative array of the components in the name.
-     * The following name formats are supported:
-     * Template: Pattern
-     * - content: projects/{project}/locations/{location}/lakes/{lake}/content/{content}
-     * - lake: projects/{project}/locations/{location}/lakes/{lake}
-     *
-     * The optional $template argument can be supplied to specify a particular pattern,
-     * and must match one of the templates listed above. If no $template argument is
-     * provided, or if the $template argument does not match one of the templates
-     * listed, then parseName will check each of the supported templates, and return
-     * the first match.
-     *
-     * @param string  $formattedName The formatted name string
-     * @param ?string $template      Optional name of template to match
-     *
-     * @return array An associative array from name component IDs to component values.
-     *
-     * @throws ValidationException If $formattedName could not be matched.
-     */
-    public static function parseName(string $formattedName, ?string $template = null): array
-    {
-        return self::parseFormattedName($formattedName, $template);
     }
 
     /**
@@ -259,243 +169,6 @@ final class ContentServiceClient
         $this->setClientOptions($clientOptions);
     }
 
-    /** Handles execution of the async variants for each documented method. */
-    public function __call($method, $args)
-    {
-        if (substr($method, -5) !== 'Async') {
-            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
-        }
-
-        array_unshift($args, substr($method, 0, -5));
-        return call_user_func_array([$this, 'startAsyncCall'], $args);
-    }
-
-    /**
-     * Create a content.
-     *
-     * The async variant is {@see ContentServiceClient::createContentAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/create_content.php
-     *
-     * @param CreateContentRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Content
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function createContent(CreateContentRequest $request, array $callOptions = []): Content
-    {
-        return $this->startApiCall('CreateContent', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Delete a content.
-     *
-     * The async variant is {@see ContentServiceClient::deleteContentAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/delete_content.php
-     *
-     * @param DeleteContentRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteContent(DeleteContentRequest $request, array $callOptions = []): void
-    {
-        $this->startApiCall('DeleteContent', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Get a content resource.
-     *
-     * The async variant is {@see ContentServiceClient::getContentAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/get_content.php
-     *
-     * @param GetContentRequest $request     A request to house fields associated with the call.
-     * @param array             $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Content
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getContent(GetContentRequest $request, array $callOptions = []): Content
-    {
-        return $this->startApiCall('GetContent', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets the access control policy for a contentitem resource. A `NOT_FOUND`
-     * error is returned if the resource does not exist. An empty policy is
-     * returned if the resource exists but does not have a policy set on it.
-     *
-     * Caller must have Google IAM `dataplex.content.getIamPolicy` permission
-     * on the resource.
-     *
-     * The async variant is {@see ContentServiceClient::getIamPolicyAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/get_iam_policy.php
-     *
-     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Policy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
-    {
-        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
-    }
-
-    /**
-     * List content.
-     *
-     * The async variant is {@see ContentServiceClient::listContentAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/list_content.php
-     *
-     * @param ListContentRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listContent(ListContentRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListContent', $request, $callOptions);
-    }
-
-    /**
-     * Sets the access control policy on the specified contentitem resource.
-     * Replaces any existing policy.
-     *
-     * Caller must have Google IAM `dataplex.content.setIamPolicy` permission
-     * on the resource.
-     *
-     * The async variant is {@see ContentServiceClient::setIamPolicyAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/set_iam_policy.php
-     *
-     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Policy
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
-    {
-        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns the caller's permissions on a resource.
-     * If the resource does not exist, an empty set of
-     * permissions is returned (a `NOT_FOUND` error is not returned).
-     *
-     * A caller is not required to have Google IAM permission to make this
-     * request.
-     *
-     * Note: This operation is designed to be used for building permission-aware
-     * UIs and command-line tools, not for authorization checking. This operation
-     * may "fail open" without warning.
-     *
-     * The async variant is {@see ContentServiceClient::testIamPermissionsAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/test_iam_permissions.php
-     *
-     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
-     * @param array                     $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return TestIamPermissionsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function testIamPermissions(
-        TestIamPermissionsRequest $request,
-        array $callOptions = []
-    ): TestIamPermissionsResponse {
-        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Update a content. Only supports full resource update.
-     *
-     * The async variant is {@see ContentServiceClient::updateContentAsync()} .
-     *
-     * @example samples/V1/ContentServiceClient/update_content.php
-     *
-     * @param UpdateContentRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Content
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function updateContent(UpdateContentRequest $request, array $callOptions = []): Content
-    {
-        return $this->startApiCall('UpdateContent', $request, $callOptions)->wait();
-    }
-
     /**
      * Gets information about a location.
      *
@@ -524,6 +197,13 @@ final class ContentServiceClient
 
     /**
      * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
      *
      * The async variant is {@see ContentServiceClient::listLocationsAsync()} .
      *
@@ -546,5 +226,96 @@ final class ContentServiceClient
     public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListLocations', $request, $callOptions);
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * The async variant is {@see ContentServiceClient::getIamPolicyAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/get_iam_policy.php
+     *
+     * @param GetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getIamPolicy(GetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * The async variant is {@see ContentServiceClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * The async variant is {@see ContentServiceClient::testIamPermissionsAsync()} .
+     *
+     * @example samples/V1/ContentServiceClient/test_iam_permissions.php
+     *
+     * @param TestIamPermissionsRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TestIamPermissionsResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function testIamPermissions(
+        TestIamPermissionsRequest $request,
+        array $callOptions = []
+    ): TestIamPermissionsResponse {
+        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
     }
 }

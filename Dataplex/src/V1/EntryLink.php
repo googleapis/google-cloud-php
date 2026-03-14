@@ -49,10 +49,19 @@ class EntryLink extends \Google\Protobuf\Internal\Message
      */
     protected $update_time = null;
     /**
-     * Required. Specifies the Entries referenced in the Entry Link. There should
-     * be exactly two entry references.
+     * Optional. The aspects that are attached to the entry link.
+     * The format of the aspect key has to be the following:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * Currently, only a single aspect of a Dataplex-owned Aspect Type is allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $aspects;
+    /**
+     * Required. Immutable. Specifies the Entries referenced in the Entry Link.
+     * There should be exactly two entry references.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $entry_references;
 
@@ -79,9 +88,14 @@ class EntryLink extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the Entry Link was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the Entry Link was last updated.
+     *     @type array|\Google\Protobuf\Internal\MapField $aspects
+     *           Optional. The aspects that are attached to the entry link.
+     *           The format of the aspect key has to be the following:
+     *           `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     *           Currently, only a single aspect of a Dataplex-owned Aspect Type is allowed.
      *     @type \Google\Cloud\Dataplex\V1\EntryLink\EntryReference[] $entry_references
-     *           Required. Specifies the Entries referenced in the Entry Link. There should
-     *           be exactly two entry references.
+     *           Required. Immutable. Specifies the Entries referenced in the Entry Link.
+     *           There should be exactly two entry references.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,10 +246,42 @@ class EntryLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the Entries referenced in the Entry Link. There should
-     * be exactly two entry references.
+     * Optional. The aspects that are attached to the entry link.
+     * The format of the aspect key has to be the following:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * Currently, only a single aspect of a Dataplex-owned Aspect Type is allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getAspects()
+    {
+        return $this->aspects;
+    }
+
+    /**
+     * Optional. The aspects that are attached to the entry link.
+     * The format of the aspect key has to be the following:
+     * `{project_id_or_number}.{location_id}.{aspect_type_id}`
+     * Currently, only a single aspect of a Dataplex-owned Aspect Type is allowed.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dataplex.v1.Aspect> aspects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setAspects($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\Aspect::class);
+        $this->aspects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Required. Immutable. Specifies the Entries referenced in the Entry Link.
+     * There should be exactly two entry references.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return RepeatedField<\Google\Cloud\Dataplex\V1\EntryLink\EntryReference>
      */
     public function getEntryReferences()
@@ -244,10 +290,10 @@ class EntryLink extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the Entries referenced in the Entry Link. There should
-     * be exactly two entry references.
+     * Required. Immutable. Specifies the Entries referenced in the Entry Link.
+     * There should be exactly two entry references.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.EntryLink.EntryReference entry_references = 10 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\Dataplex\V1\EntryLink\EntryReference[] $var
      * @return $this
      */
