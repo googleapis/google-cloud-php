@@ -417,6 +417,45 @@ class BigQueryClient
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
 
+        // Check if we can build a query Request
+        if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
+            $queryRequest = $query->toQueryRequest();
+
+            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
+                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
+
+                if (!isset($queryResultsOptions['formatOptions']) || !is_array($queryResultsOptions['formatOptions'])) {
+                    $queryResultsOptions['formatOptions'] = [];
+                }
+
+                $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
+            }
+
+            $statelessArgs = $queryRequest + $queryResultsOptions + [
+                'projectId' => $this->projectId
+            ] + $options;
+
+            if (!isset($statelessArgs['timeoutMs'])) {
+                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            }
+
+            $statelessResponse = $this->connection->query($statelessArgs);
+
+            $queryResults = QueryResults::fromStatelessQuery(
+                $this->connection,
+                $this->projectId,
+                $statelessResponse,
+                $this->mapper,
+                $queryResultsOptions + $options
+            );
+
+            if (!$queryResults->isComplete()) {
+                $queryResults->waitUntilComplete();
+            }
+
+            return $queryResults;
+        }
+
         $queryResults = $this->startQuery(
             $query,
             $options
