@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CompliancePostureConfig defines the settings needed to enable/disable
@@ -37,7 +37,7 @@ class CompliancePostureConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $mode
      *           Defines the enablement mode for Compliance Posture.
-     *     @type array<\Google\Cloud\Container\V1\CompliancePostureConfig\ComplianceStandard>|\Google\Protobuf\Internal\RepeatedField $compliance_standards
+     *     @type \Google\Cloud\Container\V1\CompliancePostureConfig\ComplianceStandard[] $compliance_standards
      *           List of enabled compliance standards.
      * }
      */
@@ -86,7 +86,7 @@ class CompliancePostureConfig extends \Google\Protobuf\Internal\Message
      * List of enabled compliance standards.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.CompliancePostureConfig.ComplianceStandard compliance_standards = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\CompliancePostureConfig\ComplianceStandard>
      */
     public function getComplianceStandards()
     {
@@ -97,7 +97,7 @@ class CompliancePostureConfig extends \Google\Protobuf\Internal\Message
      * List of enabled compliance standards.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.CompliancePostureConfig.ComplianceStandard compliance_standards = 2;</code>
-     * @param array<\Google\Cloud\Container\V1\CompliancePostureConfig\ComplianceStandard>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\CompliancePostureConfig\ComplianceStandard[] $var
      * @return $this
      */
     public function setComplianceStandards($var)

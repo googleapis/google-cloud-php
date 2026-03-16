@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that describe the nodes in a cluster.
@@ -413,7 +413,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Size of the disk attached to each node, specified in GB.
      *           The smallest allowed disk size is 10GB.
      *           If unspecified, the default disk size is 100GB.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type string[] $oauth_scopes
      *           The set of Google API scopes to be made available on all of the
      *           node VMs under the "default" service account.
      *           The following scopes are recommended, but not required, and by default are
@@ -478,7 +478,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           disks available on a machine per zone. See:
      *           https://cloud.google.com/compute/docs/disks/local-ssd
      *           for more information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           The list of instance tags applied to all nodes. Tags are used to identify
      *           valid sources or targets for network firewalls and are specified by
      *           the client during cluster or node pool creation. Each tag within the list
@@ -487,7 +487,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Whether the nodes are created as preemptible VM instances. See:
      *           https://cloud.google.com/compute/docs/instances/preemptible
      *           for more information about preemptible VM instances.
-     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Container\V1\AcceleratorConfig[] $accelerators
      *           A list of hardware accelerators to be attached to each node.
      *           See
      *           https://cloud.google.com/compute/docs/gpus
@@ -506,7 +506,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
      *           The workload metadata configuration for this node.
-     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type \Google\Cloud\Container\V1\NodeTaint[] $taints
      *           List of kubernetes taints to be applied to each node.
      *           For more information, including usage and the valid values, see:
      *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -569,9 +569,9 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           A map of resource manager tag keys and values to be attached to the nodes.
      *     @type bool $enable_confidential_storage
      *           Optional. Reserved for future use.
-     *     @type array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $secondary_boot_disks
+     *     @type \Google\Cloud\Container\V1\SecondaryBootDisk[] $secondary_boot_disks
      *           List of secondary boot disks attached to the nodes.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $storage_pools
+     *     @type string[] $storage_pools
      *           List of Storage Pools where boot disks are provisioned.
      *     @type \Google\Cloud\Container\V1\SecondaryBootDiskUpdateStrategy $secondary_boot_disk_update_strategy
      *           Secondary boot disk update strategy.
@@ -677,7 +677,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Monitoring are enabled, in which case their required scopes will be added.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOauthScopes()
     {
@@ -698,7 +698,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Monitoring are enabled, in which case their required scopes will be added.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -932,7 +932,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * must comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -946,7 +946,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * must comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -994,7 +994,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AcceleratorConfig>
      */
     public function getAccelerators()
     {
@@ -1008,7 +1008,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * for more information about support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
-     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -1129,7 +1129,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\NodeTaint>
      */
     public function getTaints()
     {
@@ -1142,7 +1142,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
-     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\NodeTaint[] $var
      * @return $this
      */
     public function setTaints($var)
@@ -1929,7 +1929,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * List of secondary boot disks attached to the nodes.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\SecondaryBootDisk>
      */
     public function getSecondaryBootDisks()
     {
@@ -1940,7 +1940,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * List of secondary boot disks attached to the nodes.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.SecondaryBootDisk secondary_boot_disks = 48;</code>
-     * @param array<\Google\Cloud\Container\V1\SecondaryBootDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\SecondaryBootDisk[] $var
      * @return $this
      */
     public function setSecondaryBootDisks($var)
@@ -1955,7 +1955,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * List of Storage Pools where boot disks are provisioned.
      *
      * Generated from protobuf field <code>repeated string storage_pools = 49;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoragePools()
     {
@@ -1966,7 +1966,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * List of Storage Pools where boot disks are provisioned.
      *
      * Generated from protobuf field <code>repeated string storage_pools = 49;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoragePools($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MonitoringComponentConfig is cluster monitoring component configuration.
@@ -29,7 +29,7 @@ class MonitoringComponentConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $enable_components
+     *     @type int[] $enable_components
      *           Select components to collect metrics. An empty set would disable all
      *           monitoring.
      * }
@@ -44,7 +44,7 @@ class MonitoringComponentConfig extends \Google\Protobuf\Internal\Message
      * monitoring.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.MonitoringComponentConfig.Component enable_components = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEnableComponents()
     {
@@ -56,7 +56,7 @@ class MonitoringComponentConfig extends \Google\Protobuf\Internal\Message
      * monitoring.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.MonitoringComponentConfig.Component enable_components = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEnableComponents($var)

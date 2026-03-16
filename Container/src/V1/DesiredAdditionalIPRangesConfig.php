@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DesiredAdditionalIPRangesConfig is a wrapper used for cluster update
@@ -30,7 +30,7 @@ class DesiredAdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $additional_ip_ranges_configs
+     *     @type \Google\Cloud\Container\V1\AdditionalIPRangesConfig[] $additional_ip_ranges_configs
      *           List of additional IP ranges configs where each AdditionalIPRangesConfig
      *           corresponds to one subnetwork's IP ranges
      * }
@@ -45,7 +45,7 @@ class DesiredAdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * corresponds to one subnetwork's IP ranges
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>
      */
     public function getAdditionalIpRangesConfigs()
     {
@@ -57,7 +57,7 @@ class DesiredAdditionalIPRangesConfig extends \Google\Protobuf\Internal\Message
      * corresponds to one subnetwork's IP ranges
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalIPRangesConfig additional_ip_ranges_configs = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\AdditionalIPRangesConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AdditionalIPRangesConfig[] $var
      * @return $this
      */
     public function setAdditionalIpRangesConfigs($var)

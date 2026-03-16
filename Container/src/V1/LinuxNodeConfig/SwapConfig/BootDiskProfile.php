@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Swap on the node's boot disk.
@@ -108,5 +108,4 @@ class BootDiskProfile extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
