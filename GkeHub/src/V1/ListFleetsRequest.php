@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `GkeHub.ListFleets` method.
@@ -17,7 +17,7 @@ class ListFleetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The organization or project to list for Fleets under, in the
-     * format `organizations/&#42;&#47;locations/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * format `organizations/{@*}locations/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,7 +63,7 @@ class ListFleetsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The organization or project to list for Fleets under, in the
-     *           format `organizations/&#42;&#47;locations/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     *           format `organizations/{@*}locations/*` or `projects/{@*}locations/*`.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListFleets` call.
      *           Provide this to retrieve the subsequent page.
@@ -82,7 +82,7 @@ class ListFleetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The organization or project to list for Fleets under, in the
-     * format `organizations/&#42;&#47;locations/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * format `organizations/{@*}locations/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -94,7 +94,7 @@ class ListFleetsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The organization or project to list for Fleets under, in the
-     * format `organizations/&#42;&#47;locations/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * format `organizations/{@*}locations/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AttachedServerConfig provides information about supported
@@ -37,7 +37,7 @@ class AttachedServerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the config.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AttachedPlatformVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AttachedPlatformVersionInfo[] $valid_versions
      *           List of valid platform versions.
      * }
      */
@@ -76,7 +76,7 @@ class AttachedServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid platform versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedPlatformVersionInfo valid_versions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AttachedPlatformVersionInfo>
      */
     public function getValidVersions()
     {
@@ -87,7 +87,7 @@ class AttachedServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid platform versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AttachedPlatformVersionInfo valid_versions = 2;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AttachedPlatformVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AttachedPlatformVersionInfo[] $var
      * @return $this
      */
     public function setValidVersions($var)

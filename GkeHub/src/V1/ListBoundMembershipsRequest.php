@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to list Memberships bound to a Scope.
@@ -17,7 +17,7 @@ class ListBoundMembershipsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the Scope, in the format
-     * `projects/&#42;&#47;locations/global/scopes/&#42;`, to which the Memberships are bound.
+     * `projects/{@*}locations/global/scopes/*`, to which the Memberships are bound.
      *
      * Generated from protobuf field <code>string scope_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -72,7 +72,7 @@ class ListBoundMembershipsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $scope_name
      *           Required. Name of the Scope, in the format
-     *           `projects/&#42;&#47;locations/global/scopes/&#42;`, to which the Memberships are bound.
+     *           `projects/{@*}locations/global/scopes/*`, to which the Memberships are bound.
      *     @type string $filter
      *           Optional. Lists Memberships that match the filter expression, following the
      *           syntax outlined in https://google.aip.dev/160. Currently, filtering
@@ -96,7 +96,7 @@ class ListBoundMembershipsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Scope, in the format
-     * `projects/&#42;&#47;locations/global/scopes/&#42;`, to which the Memberships are bound.
+     * `projects/{@*}locations/global/scopes/*`, to which the Memberships are bound.
      *
      * Generated from protobuf field <code>string scope_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class ListBoundMembershipsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the Scope, in the format
-     * `projects/&#42;&#47;locations/global/scopes/&#42;`, to which the Memberships are bound.
+     * `projects/{@*}locations/global/scopes/*`, to which the Memberships are bound.
      *
      * Generated from protobuf field <code>string scope_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

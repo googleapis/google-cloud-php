@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `GkeHub.CreateMembership` method.
@@ -17,7 +17,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -92,7 +92,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent (project and location) where the Memberships will be
-     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           created. Specified in the format `projects/{@*}locations/*`.
      *     @type string $membership_id
      *           Required. Client chosen ID for the membership. `membership_id` must be a
      *           valid RFC 1123 compliant DNS label:
@@ -124,7 +124,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -136,7 +136,7 @@ class CreateMembershipRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Memberships will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

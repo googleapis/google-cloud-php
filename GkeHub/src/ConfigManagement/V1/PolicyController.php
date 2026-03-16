@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\ConfigManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for Policy Controller
@@ -72,7 +72,7 @@ class PolicyController extends \Google\Protobuf\Internal\Message
      *     @type int|string $audit_interval_seconds
      *           Sets the interval for Policy Controller Audit Scans (in seconds).
      *           When set to 0, this disables audit functionality altogether.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exemptable_namespaces
+     *     @type string[] $exemptable_namespaces
      *           The set of namespaces that are excluded from Policy Controller checks.
      *           Namespaces do not need to currently exist on the cluster.
      *     @type bool $referential_rules_enabled
@@ -196,7 +196,7 @@ class PolicyController extends \Google\Protobuf\Internal\Message
      * Namespaces do not need to currently exist on the cluster.
      *
      * Generated from protobuf field <code>repeated string exemptable_namespaces = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExemptableNamespaces()
     {
@@ -208,7 +208,7 @@ class PolicyController extends \Google\Protobuf\Internal\Message
      * Namespaces do not need to currently exist on the cluster.
      *
      * Generated from protobuf field <code>repeated string exemptable_namespaces = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExemptableNamespaces($var)

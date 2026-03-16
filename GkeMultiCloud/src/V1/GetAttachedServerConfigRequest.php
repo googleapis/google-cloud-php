@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GetAttachedServerConfigRequest gets the server config for attached

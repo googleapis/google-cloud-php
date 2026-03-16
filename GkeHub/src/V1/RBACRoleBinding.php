@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RBACRoleBinding represents a rbacrolebinding across the Fleet
@@ -78,7 +78,7 @@ class RBACRoleBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $user
      *           user is the name of the user as seen by the kubernetes cluster, example
-     *           "alice" or "alice&#64;domain.tld"
+     *           "alice" or "alice\@domain.tld"
      *     @type string $group
      *           group is the group, as seen by the kubernetes cluster.
      *     @type string $name
@@ -111,7 +111,7 @@ class RBACRoleBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * user is the name of the user as seen by the kubernetes cluster, example
-     * "alice" or "alice&#64;domain.tld"
+     * "alice" or "alice\@domain.tld"
      *
      * Generated from protobuf field <code>string user = 7;</code>
      * @return string
@@ -128,7 +128,7 @@ class RBACRoleBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * user is the name of the user as seen by the kubernetes cluster, example
-     * "alice" or "alice&#64;domain.tld"
+     * "alice" or "alice\@domain.tld"
      *
      * Generated from protobuf field <code>string user = 7;</code>
      * @param string $var
