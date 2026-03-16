@@ -82,6 +82,3 @@ class ReplicaType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReplicaType::class, \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo_ReplicaType::class);
-

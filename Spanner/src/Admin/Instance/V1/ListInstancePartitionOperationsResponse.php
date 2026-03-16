@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -50,7 +50,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\LongRunning\Operation[] $operations
      *           The list of matching instance partition long-running operations. Each
      *           operation's name will be
      *           prefixed by the instance partition's name. The operation's
@@ -60,7 +60,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      *           `next_page_token` can be sent in a subsequent
      *           [ListInstancePartitionOperations][google.spanner.admin.instance.v1.InstanceAdmin.ListInstancePartitionOperations]
      *           call to fetch more of the matching metadata.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_instance_partitions
+     *     @type string[] $unreachable_instance_partitions
      *           The list of unreachable instance partitions.
      *           It includes the names of instance partitions whose operation metadata could
      *           not be retrieved within
@@ -80,7 +80,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\LongRunning\Operation>
      */
     public function getOperations()
     {
@@ -95,7 +95,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\LongRunning\Operation[] $var
      * @return $this
      */
     public function setOperations($var)
@@ -143,7 +143,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      * [instance_partition_deadline][google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest.instance_partition_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable_instance_partitions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachableInstancePartitions()
     {
@@ -157,7 +157,7 @@ class ListInstancePartitionOperationsResponse extends \Google\Protobuf\Internal\
      * [instance_partition_deadline][google.spanner.admin.instance.v1.ListInstancePartitionOperationsRequest.instance_partition_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable_instance_partitions = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachableInstancePartitions($var)

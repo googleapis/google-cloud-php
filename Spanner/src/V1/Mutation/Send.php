@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\Mutation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Arguments to [send][google.spanner.v1.Mutation.send] operations.
@@ -208,5 +208,4 @@ class Send extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

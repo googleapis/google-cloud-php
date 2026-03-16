@@ -79,6 +79,3 @@ class FreeInstanceAvailability
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FreeInstanceAvailability::class, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig_FreeInstanceAvailability::class);
-

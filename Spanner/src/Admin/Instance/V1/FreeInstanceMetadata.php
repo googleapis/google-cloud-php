@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Free instance specific metadata that is kept even after an instance has been

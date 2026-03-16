@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A backup of a Cloud Spanner database.
@@ -273,7 +273,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           can be computed by summing up this field.
      *     @type int $state
      *           Output only. The current state of the backup.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_databases
+     *     @type string[] $referencing_databases
      *           Output only. The names of the restored databases that reference the backup.
      *           The database names are of
      *           the form `projects/<project>/instances/<instance>/databases/<database>`.
@@ -283,7 +283,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           to the backup is removed.
      *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo $encryption_info
      *           Output only. The encryption information for the backup.
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_information
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo[] $encryption_information
      *           Output only. The encryption information for the backup, whether it is
      *           protected by one or more KMS keys. The information includes all Cloud
      *           KMS key versions used to encrypt the backup. The `encryption_status' field
@@ -292,7 +292,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           is revoked in the middle of a restore, the restore behavior is undefined.
      *     @type int $database_dialect
      *           Output only. The database dialect information for the backup.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_backups
+     *     @type string[] $referencing_backups
      *           Output only. The names of the destination backups being created by copying
      *           this source backup. The backup names are of the form
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
@@ -306,7 +306,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           multiple APIs: CreateBackup, UpdateBackup, CopyBackup. When updating or
      *           copying an existing backup, the expiration time specified must be
      *           less than `Backup.max_expire_time`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_schedules
+     *     @type string[] $backup_schedules
      *           Output only. List of backup schedule URIs that are associated with
      *           creating this backup. This is only applicable for scheduled backups, and
      *           is empty for on-demand backups.
@@ -328,7 +328,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           ever existed in the chain. For all other backups, this is the version time
      *           of the backup. This field can be used to understand what data is being
      *           retained by the backup system.
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition>|\Google\Protobuf\Internal\RepeatedField $instance_partitions
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition[] $instance_partitions
      *           Output only. The instance partition(s) storing the backup.
      *           This is the same as the list of the instance partition(s) that the database
      *           had footprint in at the backup's `version_time`.
@@ -693,7 +693,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_databases = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencingDatabases()
     {
@@ -710,7 +710,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_databases = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencingDatabases($var)
@@ -766,7 +766,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * is revoked in the middle of a restore, the restore behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_information = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>
      */
     public function getEncryptionInformation()
     {
@@ -782,7 +782,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * is revoked in the middle of a restore, the restore behavior is undefined.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_information = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo[] $var
      * @return $this
      */
     public function setEncryptionInformation($var)
@@ -829,7 +829,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * destination backup is deleted), the reference to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencingBackups()
     {
@@ -846,7 +846,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * destination backup is deleted), the reference to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencingBackups($var)
@@ -912,7 +912,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * single backup schedule URI associated with creating this backup.
      *
      * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBackupSchedules()
     {
@@ -930,7 +930,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * single backup schedule URI associated with creating this backup.
      *
      * Generated from protobuf field <code>repeated string backup_schedules = 14 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBackupSchedules($var)
@@ -1027,7 +1027,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * had footprint in at the backup's `version_time`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.BackupInstancePartition instance_partitions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition>
      */
     public function getInstancePartitions()
     {
@@ -1040,7 +1040,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * had footprint in at the backup's `version_time`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.BackupInstancePartition instance_partitions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\BackupInstancePartition[] $var
      * @return $this
      */
     public function setInstancePartitions($var)

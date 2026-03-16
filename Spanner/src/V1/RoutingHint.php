@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `RoutingHint` can be optionally added to location-aware Spanner
@@ -158,7 +158,7 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
      *           The tablet UID of the tablet from group `group_uid` that the client
      *           believes is best to serve this request. See `Group.local_tablet_uids` and
      *           `Group.leader_tablet_uid`.
-     *     @type array<\Google\Cloud\Spanner\V1\RoutingHint\SkippedTablet>|\Google\Protobuf\Internal\RepeatedField $skipped_tablet_uid
+     *     @type \Google\Cloud\Spanner\V1\RoutingHint\SkippedTablet[] $skipped_tablet_uid
      *           If the client had multiple options for tablet selection, and some of its
      *           first choices were unhealthy (e.g., the server is unreachable, or
      *           `Tablet.skip` is true), this field will contain the tablet UIDs of those
@@ -434,7 +434,7 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
      * with new locations for those tablets.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.RoutingHint.SkippedTablet skipped_tablet_uid = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\RoutingHint\SkippedTablet>
      */
     public function getSkippedTabletUid()
     {
@@ -449,7 +449,7 @@ class RoutingHint extends \Google\Protobuf\Internal\Message
      * with new locations for those tablets.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.RoutingHint.SkippedTablet skipped_tablet_uid = 9;</code>
-     * @param array<\Google\Cloud\Spanner\V1\RoutingHint\SkippedTablet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\RoutingHint\SkippedTablet[] $var
      * @return $this
      */
     public function setSkippedTabletUid($var)

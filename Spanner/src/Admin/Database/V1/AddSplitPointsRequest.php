@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -69,7 +69,7 @@ class AddSplitPointsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The database on whose tables/indexes split points are to be
      *           added. Values are of the form
      *           `projects/<project>/instances/<instance>/databases/<database>`.
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints>|\Google\Protobuf\Internal\RepeatedField $split_points
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\SplitPoints[] $split_points
      *           Required. The split points to add.
      *     @type string $initiator
      *           Optional. A user-supplied tag associated with the split points.
@@ -118,7 +118,7 @@ class AddSplitPointsRequest extends \Google\Protobuf\Internal\Message
      * Required. The split points to add.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.SplitPoints split_points = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints>
      */
     public function getSplitPoints()
     {
@@ -129,7 +129,7 @@ class AddSplitPointsRequest extends \Google\Protobuf\Internal\Message
      * Required. The split points to add.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.SplitPoints split_points = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\SplitPoints[] $var
      * @return $this
      */
     public function setSplitPoints($var)

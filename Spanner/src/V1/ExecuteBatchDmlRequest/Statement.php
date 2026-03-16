@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single DML statement.
@@ -23,12 +23,12 @@ class Statement extends \Google\Protobuf\Internal\Message
     protected $sql = '';
     /**
      * Parameter names and values that bind to placeholders in the DML string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
@@ -59,12 +59,12 @@ class Statement extends \Google\Protobuf\Internal\Message
      *           Required. The DML string.
      *     @type \Google\Protobuf\Struct $params
      *           Parameter names and values that bind to placeholders in the DML string.
-     *           A parameter placeholder consists of the `&#64;` character followed by the
-     *           parameter name (for example, `&#64;firstName`). Parameter names can contain
+     *           A parameter placeholder consists of the `\@` character followed by the
+     *           parameter name (for example, `\@firstName`). Parameter names can contain
      *           letters, numbers, and underscores.
      *           Parameters can appear anywhere that a literal value is expected. The
      *           same parameter name can be used more than once, for example:
-     *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *           `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           It isn't always possible for Cloud Spanner to infer the right SQL type
@@ -111,12 +111,12 @@ class Statement extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameter names and values that bind to placeholders in the DML string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
@@ -139,12 +139,12 @@ class Statement extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameter names and values that bind to placeholders in the DML string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The
      * same parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 2;</code>
@@ -202,5 +202,4 @@ class Statement extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
