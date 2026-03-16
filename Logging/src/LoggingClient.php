@@ -26,9 +26,6 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
 use Google\Cloud\Logging\Connection\Gapic;
-use Google\Cloud\Logging\Connection\Grpc;
-use Google\Cloud\Logging\Connection\Rest;
-use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * Google Stackdriver Logging allows you to store, search, analyze, monitor, and
