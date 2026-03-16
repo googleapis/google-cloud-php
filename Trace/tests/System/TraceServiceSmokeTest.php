@@ -44,4 +44,3 @@ class TraceServiceSmokeTest extends GeneratedTest
         $this->assertNull($response);
     }
 }
-
