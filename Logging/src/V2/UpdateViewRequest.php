@@ -23,13 +23,13 @@ class UpdateViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The updated view.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogView view = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $view = null;
+    protected $view = null;
     /**
      * Optional. Field mask that specifies the fields in `view` that need
      * an update. A field will be overwritten if, and only if, it is
@@ -40,7 +40,7 @@ class UpdateViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * Constructor.

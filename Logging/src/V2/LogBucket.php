@@ -27,26 +27,26 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Describes this bucket.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of the bucket. This is not set for any
      * of the default buckets.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the bucket.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Logs will be retained by default for this amount of time, after which they
      * will automatically be deleted. The minimum retention period is 1 day. If
@@ -55,7 +55,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 retention_days = 11;</code>
      */
-    private $retention_days = 0;
+    protected $retention_days = 0;
     /**
      * Whether the bucket is locked.
      * The retention period on a locked bucket cannot be changed. Locked buckets
@@ -63,20 +63,20 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool locked = 9;</code>
      */
-    private $locked = false;
+    protected $locked = false;
     /**
      * Output only. The bucket lifecycle state.
      *
      * Generated from protobuf field <code>.google.logging.v2.LifecycleState lifecycle_state = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $lifecycle_state = 0;
+    protected $lifecycle_state = 0;
     /**
      * Whether log analytics is enabled for this bucket.
      * Once enabled, log analytics features cannot be disabled.
      *
      * Generated from protobuf field <code>bool analytics_enabled = 14;</code>
      */
-    private $analytics_enabled = false;
+    protected $analytics_enabled = false;
     /**
      * Log entry field paths that are denied access in this bucket.
      * The following fields and their children are eligible: `textPayload`,
@@ -102,7 +102,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.CmekSettings cmek_settings = 19;</code>
      */
-    private $cmek_settings = null;
+    protected $cmek_settings = null;
 
     /**
      * Constructor.

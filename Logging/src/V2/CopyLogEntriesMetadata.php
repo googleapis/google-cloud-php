@@ -20,37 +20,37 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * The end time of an operation.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * State of an operation.
      *
      * Generated from protobuf field <code>.google.logging.v2.OperationState state = 3;</code>
      */
-    private $state = 0;
+    protected $state = 0;
     /**
      * Identifies whether the user has requested cancellation of the operation.
      *
      * Generated from protobuf field <code>bool cancellation_requested = 4;</code>
      */
-    private $cancellation_requested = false;
+    protected $cancellation_requested = false;
     /**
      * CopyLogEntries RPC request.
      *
      * Generated from protobuf field <code>.google.logging.v2.CopyLogEntriesRequest request = 5;</code>
      */
-    private $request = null;
+    protected $request = null;
     /**
      * Estimated progress of the operation (0 - 100%).
      *
      * Generated from protobuf field <code>int32 progress = 6;</code>
      */
-    private $progress = 0;
+    protected $progress = 0;
     /**
      * The IAM identity of a service account that must be granted access to the
      * destination.
@@ -60,7 +60,7 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string writer_identity = 7;</code>
      */
-    private $writer_identity = '';
+    protected $writer_identity = '';
 
     /**
      * Constructor.

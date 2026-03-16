@@ -20,13 +20,13 @@ class SuppressionInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.TailLogEntriesResponse.SuppressionInfo.Reason reason = 1;</code>
      */
-    private $reason = 0;
+    protected $reason = 0;
     /**
      * A lower bound on the count of entries omitted due to `reason`.
      *
      * Generated from protobuf field <code>int32 suppressed_count = 2;</code>
      */
-    private $suppressed_count = 0;
+    protected $suppressed_count = 0;
 
     /**
      * Constructor.

@@ -27,13 +27,13 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A description of this exclusion.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. An [advanced logs
      * filter](https://cloud.google.com/logging/docs/view/advanced-queries) that
@@ -46,7 +46,7 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. If set to True, then this exclusion is disabled and it does not
      * exclude any log entries. You can [update an
@@ -55,21 +55,21 @@ class LogExclusion extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disabled = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Output only. The creation timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the exclusion.
      * This field may not be present for older exclusions.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
 
     /**
      * Constructor.
