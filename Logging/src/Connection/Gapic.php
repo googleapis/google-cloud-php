@@ -20,6 +20,7 @@ namespace Google\Cloud\Logging\Connection;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\OptionsValidator;
 use Google\Cloud\Core\RequestProcessorTrait;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
@@ -72,11 +73,16 @@ class Gapic
             'json_payload' => function ($v) {
                 return $this->unpackStructFromApi($v);
             }
-        ], [], [], [
+        ], [], [
+            'json_payload' => function ($v) {
+                return $this->formatStructForApi($v);
+            }
+        ], [
             'google.protobuf.Duration' => function ($v) {
                 return $this->formatDurationForApi($v);
             },
         ]);
+        $this->optionsValidator = new OptionsValidator($this->serializer);
     }
 
     private function getConfigClient()
