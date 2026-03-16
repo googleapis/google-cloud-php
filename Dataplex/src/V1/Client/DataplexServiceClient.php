@@ -38,18 +38,14 @@ use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Dataplex\V1\Asset;
 use Google\Cloud\Dataplex\V1\CancelJobRequest;
 use Google\Cloud\Dataplex\V1\CreateAssetRequest;
-use Google\Cloud\Dataplex\V1\CreateEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\CreateLakeRequest;
 use Google\Cloud\Dataplex\V1\CreateTaskRequest;
 use Google\Cloud\Dataplex\V1\CreateZoneRequest;
 use Google\Cloud\Dataplex\V1\DeleteAssetRequest;
-use Google\Cloud\Dataplex\V1\DeleteEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\DeleteLakeRequest;
 use Google\Cloud\Dataplex\V1\DeleteTaskRequest;
 use Google\Cloud\Dataplex\V1\DeleteZoneRequest;
-use Google\Cloud\Dataplex\V1\Environment;
 use Google\Cloud\Dataplex\V1\GetAssetRequest;
-use Google\Cloud\Dataplex\V1\GetEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\GetJobRequest;
 use Google\Cloud\Dataplex\V1\GetLakeRequest;
 use Google\Cloud\Dataplex\V1\GetTaskRequest;
@@ -58,11 +54,9 @@ use Google\Cloud\Dataplex\V1\Job;
 use Google\Cloud\Dataplex\V1\Lake;
 use Google\Cloud\Dataplex\V1\ListAssetActionsRequest;
 use Google\Cloud\Dataplex\V1\ListAssetsRequest;
-use Google\Cloud\Dataplex\V1\ListEnvironmentsRequest;
 use Google\Cloud\Dataplex\V1\ListJobsRequest;
 use Google\Cloud\Dataplex\V1\ListLakeActionsRequest;
 use Google\Cloud\Dataplex\V1\ListLakesRequest;
-use Google\Cloud\Dataplex\V1\ListSessionsRequest;
 use Google\Cloud\Dataplex\V1\ListTasksRequest;
 use Google\Cloud\Dataplex\V1\ListZoneActionsRequest;
 use Google\Cloud\Dataplex\V1\ListZonesRequest;
@@ -70,7 +64,6 @@ use Google\Cloud\Dataplex\V1\RunTaskRequest;
 use Google\Cloud\Dataplex\V1\RunTaskResponse;
 use Google\Cloud\Dataplex\V1\Task;
 use Google\Cloud\Dataplex\V1\UpdateAssetRequest;
-use Google\Cloud\Dataplex\V1\UpdateEnvironmentRequest;
 use Google\Cloud\Dataplex\V1\UpdateLakeRequest;
 use Google\Cloud\Dataplex\V1\UpdateTaskRequest;
 use Google\Cloud\Dataplex\V1\UpdateZoneRequest;
@@ -105,42 +98,36 @@ use Psr\Log\LoggerInterface;
  *
  * @method PromiseInterface<void> cancelJobAsync(CancelJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createAssetAsync(CreateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> createEnvironmentAsync(CreateEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createLakeAsync(CreateLakeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createTaskAsync(CreateTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createZoneAsync(CreateZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAssetAsync(DeleteAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteEnvironmentAsync(DeleteEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteLakeAsync(DeleteLakeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteTaskAsync(DeleteTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteZoneAsync(DeleteZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Asset> getAssetAsync(GetAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Environment> getEnvironmentAsync(GetEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Job> getJobAsync(GetJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Lake> getLakeAsync(GetLakeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Task> getTaskAsync(GetTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Zone> getZoneAsync(GetZoneRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAssetActionsAsync(ListAssetActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAssetsAsync(ListAssetsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listEnvironmentsAsync(ListEnvironmentsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listJobsAsync(ListJobsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLakeActionsAsync(ListLakeActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLakesAsync(ListLakesRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listSessionsAsync(ListSessionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listTasksAsync(ListTasksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listZoneActionsAsync(ListZoneActionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listZonesAsync(ListZonesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<RunTaskResponse> runTaskAsync(RunTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAssetAsync(UpdateAssetRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> updateEnvironmentAsync(UpdateEnvironmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateLakeAsync(UpdateLakeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateTaskAsync(UpdateTaskRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateZoneAsync(UpdateZoneRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class DataplexServiceClient
 {
@@ -267,27 +254,6 @@ final class DataplexServiceClient
     }
 
     /**
-     * Formats a string containing the fully-qualified path to represent a environment
-     * resource.
-     *
-     * @param string $project
-     * @param string $location
-     * @param string $lake
-     * @param string $environment
-     *
-     * @return string The formatted environment resource.
-     */
-    public static function environmentName(string $project, string $location, string $lake, string $environment): string
-    {
-        return self::getPathTemplate('environment')->render([
-            'project' => $project,
-            'location' => $location,
-            'lake' => $lake,
-            'environment' => $environment,
-        ]);
-    }
-
-    /**
      * Formats a string containing the fully-qualified path to represent a job
      * resource.
      *
@@ -393,7 +359,6 @@ final class DataplexServiceClient
      * The following name formats are supported:
      * Template: Pattern
      * - asset: projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/assets/{asset}
-     * - environment: projects/{project}/locations/{location}/lakes/{lake}/environments/{environment}
      * - job: projects/{project}/locations/{location}/lakes/{lake}/tasks/{task}/jobs/{job}
      * - lake: projects/{project}/locations/{location}/lakes/{lake}
      * - location: projects/{project}/locations/{location}
@@ -555,32 +520,6 @@ final class DataplexServiceClient
     }
 
     /**
-     * Create an environment resource.
-     *
-     * The async variant is {@see DataplexServiceClient::createEnvironmentAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/create_environment.php
-     *
-     * @param CreateEnvironmentRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse<Environment>
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function createEnvironment(CreateEnvironmentRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('CreateEnvironment', $request, $callOptions)->wait();
-    }
-
-    /**
      * Creates a lake resource.
      *
      * The async variant is {@see DataplexServiceClient::createLakeAsync()} .
@@ -683,33 +622,6 @@ final class DataplexServiceClient
     public function deleteAsset(DeleteAssetRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteAsset', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Delete the environment resource. All the child resources must have been
-     * deleted before environment deletion can be initiated.
-     *
-     * The async variant is {@see DataplexServiceClient::deleteEnvironmentAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/delete_environment.php
-     *
-     * @param DeleteEnvironmentRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse<null>
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function deleteEnvironment(DeleteEnvironmentRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('DeleteEnvironment', $request, $callOptions)->wait();
     }
 
     /**
@@ -816,32 +728,6 @@ final class DataplexServiceClient
     public function getAsset(GetAssetRequest $request, array $callOptions = []): Asset
     {
         return $this->startApiCall('GetAsset', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Get environment resource.
-     *
-     * The async variant is {@see DataplexServiceClient::getEnvironmentAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/get_environment.php
-     *
-     * @param GetEnvironmentRequest $request     A request to house fields associated with the call.
-     * @param array                 $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Environment
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getEnvironment(GetEnvironmentRequest $request, array $callOptions = []): Environment
-    {
-        return $this->startApiCall('GetEnvironment', $request, $callOptions)->wait();
     }
 
     /**
@@ -1001,32 +887,6 @@ final class DataplexServiceClient
     }
 
     /**
-     * Lists environments under the given lake.
-     *
-     * The async variant is {@see DataplexServiceClient::listEnvironmentsAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/list_environments.php
-     *
-     * @param ListEnvironmentsRequest $request     A request to house fields associated with the call.
-     * @param array                   $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listEnvironments(ListEnvironmentsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListEnvironments', $request, $callOptions);
-    }
-
-    /**
      * Lists Jobs under the given task.
      *
      * The async variant is {@see DataplexServiceClient::listJobsAsync()} .
@@ -1102,32 +962,6 @@ final class DataplexServiceClient
     public function listLakes(ListLakesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListLakes', $request, $callOptions);
-    }
-
-    /**
-     * Lists session resources in an environment.
-     *
-     * The async variant is {@see DataplexServiceClient::listSessionsAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/list_sessions.php
-     *
-     * @param ListSessionsRequest $request     A request to house fields associated with the call.
-     * @param array               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listSessions(ListSessionsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListSessions', $request, $callOptions);
     }
 
     /**
@@ -1261,32 +1095,6 @@ final class DataplexServiceClient
     }
 
     /**
-     * Update the environment resource.
-     *
-     * The async variant is {@see DataplexServiceClient::updateEnvironmentAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/update_environment.php
-     *
-     * @param UpdateEnvironmentRequest $request     A request to house fields associated with the call.
-     * @param array                    $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return OperationResponse<Environment>
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function updateEnvironment(UpdateEnvironmentRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('UpdateEnvironment', $request, $callOptions)->wait();
-    }
-
-    /**
      * Updates a lake resource.
      *
      * The async variant is {@see DataplexServiceClient::updateLakeAsync()} .
@@ -1362,6 +1170,65 @@ final class DataplexServiceClient
     public function updateZone(UpdateZoneRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateZone', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see DataplexServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
+     *
+     * The async variant is {@see DataplexServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/DataplexServiceClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 
     /**
@@ -1453,57 +1320,5 @@ final class DataplexServiceClient
         array $callOptions = []
     ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets information about a location.
-     *
-     * The async variant is {@see DataplexServiceClient::getLocationAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/get_location.php
-     *
-     * @param GetLocationRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Location
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
-    {
-        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists information about the supported locations for this service.
-     *
-     * The async variant is {@see DataplexServiceClient::listLocationsAsync()} .
-     *
-     * @example samples/V1/DataplexServiceClient/list_locations.php
-     *
-     * @param ListLocationsRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

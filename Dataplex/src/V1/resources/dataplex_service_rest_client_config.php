@@ -50,21 +50,6 @@ return [
                     'asset_id',
                 ],
             ],
-            'CreateEnvironment' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/environments',
-                'body' => 'environment',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'environment_id',
-                ],
-            ],
             'CreateLake' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lakes',
@@ -121,17 +106,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteEnvironment' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/environments/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteLake' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*}',
@@ -168,17 +142,6 @@ return [
             'GetAsset' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/zones/*/assets/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetEnvironment' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/lakes/*/environments/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -253,17 +216,6 @@ return [
                     ],
                 ],
             ],
-            'ListEnvironments' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*}/environments',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*/tasks/*}/jobs',
@@ -289,17 +241,6 @@ return [
             'ListLakes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/lakes',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSessions' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*/lakes/*/environments/*}/sessions',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -361,22 +302,6 @@ return [
                     'asset.name' => [
                         'getters' => [
                             'getAsset',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
-            'UpdateEnvironment' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{environment.name=projects/*/locations/*/lakes/*/environments/*}',
-                'body' => 'environment',
-                'placeholders' => [
-                    'environment.name' => [
-                        'getters' => [
-                            'getEnvironment',
                             'getName',
                         ],
                     ],
