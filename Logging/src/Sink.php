@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\Connection\Gapic;
+use Google\Rpc\Code;
 
 /**
  * A sink is used to export log entries outside Stackdriver Logging.
@@ -35,7 +36,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 class Sink
 {
     /**
-     * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @var Gapic Represents a connection to Stackdriver Logging.
      * @internal
      */
     protected $connection;
@@ -56,14 +57,14 @@ class Sink
     private $info;
 
     /**
-     * @param ConnectionInterface $connection Represents a connection to Cloud
+     * @param Gapic $connection Represents a connection to Cloud
      *        Logging. This object is created by LoggingClient,
      *        and should not be instantiated outside of this client.
      * @param string $name The sink's name.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The sink's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, $projectId, array $info = [])
+    public function __construct(Gapic $connection, $name, $projectId, array $info = [])
     {
         $this->connection = $connection;
         $this->info = $info;
@@ -88,8 +89,11 @@ class Sink
     {
         try {
             $this->info($options);
-        } catch (NotFoundException $ex) {
-            return false;
+        } catch (ApiException $ex) {
+            if ($ex->getCode() === Code::NOT_FOUND) {
+                return false;
+            }
+            throw $ex;
         }
 
         return true;
@@ -138,10 +142,6 @@ class Sink
      *           [Exporting Logs With Sinks](https://cloud.google.com/logging/docs/api/tasks/exporting-logs#about_sinks)
      *           for more information and examples.
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     *     @type string $outputVersionFormat The log entry version to use for
-     *           this sink's exported log entries. This version does not have
-     *           to correspond to the version of the log entry when it was
-     *           written to Stackdriver Logging. May be either `V1` or `V2`.
      * }
      * @param array $options [optional] Configuration Options.
      * @return array
@@ -149,7 +149,10 @@ class Sink
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $options += $this->info($options);
+        $options += array_intersect_key(
+            $this->info($options),
+            array_flip(['name', 'destination', 'filter']),
+        );
 
         return $this->info = $this->connection->updateSink($options + [
             'sinkName' => $this->formattedName

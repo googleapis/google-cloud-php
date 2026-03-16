@@ -37,7 +37,6 @@ class ManageSinksTest extends LoggingTestCase
                 self::$dataset->identity()['datasetId']
             ),
             [
-                'outputVersionFormat' => 'V2',
                 'filter' => 'severity >= ERROR'
             ]
         );
@@ -61,7 +60,6 @@ class ManageSinksTest extends LoggingTestCase
     {
         $name = uniqid(self::TESTING_PREFIX);
         $options = [
-            'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
         ];
         $this->assertFalse($client->sink($name)->exists());
@@ -105,7 +103,6 @@ class ManageSinksTest extends LoggingTestCase
         $name = uniqid(self::TESTING_PREFIX);
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);
         $createOptions = [
-            'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
         ];
         $updateOptions = [
@@ -127,7 +124,6 @@ class ManageSinksTest extends LoggingTestCase
     {
         $name = uniqid(self::TESTING_PREFIX);
         $options = [
-            'outputVersionFormat' => 'V2',
             'filter' => 'severity >= ERROR'
         ];
         $destination = sprintf('pubsub.googleapis.com/%s', self::$topic->info()['name']);

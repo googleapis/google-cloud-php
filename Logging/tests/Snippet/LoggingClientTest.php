@@ -20,7 +20,7 @@ namespace Google\Cloud\Logging\Tests\Snippet;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
@@ -41,7 +41,7 @@ class LoggingClientTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
         $this->client = TestHelpers::stub(LoggingClient::class);
         $this->client->___setProperty('connection', $this->connection->reveal());
     }
@@ -103,7 +103,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'createMetric');
         $snippet->addLocal('logging', $this->client);
 
-        $this->connection->createMetric(Argument::any())
+        $this->connection->createLogMetric(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 
@@ -127,7 +127,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'metrics');
         $snippet->addLocal('logging', $this->client);
 
-        $this->connection->listMetrics(Argument::any())
+        $this->connection->listLogMetrics(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'metrics' => [
@@ -149,7 +149,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'entries');
         $snippet->addLocal('logging', $this->client);
 
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'entries' => [
@@ -171,7 +171,7 @@ class LoggingClientTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(LoggingClient::class, 'entries', 1);
         $snippet->addLocal('logging', $this->client);
 
-        $this->connection->listEntries(Argument::that(function ($arg) {
+        $this->connection->listLogEntries(Argument::that(function ($arg) {
             return strpos($arg['filter'], 'logName') !== false;
         }))
             ->shouldBeCalled()

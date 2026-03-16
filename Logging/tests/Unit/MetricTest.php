@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Metric;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -42,7 +42,7 @@ class MetricTest extends TestCase
     public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/metrics/$this->metricName";
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
     }
 
     public function getMetric($connection, array $data = [])
@@ -52,7 +52,7 @@ class MetricTest extends TestCase
 
     public function testDoesExistTrue()
     {
-        $this->connection->getMetric([
+        $this->connection->getLogMetric([
             'metricName' => $this->formattedName,
         ])
             ->willReturn([
@@ -66,7 +66,7 @@ class MetricTest extends TestCase
 
     public function testDoesExistFalse()
     {
-        $this->connection->getMetric([
+        $this->connection->getLogMetric([
             'metricName' => $this->formattedName,
         ])
             ->willThrow(new NotFoundException(null))
@@ -78,7 +78,7 @@ class MetricTest extends TestCase
 
     public function testDelete()
     {
-        $this->connection->deleteMetric([
+        $this->connection->deleteLogMetric([
             'metricName' => $this->formattedName,
         ])
             ->willReturn([])
@@ -90,7 +90,7 @@ class MetricTest extends TestCase
 
     public function testUpdatesDataWithCachedData()
     {
-        $this->connection->updateMetric($this->metricData + [
+        $this->connection->updateLogMetric($this->metricData + [
             'metricName' => $this->formattedName,
         ])
             ->willReturn($this->metricData)
@@ -103,12 +103,12 @@ class MetricTest extends TestCase
 
     public function testUpdatesDataWithoutCachedData()
     {
-        $this->connection->updateMetric($this->metricData + [
+        $this->connection->updateLogMetric($this->metricData + [
             'metricName' => $this->formattedName,
         ])
             ->willReturn($this->metricData)
             ->shouldBeCalledTimes(1);
-        $this->connection->getMetric(Argument::any())
+        $this->connection->getLogMetric(Argument::any())
             ->willReturn(['description' => 'another description'])
             ->shouldBeCalledTimes(1);
         $metric = $this->getMetric($this->connection);
@@ -119,7 +119,7 @@ class MetricTest extends TestCase
 
     public function testGetsInfo()
     {
-        $this->connection->getMetric(Argument::any())->shouldNotBeCalled();
+        $this->connection->getLogMetric(Argument::any())->shouldNotBeCalled();
         $metric = $this->getMetric($this->connection, $this->metricData);
 
         $this->assertEquals($this->metricData, $metric->info());
@@ -127,7 +127,7 @@ class MetricTest extends TestCase
 
     public function testGetsInfoWithReload()
     {
-        $this->connection->getMetric([
+        $this->connection->getLogMetric([
             'metricName' => $this->formattedName
         ])
             ->willReturn($this->metricData)

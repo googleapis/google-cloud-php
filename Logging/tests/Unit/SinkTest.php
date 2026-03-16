@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Logging\Sink;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -42,7 +42,7 @@ class SinkTest extends TestCase
     public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/sinks/$this->sinkName";
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
     }
 
     public function getSink($connection, array $data = [])
