@@ -17,9 +17,10 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
-use Google\Cloud\Core\Exception\NotFoundException;
+use Google\ApiCore\ApiException;
 use Google\Cloud\Logging\Metric;
 use Google\Cloud\Logging\Connection\Gapic;
+use Google\Rpc\Code;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -69,7 +70,7 @@ class MetricTest extends TestCase
         $this->connection->getLogMetric([
             'metricName' => $this->formattedName,
         ])
-            ->willThrow(new NotFoundException(null))
+            ->willThrow(new ApiException('not found', Code::NOT_FOUND))
             ->shouldBeCalledTimes(1);
         $metric = $this->getMetric($this->connection);
 
