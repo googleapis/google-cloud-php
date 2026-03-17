@@ -110,6 +110,18 @@ return [
                     'entry_type_id',
                 ],
             ],
+            'CreateMetadataFeed' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/metadataFeeds',
+                'body' => 'metadata_feed',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMetadataJob' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/metadataJobs',
@@ -177,6 +189,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteMetadataFeed' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataFeeds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAspectType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/aspectTypes/*}',
@@ -224,6 +247,17 @@ return [
             'GetEntryType' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/entryTypes/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetMetadataFeed' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/metadataFeeds/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -287,6 +321,17 @@ return [
                     ],
                 ],
             ],
+            'ListMetadataFeeds' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/metadataFeeds',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMetadataJobs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/metadataJobs',
@@ -298,9 +343,32 @@ return [
                     ],
                 ],
             ],
+            'LookupContext' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}:lookupContext',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'LookupEntry' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*}:lookupEntry',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'LookupEntryLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}:lookupEntryLinks',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -365,6 +433,19 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateEntryLink' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{entry_link.name=projects/*/locations/*/entryGroups/*/entryLinks/**}',
+                'body' => 'entry_link',
+                'placeholders' => [
+                    'entry_link.name' => [
+                        'getters' => [
+                            'getEntryLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEntryType' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{entry_type.name=projects/*/locations/*/entryTypes/*}',
@@ -379,6 +460,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateMetadataFeed' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{metadata_feed.name=projects/*/locations/*/metadataFeeds/*}',
+                'body' => 'metadata_feed',
+                'placeholders' => [
+                    'metadata_feed.name' => [
+                        'getters' => [
+                            'getMetadataFeed',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

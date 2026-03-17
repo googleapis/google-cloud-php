@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1\RBACRoleBinding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Role is the type for Kubernetes roles
@@ -102,5 +102,4 @@ class Role extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

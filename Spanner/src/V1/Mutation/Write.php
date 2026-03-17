@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\Mutation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Arguments to [insert][google.spanner.v1.Mutation.insert],
@@ -58,13 +58,13 @@ class Write extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Required. The table whose rows will be written.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type string[] $columns
      *           The names of the columns in
      *           [table][google.spanner.v1.Mutation.Write.table] to be written.
      *           The list of columns must contain enough columns to allow
      *           Cloud Spanner to derive values for all primary key columns in the
      *           row(s) to be modified.
-     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Protobuf\ListValue[] $values
      *           The values to be written. `values` can contain more than one
      *           list of values. If it does, then multiple rows are written, one
      *           for each entry in `values`. Each list in `values` must have
@@ -116,7 +116,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * row(s) to be modified.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColumns()
     {
@@ -131,7 +131,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * row(s) to be modified.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -155,7 +155,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * each list are encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\ListValue>
      */
     public function getValues()
     {
@@ -175,7 +175,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * each list are encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue values = 3;</code>
-     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\ListValue[] $var
      * @return $this
      */
     public function setValues($var)
@@ -187,5 +187,4 @@ class Write extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encryption configuration for the backup to create.
@@ -65,7 +65,7 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      *           [encryption_type][google.spanner.admin.database.v1.CreateBackupEncryptionConfig.encryption_type]
      *           is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_names
+     *     @type string[] $kms_key_names
      *           Optional. Specifies the KMS configuration for the one or more keys used to
      *           protect the backup. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
@@ -164,7 +164,7 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      * instance configs.
      *
      * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKmsKeyNames()
     {
@@ -188,7 +188,7 @@ class CreateBackupEncryptionConfig extends \Google\Protobuf\Internal\Message
      * instance configs.
      *
      * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKmsKeyNames($var)

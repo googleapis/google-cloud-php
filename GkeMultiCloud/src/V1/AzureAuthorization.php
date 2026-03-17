@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration related to the cluster RBAC settings.
@@ -43,13 +43,13 @@ class AzureAuthorization extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterUser>|\Google\Protobuf\Internal\RepeatedField $admin_users
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClusterUser[] $admin_users
      *           Optional. Users that can perform operations as a cluster admin. A managed
      *           ClusterRoleBinding will be created to grant the `cluster-admin` ClusterRole
      *           to the users. Up to ten admin users can be provided.
      *           For more info on RBAC, see
      *           https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterGroup>|\Google\Protobuf\Internal\RepeatedField $admin_groups
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClusterGroup[] $admin_groups
      *           Optional. Groups of users that can perform operations as a cluster admin. A
      *           managed ClusterRoleBinding will be created to grant the `cluster-admin`
      *           ClusterRole to the groups. Up to ten admin groups can be provided.
@@ -70,7 +70,7 @@ class AzureAuthorization extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterUser admin_users = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureClusterUser>
      */
     public function getAdminUsers()
     {
@@ -85,7 +85,7 @@ class AzureAuthorization extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterUser admin_users = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterUser>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureClusterUser[] $var
      * @return $this
      */
     public function setAdminUsers($var)
@@ -104,7 +104,7 @@ class AzureAuthorization extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterGroup admin_groups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureClusterGroup>
      */
     public function getAdminGroups()
     {
@@ -119,7 +119,7 @@ class AzureAuthorization extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClusterGroup admin_groups = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClusterGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureClusterGroup[] $var
      * @return $this
      */
     public function setAdminGroups($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of applying a batch of mutations.
@@ -46,7 +46,7 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type int[] $indexes
      *           The mutation groups applied in this batch. The values index into the
      *           `mutation_groups` field in the corresponding `BatchWriteRequest`.
      *     @type \Google\Rpc\Status $status
@@ -70,7 +70,7 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * `mutation_groups` field in the corresponding `BatchWriteRequest`.
      *
      * Generated from protobuf field <code>repeated int32 indexes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIndexes()
     {
@@ -82,7 +82,7 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * `mutation_groups` field in the corresponding `BatchWriteRequest`.
      *
      * Generated from protobuf field <code>repeated int32 indexes = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIndexes($var)

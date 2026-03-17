@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UpdateClusterRequest updates the settings of a cluster.
@@ -50,7 +50,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
     protected $update = null;
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      */
@@ -119,7 +119,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
      *           Required. A description of the update.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to update.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -273,7 +273,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @return string
@@ -285,7 +285,7 @@ class UpdateClusterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
      * @param string $var

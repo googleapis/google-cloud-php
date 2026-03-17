@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for node pool-level network config.
@@ -178,10 +178,10 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           power of 2)
      *           Example: max_pods_per_node of 30 will result in 32 IPs (/27) when
      *           overprovisioning is disabled.
-     *     @type array<\Google\Cloud\Container\V1\AdditionalNodeNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $additional_node_network_configs
+     *     @type \Google\Cloud\Container\V1\AdditionalNodeNetworkConfig[] $additional_node_network_configs
      *           We specify the additional node networks for this node pool using this list.
      *           Each node network corresponds to an additional interface
-     *     @type array<\Google\Cloud\Container\V1\AdditionalPodNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $additional_pod_network_configs
+     *     @type \Google\Cloud\Container\V1\AdditionalPodNetworkConfig[] $additional_pod_network_configs
      *           We specify the additional pod networks for this node pool using this list.
      *           Each pod network corresponds to an additional alias IP range for the node
      *     @type float $pod_ipv4_range_utilization
@@ -464,7 +464,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Each node network corresponds to an additional interface
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalNodeNetworkConfig additional_node_network_configs = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AdditionalNodeNetworkConfig>
      */
     public function getAdditionalNodeNetworkConfigs()
     {
@@ -476,7 +476,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Each node network corresponds to an additional interface
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalNodeNetworkConfig additional_node_network_configs = 14;</code>
-     * @param array<\Google\Cloud\Container\V1\AdditionalNodeNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AdditionalNodeNetworkConfig[] $var
      * @return $this
      */
     public function setAdditionalNodeNetworkConfigs($var)
@@ -492,7 +492,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Each pod network corresponds to an additional alias IP range for the node
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalPodNetworkConfig additional_pod_network_configs = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AdditionalPodNetworkConfig>
      */
     public function getAdditionalPodNetworkConfigs()
     {
@@ -504,7 +504,7 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      * Each pod network corresponds to an additional alias IP range for the node
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AdditionalPodNetworkConfig additional_pod_network_configs = 15;</code>
-     * @param array<\Google\Cloud\Container\V1\AdditionalPodNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AdditionalPodNetworkConfig[] $var
      * @return $this
      */
     public function setAdditionalPodNetworkConfigs($var)

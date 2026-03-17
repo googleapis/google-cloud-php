@@ -22,7 +22,7 @@
         "phpdocumentor/reflection-docblock": "^5.3.3||^6.0",
         "erusev/parsedown": "^1.6",
         "opis/closure": "^3.7|^4.0",
-        "google/cloud-common-protos": "~0.5",
+        "google/cloud-common-protos": "~0.5||^1.0",
         "nikic/php-parser": "^5.6"
     },
     "suggest": {

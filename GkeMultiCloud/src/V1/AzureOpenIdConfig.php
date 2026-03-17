@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AzureOpenIdConfig is an OIDC discovery document for the cluster.
@@ -70,15 +70,15 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      *           OIDC Issuer.
      *     @type string $jwks_uri
      *           JSON Web Key uri.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $response_types_supported
+     *     @type string[] $response_types_supported
      *           Supported response types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_types_supported
+     *     @type string[] $subject_types_supported
      *           Supported subject types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $id_token_signing_alg_values_supported
+     *     @type string[] $id_token_signing_alg_values_supported
      *           supported ID Token signing Algorithms.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $claims_supported
+     *     @type string[] $claims_supported
      *           Supported claims.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $grant_types
+     *     @type string[] $grant_types
      *           Supported grant types.
      * }
      */
@@ -143,7 +143,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported response types.
      *
      * Generated from protobuf field <code>repeated string response_types_supported = 3 [json_name = "response_types_supported"];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResponseTypesSupported()
     {
@@ -154,7 +154,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported response types.
      *
      * Generated from protobuf field <code>repeated string response_types_supported = 3 [json_name = "response_types_supported"];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResponseTypesSupported($var)
@@ -169,7 +169,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported subject types.
      *
      * Generated from protobuf field <code>repeated string subject_types_supported = 4 [json_name = "subject_types_supported"];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubjectTypesSupported()
     {
@@ -180,7 +180,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported subject types.
      *
      * Generated from protobuf field <code>repeated string subject_types_supported = 4 [json_name = "subject_types_supported"];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubjectTypesSupported($var)
@@ -195,7 +195,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * supported ID Token signing Algorithms.
      *
      * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5 [json_name = "id_token_signing_alg_values_supported"];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIdTokenSigningAlgValuesSupported()
     {
@@ -206,7 +206,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * supported ID Token signing Algorithms.
      *
      * Generated from protobuf field <code>repeated string id_token_signing_alg_values_supported = 5 [json_name = "id_token_signing_alg_values_supported"];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIdTokenSigningAlgValuesSupported($var)
@@ -221,7 +221,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported claims.
      *
      * Generated from protobuf field <code>repeated string claims_supported = 6 [json_name = "claims_supported"];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClaimsSupported()
     {
@@ -232,7 +232,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported claims.
      *
      * Generated from protobuf field <code>repeated string claims_supported = 6 [json_name = "claims_supported"];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClaimsSupported($var)
@@ -247,7 +247,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported grant types.
      *
      * Generated from protobuf field <code>repeated string grant_types = 7 [json_name = "grant_types"];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGrantTypes()
     {
@@ -258,7 +258,7 @@ class AzureOpenIdConfig extends \Google\Protobuf\Internal\Message
      * Supported grant types.
      *
      * Generated from protobuf field <code>repeated string grant_types = 7 [json_name = "grant_types"];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGrantTypes($var)

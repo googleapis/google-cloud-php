@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encryption configuration for a Cloud Spanner database.
@@ -53,7 +53,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *           The Cloud KMS key to be used for encrypting and decrypting
      *           the database. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_names
+     *     @type string[] $kms_key_names
      *           Specifies the KMS configuration for the one or more keys used to encrypt
      *           the database. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
@@ -122,7 +122,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * instance configs.
      *
      * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKmsKeyNames()
     {
@@ -146,7 +146,7 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      * instance configs.
      *
      * Generated from protobuf field <code>repeated string kms_key_names = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKmsKeyNames($var)

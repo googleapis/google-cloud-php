@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GetOpenIDConfigRequest gets the OIDC discovery document for the
@@ -18,7 +18,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The cluster (project, location, cluster name) to get the discovery document
-     * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * for. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
@@ -32,7 +32,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The cluster (project, location, cluster name) to get the discovery document
-     *           for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           for. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +42,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The cluster (project, location, cluster name) to get the discovery document
-     * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * for. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @return string
@@ -54,7 +54,7 @@ class GetOpenIDConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The cluster (project, location, cluster name) to get the discovery document
-     * for. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * for. Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      * @param string $var

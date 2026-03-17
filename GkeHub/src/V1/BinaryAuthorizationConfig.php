@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BinaryAuthorizationConfig defines the fleet level configuration of binary
@@ -37,7 +37,7 @@ class BinaryAuthorizationConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $evaluation_mode
      *           Optional. Mode of operation for binauthz policy evaluation.
-     *     @type array<\Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig\PolicyBinding>|\Google\Protobuf\Internal\RepeatedField $policy_bindings
+     *     @type \Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig\PolicyBinding[] $policy_bindings
      *           Optional. Binauthz policies that apply to this cluster.
      * }
      */
@@ -76,7 +76,7 @@ class BinaryAuthorizationConfig extends \Google\Protobuf\Internal\Message
      * Optional. Binauthz policies that apply to this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.BinaryAuthorizationConfig.PolicyBinding policy_bindings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig\PolicyBinding>
      */
     public function getPolicyBindings()
     {
@@ -87,7 +87,7 @@ class BinaryAuthorizationConfig extends \Google\Protobuf\Internal\Message
      * Optional. Binauthz policies that apply to this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.BinaryAuthorizationConfig.PolicyBinding policy_bindings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig\PolicyBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig\PolicyBinding[] $var
      * @return $this
      */
     public function setPolicyBindings($var)

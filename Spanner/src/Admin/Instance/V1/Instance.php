@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An isolated set of Cloud Spanner resources on which databases can be hosted.
@@ -217,7 +217,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           For more information, see
      *           [Compute capacity, nodes and processing
      *           units](https://cloud.google.com/spanner/docs/compute-capacity).
-     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity>|\Google\Protobuf\Internal\RepeatedField $replica_compute_capacity
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity[] $replica_compute_capacity
      *           Output only. Lists the compute capacity per ReplicaSelection. A replica
      *           selection identifies a set of replicas with common properties. Replicas
      *           identified by a ReplicaSelection are scaled with the same compute capacity.
@@ -253,7 +253,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           allow "_" in a future release.
      *     @type int $instance_type
      *           The `InstanceType` of the current instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
+     *     @type string[] $endpoint_uris
      *           Deprecated. This field is not populated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the instance was created.
@@ -471,7 +471,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * identified by a ReplicaSelection are scaled with the same compute capacity.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaComputeCapacity replica_compute_capacity = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity>
      */
     public function getReplicaComputeCapacity()
     {
@@ -484,7 +484,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * identified by a ReplicaSelection are scaled with the same compute capacity.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaComputeCapacity replica_compute_capacity = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaComputeCapacity[] $var
      * @return $this
      */
     public function setReplicaComputeCapacity($var)
@@ -661,7 +661,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEndpointUris()
     {
@@ -672,7 +672,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEndpointUris($var)

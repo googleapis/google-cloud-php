@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CreateNodePoolRequest creates a node pool for a cluster.
@@ -51,7 +51,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      */
@@ -122,7 +122,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The parent (project, location, cluster name) where the node pool will be
      *           created. Specified in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,7 +277,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      * @return string
@@ -290,7 +290,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string parent = 6;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Action information extracted from a DDL statement. This proto is used to
@@ -56,7 +56,7 @@ class DdlStatementActionInfo extends \Google\Protobuf\Internal\Message
      *           The entity type for the DDL statement, e.g. TABLE, INDEX, VIEW, etc.
      *           This field can be empty string for some DDL statement,
      *           e.g. for statement "ANALYZE", `entity_type` = "".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_names
+     *     @type string[] $entity_names
      *           The entity name(s) being operated on the DDL statement.
      *           E.g.
      *           1. For statement "CREATE TABLE t1(...)", `entity_names` = ["t1"].
@@ -135,7 +135,7 @@ class DdlStatementActionInfo extends \Google\Protobuf\Internal\Message
      * 3. For statement "ANALYZE", `entity_names` = [].
      *
      * Generated from protobuf field <code>repeated string entity_names = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityNames()
     {
@@ -150,7 +150,7 @@ class DdlStatementActionInfo extends \Google\Protobuf\Internal\Message
      * 3. For statement "ANALYZE", `entity_names` = [].
      *
      * Generated from protobuf field <code>repeated string entity_names = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityNames($var)

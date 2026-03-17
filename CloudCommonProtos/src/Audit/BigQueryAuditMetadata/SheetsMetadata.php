@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Sheets specific request metadata.
@@ -64,5 +64,4 @@ class SheetsMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

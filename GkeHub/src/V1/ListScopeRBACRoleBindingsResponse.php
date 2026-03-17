@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of Scope RBACRoleBindings.
@@ -36,7 +36,7 @@ class ListScopeRBACRoleBindingsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\RBACRoleBinding>|\Google\Protobuf\Internal\RepeatedField $rbacrolebindings
+     *     @type \Google\Cloud\GkeHub\V1\RBACRoleBinding[] $rbacrolebindings
      *           The list of Scope RBACRoleBindings.
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
@@ -53,7 +53,7 @@ class ListScopeRBACRoleBindingsResponse extends \Google\Protobuf\Internal\Messag
      * The list of Scope RBACRoleBindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.RBACRoleBinding rbacrolebindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\RBACRoleBinding>
      */
     public function getRbacrolebindings()
     {
@@ -64,7 +64,7 @@ class ListScopeRBACRoleBindingsResponse extends \Google\Protobuf\Internal\Messag
      * The list of Scope RBACRoleBindings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.RBACRoleBinding rbacrolebindings = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\RBACRoleBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\RBACRoleBinding[] $var
      * @return $this
      */
     public function setRbacrolebindings($var)

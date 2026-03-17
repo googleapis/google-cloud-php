@@ -59,6 +59,3 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig_Type::class);
-

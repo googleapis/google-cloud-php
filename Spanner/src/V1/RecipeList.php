@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `RecipeList` contains a list of `KeyRecipe`s, which share the same
@@ -47,7 +47,7 @@ class RecipeList extends \Google\Protobuf\Internal\Message
      *           compares greater than generation B, then A is a more recent schema than B.
      *           Clients should in general aim to cache only the latest schema generation,
      *           and discard more stale recipes.
-     *     @type array<\Google\Cloud\Spanner\V1\KeyRecipe>|\Google\Protobuf\Internal\RepeatedField $recipe
+     *     @type \Google\Cloud\Spanner\V1\KeyRecipe[] $recipe
      *           A list of recipes to be cached.
      * }
      */
@@ -96,7 +96,7 @@ class RecipeList extends \Google\Protobuf\Internal\Message
      * A list of recipes to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRecipe recipe = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\KeyRecipe>
      */
     public function getRecipe()
     {
@@ -107,7 +107,7 @@ class RecipeList extends \Google\Protobuf\Internal\Message
      * A list of recipes to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRecipe recipe = 3;</code>
-     * @param array<\Google\Cloud\Spanner\V1\KeyRecipe>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\KeyRecipe[] $var
      * @return $this
      */
     public function setRecipe($var)

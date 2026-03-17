@@ -76,6 +76,14 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 assertion_row_count = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $assertion_row_count = 0;
+    /**
+     * Output only. Contains the results of all debug queries for this rule.
+     * The number of result sets will correspond to the number of
+     * [debug_queries][google.cloud.dataplex.v1.DataQualityRule.debug_queries].
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult.DebugQueryResultSet debug_queries_result_sets = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $debug_queries_result_sets;
 
     /**
      * Constructor.
@@ -112,6 +120,10 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
      *           Output only. The number of rows returned by the SQL statement in a SQL
      *           assertion rule.
      *           This field is only valid for SQL assertion rules.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRuleResult\DebugQueryResultSet[] $debug_queries_result_sets
+     *           Output only. Contains the results of all debug queries for this rule.
+     *           The number of result sets will correspond to the number of
+     *           [debug_queries][google.cloud.dataplex.v1.DataQualityRule.debug_queries].
      * }
      */
     public function __construct($data = NULL) {
@@ -359,6 +371,36 @@ class DataQualityRuleResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->assertion_row_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Contains the results of all debug queries for this rule.
+     * The number of result sets will correspond to the number of
+     * [debug_queries][google.cloud.dataplex.v1.DataQualityRule.debug_queries].
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult.DebugQueryResultSet debug_queries_result_sets = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityRuleResult\DebugQueryResultSet>
+     */
+    public function getDebugQueriesResultSets()
+    {
+        return $this->debug_queries_result_sets;
+    }
+
+    /**
+     * Output only. Contains the results of all debug queries for this rule.
+     * The number of result sets will correspond to the number of
+     * [debug_queries][google.cloud.dataplex.v1.DataQualityRule.debug_queries].
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRuleResult.DebugQueryResultSet debug_queries_result_sets = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRuleResult\DebugQueryResultSet[] $var
+     * @return $this
+     */
+    public function setDebugQueriesResultSets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityRuleResult\DebugQueryResultSet::class);
+        $this->debug_queries_result_sets = $arr;
 
         return $this;
     }

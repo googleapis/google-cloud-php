@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1\BinaryAuthorizationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Binauthz policy that applies to this cluster.
@@ -72,5 +72,4 @@ class PolicyBinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

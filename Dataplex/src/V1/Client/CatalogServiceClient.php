@@ -42,12 +42,14 @@ use Google\Cloud\Dataplex\V1\CreateEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryRequest;
 use Google\Cloud\Dataplex\V1\CreateEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\CreateMetadataFeedRequest;
 use Google\Cloud\Dataplex\V1\CreateMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\DeleteAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryRequest;
 use Google\Cloud\Dataplex\V1\DeleteEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\DeleteMetadataFeedRequest;
 use Google\Cloud\Dataplex\V1\Entry;
 use Google\Cloud\Dataplex\V1\EntryGroup;
 use Google\Cloud\Dataplex\V1\EntryLink;
@@ -57,19 +59,27 @@ use Google\Cloud\Dataplex\V1\GetEntryGroupRequest;
 use Google\Cloud\Dataplex\V1\GetEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\GetEntryRequest;
 use Google\Cloud\Dataplex\V1\GetEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\GetMetadataFeedRequest;
 use Google\Cloud\Dataplex\V1\GetMetadataJobRequest;
 use Google\Cloud\Dataplex\V1\ListAspectTypesRequest;
 use Google\Cloud\Dataplex\V1\ListEntriesRequest;
 use Google\Cloud\Dataplex\V1\ListEntryGroupsRequest;
 use Google\Cloud\Dataplex\V1\ListEntryTypesRequest;
+use Google\Cloud\Dataplex\V1\ListMetadataFeedsRequest;
 use Google\Cloud\Dataplex\V1\ListMetadataJobsRequest;
+use Google\Cloud\Dataplex\V1\LookupContextRequest;
+use Google\Cloud\Dataplex\V1\LookupContextResponse;
+use Google\Cloud\Dataplex\V1\LookupEntryLinksRequest;
 use Google\Cloud\Dataplex\V1\LookupEntryRequest;
+use Google\Cloud\Dataplex\V1\MetadataFeed;
 use Google\Cloud\Dataplex\V1\MetadataJob;
 use Google\Cloud\Dataplex\V1\SearchEntriesRequest;
 use Google\Cloud\Dataplex\V1\UpdateAspectTypeRequest;
 use Google\Cloud\Dataplex\V1\UpdateEntryGroupRequest;
+use Google\Cloud\Dataplex\V1\UpdateEntryLinkRequest;
 use Google\Cloud\Dataplex\V1\UpdateEntryRequest;
 use Google\Cloud\Dataplex\V1\UpdateEntryTypeRequest;
+use Google\Cloud\Dataplex\V1\UpdateMetadataFeedRequest;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
@@ -104,34 +114,42 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createEntryGroupAsync(CreateEntryGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryLink> createEntryLinkAsync(CreateEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createEntryTypeAsync(CreateEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createMetadataFeedAsync(CreateMetadataFeedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createMetadataJobAsync(CreateMetadataJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAspectTypeAsync(DeleteAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> deleteEntryAsync(DeleteEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEntryGroupAsync(DeleteEntryGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryLink> deleteEntryLinkAsync(DeleteEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteEntryTypeAsync(DeleteEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteMetadataFeedAsync(DeleteMetadataFeedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AspectType> getAspectTypeAsync(GetAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> getEntryAsync(GetEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryGroup> getEntryGroupAsync(GetEntryGroupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryLink> getEntryLinkAsync(GetEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<EntryType> getEntryTypeAsync(GetEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MetadataFeed> getMetadataFeedAsync(GetMetadataFeedRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<MetadataJob> getMetadataJobAsync(GetMetadataJobRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAspectTypesAsync(ListAspectTypesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntriesAsync(ListEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntryGroupsAsync(ListEntryGroupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEntryTypesAsync(ListEntryTypesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listMetadataFeedsAsync(ListMetadataFeedsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMetadataJobsAsync(ListMetadataJobsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<LookupContextResponse> lookupContextAsync(LookupContextRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> lookupEntryAsync(LookupEntryRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> lookupEntryLinksAsync(LookupEntryLinksRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchEntriesAsync(SearchEntriesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAspectTypeAsync(UpdateAspectTypeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Entry> updateEntryAsync(UpdateEntryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEntryGroupAsync(UpdateEntryGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<EntryLink> updateEntryLinkAsync(UpdateEntryLinkRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEntryTypeAsync(UpdateEntryTypeRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateMetadataFeedAsync(UpdateMetadataFeedRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CatalogServiceClient
 {
@@ -158,7 +176,12 @@ final class CatalogServiceClient
     private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
+    public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloud-platform.read-only',
+        'https://www.googleapis.com/auth/dataplex.read-write',
+        'https://www.googleapis.com/auth/dataplex.readonly',
+    ];
 
     private $operationsClient;
 
@@ -369,6 +392,25 @@ final class CatalogServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * metadata_feed resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $metadataFeed
+     *
+     * @return string The formatted metadata_feed resource.
+     */
+    public static function metadataFeedName(string $project, string $location, string $metadataFeed): string
+    {
+        return self::getPathTemplate('metadataFeed')->render([
+            'project' => $project,
+            'location' => $location,
+            'metadata_feed' => $metadataFeed,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a metadata_job
      * resource.
      *
@@ -413,6 +455,7 @@ final class CatalogServiceClient
      * - entryType: projects/{project}/locations/{location}/entryTypes/{entry_type}
      * - glossary: projects/{project}/locations/{location}/glossaries/{glossary}
      * - location: projects/{project}/locations/{location}
+     * - metadataFeed: projects/{project}/locations/{location}/metadataFeeds/{metadata_feed}
      * - metadataJob: projects/{project}/locations/{location}/metadataJobs/{metadataJob}
      * - project: projects/{project}
      *
@@ -680,6 +723,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Creates a MetadataFeed.
+     *
+     * The async variant is {@see CatalogServiceClient::createMetadataFeedAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/create_metadata_feed.php
+     *
+     * @param CreateMetadataFeedRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MetadataFeed>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createMetadataFeed(CreateMetadataFeedRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateMetadataFeed', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a metadata job. For example, use a metadata job to import metadata
      * from a third-party system into Dataplex Universal Catalog.
      *
@@ -837,6 +906,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Deletes a MetadataFeed.
+     *
+     * The async variant is {@see CatalogServiceClient::deleteMetadataFeedAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/delete_metadata_feed.php
+     *
+     * @param DeleteMetadataFeedRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteMetadataFeed(DeleteMetadataFeedRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteMetadataFeed', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets an AspectType.
      *
      * The async variant is {@see CatalogServiceClient::getAspectTypeAsync()} .
@@ -864,11 +959,6 @@ final class CatalogServiceClient
 
     /**
      * Gets an Entry.
-     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
-     * Metastore metadata that is stored in Dataplex Universal Catalog is
-     * changing. For more information, see [Changes to metadata stored in
-     * Dataplex Universal
-     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::getEntryAsync()} .
      *
@@ -972,6 +1062,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Gets a MetadataFeed.
+     *
+     * The async variant is {@see CatalogServiceClient::getMetadataFeedAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/get_metadata_feed.php
+     *
+     * @param GetMetadataFeedRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MetadataFeed
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getMetadataFeed(GetMetadataFeedRequest $request, array $callOptions = []): MetadataFeed
+    {
+        return $this->startApiCall('GetMetadataFeed', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets a metadata job.
      *
      * The async variant is {@see CatalogServiceClient::getMetadataJobAsync()} .
@@ -1025,11 +1141,6 @@ final class CatalogServiceClient
 
     /**
      * Lists Entries within an EntryGroup.
-     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
-     * Metastore metadata that is stored in Dataplex Universal Catalog is
-     * changing. For more information, see [Changes to metadata stored in
-     * Dataplex Universal
-     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::listEntriesAsync()} .
      *
@@ -1107,6 +1218,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Retrieve a list of MetadataFeeds.
+     *
+     * The async variant is {@see CatalogServiceClient::listMetadataFeedsAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/list_metadata_feeds.php
+     *
+     * @param ListMetadataFeedsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listMetadataFeeds(ListMetadataFeedsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListMetadataFeeds', $request, $callOptions);
+    }
+
+    /**
      * Lists metadata jobs.
      *
      * The async variant is {@see CatalogServiceClient::listMetadataJobsAsync()} .
@@ -1133,12 +1270,33 @@ final class CatalogServiceClient
     }
 
     /**
+     * Looks up LLM Context for the specified resources.
+     *
+     * The async variant is {@see CatalogServiceClient::lookupContextAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/lookup_context.php
+     *
+     * @param LookupContextRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return LookupContextResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function lookupContext(LookupContextRequest $request, array $callOptions = []): LookupContextResponse
+    {
+        return $this->startApiCall('LookupContext', $request, $callOptions)->wait();
+    }
+
+    /**
      * Looks up an entry by name using the permission on the source system.
-     * Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc
-     * Metastore metadata that is stored in Dataplex Universal Catalog is
-     * changing. For more information, see [Changes to metadata stored in
-     * Dataplex Universal
-     * Catalog](https://cloud.google.com/dataplex/docs/metadata-changes).
      *
      * The async variant is {@see CatalogServiceClient::lookupEntryAsync()} .
      *
@@ -1161,6 +1319,32 @@ final class CatalogServiceClient
     public function lookupEntry(LookupEntryRequest $request, array $callOptions = []): Entry
     {
         return $this->startApiCall('LookupEntry', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Looks up Entry Links referencing the specified Entry.
+     *
+     * The async variant is {@see CatalogServiceClient::lookupEntryLinksAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/lookup_entry_links.php
+     *
+     * @param LookupEntryLinksRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function lookupEntryLinks(LookupEntryLinksRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('LookupEntryLinks', $request, $callOptions);
     }
 
     /**
@@ -1268,6 +1452,32 @@ final class CatalogServiceClient
     }
 
     /**
+     * Updates an Entry Link.
+     *
+     * The async variant is {@see CatalogServiceClient::updateEntryLinkAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/update_entry_link.php
+     *
+     * @param UpdateEntryLinkRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return EntryLink
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateEntryLink(UpdateEntryLinkRequest $request, array $callOptions = []): EntryLink
+    {
+        return $this->startApiCall('UpdateEntryLink', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates an EntryType.
      *
      * The async variant is {@see CatalogServiceClient::updateEntryTypeAsync()} .
@@ -1291,6 +1501,91 @@ final class CatalogServiceClient
     public function updateEntryType(UpdateEntryTypeRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('UpdateEntryType', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a MetadataFeed.
+     *
+     * The async variant is {@see CatalogServiceClient::updateMetadataFeedAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/update_metadata_feed.php
+     *
+     * @param UpdateMetadataFeedRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<MetadataFeed>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateMetadataFeed(UpdateMetadataFeedRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateMetadataFeed', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see CatalogServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
+     *
+     * The async variant is {@see CatalogServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/CatalogServiceClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 
     /**
@@ -1382,57 +1677,5 @@ final class CatalogServiceClient
         array $callOptions = []
     ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets information about a location.
-     *
-     * The async variant is {@see CatalogServiceClient::getLocationAsync()} .
-     *
-     * @example samples/V1/CatalogServiceClient/get_location.php
-     *
-     * @param GetLocationRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Location
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
-    {
-        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists information about the supported locations for this service.
-     *
-     * The async variant is {@see CatalogServiceClient::listLocationsAsync()} .
-     *
-     * @example samples/V1/CatalogServiceClient/list_locations.php
-     *
-     * @param ListLocationsRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

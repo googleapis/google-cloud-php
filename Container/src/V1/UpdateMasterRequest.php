@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UpdateMasterRequest updates the master of the cluster.
@@ -57,7 +57,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
     protected $master_version = '';
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      */
@@ -151,7 +151,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
      *           - "-": picks the default Kubernetes version
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to update.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -309,7 +309,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @return string
@@ -321,7 +321,7 @@ class UpdateMasterRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to update.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 7;</code>
      * @param string $var

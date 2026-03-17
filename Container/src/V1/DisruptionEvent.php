@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DisruptionEvent is a notification sent to customers about the disruption
@@ -57,7 +57,7 @@ class DisruptionEvent extends \Google\Protobuf\Internal\Message
      *     @type string $pdb_blocked_node
      *           The node whose drain is blocked by PDB. This field is set for both
      *           POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
-     *     @type array<\Google\Cloud\Container\V1\DisruptionEvent\PdbBlockedPod>|\Google\Protobuf\Internal\RepeatedField $pdb_blocked_pod
+     *     @type \Google\Cloud\Container\V1\DisruptionEvent\PdbBlockedPod[] $pdb_blocked_pod
      *           The pods whose evictions are blocked by PDB. This field is set for
      *           both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
      *     @type \Google\Protobuf\Duration $pdb_violation_timeout
@@ -131,7 +131,7 @@ class DisruptionEvent extends \Google\Protobuf\Internal\Message
      * both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.DisruptionEvent.PdbBlockedPod pdb_blocked_pod = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\DisruptionEvent\PdbBlockedPod>
      */
     public function getPdbBlockedPod()
     {
@@ -143,7 +143,7 @@ class DisruptionEvent extends \Google\Protobuf\Internal\Message
      * both POD_PDB_VIOLATION and POD_NOT_ENOUGH_PDB event.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.DisruptionEvent.PdbBlockedPod pdb_blocked_pod = 3;</code>
-     * @param array<\Google\Cloud\Container\V1\DisruptionEvent\PdbBlockedPod>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\DisruptionEvent\PdbBlockedPod[] $var
      * @return $this
      */
     public function setPdbBlockedPod($var)

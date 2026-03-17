@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A possible configuration for a Cloud Spanner instance. Configurations
@@ -162,14 +162,14 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *     @type int $config_type
      *           Output only. Whether this instance configuration is a Google-managed or
      *           user-managed configuration.
-     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[] $replicas
      *           The geographic placement of nodes in this instance configuration and their
      *           replication properties.
      *           To create user-managed configurations, input
      *           `replicas` must include all replicas in `replicas` of the `base_config`
      *           and include one or more replicas in the `optional_replicas` of the
      *           `base_config`.
-     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $optional_replicas
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[] $optional_replicas
      *           Output only. The available optional replicas to choose from for
      *           user-managed configurations. Populated for Google-managed configurations.
      *     @type string $base_config
@@ -208,7 +208,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           configuration. If no etag is provided in the call to update the instance
      *           configuration, then the existing instance configuration is overwritten
      *           blindly.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $leader_options
+     *     @type string[] $leader_options
      *           Allowed values of the "default_leader" schema option for databases in
      *           instances that use this instance configuration.
      *     @type bool $reconciling
@@ -327,7 +327,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>
      */
     public function getReplicas()
     {
@@ -343,7 +343,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * `base_config`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[] $var
      * @return $this
      */
     public function setReplicas($var)
@@ -359,7 +359,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>
      */
     public function getOptionalReplicas()
     {
@@ -371,7 +371,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * user-managed configurations. Populated for Google-managed configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo optional_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[] $var
      * @return $this
      */
     public function setOptionalReplicas($var)
@@ -525,7 +525,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * instances that use this instance configuration.
      *
      * Generated from protobuf field <code>repeated string leader_options = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLeaderOptions()
     {
@@ -537,7 +537,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * instances that use this instance configuration.
      *
      * Generated from protobuf field <code>repeated string leader_options = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLeaderOptions($var)

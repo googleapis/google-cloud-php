@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ControlPlane defines common parameters between control plane nodes.
@@ -95,7 +95,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Optional. A set of AWS resource tags to propagate to all underlying managed
      * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -145,12 +145,12 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. SSH configuration for how to access the underlying control plane
      *           machines.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_ids
+     *     @type string[] $subnet_ids
      *           Required. The list of subnets where control plane replicas will run.
      *           A replica will be provisioned on each subnet and up to three values
      *           can be provided.
      *           Each subnet must be in a different AWS Availability Zone (AZ).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_group_ids
+     *     @type string[] $security_group_ids
      *           Optional. The IDs of additional security groups to add to control plane
      *           replicas. The Anthos Multi-Cloud API will automatically create and manage
      *           security groups with the minimum rules needed for a functioning cluster.
@@ -176,7 +176,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *           Optional. A set of AWS resource tags to propagate to all underlying managed
      *           AWS resources.
      *           Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     *           (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     *           (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      *           255 Unicode characters.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsServicesAuthentication $aws_services_authentication
      *           Required. Authentication configuration for management of AWS resources.
@@ -301,7 +301,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Each subnet must be in a different AWS Availability Zone (AZ).
      *
      * Generated from protobuf field <code>repeated string subnet_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetIds()
     {
@@ -315,7 +315,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Each subnet must be in a different AWS Availability Zone (AZ).
      *
      * Generated from protobuf field <code>repeated string subnet_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetIds($var)
@@ -332,7 +332,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * security groups with the minimum rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecurityGroupIds()
     {
@@ -345,7 +345,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * security groups with the minimum rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecurityGroupIds($var)
@@ -514,7 +514,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Optional. A set of AWS resource tags to propagate to all underlying managed
      * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -529,7 +529,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Optional. A set of AWS resource tags to propagate to all underlying managed
      * AWS resources.
      * Specify at most 50 pairs containing alphanumerics, spaces, and symbols
-     * (.+-=_:&#64;/). Keys can be up to 127 Unicode characters. Values can be up to
+     * (.+-=_:\@/). Keys can be up to 127 Unicode characters. Values can be up to
      * 255 Unicode characters.
      *
      * Generated from protobuf field <code>map<string, string> tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>

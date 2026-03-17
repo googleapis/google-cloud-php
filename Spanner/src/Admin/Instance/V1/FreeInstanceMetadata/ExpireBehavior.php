@@ -61,6 +61,3 @@ class ExpireBehavior
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExpireBehavior::class, \Google\Cloud\Spanner\Admin\Instance\V1\FreeInstanceMetadata_ExpireBehavior::class);
-

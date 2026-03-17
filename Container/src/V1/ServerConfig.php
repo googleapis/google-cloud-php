@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Kubernetes Engine service configuration.
@@ -60,15 +60,15 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $default_cluster_version
      *           Version of Kubernetes the service deploys by default.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_node_versions
+     *     @type string[] $valid_node_versions
      *           List of valid node upgrade target versions, in descending order.
      *     @type string $default_image_type
      *           Default image type.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_image_types
+     *     @type string[] $valid_image_types
      *           List of valid image types.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_master_versions
+     *     @type string[] $valid_master_versions
      *           List of valid master versions, in descending order.
-     *     @type array<\Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig>|\Google\Protobuf\Internal\RepeatedField $channels
+     *     @type \Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig[] $channels
      *           List of release channel configurations.
      * }
      */
@@ -107,7 +107,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid node upgrade target versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_node_versions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValidNodeVersions()
     {
@@ -118,7 +118,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid node upgrade target versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_node_versions = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValidNodeVersions($var)
@@ -159,7 +159,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid image types.
      *
      * Generated from protobuf field <code>repeated string valid_image_types = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValidImageTypes()
     {
@@ -170,7 +170,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid image types.
      *
      * Generated from protobuf field <code>repeated string valid_image_types = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValidImageTypes($var)
@@ -185,7 +185,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid master versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_master_versions = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValidMasterVersions()
     {
@@ -196,7 +196,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid master versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_master_versions = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValidMasterVersions($var)
@@ -211,7 +211,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of release channel configurations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ServerConfig.ReleaseChannelConfig channels = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig>
      */
     public function getChannels()
     {
@@ -222,7 +222,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of release channel configurations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ServerConfig.ReleaseChannelConfig channels = 9;</code>
-     * @param array<\Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig[] $var
      * @return $this
      */
     public function setChannels($var)

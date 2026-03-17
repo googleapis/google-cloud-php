@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AzureClusters.ListAzureClients` method.
@@ -37,7 +37,7 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureClient>|\Google\Protobuf\Internal\RepeatedField $azure_clients
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureClient[] $azure_clients
      *           A list of [AzureClient][google.cloud.gkemulticloud.v1.AzureClient]
      *           resources in the specified Google Cloud project and region region.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClient azure_clients = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureClient>
      */
     public function getAzureClients()
     {
@@ -67,7 +67,7 @@ class ListAzureClientsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureClient azure_clients = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureClient>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureClient[] $var
      * @return $this
      */
     public function setAzureClients($var)

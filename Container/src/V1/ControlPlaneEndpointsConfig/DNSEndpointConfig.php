@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ControlPlaneEndpointsConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the configuration of a DNS endpoint.
@@ -216,5 +216,4 @@ class DNSEndpointConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

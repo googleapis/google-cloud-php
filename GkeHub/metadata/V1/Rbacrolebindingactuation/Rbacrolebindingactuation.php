@@ -16,13 +16,7 @@ class Rbacrolebindingactuation
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ª
-Ngoogle/cloud/gkehub/v1/rbacrolebindingactuation/rbacrolebindingactuation.proto/google.cloud.gkehub.rbacrolebindingactuation.v1"+
-FeatureSpec
-allowed_custom_roles (	"
-FeatureStateBá
-3com.google.cloud.gkehub.rbacrolebindingactuation.v1BRBACRoleBindingActuationProtoPZocloud.google.com/go/gkehub/rbacrolebindingactuation/apiv1/rbacrolebindingactuationpb;rbacrolebindingactuationpbª/Google.Cloud.GkeHub.RbacRoleBindingActuation.V1Ê/Google\\Cloud\\GkeHub\\RbacRoleBindingActuation\\V1ê3Google::Cloud::GkeHub::RbacRoleBindingActuation::V1bproto3'
+            "\x0A\xAA\x04\x0ANgoogle/cloud/gkehub/v1/rbacrolebindingactuation/rbacrolebindingactuation.proto\x12/google.cloud.gkehub.rbacrolebindingactuation.v1\"+\x0A\x0BFeatureSpec\x12\x1C\x0A\x14allowed_custom_roles\x18\x02 \x03(\x09\"\x0E\x0A\x0CFeatureStateB\xE1\x02\x0A3com.google.cloud.gkehub.rbacrolebindingactuation.v1B\x1DRBACRoleBindingActuationProtoP\x01Zocloud.google.com/go/gkehub/rbacrolebindingactuation/apiv1/rbacrolebindingactuationpb;rbacrolebindingactuationpb\xAA\x02/Google.Cloud.GkeHub.RbacRoleBindingActuation.V1\xCA\x02/Google\\Cloud\\GkeHub\\RbacRoleBindingActuation\\V1\xEA\x023Google::Cloud::GkeHub::RbacRoleBindingActuation::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output of query advisor analysis.
@@ -30,7 +30,7 @@ class QueryAdvisorResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\QueryAdvisorResult\IndexAdvice>|\Google\Protobuf\Internal\RepeatedField $index_advice
+     *     @type \Google\Cloud\Spanner\V1\QueryAdvisorResult\IndexAdvice[] $index_advice
      *           Optional. Index Recommendation for a query. This is an optional field and
      *           the recommendation will only be available when the recommendation
      *           guarantees significant improvement in query performance.
@@ -47,7 +47,7 @@ class QueryAdvisorResult extends \Google\Protobuf\Internal\Message
      * guarantees significant improvement in query performance.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.QueryAdvisorResult.IndexAdvice index_advice = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\QueryAdvisorResult\IndexAdvice>
      */
     public function getIndexAdvice()
     {
@@ -60,7 +60,7 @@ class QueryAdvisorResult extends \Google\Protobuf\Internal\Message
      * guarantees significant improvement in query performance.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.QueryAdvisorResult.IndexAdvice index_advice = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Spanner\V1\QueryAdvisorResult\IndexAdvice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\QueryAdvisorResult\IndexAdvice[] $var
      * @return $this
      */
     public function setIndexAdvice($var)

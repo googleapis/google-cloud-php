@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `CacheUpdate` expresses a set of changes the client should incorporate into
@@ -57,9 +57,9 @@ class CacheUpdate extends \Google\Protobuf\Internal\Message
      *           An internal ID for the database. Database names can be reused if a database
      *           is deleted and re-created. Each time the database is re-created, it will
      *           get a new database ID, which will never be re-used for any other database.
-     *     @type array<\Google\Cloud\Spanner\V1\Range>|\Google\Protobuf\Internal\RepeatedField $range
+     *     @type \Google\Cloud\Spanner\V1\Range[] $range
      *           A list of ranges to be cached.
-     *     @type array<\Google\Cloud\Spanner\V1\Group>|\Google\Protobuf\Internal\RepeatedField $group
+     *     @type \Google\Cloud\Spanner\V1\Group[] $group
      *           A list of groups to be cached.
      *     @type \Google\Cloud\Spanner\V1\RecipeList $key_recipes
      *           A list of recipes to be cached.
@@ -104,7 +104,7 @@ class CacheUpdate extends \Google\Protobuf\Internal\Message
      * A list of ranges to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Range range = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Range>
      */
     public function getRange()
     {
@@ -115,7 +115,7 @@ class CacheUpdate extends \Google\Protobuf\Internal\Message
      * A list of ranges to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Range range = 2;</code>
-     * @param array<\Google\Cloud\Spanner\V1\Range>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Range[] $var
      * @return $this
      */
     public function setRange($var)
@@ -130,7 +130,7 @@ class CacheUpdate extends \Google\Protobuf\Internal\Message
      * A list of groups to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Group group = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Group>
      */
     public function getGroup()
     {
@@ -141,7 +141,7 @@ class CacheUpdate extends \Google\Protobuf\Internal\Message
      * A list of groups to be cached.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Group group = 3;</code>
-     * @param array<\Google\Cloud\Spanner\V1\Group>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Group[] $var
      * @return $this
      */
     public function setGroup($var)

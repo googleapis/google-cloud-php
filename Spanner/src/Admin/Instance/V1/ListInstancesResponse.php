@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -46,13 +46,13 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance[] $instances
      *           The list of requested instances.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
      *           [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances]
      *           call to fetch more of the matching instances.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           The list of unreachable instances.
      *           It includes the names of instances whose metadata could not be retrieved
      *           within
@@ -68,7 +68,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instances.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.Instance instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\Instance>
      */
     public function getInstances()
     {
@@ -79,7 +79,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instances.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.Instance instances = 1;</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -127,7 +127,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * [instance_deadline][google.spanner.admin.instance.v1.ListInstancesRequest.instance_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -141,7 +141,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * [instance_deadline][google.spanner.admin.instance.v1.ListInstancesRequest.instance_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)
