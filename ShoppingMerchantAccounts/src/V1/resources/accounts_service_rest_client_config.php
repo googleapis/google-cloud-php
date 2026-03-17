@@ -28,6 +28,18 @@ return [
                 'uriTemplate' => '/accounts/v1/accounts:createAndConfigure',
                 'body' => '*',
             ],
+            'CreateTestAccount' => [
+                'method' => 'post',
+                'uriTemplate' => '/accounts/v1/{parent=accounts/*}:createTestAccount',
+                'body' => 'account',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAccount' => [
                 'method' => 'delete',
                 'uriTemplate' => '/accounts/v1/{name=accounts/*}',

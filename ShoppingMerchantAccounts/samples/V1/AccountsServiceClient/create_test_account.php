@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,17 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START merchantapi_v1_generated_AccountsService_UpdateAccount_sync]
+// [START merchantapi_v1_generated_AccountsService_CreateTestAccount_sync]
 use Google\ApiCore\ApiException;
 use Google\Shopping\Merchant\Accounts\V1\Account;
 use Google\Shopping\Merchant\Accounts\V1\Client\AccountsServiceClient;
-use Google\Shopping\Merchant\Accounts\V1\UpdateAccountRequest;
+use Google\Shopping\Merchant\Accounts\V1\CreateTestAccountRequest;
 use Google\Type\TimeZone;
 
 /**
- * Updates an account regardless of its type: standalone, advanced account or
- * sub-account. Executing this method requires admin access.
+ * Creates a Merchant Center test account.
  *
+ * Test accounts are intended for development and testing purposes, such as
+ * validating API integrations or new feature behavior.
+ *
+ * Key characteristics and limitations of test accounts:
+ * - Immutable Type: A test account cannot be converted into a regular
+ * (live) Merchant Center account. Likewise, a regular account cannot be
+ * converted into a test account.
+ * - Non-Serving Products: Any products, offers, or data created within a
+ * test account will not be published or made visible to end-users on any
+ * Google surfaces. They are strictly for testing environments.
+ * - Separate Environment: Test accounts operate in a sandbox-like manner,
+ * isolated from live serving and real user traffic.
+ *
+ * @param string $formattedParent     The account resource name to create the test account under.
+ *                                    Format: accounts/{account}
+ *                                    Please see {@see AccountsServiceClient::accountName()} for help formatting this field.
  * @param string $accountAccountName  A human-readable name of the account. Don't use punctuation,
  *                                    capitalization, or non-alphanumeric symbols such as the "/" or "_" symbols.
  *                                    See
@@ -42,8 +57,11 @@ use Google\Type\TimeZone;
  * @param string $accountLanguageCode The account's [BCP-47 language
  *                                    code](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`.
  */
-function update_account_sample(string $accountAccountName, string $accountLanguageCode): void
-{
+function create_test_account_sample(
+    string $formattedParent,
+    string $accountAccountName,
+    string $accountLanguageCode
+): void {
     // Create a client.
     $accountsServiceClient = new AccountsServiceClient();
 
@@ -53,13 +71,14 @@ function update_account_sample(string $accountAccountName, string $accountLangua
         ->setAccountName($accountAccountName)
         ->setTimeZone($accountTimeZone)
         ->setLanguageCode($accountLanguageCode);
-    $request = (new UpdateAccountRequest())
+    $request = (new CreateTestAccountRequest())
+        ->setParent($formattedParent)
         ->setAccount($account);
 
     // Call the API and handle any network failures.
     try {
         /** @var Account $response */
-        $response = $accountsServiceClient->updateAccount($request);
+        $response = $accountsServiceClient->createTestAccount($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -77,9 +96,10 @@ function update_account_sample(string $accountAccountName, string $accountLangua
  */
 function callSample(): void
 {
+    $formattedParent = AccountsServiceClient::accountName('[ACCOUNT]');
     $accountAccountName = '[ACCOUNT_NAME]';
     $accountLanguageCode = '[LANGUAGE_CODE]';
 
-    update_account_sample($accountAccountName, $accountLanguageCode);
+    create_test_account_sample($formattedParent, $accountAccountName, $accountLanguageCode);
 }
-// [END merchantapi_v1_generated_AccountsService_UpdateAccount_sync]
+// [END merchantapi_v1_generated_AccountsService_CreateTestAccount_sync]

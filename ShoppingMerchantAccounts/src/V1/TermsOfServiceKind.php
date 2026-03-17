@@ -20,7 +20,7 @@ class TermsOfServiceKind
      */
     const TERMS_OF_SERVICE_KIND_UNSPECIFIED = 0;
     /**
-     * Merchant Center application.
+     * Terms of service for the Merchant Center application.
      *
      * Generated from protobuf enum <code>MERCHANT_CENTER = 1;</code>
      */

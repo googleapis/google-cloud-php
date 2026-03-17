@@ -19,6 +19,7 @@ use Google\Protobuf\RepeatedField;
  * through the API:
  * * `checkout`
  * * `free-listings`
+ * * `product-ratings`
  * * `shopping-ads`
  * * `youtube-shopping-checkout`
  *
