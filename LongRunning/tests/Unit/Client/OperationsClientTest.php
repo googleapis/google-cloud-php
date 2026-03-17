@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\ListOperationsRequest;
@@ -56,13 +57,13 @@ class OperationsClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return \Google\LongRunning\Client\OperationsClient */
+    /** @return OperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new \Google\LongRunning\Client\OperationsClient($options);
+        return new OperationsClient($options);
     }
 
     /** @test */

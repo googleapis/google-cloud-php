@@ -23,7 +23,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
@@ -32,7 +32,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Any metadata = 2;</code>
      */
-    private $metadata = null;
+    protected $metadata = null;
     /**
      * If the value is `false`, it means the operation is still in progress.
      * If `true`, the operation is completed, and either `error` or `response` is
@@ -40,7 +40,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool done = 3;</code>
      */
-    private $done = false;
+    protected $done = false;
     protected $result;
 
     /**
