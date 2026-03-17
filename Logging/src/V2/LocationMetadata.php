@@ -21,7 +21,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool log_analytics_enabled = 1;</code>
      */
-    private $log_analytics_enabled = false;
+    protected $log_analytics_enabled = false;
 
     /**
      * Constructor.

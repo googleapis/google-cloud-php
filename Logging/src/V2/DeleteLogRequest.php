@@ -29,7 +29,7 @@ class DeleteLogRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $log_name = '';
+    protected $log_name = '';
 
     /**
      * @param string $logName Required. The resource name of the log to delete:

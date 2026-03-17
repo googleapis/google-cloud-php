@@ -35,14 +35,14 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. A description of this metric, which is used in documentation.
      * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Required. An [advanced logs
      * filter](https://cloud.google.com/logging/docs/view/advanced_filters) which
@@ -52,7 +52,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The resource name of the Log Bucket that owns the Log Metric.
      * Only Log Buckets in projects are supported. The bucket has to be in the
@@ -63,14 +63,14 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bucket_name = '';
+    protected $bucket_name = '';
     /**
      * Optional. If set to True, then this metric is disabled and it does not
      * generate any points.
      *
      * Generated from protobuf field <code>bool disabled = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Optional. The metric descriptor associated with the logs-based metric.
      * If unspecified, it uses a default metric descriptor with a DELTA metric
@@ -92,7 +92,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MetricDescriptor metric_descriptor = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $metric_descriptor = null;
+    protected $metric_descriptor = null;
     /**
      * Optional. A `value_extractor` is required when using a distribution
      * logs-based metric to extract the values to record from a log entry.
@@ -114,7 +114,7 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value_extractor = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $value_extractor = '';
+    protected $value_extractor = '';
     /**
      * Optional. A map from a label key string to an extractor expression which is
      * used to extract data from a log entry field and assign as the label value.
@@ -139,21 +139,21 @@ class LogMetric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.Distribution.BucketOptions bucket_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $bucket_options = null;
+    protected $bucket_options = null;
     /**
      * Output only. The creation timestamp of the metric.
      * This field may not be present for older metrics.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the metric.
      * This field may not be present for older metrics.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Deprecated. The API version that created or updated this metric.
      * The v2 format is used by default and cannot be changed.

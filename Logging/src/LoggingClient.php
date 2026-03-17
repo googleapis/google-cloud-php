@@ -17,18 +17,15 @@
 
 namespace Google\Cloud\Logging;
 
+use Google\ApiCore\ClientOptionsTrait;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Batch\BatchRunner;
 use Google\Cloud\Core\Batch\ClosureSerializerInterface;
-use Google\Cloud\Core\ClientTrait;
+use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Report\MetadataProviderInterface;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\Logging\Connection\Grpc;
-use Google\Cloud\Logging\Connection\Rest;
-use Psr\Cache\CacheItemPoolInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 
 /**
  * Google Stackdriver Logging allows you to store, search, analyze, monitor, and
@@ -67,8 +64,8 @@ use Psr\Cache\CacheItemPoolInterface;
  */
 class LoggingClient
 {
-    use ArrayTrait;
-    use ClientTrait;
+    use DetectProjectIdTrait;
+    use ClientOptionsTrait;
 
     const VERSION = '1.34.5';
 
@@ -77,20 +74,15 @@ class LoggingClient
     const WRITE_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.write';
 
     /**
-     * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @var Gapic Represents a connection to Stackdriver Logging.
      * @internal
      */
-    protected $connection;
+    protected Gapic $connection;
 
     /**
      * @var string The formatted name used in API requests.
      */
-    private $formattedProjectName;
-
-    /**
-     * @var array The config given to the constructor.
-     */
-    private $config;
+    private string $formattedProjectName;
 
     /**
      * Create a PsrLogger with batching enabled.
@@ -142,9 +134,7 @@ class LoggingClient
      **/
     public static function psrBatchLogger($name, array $options = [])
     {
-        $client = array_key_exists('clientConfig', $options)
-            ? new self($options['clientConfig'])
-            : new self();
+        $client = new self($options['clientConfig'] ?? []);
         // Force enabling batch.
         $options['batchEnabled'] = true;
         return $client->psrLogger($name, $options);
@@ -153,89 +143,83 @@ class LoggingClient
     /**
      * Create a Logging client.
      *
-     * @param array $config [optional] {
-     *     Configuration options.
+     * @param array $options {
+     *     Configuration Options.
      *
-     *     @type string $projectId The project ID from the Google Developer's
-     *           Console.
-     *     @type CacheItemPoolInterface $authCache A cache for storing access
-     *           tokens. **Defaults to** a simple in memory implementation.
-     *     @type array $authCacheOptions Cache configuration options.
-     *     @type callable $authHttpHandler A handler used to deliver Psr7
-     *           requests specifically for authentication.
-     *     @type FetchAuthTokenInterface $credentialsFetcher A credentials
-     *           fetcher instance.
-     *     @type callable $httpHandler A handler used to deliver Psr7 requests.
-     *           Only valid for requests sent over REST.
-     *     @type array $keyFile [DEPRECATED]
-     *           This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
+     *     @type string $projectId The Google Cloud project ID.
+     *     @type string $apiEndpoint
+     *           The address of the API remote host. May optionally include the port, formatted
+     *           as "<uri>:<port>". Default 'logging.googleapis.com:443'.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new LoggingClient(['credentialsFetcher' => $creds]);
+     *           use Google\Cloud\Logging\V2\LoggingServiceV2Client;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new LoggingServiceV2Client(['credentials' => $creds]);
      *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-    *     @type string $keyFilePath [DEPRECATED]
-     *           This option is being deprecated because of a potential security risk.
-     *           This option does not validate the credential configuration. The security
-     *           risk occurs when a credential configuration is accepted from a source
-     *           that is not under your control and used without validation on your side.
-     *           If you know that you will be loading credential configurations of a
-     *           specific type, it is recommended to create the credentials directly and
-     *           configure them using the `credentialsFetcher` option instead.
-     *           ```
-     *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           $credentialsFetcher = new ServiceAccountCredentials($scopes, $json);
-     *           $creds = new LoggingClient(['credentialsFetcher' => $creds]);
-     *           ```
-     *           This will ensure that an unexpected credential type with potential for
-     *           malicious intent is not loaded unintentionally. You might still have to do
-     *           validation for certain credential types.
-     *           If you are loading your credential configuration from an untrusted source and have
-     *           not mitigated the risks (e.g. by validating the configuration yourself), make
-     *           these changes as soon as possible to prevent security risks to your environment.
-     *           Regardless of the method used, it is always your responsibility to validate
-     *           configurations received from external sources.
-     *           @see https://cloud.google.com/docs/authentication/external/externally-sourced-credentials
-     *     @type float $requestTimeout Seconds to wait before timing out the
-     *           request. **Defaults to** `0` with REST and `60` with gRPC.
-     *     @type int $retries Number of retries for a failed request.
-     *           **Defaults to** `3`.
-     *     @type array $scopes Scopes to be used for the request.
-     *     @type string $quotaProject Specifies a user project to bill for
-     *           access charges associated with the request.
-     *     @type string $transport The transport type used for requests. May be
-     *           either `grpc` or `rest`. **Defaults to** `grpc` if gRPC support
-     *           is detected on the system.
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
+     *     @type array $credentialsConfig
+     *           Options used to configure credentials, including auth token caching, for the
+     *           client. For a full list of supporting configuration options, see
+     *           {@see \Google\ApiCore\CredentialsWrapper::build()} .
+     *     @type bool $disableRetries
+     *           Determines whether or not retries defined by the client configuration should be
+     *           disabled. Defaults to `false`.
+     *     @type string|array $clientConfig
+     *           Client method configuration, including retry settings. This option can be either
+     *           a path to a JSON file, or a PHP array containing the decoded JSON data. By
+     *           default this settings points to the default client config file, which is
+     *           provided in the resources folder.
+     *     @type string|TransportInterface $transport
+     *           The transport used for executing network requests. May be either the string
+     *           `rest` or `grpc`. Defaults to `grpc` if gRPC support is detected on the system.
+     *           *Advanced usage*: Additionally, it is possible to pass in an already
+     *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
+     *           that when this object is provided, any settings in $transportConfig, and any
+     *           $apiEndpoint setting, will be ignored.
+     *     @type array $transportConfig
+     *           Configuration options that will be used to construct the transport. Options for
+     *           each supported transport type should be passed in a key for that transport. For
+     *           example:
+     *           $transportConfig = [
+     *               'grpc' => [...],
+     *               'rest' => [...],
+     *           ];
+     *           See the {@see \Google\ApiCore\Transport\GrpcTransport::build()} and
+     *           {@see \Google\ApiCore\Transport\RestTransport::build()} methods for the
+     *           supported options.
+     *     @type callable $clientCertSource
+     *           A callable which returns the client cert as a string. This can be used to
+     *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      */
-    public function __construct(array $config = [])
+    public function __construct(private array $config = [])
     {
-        $this->config = $config;
-        $connectionType = $this->getConnectionType($config);
-        $config += [
-            'scopes' => [self::FULL_CONTROL_SCOPE],
-            'projectIdRequired' => true
-        ];
+        $this->connection = new Gapic($config);
 
-        $this->connection = $connectionType === 'grpc'
-            ? new Grpc($this->configureAuthentication($config))
-            : new Rest($this->configureAuthentication($config));
+        // Detect the project ID
+        $detectProjectIdConfig = $this->buildClientOptions($config);
+        $detectProjectIdConfig['credentials'] = $this->createCredentialsWrapper(
+            $detectProjectIdConfig['credentials'],
+            $detectProjectIdConfig['credentialsConfig'],
+            $detectProjectIdConfig['universeDomain']
+        );
 
+        $this->projectId = $this->detectProjectId($detectProjectIdConfig);
         $this->formattedProjectName = "projects/$this->projectId";
     }
 
@@ -259,11 +243,6 @@ class LoggingClient
      *     Configuration options.
      *
      *     @type string $filter An [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced_filters).
-     *     @type string $outputVersionFormat The log entry version to use for
-     *           this sink's exported log entries. This version does not have
-     *           to correspond to the version of the log entry when it was
-     *           written to Stackdriver Logging. May be either `V1` or `V2`.
-     *           **Defaults to** `V2`.
      * }
      * @return Sink
      */
@@ -273,7 +252,6 @@ class LoggingClient
             'parent' => $this->formattedProjectName,
             'name' => $name,
             'destination' => $destination,
-            'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
         ]);
 
         return new Sink($this->connection, $name, $this->projectId, $response);
@@ -371,7 +349,7 @@ class LoggingClient
      */
     public function createMetric($name, $filter, array $options = [])
     {
-        $response =  $this->connection->createMetric($options + [
+        $response =  $this->connection->createLogMetric($options + [
             'parent' => $this->formattedProjectName,
             'name' => $name,
             'filter' => $filter
@@ -436,7 +414,7 @@ class LoggingClient
                 function (array $metric) {
                     return new Metric($this->connection, $metric['name'], $this->projectId, $metric);
                 },
-                [$this->connection, 'listMetrics'],
+                [$this->connection, 'listLogMetrics'],
                 $options + ['parent' => $this->formattedProjectName],
                 [
                     'itemsKey' => 'metrics',
@@ -517,7 +495,7 @@ class LoggingClient
                 function (array $entry) {
                     return new Entry($entry);
                 },
-                [$this->connection, 'listEntries'],
+                [$this->connection, 'listLogEntries'],
                 $options,
                 [
                     'itemsKey' => 'entries',

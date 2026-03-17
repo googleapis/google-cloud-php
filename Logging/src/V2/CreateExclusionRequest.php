@@ -27,14 +27,14 @@ class CreateExclusionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new exclusion, whose `name` parameter is an exclusion name
      * that is not already used in the parent resource.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $exclusion = null;
+    protected $exclusion = null;
 
     /**
      * @param string                                $parent    Required. The parent resource in which to create the exclusion:

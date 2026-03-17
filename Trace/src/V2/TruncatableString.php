@@ -25,14 +25,14 @@ class TruncatableString extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string value = 1;</code>
      */
-    private $value = '';
+    protected $value = '';
     /**
      * The number of bytes removed from the original string. If this
      * value is 0, then the string was not shortened.
      *
      * Generated from protobuf field <code>int32 truncated_byte_count = 2;</code>
      */
-    private $truncated_byte_count = 0;
+    protected $truncated_byte_count = 0;
 
     /**
      * Constructor.

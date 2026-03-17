@@ -24,13 +24,13 @@ class UpdateLogMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $metric_name = '';
+    protected $metric_name = '';
     /**
      * Required. The updated metric.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric = null;
+    protected $metric = null;
 
     /**
      * @param string                             $metricName Required. The resource name of the metric to update:

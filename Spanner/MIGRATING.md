@@ -22,7 +22,7 @@ Google Cloud clients.
 
 - `authCache` -> Moved to `credentialsConfig.authCache`
 - `authCacheOptions` -> Moved to `credentialsConfig.authCacheOptions`
-- `FetchAuthTokenInterface` -> Moved to `credentials`
+- `credentialsFetcher` -> Moved to `credentials`
 - `keyFile` -> Moved to `credentials`
 - `keyFilePath` -> Moved to `credentials`
 - `requestTimeout` -> Removed from client options and moved to a call option `timeoutMillis`

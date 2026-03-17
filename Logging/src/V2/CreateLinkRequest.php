@@ -24,13 +24,13 @@ class CreateLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new link.
      *
      * Generated from protobuf field <code>.google.logging.v2.Link link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $link = null;
+    protected $link = null;
     /**
      * Required. The ID to use for the link. The link_id can have up to 100
      * characters. A valid link_id must only have alphanumeric characters and
@@ -38,7 +38,7 @@ class CreateLinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string link_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $link_id = '';
+    protected $link_id = '';
 
     /**
      * @param string                        $parent Required. The full resource name of the bucket to create a link for.

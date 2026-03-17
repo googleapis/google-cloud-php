@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ namespace Google\Cloud\Logging\V2\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
@@ -74,6 +73,7 @@ use Google\Cloud\Logging\V2\UpdateExclusionRequest;
 use Google\Cloud\Logging\V2\UpdateSettingsRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Cloud\Logging\V2\UpdateViewRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
@@ -205,6 +205,25 @@ final class ConfigServiceV2Client
     }
 
     /**
+     * Create the default operation client for the service.
+     *
+     * @param array $options ClientOptions for the client.
+     *
+     * @return OperationsClient
+     */
+    private function createOperationsClient(array $options)
+    {
+        // Unset client-specific configuration options
+        unset($options['serviceName'], $options['clientConfig'], $options['descriptorsConfigPath']);
+
+        if (isset($options['operationsClient'])) {
+            return $options['operationsClient'];
+        }
+
+        return new OperationsClient($options);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * billing_account resource.
      *
@@ -278,8 +297,11 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted billing_account_location_bucket resource.
      */
-    public static function billingAccountLocationBucketName(string $billingAccount, string $location, string $bucket): string
-    {
+    public static function billingAccountLocationBucketName(
+        string $billingAccount,
+        string $location,
+        string $bucket
+    ): string {
         return self::getPathTemplate('billingAccountLocationBucket')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -298,8 +320,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted billing_account_location_bucket_link resource.
      */
-    public static function billingAccountLocationBucketLinkName(string $billingAccount, string $location, string $bucket, string $link): string
-    {
+    public static function billingAccountLocationBucketLinkName(
+        string $billingAccount,
+        string $location,
+        string $bucket,
+        string $link
+    ): string {
         return self::getPathTemplate('billingAccountLocationBucketLink')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -319,8 +345,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted billing_account_location_bucket_view resource.
      */
-    public static function billingAccountLocationBucketViewName(string $billingAccount, string $location, string $bucket, string $view): string
-    {
+    public static function billingAccountLocationBucketViewName(
+        string $billingAccount,
+        string $location,
+        string $bucket,
+        string $view
+    ): string {
         return self::getPathTemplate('billingAccountLocationBucketView')->render([
             'billing_account' => $billingAccount,
             'location' => $location,
@@ -470,8 +500,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted folder_location_bucket_link resource.
      */
-    public static function folderLocationBucketLinkName(string $folder, string $location, string $bucket, string $link): string
-    {
+    public static function folderLocationBucketLinkName(
+        string $folder,
+        string $location,
+        string $bucket,
+        string $link
+    ): string {
         return self::getPathTemplate('folderLocationBucketLink')->render([
             'folder' => $folder,
             'location' => $location,
@@ -491,8 +525,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted folder_location_bucket_view resource.
      */
-    public static function folderLocationBucketViewName(string $folder, string $location, string $bucket, string $view): string
-    {
+    public static function folderLocationBucketViewName(
+        string $folder,
+        string $location,
+        string $bucket,
+        string $view
+    ): string {
         return self::getPathTemplate('folderLocationBucketView')->render([
             'folder' => $folder,
             'location' => $location,
@@ -719,8 +757,11 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted organization_location_bucket resource.
      */
-    public static function organizationLocationBucketName(string $organization, string $location, string $bucket): string
-    {
+    public static function organizationLocationBucketName(
+        string $organization,
+        string $location,
+        string $bucket
+    ): string {
         return self::getPathTemplate('organizationLocationBucket')->render([
             'organization' => $organization,
             'location' => $location,
@@ -739,8 +780,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted organization_location_bucket_link resource.
      */
-    public static function organizationLocationBucketLinkName(string $organization, string $location, string $bucket, string $link): string
-    {
+    public static function organizationLocationBucketLinkName(
+        string $organization,
+        string $location,
+        string $bucket,
+        string $link
+    ): string {
         return self::getPathTemplate('organizationLocationBucketLink')->render([
             'organization' => $organization,
             'location' => $location,
@@ -760,8 +805,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted organization_location_bucket_view resource.
      */
-    public static function organizationLocationBucketViewName(string $organization, string $location, string $bucket, string $view): string
-    {
+    public static function organizationLocationBucketViewName(
+        string $organization,
+        string $location,
+        string $bucket,
+        string $view
+    ): string {
         return self::getPathTemplate('organizationLocationBucketView')->render([
             'organization' => $organization,
             'location' => $location,
@@ -879,8 +928,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted project_location_bucket_link resource.
      */
-    public static function projectLocationBucketLinkName(string $project, string $location, string $bucket, string $link): string
-    {
+    public static function projectLocationBucketLinkName(
+        string $project,
+        string $location,
+        string $bucket,
+        string $link
+    ): string {
         return self::getPathTemplate('projectLocationBucketLink')->render([
             'project' => $project,
             'location' => $location,
@@ -900,8 +953,12 @@ final class ConfigServiceV2Client
      *
      * @return string The formatted project_location_bucket_view resource.
      */
-    public static function projectLocationBucketViewName(string $project, string $location, string $bucket, string $view): string
-    {
+    public static function projectLocationBucketViewName(
+        string $project,
+        string $location,
+        string $bucket,
+        string $view
+    ): string {
         return self::getPathTemplate('projectLocationBucketView')->render([
             'project' => $project,
             'location' => $location,

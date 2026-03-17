@@ -21,7 +21,7 @@ use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\InvalidArgumentException;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -44,7 +44,7 @@ class PsrLoggerTest extends TestCase
     public function setUp(): void
     {
         $this->formattedName = "projects/$this->projectId/logs/$this->logName";
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
     }
 
     public function getPsrLogger($connection, ?array $resource = null, ?array $labels = null, $messageKey = 'message')
@@ -58,7 +58,7 @@ class PsrLoggerTest extends TestCase
      */
     public function testWritesEntryWithDefinedLevels($level)
     {
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => array_flip(Logger::getLogLevelMap())[$level],
@@ -96,7 +96,7 @@ class PsrLoggerTest extends TestCase
 
     public function testWritesEntry()
     {
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => $this->severity,
@@ -122,7 +122,7 @@ class PsrLoggerTest extends TestCase
     {
         $resource = ['type' => 'default'];
         $labels = ['testing' => 'labels'];
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => $this->severity,
@@ -150,7 +150,7 @@ class PsrLoggerTest extends TestCase
         $newResource = ['type' => 'new'];
         $defaultLabels = ['testing' => 'labels'];
         $newLabels = ['new' => 'labels'];
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => $this->severity,
@@ -202,7 +202,7 @@ class PsrLoggerTest extends TestCase
     public function testUsesCustomMessageKey()
     {
         $customKey = 'customKey';
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => $this->severity,
@@ -275,7 +275,7 @@ class PsrLoggerTest extends TestCase
 
     private function expectLogWithExceptionInContext($throwable)
     {
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'severity' => $this->severity,

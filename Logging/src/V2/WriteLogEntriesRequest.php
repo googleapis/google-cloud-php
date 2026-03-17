@@ -32,7 +32,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_name = 1 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
-    private $log_name = '';
+    protected $log_name = '';
     /**
      * Optional. A default monitored resource object that is assigned to all log
      * entries in `entries` that do not specify a value for `resource`. Example:
@@ -43,7 +43,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * Optional. Default labels that are added to the `labels` field of all log
      * entries in `entries`. If a log entry already has a label with the same key
@@ -90,7 +90,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool partial_success = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $partial_success = false;
+    protected $partial_success = false;
     /**
      * Optional. If true, the request should expect normal response, but the
      * entries won't be persisted nor exported. Useful for checking whether the
@@ -98,7 +98,7 @@ class WriteLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool dry_run = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $dry_run = false;
+    protected $dry_run = false;
 
     /**
      * @param string                              $logName  Optional. A default log resource name that is assigned to all log entries

@@ -27,7 +27,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * The resource name for the configured Cloud KMS key.
      * KMS key name format:
@@ -50,7 +50,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 2;</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * The CryptoKeyVersion resource name for the configured Cloud KMS key.
      * KMS key name format:
@@ -66,7 +66,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_version_name = 4;</code>
      */
-    private $kms_key_version_name = '';
+    protected $kms_key_version_name = '';
     /**
      * Output only. The service account that will be used by the Log Router to
      * access your Cloud KMS key.
@@ -81,7 +81,7 @@ class CmekSettings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string service_account_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $service_account_id = '';
+    protected $service_account_id = '';
 
     /**
      * Constructor.

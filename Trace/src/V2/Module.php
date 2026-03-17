@@ -21,14 +21,14 @@ class Module extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString module = 1;</code>
      */
-    private $module = null;
+    protected $module = null;
     /**
      * A unique identifier for the module, usually a hash of its
      * contents (up to 128 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString build_id = 2;</code>
      */
-    private $build_id = null;
+    protected $build_id = null;
 
     /**
      * Constructor.

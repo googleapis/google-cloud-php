@@ -20,7 +20,7 @@ class TimeEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp time = 1;</code>
      */
-    private $time = null;
+    protected $time = null;
     protected $value;
 
     /**

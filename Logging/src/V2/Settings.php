@@ -21,7 +21,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Optional. The resource name for the configured Cloud KMS key.
      * KMS key name format:
@@ -43,7 +43,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $kms_key_name = '';
+    protected $kms_key_name = '';
     /**
      * Output only. The service account that will be used by the Log Router to
      * access your Cloud KMS key.
@@ -58,7 +58,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string kms_service_account_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $kms_service_account_id = '';
+    protected $kms_service_account_id = '';
     /**
      * Optional. The Cloud region that will be used for _Default and _Required log
      * buckets for newly created projects and folders. For example `europe-west1`.
@@ -66,7 +66,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string storage_location = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $storage_location = '';
+    protected $storage_location = '';
     /**
      * Optional. If set to true, the _Default sink in newly created projects and
      * folders will created in a disabled state. This can be used to automatically
@@ -75,7 +75,7 @@ class Settings extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool disable_default_sink = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disable_default_sink = false;
+    protected $disable_default_sink = false;
 
     /**
      * Constructor.

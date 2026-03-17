@@ -22,14 +22,14 @@ class CreateLogMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new logs-based metric, which must not have an identifier that
      * already exists.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogMetric metric = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $metric = null;
+    protected $metric = null;
 
     /**
      * @param string                             $parent Required. The resource name of the project in which to create the metric:
