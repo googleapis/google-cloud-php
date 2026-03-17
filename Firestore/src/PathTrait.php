@@ -17,8 +17,8 @@
 
 namespace Google\Cloud\Firestore;
 
+use Google\ApiCore\PathTemplate;
 use Google\ApiCore\ValidationException;
-use Google\Cloud\Firestore\V1\FirestoreClient as FirestoreGapicClient;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -37,8 +37,8 @@ trait PathTrait
     private function fullName($projectId, $database, $relativeName = null)
     {
         return $relativeName !== null
-            ? FirestoreGapicClient::documentPathName($projectId, $database, $relativeName)
-            : FirestoreGapicClient::documentRootName($projectId, $database);
+            ? self::documentPathName($projectId, $database, $relativeName)
+            : self::documentRootName($projectId, $database);
     }
 
     /**
@@ -62,7 +62,7 @@ trait PathTrait
      */
     private function databaseName($projectId, $database)
     {
-        return FirestoreGapicClient::databaseRootName($projectId, $database);
+        return self::databaseRootName($projectId, $database);
     }
 
     /**
@@ -92,7 +92,7 @@ trait PathTrait
     private function databaseIdFromName($name)
     {
         try {
-            $parsed = FirestoreGapicClient::parseName($name);
+            $parsed = self::parseName($name);
         } catch (ValidationException $e) {
             return null;
         }
@@ -111,7 +111,7 @@ trait PathTrait
     private function projectIdFromName($name)
     {
         try {
-            $parsed = FirestoreGapicClient::parseName($name);
+            $parsed = self::parseName($name);
         } catch (ValidationException $e) {
             return null;
         }
@@ -248,7 +248,7 @@ trait PathTrait
     private function relativeName($name)
     {
         try {
-            $parsed = FirestoreGapicClient::parseName($name, 'documentPath');
+            $parsed = self::parseName($name, 'documentPath');
         } catch (ValidationException $e) {
             return null;
         }
@@ -281,5 +281,88 @@ trait PathTrait
         }
 
         return true;
+    }
+
+    private static function parseName($formattedName, $template = null)
+    {
+        $templateMap = [
+            'anyPath' => new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}'),
+            'databaseRoot' => new PathTemplate('projects/{project}/databases/{database}'),
+            'documentPath' => new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}'),
+            'documentRoot' => new PathTemplate('projects/{project}/databases/{database}/documents'),
+        ];
+
+        if ($template) {
+            if (!isset($templateMap[$template])) {
+                throw new ValidationException("Template name $template does not exist");
+            }
+
+            return $templateMap[$template]->match($formattedName);
+        }
+
+        foreach ($templateMap as $templateName => $pathTemplate) {
+            try {
+                return $pathTemplate->match($formattedName);
+            } catch (ValidationException $ex) {
+                // Swallow the exception to continue trying other path templates
+            }
+        }
+	throw new ValidationException("Input did not match any known format. Input: $formattedName");
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a document_path resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $documentPath
+     *
+     * @return string The formatted document_path resource.
+     * @deprecated
+     */
+    private static function documentPathName($project, $database, $documentPath)
+    {
+        return (new PathTemplate('projects/{project}/databases/{database}/documents/{document_path=**}'))->render([
+            'project' => $project,
+            'database' => $database,
+            'document_path' => $documentPath,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a document_root resource.
+     *
+     * @param string $project
+     * @param string $database
+     *
+     * @return string The formatted document_root resource.
+     * @deprecated
+     */
+    private static function documentRootName($project, $database)
+    {
+        return (new PathTemplate('projects/{project}/databases/{database}/documents'))->render([
+            'project' => $project,
+            'database' => $database,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a database_root resource.
+     *
+     * @param string $project
+     * @param string $database
+     *
+     * @return string The formatted database_root resource.
+     * @deprecated
+     */
+    private static function databaseRootName($project, $database)
+    {
+        return (new PathTemplate('projects/{project}/databases/{database}'))->render([
+            'project' => $project,
+            'database' => $database,
+        ]);
     }
 }
