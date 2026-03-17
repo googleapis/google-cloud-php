@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\DirectedReadOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An ExcludeReplicas contains a repeated set of ReplicaSelection that should
@@ -29,7 +29,7 @@ class ExcludeReplicas extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection>|\Google\Protobuf\Internal\RepeatedField $replica_selections
+     *     @type \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection[] $replica_selections
      *           The directed read replica selector.
      * }
      */
@@ -42,7 +42,7 @@ class ExcludeReplicas extends \Google\Protobuf\Internal\Message
      * The directed read replica selector.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.DirectedReadOptions.ReplicaSelection replica_selections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection>
      */
     public function getReplicaSelections()
     {
@@ -53,7 +53,7 @@ class ExcludeReplicas extends \Google\Protobuf\Internal\Message
      * The directed read replica selector.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.DirectedReadOptions.ReplicaSelection replica_selections = 1;</code>
-     * @param array<\Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\DirectedReadOptions\ReplicaSelection[] $var
      * @return $this
      */
     public function setReplicaSelections($var)
@@ -65,5 +65,4 @@ class ExcludeReplicas extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

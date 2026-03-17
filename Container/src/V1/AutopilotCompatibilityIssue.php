@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AutopilotCompatibilityIssue contains information about a specific
@@ -65,7 +65,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      *           The constraint type of the issue.
      *     @type int $incompatibility_type
      *           The incompatibility type of this issue.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subjects
+     *     @type string[] $subjects
      *           The name of the resources which are subject to this issue.
      *     @type string $documentation_url
      *           A URL to a public documentation, which addresses resolving this issue.
@@ -170,7 +170,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      * The name of the resources which are subject to this issue.
      *
      * Generated from protobuf field <code>repeated string subjects = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubjects()
     {
@@ -181,7 +181,7 @@ class AutopilotCompatibilityIssue extends \Google\Protobuf\Internal\Message
      * The name of the resources which are subject to this issue.
      *
      * Generated from protobuf field <code>repeated string subjects = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubjects($var)

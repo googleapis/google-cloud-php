@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\LinuxNodeConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for swap memory on a node pool.
@@ -226,5 +226,4 @@ class SwapConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

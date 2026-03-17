@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\NodePool\UpdateInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information relevant to blue-green upgrade.
@@ -59,11 +59,11 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type int $phase
      *           Current blue-green upgrade phase.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blue_instance_group_urls
+     *     @type string[] $blue_instance_group_urls
      *           The resource URLs of the [managed instance groups]
      *           (/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with blue pool.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $green_instance_group_urls
+     *     @type string[] $green_instance_group_urls
      *           The resource URLs of the [managed instance groups]
      *           (/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with green pool.
@@ -111,7 +111,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with blue pool.
      *
      * Generated from protobuf field <code>repeated string blue_instance_group_urls = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlueInstanceGroupUrls()
     {
@@ -124,7 +124,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with blue pool.
      *
      * Generated from protobuf field <code>repeated string blue_instance_group_urls = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlueInstanceGroupUrls($var)
@@ -141,7 +141,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with green pool.
      *
      * Generated from protobuf field <code>repeated string green_instance_group_urls = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGreenInstanceGroupUrls()
     {
@@ -154,7 +154,7 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
      * associated with green pool.
      *
      * Generated from protobuf field <code>repeated string green_instance_group_urls = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGreenInstanceGroupUrls($var)
@@ -220,5 +220,4 @@ class BlueGreenInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

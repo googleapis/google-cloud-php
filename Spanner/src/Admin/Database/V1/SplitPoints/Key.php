@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1\SplitPoints;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A split key.
@@ -74,7 +74,4 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Key::class, \Google\Cloud\Spanner\Admin\Database\V1\SplitPoints_Key::class);
 

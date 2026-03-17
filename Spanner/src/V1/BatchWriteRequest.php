@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [BatchWrite][google.spanner.v1.Spanner.BatchWrite].
@@ -68,7 +68,7 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      *           Required. The session in which the batch request is to be run.
      *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
      *           Common options for this request.
-     *     @type array<\Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup>|\Google\Protobuf\Internal\RepeatedField $mutation_groups
+     *     @type \Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup[] $mutation_groups
      *           Required. The groups of mutations to be applied.
      *     @type bool $exclude_txn_from_change_streams
      *           Optional. If you don't set the `exclude_txn_from_change_streams` option or
@@ -147,7 +147,7 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      * Required. The groups of mutations to be applied.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.BatchWriteRequest.MutationGroup mutation_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup>
      */
     public function getMutationGroups()
     {
@@ -158,7 +158,7 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      * Required. The groups of mutations to be applied.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.BatchWriteRequest.MutationGroup mutation_groups = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\BatchWriteRequest\MutationGroup[] $var
      * @return $this
      */
     public function setMutationGroups($var)

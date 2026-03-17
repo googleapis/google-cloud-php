@@ -45,6 +45,7 @@ trait DocblockTrait
         $content = $this->replaceProtoRef($content);
         $content = $this->stripSnippetTag($content);
         $content = $this->addPhpLanguageHintToFencedCodeBlock($content);
+        $content = $this->unescapeDocblockClosingTags($content);
 
         return $content;
     }
@@ -84,5 +85,10 @@ trait DocblockTrait
     {
         $regex = '/Generated from protobuf field <code>.*<\/code>\Z/m';
         return rtrim(preg_replace($regex, '', $content));
+    }
+
+    private function unescapeDocBlockClosingTags(string $content): string
+    {
+        return str_replace('{@*}', '*/', $content);
     }
 }

@@ -70,11 +70,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<EncryptionConfig> getEncryptionConfigAsync(GetEncryptionConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listEncryptionConfigsAsync(ListEncryptionConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateEncryptionConfigAsync(UpdateEncryptionConfigRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<TestIamPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
 final class CmekServiceClient
 {
@@ -461,6 +461,65 @@ final class CmekServiceClient
     }
 
     /**
+     * Gets information about a location.
+     *
+     * The async variant is {@see CmekServiceClient::getLocationAsync()} .
+     *
+     * @example samples/V1/CmekServiceClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Location
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
+    {
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+    This method can be called in two ways:
+
+    *   **List all public locations:** Use the path `GET /v1/locations`.
+    *   **List project-visible locations:** Use the path
+    `GET /v1/projects/{project_id}/locations`. This may include public
+    locations as well as private or other locations specifically visible
+    to the project.
+     *
+     * The async variant is {@see CmekServiceClient::listLocationsAsync()} .
+     *
+     * @example samples/V1/CmekServiceClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListLocations', $request, $callOptions);
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy
     if the resource exists and does not have a policy set.
      *
@@ -549,57 +608,5 @@ final class CmekServiceClient
         array $callOptions = []
     ): TestIamPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Gets information about a location.
-     *
-     * The async variant is {@see CmekServiceClient::getLocationAsync()} .
-     *
-     * @example samples/V1/CmekServiceClient/get_location.php
-     *
-     * @param GetLocationRequest $request     A request to house fields associated with the call.
-     * @param array              $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return Location
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
-    {
-        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Lists information about the supported locations for this service.
-     *
-     * The async variant is {@see CmekServiceClient::listLocationsAsync()} .
-     *
-     * @example samples/V1/CmekServiceClient/list_locations.php
-     *
-     * @param ListLocationsRequest $request     A request to house fields associated with the call.
-     * @param array                $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
-    {
-        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

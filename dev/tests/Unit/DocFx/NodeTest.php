@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\DocblockTrait;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
@@ -560,5 +561,19 @@ EOF;
             ['{@see \SimpleXMLElement::OUTPUT_FOO}', ['\SimpleXMLElement::OUTPUT_FOO']],  // invalid constant (doesn't exist)
             [sprintf('{@see \%s::OUTPUT_NORMAL}', OutputInterface::class)], // valid constant
         ];
+    }
+
+    public function testEscapeDocblockClosingTags()
+    {
+        $classXml = '<class><full_name>TestClass</full_name><docblock><description>%s</description></docblock></class>';
+
+        $docblock = new class (new SimpleXMLElement(sprintf($classXml, 'the path must match `foo/{@*}bar/{@*}baz`'))) {
+            use DocblockTrait;
+
+            public function __construct(private SimpleXMLElement $xmlNode)
+            {}
+        };
+
+        $this->assertEquals('the path must match `foo/*/bar/*/baz`', $docblock->getContent());
     }
 }

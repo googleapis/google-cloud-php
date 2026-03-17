@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GenerateConnectManifestResponse contains manifest information for
@@ -30,7 +30,7 @@ class GenerateConnectManifestResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeHub\V1\ConnectAgentResource>|\Google\Protobuf\Internal\RepeatedField $manifest
+     *     @type \Google\Cloud\GkeHub\V1\ConnectAgentResource[] $manifest
      *           The ordered list of Kubernetes resources that need to be applied to the
      *           cluster for GKE Connect agent installation/upgrade.
      * }
@@ -45,7 +45,7 @@ class GenerateConnectManifestResponse extends \Google\Protobuf\Internal\Message
      * cluster for GKE Connect agent installation/upgrade.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.ConnectAgentResource manifest = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\V1\ConnectAgentResource>
      */
     public function getManifest()
     {
@@ -57,7 +57,7 @@ class GenerateConnectManifestResponse extends \Google\Protobuf\Internal\Message
      * cluster for GKE Connect agent installation/upgrade.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1.ConnectAgentResource manifest = 1;</code>
-     * @param array<\Google\Cloud\GkeHub\V1\ConnectAgentResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\V1\ConnectAgentResource[] $var
      * @return $this
      */
     public function setManifest($var)

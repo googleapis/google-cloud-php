@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Anthos node pool running on Azure.
@@ -185,7 +185,7 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      *     @type string $azure_availability_zone
      *           Optional. The Azure availability zone of the nodes in this nodepool.
      *           When unspecified, it defaults to `1`.
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError[] $errors
      *           Output only. A set of errors found in the node pool.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodeManagement $management
      *           Optional. The Management configuration for this node pool.
@@ -652,7 +652,7 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>
      */
     public function getErrors()
     {
@@ -663,7 +663,7 @@ class AzureNodePool extends \Google\Protobuf\Internal\Message
      * Output only. A set of errors found in the node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePoolError errors = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePoolError[] $var
      * @return $this
      */
     public function setErrors($var)

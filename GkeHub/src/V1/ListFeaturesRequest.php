@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for `GkeHub.ListFeatures` method.
@@ -17,7 +17,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent (project and location) where the Features will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -91,7 +91,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent (project and location) where the Features will be
-     *           listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           listed. Specified in the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           When requesting a 'page' of resources, `page_size` specifies number of
      *           resources to return. If unspecified or set to 0, all resources will
@@ -127,7 +127,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Features will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -139,7 +139,7 @@ class ListFeaturesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Features will be
-     * listed. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * listed. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

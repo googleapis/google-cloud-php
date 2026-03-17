@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ContainerdConfig contains configuration to customize containerd.
@@ -50,7 +50,7 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ContainerdConfig\WritableCgroups $writable_cgroups
      *           Optional. WritableCgroups defines writable cgroups configuration for the
      *           node pool.
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig>|\Google\Protobuf\Internal\RepeatedField $registry_hosts
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig[] $registry_hosts
      *           RegistryHostConfig configures containerd registry host configuration.
      *           Each registry_hosts represents a hosts.toml file.
      *           At most 25 registry_hosts are allowed.
@@ -143,7 +143,7 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      * At most 25 registry_hosts are allowed.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig registry_hosts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig>
      */
     public function getRegistryHosts()
     {
@@ -156,7 +156,7 @@ class ContainerdConfig extends \Google\Protobuf\Internal\Message
      * At most 25 registry_hosts are allowed.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig registry_hosts = 3;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig[] $var
      * @return $this
      */
     public function setRegistryHosts($var)

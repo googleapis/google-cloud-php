@@ -15,6 +15,21 @@ use Google\Protobuf\RepeatedField;
  */
 class DataDocumentationSpec extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Optional. Whether to publish result to Dataplex Catalog.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $catalog_publishing_enabled = false;
+    /**
+     * Optional. Specifies which components of the data documentation to generate.
+     * Any component that is required to generate the specified components will
+     * also be generated. If no generation scope is specified, all available
+     * documentation components will be generated.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationSpec.GenerationScope generation_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $generation_scopes;
 
     /**
      * Constructor.
@@ -22,11 +37,76 @@ class DataDocumentationSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $catalog_publishing_enabled
+     *           Optional. Whether to publish result to Dataplex Catalog.
+     *     @type int[] $generation_scopes
+     *           Optional. Specifies which components of the data documentation to generate.
+     *           Any component that is required to generate the specified components will
+     *           also be generated. If no generation scope is specified, all available
+     *           documentation components will be generated.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataplex\V1\DataDocumentation::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Whether to publish result to Dataplex Catalog.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getCatalogPublishingEnabled()
+    {
+        return $this->catalog_publishing_enabled;
+    }
+
+    /**
+     * Optional. Whether to publish result to Dataplex Catalog.
+     *
+     * Generated from protobuf field <code>bool catalog_publishing_enabled = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCatalogPublishingEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->catalog_publishing_enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies which components of the data documentation to generate.
+     * Any component that is required to generate the specified components will
+     * also be generated. If no generation scope is specified, all available
+     * documentation components will be generated.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationSpec.GenerationScope generation_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<int>
+     */
+    public function getGenerationScopes()
+    {
+        return $this->generation_scopes;
+    }
+
+    /**
+     * Optional. Specifies which components of the data documentation to generate.
+     * Any component that is required to generate the specified components will
+     * also be generated. If no generation scope is specified, all available
+     * documentation components will be generated.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationSpec.GenerationScope generation_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int[] $var
+     * @return $this
+     */
+    public function setGenerationScopes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\Dataplex\V1\DataDocumentationSpec\GenerationScope::class);
+        $this->generation_scopes = $arr;
+
+        return $this;
     }
 
 }

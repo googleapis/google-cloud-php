@@ -20,11 +20,6 @@
                                 "createAsset"
                             ]
                         },
-                        "CreateEnvironment": {
-                            "methods": [
-                                "createEnvironment"
-                            ]
-                        },
                         "CreateLake": {
                             "methods": [
                                 "createLake"
@@ -45,11 +40,6 @@
                                 "deleteAsset"
                             ]
                         },
-                        "DeleteEnvironment": {
-                            "methods": [
-                                "deleteEnvironment"
-                            ]
-                        },
                         "DeleteLake": {
                             "methods": [
                                 "deleteLake"
@@ -68,11 +58,6 @@
                         "GetAsset": {
                             "methods": [
                                 "getAsset"
-                            ]
-                        },
-                        "GetEnvironment": {
-                            "methods": [
-                                "getEnvironment"
                             ]
                         },
                         "GetJob": {
@@ -105,11 +90,6 @@
                                 "listAssets"
                             ]
                         },
-                        "ListEnvironments": {
-                            "methods": [
-                                "listEnvironments"
-                            ]
-                        },
                         "ListJobs": {
                             "methods": [
                                 "listJobs"
@@ -123,11 +103,6 @@
                         "ListLakes": {
                             "methods": [
                                 "listLakes"
-                            ]
-                        },
-                        "ListSessions": {
-                            "methods": [
-                                "listSessions"
                             ]
                         },
                         "ListTasks": {
@@ -155,11 +130,6 @@
                                 "updateAsset"
                             ]
                         },
-                        "UpdateEnvironment": {
-                            "methods": [
-                                "updateEnvironment"
-                            ]
-                        },
                         "UpdateLake": {
                             "methods": [
                                 "updateLake"
@@ -175,6 +145,16 @@
                                 "updateZone"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -188,16 +168,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -284,6 +254,16 @@
                                 "updateGlossaryTerm"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -297,16 +277,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -348,6 +318,11 @@
                                 "createEntryType"
                             ]
                         },
+                        "CreateMetadataFeed": {
+                            "methods": [
+                                "createMetadataFeed"
+                            ]
+                        },
                         "CreateMetadataJob": {
                             "methods": [
                                 "createMetadataJob"
@@ -378,6 +353,11 @@
                                 "deleteEntryType"
                             ]
                         },
+                        "DeleteMetadataFeed": {
+                            "methods": [
+                                "deleteMetadataFeed"
+                            ]
+                        },
                         "GetAspectType": {
                             "methods": [
                                 "getAspectType"
@@ -401,6 +381,11 @@
                         "GetEntryType": {
                             "methods": [
                                 "getEntryType"
+                            ]
+                        },
+                        "GetMetadataFeed": {
+                            "methods": [
+                                "getMetadataFeed"
                             ]
                         },
                         "GetMetadataJob": {
@@ -428,14 +413,29 @@
                                 "listEntryTypes"
                             ]
                         },
+                        "ListMetadataFeeds": {
+                            "methods": [
+                                "listMetadataFeeds"
+                            ]
+                        },
                         "ListMetadataJobs": {
                             "methods": [
                                 "listMetadataJobs"
                             ]
                         },
+                        "LookupContext": {
+                            "methods": [
+                                "lookupContext"
+                            ]
+                        },
                         "LookupEntry": {
                             "methods": [
                                 "lookupEntry"
+                            ]
+                        },
+                        "LookupEntryLinks": {
+                            "methods": [
+                                "lookupEntryLinks"
                             ]
                         },
                         "SearchEntries": {
@@ -458,9 +458,29 @@
                                 "updateEntryGroup"
                             ]
                         },
+                        "UpdateEntryLink": {
+                            "methods": [
+                                "updateEntryLink"
+                            ]
+                        },
                         "UpdateEntryType": {
                             "methods": [
                                 "updateEntryType"
+                            ]
+                        },
+                        "UpdateMetadataFeed": {
+                            "methods": [
+                                "updateMetadataFeed"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         },
                         "GetIamPolicy": {
@@ -476,16 +496,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -522,6 +532,16 @@
                                 "updateEncryptionConfig"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -535,16 +555,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -556,29 +566,19 @@
                 "grpc": {
                     "libraryClient": "ContentServiceGapicClient",
                     "rpcs": {
-                        "CreateContent": {
+                        "GetLocation": {
                             "methods": [
-                                "createContent"
+                                "getLocation"
                             ]
                         },
-                        "DeleteContent": {
+                        "ListLocations": {
                             "methods": [
-                                "deleteContent"
-                            ]
-                        },
-                        "GetContent": {
-                            "methods": [
-                                "getContent"
+                                "listLocations"
                             ]
                         },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
-                            ]
-                        },
-                        "ListContent": {
-                            "methods": [
-                                "listContent"
                             ]
                         },
                         "SetIamPolicy": {
@@ -590,10 +590,64 @@
                             "methods": [
                                 "testIamPermissions"
                             ]
-                        },
-                        "UpdateContent": {
+                        }
+                    }
+                }
+            }
+        },
+        "DataProductService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataProductServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataAsset": {
                             "methods": [
-                                "updateContent"
+                                "createDataAsset"
+                            ]
+                        },
+                        "CreateDataProduct": {
+                            "methods": [
+                                "createDataProduct"
+                            ]
+                        },
+                        "DeleteDataAsset": {
+                            "methods": [
+                                "deleteDataAsset"
+                            ]
+                        },
+                        "DeleteDataProduct": {
+                            "methods": [
+                                "deleteDataProduct"
+                            ]
+                        },
+                        "GetDataAsset": {
+                            "methods": [
+                                "getDataAsset"
+                            ]
+                        },
+                        "GetDataProduct": {
+                            "methods": [
+                                "getDataProduct"
+                            ]
+                        },
+                        "ListDataAssets": {
+                            "methods": [
+                                "listDataAssets"
+                            ]
+                        },
+                        "ListDataProducts": {
+                            "methods": [
+                                "listDataProducts"
+                            ]
+                        },
+                        "UpdateDataAsset": {
+                            "methods": [
+                                "updateDataAsset"
+                            ]
+                        },
+                        "UpdateDataProduct": {
+                            "methods": [
+                                "updateDataProduct"
                             ]
                         },
                         "GetLocation": {
@@ -604,6 +658,21 @@
                         "ListLocations": {
                             "methods": [
                                 "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }
@@ -690,6 +759,16 @@
                                 "updateDataTaxonomy"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -703,16 +782,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -769,6 +838,16 @@
                                 "updateDataScan"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -782,16 +861,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }
@@ -848,6 +917,16 @@
                                 "updateEntity"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -861,16 +940,6 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
                             ]
                         }
                     }

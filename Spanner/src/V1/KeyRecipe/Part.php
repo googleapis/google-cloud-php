@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\KeyRecipe;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An ssformat key is composed of a sequence of tag numbers and key column
@@ -77,7 +77,7 @@ class Part extends \Google\Protobuf\Internal\Message
      *     @type bool $random
      *           If true, the client is responsible to fill in the value randomly.
      *           It's relevant only for the INT64 type.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $struct_identifiers
+     *     @type int[] $struct_identifiers
      *           It is a repeated field to support fetching key columns from nested
      *           structs, such as `STRUCT` query parameters.
      * }
@@ -309,7 +309,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * structs, such as `STRUCT` query parameters.
      *
      * Generated from protobuf field <code>repeated int32 struct_identifiers = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getStructIdentifiers()
     {
@@ -321,7 +321,7 @@ class Part extends \Google\Protobuf\Internal\Message
      * structs, such as `STRUCT` query parameters.
      *
      * Generated from protobuf field <code>repeated int32 struct_identifiers = 7;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setStructIdentifiers($var)
@@ -341,5 +341,4 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

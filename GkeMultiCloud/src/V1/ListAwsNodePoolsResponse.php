@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AwsClusters.ListAwsNodePools` method.
@@ -37,7 +37,7 @@ class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePool>|\Google\Protobuf\Internal\RepeatedField $aws_node_pools
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodePool[] $aws_node_pools
      *           A list of [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
      *           resources in the specified `AwsCluster`.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified `AwsCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AwsNodePool>
      */
     public function getAwsNodePools()
     {
@@ -67,7 +67,7 @@ class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified `AwsCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pools = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool[] $var
      * @return $this
      */
     public function setAwsNodePools($var)

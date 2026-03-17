@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ResourceUsageExportConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for using BigQuery as the destination of resource usage export.
@@ -64,5 +64,4 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

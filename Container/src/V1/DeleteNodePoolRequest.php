@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DeleteNodePoolRequest deletes a node pool for a cluster.
@@ -53,7 +53,7 @@ class DeleteNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * delete. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -124,7 +124,7 @@ class DeleteNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name (project, location, cluster, node pool id) of the node pool to
      *           delete. Specified in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     *           `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -277,7 +277,7 @@ class DeleteNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * delete. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -290,7 +290,7 @@ class DeleteNodePoolRequest extends \Google\Protobuf\Internal\Message
     /**
      * The name (project, location, cluster, node pool id) of the node pool to
      * delete. Specified in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;&#47;nodePools/&#42;`.
+     * `projects/{@*}locations/{@*}clusters/{@*}nodePools/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

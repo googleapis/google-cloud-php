@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to create a Scope.
@@ -17,7 +17,7 @@ class CreateScopeRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent (project and location) where the Scope will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -64,7 +64,7 @@ class CreateScopeRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent (project and location) where the Scope will be
-     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     *           created. Specified in the format `projects/{@*}locations/*`.
      *     @type string $scope_id
      *           Required. Client chosen ID for the Scope. `scope_id` must be a
      *           ????
@@ -79,7 +79,7 @@ class CreateScopeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Scope will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class CreateScopeRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Scope will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

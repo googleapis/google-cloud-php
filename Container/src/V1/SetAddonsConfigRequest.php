@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SetAddonsConfigRequest sets the addons associated with the cluster.
@@ -51,7 +51,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
     protected $addons_config = null;
     /**
      * The name (project, location, cluster) of the cluster to set addons.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -123,7 +123,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
      *           run in the cluster.
      *     @type string $name
      *           The name (project, location, cluster) of the cluster to set addons.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -279,7 +279,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set addons.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -291,7 +291,7 @@ class SetAddonsConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The name (project, location, cluster) of the cluster to set addons.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * Specified in the format `projects/{@*}locations/{@*}clusters/*`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

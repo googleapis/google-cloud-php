@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HostConfig configures the registry host under a given Server.
@@ -88,7 +88,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      *           Examples:
      *           - my.customdomain.com
      *           - 10.0.1.2:5000
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $capabilities
+     *     @type int[] $capabilities
      *           Capabilities represent the capabilities of the registry host,
      *           specifying what operations a host is capable of performing.
      *           If not set, containerd enables all capabilities by default.
@@ -98,11 +98,11 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      *           be used with non-compliant OCI registries which are missing the /v2
      *           prefix.
      *           If not set, containerd sets default false.
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\RegistryHeader>|\Google\Protobuf\Internal\RepeatedField $header
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\RegistryHeader[] $header
      *           Header configures the registry host headers.
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfig>|\Google\Protobuf\Internal\RepeatedField $ca
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfig[] $ca
      *           CA configures the registry host certificate.
-     *     @type array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfigPair>|\Google\Protobuf\Internal\RepeatedField $client
+     *     @type \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfigPair[] $client
      *           Client configures the registry host client certificate and key.
      *     @type \Google\Protobuf\Duration $dial_timeout
      *           Specifies the maximum duration allowed for a connection attempt to
@@ -161,7 +161,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * If not set, containerd enables all capabilities by default.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.HostCapability capabilities = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCapabilities()
     {
@@ -174,7 +174,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * If not set, containerd enables all capabilities by default.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.HostCapability capabilities = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCapabilities($var)
@@ -223,7 +223,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * Header configures the registry host headers.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader header = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\RegistryHeader>
      */
     public function getHeader()
     {
@@ -234,7 +234,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * Header configures the registry host headers.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.RegistryHeader header = 4;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\RegistryHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\RegistryHeader[] $var
      * @return $this
      */
     public function setHeader($var)
@@ -249,7 +249,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * CA configures the registry host certificate.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig ca = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfig>
      */
     public function getCa()
     {
@@ -260,7 +260,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * CA configures the registry host certificate.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfig ca = 5;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfig[] $var
      * @return $this
      */
     public function setCa($var)
@@ -275,7 +275,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * Client configures the registry host client certificate and key.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair client = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfigPair>
      */
     public function getClient()
     {
@@ -286,7 +286,7 @@ class HostConfig extends \Google\Protobuf\Internal\Message
      * Client configures the registry host client certificate and key.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ContainerdConfig.RegistryHostConfig.CertificateConfigPair client = 6;</code>
-     * @param array<\Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfigPair>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\ContainerdConfig\RegistryHostConfig\CertificateConfigPair[] $var
      * @return $this
      */
     public function setClient($var)
@@ -342,5 +342,4 @@ class HostConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

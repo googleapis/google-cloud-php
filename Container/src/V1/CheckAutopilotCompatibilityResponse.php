@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CheckAutopilotCompatibilityResponse has a list of compatibility issues.
@@ -34,7 +34,7 @@ class CheckAutopilotCompatibilityResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\AutopilotCompatibilityIssue>|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type \Google\Cloud\Container\V1\AutopilotCompatibilityIssue[] $issues
      *           The list of issues for the given operation.
      *     @type string $summary
      *           The summary of the autopilot compatibility response.
@@ -49,7 +49,7 @@ class CheckAutopilotCompatibilityResponse extends \Google\Protobuf\Internal\Mess
      * The list of issues for the given operation.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AutopilotCompatibilityIssue issues = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\AutopilotCompatibilityIssue>
      */
     public function getIssues()
     {
@@ -60,7 +60,7 @@ class CheckAutopilotCompatibilityResponse extends \Google\Protobuf\Internal\Mess
      * The list of issues for the given operation.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AutopilotCompatibilityIssue issues = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\AutopilotCompatibilityIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\AutopilotCompatibilityIssue[] $var
      * @return $this
      */
     public function setIssues($var)

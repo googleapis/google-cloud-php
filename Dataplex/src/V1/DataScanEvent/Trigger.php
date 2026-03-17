@@ -31,11 +31,18 @@ class Trigger
      * Generated from protobuf enum <code>SCHEDULE = 2;</code>
      */
     const SCHEDULE = 2;
+    /**
+     * Data scan is run one time on creation.
+     *
+     * Generated from protobuf enum <code>ONE_TIME = 3;</code>
+     */
+    const ONE_TIME = 3;
 
     private static $valueToName = [
         self::TRIGGER_UNSPECIFIED => 'TRIGGER_UNSPECIFIED',
         self::ON_DEMAND => 'ON_DEMAND',
         self::SCHEDULE => 'SCHEDULE',
+        self::ONE_TIME => 'ONE_TIME',
     ];
 
     public static function name($value)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [Read][google.spanner.v1.Spanner.Read] and
@@ -141,7 +141,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      */
     protected $lock_hint = 0;
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be
@@ -171,7 +171,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           [key_set][google.spanner.v1.ReadRequest.key_set] and sorting result rows.
      *           See [key_set][google.spanner.v1.ReadRequest.key_set] for further
      *           information.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type string[] $columns
      *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be
      *           returned for each row matching this request.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
@@ -226,7 +226,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           Optional. Lock Hint for the request, it can only be used with read-write
      *           transactions.
      *     @type \Google\Cloud\Spanner\V1\RoutingHint $routing_hint
-     *           Optional. If present, it makes the Spanner requests location-aware.
+     *           Optional. Makes the Spanner requests location-aware if present.
      *           It gives the server hints that can be used to route the request
      *           to an appropriate server, potentially significantly decreasing latency and
      *           improving throughput. To achieve improved performance, most fields must be
@@ -369,7 +369,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * returned for each row matching this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColumns()
     {
@@ -381,7 +381,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * returned for each row matching this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -723,7 +723,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be
@@ -748,7 +748,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be
