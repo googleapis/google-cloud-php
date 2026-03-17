@@ -34,10 +34,12 @@ use Google\Type\TimeZone;
  * Creates a Merchant Center account with additional configuration. Adds the
  * user that makes the request as an admin for the new account.
  *
- * @param string $accountAccountName  A human-readable name of the account. See
- *                                    [store name](https://support.google.com/merchants/answer/160556) and
- *                                    [business name](https://support.google.com/merchants/answer/12159159) for
- *                                    more information.
+ * @param string $accountAccountName  A human-readable name of the account. Don't use punctuation,
+ *                                    capitalization, or non-alphanumeric symbols such as the "/" or "_" symbols.
+ *                                    See
+ *                                    [Adding a business
+ *                                    name](https://support.google.com/merchants/answer/12159159) for more
+ *                                    information.
  * @param string $accountLanguageCode The account's [BCP-47 language
  *                                    code](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`.
  * @param string $serviceProvider     The provider of the service. Either the reference to an account

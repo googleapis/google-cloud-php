@@ -22,25 +22,25 @@ class LogView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Describes this view.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of the view.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the view.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     /**
      * Filter that restricts which log entries in a bucket are visible in this
      * view.
@@ -55,7 +55,7 @@ class LogView extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 7;</code>
      */
-    private $filter = '';
+    protected $filter = '';
 
     /**
      * Constructor.

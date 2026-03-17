@@ -30,10 +30,11 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
      */
     protected $uri_settings = null;
     /**
-     * Optional. The destinations (also known as [Marketing
+     * Optional. Required for the create operation. The destinations (also known
+     * as [Marketing
      * methods](https://support.google.com/merchants/answer/15130232)) to which
-     * the checkout program applies, valid destination values are `SHOPPING_ADS`,
-     * `FREE_LISTINGS`
+     * the checkout program applies. Valid destination values are `SHOPPING_ADS`
+     * and `FREE_LISTINGS`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum eligible_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -97,10 +98,11 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Accounts\V1\UriSettings $uri_settings
      *           URI settings for cart or checkout URL.
      *     @type int[] $eligible_destinations
-     *           Optional. The destinations (also known as [Marketing
+     *           Optional. Required for the create operation. The destinations (also known
+     *           as [Marketing
      *           methods](https://support.google.com/merchants/answer/15130232)) to which
-     *           the checkout program applies, valid destination values are `SHOPPING_ADS`,
-     *           `FREE_LISTINGS`
+     *           the checkout program applies. Valid destination values are `SHOPPING_ADS`
+     *           and `FREE_LISTINGS`.
      *     @type int $enrollment_state
      *           Output only. Reflects the merchant enrollment state in `Checkout` program.
      *     @type int $review_state
@@ -199,10 +201,11 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The destinations (also known as [Marketing
+     * Optional. Required for the create operation. The destinations (also known
+     * as [Marketing
      * methods](https://support.google.com/merchants/answer/15130232)) to which
-     * the checkout program applies, valid destination values are `SHOPPING_ADS`,
-     * `FREE_LISTINGS`
+     * the checkout program applies. Valid destination values are `SHOPPING_ADS`
+     * and `FREE_LISTINGS`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum eligible_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<int>
@@ -213,10 +216,11 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The destinations (also known as [Marketing
+     * Optional. Required for the create operation. The destinations (also known
+     * as [Marketing
      * methods](https://support.google.com/merchants/answer/15130232)) to which
-     * the checkout program applies, valid destination values are `SHOPPING_ADS`,
-     * `FREE_LISTINGS`
+     * the checkout program applies. Valid destination values are `SHOPPING_ADS`
+     * and `FREE_LISTINGS`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum eligible_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int[] $var

@@ -30,7 +30,7 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The settings to update.
      * See [Enabling CMEK for Log
@@ -39,7 +39,7 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.Settings settings = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $settings = null;
+    protected $settings = null;
     /**
      * Optional. Field mask identifying which fields from `settings` should
      * be updated. A field will be overwritten if and only if it is in the update
@@ -49,7 +49,7 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\Logging\V2\Settings $settings   Required. The settings to update.

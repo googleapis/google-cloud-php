@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Sink;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -39,7 +39,7 @@ class SinkTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
         $this->sink = TestHelpers::stub(Sink::class, [
             $this->connection->reveal(),
             self::SINK,

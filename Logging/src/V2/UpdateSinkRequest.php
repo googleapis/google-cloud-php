@@ -27,14 +27,14 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $sink_name = '';
+    protected $sink_name = '';
     /**
      * Required. The updated sink, whose name is the same identifier that appears
      * as part of `sink_name`.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sink = null;
+    protected $sink = null;
     /**
      * Optional. See [sinks.create][google.logging.v2.ConfigServiceV2.CreateSink]
      * for a description of this field. When updating a sink, the effect of this
@@ -49,7 +49,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $unique_writer_identity = false;
+    protected $unique_writer_identity = false;
     /**
      * Optional. Field mask that specifies the fields in `sink` that need
      * an update. A sink field will be overwritten if, and only if, it is
@@ -65,7 +65,7 @@ class UpdateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                           $sinkName   Required. The full resource name of the sink to update, including the

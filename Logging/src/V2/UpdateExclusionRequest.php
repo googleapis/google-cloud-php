@@ -26,14 +26,14 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. New values for the existing exclusion. Only the fields specified
      * in `update_mask` are relevant.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogExclusion exclusion = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $exclusion = null;
+    protected $exclusion = null;
     /**
      * Required. A non-empty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -45,7 +45,7 @@ class UpdateExclusionRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $update_mask = null;
+    protected $update_mask = null;
 
     /**
      * @param string                                $name       Required. The resource name of the exclusion to update:

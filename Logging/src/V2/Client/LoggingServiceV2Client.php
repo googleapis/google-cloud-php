@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -480,8 +480,10 @@ final class LoggingServiceV2Client
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function listMonitoredResourceDescriptors(ListMonitoredResourceDescriptorsRequest $request, array $callOptions = []): PagedListResponse
-    {
+    public function listMonitoredResourceDescriptors(
+        ListMonitoredResourceDescriptorsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
         return $this->startApiCall('ListMonitoredResourceDescriptors', $request, $callOptions);
     }
 

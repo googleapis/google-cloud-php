@@ -33,10 +33,12 @@ use Google\Type\TimeZone;
  * Updates an account regardless of its type: standalone, advanced account or
  * sub-account. Executing this method requires admin access.
  *
- * @param string $accountAccountName  A human-readable name of the account. See
- *                                    [store name](https://support.google.com/merchants/answer/160556) and
- *                                    [business name](https://support.google.com/merchants/answer/12159159) for
- *                                    more information.
+ * @param string $accountAccountName  A human-readable name of the account. Don't use punctuation,
+ *                                    capitalization, or non-alphanumeric symbols such as the "/" or "_" symbols.
+ *                                    See
+ *                                    [Adding a business
+ *                                    name](https://support.google.com/merchants/answer/12159159) for more
+ *                                    information.
  * @param string $accountLanguageCode The account's [BCP-47 language
  *                                    code](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`.
  */

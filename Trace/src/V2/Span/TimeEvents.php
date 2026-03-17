@@ -29,14 +29,14 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 dropped_annotations_count = 2;</code>
      */
-    private $dropped_annotations_count = 0;
+    protected $dropped_annotations_count = 0;
     /**
      * The number of dropped message events in all the included time events.
      * If the value is 0, then no message events were dropped.
      *
      * Generated from protobuf field <code>int32 dropped_message_events_count = 3;</code>
      */
-    private $dropped_message_events_count = 0;
+    protected $dropped_message_events_count = 0;
 
     /**
      * Constructor.

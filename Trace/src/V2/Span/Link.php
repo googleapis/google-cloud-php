@@ -23,26 +23,26 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trace_id = 1;</code>
      */
-    private $trace_id = '';
+    protected $trace_id = '';
     /**
      * The `[SPAN_ID]` for a span within a trace.
      *
      * Generated from protobuf field <code>string span_id = 2;</code>
      */
-    private $span_id = '';
+    protected $span_id = '';
     /**
      * The relationship of the current span relative to the linked span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Link.Type type = 3;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * A set of attributes on the link. Up to 32 attributes can be
      * specified per link.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 4;</code>
      */
-    private $attributes = null;
+    protected $attributes = null;
 
     /**
      * Constructor.

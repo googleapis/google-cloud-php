@@ -22,7 +22,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Iterator\PageIterator;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\ValidateTrait;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 
 /**
  * A logger used to write entries to Google Stackdriver Logging.
@@ -65,7 +65,7 @@ class Logger
     ];
 
     /**
-     * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @var Gapic Represents a connection to Stackdriver Logging.
      * @internal
      */
     protected $connection;
@@ -114,7 +114,7 @@ class Logger
     private $labels;
 
     /**
-     * @param ConnectionInterface $connection Represents a connection to
+     * @param Gapic $connection Represents a connection to
      *        Stackdriver Logging. This object is created by LoggingClient,
      *        and should not be instantiated outside of this client.
      * @param string $name The name of the log to write entries to.
@@ -126,7 +126,7 @@ class Logger
      *        that provides additional information about the log entries.
      */
     public function __construct(
-        ConnectionInterface $connection,
+        Gapic $connection,
         $name,
         $projectId,
         ?array $resource = null,
@@ -222,7 +222,7 @@ class Logger
                 function (array $entry) {
                     return new Entry($entry);
                 },
-                [$this->connection, 'listEntries'],
+                [$this->connection, 'listLogEntries'],
                 $options,
                 [
                     'itemsKey' => 'entries',
@@ -411,7 +411,7 @@ class Logger
             $entry = $entry->info();
         }
 
-        $this->connection->writeEntries($options + ['entries' => $entries]);
+        $this->connection->writeLogEntries($options + ['entries' => $entries]);
     }
 
     /**

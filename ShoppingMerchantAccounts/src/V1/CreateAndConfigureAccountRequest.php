@@ -34,7 +34,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `account_aggregation` and `accounts.createAndConfigure` method can be
      * used to create a sub-account under an existing advanced account through
      * this method. Additional `account_management` or
-     * `product_management` services may be provided.
+     * `products_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -65,7 +65,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *           `account_aggregation` and `accounts.createAndConfigure` method can be
      *           used to create a sub-account under an existing advanced account through
      *           this method. Additional `account_management` or
-     *           `product_management` services may be provided.
+     *           `products_management` services may be provided.
      *     @type \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship[] $set_alias
      *           Optional. If a relationship is created with a provider, you can set an
      *           alias for it with this field. The calling user must be an admin on the
@@ -146,7 +146,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `account_aggregation` and `accounts.createAndConfigure` method can be
      * used to create a sub-account under an existing advanced account through
      * this method. Additional `account_management` or
-     * `product_management` services may be provided.
+     * `products_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService>
@@ -163,7 +163,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `account_aggregation` and `accounts.createAndConfigure` method can be
      * used to create a sub-account under an existing advanced account through
      * this method. Additional `account_management` or
-     * `product_management` services may be provided.
+     * `products_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService[] $var
