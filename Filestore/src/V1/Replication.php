@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Replication specifications.
@@ -37,7 +37,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      *
      *     @type int $role
      *           Optional. The replication role.
-     *     @type array<\Google\Cloud\Filestore\V1\ReplicaConfig>|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type \Google\Cloud\Filestore\V1\ReplicaConfig[] $replicas
      *           Optional. Replication configuration for the replica instance associated
      *           with this instance. Only a single replica is supported.
      * }
@@ -78,7 +78,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      * with this instance. Only a single replica is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.ReplicaConfig replicas = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Filestore\V1\ReplicaConfig>
      */
     public function getReplicas()
     {
@@ -90,7 +90,7 @@ class Replication extends \Google\Protobuf\Internal\Message
      * with this instance. Only a single replica is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.ReplicaConfig replicas = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Filestore\V1\ReplicaConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Filestore\V1\ReplicaConfig[] $var
      * @return $this
      */
     public function setReplicas($var)

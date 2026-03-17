@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines context of the conversation
@@ -36,7 +36,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $context_documents
+     *     @type string[] $context_documents
      *           The current list of documents the user is seeing.
      *           It contains the document resource references.
      *     @type string $active_document
@@ -54,7 +54,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * It contains the document resource references.
      *
      * Generated from protobuf field <code>repeated string context_documents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getContextDocuments()
     {
@@ -66,7 +66,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * It contains the document resource references.
      *
      * Generated from protobuf field <code>repeated string context_documents = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setContextDocuments($var)

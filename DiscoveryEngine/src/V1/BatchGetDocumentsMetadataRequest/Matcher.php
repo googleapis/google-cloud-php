@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BatchGetDocumentsMetadataRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s.
@@ -106,5 +106,4 @@ class Matcher extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

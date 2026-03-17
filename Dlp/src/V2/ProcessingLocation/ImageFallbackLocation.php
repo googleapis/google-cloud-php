@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\ProcessingLocation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configure image processing to fall back to any of the following processing
@@ -124,5 +124,4 @@ class ImageFallbackLocation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

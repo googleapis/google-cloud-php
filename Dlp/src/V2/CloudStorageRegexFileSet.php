@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a set of files in a Cloud Storage bucket. Regular
@@ -79,7 +79,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $bucket_name
      *           The name of a Cloud Storage bucket. Required.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_regex
+     *     @type string[] $include_regex
      *           A list of regular expressions matching file paths to include. All files in
      *           the bucket that match at least one of these regular expressions will be
      *           included in the set of files, except for those that also match an item in
@@ -88,7 +88,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *           Regular expressions use RE2
      *           [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      *           under the google/re2 repository on GitHub.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_regex
+     *     @type string[] $exclude_regex
      *           A list of regular expressions matching file paths to exclude. All files in
      *           the bucket that match at least one of these regular expressions will be
      *           excluded from the scan.
@@ -139,7 +139,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string include_regex = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeRegex()
     {
@@ -157,7 +157,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string include_regex = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeRegex($var)
@@ -177,7 +177,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string exclude_regex = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeRegex()
     {
@@ -193,7 +193,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string exclude_regex = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeRegex($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\TrainProcessorVersionMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The dataset validation information.
@@ -55,11 +55,11 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      *           The total number of document errors.
      *     @type int $dataset_error_count
      *           The total number of dataset errors.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $document_errors
+     *     @type \Google\Rpc\Status[] $document_errors
      *           Error information pertaining to specific documents. A maximum of 10
      *           document errors will be returned.
      *           Any document with errors will not be used throughout training.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $dataset_errors
+     *     @type \Google\Rpc\Status[] $dataset_errors
      *           Error information for the dataset as a whole. A maximum of 10 dataset
      *           errors will be returned.
      *           A single dataset error is terminal for training.
@@ -128,7 +128,7 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      * Any document with errors will not be used throughout training.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status document_errors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getDocumentErrors()
     {
@@ -141,7 +141,7 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      * Any document with errors will not be used throughout training.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status document_errors = 1;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setDocumentErrors($var)
@@ -158,7 +158,7 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      * A single dataset error is terminal for training.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status dataset_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getDatasetErrors()
     {
@@ -171,7 +171,7 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
      * A single dataset error is terminal for training.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status dataset_errors = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setDatasetErrors($var)
@@ -183,5 +183,4 @@ class DatasetValidation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

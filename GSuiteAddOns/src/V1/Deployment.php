@@ -5,8 +5,8 @@
 namespace Google\Cloud\GSuiteAddOns\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Google Workspace add-on deployment
@@ -53,7 +53,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The deployment resource name.
      *           Example:  projects/123/deployments/my_deployment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type string[] $oauth_scopes
      *           The list of Google OAuth scopes for which to request consent from the end
      *           user before executing an add-on endpoint.
      *     @type \Google\Cloud\GSuiteAddOns\V1\AddOns $add_ons
@@ -102,7 +102,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * user before executing an add-on endpoint.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOauthScopes()
     {
@@ -114,7 +114,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * user before executing an add-on endpoint.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOauthScopes($var)

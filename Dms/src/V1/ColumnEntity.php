@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Column is not used as an independent entity, it is retrieved as part of a
@@ -160,7 +160,7 @@ class ColumnEntity extends \Google\Protobuf\Internal\Message
      *           Is the column a UDT.
      *     @type \Google\Protobuf\Struct $custom_features
      *           Custom engine specific features.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $set_values
+     *     @type string[] $set_values
      *           Specifies the list of values allowed in the column.
      *           Only used for set data type.
      *     @type string $comment
@@ -555,7 +555,7 @@ class ColumnEntity extends \Google\Protobuf\Internal\Message
      * Only used for set data type.
      *
      * Generated from protobuf field <code>repeated string set_values = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSetValues()
     {
@@ -567,7 +567,7 @@ class ColumnEntity extends \Google\Protobuf\Internal\Message
      * Only used for set data type.
      *
      * Generated from protobuf field <code>repeated string set_values = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSetValues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Create a de-identified copy of a storage bucket. Only compatible
@@ -161,7 +161,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      *           from the input bucket. De-identified files will overwrite files in the
      *           output path.
      *           Form of: gs://bucket/folder/ or gs://bucket
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $file_types_to_transform
+     *     @type int[] $file_types_to_transform
      *           List of user-specified file type groups to transform. If specified, only
      *           the files with these file types are transformed. If empty, all
      *           supported files are transformed. Supported types may be automatically
@@ -399,7 +399,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      * only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getFileTypesToTransform()
     {
@@ -416,7 +416,7 @@ class Deidentify extends \Google\Protobuf\Internal\Message
      * only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileType file_types_to_transform = 8;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setFileTypesToTransform($var)
@@ -436,5 +436,4 @@ class Deidentify extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

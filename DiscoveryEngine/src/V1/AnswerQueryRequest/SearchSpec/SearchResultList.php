@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search result list.
@@ -28,7 +28,7 @@ class SearchResultList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult[] $search_results
      *           Search results.
      * }
      */
@@ -41,7 +41,7 @@ class SearchResultList extends \Google\Protobuf\Internal\Message
      * Search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult search_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult>
      */
     public function getSearchResults()
     {
@@ -52,7 +52,7 @@ class SearchResultList extends \Google\Protobuf\Internal\Message
      * Search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult search_results = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec\SearchResultList\SearchResult[] $var
      * @return $this
      */
     public function setSearchResults($var)
@@ -64,5 +64,4 @@ class SearchResultList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

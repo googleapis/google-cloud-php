@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message defining the location of a BigQuery table. A table is uniquely

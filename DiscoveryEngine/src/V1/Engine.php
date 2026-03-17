@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata that describes the training and serving parameters of an
@@ -23,7 +23,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
-     * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
+     * /[a-z0-9][a-z0-9-_]{@*}. Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -132,7 +132,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      *           engine should be 1-63 characters, and valid characters are
-     *           /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
+     *           /[a-z0-9][a-z0-9-_]{@*}. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string $display_name
      *           Required. The display name of the engine. Should be human readable. UTF-8
      *           encoded string with limit of 1024 characters.
@@ -140,7 +140,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp the Recommendation Engine was created at.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp the Recommendation Engine was last updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_store_ids
+     *     @type string[] $data_store_ids
      *           Optional. The data stores associated with this engine.
      *           For
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH]
@@ -332,7 +332,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
-     * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
+     * /[a-z0-9][a-z0-9-_]{@*}. Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -349,7 +349,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * Format:
      * `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}`
      * engine should be 1-63 characters, and valid characters are
-     * /[a-z0-9][a-z0-9-_]*&#47;. Otherwise, an INVALID_ARGUMENT error is returned.
+     * /[a-z0-9][a-z0-9-_]{@*}. Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -481,7 +481,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * initializations.
      *
      * Generated from protobuf field <code>repeated string data_store_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataStoreIds()
     {
@@ -506,7 +506,7 @@ class Engine extends \Google\Protobuf\Internal\Message
      * initializations.
      *
      * Generated from protobuf field <code>repeated string data_store_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataStoreIds($var)

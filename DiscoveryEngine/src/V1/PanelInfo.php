@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detailed panel information associated with a user event.
@@ -72,7 +72,7 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
      *           Must be set if
      *           [panel_position][google.cloud.discoveryengine.v1.PanelInfo.panel_position]
      *           is set.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentInfo[] $documents
      *           Optional. The document IDs associated with this panel.
      * }
      */
@@ -221,7 +221,7 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
      * Optional. The document IDs associated with this panel.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>
      */
     public function getDocuments()
     {
@@ -232,7 +232,7 @@ class PanelInfo extends \Google\Protobuf\Internal\Message
      * Optional. The document IDs associated with this panel.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\DocumentInfo[] $var
      * @return $this
      */
     public function setDocuments($var)

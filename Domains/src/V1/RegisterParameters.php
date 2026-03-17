@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters required to register a new domain.
@@ -60,9 +60,9 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      *           Indicates whether the domain is available for registration. This value is
      *           accurate when obtained by calling `RetrieveRegisterParameters`, but is
      *           approximate when obtained by calling `SearchDomains`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type int[] $supported_privacy
      *           Contact privacy options that the domain supports.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $domain_notices
+     *     @type int[] $domain_notices
      *           Notices about special properties of the domain.
      *     @type \Google\Type\Money $yearly_price
      *           Price to register or renew the domain for one year.
@@ -133,7 +133,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Contact privacy options that the domain supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedPrivacy()
     {
@@ -144,7 +144,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Contact privacy options that the domain supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.ContactPrivacy supported_privacy = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedPrivacy($var)
@@ -159,7 +159,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Notices about special properties of the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DomainNotice domain_notices = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDomainNotices()
     {
@@ -170,7 +170,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Notices about special properties of the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DomainNotice domain_notices = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDomainNotices($var)

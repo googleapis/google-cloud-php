@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The set of columns' values that share the same ldiversity value
@@ -37,7 +37,7 @@ class KAnonymityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
+     *     @type \Google\Cloud\Dlp\V2\Value[] $quasi_ids_values
      *           Set of values defining the equivalence class. One value per
      *           quasi-identifier column in the original KAnonymity metric message.
      *           The order is always the same as the original request.
@@ -57,7 +57,7 @@ class KAnonymityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * The order is always the same as the original request.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Value>
      */
     public function getQuasiIdsValues()
     {
@@ -70,7 +70,7 @@ class KAnonymityEquivalenceClass extends \Google\Protobuf\Internal\Message
      * The order is always the same as the original request.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Value[] $var
      * @return $this
      */
     public function setQuasiIdsValues($var)
@@ -110,5 +110,4 @@ class KAnonymityEquivalenceClass extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

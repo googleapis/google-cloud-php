@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\BatchProcessMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of a each individual document in the batch process.
@@ -202,5 +202,4 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

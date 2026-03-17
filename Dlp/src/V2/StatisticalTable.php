@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An auxiliary table containing statistical information on the relative
@@ -49,7 +49,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table
      *           Required. Auxiliary table location.
-     *     @type array<\Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField>|\Google\Protobuf\Internal\RepeatedField $quasi_ids
+     *     @type \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[] $quasi_ids
      *           Required. Quasi-identifier columns.
      *     @type \Google\Cloud\Dlp\V2\FieldId $relative_frequency
      *           Required. The relative frequency column must contain a floating-point
@@ -101,7 +101,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      * Required. Quasi-identifier columns.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField>
      */
     public function getQuasiIds()
     {
@@ -112,7 +112,7 @@ class StatisticalTable extends \Google\Protobuf\Internal\Message
      * Required. Quasi-identifier columns.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.StatisticalTable.QuasiIdentifierField quasi_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\StatisticalTable\QuasiIdentifierField[] $var
      * @return $this
      */
     public function setQuasiIds($var)

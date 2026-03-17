@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for 'SearchBackgroundJobs' request.
@@ -28,7 +28,7 @@ class SearchBackgroundJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudDms\V1\BackgroundJobLogEntry>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry[] $jobs
      *           The list of conversion workspace mapping rules.
      * }
      */
@@ -41,7 +41,7 @@ class SearchBackgroundJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversion workspace mapping rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.BackgroundJobLogEntry jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudDms\V1\BackgroundJobLogEntry>
      */
     public function getJobs()
     {
@@ -52,7 +52,7 @@ class SearchBackgroundJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of conversion workspace mapping rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.BackgroundJobLogEntry jobs = 1;</code>
-     * @param array<\Google\Cloud\CloudDms\V1\BackgroundJobLogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudDms\V1\BackgroundJobLogEntry[] $var
      * @return $this
      */
     public function setJobs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the chunks that the document is divided into.
@@ -28,7 +28,7 @@ class ChunkedDocument extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk>|\Google\Protobuf\Internal\RepeatedField $chunks
+     *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk[] $chunks
      *           List of chunks.
      * }
      */
@@ -41,7 +41,7 @@ class ChunkedDocument extends \Google\Protobuf\Internal\Message
      * List of chunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk chunks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk>
      */
     public function getChunks()
     {
@@ -52,7 +52,7 @@ class ChunkedDocument extends \Google\Protobuf\Internal\Message
      * List of chunks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk chunks = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk[] $var
      * @return $this
      */
     public function setChunks($var)
@@ -64,5 +64,4 @@ class ChunkedDocument extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

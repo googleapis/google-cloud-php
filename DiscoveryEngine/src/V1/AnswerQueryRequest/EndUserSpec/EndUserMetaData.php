@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\EndUserSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * End user metadata.
@@ -72,5 +72,4 @@ class EndUserMetaData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

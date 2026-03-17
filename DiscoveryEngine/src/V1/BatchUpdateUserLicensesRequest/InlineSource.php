@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BatchUpdateUserLicensesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for BatchUpdateUserLicenses
@@ -37,7 +37,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\UserLicense>|\Google\Protobuf\Internal\RepeatedField $user_licenses
+     *     @type \Google\Cloud\DiscoveryEngine\V1\UserLicense[] $user_licenses
      *           Required. A list of user licenses to update. Each user license
      *           must have a valid
      *           [UserLicense.user_principal][google.cloud.discoveryengine.v1.UserLicense.user_principal].
@@ -56,7 +56,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * [UserLicense.user_principal][google.cloud.discoveryengine.v1.UserLicense.user_principal].
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserLicense user_licenses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\UserLicense>
      */
     public function getUserLicenses()
     {
@@ -69,7 +69,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * [UserLicense.user_principal][google.cloud.discoveryengine.v1.UserLicense.user_principal].
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserLicense user_licenses = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\UserLicense>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\UserLicense[] $var
      * @return $this
      */
     public function setUserLicenses($var)
@@ -117,5 +117,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

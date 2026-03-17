@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig\RestoreOrder;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a dependency between two group kinds.
@@ -126,5 +126,4 @@ class GroupKindDependency extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

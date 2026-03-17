@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\InfoTypeTransformations;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A transformation to apply to text that is identified as a specific
@@ -37,7 +37,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type \Google\Cloud\Dlp\V2\InfoType[] $info_types
      *           InfoTypes to apply the transformation to. An empty list will cause
      *           this transformation to apply to all findings that correspond to
      *           infoTypes that were requested in `InspectConfig`.
@@ -56,7 +56,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      * infoTypes that were requested in `InspectConfig`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoType>
      */
     public function getInfoTypes()
     {
@@ -69,7 +69,7 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
      * infoTypes that were requested in `InspectConfig`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoType[] $var
      * @return $this
      */
     public function setInfoTypes($var)
@@ -117,5 +117,4 @@ class InfoTypeTransformation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

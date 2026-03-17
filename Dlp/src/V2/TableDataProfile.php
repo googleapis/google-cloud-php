@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The profile for a scanned table.
@@ -241,9 +241,9 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The sensitivity score of this table.
      *     @type \Google\Cloud\Dlp\V2\DataRiskLevel $data_risk_level
      *           The data risk level of this table.
-     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $predicted_info_types
+     *     @type \Google\Cloud\Dlp\V2\InfoTypeSummary[] $predicted_info_types
      *           The infoTypes predicted from this table's data.
-     *     @type array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $other_info_types
+     *     @type \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[] $other_info_types
      *           Other infoTypes found in this table's data.
      *     @type \Google\Cloud\Dlp\V2\DataProfileConfigSnapshot $config_snapshot
      *           The snapshot of the configurations used to generate the profile.
@@ -272,13 +272,13 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The time at which the table was created.
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
      *           The BigQuery table to which the sample findings are written.
-     *     @type array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\Dlp\V2\Tag[] $tags
      *           The tags attached to the table, including any tags attached during
      *           profiling. Because tags are attached to Cloud SQL instances rather than
      *           Cloud SQL tables, this field is empty for Cloud SQL table profiles.
-     *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *     @type \Google\Cloud\Dlp\V2\RelatedResource[] $related_resources
      *           Resources related to this profile.
-     *     @type array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type \Google\Cloud\Dlp\V2\Domain[] $domains
      *           Domains associated with the profile.
      * }
      */
@@ -655,7 +655,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * The infoTypes predicted from this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSummary predicted_info_types = 27;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoTypeSummary>
      */
     public function getPredictedInfoTypes()
     {
@@ -666,7 +666,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * The infoTypes predicted from this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSummary predicted_info_types = 27;</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoTypeSummary[] $var
      * @return $this
      */
     public function setPredictedInfoTypes($var)
@@ -681,7 +681,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Other infoTypes found in this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.OtherInfoTypeSummary other_info_types = 28;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>
      */
     public function getOtherInfoTypes()
     {
@@ -692,7 +692,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Other infoTypes found in this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.OtherInfoTypeSummary other_info_types = 28;</code>
-     * @param array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[] $var
      * @return $this
      */
     public function setOtherInfoTypes($var)
@@ -1109,7 +1109,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Cloud SQL tables, this field is empty for Cloud SQL table profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 39;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Tag>
      */
     public function getTags()
     {
@@ -1122,7 +1122,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Cloud SQL tables, this field is empty for Cloud SQL table profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 39;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Tag[] $var
      * @return $this
      */
     public function setTags($var)
@@ -1137,7 +1137,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Resources related to this profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\RelatedResource>
      */
     public function getRelatedResources()
     {
@@ -1148,7 +1148,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Resources related to this profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 41;</code>
-     * @param array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\RelatedResource[] $var
      * @return $this
      */
     public function setRelatedResources($var)
@@ -1163,7 +1163,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Domains associated with the profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 47;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Domain>
      */
     public function getDomains()
     {
@@ -1174,7 +1174,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Domains associated with the profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 47;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Domain[] $var
      * @return $this
      */
     public function setDomains($var)

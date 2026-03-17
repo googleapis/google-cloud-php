@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Evaluation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metrics across multiple confidence levels.
@@ -68,9 +68,9 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>|\Google\Protobuf\Internal\RepeatedField $confidence_level_metrics
+     *     @type \Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics[] $confidence_level_metrics
      *           Metrics across confidence levels with fuzzy matching enabled.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>|\Google\Protobuf\Internal\RepeatedField $confidence_level_metrics_exact
+     *     @type \Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics[] $confidence_level_metrics_exact
      *           Metrics across confidence levels with only exact matching.
      *     @type float $auprc
      *           The calculated area under the precision recall curve (AUPRC), computed by
@@ -97,7 +97,7 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      * Metrics across confidence levels with fuzzy matching enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation.ConfidenceLevelMetrics confidence_level_metrics = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>
      */
     public function getConfidenceLevelMetrics()
     {
@@ -108,7 +108,7 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      * Metrics across confidence levels with fuzzy matching enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation.ConfidenceLevelMetrics confidence_level_metrics = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics[] $var
      * @return $this
      */
     public function setConfidenceLevelMetrics($var)
@@ -123,7 +123,7 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      * Metrics across confidence levels with only exact matching.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation.ConfidenceLevelMetrics confidence_level_metrics_exact = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>
      */
     public function getConfidenceLevelMetricsExact()
     {
@@ -134,7 +134,7 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
      * Metrics across confidence levels with only exact matching.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Evaluation.ConfidenceLevelMetrics confidence_level_metrics_exact = 4;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Evaluation\ConfidenceLevelMetrics[] $var
      * @return $this
      */
     public function setConfidenceLevelMetricsExact($var)
@@ -284,5 +284,4 @@ class MultiConfidenceMetrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

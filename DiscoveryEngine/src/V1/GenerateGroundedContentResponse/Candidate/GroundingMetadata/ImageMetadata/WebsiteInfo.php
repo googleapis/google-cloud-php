@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentResponse\Candidate\GroundingMetadata\ImageMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about the website that the image is from.
@@ -98,5 +98,4 @@ class WebsiteInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

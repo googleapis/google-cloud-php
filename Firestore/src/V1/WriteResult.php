@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of applying a write.
@@ -44,7 +44,7 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      *           after a `delete`.
      *           If the write did not actually change the document, this will be the
      *           previous update_time.
-     *     @type array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $transform_results
+     *     @type \Google\Cloud\Firestore\V1\Value[] $transform_results
      *           The results of applying each
      *           [DocumentTransform.FieldTransform][google.firestore.v1.DocumentTransform.FieldTransform],
      *           in the same order.
@@ -103,7 +103,7 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      * in the same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Value>
      */
     public function getTransformResults()
     {
@@ -116,7 +116,7 @@ class WriteResult extends \Google\Protobuf\Internal\Message
      * in the same order.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Value transform_results = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Value[] $var
      * @return $this
      */
     public function setTransformResults($var)

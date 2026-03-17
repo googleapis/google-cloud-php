@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of individual page numbers.
@@ -28,7 +28,7 @@ class IndividualPageSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type int[] $pages
      *           Optional. Indices of the pages (starting from 1).
      * }
      */
@@ -41,7 +41,7 @@ class IndividualPageSelector extends \Google\Protobuf\Internal\Message
      * Optional. Indices of the pages (starting from 1).
      *
      * Generated from protobuf field <code>repeated int32 pages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPages()
     {
@@ -52,7 +52,7 @@ class IndividualPageSelector extends \Google\Protobuf\Internal\Message
      * Optional. Indices of the pages (starting from 1).
      *
      * Generated from protobuf field <code>repeated int32 pages = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPages($var)
@@ -64,5 +64,4 @@ class IndividualPageSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

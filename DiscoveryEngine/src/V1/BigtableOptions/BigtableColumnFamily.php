@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\BigtableOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The column family of the Bigtable.
@@ -75,7 +75,7 @@ class BigtableColumnFamily extends \Google\Protobuf\Internal\Message
      *           The type of values in this column family.
      *           The values are expected to be encoded using `HBase Bytes.toBytes`
      *           function when the encoding value is set to `BINARY`.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\BigtableOptions\BigtableColumn>|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type \Google\Cloud\DiscoveryEngine\V1\BigtableOptions\BigtableColumn[] $columns
      *           The list of objects that contains column level information for each
      *           column. If a column is not present in this list it will be ignored.
      * }
@@ -190,7 +190,7 @@ class BigtableColumnFamily extends \Google\Protobuf\Internal\Message
      * column. If a column is not present in this list it will be ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.BigtableOptions.BigtableColumn columns = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\BigtableOptions\BigtableColumn>
      */
     public function getColumns()
     {
@@ -202,7 +202,7 @@ class BigtableColumnFamily extends \Google\Protobuf\Internal\Message
      * column. If a column is not present in this list it will be ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.BigtableOptions.BigtableColumn columns = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\BigtableOptions\BigtableColumn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\BigtableOptions\BigtableColumn[] $var
      * @return $this
      */
     public function setColumns($var)
@@ -214,5 +214,4 @@ class BigtableColumnFamily extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

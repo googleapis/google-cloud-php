@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information describing what natural language understanding was
@@ -52,7 +52,7 @@ class NaturalLanguageQueryUnderstandingInfo extends \Google\Protobuf\Internal\Me
      *           The filters that were extracted from the input query.
      *     @type string $rewritten_query
      *           Rewritten input query minus the extracted filters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $classified_intents
+     *     @type string[] $classified_intents
      *           The classified intents from the input query.
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter $structured_extracted_filter
      *           The filters that were extracted from the input query represented in a
@@ -120,7 +120,7 @@ class NaturalLanguageQueryUnderstandingInfo extends \Google\Protobuf\Internal\Me
      * The classified intents from the input query.
      *
      * Generated from protobuf field <code>repeated string classified_intents = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClassifiedIntents()
     {
@@ -131,7 +131,7 @@ class NaturalLanguageQueryUnderstandingInfo extends \Google\Protobuf\Internal\Me
      * The classified intents from the input query.
      *
      * Generated from protobuf field <code>repeated string classified_intents = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClassifiedIntents($var)
@@ -181,5 +181,4 @@ class NaturalLanguageQueryUnderstandingInfo extends \Google\Protobuf\Internal\Me
     }
 
 }
-
 

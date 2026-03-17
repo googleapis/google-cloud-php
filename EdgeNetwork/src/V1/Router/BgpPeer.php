@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\Router;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BGPPeer defines the peer side layer-3 information for building the BGP
@@ -315,5 +315,4 @@ class BgpPeer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of human review on a processed document.

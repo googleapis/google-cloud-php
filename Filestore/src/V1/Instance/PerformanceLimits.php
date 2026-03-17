@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The enforced performance limits, calculated from the instance's performance
@@ -201,5 +201,4 @@ class PerformanceLimits extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detailed document information associated with a user event.
@@ -75,7 +75,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      *           Required for events of the following event types:
      *           * `add-to-cart`
      *           * `purchase`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
+     *     @type string[] $promotion_ids
      *           The promotion IDs associated with this Document.
      *           Currently, this field is restricted to at most one ID.
      *     @type bool $joined
@@ -245,7 +245,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      * Currently, this field is restricted to at most one ID.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPromotionIds()
     {
@@ -257,7 +257,7 @@ class DocumentInfo extends \Google\Protobuf\Internal\Message
      * Currently, this field is restricted to at most one ID.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPromotionIds($var)

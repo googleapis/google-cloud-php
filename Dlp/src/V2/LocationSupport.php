@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Locations at which a feature can be used.
@@ -38,7 +38,7 @@ class LocationSupport extends \Google\Protobuf\Internal\Message
      *
      *     @type int $regionalization_scope
      *           The current scope for location on this feature. This may expand over time.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           Specific locations where the feature may be used.
      *           Examples: us-central1, us, asia, global
      *           If scope is ANY_LOCATION, no regions will be listed.
@@ -81,7 +81,7 @@ class LocationSupport extends \Google\Protobuf\Internal\Message
      * If scope is ANY_LOCATION, no regions will be listed.
      *
      * Generated from protobuf field <code>repeated string locations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -94,7 +94,7 @@ class LocationSupport extends \Google\Protobuf\Internal\Message
      * If scope is ANY_LOCATION, no regions will be listed.
      *
      * Generated from protobuf field <code>repeated string locations = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)

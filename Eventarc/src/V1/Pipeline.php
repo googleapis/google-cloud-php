@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of the Pipeline resource.
@@ -167,10 +167,10 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *           https://google.aip.dev/128#annotations.
      *     @type string $display_name
      *           Optional. Display name of resource.
-     *     @type array<\Google\Cloud\Eventarc\V1\Pipeline\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\Eventarc\V1\Pipeline\Destination[] $destinations
      *           Required. List of destinations to which messages will be forwarded.
      *           Currently, exactly one destination is supported per Pipeline.
-     *     @type array<\Google\Cloud\Eventarc\V1\Pipeline\Mediation>|\Google\Protobuf\Internal\RepeatedField $mediations
+     *     @type \Google\Cloud\Eventarc\V1\Pipeline\Mediation[] $mediations
      *           Optional. List of mediation operations to be performed on the message.
      *           Currently, only one Transformation operation is allowed in each Pipeline.
      *     @type string $crypto_key_name
@@ -438,7 +438,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Currently, exactly one destination is supported per Pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Pipeline.Destination destinations = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Eventarc\V1\Pipeline\Destination>
      */
     public function getDestinations()
     {
@@ -450,7 +450,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Currently, exactly one destination is supported per Pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Pipeline.Destination destinations = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Eventarc\V1\Pipeline\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Eventarc\V1\Pipeline\Destination[] $var
      * @return $this
      */
     public function setDestinations($var)
@@ -466,7 +466,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Currently, only one Transformation operation is allowed in each Pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Pipeline.Mediation mediations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Eventarc\V1\Pipeline\Mediation>
      */
     public function getMediations()
     {
@@ -478,7 +478,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * Currently, only one Transformation operation is allowed in each Pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Pipeline.Mediation mediations = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Eventarc\V1\Pipeline\Mediation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Eventarc\V1\Pipeline\Mediation[] $var
      * @return $this
      */
     public function setMediations($var)

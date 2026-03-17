@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [Firestore.Execute][].
@@ -75,7 +75,7 @@ class ExecutePipelineResponse extends \Google\Protobuf\Internal\Message
      *           This field is only specified as part of the first response from the server,
      *           alongside the `results` field when the original request specified
      *           [ExecuteRequest.new_transaction][].
-     *     @type array<\Google\Cloud\Firestore\V1\Document>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Firestore\V1\Document[] $results
      *           An ordered batch of results returned executing a pipeline.
      *           The batch size is variable, and can even be zero for when only a partial
      *           progress message is returned.
@@ -154,7 +154,7 @@ class ExecutePipelineResponse extends \Google\Protobuf\Internal\Message
      * the [`mask`][google.firestore.v1.DocumentMask].
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Document results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\V1\Document>
      */
     public function getResults()
     {
@@ -174,7 +174,7 @@ class ExecutePipelineResponse extends \Google\Protobuf\Internal\Message
      * the [`mask`][google.firestore.v1.DocumentMask].
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Document results = 2;</code>
-     * @param array<\Google\Cloud\Firestore\V1\Document>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\V1\Document[] $var
      * @return $this
      */
     public function setResults($var)

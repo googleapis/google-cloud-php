@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the DNS configuration of a `Registration`, including name servers,
@@ -35,7 +35,7 @@ class DnsSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Domains\V1\DnsSettings\GoogleDomainsDns $google_domains_dns
      *           The free DNS zone provided by
      *           [Google Domains](https://domains.google/).
-     *     @type array<\Google\Cloud\Domains\V1\DnsSettings\GlueRecord>|\Google\Protobuf\Internal\RepeatedField $glue_records
+     *     @type \Google\Cloud\Domains\V1\DnsSettings\GlueRecord[] $glue_records
      *           The list of glue records for this `Registration`. Commonly empty.
      * }
      */
@@ -112,7 +112,7 @@ class DnsSettings extends \Google\Protobuf\Internal\Message
      * The list of glue records for this `Registration`. Commonly empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.GlueRecord glue_records = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Domains\V1\DnsSettings\GlueRecord>
      */
     public function getGlueRecords()
     {
@@ -123,7 +123,7 @@ class DnsSettings extends \Google\Protobuf\Internal\Message
      * The list of glue records for this `Registration`. Commonly empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.GlueRecord glue_records = 4;</code>
-     * @param array<\Google\Cloud\Domains\V1\DnsSettings\GlueRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Domains\V1\DnsSettings\GlueRecord[] $var
      * @return $this
      */
     public function setGlueRecords($var)

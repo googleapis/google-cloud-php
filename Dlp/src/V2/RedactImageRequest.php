@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to search for potentially sensitive info in an image and redact it
@@ -111,7 +111,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig $inspect_config
      *           Configuration for the inspector.
-     *     @type array<\Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig>|\Google\Protobuf\Internal\RepeatedField $image_redaction_configs
+     *     @type \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[] $image_redaction_configs
      *           The configuration for specifying what content to redact from images.
      *     @type bool $include_findings
      *           Whether the response should include findings along with the redacted
@@ -254,7 +254,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * The configuration for specifying what content to redact from images.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RedactImageRequest.ImageRedactionConfig image_redaction_configs = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig>
      */
     public function getImageRedactionConfigs()
     {
@@ -265,7 +265,7 @@ class RedactImageRequest extends \Google\Protobuf\Internal\Message
      * The configuration for specifying what content to redact from images.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RedactImageRequest.ImageRedactionConfig image_redaction_configs = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\RedactImageRequest\ImageRedactionConfig[] $var
      * @return $this
      */
     public function setImageRedactionConfigs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\ImportSuggestionDenyListEntriesRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for SuggestionDenyListEntry.
@@ -28,7 +28,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SuggestionDenyListEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SuggestionDenyListEntry[] $entries
      *           Required. A list of all denylist entries to import. Max of 1000 items.
      * }
      */
@@ -41,7 +41,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Required. A list of all denylist entries to import. Max of 1000 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SuggestionDenyListEntry entries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SuggestionDenyListEntry>
      */
     public function getEntries()
     {
@@ -52,7 +52,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Required. A list of all denylist entries to import. Max of 1000 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SuggestionDenyListEntry entries = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SuggestionDenyListEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SuggestionDenyListEntry[] $var
      * @return $this
      */
     public function setEntries($var)
@@ -64,5 +64,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

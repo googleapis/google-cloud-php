@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\OcrConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Hints for OCR Engine
@@ -33,7 +33,7 @@ class Hints extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_hints
+     *     @type string[] $language_hints
      *           List of BCP-47 language codes to use for OCR. In most cases, not
      *           specifying it yields the best results since it enables automatic language
      *           detection. For languages based on the Latin alphabet, setting hints is
@@ -56,7 +56,7 @@ class Hints extends \Google\Protobuf\Internal\Message
      * will be a significant hindrance if the hint is wrong).
      *
      * Generated from protobuf field <code>repeated string language_hints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLanguageHints()
     {
@@ -72,7 +72,7 @@ class Hints extends \Google\Protobuf\Internal\Message
      * will be a significant hindrance if the hint is wrong).
      *
      * Generated from protobuf field <code>repeated string language_hints = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLanguageHints($var)
@@ -84,5 +84,4 @@ class Hints extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

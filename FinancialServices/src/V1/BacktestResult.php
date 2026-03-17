@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BacktestResult is created to test the performance of a model on a dataset.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\GoogleApiSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config to enable subscribing to all events from a list of projects.
@@ -32,7 +32,7 @@ class ProjectSubscriptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $list
+     *     @type string[] $list
      *           Required. A list of projects to receive events from.
      *           All the projects must be in the same org. The listed projects should have
      *           the format project/{identifier} where identifier can be either the
@@ -53,7 +53,7 @@ class ProjectSubscriptions extends \Google\Protobuf\Internal\Message
      * most 100 projects can be listed.
      *
      * Generated from protobuf field <code>repeated string list = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getList()
     {
@@ -68,7 +68,7 @@ class ProjectSubscriptions extends \Google\Protobuf\Internal\Message
      * most 100 projects can be listed.
      *
      * Generated from protobuf field <code>repeated string list = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setList($var)
@@ -80,5 +80,4 @@ class ProjectSubscriptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

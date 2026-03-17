@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Histogram of k-anonymity equivalence classes.
@@ -59,7 +59,7 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
      *           Upper bound on the size of the equivalence classes in this bucket.
      *     @type int|string $bucket_size
      *           Total number of equivalence classes in this bucket.
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass[] $bucket_values
      *           Sample of equivalence classes in this bucket. The total number of
      *           classes returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -154,7 +154,7 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
      * classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass bucket_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass>
      */
     public function getBucketValues()
     {
@@ -166,7 +166,7 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
      * classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass bucket_values = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass[] $var
      * @return $this
      */
     public function setBucketValues($var)
@@ -204,5 +204,4 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

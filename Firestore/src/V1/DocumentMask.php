@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of field paths on a document.
@@ -35,7 +35,7 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $field_paths
+     *     @type string[] $field_paths
      *           The list of field paths in the mask. See
      *           [Document.fields][google.firestore.v1.Document.fields] for a field path
      *           syntax reference.
@@ -52,7 +52,7 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      * syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFieldPaths()
     {
@@ -65,7 +65,7 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      * syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFieldPaths($var)

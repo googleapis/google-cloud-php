@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A facet specification to perform faceted search.
@@ -104,7 +104,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      *           "healthcare_aggregation_key", the limit will be overridden to
      *           10,000 internally, regardless of the value set here.
      *           If this field is negative, an  `INVALID_ARGUMENT`  is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_filter_keys
+     *     @type string[] $excluded_filter_keys
      *           List of keys to exclude when faceting.
      *           By default,
      *           [FacetKey.key][google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.key]
@@ -256,7 +256,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * error is returned.
      *
      * Generated from protobuf field <code>repeated string excluded_filter_keys = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedFilterKeys()
     {
@@ -288,7 +288,7 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
      * error is returned.
      *
      * Generated from protobuf field <code>repeated string excluded_filter_keys = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedFilterKeys($var)
@@ -368,5 +368,4 @@ class FacetSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

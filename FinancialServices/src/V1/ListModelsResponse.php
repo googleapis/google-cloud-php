@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for retrieving a list of Models
@@ -41,12 +41,12 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\FinancialServices\V1\Model>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type \Google\Cloud\FinancialServices\V1\Model[] $models
      *           List of Model resources
      *     @type string $next_page_token
      *           This token should be passed to the next ListModelsRequest to
      *           retrieve the next page of Models (empty indicicates we are done).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of Model resources
      *
      * Generated from protobuf field <code>repeated .google.cloud.financialservices.v1.Model models = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\FinancialServices\V1\Model>
      */
     public function getModels()
     {
@@ -70,7 +70,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of Model resources
      *
      * Generated from protobuf field <code>repeated .google.cloud.financialservices.v1.Model models = 1;</code>
-     * @param array<\Google\Cloud\FinancialServices\V1\Model>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\FinancialServices\V1\Model[] $var
      * @return $this
      */
     public function setModels($var)
@@ -113,7 +113,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

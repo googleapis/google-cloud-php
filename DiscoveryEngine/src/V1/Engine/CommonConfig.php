@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Common configurations for an Engine.
@@ -68,5 +68,4 @@ class CommonConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

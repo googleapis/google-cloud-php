@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion>|\Google\Protobuf\Internal\RepeatedField $query_suggestions
+     *     @type \Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion[] $query_suggestions
      *           Results of the matched query suggestions. The result list is ordered and
      *           the first result is a top suggestion.
      *     @type bool $tail_match_triggered
@@ -58,7 +58,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * the first result is a top suggestion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion query_suggestions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion>
      */
     public function getQuerySuggestions()
     {
@@ -70,7 +70,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * the first result is a top suggestion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.CompleteQueryResponse.QuerySuggestion query_suggestions = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\CompleteQueryResponse\QuerySuggestion[] $var
      * @return $this
      */
     public function setQuerySuggestions($var)

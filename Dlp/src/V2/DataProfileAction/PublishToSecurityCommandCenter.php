@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfileAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If set, a summary finding will be created or updated in Security Command
@@ -31,5 +31,4 @@ class PublishToSecurityCommandCenter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
