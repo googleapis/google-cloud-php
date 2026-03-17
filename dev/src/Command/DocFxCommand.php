@@ -365,9 +365,8 @@ class DocFxCommand extends Command
     /**
      * Applies a fix to solve an issue where {@*} is being parsed as a tag by
      * phpDocumentor, which later causes an error when vprintf sees unescaped
-     * percent signs.
-     *
-     * Replaces "{@*}" with "&#42;&#47;" in the files were the errors occur.
+     * percent signs. Replaces {@*} with "&#42;&#47;" in the files were the
+     * errors occur.
      *
      * @see https://github.com/phpDocumentor/ReflectionDocBlock/pull/450
      * @TODO: Remove this method once the fix is merged and released.
