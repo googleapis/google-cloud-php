@@ -27,7 +27,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool use_partitioned_tables = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $use_partitioned_tables = false;
+    protected $use_partitioned_tables = false;
     /**
      * Output only. True if new timestamp column based partitioning is in use,
      * false if legacy ingestion-time partitioning is in use.
@@ -38,7 +38,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool uses_timestamp_column_partitioning = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $uses_timestamp_column_partitioning = false;
+    protected $uses_timestamp_column_partitioning = false;
 
     /**
      * Constructor.

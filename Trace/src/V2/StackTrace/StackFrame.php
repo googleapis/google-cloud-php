@@ -21,7 +21,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString function_name = 1;</code>
      */
-    private $function_name = null;
+    protected $function_name = null;
     /**
      * An un-mangled function name, if `function_name` is mangled.
      * To get information about name mangling, run
@@ -30,39 +30,39 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString original_function_name = 2;</code>
      */
-    private $original_function_name = null;
+    protected $original_function_name = null;
     /**
      * The name of the source file where the function call appears (up to 256
      * bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString file_name = 3;</code>
      */
-    private $file_name = null;
+    protected $file_name = null;
     /**
      * The line number in `file_name` where the function call appears.
      *
      * Generated from protobuf field <code>int64 line_number = 4;</code>
      */
-    private $line_number = 0;
+    protected $line_number = 0;
     /**
      * The column number where the function call appears, if available.
      * This is important in JavaScript because of its anonymous functions.
      *
      * Generated from protobuf field <code>int64 column_number = 5;</code>
      */
-    private $column_number = 0;
+    protected $column_number = 0;
     /**
      * The binary module from where the code was loaded.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Module load_module = 6;</code>
      */
-    private $load_module = null;
+    protected $load_module = null;
     /**
      * The version of the deployed source code (up to 128 bytes).
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString source_version = 7;</code>
      */
-    private $source_version = null;
+    protected $source_version = null;
 
     /**
      * Constructor.

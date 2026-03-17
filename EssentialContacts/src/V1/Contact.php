@@ -5,8 +5,8 @@
 namespace Google\Cloud\EssentialContacts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A contact that will receive notifications from Google Cloud.
@@ -73,7 +73,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     @type string $email
      *           Required. The email address to send notifications to. The email address
      *           does not need to be a Google Account.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_category_subscriptions
+     *     @type int[] $notification_category_subscriptions
      *           Required. The categories of notifications that the contact will receive
      *           communications for.
      *     @type string $language_tag
@@ -156,7 +156,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      * communications for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getNotificationCategorySubscriptions()
     {
@@ -168,7 +168,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      * communications for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setNotificationCategorySubscriptions($var)

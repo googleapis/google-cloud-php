@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,9 +19,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -30,7 +30,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     protected $serving_config = '';
     /**
      * The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
      * Use `default_branch` as the branch ID or leave this field empty, to search
      * documents under the default branch.
      *
@@ -470,19 +470,19 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $serving_config
      *           Required. The resource name of the Search serving config, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     *           `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      *           or
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      *           This field is used to identify the serving configuration name, set
      *           of models used to make the search.
      *     @type string $branch
      *           The branch resource name, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
      *           Use `default_branch` as the branch ID or leave this field empty, to search
      *           documents under the default branch.
      *     @type string $query
      *           Raw search query.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type string[] $page_categories
      *           Optional. The categories associated with a category page. Must be set for
      *           category navigation queries to achieve good search quality. The format
      *           should be the same as
@@ -529,7 +529,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           The maximum number of results to return for OneBox.
      *           This applies to each OneBox type individually.
      *           Default number is 10.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $data_store_specs
      *           Specifications that define the specific
      *           [DataStore][google.cloud.discoveryengine.v1.DataStore]s to be searched,
      *           along with configurations for those data stores. This is only considered
@@ -584,7 +584,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           fields](https://cloud.google.com/apis/design/standard_fields). This field
      *           helps to better interpret the query. If a value isn't specified, the query
      *           language code is automatically detected, which may not be accurate.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $facet_specs
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec[] $facet_specs
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           A maximum of 100 values are allowed. Otherwise, an  `INVALID_ARGUMENT`
      *           error is returned.
@@ -736,7 +736,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DisplaySpec $display_spec
      *           Optional. Config for display feature, like match highlighting on search
      *           results.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\CrowdingSpec>|\Google\Protobuf\Internal\RepeatedField $crowding_specs
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CrowdingSpec[] $crowding_specs
      *           Optional. Crowding specifications for improving result diversity.
      *           If multiple CrowdingSpecs are specified, crowding will be evaluated on
      *           each unique combination of the `field` values, and max_count will be the
@@ -785,9 +785,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -801,9 +801,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Search serving config, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/engines/&#42;&#47;servingConfigs/default_serving_config`,
+     * `projects/{@*}locations/global/collections/default_collection/engines/{@*}servingConfigs/default_serving_config`,
      * or
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`.
      * This field is used to identify the serving configuration name, set
      * of models used to make the search.
      *
@@ -821,7 +821,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
      * Use `default_branch` as the branch ID or leave this field empty, to search
      * documents under the default branch.
      *
@@ -835,7 +835,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store/branches/0`.
      * Use `default_branch` as the branch ID or leave this field empty, to search
      * documents under the default branch.
      *
@@ -895,7 +895,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * > Founders Edition`
      *
      * Generated from protobuf field <code>repeated string page_categories = 63 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPageCategories()
     {
@@ -920,7 +920,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * > Founders Edition`
      *
      * Generated from protobuf field <code>repeated string page_categories = 63 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPageCategories($var)
@@ -1123,7 +1123,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>
      */
     public function getDataStoreSpecs()
     {
@@ -1140,7 +1140,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 32;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $var
      * @return $this
      */
     public function setDataStoreSpecs($var)
@@ -1371,7 +1371,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * error is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.FacetSpec facet_specs = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>
      */
     public function getFacetSpecs()
     {
@@ -1384,7 +1384,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * error is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.FacetSpec facet_specs = 9;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\FacetSpec[] $var
      * @return $this
      */
     public function setFacetSpecs($var)
@@ -2059,7 +2059,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * removed or demoted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.CrowdingSpec crowding_specs = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\CrowdingSpec>
      */
     public function getCrowdingSpecs()
     {
@@ -2078,7 +2078,7 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      * removed or demoted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.CrowdingSpec crowding_specs = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\CrowdingSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\CrowdingSpec[] $var
      * @return $this
      */
     public function setCrowdingSpecs($var)

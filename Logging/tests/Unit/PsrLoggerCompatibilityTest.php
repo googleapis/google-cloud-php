@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Psr\Log\InvalidArgumentException;
@@ -47,8 +47,8 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
     public function getLogger()
     {
         self::$logs = [];
-        $connection = $this->prophesize(ConnectionInterface::class);
-        $connection->writeEntries(Argument::any())
+        $connection = $this->prophesize(Gapic::class);
+        $connection->writeLogEntries(Argument::any())
             ->will(function ($entries) {
                 $map = Logger::getLogLevelMap();
                 $entry = $entries[0]['entries'][0];

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the `ListRegistrations` method.
@@ -17,7 +17,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The project and location from which to list `Registration`s, specified in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,7 +77,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The project and location from which to list `Registration`s, specified in
-     *           the format `projects/&#42;&#47;locations/&#42;`.
+     *           the format `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Maximum number of results to return.
      *     @type string $page_token
@@ -106,7 +106,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which to list `Registration`s, specified in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -118,7 +118,7 @@ class ListRegistrationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The project and location from which to list `Registration`s, specified in
-     * the format `projects/&#42;&#47;locations/&#42;`.
+     * the format `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

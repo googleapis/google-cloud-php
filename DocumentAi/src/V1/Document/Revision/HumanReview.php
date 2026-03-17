@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\Revision;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Human Review information of the document.
@@ -102,5 +102,4 @@ class HumanReview extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

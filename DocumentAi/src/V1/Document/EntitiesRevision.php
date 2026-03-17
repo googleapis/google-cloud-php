@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entity revision.
@@ -42,7 +42,7 @@ class EntitiesRevision extends \Google\Protobuf\Internal\Message
      *
      *     @type string $revision_id
      *           The revision id.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[] $entities
      *           The entities in this revision.
      *     @type \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput $entity_validation_output
      *           The entity validation output for this revision.
@@ -83,7 +83,7 @@ class EntitiesRevision extends \Google\Protobuf\Internal\Message
      * The entities in this revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Entity>
      */
     public function getEntities()
     {
@@ -94,7 +94,7 @@ class EntitiesRevision extends \Google\Protobuf\Internal\Message
      * The entities in this revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 2;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[] $var
      * @return $this
      */
     public function setEntities($var)
@@ -142,5 +142,4 @@ class EntitiesRevision extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

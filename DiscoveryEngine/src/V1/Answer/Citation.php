@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Citation info for a segment.
@@ -52,7 +52,7 @@ class Citation extends \Google\Protobuf\Internal\Message
      *           End of the attributed segment, exclusive. Measured in bytes (UTF-8
      *           unicode). If there are multi-byte characters,such as non-ASCII
      *           characters, the index measurement is longer than the string length.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource[] $sources
      *           Citation sources for the attributed segment.
      * }
      */
@@ -125,7 +125,7 @@ class Citation extends \Google\Protobuf\Internal\Message
      * Citation sources for the attributed segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.CitationSource sources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>
      */
     public function getSources()
     {
@@ -136,7 +136,7 @@ class Citation extends \Google\Protobuf\Internal\Message
      * Citation sources for the attributed segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.CitationSource sources = 3;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\CitationSource[] $var
      * @return $this
      */
     public function setSources($var)
@@ -148,5 +148,4 @@ class Citation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

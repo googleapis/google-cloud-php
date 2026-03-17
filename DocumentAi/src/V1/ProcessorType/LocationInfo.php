@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessorType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The location information about where the processor is available.
@@ -68,5 +68,4 @@ class LocationInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

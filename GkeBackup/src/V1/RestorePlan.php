@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of a potential series of Restore operations to be performed
@@ -18,7 +18,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
+     * Format: `projects/{@*}locations/{@*}restorePlans/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -54,7 +54,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. A reference to the
      * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
      * be used as the source for Restores created via this RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/*`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -63,8 +63,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The target cluster into which Restores created via
      * this RestorePlan will restore data. NOTE: the cluster's region must be the
      * same as the RestorePlan. Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -115,7 +115,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the RestoreChannel to be used to
      * create a RestorePlan. This field is set only if the `backup_plan` is in a
      * different project than the RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -129,7 +129,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The full name of the RestorePlan resource.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
+     *           Format: `projects/{@*}locations/{@*}restorePlans/*`.
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
@@ -145,13 +145,13 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. A reference to the
      *           [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
      *           be used as the source for Restores created via this RestorePlan. Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
+     *           `projects/{@*}locations/{@*}backupPlans/*`.
      *     @type string $cluster
      *           Required. Immutable. The target cluster into which Restores created via
      *           this RestorePlan will restore data. NOTE: the cluster's region must be the
      *           same as the RestorePlan. Valid formats:
-     *             - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *             - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *             - `projects/{@*}locations/{@*}clusters/*`
+     *             - `projects/{@*}zones/{@*}clusters/*`
      *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig $restore_config
      *           Required. Configuration of Restores created via this RestorePlan.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
@@ -178,7 +178,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      *           Output only. The fully qualified name of the RestoreChannel to be used to
      *           create a RestorePlan. This field is set only if the `backup_plan` is in a
      *           different project than the RestorePlan. Format:
-     *           `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     *           `projects/{@*}locations/{@*}restoreChannels/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -188,7 +188,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
+     * Format: `projects/{@*}locations/{@*}restorePlans/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -200,7 +200,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The full name of the RestorePlan resource.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;restorePlans/&#42;`.
+     * Format: `projects/{@*}locations/{@*}restorePlans/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -348,7 +348,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. A reference to the
      * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
      * be used as the source for Restores created via this RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/*`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -362,7 +362,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. A reference to the
      * [BackupPlan][google.cloud.gkebackup.v1.BackupPlan] from which Backups may
      * be used as the source for Restores created via this RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;`.
+     * `projects/{@*}locations/{@*}backupPlans/*`.
      *
      * Generated from protobuf field <code>string backup_plan = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -380,8 +380,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The target cluster into which Restores created via
      * this RestorePlan will restore data. NOTE: the cluster's region must be the
      * same as the RestorePlan. Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -395,8 +395,8 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Required. Immutable. The target cluster into which Restores created via
      * this RestorePlan will restore data. NOTE: the cluster's region must be the
      * same as the RestorePlan. Valid formats:
-     *   - `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`
-     *   - `projects/&#42;&#47;zones/&#42;&#47;clusters/&#42;`
+     *   - `projects/{@*}locations/{@*}clusters/*`
+     *   - `projects/{@*}zones/{@*}clusters/*`
      *
      * Generated from protobuf field <code>string cluster = 7 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -578,7 +578,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the RestoreChannel to be used to
      * create a RestorePlan. This field is set only if the `backup_plan` is in a
      * different project than the RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -592,7 +592,7 @@ class RestorePlan extends \Google\Protobuf\Internal\Message
      * Output only. The fully qualified name of the RestoreChannel to be used to
      * create a RestorePlan. This field is set only if the `backup_plan` is in a
      * different project than the RestorePlan. Format:
-     * `projects/&#42;&#47;locations/&#42;&#47;restoreChannels/&#42;`
+     * `projects/{@*}locations/{@*}restoreChannels/*`
      *
      * Generated from protobuf field <code>string restore_channel = 13 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

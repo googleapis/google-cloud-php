@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding details for text sources.
@@ -34,9 +34,9 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment[] $segments
      *           Grounding information for parts of the text.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference[] $references
      *           References for the grounded text.
      * }
      */
@@ -49,7 +49,7 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      * Grounding information for parts of the text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Segment segments = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment>
      */
     public function getSegments()
     {
@@ -60,7 +60,7 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      * Grounding information for parts of the text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Segment segments = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Segment[] $var
      * @return $this
      */
     public function setSegments($var)
@@ -75,7 +75,7 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      * References for the grounded text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference references = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference>
      */
     public function getReferences()
     {
@@ -86,7 +86,7 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
      * References for the grounded text.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AssistantGroundedContent.TextGroundingMetadata.Reference references = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata\Reference[] $var
      * @return $this
      */
     public function setReferences($var)
@@ -98,5 +98,4 @@ class TextGroundingMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

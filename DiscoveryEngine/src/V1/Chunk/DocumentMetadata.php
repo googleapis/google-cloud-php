@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Chunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Document metadata contains the information of the document of the current
@@ -155,5 +155,4 @@ class DocumentMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

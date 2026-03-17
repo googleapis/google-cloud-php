@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\TrainProcessorVersionRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options to control foundation model tuning of the processor.
@@ -110,5 +110,4 @@ class FoundationModelTuningOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

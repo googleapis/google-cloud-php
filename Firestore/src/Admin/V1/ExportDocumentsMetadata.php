@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
@@ -92,11 +92,11 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type string[] $collection_ids
      *           Which collection IDs are being exported.
      *     @type string $output_uri_prefix
      *           Where the documents are being exported to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *     @type string[] $namespace_ids
      *           Which namespace IDs are being exported.
      *     @type \Google\Protobuf\Timestamp $snapshot_time
      *           The timestamp that corresponds to the version of the database that is being
@@ -285,7 +285,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection IDs are being exported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCollectionIds()
     {
@@ -296,7 +296,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection IDs are being exported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCollectionIds($var)
@@ -337,7 +337,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which namespace IDs are being exported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNamespaceIds()
     {
@@ -348,7 +348,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which namespace IDs are being exported.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNamespaceIds($var)

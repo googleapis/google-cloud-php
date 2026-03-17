@@ -395,6 +395,21 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.GroupMembership group_memberships = 65;</code>
      */
     private $group_memberships;
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Chokepoint chokepoint = 77;</code>
+     */
+    protected $chokepoint = null;
+    /**
+     * External exposure associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalExposure external_exposure = 84;</code>
+     */
+    protected $external_exposure = null;
 
     /**
      * Constructor.
@@ -577,6 +592,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Contains details about groups of which this finding is a member. A group is
      *           a collection of findings that are related in some way.
      *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type \Google\Cloud\SecurityCenter\V1\Chokepoint $chokepoint
+     *           Contains details about a chokepoint, which is a resource or resource group
+     *           where high-risk attack paths converge, based on [attack path simulations]
+     *           (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     *           This field cannot be updated. Its value is ignored in all update requests.
+     *     @type \Google\Cloud\SecurityCenter\V1\ExternalExposure $external_exposure
+     *           External exposure associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -2250,6 +2272,84 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\GroupMembership::class);
         $this->group_memberships = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Chokepoint chokepoint = 77;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Chokepoint|null
+     */
+    public function getChokepoint()
+    {
+        return $this->chokepoint;
+    }
+
+    public function hasChokepoint()
+    {
+        return isset($this->chokepoint);
+    }
+
+    public function clearChokepoint()
+    {
+        unset($this->chokepoint);
+    }
+
+    /**
+     * Contains details about a chokepoint, which is a resource or resource group
+     * where high-risk attack paths converge, based on [attack path simulations]
+     * (https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_path_simulations).
+     * This field cannot be updated. Its value is ignored in all update requests.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Chokepoint chokepoint = 77;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Chokepoint $var
+     * @return $this
+     */
+    public function setChokepoint($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Chokepoint::class);
+        $this->chokepoint = $var;
+
+        return $this;
+    }
+
+    /**
+     * External exposure associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalExposure external_exposure = 84;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\ExternalExposure|null
+     */
+    public function getExternalExposure()
+    {
+        return $this->external_exposure;
+    }
+
+    public function hasExternalExposure()
+    {
+        return isset($this->external_exposure);
+    }
+
+    public function clearExternalExposure()
+    {
+        unset($this->external_exposure);
+    }
+
+    /**
+     * External exposure associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.ExternalExposure external_exposure = 84;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\ExternalExposure $var
+     * @return $this
+     */
+    public function setExternalExposure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\ExternalExposure::class);
+        $this->external_exposure = $var;
 
         return $this;
     }

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines RPO scheduling configuration for automatically creating
@@ -52,7 +52,7 @@ class RpoConfig extends \Google\Protobuf\Internal\Message
      *           the target maximum data loss in time that is acceptable for this
      *           BackupPlan. This must be at least 60, i.e., 1 hour, and at most 86400,
      *           i.e., 60 days.
-     *     @type array<\Google\Cloud\GkeBackup\V1\ExclusionWindow>|\Google\Protobuf\Internal\RepeatedField $exclusion_windows
+     *     @type \Google\Cloud\GkeBackup\V1\ExclusionWindow[] $exclusion_windows
      *           Optional. User specified time windows during which backup can NOT happen
      *           for this BackupPlan - backups should start and finish outside of any given
      *           exclusion window. Note: backup jobs will be scheduled to start and
@@ -115,7 +115,7 @@ class RpoConfig extends \Google\Protobuf\Internal\Message
      * windows.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ExclusionWindow exclusion_windows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeBackup\V1\ExclusionWindow>
      */
     public function getExclusionWindows()
     {
@@ -135,7 +135,7 @@ class RpoConfig extends \Google\Protobuf\Internal\Message
      * windows.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.ExclusionWindow exclusion_windows = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GkeBackup\V1\ExclusionWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeBackup\V1\ExclusionWindow[] $var
      * @return $this
      */
     public function setExclusionWindows($var)

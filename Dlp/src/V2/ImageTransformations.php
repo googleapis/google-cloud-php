@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A type of transformation that is applied over images.
@@ -28,7 +28,7 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation>|\Google\Protobuf\Internal\RepeatedField $transforms
+     *     @type \Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation[] $transforms
      *           List of transforms to make.
      * }
      */
@@ -41,7 +41,7 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
      * List of transforms to make.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ImageTransformations.ImageTransformation transforms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation>
      */
     public function getTransforms()
     {
@@ -52,7 +52,7 @@ class ImageTransformations extends \Google\Protobuf\Internal\Message
      * List of transforms to make.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ImageTransformations.ImageTransformation transforms = 2;</code>
-     * @param array<\Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation[] $var
      * @return $this
      */
     public function setTransforms($var)

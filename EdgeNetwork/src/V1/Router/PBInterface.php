@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\Router;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Router Interface defines the GDCE zone side layer-3 information for
@@ -72,7 +72,7 @@ class PBInterface extends \Google\Protobuf\Internal\Message
      *     @type string $subnetwork
      *           The canonical name of the subnetwork resource that this interface
      *           belongs to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $loopback_ip_addresses
+     *     @type string[] $loopback_ip_addresses
      *           Create loopback interface in the router when specified.
      *           The number of IP addresses must match the number of TOR devices.
      * }
@@ -219,7 +219,7 @@ class PBInterface extends \Google\Protobuf\Internal\Message
      * The number of IP addresses must match the number of TOR devices.
      *
      * Generated from protobuf field <code>repeated string loopback_ip_addresses = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLoopbackIpAddresses()
     {
@@ -231,7 +231,7 @@ class PBInterface extends \Google\Protobuf\Internal\Message
      * The number of IP addresses must match the number of TOR devices.
      *
      * Generated from protobuf field <code>repeated string loopback_ip_addresses = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLoopbackIpAddresses($var)
@@ -243,5 +243,4 @@ class PBInterface extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

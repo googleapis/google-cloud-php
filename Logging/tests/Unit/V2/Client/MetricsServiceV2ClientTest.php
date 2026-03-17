@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +54,9 @@ class MetricsServiceV2ClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return MetricsServiceV2Client */
@@ -96,9 +98,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $metric->setName($metricName);
         $metricFilter = 'metricFilter1248897352';
         $metric->setFilter($metricFilter);
-        $request = (new CreateLogMetricRequest())
-            ->setParent($formattedParent)
-            ->setMetric($metric);
+        $request = (new CreateLogMetricRequest())->setParent($formattedParent)->setMetric($metric);
         $response = $gapicClient->createLogMetric($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -124,12 +124,15 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
@@ -138,9 +141,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $metric->setName($metricName);
         $metricFilter = 'metricFilter1248897352';
         $metric->setFilter($metricFilter);
-        $request = (new CreateLogMetricRequest())
-            ->setParent($formattedParent)
-            ->setMetric($metric);
+        $request = (new CreateLogMetricRequest())->setParent($formattedParent)->setMetric($metric);
         try {
             $gapicClient->createLogMetric($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -167,8 +168,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $request = (new DeleteLogMetricRequest())
-            ->setMetricName($formattedMetricName);
+        $request = (new DeleteLogMetricRequest())->setMetricName($formattedMetricName);
         $gapicClient->deleteLogMetric($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -191,17 +191,19 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $request = (new DeleteLogMetricRequest())
-            ->setMetricName($formattedMetricName);
+        $request = (new DeleteLogMetricRequest())->setMetricName($formattedMetricName);
         try {
             $gapicClient->deleteLogMetric($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -240,8 +242,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $request = (new GetLogMetricRequest())
-            ->setMetricName($formattedMetricName);
+        $request = (new GetLogMetricRequest())->setMetricName($formattedMetricName);
         $response = $gapicClient->getLogMetric($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -265,17 +266,19 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
-        $request = (new GetLogMetricRequest())
-            ->setMetricName($formattedMetricName);
+        $request = (new GetLogMetricRequest())->setMetricName($formattedMetricName);
         try {
             $gapicClient->getLogMetric($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -300,17 +303,14 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $metricsElement = new LogMetric();
-        $metrics = [
-            $metricsElement,
-        ];
+        $metrics = [$metricsElement];
         $expectedResponse = new ListLogMetricsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setMetrics($metrics);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListLogMetricsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLogMetricsRequest())->setParent($formattedParent);
         $response = $gapicClient->listLogMetrics($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -337,17 +337,19 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->projectName('[PROJECT]');
-        $request = (new ListLogMetricsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListLogMetricsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listLogMetrics($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -391,9 +393,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $metric->setName($metricName);
         $metricFilter = 'metricFilter1248897352';
         $metric->setFilter($metricFilter);
-        $request = (new UpdateLogMetricRequest())
-            ->setMetricName($formattedMetricName)
-            ->setMetric($metric);
+        $request = (new UpdateLogMetricRequest())->setMetricName($formattedMetricName)->setMetric($metric);
         $response = $gapicClient->updateLogMetric($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -419,12 +419,15 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedMetricName = $gapicClient->logMetricName('[PROJECT]', '[METRIC]');
@@ -433,9 +436,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $metric->setName($metricName);
         $metricFilter = 'metricFilter1248897352';
         $metric->setFilter($metricFilter);
-        $request = (new UpdateLogMetricRequest())
-            ->setMetricName($formattedMetricName)
-            ->setMetric($metric);
+        $request = (new UpdateLogMetricRequest())->setMetricName($formattedMetricName)->setMetric($metric);
         try {
             $gapicClient->updateLogMetric($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -479,9 +480,7 @@ class MetricsServiceV2ClientTest extends GeneratedTest
         $metric->setName($metricName);
         $metricFilter = 'metricFilter1248897352';
         $metric->setFilter($metricFilter);
-        $request = (new CreateLogMetricRequest())
-            ->setParent($formattedParent)
-            ->setMetric($metric);
+        $request = (new CreateLogMetricRequest())->setParent($formattedParent)->setMetric($metric);
         $response = $gapicClient->createLogMetricAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();

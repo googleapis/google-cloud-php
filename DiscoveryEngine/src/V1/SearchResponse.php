@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -127,9 +127,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult[] $results
      *           A list of matched documents. The order represents the ranking.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $facets
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet[] $facets
      *           Results of facets requested by user.
      *     @type int $total_size
      *           The estimated total count of matched items irrespective of pagination. The
@@ -174,7 +174,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           Only set if
      *           [SearchRequest.session][google.cloud.discoveryengine.v1.SearchRequest.session]
      *           is provided. See its description for more details.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>|\Google\Protobuf\Internal\RepeatedField $search_link_promotions
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion[] $search_link_promotions
      *           Promotions for site search.
      *     @type int $semantic_state
      *           Output only. Indicates the semantic state of the search response.
@@ -189,7 +189,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A list of matched documents. The order represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>
      */
     public function getResults()
     {
@@ -200,7 +200,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A list of matched documents. The order represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.SearchResult results = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\SearchResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -215,7 +215,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Results of facets requested by user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet facets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet>
      */
     public function getFacets()
     {
@@ -226,7 +226,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Results of facets requested by user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Facet facets = 2;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Facet[] $var
      * @return $this
      */
     public function setFacets($var)
@@ -565,7 +565,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Promotions for site search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>
      */
     public function getSearchLinkPromotions()
     {
@@ -576,7 +576,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Promotions for site search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchLinkPromotion search_link_promotions = 23;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchLinkPromotion[] $var
      * @return $this
      */
     public function setSearchLinkPromotions($var)

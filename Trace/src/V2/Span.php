@@ -34,20 +34,20 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The `[SPAN_ID]` portion of the span's resource name.
      *
      * Generated from protobuf field <code>string span_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $span_id = '';
+    protected $span_id = '';
     /**
      * The `[SPAN_ID]` of this span's parent span. If this is a root span,
      * then this field must be empty.
      *
      * Generated from protobuf field <code>string parent_span_id = 3;</code>
      */
-    private $parent_span_id = '';
+    protected $parent_span_id = '';
     /**
      * Required. A description of the span's operation (up to 128 bytes).
      * Cloud Trace displays the description in the
@@ -59,7 +59,7 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString display_name = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $display_name = null;
+    protected $display_name = null;
     /**
      * Required. The start time of the span. On the client side, this is the time
      * kept by the local machine where the span execution starts. On the server
@@ -68,7 +68,7 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $start_time = null;
+    protected $start_time = null;
     /**
      * Required. The end time of the span. On the client side, this is the time
      * kept by the local machine where the span execution ends. On the server
@@ -76,39 +76,39 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $end_time = null;
+    protected $end_time = null;
     /**
      * A set of attributes on the span. You can have up to 32 attributes per
      * span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 7;</code>
      */
-    private $attributes = null;
+    protected $attributes = null;
     /**
      * Stack trace captured at the start of the span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace stack_trace = 8;</code>
      */
-    private $stack_trace = null;
+    protected $stack_trace = null;
     /**
      * A set of time events. You can have up to 32 annotations and 128 message
      * events per span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvents time_events = 9;</code>
      */
-    private $time_events = null;
+    protected $time_events = null;
     /**
      * Links associated with the span. You can have up to 128 links per Span.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Links links = 10;</code>
      */
-    private $links = null;
+    protected $links = null;
     /**
      * Optional. The final status for this span.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $status = null;
+    protected $status = null;
     /**
      * Optional. Set this parameter to indicate whether this span is in
      * the same process as its parent. If you do not set this parameter,
@@ -116,14 +116,14 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $same_process_as_parent_span = null;
+    protected $same_process_as_parent_span = null;
     /**
      * Optional. The number of child spans that were generated while this span
      * was active. If set, allows implementation to detect missing child spans.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $child_span_count = null;
+    protected $child_span_count = null;
     /**
      * Optional. Distinguishes between spans generated in a particular context.
      * For example, two spans with the same name may be distinguished using
@@ -131,7 +131,7 @@ class Span extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.SpanKind span_kind = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $span_kind = 0;
+    protected $span_kind = 0;
 
     /**
      * Constructor.
@@ -644,7 +644,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.BoolValue same_process_as_parent_span = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool|null
      */
-    public function getSameProcessAsParentSpanValue()
+    public function getSameProcessAsParentSpanUnwrapped()
     {
         return $this->readWrapperValue("same_process_as_parent_span");
     }
@@ -677,7 +677,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * @param bool|null $var
      * @return $this
      */
-    public function setSameProcessAsParentSpanValue($var)
+    public function setSameProcessAsParentSpanUnwrapped($var)
     {
         $this->writeWrapperValue("same_process_as_parent_span", $var);
         return $this;}
@@ -713,7 +713,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int32Value child_span_count = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|null
      */
-    public function getChildSpanCountValue()
+    public function getChildSpanCountUnwrapped()
     {
         return $this->readWrapperValue("child_span_count");
     }
@@ -744,7 +744,7 @@ class Span extends \Google\Protobuf\Internal\Message
      * @param int|null $var
      * @return $this
      */
-    public function setChildSpanCountValue($var)
+    public function setChildSpanCountUnwrapped($var)
     {
         $this->writeWrapperValue("child_span_count", $var);
         return $this;}

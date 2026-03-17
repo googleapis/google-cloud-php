@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a list type block.
@@ -35,7 +35,7 @@ class LayoutListBlock extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListEntry>|\Google\Protobuf\Internal\RepeatedField $list_entries
+     *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListEntry[] $list_entries
      *           List entries that constitute a list block.
      *     @type string $type
      *           Type of the list_entries (if exist). Available options are `ordered`
@@ -51,7 +51,7 @@ class LayoutListBlock extends \Google\Protobuf\Internal\Message
      * List entries that constitute a list block.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListEntry list_entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListEntry>
      */
     public function getListEntries()
     {
@@ -62,7 +62,7 @@ class LayoutListBlock extends \Google\Protobuf\Internal\Message
      * List entries that constitute a list block.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.DocumentLayout.DocumentLayoutBlock.LayoutListEntry list_entries = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\DocumentLayout\DocumentLayoutBlock\LayoutListEntry[] $var
      * @return $this
      */
     public function setListEntries($var)
@@ -102,5 +102,4 @@ class LayoutListBlock extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

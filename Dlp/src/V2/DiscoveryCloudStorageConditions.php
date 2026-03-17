@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Requirements that must be true before a Cloud Storage bucket or object is
@@ -41,13 +41,13 @@ class DiscoveryCloudStorageConditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $included_object_attributes
+     *     @type int[] $included_object_attributes
      *           Required. Only objects with the specified attributes will be scanned. If an
      *           object has one of the specified attributes but is inside an excluded
      *           bucket, it will not be scanned. Defaults to [ALL_SUPPORTED_OBJECTS]. A
      *           profile will be created even if no objects match the
      *           included_object_attributes.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $included_bucket_attributes
+     *     @type int[] $included_bucket_attributes
      *           Required. Only objects with the specified attributes will be scanned.
      *           Defaults to [ALL_SUPPORTED_BUCKETS] if unset.
      * }
@@ -65,7 +65,7 @@ class DiscoveryCloudStorageConditions extends \Google\Protobuf\Internal\Message
      * included_object_attributes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudStorageConditions.CloudStorageObjectAttribute included_object_attributes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIncludedObjectAttributes()
     {
@@ -80,7 +80,7 @@ class DiscoveryCloudStorageConditions extends \Google\Protobuf\Internal\Message
      * included_object_attributes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudStorageConditions.CloudStorageObjectAttribute included_object_attributes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIncludedObjectAttributes($var)
@@ -96,7 +96,7 @@ class DiscoveryCloudStorageConditions extends \Google\Protobuf\Internal\Message
      * Defaults to [ALL_SUPPORTED_BUCKETS] if unset.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudStorageConditions.CloudStorageBucketAttribute included_bucket_attributes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIncludedBucketAttributes()
     {
@@ -108,7 +108,7 @@ class DiscoveryCloudStorageConditions extends \Google\Protobuf\Internal\Message
      * Defaults to [ALL_SUPPORTED_BUCKETS] if unset.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DiscoveryCloudStorageConditions.CloudStorageBucketAttribute included_bucket_attributes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIncludedBucketAttributes($var)

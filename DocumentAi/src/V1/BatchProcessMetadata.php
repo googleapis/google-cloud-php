@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The long-running operation metadata for
@@ -63,7 +63,7 @@ class BatchProcessMetadata extends \Google\Protobuf\Internal\Message
      *           The creation time of the operation.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The last update time of the operation.
-     *     @type array<\Google\Cloud\DocumentAI\V1\BatchProcessMetadata\IndividualProcessStatus>|\Google\Protobuf\Internal\RepeatedField $individual_process_statuses
+     *     @type \Google\Cloud\DocumentAI\V1\BatchProcessMetadata\IndividualProcessStatus[] $individual_process_statuses
      *           The list of response details of each document.
      * }
      */
@@ -202,7 +202,7 @@ class BatchProcessMetadata extends \Google\Protobuf\Internal\Message
      * The list of response details of each document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus individual_process_statuses = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\BatchProcessMetadata\IndividualProcessStatus>
      */
     public function getIndividualProcessStatuses()
     {
@@ -213,7 +213,7 @@ class BatchProcessMetadata extends \Google\Protobuf\Internal\Message
      * The list of response details of each document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.BatchProcessMetadata.IndividualProcessStatus individual_process_statuses = 5;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\BatchProcessMetadata\IndividualProcessStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\BatchProcessMetadata\IndividualProcessStatus[] $var
      * @return $this
      */
     public function setIndividualProcessStatuses($var)

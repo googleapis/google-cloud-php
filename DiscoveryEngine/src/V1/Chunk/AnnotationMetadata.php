@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Chunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The annotation metadata includes structured content in the current chunk.
@@ -112,5 +112,4 @@ class AnnotationMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

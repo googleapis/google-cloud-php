@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for specifying a window around a finding to apply a detection
@@ -115,5 +115,4 @@ class Proximity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

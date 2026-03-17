@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of the categorical stats computation.
@@ -28,7 +28,7 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $value_frequency_histogram_buckets
+     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket[] $value_frequency_histogram_buckets
      *           Histogram of value frequencies in the column.
      * }
      */
@@ -41,7 +41,7 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
      * Histogram of value frequencies in the column.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket>
      */
     public function getValueFrequencyHistogramBuckets()
     {
@@ -52,7 +52,7 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
      * Histogram of value frequencies in the column.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.CategoricalStatsResult.CategoricalStatsHistogramBucket value_frequency_histogram_buckets = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult\CategoricalStatsHistogramBucket[] $var
      * @return $this
      */
     public function setValueFrequencyHistogramBuckets($var)
@@ -64,5 +64,4 @@ class CategoricalStatsResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

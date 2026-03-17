@@ -5,8 +5,8 @@
 namespace Google\Cloud\FinancialServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for adding/removing registered parties from BigQuery tables
@@ -91,7 +91,7 @@ class ImportRegisteredPartiesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The full path to the Instance resource in this API.
      *           format: `projects/{project}/locations/{location}/instances/{instance}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $party_tables
+     *     @type string[] $party_tables
      *           Optional. List of BigQuery tables. Union of tables will be taken if there
      *           is more than one table. VPC-SC restrictions apply. format:
      *           `bq://{project}.{bqDatasetID}.{bqTableID}` Use of `datasets` is preferred
@@ -149,7 +149,7 @@ class ImportRegisteredPartiesRequest extends \Google\Protobuf\Internal\Message
      * same time
      *
      * Generated from protobuf field <code>repeated string party_tables = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPartyTables()
     {
@@ -165,7 +165,7 @@ class ImportRegisteredPartiesRequest extends \Google\Protobuf\Internal\Message
      * same time
      *
      * Generated from protobuf field <code>repeated string party_tables = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPartyTables($var)

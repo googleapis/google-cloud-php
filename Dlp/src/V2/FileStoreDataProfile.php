@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The profile for a file store.
@@ -226,7 +226,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/storage/docs/locations#available-locations
      *           * Amazon S3:
      *           https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_storage_locations
+     *     @type string[] $data_storage_locations
      *           For resources that have multiple storage locations, these are those
      *           regions. For Cloud Storage this is the list of regions chosen for
      *           dual-region storage. `file_store_location` will normally be the
@@ -266,7 +266,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *           The time the file store was first created.
      *     @type \Google\Protobuf\Timestamp $last_modified_time
      *           The time the file store was last modified.
-     *     @type array<\Google\Cloud\Dlp\V2\FileClusterSummary>|\Google\Protobuf\Internal\RepeatedField $file_cluster_summaries
+     *     @type \Google\Cloud\Dlp\V2\FileClusterSummary[] $file_cluster_summaries
      *           FileClusterSummary per each cluster.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_attributes
      *           Attributes of the resource being profiled.
@@ -276,19 +276,19 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      *               - false: the resource is encrypted with a provider-managed key.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
      *           The labels applied to the resource at the time the profile was generated.
-     *     @type array<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $file_store_info_type_summaries
+     *     @type \Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary[] $file_store_info_type_summaries
      *           InfoTypes detected in this file store.
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $sample_findings_table
      *           The BigQuery table to which the sample findings are written.
      *     @type bool $file_store_is_empty
      *           The file store does not have any files. If the profiling operation failed,
      *           this is false.
-     *     @type array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type \Google\Cloud\Dlp\V2\Tag[] $tags
      *           The tags attached to the resource, including any tags attached during
      *           profiling.
-     *     @type array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *     @type \Google\Cloud\Dlp\V2\RelatedResource[] $related_resources
      *           Resources related to this profile.
-     *     @type array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type \Google\Cloud\Dlp\V2\Domain[] $domains
      *           Domains associated with the profile.
      * }
      */
@@ -456,7 +456,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * profile.
      *
      * Generated from protobuf field <code>repeated string data_storage_locations = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataStorageLocations()
     {
@@ -472,7 +472,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * profile.
      *
      * Generated from protobuf field <code>repeated string data_storage_locations = 19;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataStorageLocations($var)
@@ -887,7 +887,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * FileClusterSummary per each cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileClusterSummary file_cluster_summaries = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileClusterSummary>
      */
     public function getFileClusterSummaries()
     {
@@ -898,7 +898,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * FileClusterSummary per each cluster.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileClusterSummary file_cluster_summaries = 16;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileClusterSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileClusterSummary[] $var
      * @return $this
      */
     public function setFileClusterSummaries($var)
@@ -973,7 +973,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * InfoTypes detected in this file store.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreInfoTypeSummary file_store_info_type_summaries = 21;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>
      */
     public function getFileStoreInfoTypeSummaries()
     {
@@ -984,7 +984,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * InfoTypes detected in this file store.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreInfoTypeSummary file_store_info_type_summaries = 21;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileStoreInfoTypeSummary[] $var
      * @return $this
      */
     public function setFileStoreInfoTypeSummaries($var)
@@ -1064,7 +1064,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * profiling.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Tag>
      */
     public function getTags()
     {
@@ -1076,7 +1076,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * profiling.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Tag tags = 25;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Tag[] $var
      * @return $this
      */
     public function setTags($var)
@@ -1091,7 +1091,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Resources related to this profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\RelatedResource>
      */
     public function getRelatedResources()
     {
@@ -1102,7 +1102,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Resources related to this profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RelatedResource related_resources = 26;</code>
-     * @param array<\Google\Cloud\Dlp\V2\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\RelatedResource[] $var
      * @return $this
      */
     public function setRelatedResources($var)
@@ -1117,7 +1117,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Domains associated with the profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 27;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Domain>
      */
     public function getDomains()
     {
@@ -1128,7 +1128,7 @@ class FileStoreDataProfile extends \Google\Protobuf\Internal\Message
      * Domains associated with the profile.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Domain domains = 27;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Domain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Domain[] $var
      * @return $this
      */
     public function setDomains($var)

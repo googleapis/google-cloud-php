@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\CategoricalStatsResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Histogram of value frequencies in the column.
@@ -59,7 +59,7 @@ class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
      *           Upper bound on the value frequency of the values in this bucket.
      *     @type int|string $bucket_size
      *           Total number of values in this bucket.
-     *     @type array<\Google\Cloud\Dlp\V2\ValueFrequency>|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type \Google\Cloud\Dlp\V2\ValueFrequency[] $bucket_values
      *           Sample of value frequencies in this bucket. The total number of
      *           values returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -154,7 +154,7 @@ class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
      * values returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ValueFrequency bucket_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\ValueFrequency>
      */
     public function getBucketValues()
     {
@@ -166,7 +166,7 @@ class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
      * values returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ValueFrequency bucket_values = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\ValueFrequency>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\ValueFrequency[] $var
      * @return $this
      */
     public function setBucketValues($var)
@@ -204,5 +204,4 @@ class CategoricalStatsHistogramBucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

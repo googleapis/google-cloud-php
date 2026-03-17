@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for 'GetMappingRule' request.
@@ -21,7 +21,7 @@ class GetMappingRuleRequest extends \Google\Protobuf\Internal\Message
      * In order to retrieve a previous revision of the mapping rule, also provide
      * the revision ID.
      * Example:
-     * conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     * conversionWorkspace/123/mappingRules/rule123\@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class GetMappingRuleRequest extends \Google\Protobuf\Internal\Message
      *           In order to retrieve a previous revision of the mapping rule, also provide
      *           the revision ID.
      *           Example:
-     *           conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     *           conversionWorkspace/123/mappingRules/rule123\@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +73,7 @@ class GetMappingRuleRequest extends \Google\Protobuf\Internal\Message
      * In order to retrieve a previous revision of the mapping rule, also provide
      * the revision ID.
      * Example:
-     * conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     * conversionWorkspace/123/mappingRules/rule123\@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -89,7 +89,7 @@ class GetMappingRuleRequest extends \Google\Protobuf\Internal\Message
      * In order to retrieve a previous revision of the mapping rule, also provide
      * the revision ID.
      * Example:
-     * conversionWorkspace/123/mappingRules/rule123&#64;c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
+     * conversionWorkspace/123/mappingRules/rule123\@c7cfa2a8c7cfa2a8c7cfa2a8c7cfa2a8
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

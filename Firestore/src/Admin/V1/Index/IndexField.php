@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Index;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A field in an index.
@@ -188,7 +188,4 @@ class IndexField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IndexField::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField::class);
 

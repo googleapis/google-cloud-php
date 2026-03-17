@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * File share configuration for the instance.
@@ -58,7 +58,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      *           The resource name of the backup, in the format
      *           `projects/{project_number}/locations/{location_id}/backups/{backup_id}`,
      *           that this file share has been restored from.
-     *     @type array<\Google\Cloud\Filestore\V1\NfsExportOptions>|\Google\Protobuf\Internal\RepeatedField $nfs_export_options
+     *     @type \Google\Cloud\Filestore\V1\NfsExportOptions[] $nfs_export_options
      *           Nfs Export Options.
      *           There is a limit of 10 export options per file share.
      * }
@@ -168,7 +168,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      * There is a limit of 10 export options per file share.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NfsExportOptions nfs_export_options = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Filestore\V1\NfsExportOptions>
      */
     public function getNfsExportOptions()
     {
@@ -180,7 +180,7 @@ class FileShareConfig extends \Google\Protobuf\Internal\Message
      * There is a limit of 10 export options per file share.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NfsExportOptions nfs_export_options = 7;</code>
-     * @param array<\Google\Cloud\Filestore\V1\NfsExportOptions>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Filestore\V1\NfsExportOptions[] $var
      * @return $this
      */
     public function setNfsExportOptions($var)

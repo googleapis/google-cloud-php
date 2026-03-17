@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Chunk captures all raw metadata information of items to be recommended or
@@ -128,15 +128,15 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Page span of the chunk.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk\ChunkMetadata $chunk_metadata
      *           Output only. Metadata of the current chunk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_urls
+     *     @type string[] $data_urls
      *           Output only. Image Data URLs if the current chunk contains images.
      *           Data URLs are composed of four parts: a prefix (data:), a MIME type
      *           indicating the type of data, an optional base64 token if non-textual,
      *           and the data itself:
      *           data:[<mediatype>][;base64],<data>
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_contents
+     *     @type string[] $annotation_contents
      *           Output only. Annotation contents if the current chunk contains annotations.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata>|\Google\Protobuf\Internal\RepeatedField $annotation_metadata
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata[] $annotation_metadata
      *           Output only. The annotation metadata includes structured content in the
      *           current chunk.
      * }
@@ -430,7 +430,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * data:[<mediatype>][;base64],<data>
      *
      * Generated from protobuf field <code>repeated string data_urls = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataUrls()
     {
@@ -445,7 +445,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * data:[<mediatype>][;base64],<data>
      *
      * Generated from protobuf field <code>repeated string data_urls = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataUrls($var)
@@ -460,7 +460,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Annotation contents if the current chunk contains annotations.
      *
      * Generated from protobuf field <code>repeated string annotation_contents = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAnnotationContents()
     {
@@ -471,7 +471,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Output only. Annotation contents if the current chunk contains annotations.
      *
      * Generated from protobuf field <code>repeated string annotation_contents = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAnnotationContents($var)
@@ -487,7 +487,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * current chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata annotation_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata>
      */
     public function getAnnotationMetadata()
     {
@@ -499,7 +499,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * current chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Chunk.AnnotationMetadata annotation_metadata = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Chunk\AnnotationMetadata[] $var
      * @return $this
      */
     public function setAnnotationMetadata($var)

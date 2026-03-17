@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Index\IndexField;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The index configuration to support vector search operations
@@ -114,7 +114,4 @@ class VectorConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VectorConfig::class, \Google\Cloud\Firestore\Admin\V1\Index_IndexField_VectorConfig::class);
 

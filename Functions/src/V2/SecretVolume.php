@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a secret volume. It has the information necessary to fetch
@@ -68,7 +68,7 @@ class SecretVolume extends \Google\Protobuf\Internal\Message
      *           assumed that the secret is in the same project as the function.
      *     @type string $secret
      *           Name of the secret in secret manager (not the full resource name).
-     *     @type array<\Google\Cloud\Functions\V2\SecretVolume\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type \Google\Cloud\Functions\V2\SecretVolume\SecretVersion[] $versions
      *           List of secret versions to mount for this secret. If empty, the `latest`
      *           version of the secret will be made available in a file named after the
      *           secret under the mount point.
@@ -175,7 +175,7 @@ class SecretVolume extends \Google\Protobuf\Internal\Message
      * secret under the mount point.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretVolume.SecretVersion versions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\SecretVolume\SecretVersion>
      */
     public function getVersions()
     {
@@ -188,7 +188,7 @@ class SecretVolume extends \Google\Protobuf\Internal\Message
      * secret under the mount point.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.SecretVolume.SecretVersion versions = 4;</code>
-     * @param array<\Google\Cloud\Functions\V2\SecretVolume\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\SecretVolume\SecretVersion[] $var
      * @return $this
      */
     public function setVersions($var)

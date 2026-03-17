@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Document reference.
@@ -25,7 +25,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      * Required.
      * [Document.name][google.cloud.discoveryengine.v1.Document.name] of the
      * document. Full resource name of the referenced document, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      *
      * Generated from protobuf field <code>string document = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -55,10 +55,10 @@ class Reference extends \Google\Protobuf\Internal\Message
      *           Required.
      *           [Document.name][google.cloud.discoveryengine.v1.Document.name] of the
      *           document. Full resource name of the referenced document, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     *           `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      *     @type string $uri
      *           Cloud Storage or HTTP uri for the document.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $chunk_contents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference\ChunkContent[] $chunk_contents
      *           List of cited chunk contents derived from document content.
      * }
      */
@@ -97,7 +97,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      * Required.
      * [Document.name][google.cloud.discoveryengine.v1.Document.name] of the
      * document. Full resource name of the referenced document, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      *
      * Generated from protobuf field <code>string document = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,7 +111,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      * Required.
      * [Document.name][google.cloud.discoveryengine.v1.Document.name] of the
      * document. Full resource name of the referenced document, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;&#47;branches/&#42;&#47;documents/&#42;`.
+     * `projects/{@*}locations/{@*}collections/{@*}dataStores/{@*}branches/{@*}documents/*`.
      *
      * Generated from protobuf field <code>string document = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -155,7 +155,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      * List of cited chunk contents derived from document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference.ChunkContent chunk_contents = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference\ChunkContent>
      */
     public function getChunkContents()
     {
@@ -166,7 +166,7 @@ class Reference extends \Google\Protobuf\Internal\Message
      * List of cited chunk contents derived from document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchResponse.Summary.Reference.ChunkContent chunk_contents = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference\ChunkContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchResponse\Summary\Reference\ChunkContent[] $var
      * @return $this
      */
     public function setChunkContents($var)
@@ -178,5 +178,4 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

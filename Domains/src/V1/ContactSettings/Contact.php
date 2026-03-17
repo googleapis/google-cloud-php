@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1\ContactSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details required for a contact associated with a `Registration`.
@@ -184,5 +184,4 @@ class Contact extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

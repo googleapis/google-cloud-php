@@ -143,9 +143,6 @@ class ServiceBuilderTest extends TestCase
                 'bigQuery',
                 BigQueryClient::class
             ], [
-                'logging',
-                LoggingClient::class
-            ], [
                 'language',
                 LanguageClient::class
             ], [

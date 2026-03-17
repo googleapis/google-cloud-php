@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Enable Stackdriver metric dlp.googleapis.com/finding_count. This
@@ -33,5 +33,4 @@ class PublishToStackdriver extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

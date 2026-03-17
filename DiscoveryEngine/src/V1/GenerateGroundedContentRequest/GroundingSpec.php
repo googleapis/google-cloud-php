@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Grounding specification.
@@ -28,7 +28,7 @@ class GroundingSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource>|\Google\Protobuf\Internal\RepeatedField $grounding_sources
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource[] $grounding_sources
      *           Grounding sources.
      * }
      */
@@ -41,7 +41,7 @@ class GroundingSpec extends \Google\Protobuf\Internal\Message
      * Grounding sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource grounding_sources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource>
      */
     public function getGroundingSources()
     {
@@ -52,7 +52,7 @@ class GroundingSpec extends \Google\Protobuf\Internal\Message
      * Grounding sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GenerateGroundedContentRequest.GroundingSource grounding_sources = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource[] $var
      * @return $this
      */
     public function setGroundingSources($var)
@@ -64,5 +64,4 @@ class GroundingSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

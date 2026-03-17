@@ -5,8 +5,8 @@
 namespace Google\Cloud\EssentialContacts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ComputeContacts method.
@@ -39,7 +39,7 @@ class ComputeContactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\EssentialContacts\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $contacts
+     *     @type \Google\Cloud\EssentialContacts\V1\Contact[] $contacts
      *           All contacts for the resource that are subscribed to the specified
      *           notification categories, including contacts inherited from any parent
      *           resources.
@@ -61,7 +61,7 @@ class ComputeContactsResponse extends \Google\Protobuf\Internal\Message
      * resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.Contact contacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EssentialContacts\V1\Contact>
      */
     public function getContacts()
     {
@@ -74,7 +74,7 @@ class ComputeContactsResponse extends \Google\Protobuf\Internal\Message
      * resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.Contact contacts = 1;</code>
-     * @param array<\Google\Cloud\EssentialContacts\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EssentialContacts\V1\Contact[] $var
      * @return $this
      */
     public function setContacts($var)

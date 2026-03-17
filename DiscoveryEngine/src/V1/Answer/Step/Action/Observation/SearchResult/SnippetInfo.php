@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Answer\Step\Action\Observation\SearchResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Snippet information.
@@ -98,5 +98,4 @@ class SnippetInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

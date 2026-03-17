@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\GenerateGroundedContentRequest\GroundingSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message to be used for grounding based on inline content.
@@ -36,7 +36,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>|\Google\Protobuf\Internal\RepeatedField $grounding_facts
+     *     @type \Google\Cloud\DiscoveryEngine\V1\GroundingFact[] $grounding_facts
      *           List of facts to be used for grounding.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Attributes associated with the content.
@@ -53,7 +53,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * List of facts to be used for grounding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundingFact grounding_facts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>
      */
     public function getGroundingFacts()
     {
@@ -64,7 +64,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * List of facts to be used for grounding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.GroundingFact grounding_facts = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\GroundingFact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\GroundingFact[] $var
      * @return $this
      */
     public function setGroundingFacts($var)
@@ -106,5 +106,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

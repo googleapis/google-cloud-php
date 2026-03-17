@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Interconnect object
@@ -104,7 +104,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Output only. Unique identifier for the link.
      *     @type string $device_cloud_resource_name
      *           Output only. Cloud resource name of the switch device.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $physical_ports
+     *     @type string[] $physical_ports
      *           Output only. Physical ports (e.g., TenGigE0/0/0/1) that form the
      *           interconnect.
      *     @type int $remote_peering_network_type
@@ -354,7 +354,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * interconnect.
      *
      * Generated from protobuf field <code>repeated string physical_ports = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhysicalPorts()
     {
@@ -366,7 +366,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * interconnect.
      *
      * Generated from protobuf field <code>repeated string physical_ports = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhysicalPorts($var)

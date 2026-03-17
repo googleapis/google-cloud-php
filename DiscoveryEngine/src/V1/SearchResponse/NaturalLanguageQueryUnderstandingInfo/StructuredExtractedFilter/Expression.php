@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchResponse\NaturalLanguageQueryUnderstandingInfo\StructuredExtractedFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The expression denoting the filter that was extracted from the input
@@ -205,5 +205,4 @@ class Expression extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

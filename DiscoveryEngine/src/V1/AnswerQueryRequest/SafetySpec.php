@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Safety specification.
@@ -44,7 +44,7 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
      *     @type bool $enable
      *           Enable the safety filtering on the answer response. It is false by
      *           default.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
+     *     @type \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting[] $safety_settings
      *           Optional. Safety settings.
      *           This settings are effective only when the safety_spec.enable is true.
      * }
@@ -87,7 +87,7 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
      * This settings are effective only when the safety_spec.enable is true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec.SafetySetting safety_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting>
      */
     public function getSafetySettings()
     {
@@ -99,7 +99,7 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
      * This settings are effective only when the safety_spec.enable is true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.AnswerQueryRequest.SafetySpec.SafetySetting safety_settings = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SafetySpec\SafetySetting[] $var
      * @return $this
      */
     public function setSafetySettings($var)
@@ -111,5 +111,4 @@ class SafetySpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

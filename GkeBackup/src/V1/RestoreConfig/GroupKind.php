@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1\RestoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This is a direct map to the Kubernetes GroupKind type
@@ -116,5 +116,4 @@ class GroupKind extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

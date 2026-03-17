@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Control;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Adjusts order of products in returned list.
@@ -252,5 +252,4 @@ class BoostAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Logging\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -44,7 +44,7 @@ class LoggerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
     }
 
     public function testDelete()
@@ -65,7 +65,7 @@ class LoggerTest extends TestCase
             'orderBy' => 'timestamp desc',
             'pageSize' => 50
         ];
-        $this->connection->listEntries($options + [
+        $this->connection->listLogEntries($options + [
             'resourceNames' => ["projects/$this->projectId"],
             'filter' => "logName = $this->formattedName"
         ])
@@ -80,7 +80,7 @@ class LoggerTest extends TestCase
 
     public function testGetsEntriesWithoutToken()
     {
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->willReturn([
                 'entries' => [
                     ['textPayload' => $this->textPayload]
@@ -96,7 +96,7 @@ class LoggerTest extends TestCase
 
     public function testGetsEntriesWithToken()
     {
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->willReturn([
                 'nextPageToken' => 'token',
                 'entries' => [
@@ -117,7 +117,7 @@ class LoggerTest extends TestCase
     public function testGetsEntriesWithAdditionalFilter()
     {
         $filter = 'textPayload = "hello world"';
-        $this->connection->listEntries([
+        $this->connection->listLogEntries([
             'resourceNames' => ["projects/$this->projectId"],
             'filter' => $filter . " AND logName = $this->formattedName"
         ])
@@ -201,7 +201,7 @@ class LoggerTest extends TestCase
 
     public function testWritesEntry()
     {
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'textPayload' => $this->textPayload,
@@ -222,7 +222,7 @@ class LoggerTest extends TestCase
     {
         $resource = ['type' => 'default'];
         $labels = ['testing' => 'labels'];
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'textPayload' => $this->textPayload,
@@ -245,7 +245,7 @@ class LoggerTest extends TestCase
         $newResource = ['type' => 'new'];
         $defaultLabels = ['testing' => 'labels'];
         $newLabels = ['new' => 'labels'];
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'textPayload' => $this->textPayload,
@@ -271,7 +271,7 @@ class LoggerTest extends TestCase
     public function testOverwritesEntryOptionsAndWrites()
     {
         $severity = 'INFO';
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'textPayload' => $this->textPayload,
@@ -298,7 +298,7 @@ class LoggerTest extends TestCase
 
     public function testWritesEntries()
     {
-        $this->connection->writeEntries([
+        $this->connection->writeLogEntries([
             'entries' => [
                 [
                     'textPayload' => $this->textPayload,

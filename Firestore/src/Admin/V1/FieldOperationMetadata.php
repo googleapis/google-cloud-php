@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for [google.longrunning.Operation][google.longrunning.Operation]
@@ -84,7 +84,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $field
      *           The field resource that this operation is acting on. For example:
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $index_config_deltas
+     *     @type \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[] $index_config_deltas
      *           A list of
      *           [IndexConfigDelta][google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta],
      *           which describe the intent of this operation.
@@ -211,7 +211,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      * which describe the intent of this operation.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta index_config_deltas = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>
      */
     public function getIndexConfigDeltas()
     {
@@ -224,7 +224,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      * which describe the intent of this operation.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta index_config_deltas = 4;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[] $var
      * @return $this
      */
     public function setIndexConfigDeltas($var)

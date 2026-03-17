@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\BackgroundJobLogEntry;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details regarding a Convert background job.
@@ -64,5 +64,4 @@ class ConvertJobDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

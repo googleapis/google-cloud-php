@@ -75,7 +75,6 @@ class ServicesNotFoundTest extends TestCase
             "PubSub",
             "Spanner",
             "Storage",
-            "Trace",
             "VideoIntelligence",
         ];
     }
@@ -89,7 +88,6 @@ class ServicesNotFoundTest extends TestCase
             ['pubsub'],
             ['spanner'],
             ['storage'],
-            ['trace'],
         ];
     }
 

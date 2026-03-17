@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Constraint is not used as an independent entity, it is retrieved
@@ -79,12 +79,12 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      *     @type string $type
      *           Type of constraint, for example unique, primary key, foreign key (currently
      *           only primary key is supported).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $table_columns
+     *     @type string[] $table_columns
      *           Table columns used as part of the Constraint, for example primary key
      *           constraint should list the columns which constitutes the key.
      *     @type \Google\Protobuf\Struct $custom_features
      *           Custom engine specific features.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reference_columns
+     *     @type string[] $reference_columns
      *           Reference columns which may be associated with the constraint. For example,
      *           if the constraint is a FOREIGN_KEY, this represents the list of full names
      *           of referenced columns by the foreign key.
@@ -163,7 +163,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      * constraint should list the columns which constitutes the key.
      *
      * Generated from protobuf field <code>repeated string table_columns = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTableColumns()
     {
@@ -175,7 +175,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      * constraint should list the columns which constitutes the key.
      *
      * Generated from protobuf field <code>repeated string table_columns = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTableColumns($var)
@@ -228,7 +228,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      * of referenced columns by the foreign key.
      *
      * Generated from protobuf field <code>repeated string reference_columns = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferenceColumns()
     {
@@ -241,7 +241,7 @@ class ConstraintEntity extends \Google\Protobuf\Internal\Message
      * of referenced columns by the foreign key.
      *
      * Generated from protobuf field <code>repeated string reference_columns = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferenceColumns($var)

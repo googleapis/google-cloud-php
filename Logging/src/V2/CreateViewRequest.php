@@ -23,7 +23,7 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A client-assigned identifier such as `"my-view"`. Identifiers are
      * limited to 100 characters and can include only letters, digits,
@@ -31,13 +31,13 @@ class CreateViewRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string view_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $view_id = '';
+    protected $view_id = '';
     /**
      * Required. The new view.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogView view = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $view = null;
+    protected $view = null;
 
     /**
      * Constructor.

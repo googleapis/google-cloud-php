@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feature configurations that are required for creating a Most Popular
@@ -77,5 +77,4 @@ class MostPopularFeatureConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

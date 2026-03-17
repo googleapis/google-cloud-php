@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Document represents the canonical document resource in Document AI. It is an
@@ -154,18 +154,18 @@ class Document extends \Google\Protobuf\Internal\Message
      *           type)](https://www.iana.org/assignments/media-types/media-types.xhtml).
      *     @type string $text
      *           Optional. UTF-8 encoded text in reading order from the document.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $text_styles
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Style[] $text_styles
      *           Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page>|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page[] $pages
      *           Visual page layout for the [Document][google.cloud.documentai.v1.Document].
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[] $entities
      *           A list of entities detected on
      *           [Document.text][google.cloud.documentai.v1.Document.text]. For document
      *           shards, entities in this list may cross shard boundaries.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $entity_relations
+     *     @type \Google\Cloud\DocumentAI\V1\Document\EntityRelation[] $entity_relations
      *           Placeholder.  Relationship among
      *           [Document.entities][google.cloud.documentai.v1.Document.entities].
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $text_changes
+     *     @type \Google\Cloud\DocumentAI\V1\Document\TextChange[] $text_changes
      *           Placeholder.  A list of text corrections made to
      *           [Document.text][google.cloud.documentai.v1.Document.text].  This is usually
      *           used for annotating corrections to OCR mistakes.  Text changes for a given
@@ -175,7 +175,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           document. If the document is not sharded, this message is not specified.
      *     @type \Google\Rpc\Status $error
      *           Any error that occurred while processing this document.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Revision>|\Google\Protobuf\Internal\RepeatedField $revisions
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Revision[] $revisions
      *           Placeholder. Revision history of this document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\DocumentLayout $document_layout
      *           Parsed layout of the document.
@@ -184,7 +184,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput $entity_validation_output
      *           The entity validation output for the document. This is the validation
      *           output for `document.entities` field.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntitiesRevision>|\Google\Protobuf\Internal\RepeatedField $entities_revisions
+     *     @type \Google\Cloud\DocumentAI\V1\Document\EntitiesRevision[] $entities_revisions
      *           A list of entity revisions. The entity revisions are appended to the
      *           document in the processing order. This field can be used for comparing the
      *           entity extraction results at different stages of the processing.
@@ -357,7 +357,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Style>
      * @deprecated
      */
     public function getTextStyles()
@@ -372,7 +372,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5 [deprecated = true];</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Style[] $var
      * @return $this
      * @deprecated
      */
@@ -391,7 +391,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Visual page layout for the [Document][google.cloud.documentai.v1.Document].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page pages = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Page>
      */
     public function getPages()
     {
@@ -402,7 +402,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Visual page layout for the [Document][google.cloud.documentai.v1.Document].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page pages = 6;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page[] $var
      * @return $this
      */
     public function setPages($var)
@@ -419,7 +419,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Entity>
      */
     public function getEntities()
     {
@@ -432,7 +432,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * shards, entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[] $var
      * @return $this
      */
     public function setEntities($var)
@@ -448,7 +448,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>
      */
     public function getEntityRelations()
     {
@@ -460,7 +460,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\EntityRelation[] $var
      * @return $this
      */
     public function setEntityRelations($var)
@@ -478,7 +478,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\TextChange>
      */
     public function getTextChanges()
     {
@@ -492,7 +492,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\TextChange[] $var
      * @return $this
      */
     public function setTextChanges($var)
@@ -581,7 +581,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Placeholder. Revision history of this document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Revision>
      */
     public function getRevisions()
     {
@@ -592,7 +592,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Placeholder. Revision history of this document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Revision>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Revision[] $var
      * @return $this
      */
     public function setRevisions($var)
@@ -719,7 +719,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * entity extraction results at different stages of the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntitiesRevision entities_revisions = 22;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\EntitiesRevision>
      */
     public function getEntitiesRevisions()
     {
@@ -732,7 +732,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * entity extraction results at different stages of the processing.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntitiesRevision entities_revisions = 22;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\EntitiesRevision>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\EntitiesRevision[] $var
      * @return $this
      */
     public function setEntitiesRevisions($var)

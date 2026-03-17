@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudDms\V1\AlloyDbSettings\PrimaryInstanceSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MachineConfig describes the configuration of a machine.
@@ -64,5 +64,4 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -30,7 +30,7 @@ use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Speech\SpeechClient as DeprecatedSpeechClient;
 use Google\Cloud\Speech\V2\Client\SpeechClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Trace\TraceClient;
+use Google\Cloud\Trace\V2\Client\TraceServiceClient;
 use Google\Cloud\Translate\V2\TranslateClient as DeprecatedTranslateClient;
 use Google\Cloud\Translate\V3\Client\TranslationServiceClient;
 use Google\Cloud\Vision\V1\Client\ImageAnnotatorClient;
@@ -311,22 +311,16 @@ class ServiceBuilder
     }
 
     /**
-     * Google Stackdriver Trace allows you to collect latency data from your applications
-     * and display it in the Google Cloud Platform Console. Find more information at
-     * [Stackdriver Trace API docs](https://cloud.google.com/trace/docs/).
-     *
-     * Example:
-     * ```
-     * $trace = $cloud->trace();
-     * ```
-     *
-     * @param array $config [optional] Configuration options. See
-     *        {@see \Google\Cloud\Core\ServiceBuilder::__construct()} for the available options.
-     * @return TraceClient
+     * @deprecated
+     * @see TraceServiceClient
+     * @throws \BadMethodCallException
      */
     public function trace(array $config = [])
     {
-        return $this->createClient(TraceClient::class, 'trace', $config);
+        throw new \BadMethodCallException(sprintf(
+            'This method is no longer supported, create %s directly instead.',
+            TraceServiceClient::class
+        ));
     }
 
     /**

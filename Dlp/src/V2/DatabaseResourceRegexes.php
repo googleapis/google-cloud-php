@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of regular expressions to determine what database resources to
@@ -32,7 +32,7 @@ class DatabaseResourceRegexes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\DatabaseResourceRegex>|\Google\Protobuf\Internal\RepeatedField $patterns
+     *     @type \Google\Cloud\Dlp\V2\DatabaseResourceRegex[] $patterns
      *           A group of regular expression patterns to match against one or more
      *           database resources.
      *           Maximum of 100 entries. The sum of all regular expression's length can't
@@ -51,7 +51,7 @@ class DatabaseResourceRegexes extends \Google\Protobuf\Internal\Message
      * exceed 10 KiB.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DatabaseResourceRegex patterns = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DatabaseResourceRegex>
      */
     public function getPatterns()
     {
@@ -65,7 +65,7 @@ class DatabaseResourceRegexes extends \Google\Protobuf\Internal\Message
      * exceed 10 KiB.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DatabaseResourceRegex patterns = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DatabaseResourceRegex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DatabaseResourceRegex[] $var
      * @return $this
      */
     public function setPatterns($var)

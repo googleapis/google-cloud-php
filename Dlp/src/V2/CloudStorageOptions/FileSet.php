@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CloudStorageOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Set of files to scan.
@@ -21,8 +21,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
      * If the url ends in a trailing slash, the bucket or directory represented
      * by the url will be scanned non-recursively (content in sub-directories
      * will not be scanned). This means that `gs://mybucket/` is equivalent to
-     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
-     * `gs://mybucket/directory/&#42;`.
+     * `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/*`.
      * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
@@ -48,8 +48,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
      *           If the url ends in a trailing slash, the bucket or directory represented
      *           by the url will be scanned non-recursively (content in sub-directories
      *           will not be scanned). This means that `gs://mybucket/` is equivalent to
-     *           `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
-     *           `gs://mybucket/directory/&#42;`.
+     *           `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to
+     *           `gs://mybucket/directory/*`.
      *           Exactly one of `url` or `regex_file_set` must be set.
      *     @type \Google\Cloud\Dlp\V2\CloudStorageRegexFileSet $regex_file_set
      *           The regex-filtered set of files to scan. Exactly one of `url` or
@@ -67,8 +67,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
      * If the url ends in a trailing slash, the bucket or directory represented
      * by the url will be scanned non-recursively (content in sub-directories
      * will not be scanned). This means that `gs://mybucket/` is equivalent to
-     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
-     * `gs://mybucket/directory/&#42;`.
+     * `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/*`.
      * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
@@ -85,8 +85,8 @@ class FileSet extends \Google\Protobuf\Internal\Message
      * If the url ends in a trailing slash, the bucket or directory represented
      * by the url will be scanned non-recursively (content in sub-directories
      * will not be scanned). This means that `gs://mybucket/` is equivalent to
-     * `gs://mybucket/&#42;`, and `gs://mybucket/directory/` is equivalent to
-     * `gs://mybucket/directory/&#42;`.
+     * `gs://mybucket/*`, and `gs://mybucket/directory/` is equivalent to
+     * `gs://mybucket/directory/*`.
      * Exactly one of `url` or `regex_file_set` must be set.
      *
      * Generated from protobuf field <code>string url = 1;</code>
@@ -140,5 +140,4 @@ class FileSet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
