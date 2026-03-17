@@ -25,7 +25,6 @@ use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\FieldPath;
 use Google\Cloud\Firestore\FieldValue;
 use Google\Cloud\Firestore\Query;
-use Google\Cloud\Firestore\V1\FirestoreClient as FirestoreGapicClient;
 use Google\Cloud\Firestore\V1\StructuredQuery\CompositeFilter\Operator;
 use Google\Cloud\Firestore\V1\StructuredQuery\Direction;
 use Google\Cloud\Firestore\V1\StructuredQuery\FieldFilter\Operator as FieldFilterOperator;
@@ -35,6 +34,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 use Google\Cloud\Firestore\Filter;
+use Google\Cloud\Firestore\PathTrait;
 use Google\Cloud\Firestore\V1\Client\FirestoreClient;
 use Google\Cloud\Firestore\V1\ExplainOptions;
 use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
@@ -698,7 +698,12 @@ class QueryTest extends TestCase
 
     public function whereDocument()
     {
-        $name = FirestoreGapicClient::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
+        $pathTraitImpl = new class() {
+            use PathTrait {
+                PathTrait::documentPathName as public;
+            }
+        };
+        $name = $pathTraitImpl::documentPathName(self::PROJECT, self::DATABASE, self::COLLECTION . '/a/b/c');
 
         $ref = $this->prophesize(DocumentReference::class);
         $ref->name()->willReturn($name);
