@@ -5,8 +5,8 @@
 namespace Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Properties of the SKU instances being reserved.
@@ -53,11 +53,11 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
      *           Specifies type of machine (name only) which has fixed number of vCPUs
      *           and fixed amount of memory. This also includes specifying custom
      *           machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerator
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AcceleratorConfig[] $guest_accelerator
      *           Specifies accelerator type and count.
      *     @type string $min_cpu_platform
      *           Minimum cpu platform the reservation.
-     *     @type array<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AllocatedDisk>|\Google\Protobuf\Internal\RepeatedField $local_ssd
+     *     @type \Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AllocatedDisk[] $local_ssd
      *           Specifies amount of local ssd to reserve with each instance. The type
      *           of disk is local-ssd.
      * }
@@ -101,7 +101,7 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
      * Specifies accelerator type and count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation.SpecificSKUAllocation.AllocatedInstanceProperties.AcceleratorConfig guest_accelerator = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AcceleratorConfig>
      */
     public function getGuestAccelerator()
     {
@@ -112,7 +112,7 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
      * Specifies accelerator type and count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation.SpecificSKUAllocation.AllocatedInstanceProperties.AcceleratorConfig guest_accelerator = 2;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AcceleratorConfig[] $var
      * @return $this
      */
     public function setGuestAccelerator($var)
@@ -154,7 +154,7 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
      * of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation.SpecificSKUAllocation.AllocatedInstanceProperties.AllocatedDisk local_ssd = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AllocatedDisk>
      */
     public function getLocalSsd()
     {
@@ -166,7 +166,7 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
      * of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.capacityplanner.v1beta.Allocation.SpecificSKUAllocation.AllocatedInstanceProperties.AllocatedDisk local_ssd = 4;</code>
-     * @param array<\Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AllocatedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CapacityPlanner\V1beta\Allocation\SpecificSKUAllocation\AllocatedInstanceProperties\AllocatedDisk[] $var
      * @return $this
      */
     public function setLocalSsd($var)
@@ -178,5 +178,4 @@ class AllocatedInstanceProperties extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

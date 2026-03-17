@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A common proto for logging HTTP requests. Only contains semantics

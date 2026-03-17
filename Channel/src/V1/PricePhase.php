@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the price by the duration of months.
@@ -62,7 +62,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      *           Defines first period for the phase.
      *     @type \Google\Cloud\Channel\V1\Price $price
      *           Price of the phase. Present if there are no price tiers.
-     *     @type array<\Google\Cloud\Channel\V1\PriceTier>|\Google\Protobuf\Internal\RepeatedField $price_tiers
+     *     @type \Google\Cloud\Channel\V1\PriceTier[] $price_tiers
      *           Price by the resource tiers.
      * }
      */
@@ -189,7 +189,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      * Price by the resource tiers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceTier price_tiers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\PriceTier>
      */
     public function getPriceTiers()
     {
@@ -200,7 +200,7 @@ class PricePhase extends \Google\Protobuf\Internal\Message
      * Price by the resource tiers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceTier price_tiers = 5;</code>
-     * @param array<\Google\Cloud\Channel\V1\PriceTier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\PriceTier[] $var
      * @return $this
      */
     public function setPriceTiers($var)

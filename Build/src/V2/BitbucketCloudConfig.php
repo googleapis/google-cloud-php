@@ -5,8 +5,8 @@
 namespace Google\Cloud\Build\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to Bitbucket Cloud.
@@ -24,7 +24,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
     protected $workspace = '';
     /**
      * Required. SecretManager resource containing the webhook secret used to
-     * verify webhook events, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * verify webhook events, formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
      *           Platform.
      *     @type string $webhook_secret_secret_version
      *           Required. SecretManager resource containing the webhook secret used to
-     *           verify webhook events, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           verify webhook events, formatted as `projects/{@*}secrets/{@*}versions/*`.
      *     @type \Google\Cloud\Build\V2\UserCredential $read_authorizer_credential
      *           Required. An access token with the `repository` access. It can be either a
      *           workspace, project or repository access token. It's recommended to use a
@@ -105,7 +105,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. SecretManager resource containing the webhook secret used to
-     * verify webhook events, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * verify webhook events, formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -117,7 +117,7 @@ class BitbucketCloudConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. SecretManager resource containing the webhook secret used to
-     * verify webhook events, formatted as `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * verify webhook events, formatted as `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string webhook_secret_secret_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

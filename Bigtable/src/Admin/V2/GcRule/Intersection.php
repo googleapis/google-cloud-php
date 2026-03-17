@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\GcRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A GcRule which deletes cells matching all of the given rules.
@@ -28,7 +28,7 @@ class Intersection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\GcRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Bigtable\Admin\V2\GcRule[] $rules
      *           Only delete cells which would be deleted by every element of `rules`.
      * }
      */
@@ -41,7 +41,7 @@ class Intersection extends \Google\Protobuf\Internal\Message
      * Only delete cells which would be deleted by every element of `rules`.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\GcRule>
      */
     public function getRules()
     {
@@ -52,7 +52,7 @@ class Intersection extends \Google\Protobuf\Internal\Message
      * Only delete cells which would be deleted by every element of `rules`.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\GcRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule[] $var
      * @return $this
      */
     public function setRules($var)
@@ -64,7 +64,4 @@ class Intersection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Intersection::class, \Google\Cloud\Bigtable\Admin\V2\GcRule_Intersection::class);
 

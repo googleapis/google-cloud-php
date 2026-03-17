@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the BulkDownloadFeedbackLabel endpoint.
@@ -117,7 +117,7 @@ class BulkDownloadFeedbackLabelsRequest extends \Google\Protobuf\Internal\Messag
      *           conversations that match the filter.
      *           If `template_qa_scorecard_id` is set, all the conversations that match the
      *           filter will be paired with the questions under the scorecard for labeling.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $template_qa_scorecard_id
+     *     @type string[] $template_qa_scorecard_id
      *           Optional. If set, a template for labeling conversations and scorecard
      *           questions will be created from the conversation_filter and the questions
      *           under the scorecard(s). The feedback label `filter` will be ignored.
@@ -325,7 +325,7 @@ class BulkDownloadFeedbackLabelsRequest extends \Google\Protobuf\Internal\Messag
      * under the scorecard(s). The feedback label `filter` will be ignored.
      *
      * Generated from protobuf field <code>repeated string template_qa_scorecard_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTemplateQaScorecardId()
     {
@@ -338,7 +338,7 @@ class BulkDownloadFeedbackLabelsRequest extends \Google\Protobuf\Internal\Messag
      * under the scorecard(s). The feedback label `filter` will be ignored.
      *
      * Generated from protobuf field <code>repeated string template_qa_scorecard_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTemplateQaScorecardId($var)

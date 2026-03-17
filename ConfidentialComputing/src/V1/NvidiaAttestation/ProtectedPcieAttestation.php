@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Protected PCIe (PPCIE) attestation.
@@ -35,9 +35,9 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>|\Google\Protobuf\Internal\RepeatedField $gpu_quotes
+     *     @type \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo[] $gpu_quotes
      *           Optional. A list of GPU infos.
-     *     @type array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\SwitchInfo>|\Google\Protobuf\Internal\RepeatedField $switch_quotes
+     *     @type \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\SwitchInfo[] $switch_quotes
      *           Optional. A list of SWITCH infos.
      * }
      */
@@ -50,7 +50,7 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
      * Optional. A list of GPU infos.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.GpuInfo gpu_quotes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>
      */
     public function getGpuQuotes()
     {
@@ -61,7 +61,7 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
      * Optional. A list of GPU infos.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.GpuInfo gpu_quotes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo[] $var
      * @return $this
      */
     public function setGpuQuotes($var)
@@ -76,7 +76,7 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
      * Optional. A list of SWITCH infos.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.SwitchInfo switch_quotes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\SwitchInfo>
      */
     public function getSwitchQuotes()
     {
@@ -87,7 +87,7 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
      * Optional. A list of SWITCH infos.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.SwitchInfo switch_quotes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\SwitchInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\SwitchInfo[] $var
      * @return $this
      */
     public function setSwitchQuotes($var)
@@ -99,5 +99,4 @@ class ProtectedPcieAttestation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

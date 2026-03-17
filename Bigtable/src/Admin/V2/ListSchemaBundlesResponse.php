@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -36,7 +36,7 @@ class ListSchemaBundlesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Bigtable\Admin\V2\SchemaBundle>|\Google\Protobuf\Internal\RepeatedField $schema_bundles
+     *     @type \Google\Cloud\Bigtable\Admin\V2\SchemaBundle[] $schema_bundles
      *           The schema bundles from the specified table.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListSchemaBundlesResponse extends \Google\Protobuf\Internal\Message
      * The schema bundles from the specified table.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.SchemaBundle schema_bundles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\Admin\V2\SchemaBundle>
      */
     public function getSchemaBundles()
     {
@@ -63,7 +63,7 @@ class ListSchemaBundlesResponse extends \Google\Protobuf\Internal\Message
      * The schema bundles from the specified table.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.SchemaBundle schema_bundles = 1;</code>
-     * @param array<\Google\Cloud\Bigtable\Admin\V2\SchemaBundle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\Admin\V2\SchemaBundle[] $var
      * @return $this
      */
     public function setSchemaBundles($var)

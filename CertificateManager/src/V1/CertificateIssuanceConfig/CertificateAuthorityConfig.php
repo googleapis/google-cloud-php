@@ -5,8 +5,8 @@
 namespace Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The CA that issues the workload certificate. It includes CA address, type,
@@ -73,5 +73,4 @@ class CertificateAuthorityConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

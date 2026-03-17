@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for QueryEligibleBillingAccounts.
@@ -31,7 +31,7 @@ class QueryEligibleBillingAccountsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\SkuPurchaseGroup>|\Google\Protobuf\Internal\RepeatedField $sku_purchase_groups
+     *     @type \Google\Cloud\Channel\V1\SkuPurchaseGroup[] $sku_purchase_groups
      *           List of SKU purchase groups where each group represents a set of SKUs that
      *           must be purchased using the same billing account. Each SKU from
      *           [QueryEligibleBillingAccountsRequest.skus] will appear in exactly one SKU
@@ -50,7 +50,7 @@ class QueryEligibleBillingAccountsResponse extends \Google\Protobuf\Internal\Mes
      * group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.SkuPurchaseGroup sku_purchase_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\SkuPurchaseGroup>
      */
     public function getSkuPurchaseGroups()
     {
@@ -64,7 +64,7 @@ class QueryEligibleBillingAccountsResponse extends \Google\Protobuf\Internal\Mes
      * group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.SkuPurchaseGroup sku_purchase_groups = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\SkuPurchaseGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\SkuPurchaseGroup[] $var
      * @return $this
      */
     public function setSkuPurchaseGroups($var)

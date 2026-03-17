@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Selector of all available annotators and phrase matchers to run.
@@ -115,7 +115,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *           Whether to run the silence annotator.
      *     @type bool $run_phrase_matcher_annotator
      *           Whether to run the active phrase matcher annotator(s).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_matchers
+     *     @type string[] $phrase_matchers
      *           The list of phrase matchers to run. If not provided, all active phrase
      *           matchers will be used. If inactive phrase matchers are provided, they will
      *           not be used. Phrase matchers will be run only if
@@ -130,7 +130,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      *     @type bool $run_issue_model_annotator
      *           Whether to run the issue model annotator. A model should have already been
      *           deployed for this to take effect.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $issue_models
+     *     @type string[] $issue_models
      *           The issue model to run. If not provided, the most recently deployed topic
      *           model will be used. The provided issue model will only be used for
      *           inference if the issue model is deployed and if run_issue_model_annotator
@@ -237,7 +237,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      *
      * Generated from protobuf field <code>repeated string phrase_matchers = 4 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhraseMatchers()
     {
@@ -252,7 +252,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}
      *
      * Generated from protobuf field <code>repeated string phrase_matchers = 4 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhraseMatchers($var)
@@ -377,7 +377,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * provided issue model will be used for inference.
      *
      * Generated from protobuf field <code>repeated string issue_models = 10 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIssueModels()
     {
@@ -392,7 +392,7 @@ class AnnotatorSelector extends \Google\Protobuf\Internal\Message
      * provided issue model will be used for inference.
      *
      * Generated from protobuf field <code>repeated string issue_models = 10 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIssueModels($var)

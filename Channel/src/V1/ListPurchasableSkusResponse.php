@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListPurchasableSkus.
@@ -34,7 +34,7 @@ class ListPurchasableSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\PurchasableSku>|\Google\Protobuf\Internal\RepeatedField $purchasable_skus
+     *     @type \Google\Cloud\Channel\V1\PurchasableSku[] $purchasable_skus
      *           The list of SKUs requested.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -49,7 +49,7 @@ class ListPurchasableSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PurchasableSku purchasable_skus = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\PurchasableSku>
      */
     public function getPurchasableSkus()
     {
@@ -60,7 +60,7 @@ class ListPurchasableSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of SKUs requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PurchasableSku purchasable_skus = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\PurchasableSku>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\PurchasableSku[] $var
      * @return $this
      */
     public function setPurchasableSkus($var)

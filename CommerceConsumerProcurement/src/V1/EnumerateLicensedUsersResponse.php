@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class EnumerateLicensedUsersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LicensedUser>|\Google\Protobuf\Internal\RepeatedField $licensed_users
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\LicensedUser[] $licensed_users
      *           The list of licensed users.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class EnumerateLicensedUsersResponse extends \Google\Protobuf\Internal\Message
      * The list of licensed users.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LicensedUser licensed_users = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\LicensedUser>
      */
     public function getLicensedUsers()
     {
@@ -63,7 +63,7 @@ class EnumerateLicensedUsersResponse extends \Google\Protobuf\Internal\Message
      * The list of licensed users.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LicensedUser licensed_users = 1;</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LicensedUser>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\LicensedUser[] $var
      * @return $this
      */
     public function setLicensedUsers($var)

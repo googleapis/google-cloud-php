@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\Agent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A toolset with a selection of its tools.
@@ -40,7 +40,7 @@ class AgentToolset extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the toolset.
      *           Format:
      *           `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tool_ids
+     *     @type string[] $tool_ids
      *           Optional. The tools IDs to filter the toolset.
      * }
      */
@@ -83,7 +83,7 @@ class AgentToolset extends \Google\Protobuf\Internal\Message
      * Optional. The tools IDs to filter the toolset.
      *
      * Generated from protobuf field <code>repeated string tool_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getToolIds()
     {
@@ -94,7 +94,7 @@ class AgentToolset extends \Google\Protobuf\Internal\Message
      * Optional. The tools IDs to filter the toolset.
      *
      * Generated from protobuf field <code>repeated string tool_ids = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setToolIds($var)
@@ -106,5 +106,4 @@ class AgentToolset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

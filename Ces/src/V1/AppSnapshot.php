@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A snapshot of the app.
@@ -60,15 +60,15 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Ces\V1\App $app
      *           Optional. The basic settings for the app.
-     *     @type array<\Google\Cloud\Ces\V1\Agent>|\Google\Protobuf\Internal\RepeatedField $agents
+     *     @type \Google\Cloud\Ces\V1\Agent[] $agents
      *           Optional. List of agents in the app.
-     *     @type array<\Google\Cloud\Ces\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\Ces\V1\Tool[] $tools
      *           Optional. List of tools in the app.
-     *     @type array<\Google\Cloud\Ces\V1\Example>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\Ces\V1\Example[] $examples
      *           Optional. List of examples in the app.
-     *     @type array<\Google\Cloud\Ces\V1\Guardrail>|\Google\Protobuf\Internal\RepeatedField $guardrails
+     *     @type \Google\Cloud\Ces\V1\Guardrail[] $guardrails
      *           Optional. List of guardrails in the app.
-     *     @type array<\Google\Cloud\Ces\V1\Toolset>|\Google\Protobuf\Internal\RepeatedField $toolsets
+     *     @type \Google\Cloud\Ces\V1\Toolset[] $toolsets
      *           Optional. List of toolsets in the app.
      * }
      */
@@ -117,7 +117,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of agents in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Agent agents = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Agent>
      */
     public function getAgents()
     {
@@ -128,7 +128,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of agents in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Agent agents = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Agent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Agent[] $var
      * @return $this
      */
     public function setAgents($var)
@@ -143,7 +143,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of tools in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Tool>
      */
     public function getTools()
     {
@@ -154,7 +154,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of tools in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)
@@ -169,7 +169,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of examples in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Example examples = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Example>
      */
     public function getExamples()
     {
@@ -180,7 +180,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of examples in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Example examples = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Example>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Example[] $var
      * @return $this
      */
     public function setExamples($var)
@@ -195,7 +195,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of guardrails in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Guardrail guardrails = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Guardrail>
      */
     public function getGuardrails()
     {
@@ -206,7 +206,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of guardrails in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Guardrail guardrails = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Guardrail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Guardrail[] $var
      * @return $this
      */
     public function setGuardrails($var)
@@ -221,7 +221,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of toolsets in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Toolset toolsets = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Toolset>
      */
     public function getToolsets()
     {
@@ -232,7 +232,7 @@ class AppSnapshot extends \Google\Protobuf\Internal\Message
      * Optional. List of toolsets in the app.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Toolset toolsets = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Toolset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Toolset[] $var
      * @return $this
      */
     public function setToolsets($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response to list analyses.
@@ -35,7 +35,7 @@ class ListAnalysesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Analysis>|\Google\Protobuf\Internal\RepeatedField $analyses
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis[] $analyses
      *           The analyses that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAnalysesResponse extends \Google\Protobuf\Internal\Message
      * The analyses that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Analysis analyses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Analysis>
      */
     public function getAnalyses()
     {
@@ -62,7 +62,7 @@ class ListAnalysesResponse extends \Google\Protobuf\Internal\Message
      * The analyses that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Analysis analyses = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Analysis>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Analysis[] $var
      * @return $this
      */
     public function setAnalyses($var)

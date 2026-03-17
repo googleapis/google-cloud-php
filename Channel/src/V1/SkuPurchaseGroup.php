@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a set of SKUs that must be purchased using the same billing
@@ -36,10 +36,10 @@ class SkuPurchaseGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type string[] $skus
      *           Resource names of the SKUs included in this group.
      *           Format: products/{product_id}/skus/{sku_id}.
-     *     @type array<\Google\Cloud\Channel\V1\BillingAccountPurchaseInfo>|\Google\Protobuf\Internal\RepeatedField $billing_account_purchase_infos
+     *     @type \Google\Cloud\Channel\V1\BillingAccountPurchaseInfo[] $billing_account_purchase_infos
      *           List of billing accounts that are eligible to purhcase these SKUs.
      * }
      */
@@ -53,7 +53,7 @@ class SkuPurchaseGroup extends \Google\Protobuf\Internal\Message
      * Format: products/{product_id}/skus/{sku_id}.
      *
      * Generated from protobuf field <code>repeated string skus = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSkus()
     {
@@ -65,7 +65,7 @@ class SkuPurchaseGroup extends \Google\Protobuf\Internal\Message
      * Format: products/{product_id}/skus/{sku_id}.
      *
      * Generated from protobuf field <code>repeated string skus = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSkus($var)
@@ -80,7 +80,7 @@ class SkuPurchaseGroup extends \Google\Protobuf\Internal\Message
      * List of billing accounts that are eligible to purhcase these SKUs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.BillingAccountPurchaseInfo billing_account_purchase_infos = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\BillingAccountPurchaseInfo>
      */
     public function getBillingAccountPurchaseInfos()
     {
@@ -91,7 +91,7 @@ class SkuPurchaseGroup extends \Google\Protobuf\Internal\Message
      * List of billing accounts that are eligible to purhcase these SKUs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.BillingAccountPurchaseInfo billing_account_purchase_infos = 2;</code>
-     * @param array<\Google\Cloud\Channel\V1\BillingAccountPurchaseInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\BillingAccountPurchaseInfo[] $var
      * @return $this
      */
     public function setBillingAccountPurchaseInfos($var)

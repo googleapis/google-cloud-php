@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MultiGpuSecurePassthroughAttestation contains the attestation evidence
@@ -29,7 +29,7 @@ class MultiGpuSecurePassthroughAttestation extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>|\Google\Protobuf\Internal\RepeatedField $gpu_quotes
+     *     @type \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo[] $gpu_quotes
      *           Optional. A list of GPU quotes.
      * }
      */
@@ -42,7 +42,7 @@ class MultiGpuSecurePassthroughAttestation extends \Google\Protobuf\Internal\Mes
      * Optional. A list of GPU quotes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.GpuInfo gpu_quotes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>
      */
     public function getGpuQuotes()
     {
@@ -53,7 +53,7 @@ class MultiGpuSecurePassthroughAttestation extends \Google\Protobuf\Internal\Mes
      * Optional. A list of GPU quotes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.confidentialcomputing.v1.NvidiaAttestation.GpuInfo gpu_quotes = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation\GpuInfo[] $var
      * @return $this
      */
     public function setGpuQuotes($var)
@@ -65,5 +65,4 @@ class MultiGpuSecurePassthroughAttestation extends \Google\Protobuf\Internal\Mes
     }
 
 }
-
 

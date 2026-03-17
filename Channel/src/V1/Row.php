@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A row of report values.
@@ -36,7 +36,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Channel\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\Channel\V1\ReportValue[] $values
      *           The list of values in the row.
      *     @type string $partition_key
      *           The key for the partition this row belongs to. This field is empty
@@ -52,7 +52,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The list of values in the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ReportValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\ReportValue>
      */
     public function getValues()
     {
@@ -63,7 +63,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The list of values in the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ReportValue values = 1;</code>
-     * @param array<\Google\Cloud\Channel\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ReportValue[] $var
      * @return $this
      */
     public function setValues($var)

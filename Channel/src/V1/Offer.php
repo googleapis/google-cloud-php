@@ -5,8 +5,8 @@
 namespace Google\Cloud\Channel\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an offer made to resellers for purchase.
@@ -96,13 +96,13 @@ class Offer extends \Google\Protobuf\Internal\Message
      *           Describes the payment plan for the Offer.
      *     @type \Google\Cloud\Channel\V1\Constraints $constraints
      *           Constraints on transacting the Offer.
-     *     @type array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $price_by_resources
+     *     @type \Google\Cloud\Channel\V1\PriceByResource[] $price_by_resources
      *           Price for each monetizable resource type.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Start of the Offer validity time.
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Output only. End of the Offer validity time.
-     *     @type array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
+     *     @type \Google\Cloud\Channel\V1\ParameterDefinition[] $parameter_definitions
      *           Parameters required to use current Offer to purchase.
      *     @type string $deal_code
      *           The deal code of the offer to get a special promotion or discount.
@@ -289,7 +289,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Price for each monetizable resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceByResource price_by_resources = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\PriceByResource>
      */
     public function getPriceByResources()
     {
@@ -300,7 +300,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Price for each monetizable resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.PriceByResource price_by_resources = 6;</code>
-     * @param array<\Google\Cloud\Channel\V1\PriceByResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\PriceByResource[] $var
      * @return $this
      */
     public function setPriceByResources($var)
@@ -387,7 +387,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Parameters required to use current Offer to purchase.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Channel\V1\ParameterDefinition>
      */
     public function getParameterDefinitions()
     {
@@ -398,7 +398,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Parameters required to use current Offer to purchase.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
-     * @param array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Channel\V1\ParameterDefinition[] $var
      * @return $this
      */
     public function setParameterDefinitions($var)

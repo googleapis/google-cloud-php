@@ -5,8 +5,8 @@
 namespace Google\Cloud\Billing\Budgets\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter for a budget, limiting the scope of the cost to calculate.
@@ -98,12 +98,12 @@ class Filter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type string[] $projects
      *           Optional. A set of projects of the form `projects/{project}`,
      *           specifying that usage from only this set of projects should be
      *           included in the budget. If omitted, the report includes all usage for
      *           the billing account, regardless of which project the usage occurred on.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_ancestors
+     *     @type string[] $resource_ancestors
      *           Optional. A set of folder and organization names of the form
      *           `folders/{folderId}` or `organizations/{organizationId}`, specifying that
      *           usage from only this set of folders and organizations should be included in
@@ -111,7 +111,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           account pays for. If the folder or organization contains projects that are
      *           paid for by a different Cloud Billing account, the budget *doesn't* apply
      *           to those projects.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $credit_types
+     *     @type string[] $credit_types
      *           Optional. If
      *           [Filter.credit_types_treatment][google.cloud.billing.budgets.v1.Filter.credit_types_treatment]
      *           is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be
@@ -123,14 +123,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *     @type int $credit_types_treatment
      *           Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type string[] $services
      *           Optional. A set of services of the form `services/{service_id}`,
      *           specifying that usage from only this set of services should be
      *           included in the budget. If omitted, the report includes usage for
      *           all the services.
      *           The service names are available through the Catalog API:
      *           https://cloud.google.com/billing/v1/how-tos/catalog-api.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subaccounts
+     *     @type string[] $subaccounts
      *           Optional. A set of subaccounts of the form `billingAccounts/{account_id}`,
      *           specifying that usage from only this set of subaccounts should be included
      *           in the budget. If a subaccount is set to the name of the parent account,
@@ -169,7 +169,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * the billing account, regardless of which project the usage occurred on.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjects()
     {
@@ -183,7 +183,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * the billing account, regardless of which project the usage occurred on.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjects($var)
@@ -204,7 +204,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * to those projects.
      *
      * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceAncestors()
     {
@@ -221,7 +221,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * to those projects.
      *
      * Generated from protobuf field <code>repeated string resource_ancestors = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceAncestors($var)
@@ -244,7 +244,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCreditTypes()
     {
@@ -263,7 +263,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCreditTypes($var)
@@ -309,7 +309,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
      *
      * Generated from protobuf field <code>repeated string services = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServices()
     {
@@ -325,7 +325,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
      *
      * Generated from protobuf field <code>repeated string services = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServices($var)
@@ -345,7 +345,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubaccounts()
     {
@@ -361,7 +361,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubaccounts($var)

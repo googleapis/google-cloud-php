@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An example represents a sample conversation between the user and the
@@ -98,7 +98,7 @@ class Example extends \Google\Protobuf\Internal\Message
      *           specified, the example represents a conversation that is handled by the
      *           root agent. Format:
      *           `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
-     *     @type array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Ces\V1\Message[] $messages
      *           Optional. The collection of messages that make up the conversation.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when the example was created.
@@ -236,7 +236,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * Optional. The collection of messages that make up the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Message>
      */
     public function getMessages()
     {
@@ -247,7 +247,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * Optional. The collection of messages that make up the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message messages = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Message[] $var
      * @return $this
      */
     public function setMessages($var)

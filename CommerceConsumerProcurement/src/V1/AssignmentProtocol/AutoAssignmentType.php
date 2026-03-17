@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1\AssignmentProtocol;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for automatic assignments handled by data plane operations.
@@ -82,5 +82,4 @@ class AutoAssignmentType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Config\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A preview represents a set of actions Infra Manager would perform
@@ -221,7 +221,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      *           Output only. Additional information regarding the current state.
      *     @type string $build
      *           Output only. Cloud Build instance UUID associated with this preview.
-     *     @type array<\Google\Cloud\Config\V1\TerraformError>|\Google\Protobuf\Internal\RepeatedField $tf_errors
+     *     @type \Google\Cloud\Config\V1\TerraformError[] $tf_errors
      *           Output only. Summary of errors encountered during Terraform preview.
      *           It has a size limit of 10, i.e. only top 10 errors will be summarized here.
      *     @type string $error_logs
@@ -682,7 +682,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      * It has a size limit of 10, i.e. only top 10 errors will be summarized here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformError tf_errors = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Config\V1\TerraformError>
      */
     public function getTfErrors()
     {
@@ -694,7 +694,7 @@ class Preview extends \Google\Protobuf\Internal\Message
      * It has a size limit of 10, i.e. only top 10 errors will be summarized here.
      *
      * Generated from protobuf field <code>repeated .google.cloud.config.v1.TerraformError tf_errors = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Config\V1\TerraformError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Config\V1\TerraformError[] $var
      * @return $this
      */
     public function setTfErrors($var)

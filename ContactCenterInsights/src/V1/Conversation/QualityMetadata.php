@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\Conversation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Conversation metadata related to quality management.
@@ -52,7 +52,7 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
      *           The amount of time the customer waited to connect with an agent.
      *     @type string $menu_path
      *           An arbitrary string value specifying the menu path the customer took.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata\AgentInfo>|\Google\Protobuf\Internal\RepeatedField $agent_info
+     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata\AgentInfo[] $agent_info
      *           Information about agents involved in the call.
      * }
      */
@@ -153,7 +153,7 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
      * Information about agents involved in the call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata.AgentInfo agent_info = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata\AgentInfo>
      */
     public function getAgentInfo()
     {
@@ -164,7 +164,7 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
      * Information about agents involved in the call.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.QualityMetadata.AgentInfo agent_info = 4;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata\AgentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\QualityMetadata\AgentInfo[] $var
      * @return $this
      */
     public function setAgentInfo($var)
@@ -176,5 +176,4 @@ class QualityMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

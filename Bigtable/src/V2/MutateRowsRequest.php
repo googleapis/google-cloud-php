@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for BigtableService.MutateRows.
@@ -121,7 +121,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $app_profile_id
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
-     *     @type array<\Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $entries
      *           Required. The row keys and corresponding mutations to be applied in bulk.
      *           Each entry is applied as an atomic mutation, but the entries may be
      *           applied in arbitrary order (even between entries for the same row).
@@ -234,7 +234,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      * contain at most 100000 mutations.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry>
      */
     public function getEntries()
     {
@@ -249,7 +249,7 @@ class MutateRowsRequest extends \Google\Protobuf\Internal\Message
      * contain at most 100000 mutations.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsRequest.Entry entries = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\MutateRowsRequest\Entry[] $var
      * @return $this
      */
     public function setEntries($var)

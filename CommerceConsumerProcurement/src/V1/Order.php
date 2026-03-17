@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a purchase made by a customer on Cloud Marketplace.
@@ -79,9 +79,9 @@ class Order extends \Google\Protobuf\Internal\Message
      *           `billingAccounts/{billing_account}/orders/{order}`.
      *     @type string $display_name
      *           Required. The user-specified name of the order.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>|\Google\Protobuf\Internal\RepeatedField $line_items
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem[] $line_items
      *           Output only. The items being purchased.
-     *     @type array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>|\Google\Protobuf\Internal\RepeatedField $cancelled_line_items
+     *     @type \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem[] $cancelled_line_items
      *           Output only. Line items that were cancelled.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The creation timestamp.
@@ -156,7 +156,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. The items being purchased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItem line_items = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>
      */
     public function getLineItems()
     {
@@ -167,7 +167,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. The items being purchased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItem line_items = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem[] $var
      * @return $this
      */
     public function setLineItems($var)
@@ -182,7 +182,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. Line items that were cancelled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItem cancelled_line_items = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>
      */
     public function getCancelledLineItems()
     {
@@ -193,7 +193,7 @@ class Order extends \Google\Protobuf\Internal\Message
      * Output only. Line items that were cancelled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.commerce.consumer.procurement.v1.LineItem cancelled_line_items = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Commerce\Consumer\Procurement\V1\LineItem[] $var
      * @return $this
      */
     public function setCancelledLineItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for querying metrics.
@@ -57,7 +57,7 @@ class QueryMetricsResponse extends \Google\Protobuf\Internal\Message
      *           "projects/{project}/locations/{location}"
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The metrics last update time.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice>|\Google\Protobuf\Internal\RepeatedField $slices
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice[] $slices
      *           A slice contains a total and (if the request specified a time granularity)
      *           a time series of metric values. Each slice contains a unique combination of
      *           the cardinality of dimensions from the request.
@@ -143,7 +143,7 @@ class QueryMetricsResponse extends \Google\Protobuf\Internal\Message
      * the cardinality of dimensions from the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice slices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice>
      */
     public function getSlices()
     {
@@ -156,7 +156,7 @@ class QueryMetricsResponse extends \Google\Protobuf\Internal\Message
      * the cardinality of dimensions from the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QueryMetricsResponse.Slice slices = 2;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QueryMetricsResponse\Slice[] $var
      * @return $this
      */
     public function setSlices($var)

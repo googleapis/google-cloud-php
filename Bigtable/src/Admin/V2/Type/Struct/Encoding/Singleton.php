@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Type\Struct\Encoding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Uses the encoding of `fields[0].type` as-is.
@@ -31,7 +31,4 @@ class Singleton extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Singleton::class, \Google\Cloud\Bigtable\Admin\V2\Type_Struct_Encoding_Singleton::class);
 

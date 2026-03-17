@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Type\Aggregate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Computes an approximate unique count over the input values. When using
@@ -36,7 +36,4 @@ class HyperLogLogPlusPlusUniqueCount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(HyperLogLogPlusPlusUniqueCount::class, \Google\Cloud\Bigtable\Admin\V2\Type_Aggregate_HyperLogLogPlusPlusUniqueCount::class);
 

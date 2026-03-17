@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for the session.
@@ -97,7 +97,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration for processing the input audio.
      *     @type \Google\Cloud\Ces\V1\OutputAudioConfig $output_audio_config
      *           Optional. Configuration for generating the output audio.
-     *     @type array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $historical_contexts
+     *     @type \Google\Cloud\Ces\V1\Message[] $historical_contexts
      *           Optional. The historical context of the session, including user inputs,
      *           agent responses, and other messages. Typically, CES agent would manage
      *           session automatically so client doesn't need to explicitly populate this
@@ -241,7 +241,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * force the session start from certain state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message historical_contexts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Message>
      */
     public function getHistoricalContexts()
     {
@@ -256,7 +256,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * force the session start from certain state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Message historical_contexts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Message[] $var
      * @return $this
      */
     public function setHistoricalContexts($var)

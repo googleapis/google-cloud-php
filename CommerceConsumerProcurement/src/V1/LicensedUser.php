@@ -5,8 +5,8 @@
 namespace Google\Cloud\Commerce\Consumer\Procurement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A licensed user.
@@ -17,7 +17,7 @@ class LicensedUser extends \Google\Protobuf\Internal\Message
 {
     /**
      * Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      */
@@ -45,7 +45,7 @@ class LicensedUser extends \Google\Protobuf\Internal\Message
      *
      *     @type string $username
      *           Username.
-     *           Format: `name&#64;domain.com`.
+     *           Format: `name\@domain.com`.
      *     @type \Google\Protobuf\Timestamp $assign_time
      *           Output only. Timestamp when the license was assigned.
      *     @type \Google\Protobuf\Timestamp $recent_usage_time
@@ -61,7 +61,7 @@ class LicensedUser extends \Google\Protobuf\Internal\Message
 
     /**
      * Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @return string
@@ -73,7 +73,7 @@ class LicensedUser extends \Google\Protobuf\Internal\Message
 
     /**
      * Username.
-     * Format: `name&#64;domain.com`.
+     * Format: `name\@domain.com`.
      *
      * Generated from protobuf field <code>string username = 1;</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The results of scoring a single conversation against a QaScorecard. Contains
@@ -106,7 +106,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp that the revision was created.
      *     @type string $agent_id
      *           ID of the agent that handled the conversation.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaAnswer>|\Google\Protobuf\Internal\RepeatedField $qa_answers
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaAnswer[] $qa_answers
      *           Set of QaAnswers represented in the result.
      *     @type float $score
      *           The overall numerical score of the result, incorporating any manual edits
@@ -117,9 +117,9 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      *     @type float $normalized_score
      *           The normalized score, which is the score divided by the potential score.
      *           Any manual edits are included if they exist.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>|\Google\Protobuf\Internal\RepeatedField $qa_tag_results
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult[] $qa_tag_results
      *           Collection of tags and their scores.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\ScoreSource>|\Google\Protobuf\Internal\RepeatedField $score_sources
+     *     @type \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\ScoreSource[] $score_sources
      *           List of all individual score sets.
      * }
      */
@@ -276,7 +276,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * Set of QaAnswers represented in the result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaAnswer qa_answers = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaAnswer>
      */
     public function getQaAnswers()
     {
@@ -287,7 +287,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * Set of QaAnswers represented in the result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaAnswer qa_answers = 6;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaAnswer[] $var
      * @return $this
      */
     public function setQaAnswers($var)
@@ -416,7 +416,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * Collection of tags and their scores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.QaTagResult qa_tag_results = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>
      */
     public function getQaTagResults()
     {
@@ -427,7 +427,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * Collection of tags and their scores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.QaTagResult qa_tag_results = 10;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\QaTagResult[] $var
      * @return $this
      */
     public function setQaTagResults($var)
@@ -442,7 +442,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * List of all individual score sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.ScoreSource score_sources = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\ScoreSource>
      */
     public function getScoreSources()
     {
@@ -453,7 +453,7 @@ class QaScorecardResult extends \Google\Protobuf\Internal\Message
      * List of all individual score sets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.QaScorecardResult.ScoreSource score_sources = 11;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\ScoreSource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\QaScorecardResult\ScoreSource[] $var
      * @return $this
      */
     public function setScoreSources($var)

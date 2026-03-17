@@ -5,8 +5,8 @@
 namespace Google\Cloud\Chronicle\V1\Watchlist\EntityPopulationMechanism;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entities are added manually.
@@ -30,5 +30,4 @@ class Manual extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

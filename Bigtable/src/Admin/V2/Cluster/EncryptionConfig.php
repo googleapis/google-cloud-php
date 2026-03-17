@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\Admin\V2\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Key Management Service (Cloud KMS) settings for a CMEK-protected
@@ -97,7 +97,4 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EncryptionConfig::class, \Google\Cloud\Bigtable\Admin\V2\Cluster_EncryptionConfig::class);
 

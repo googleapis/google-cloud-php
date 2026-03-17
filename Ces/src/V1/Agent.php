@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An agent acts as the fundamental building block that provides instructions to
@@ -184,7 +184,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           agent level properties will be ignored.
      *           Note: If the Dialogflow agent is in a different project from the app, you
      *           should grant `roles/dialogflow.client` to the CES service agent
-     *           `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *     @type string $name
      *           Identifier. The unique identifier of the agent.
      *           Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
@@ -196,41 +196,41 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Optional. Configurations for the LLM model.
      *     @type string $instruction
      *           Optional. Instructions for the LLM model to guide the agent's behavior.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type string[] $tools
      *           Optional. List of available tools for the agent.
      *           Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_agents
+     *     @type string[] $child_agents
      *           Optional. List of child agents in the agent tree.
      *           Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $before_agent_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $before_agent_callbacks
      *           Optional. The callbacks to execute before the agent is called.
      *           The provided callbacks are executed sequentially in the exact order they
      *           are given in the list. If a callback returns an overridden response,
      *           execution stops and any remaining callbacks are skipped.
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $after_agent_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $after_agent_callbacks
      *           Optional. The callbacks to execute after the agent is called.
      *           The provided callbacks are executed sequentially in the exact order they
      *           are given in the list. If a callback returns an overridden response,
      *           execution stops and any remaining callbacks are skipped.
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $before_model_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $before_model_callbacks
      *           Optional. The callbacks to execute before the model is called. If there are
      *           multiple calls to the model, the callback will be executed multiple times.
      *           The provided callbacks are executed sequentially in the exact order they
      *           are given in the list. If a callback returns an overridden response,
      *           execution stops and any remaining callbacks are skipped.
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $after_model_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $after_model_callbacks
      *           Optional. The callbacks to execute after the model is called. If there are
      *           multiple calls to the model, the callback will be executed multiple times.
      *           The provided callbacks are executed sequentially in the exact order they
      *           are given in the list. If a callback returns an overridden response,
      *           execution stops and any remaining callbacks are skipped.
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $before_tool_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $before_tool_callbacks
      *           Optional. The callbacks to execute before the tool is invoked. If there are
      *           multiple tool invocations, the callback will be executed multiple times.
      *           The provided callbacks are executed sequentially in the exact order they
      *           are given in the list. If a callback returns an overridden response,
      *           execution stops and any remaining callbacks are skipped.
-     *     @type array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $after_tool_callbacks
+     *     @type \Google\Cloud\Ces\V1\Callback[] $after_tool_callbacks
      *           Optional. The callbacks to execute after the tool is invoked. If there are
      *           multiple tool invocations, the callback will be executed multiple times.
      *           The provided callbacks are executed sequentially in the exact order they
@@ -240,7 +240,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when the agent was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when the agent was last updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $guardrails
+     *     @type string[] $guardrails
      *           Optional. List of guardrails for the agent.
      *           Format:
      *           `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
@@ -248,12 +248,12 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Etag used to ensure the object hasn't changed during a read-modify-write
      *           operation. If the etag is empty, the update will overwrite any concurrent
      *           changes.
-     *     @type array<\Google\Cloud\Ces\V1\Agent\AgentToolset>|\Google\Protobuf\Internal\RepeatedField $toolsets
+     *     @type \Google\Cloud\Ces\V1\Agent\AgentToolset[] $toolsets
      *           Optional. List of toolsets for the agent.
      *     @type string $generated_summary
      *           Output only. If the agent is generated by the LLM assistant, this field
      *           contains a descriptive summary of the generation.
-     *     @type array<\Google\Cloud\Ces\V1\TransferRule>|\Google\Protobuf\Internal\RepeatedField $transfer_rules
+     *     @type \Google\Cloud\Ces\V1\TransferRule[] $transfer_rules
      *           Optional. Agent transfer rules.
      *           If multiple rules match, the first one in the list will be used.
      * }
@@ -301,7 +301,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * agent level properties will be ignored.
      * Note: If the Dialogflow agent is in a different project from the app, you
      * should grant `roles/dialogflow.client` to the CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.Agent.RemoteDialogflowAgent remote_dialogflow_agent = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Ces\V1\Agent\RemoteDialogflowAgent|null
@@ -323,7 +323,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * agent level properties will be ignored.
      * Note: If the Dialogflow agent is in a different project from the app, you
      * should grant `roles/dialogflow.client` to the CES service agent
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-ces.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.Agent.RemoteDialogflowAgent remote_dialogflow_agent = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Ces\V1\Agent\RemoteDialogflowAgent $var
@@ -484,7 +484,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
      *
      * Generated from protobuf field <code>repeated string tools = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTools()
     {
@@ -496,7 +496,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
      *
      * Generated from protobuf field <code>repeated string tools = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTools($var)
@@ -512,7 +512,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *
      * Generated from protobuf field <code>repeated string child_agents = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChildAgents()
     {
@@ -524,7 +524,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Format: `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *
      * Generated from protobuf field <code>repeated string child_agents = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChildAgents($var)
@@ -542,7 +542,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_agent_callbacks = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getBeforeAgentCallbacks()
     {
@@ -556,7 +556,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_agent_callbacks = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setBeforeAgentCallbacks($var)
@@ -574,7 +574,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_agent_callbacks = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getAfterAgentCallbacks()
     {
@@ -588,7 +588,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_agent_callbacks = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setAfterAgentCallbacks($var)
@@ -607,7 +607,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_model_callbacks = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getBeforeModelCallbacks()
     {
@@ -622,7 +622,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_model_callbacks = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setBeforeModelCallbacks($var)
@@ -641,7 +641,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_model_callbacks = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getAfterModelCallbacks()
     {
@@ -656,7 +656,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_model_callbacks = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setAfterModelCallbacks($var)
@@ -675,7 +675,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_tool_callbacks = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getBeforeToolCallbacks()
     {
@@ -690,7 +690,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback before_tool_callbacks = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setBeforeToolCallbacks($var)
@@ -709,7 +709,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_tool_callbacks = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Callback>
      */
     public function getAfterToolCallbacks()
     {
@@ -724,7 +724,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * execution stops and any remaining callbacks are skipped.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Callback after_tool_callbacks = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Callback>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Callback[] $var
      * @return $this
      */
     public function setAfterToolCallbacks($var)
@@ -813,7 +813,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
      *
      * Generated from protobuf field <code>repeated string guardrails = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGuardrails()
     {
@@ -826,7 +826,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/apps/{app}/guardrails/{guardrail}`
      *
      * Generated from protobuf field <code>repeated string guardrails = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGuardrails($var)
@@ -871,7 +871,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. List of toolsets for the agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Agent.AgentToolset toolsets = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\Agent\AgentToolset>
      */
     public function getToolsets()
     {
@@ -882,7 +882,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * Optional. List of toolsets for the agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Agent.AgentToolset toolsets = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\Agent\AgentToolset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\Agent\AgentToolset[] $var
      * @return $this
      */
     public function setToolsets($var)
@@ -926,7 +926,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * If multiple rules match, the first one in the list will be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TransferRule transfer_rules = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Ces\V1\TransferRule>
      */
     public function getTransferRules()
     {
@@ -938,7 +938,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * If multiple rules match, the first one in the list will be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.ces.v1.TransferRule transfer_rules = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Ces\V1\TransferRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Ces\V1\TransferRule[] $var
      * @return $this
      */
     public function setTransferRules($var)

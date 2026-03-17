@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response of listing views.
@@ -35,7 +35,7 @@ class ListViewsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\View>|\Google\Protobuf\Internal\RepeatedField $views
+     *     @type \Google\Cloud\ContactCenterInsights\V1\View[] $views
      *           The views that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListViewsResponse extends \Google\Protobuf\Internal\Message
      * The views that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.View views = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\View>
      */
     public function getViews()
     {
@@ -62,7 +62,7 @@ class ListViewsResponse extends \Google\Protobuf\Internal\Message
      * The views that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.View views = 1;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\View>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\View[] $var
      * @return $this
      */
     public function setViews($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A time series representing conversations over time.
@@ -38,7 +38,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Duration $interval_duration
      *           The duration of each interval.
-     *     @type array<\Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval>|\Google\Protobuf\Internal\RepeatedField $points
+     *     @type \Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval[] $points
      *           An ordered list of intervals from earliest to latest, where each interval
      *           represents the number of conversations that transpired during the time
      *           window.
@@ -91,7 +91,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval points = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval>
      */
     public function getPoints()
     {
@@ -104,7 +104,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.CalculateStatsResponse.TimeSeries.Interval points = 2;</code>
-     * @param array<\Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse\TimeSeries\Interval[] $var
      * @return $this
      */
     public function setPoints($var)
@@ -116,5 +116,4 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

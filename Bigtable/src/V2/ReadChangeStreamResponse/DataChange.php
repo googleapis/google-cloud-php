@@ -5,8 +5,8 @@
 namespace Google\Cloud\Bigtable\V2\ReadChangeStreamResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message corresponding to one or more mutations to the partition
@@ -118,7 +118,7 @@ class DataChange extends \Google\Protobuf\Internal\Message
      *           timestamp are modified on different clusters at the same
      *           `commit_timestamp`, the mutation with the larger `tiebreaker` will be the
      *           one chosen for the eventually consistent state of the system.
-     *     @type array<\Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk>|\Google\Protobuf\Internal\RepeatedField $chunks
+     *     @type \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk[] $chunks
      *           The mutations associated with this change to the partition.
      *           May contain complete mutations or chunks of a multi-message chunked
      *           `DataChange` record.
@@ -306,7 +306,7 @@ class DataChange extends \Google\Protobuf\Internal\Message
      * `DataChange` record.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadChangeStreamResponse.MutationChunk chunks = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk>
      */
     public function getChunks()
     {
@@ -319,7 +319,7 @@ class DataChange extends \Google\Protobuf\Internal\Message
      * `DataChange` record.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.ReadChangeStreamResponse.MutationChunk chunks = 6;</code>
-     * @param array<\Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse\MutationChunk[] $var
      * @return $this
      */
     public function setChunks($var)
@@ -433,7 +433,4 @@ class DataChange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataChange::class, \Google\Cloud\Bigtable\V2\ReadChangeStreamResponse_DataChange::class);
 

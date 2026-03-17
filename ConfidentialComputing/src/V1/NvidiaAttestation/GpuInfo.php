@@ -5,8 +5,8 @@
 namespace Google\Cloud\ConfidentialComputing\V1\NvidiaAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GpuInfo contains the attestation evidence for a GPU device.
@@ -242,5 +242,4 @@ class GpuInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Ces\V1\App;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the structure and metadata for a variable.
@@ -146,5 +146,4 @@ class VariableDeclaration extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
