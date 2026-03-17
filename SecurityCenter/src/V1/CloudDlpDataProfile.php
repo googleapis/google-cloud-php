@@ -29,6 +29,14 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.CloudDlpDataProfile.ParentType parent_type = 2;</code>
      */
     protected $parent_type = 0;
+    /**
+     * Type of information detected by SDP.
+     * Info type includes name, version and sensitivity of the detected
+     * information type.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.InfoType info_types = 3;</code>
+     */
+    private $info_types;
 
     /**
      * Constructor.
@@ -41,6 +49,10 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
      *           `projects/123/locations/europe/tableProfiles/8383929`.
      *     @type int $parent_type
      *           The resource hierarchy level at which the data profile was generated.
+     *     @type \Google\Cloud\SecurityCenter\V1\InfoType[] $info_types
+     *           Type of information detected by SDP.
+     *           Info type includes name, version and sensitivity of the detected
+     *           information type.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,6 +110,36 @@ class CloudDlpDataProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\SecurityCenter\V1\CloudDlpDataProfile\ParentType::class);
         $this->parent_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Type of information detected by SDP.
+     * Info type includes name, version and sensitivity of the detected
+     * information type.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.InfoType info_types = 3;</code>
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\InfoType>
+     */
+    public function getInfoTypes()
+    {
+        return $this->info_types;
+    }
+
+    /**
+     * Type of information detected by SDP.
+     * Info type includes name, version and sensitivity of the detected
+     * information type.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.InfoType info_types = 3;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\InfoType[] $var
+     * @return $this
+     */
+    public function setInfoTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\InfoType::class);
+        $this->info_types = $arr;
 
         return $this;
     }
