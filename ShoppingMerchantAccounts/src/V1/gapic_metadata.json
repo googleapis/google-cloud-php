@@ -126,6 +126,11 @@
                                 "createAndConfigureAccount"
                             ]
                         },
+                        "CreateTestAccount": {
+                            "methods": [
+                                "createTestAccount"
+                            ]
+                        },
                         "DeleteAccount": {
                             "methods": [
                                 "deleteAccount"
