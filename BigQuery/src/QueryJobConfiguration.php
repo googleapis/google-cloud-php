@@ -608,7 +608,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
         $config = $this->config;
         $queryConfig = $config['configuration']['query'];
 
-        if ( isset($queryConfig['destinationTable']) ||
+        if (isset($queryConfig['destinationTable']) ||
             isset($queryConfig['tableDefinitions']) ||
             isset($queryConfig['createDisposition']) ||
             isset($queryConfig['writeDisposition']) ||
