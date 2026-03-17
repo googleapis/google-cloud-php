@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to start manual transfer runs.
@@ -28,7 +28,7 @@ class StartManualTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $runs
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[] $runs
      *           The transfer runs that were created.
      * }
      */
@@ -41,7 +41,7 @@ class StartManualTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * The transfer runs that were created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun runs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>
      */
     public function getRuns()
     {
@@ -52,7 +52,7 @@ class StartManualTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * The transfer runs that were created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun runs = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[] $var
      * @return $this
      */
     public function setRuns($var)

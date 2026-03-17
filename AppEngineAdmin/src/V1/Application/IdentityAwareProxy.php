@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1\Application;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identity-Aware Proxy
@@ -35,14 +35,14 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * `oauth2_client_secret_sha256` field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret = 3;</code>
      */
     protected $oauth2_client_secret = '';
     /**
      * Hex-encoded SHA-256 hash of the client secret.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 4;</code>
      */
@@ -66,10 +66,10 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      *           For security reasons, this value cannot be retrieved via the API.
      *           Instead, the SHA-256 hash of the value is returned in the
      *           `oauth2_client_secret_sha256` field.
-     *           &#64;InputOnly
+     *           \@InputOnly
      *     @type string $oauth2_client_secret_sha256
      *           Hex-encoded SHA-256 hash of the client secret.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -140,7 +140,7 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * `oauth2_client_secret_sha256` field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret = 3;</code>
      * @return string
@@ -155,7 +155,7 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
      * For security reasons, this value cannot be retrieved via the API.
      * Instead, the SHA-256 hash of the value is returned in the
      * `oauth2_client_secret_sha256` field.
-     * &#64;InputOnly
+     * \@InputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret = 3;</code>
      * @param string $var
@@ -171,7 +171,7 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
 
     /**
      * Hex-encoded SHA-256 hash of the client secret.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 4;</code>
      * @return string
@@ -183,7 +183,7 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
 
     /**
      * Hex-encoded SHA-256 hash of the client secret.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 4;</code>
      * @param string $var
@@ -198,5 +198,4 @@ class IdentityAwareProxy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

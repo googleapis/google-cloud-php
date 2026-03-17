@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\ContextualAddOnMarkup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A card is a UI element that can contain UI widgets such as text and
@@ -49,9 +49,9 @@ class Card extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardHeader $header
      *           The header of the card. A header usually contains a title and an image.
-     *     @type array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\Section>|\Google\Protobuf\Internal\RepeatedField $sections
+     *     @type \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\Section[] $sections
      *           Sections are separated by a line divider.
-     *     @type array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $card_actions
+     *     @type \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardAction[] $card_actions
      *           The actions of this card.
      *     @type string $name
      *           Name of the card.
@@ -102,7 +102,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * Sections are separated by a line divider.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card.Section sections = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\Section>
      */
     public function getSections()
     {
@@ -113,7 +113,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * Sections are separated by a line divider.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card.Section sections = 2;</code>
-     * @param array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\Section>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\Section[] $var
      * @return $this
      */
     public function setSections($var)
@@ -128,7 +128,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * The actions of this card.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card.CardAction card_actions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardAction>
      */
     public function getCardActions()
     {
@@ -139,7 +139,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * The actions of this card.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.ContextualAddOnMarkup.Card.CardAction card_actions = 3;</code>
-     * @param array<\Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\ContextualAddOnMarkup\Card\CardAction[] $var
      * @return $this
      */
     public function setCardActions($var)
@@ -177,5 +177,4 @@ class Card extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

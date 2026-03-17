@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to a ListModelRequest.
@@ -34,7 +34,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Model>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type \Google\Cloud\Retail\V2\Model[] $models
      *           List of Models.
      *     @type string $next_page_token
      *           Pagination token, if not returned indicates the last page.
@@ -49,7 +49,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of Models.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Model models = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Model>
      */
     public function getModels()
     {
@@ -60,7 +60,7 @@ class ListModelsResponse extends \Google\Protobuf\Internal\Message
      * List of Models.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Model models = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Model>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Model[] $var
      * @return $this
      */
     public function setModels($var)

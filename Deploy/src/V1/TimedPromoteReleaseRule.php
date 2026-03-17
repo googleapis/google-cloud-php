@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `TimedPromoteReleaseRule` will automatically promote a release from the
@@ -29,7 +29,7 @@ class TimedPromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
      * * The last segment of a target name
-     * * "&#64;next", the next target in the promotion sequence
+     * * "\@next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,7 +77,7 @@ class TimedPromoteReleaseRule extends \Google\Protobuf\Internal\Message
      *           deploying. If unspecified, default it to the next stage in the promotion
      *           flow. The value of this field could be one of the following:
      *           * The last segment of a target name
-     *           * "&#64;next", the next target in the promotion sequence
+     *           * "\@next", the next target in the promotion sequence
      *     @type string $schedule
      *           Required. Schedule in crontab format. e.g. "0 9 * * 1" for every Monday at
      *           9am.
@@ -131,7 +131,7 @@ class TimedPromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
      * * The last segment of a target name
-     * * "&#64;next", the next target in the promotion sequence
+     * * "\@next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -146,7 +146,7 @@ class TimedPromoteReleaseRule extends \Google\Protobuf\Internal\Message
      * deploying. If unspecified, default it to the next stage in the promotion
      * flow. The value of this field could be one of the following:
      * * The last segment of a target name
-     * * "&#64;next", the next target in the promotion sequence
+     * * "\@next", the next target in the promotion sequence
      *
      * Generated from protobuf field <code>string destination_target_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

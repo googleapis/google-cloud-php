@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Performance data for an asset.
@@ -30,7 +30,7 @@ class AssetPerformanceData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\DailyResourceUsageAggregation>|\Google\Protobuf\Internal\RepeatedField $daily_resource_usage_aggregations
+     *     @type \Google\Cloud\MigrationCenter\V1\DailyResourceUsageAggregation[] $daily_resource_usage_aggregations
      *           Daily resource usage aggregations.
      *           Contains all of the data available for an asset, up to the last 420 days.
      *           Aggregations are sorted from oldest to most recent.
@@ -47,7 +47,7 @@ class AssetPerformanceData extends \Google\Protobuf\Internal\Message
      * Aggregations are sorted from oldest to most recent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.DailyResourceUsageAggregation daily_resource_usage_aggregations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\DailyResourceUsageAggregation>
      */
     public function getDailyResourceUsageAggregations()
     {
@@ -60,7 +60,7 @@ class AssetPerformanceData extends \Google\Protobuf\Internal\Message
      * Aggregations are sorted from oldest to most recent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.DailyResourceUsageAggregation daily_resource_usage_aggregations = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\DailyResourceUsageAggregation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\DailyResourceUsageAggregation[] $var
      * @return $this
      */
     public function setDailyResourceUsageAggregations($var)

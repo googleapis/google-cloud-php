@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2\IntelligenceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The trial configuration of the `IntelligenceConfig` resource.
@@ -74,5 +74,4 @@ class TrialConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

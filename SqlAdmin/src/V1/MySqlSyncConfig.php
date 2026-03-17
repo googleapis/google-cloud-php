@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MySQL-specific external server sync settings.
@@ -28,7 +28,7 @@ class MySqlSyncConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\SyncFlags>|\Google\Protobuf\Internal\RepeatedField $initial_sync_flags
+     *     @type \Google\Cloud\Sql\V1\SyncFlags[] $initial_sync_flags
      *           Flags to use for the initial dump.
      * }
      */
@@ -41,7 +41,7 @@ class MySqlSyncConfig extends \Google\Protobuf\Internal\Message
      * Flags to use for the initial dump.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SyncFlags initial_sync_flags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SyncFlags>
      */
     public function getInitialSyncFlags()
     {
@@ -52,7 +52,7 @@ class MySqlSyncConfig extends \Google\Protobuf\Internal\Message
      * Flags to use for the initial dump.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SyncFlags initial_sync_flags = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\SyncFlags>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SyncFlags[] $var
      * @return $this
      */
     public function setInitialSyncFlags($var)

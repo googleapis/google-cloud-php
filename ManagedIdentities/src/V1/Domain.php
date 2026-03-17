@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedIdentities\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a managed Microsoft Active Directory domain.
@@ -115,7 +115,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      *           `projects/{project_id}/locations/global/domains/{domain_name}`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Resource labels that can contain user-provided metadata.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
+     *     @type string[] $authorized_networks
      *           Optional. The full names of the Google Compute Engine
      *           [networks](/compute/docs/networks-and-firewalls#networks) the domain
      *           instance is connected to. Networks can be added using UpdateDomain.
@@ -126,7 +126,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      *           domain. Reserved networks must be /24 or larger. Ranges must be
      *           unique and non-overlapping with existing subnets in
      *           [Domain].[authorized_networks].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           Required. Locations where domain needs to be provisioned.
      *           [regions][compute/docs/regions-zones/]
      *           e.g. us-west1 or us-east4
@@ -148,7 +148,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      *     @type string $status_message
      *           Output only. Additional information about the current status of this
      *           domain, if available.
-     *     @type array<\Google\Cloud\ManagedIdentities\V1\Trust>|\Google\Protobuf\Internal\RepeatedField $trusts
+     *     @type \Google\Cloud\ManagedIdentities\V1\Trust[] $trusts
      *           Output only. The current trusts associated with the domain.
      * }
      */
@@ -219,7 +219,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * If CIDR subnets overlap between networks, domain creation will fail.
      *
      * Generated from protobuf field <code>repeated string authorized_networks = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAuthorizedNetworks()
     {
@@ -234,7 +234,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * If CIDR subnets overlap between networks, domain creation will fail.
      *
      * Generated from protobuf field <code>repeated string authorized_networks = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAuthorizedNetworks($var)
@@ -285,7 +285,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * block.
      *
      * Generated from protobuf field <code>repeated string locations = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -300,7 +300,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * block.
      *
      * Generated from protobuf field <code>repeated string locations = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -499,7 +499,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * Output only. The current trusts associated with the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedidentities.v1.Trust trusts = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedIdentities\V1\Trust>
      */
     public function getTrusts()
     {
@@ -510,7 +510,7 @@ class Domain extends \Google\Protobuf\Internal\Message
      * Output only. The current trusts associated with the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedidentities.v1.Trust trusts = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ManagedIdentities\V1\Trust>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedIdentities\V1\Trust[] $var
      * @return $this
      */
     public function setTrusts($var)

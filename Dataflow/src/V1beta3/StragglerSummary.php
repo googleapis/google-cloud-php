@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summarized straggler identification details.
@@ -46,7 +46,7 @@ class StragglerSummary extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $straggler_cause_count
      *           Aggregated counts of straggler causes, keyed by the string representation
      *           of the StragglerCause enum.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\Straggler>|\Google\Protobuf\Internal\RepeatedField $recent_stragglers
+     *     @type \Google\Cloud\Dataflow\V1beta3\Straggler[] $recent_stragglers
      *           The most recent stragglers.
      * }
      */
@@ -113,7 +113,7 @@ class StragglerSummary extends \Google\Protobuf\Internal\Message
      * The most recent stragglers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Straggler recent_stragglers = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\Straggler>
      */
     public function getRecentStragglers()
     {
@@ -124,7 +124,7 @@ class StragglerSummary extends \Google\Protobuf\Internal\Message
      * The most recent stragglers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Straggler recent_stragglers = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\Straggler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\Straggler[] $var
      * @return $this
      */
     public function setRecentStragglers($var)

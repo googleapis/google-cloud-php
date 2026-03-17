@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\TargetArtifact;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the paths to the artifacts, relative to the URI, for a phase.
@@ -140,5 +140,4 @@ class PhaseArtifact extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

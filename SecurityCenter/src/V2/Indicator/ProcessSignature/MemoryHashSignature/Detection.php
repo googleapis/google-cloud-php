@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Indicator\ProcessSignature\MemoryHashSignature;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Memory hash detection contributing to the binary family match.
@@ -106,5 +106,4 @@ class Detection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

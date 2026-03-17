@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1\ClusterPersistenceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration of the RDB based persistence.
@@ -116,5 +116,4 @@ class RDBConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

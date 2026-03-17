@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\Vehicle\LoadLimit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Interval of acceptable load amounts.
@@ -144,5 +144,4 @@ class Interval extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

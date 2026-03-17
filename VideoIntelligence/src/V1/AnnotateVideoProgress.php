@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Video annotation progress. Included in the `metadata`
@@ -30,7 +30,7 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress>|\Google\Protobuf\Internal\RepeatedField $annotation_progress
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress[] $annotation_progress
      *           Progress metadata for all videos specified in `AnnotateVideoRequest`.
      * }
      */
@@ -43,7 +43,7 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoAnnotationProgress annotation_progress = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress>
      */
     public function getAnnotationProgress()
     {
@@ -54,7 +54,7 @@ class AnnotateVideoProgress extends \Google\Protobuf\Internal\Message
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoAnnotationProgress annotation_progress = 1;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\VideoAnnotationProgress[] $var
      * @return $this
      */
     public function setAnnotationProgress($var)

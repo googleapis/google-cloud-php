@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectAttachment>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
+     *     @type \Google\Cloud\Compute\V1\InterconnectAttachment[] $interconnect_attachments
      *           A list of interconnect attachments contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when
@@ -50,7 +50,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
      * A list of interconnect attachments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 425388415;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectAttachment>
      */
     public function getInterconnectAttachments()
     {
@@ -61,7 +61,7 @@ class InterconnectAttachmentsScopedList extends \Google\Protobuf\Internal\Messag
      * A list of interconnect attachments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectAttachment interconnect_attachments = 425388415;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectAttachment[] $var
      * @return $this
      */
     public function setInterconnectAttachments($var)

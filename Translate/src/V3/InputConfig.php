@@ -5,8 +5,8 @@
 namespace Google\Cloud\Translate\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input configuration for BatchTranslateText request.
@@ -41,7 +41,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      *           Required. Google Cloud Storage location for the source input.
      *           This can be a single file (for example,
      *           `gs://translation-test/input.tsv`) or a wildcard (for example,
-     *           `gs://translation-test/&#42;`). If a file extension is `.tsv`, it can
+     *           `gs://translation-test/*`). If a file extension is `.tsv`, it can
      *           contain either one or two columns. The first column (optional) is the id
      *           of the text request. If the first column is missing, we use the row
      *           number (0-based) from the input file as the ID in the output file. The
@@ -97,7 +97,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Storage location for the source input.
      * This can be a single file (for example,
      * `gs://translation-test/input.tsv`) or a wildcard (for example,
-     * `gs://translation-test/&#42;`). If a file extension is `.tsv`, it can
+     * `gs://translation-test/*`). If a file extension is `.tsv`, it can
      * contain either one or two columns. The first column (optional) is the id
      * of the text request. If the first column is missing, we use the row
      * number (0-based) from the input file as the ID in the output file. The
@@ -128,7 +128,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * Required. Google Cloud Storage location for the source input.
      * This can be a single file (for example,
      * `gs://translation-test/input.tsv`) or a wildcard (for example,
-     * `gs://translation-test/&#42;`). If a file extension is `.tsv`, it can
+     * `gs://translation-test/*`). If a file extension is `.tsv`, it can
      * contain either one or two columns. The first column (optional) is the id
      * of the text request. If the first column is missing, we use the row
      * number (0-based) from the input file as the ID in the output file. The

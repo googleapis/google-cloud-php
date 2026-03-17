@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A LineItem contains information about how specific ad creatives are intended
@@ -119,7 +119,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Money $budget
      *           Output only. The amount of money allocated to the LineItem. This attribute
      *           is readonly and is populated by Google. The currency code is readonly.
-     *     @type array<\Google\Ads\AdManager\V1\CustomFieldValue>|\Google\Protobuf\Internal\RepeatedField $custom_field_values
+     *     @type \Google\Ads\AdManager\V1\CustomFieldValue[] $custom_field_values
      *           Optional. The values of the custom fields associated with this line item.
      *     @type \Google\Ads\AdManager\V1\Goal $goal
      *           Optional. The primary goal that this LineItem is associated with, which is
@@ -431,7 +431,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * Optional. The values of the custom fields associated with this line item.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomFieldValue>
      */
     public function getCustomFieldValues()
     {
@@ -442,7 +442,7 @@ class LineItem extends \Google\Protobuf\Internal\Message
      * Optional. The values of the custom fields associated with this line item.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldValue custom_field_values = 59 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomFieldValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomFieldValue[] $var
      * @return $this
      */
     public function setCustomFieldValues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [Datastore.Lookup][google.datastore.v1.Datastore.Lookup].
@@ -63,15 +63,15 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $found
+     *     @type \Google\Cloud\Datastore\V1\EntityResult[] $found
      *           Entities found as `ResultType.FULL` entities. The order of results in this
      *           field is undefined and has no relation to the order of the keys in the
      *           input.
-     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $missing
+     *     @type \Google\Cloud\Datastore\V1\EntityResult[] $missing
      *           Entities not found as `ResultType.KEY_ONLY` entities. The order of results
      *           in this field is undefined and has no relation to the order of the keys
      *           in the input.
-     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $deferred
+     *     @type \Google\Cloud\Datastore\V1\Key[] $deferred
      *           A list of keys that were not looked up due to resource constraints. The
      *           order of results in this field is undefined and has no relation to the
      *           order of the keys in the input.
@@ -97,7 +97,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult found = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\EntityResult>
      */
     public function getFound()
     {
@@ -110,7 +110,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult found = 1;</code>
-     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\EntityResult[] $var
      * @return $this
      */
     public function setFound($var)
@@ -127,7 +127,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult missing = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\EntityResult>
      */
     public function getMissing()
     {
@@ -140,7 +140,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult missing = 2;</code>
-     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\EntityResult[] $var
      * @return $this
      */
     public function setMissing($var)
@@ -157,7 +157,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * order of the keys in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\Key>
      */
     public function getDeferred()
     {
@@ -170,7 +170,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * order of the keys in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
-     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\Key[] $var
      * @return $this
      */
     public function setDeferred($var)

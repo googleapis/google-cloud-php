@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\Inventory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -123,7 +123,7 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      *           When paginating, all other parameters provided to
      *           [KeyTrackingService.SearchProtectedResources][google.cloud.kms.inventory.v1.KeyTrackingService.SearchProtectedResources]
      *           must match the call that provided the page token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_types
+     *     @type string[] $resource_types
      *           Optional. A list of resource types that this request searches for. If
      *           empty, it will search all the [trackable resource
      *           types](https://cloud.google.com/kms/docs/view-key-usage#tracked-resource-types).
@@ -288,7 +288,7 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported resource type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string resource_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceTypes()
     {
@@ -309,7 +309,7 @@ class SearchProtectedResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported resource type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string resource_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceTypes($var)

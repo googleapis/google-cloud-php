@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A well-known service type, defined by its service type and service labels.
@@ -124,5 +124,4 @@ class BasicService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

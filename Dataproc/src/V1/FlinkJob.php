@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc job for running Apache Flink applications on YARN.
@@ -66,11 +66,11 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      *           The name of the driver's main class. The jar file that contains the class
      *           must be in the default CLASSPATH or specified in
      *           [jarFileUris][google.cloud.dataproc.v1.FlinkJob.jar_file_uris].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Optional. The arguments to pass to the driver. Do not include arguments,
      *           such as `--conf`, that can be set as job properties, since a collision
      *           might occur that causes an incorrect job submission.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type string[] $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      *           Flink driver and tasks.
      *     @type string $savepoint_uri
@@ -162,7 +162,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * might occur that causes an incorrect job submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -175,7 +175,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * might occur that causes an incorrect job submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -191,7 +191,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * Flink driver and tasks.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJarFileUris()
     {
@@ -203,7 +203,7 @@ class FlinkJob extends \Google\Protobuf\Internal\Message
      * Flink driver and tasks.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJarFileUris($var)

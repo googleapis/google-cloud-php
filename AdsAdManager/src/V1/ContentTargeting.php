@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Content Targeting
@@ -55,19 +55,19 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_content
+     *     @type string[] $targeted_content
      *           Optional. The resource names of the
      *           [Content][google.ads.admanager.v1.Content] that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_content
+     *     @type string[] $excluded_content
      *           Optional. The resource names of the
      *           [Content][google.ads.admanager.v1.Content] that should be
      *           excluded.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_content_bundles
+     *     @type string[] $targeted_content_bundles
      *           Optional. The resource names of the
      *           [ContentBundles][google.ads.admanager.v1.ContentBundle] that
      *           should be targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_content_bundles
+     *     @type string[] $excluded_content_bundles
      *           Optional. The resource names of the
      *           [ContentBundles][google.ads.admanager.v1.ContentBundle] that
      *           should be excluded.
@@ -84,7 +84,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_content = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedContent()
     {
@@ -97,7 +97,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_content = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedContent($var)
@@ -114,7 +114,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_content = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedContent()
     {
@@ -127,7 +127,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_content = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedContent($var)
@@ -144,7 +144,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_content_bundles = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedContentBundles()
     {
@@ -157,7 +157,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * should be targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_content_bundles = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedContentBundles($var)
@@ -174,7 +174,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_content_bundles = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedContentBundles()
     {
@@ -187,7 +187,7 @@ class ContentTargeting extends \Google\Protobuf\Internal\Message
      * should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_content_bundles = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedContentBundles($var)

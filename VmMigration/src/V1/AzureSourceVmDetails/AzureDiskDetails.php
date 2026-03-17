@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AzureSourceVmDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details of an Azure VM disk.
@@ -132,5 +132,4 @@ class AzureDiskDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a binding in a policy affects a principal's ability to use
@@ -57,15 +57,15 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * identifies a principal in the binding, and each value indicates whether the
      * principal in the binding includes the principal in the request.
      * For example, suppose that a binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * The principal in the replayed access tuple is `user:bob&#64;example.com`. This
-     * user is a principal of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * The principal in the replayed access tuple is `user:bob\@example.com`. This
+     * user is a principal of the group `group:product-eng\@example.com`.
      * For the first principal in the binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
      * For the second principal in the binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policysimulator.v1.BindingExplanation.AnnotatedMembership> memberships = 5;</code>
@@ -119,15 +119,15 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      *           identifies a principal in the binding, and each value indicates whether the
      *           principal in the binding includes the principal in the request.
      *           For example, suppose that a binding includes the following principals:
-     *           * `user:alice&#64;example.com`
-     *           * `group:product-eng&#64;example.com`
-     *           The principal in the replayed access tuple is `user:bob&#64;example.com`. This
-     *           user is a principal of the group `group:product-eng&#64;example.com`.
+     *           * `user:alice\@example.com`
+     *           * `group:product-eng\@example.com`
+     *           The principal in the replayed access tuple is `user:bob\@example.com`. This
+     *           user is a principal of the group `group:product-eng\@example.com`.
      *           For the first principal in the binding, the key is
-     *           `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     *           `user:alice\@example.com`, and the `membership` field in the value is set to
      *           `MEMBERSHIP_NOT_INCLUDED`.
      *           For the second principal in the binding, the key is
-     *           `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     *           `group:product-eng\@example.com`, and the `membership` field in the value is
      *           set to `MEMBERSHIP_INCLUDED`.
      *     @type int $relevance
      *           The relevance of this binding to the overall determination for the entire
@@ -276,15 +276,15 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * identifies a principal in the binding, and each value indicates whether the
      * principal in the binding includes the principal in the request.
      * For example, suppose that a binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * The principal in the replayed access tuple is `user:bob&#64;example.com`. This
-     * user is a principal of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * The principal in the replayed access tuple is `user:bob\@example.com`. This
+     * user is a principal of the group `group:product-eng\@example.com`.
      * For the first principal in the binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
      * For the second principal in the binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policysimulator.v1.BindingExplanation.AnnotatedMembership> memberships = 5;</code>
@@ -301,15 +301,15 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      * identifies a principal in the binding, and each value indicates whether the
      * principal in the binding includes the principal in the request.
      * For example, suppose that a binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * The principal in the replayed access tuple is `user:bob&#64;example.com`. This
-     * user is a principal of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * The principal in the replayed access tuple is `user:bob\@example.com`. This
+     * user is a principal of the group `group:product-eng\@example.com`.
      * For the first principal in the binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `MEMBERSHIP_NOT_INCLUDED`.
      * For the second principal in the binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `MEMBERSHIP_INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policysimulator.v1.BindingExplanation.AnnotatedMembership> memberships = 5;</code>

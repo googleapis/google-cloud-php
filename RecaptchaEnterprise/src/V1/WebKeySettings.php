@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings specific to keys that can be used by websites.
@@ -70,7 +70,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_domains
      *           Optional. If set to true, it means allowed_domains are not enforced.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_domains
+     *     @type string[] $allowed_domains
      *           Optional. Domains or subdomains of websites allowed to use the key. All
      *           subdomains of an allowed domain are automatically allowed. A valid domain
      *           requires a host and must not include any path, port, query or fragment.
@@ -134,7 +134,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * in each assessment response against your list of allowed domains.
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedDomains()
     {
@@ -152,7 +152,7 @@ class WebKeySettings extends \Google\Protobuf\Internal\Message
      * in each assessment response against your list of allowed domains.
      *
      * Generated from protobuf field <code>repeated string allowed_domains = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedDomains($var)

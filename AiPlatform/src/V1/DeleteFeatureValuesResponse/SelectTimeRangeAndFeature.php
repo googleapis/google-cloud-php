@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\DeleteFeatureValuesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message if the request uses the SelectTimeRangeAndFeature option.
@@ -164,5 +164,4 @@ class SelectTimeRangeAndFeature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

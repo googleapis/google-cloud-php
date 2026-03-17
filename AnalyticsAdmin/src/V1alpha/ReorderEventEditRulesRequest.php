@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for ReorderEventEditRules RPC.
@@ -38,7 +38,7 @@ class ReorderEventEditRulesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Example format: properties/123/dataStreams/456
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $event_edit_rules
+     *     @type string[] $event_edit_rules
      *           Required. EventEditRule resource names for the specified data stream, in
      *           the needed processing order. All EventEditRules for the stream must be
      *           present in the list.
@@ -81,7 +81,7 @@ class ReorderEventEditRulesRequest extends \Google\Protobuf\Internal\Message
      * present in the list.
      *
      * Generated from protobuf field <code>repeated string event_edit_rules = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEventEditRules()
     {
@@ -94,7 +94,7 @@ class ReorderEventEditRulesRequest extends \Google\Protobuf\Internal\Message
      * present in the list.
      *
      * Generated from protobuf field <code>repeated string event_edit_rules = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEventEditRules($var)

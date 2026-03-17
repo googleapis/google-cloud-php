@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the deployment where APIs are hosted.
@@ -211,11 +211,11 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           For ex: if a proxy with name `orders` is deployed in `staging`
      *           environment of `cymbal` organization, the resource URI would be:
      *           `organizations/cymbal/environments/staging/apis/orders`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type string[] $endpoints
      *           Required. The endpoints at which this deployment resource is listening for
      *           API requests. This could be a list of complete URIs, hostnames or an IP
      *           addresses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $api_versions
+     *     @type string[] $api_versions
      *           Output only. The API versions linked to this deployment.
      *           Note: A particular deployment could be linked to multiple different API
      *           versions (of same or different APIs).
@@ -246,7 +246,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *           deployment resource. The key is the attribute name. It will be of the
      *           format: `projects/{project}/locations/{location}/attributes/{attribute}`.
      *           The value is the attribute values associated with the resource.
-     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *     @type \Google\Cloud\ApiHub\V1\SourceMetadata[] $source_metadata
      *           Output only. The list of sources and metadata from the sources of the
      *           deployment.
      *     @type \Google\Cloud\ApiHub\V1\AttributeValues $management_url
@@ -490,7 +490,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string endpoints = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEndpoints()
     {
@@ -503,7 +503,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string endpoints = 7 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -520,7 +520,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * versions (of same or different APIs).
      *
      * Generated from protobuf field <code>repeated string api_versions = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApiVersions()
     {
@@ -533,7 +533,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * versions (of same or different APIs).
      *
      * Generated from protobuf field <code>repeated string api_versions = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApiVersions($var)
@@ -753,7 +753,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * deployment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SourceMetadata>
      */
     public function getSourceMetadata()
     {
@@ -765,7 +765,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      * deployment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SourceMetadata[] $var
      * @return $this
      */
     public function setSourceMetadata($var)

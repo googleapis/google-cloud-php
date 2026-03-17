@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of a schedule.
@@ -122,7 +122,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      *           Output only. Time the schedule was last updated.
      *     @type \Google\Cloud\Notebooks\V1\ExecutionTemplate $execution_template
      *           Notebook Execution Template corresponding to this schedule.
-     *     @type array<\Google\Cloud\Notebooks\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $recent_executions
+     *     @type \Google\Cloud\Notebooks\V1\Execution[] $recent_executions
      *           Output only. The most recent execution names triggered from this schedule and their
      *           corresponding states.
      * }
@@ -421,7 +421,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * corresponding states.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Execution recent_executions = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Execution>
      */
     public function getRecentExecutions()
     {
@@ -433,7 +433,7 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * corresponding states.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Execution recent_executions = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Execution[] $var
      * @return $this
      */
     public function setRecentExecutions($var)

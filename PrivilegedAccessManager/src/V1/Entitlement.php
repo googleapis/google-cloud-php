@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An entitlement defines the eligibility of a set of users to obtain
@@ -113,7 +113,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      *           Output only. Create time stamp.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update time stamp.
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>|\Google\Protobuf\Internal\RepeatedField $eligible_users
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry[] $eligible_users
      *           Optional. Who can create grants using this entitlement. This list should
      *           contain at most one entry.
      *     @type \Google\Cloud\PrivilegedAccessManager\V1\ApprovalWorkflow $approval_workflow
@@ -256,7 +256,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * contain at most one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.AccessControlEntry eligible_users = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>
      */
     public function getEligibleUsers()
     {
@@ -268,7 +268,7 @@ class Entitlement extends \Google\Protobuf\Internal\Message
      * contain at most one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.AccessControlEntry eligible_users = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry[] $var
      * @return $this
      */
     public function setEligibleUsers($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result needs to be in a list of string values.
@@ -34,7 +34,7 @@ class AccessInListFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           The list of string values. Must be non-empty.
      *     @type bool $case_sensitive
      *           If true, the string value is case sensitive.
@@ -49,7 +49,7 @@ class AccessInListFilter extends \Google\Protobuf\Internal\Message
      * The list of string values. Must be non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -60,7 +60,7 @@ class AccessInListFilter extends \Google\Protobuf\Internal\Message
      * The list of string values. Must be non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

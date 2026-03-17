@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Categories specified by the Windows Update.
@@ -98,5 +98,4 @@ class WindowsUpdateCategory extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

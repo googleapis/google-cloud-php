@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the Reciprocal Rank Fusion (RRF) algorithm for result ranking.
@@ -28,7 +28,7 @@ class ReciprocalRankFusion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $weights
+     *     @type float[] $weights
      *           Required. The weights to apply to each search result set during fusion.
      * }
      */
@@ -41,7 +41,7 @@ class ReciprocalRankFusion extends \Google\Protobuf\Internal\Message
      * Required. The weights to apply to each search result set during fusion.
      *
      * Generated from protobuf field <code>repeated double weights = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getWeights()
     {
@@ -52,7 +52,7 @@ class ReciprocalRankFusion extends \Google\Protobuf\Internal\Message
      * Required. The weights to apply to each search result set during fusion.
      *
      * Generated from protobuf field <code>repeated double weights = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setWeights($var)

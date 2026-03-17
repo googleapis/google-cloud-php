@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Matcher for Features of an EntityType by Feature ID.
@@ -32,7 +32,7 @@ class IdMatcher extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type string[] $ids
      *           Required. The following are accepted as `ids`:
      *            * A single-element list containing only `*`, which selects all Features
      *            in the target EntityType, or
@@ -53,7 +53,7 @@ class IdMatcher extends \Google\Protobuf\Internal\Message
      *  those IDs in the target EntityType.
      *
      * Generated from protobuf field <code>repeated string ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIds()
     {
@@ -68,7 +68,7 @@ class IdMatcher extends \Google\Protobuf\Internal\Message
      *  those IDs in the target EntityType.
      *
      * Generated from protobuf field <code>repeated string ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIds($var)

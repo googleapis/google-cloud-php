@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that reports the import job errors at row level.
@@ -53,7 +53,7 @@ class ImportRowError extends \Google\Protobuf\Internal\Message
      *           The name of the VM in the row.
      *     @type string $vm_uuid
      *           The VM UUID.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportError[] $errors
      *           The list of errors detected in the row.
      * }
      */
@@ -150,7 +150,7 @@ class ImportRowError extends \Google\Protobuf\Internal\Message
      * The list of errors detected in the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportError>
      */
     public function getErrors()
     {
@@ -161,7 +161,7 @@ class ImportRowError extends \Google\Protobuf\Internal\Message
      * The list of errors detected in the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError errors = 4;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportError[] $var
      * @return $this
      */
     public function setErrors($var)

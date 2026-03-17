@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how to match traffic and how to route traffic when traffic is
@@ -41,7 +41,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $matches
+     *     @type \Google\Cloud\NetworkServices\V1\HttpRoute\RouteMatch[] $matches
      *           A list of matches define conditions used for matching the rule against
      *           incoming HTTP requests. Each match is independent, i.e. this rule will be
      *           matched if ANY one of the matches is satisfied.
@@ -68,7 +68,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * specified to the end of the rules list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.RouteMatch matches = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteMatch>
      */
     public function getMatches()
     {
@@ -85,7 +85,7 @@ class RouteRule extends \Google\Protobuf\Internal\Message
      * specified to the end of the rules list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.HttpRoute.RouteMatch matches = 1;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\HttpRoute\RouteMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\HttpRoute\RouteMatch[] $var
      * @return $this
      */
     public function setMatches($var)
@@ -133,5 +133,4 @@ class RouteRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

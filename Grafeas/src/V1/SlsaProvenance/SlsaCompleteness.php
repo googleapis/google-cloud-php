@@ -5,8 +5,8 @@
 namespace Grafeas\V1\SlsaProvenance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates that the builder claims certain fields in this message to be
@@ -145,5 +145,4 @@ class SlsaCompleteness extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

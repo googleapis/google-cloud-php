@@ -20,7 +20,7 @@ class State
      */
     const STATE_UNSPECIFIED = 0;
     /**
-     * Publish to catalog completed successfully.
+     * Publishing to catalog completed successfully.
      *
      * Generated from protobuf enum <code>SUCCEEDED = 1;</code>
      */
@@ -31,11 +31,18 @@ class State
      * Generated from protobuf enum <code>FAILED = 2;</code>
      */
     const FAILED = 2;
+    /**
+     * Publishing to catalog was skipped.
+     *
+     * Generated from protobuf enum <code>SKIPPED = 3;</code>
+     */
+    const SKIPPED = 3;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::SUCCEEDED => 'SUCCEEDED',
         self::FAILED => 'FAILED',
+        self::SKIPPED => 'SKIPPED',
     ];
 
     public static function name($value)
@@ -58,5 +65,4 @@ class State
         return constant($const);
     }
 }
-
 

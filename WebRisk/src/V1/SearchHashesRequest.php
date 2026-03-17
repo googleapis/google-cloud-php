@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to return full hashes matched by the provided hash prefixes.
@@ -63,7 +63,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      *           hash. For JSON requests, this field is base64-encoded.
      *           Note that if this parameter is provided by a URI, it must be encoded using
      *           the web safe base64 variant (RFC 4648).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type int[] $threat_types
      *           Required. The ThreatLists to search in. Multiple ThreatLists may be
      *           specified.
      * }
@@ -110,7 +110,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getThreatTypes()
     {
@@ -122,7 +122,7 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      * specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setThreatTypes($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for a transcript generated from a conference. It refers to the ASR

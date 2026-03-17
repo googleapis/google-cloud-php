@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1\FeatureMap;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of float features.
@@ -28,7 +28,7 @@ class FloatList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $value
+     *     @type float[] $value
      *           Float feature value.
      * }
      */
@@ -41,7 +41,7 @@ class FloatList extends \Google\Protobuf\Internal\Message
      * Float feature value.
      *
      * Generated from protobuf field <code>repeated float value = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getValue()
     {
@@ -52,7 +52,7 @@ class FloatList extends \Google\Protobuf\Internal\Message
      * Float feature value.
      *
      * Generated from protobuf field <code>repeated float value = 1;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setValue($var)
@@ -64,5 +64,4 @@ class FloatList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

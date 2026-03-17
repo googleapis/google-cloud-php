@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP)
@@ -42,7 +42,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tenant_ids
+     *     @type string[] $tenant_ids
      *           Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids`
      *           could be a string beginning with a number character to indicate
      *           authenticating with GCIP tenant flow, or in the format of
@@ -69,7 +69,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * while for tenant flow, `tenant_ids` can contain multiple elements.
      *
      * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTenantIds()
     {
@@ -85,7 +85,7 @@ class GcipSettings extends \Google\Protobuf\Internal\Message
      * while for tenant flow, `tenant_ids` can contain multiple elements.
      *
      * Generated from protobuf field <code>repeated string tenant_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTenantIds($var)

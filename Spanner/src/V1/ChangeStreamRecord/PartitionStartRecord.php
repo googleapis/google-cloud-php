@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A partition start record serves as a notification that the client should
@@ -66,7 +66,7 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
      *           types in the same partition. To guarantee ordered processing, the reader
      *           should process records (of potentially different types) in
      *           record_sequence order for a specific timestamp in the same partition.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $partition_tokens
+     *     @type string[] $partition_tokens
      *           Unique partition identifiers to be used in queries.
      * }
      */
@@ -161,7 +161,7 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
      * Unique partition identifiers to be used in queries.
      *
      * Generated from protobuf field <code>repeated string partition_tokens = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPartitionTokens()
     {
@@ -172,7 +172,7 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
      * Unique partition identifiers to be used in queries.
      *
      * Generated from protobuf field <code>repeated string partition_tokens = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPartitionTokens($var)
@@ -184,5 +184,4 @@ class PartitionStartRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

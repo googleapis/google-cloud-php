@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1\PrimaryProductDataSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Default rule management of the data source.
@@ -42,7 +42,7 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\DataSources\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $take_from_data_sources
+     *     @type \Google\Shopping\Merchant\DataSources\V1\DataSourceReference[] $take_from_data_sources
      *           Required. The list of data sources linked in the [default
      *           rule](https://support.google.com/merchants/answer/7450276).
      *           This list is ordered by the default rule priority of joining the data.
@@ -83,7 +83,7 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * to `self` if the attribute is not set in `1001`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1.DataSourceReference take_from_data_sources = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\DataSources\V1\DataSourceReference>
      */
     public function getTakeFromDataSources()
     {
@@ -108,7 +108,7 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
      * to `self` if the attribute is not set in `1001`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1.DataSourceReference take_from_data_sources = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\DataSources\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\DataSources\V1\DataSourceReference[] $var
      * @return $this
      */
     public function setTakeFromDataSources($var)
@@ -120,5 +120,4 @@ class DefaultRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

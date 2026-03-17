@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing notes.
@@ -44,13 +44,13 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $notes
+     *     @type \Grafeas\V1\Note[] $notes
      *           The notes requested.
      *     @type string $next_page_token
      *           The next pagination token in the list response. It should be used as
      *           `page_token` for the following request. An empty value means no more
      *           results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable regions. Populated for requests from the global region
      *           when `return_partial_success` is set.
      *           Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
@@ -65,7 +65,7 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * The notes requested.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Note notes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Note>
      */
     public function getNotes()
     {
@@ -76,7 +76,7 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * The notes requested.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Note notes = 1;</code>
-     * @param array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Note[] $var
      * @return $this
      */
     public function setNotes($var)
@@ -123,7 +123,7 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -136,7 +136,7 @@ class ListNotesResponse extends \Google\Protobuf\Internal\Message
      * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

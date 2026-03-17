@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -47,18 +47,18 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo[] $instances
      *           A set of virtual machine instances that are being mirrored.
      *           They must live in zones contained in the same region as this
      *           packetMirroring.
      *           Note that this config will apply only to those network interfaces of the
      *           Instances that belong to the network specified in this packetMirroring.
      *           You may specify a maximum of 50 Instances.
-     *     @type array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo[] $subnetworks
      *           A set of subnetworks for which traffic from/to all VM instances will be
      *           mirrored. They must live in the same region as this packetMirroring.
      *           You may specify a maximum of 5 subnetworks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           A set of mirrored tags. Traffic from/to all VM instances that have one or
      *           more of these tags will be mirrored.
      * }
@@ -77,7 +77,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * You may specify a maximum of 50 Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoInstanceInfo instances = 29097598;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo>
      */
     public function getInstances()
     {
@@ -93,7 +93,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * You may specify a maximum of 50 Instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoInstanceInfo instances = 29097598;</code>
-     * @param array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoInstanceInfo[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -110,7 +110,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * You may specify a maximum of 5 subnetworks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo>
      */
     public function getSubnetworks()
     {
@@ -123,7 +123,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * You may specify a maximum of 5 subnetworks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroringMirroredResourceInfoSubnetInfo subnetworks = 415853125;</code>
-     * @param array<\Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PacketMirroringMirroredResourceInfoSubnetInfo[] $var
      * @return $this
      */
     public function setSubnetworks($var)
@@ -139,7 +139,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * more of these tags will be mirrored.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -151,7 +151,7 @@ class PacketMirroringMirroredResourceInfo extends \Google\Protobuf\Internal\Mess
      * more of these tags will be mirrored.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

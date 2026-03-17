@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides "hints" to the speech recognizer to favor specific words and phrases
@@ -37,9 +37,9 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type \Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet[] $phrase_sets
      *           A list of inline or referenced PhraseSets.
-     *     @type array<\Google\Cloud\Speech\V2\CustomClass>|\Google\Protobuf\Internal\RepeatedField $custom_classes
+     *     @type \Google\Cloud\Speech\V2\CustomClass[] $custom_classes
      *           A list of inline CustomClasses. Existing CustomClass resources can be
      *           referenced directly in a PhraseSet.
      * }
@@ -53,7 +53,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * A list of inline or referenced PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet phrase_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet>
      */
     public function getPhraseSets()
     {
@@ -64,7 +64,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * A list of inline or referenced PhraseSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechAdaptation.AdaptationPhraseSet phrase_sets = 1;</code>
-     * @param array<\Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\SpeechAdaptation\AdaptationPhraseSet[] $var
      * @return $this
      */
     public function setPhraseSets($var)
@@ -80,7 +80,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * referenced directly in a PhraseSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass custom_classes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\CustomClass>
      */
     public function getCustomClasses()
     {
@@ -92,7 +92,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * referenced directly in a PhraseSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.CustomClass custom_classes = 2;</code>
-     * @param array<\Google\Cloud\Speech\V2\CustomClass>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\CustomClass[] $var
      * @return $this
      */
     public function setCustomClasses($var)

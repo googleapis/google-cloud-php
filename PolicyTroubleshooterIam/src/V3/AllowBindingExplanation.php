@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a role binding in an allow policy affects a principal's
@@ -64,15 +64,15 @@ class AllowBindingExplanation extends \Google\Protobuf\Internal\Message
      * the role binding, and each value indicates whether the principal in the
      * role binding includes the principal in the request.
      * For example, suppose that a role binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * You want to troubleshoot access for `user:bob\@example.com`. This user is a
+     * member of the group `group:product-eng\@example.com`.
      * For the first principal in the role binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `NOT_INCLUDED`.
      * For the second principal in the role binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policytroubleshooter.iam.v3.AllowBindingExplanation.AnnotatedAllowMembership> memberships = 6;</code>
@@ -134,15 +134,15 @@ class AllowBindingExplanation extends \Google\Protobuf\Internal\Message
      *           the role binding, and each value indicates whether the principal in the
      *           role binding includes the principal in the request.
      *           For example, suppose that a role binding includes the following principals:
-     *           * `user:alice&#64;example.com`
-     *           * `group:product-eng&#64;example.com`
-     *           You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     *           member of the group `group:product-eng&#64;example.com`.
+     *           * `user:alice\@example.com`
+     *           * `group:product-eng\@example.com`
+     *           You want to troubleshoot access for `user:bob\@example.com`. This user is a
+     *           member of the group `group:product-eng\@example.com`.
      *           For the first principal in the role binding, the key is
-     *           `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     *           `user:alice\@example.com`, and the `membership` field in the value is set to
      *           `NOT_INCLUDED`.
      *           For the second principal in the role binding, the key is
-     *           `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     *           `group:product-eng\@example.com`, and the `membership` field in the value is
      *           set to `INCLUDED`.
      *     @type int $relevance
      *           The relevance of this role binding to the overall determination for the
@@ -330,15 +330,15 @@ class AllowBindingExplanation extends \Google\Protobuf\Internal\Message
      * the role binding, and each value indicates whether the principal in the
      * role binding includes the principal in the request.
      * For example, suppose that a role binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * You want to troubleshoot access for `user:bob\@example.com`. This user is a
+     * member of the group `group:product-eng\@example.com`.
      * For the first principal in the role binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `NOT_INCLUDED`.
      * For the second principal in the role binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policytroubleshooter.iam.v3.AllowBindingExplanation.AnnotatedAllowMembership> memberships = 6;</code>
@@ -355,15 +355,15 @@ class AllowBindingExplanation extends \Google\Protobuf\Internal\Message
      * the role binding, and each value indicates whether the principal in the
      * role binding includes the principal in the request.
      * For example, suppose that a role binding includes the following principals:
-     * * `user:alice&#64;example.com`
-     * * `group:product-eng&#64;example.com`
-     * You want to troubleshoot access for `user:bob&#64;example.com`. This user is a
-     * member of the group `group:product-eng&#64;example.com`.
+     * * `user:alice\@example.com`
+     * * `group:product-eng\@example.com`
+     * You want to troubleshoot access for `user:bob\@example.com`. This user is a
+     * member of the group `group:product-eng\@example.com`.
      * For the first principal in the role binding, the key is
-     * `user:alice&#64;example.com`, and the `membership` field in the value is set to
+     * `user:alice\@example.com`, and the `membership` field in the value is set to
      * `NOT_INCLUDED`.
      * For the second principal in the role binding, the key is
-     * `group:product-eng&#64;example.com`, and the `membership` field in the value is
+     * `group:product-eng\@example.com`, and the `membership` field in the value is
      * set to `INCLUDED`.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.policytroubleshooter.iam.v3.AllowBindingExplanation.AnnotatedAllowMembership> memberships = 6;</code>

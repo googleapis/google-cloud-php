@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Global topology of the streaming Dataflow job, including all
@@ -53,9 +53,9 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ComputationTopology>|\Google\Protobuf\Internal\RepeatedField $computations
+     *     @type \Google\Cloud\Dataflow\V1beta3\ComputationTopology[] $computations
      *           The computations associated with a streaming Dataflow job.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\DataDiskAssignment>|\Google\Protobuf\Internal\RepeatedField $data_disk_assignments
+     *     @type \Google\Cloud\Dataflow\V1beta3\DataDiskAssignment[] $data_disk_assignments
      *           The disks assigned to a streaming Dataflow job.
      *     @type array|\Google\Protobuf\Internal\MapField $user_stage_to_computation_name_map
      *           Maps user stage names to stable computation names.
@@ -74,7 +74,7 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      * The computations associated with a streaming Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ComputationTopology computations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ComputationTopology>
      */
     public function getComputations()
     {
@@ -85,7 +85,7 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      * The computations associated with a streaming Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ComputationTopology computations = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ComputationTopology>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ComputationTopology[] $var
      * @return $this
      */
     public function setComputations($var)
@@ -100,7 +100,7 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      * The disks assigned to a streaming Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DataDiskAssignment data_disk_assignments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\DataDiskAssignment>
      */
     public function getDataDiskAssignments()
     {
@@ -111,7 +111,7 @@ class TopologyConfig extends \Google\Protobuf\Internal\Message
      * The disks assigned to a streaming Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DataDiskAssignment data_disk_assignments = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\DataDiskAssignment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\DataDiskAssignment[] $var
      * @return $this
      */
     public function setDataDiskAssignments($var)

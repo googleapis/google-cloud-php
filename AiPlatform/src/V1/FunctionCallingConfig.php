@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Function calling config.
@@ -46,7 +46,7 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $mode
      *           Optional. Function calling mode.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_function_names
+     *     @type string[] $allowed_function_names
      *           Optional. Function names to call. Only set when the Mode is ANY. Function
      *           names should match [FunctionDeclaration.name]. With mode set to ANY, model
      *           will predict a function call from the set of function names provided.
@@ -93,7 +93,7 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      * will predict a function call from the set of function names provided.
      *
      * Generated from protobuf field <code>repeated string allowed_function_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedFunctionNames()
     {
@@ -106,7 +106,7 @@ class FunctionCallingConfig extends \Google\Protobuf\Internal\Message
      * will predict a function call from the set of function names provided.
      *
      * Generated from protobuf field <code>repeated string allowed_function_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedFunctionNames($var)

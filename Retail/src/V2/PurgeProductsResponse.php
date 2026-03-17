@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of the PurgeProductsRequest. If the long running operation is
@@ -40,7 +40,7 @@ class PurgeProductsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $purge_count
      *           The total count of products purged as a result of the operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $purge_sample
+     *     @type string[] $purge_sample
      *           A sample of the product names that will be deleted.
      *           Only populated if `force` is set to false. A max of 100 names will be
      *           returned and the names are chosen at random.
@@ -83,7 +83,7 @@ class PurgeProductsResponse extends \Google\Protobuf\Internal\Message
      * returned and the names are chosen at random.
      *
      * Generated from protobuf field <code>repeated string purge_sample = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPurgeSample()
     {
@@ -96,7 +96,7 @@ class PurgeProductsResponse extends \Google\Protobuf\Internal\Message
      * returned and the names are chosen at random.
      *
      * Generated from protobuf field <code>repeated string purge_sample = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPurgeSample($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output only. Annotations can be associated with the plain-text body of the
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * messages](https://developers.google.com/workspace/chat/format-messages).
  * Example plain-text message body:
  * ```
- * Hello &#64;FooBot how are you!"
+ * Hello \@FooBot how are you!"
  * ```
  * The corresponding annotations metadata:
  * ```

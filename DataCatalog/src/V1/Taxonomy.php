@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A taxonomy is a collection of hierarchical policy tags that classify data
@@ -112,7 +112,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *           Output only. Number of policy tags in this taxonomy.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $taxonomy_timestamps
      *           Output only. Creation and modification timestamps of this taxonomy.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
+     *     @type int[] $activated_policy_types
      *           Optional. A list of policy types that are activated for this taxonomy. If
      *           not set, defaults to an empty list.
      *     @type \Google\Cloud\DataCatalog\V1\Taxonomy\Service $service
@@ -287,7 +287,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * not set, defaults to an empty list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy.PolicyType activated_policy_types = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getActivatedPolicyTypes()
     {
@@ -299,7 +299,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * not set, defaults to an empty list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy.PolicyType activated_policy_types = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setActivatedPolicyTypes($var)

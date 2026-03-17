@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Postdeploy contains the postdeploy job configuration information.
@@ -29,7 +29,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type string[] $actions
      *           Optional. A sequence of Skaffold custom actions to invoke during execution
      *           of the postdeploy job.
      * }
@@ -44,7 +44,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
      * of the postdeploy job.
      *
      * Generated from protobuf field <code>repeated string actions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActions()
     {
@@ -56,7 +56,7 @@ class Postdeploy extends \Google\Protobuf\Internal\Message
      * of the postdeploy job.
      *
      * Generated from protobuf field <code>repeated string actions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActions($var)

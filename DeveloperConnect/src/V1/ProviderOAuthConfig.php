@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ProviderOAuthConfig is the OAuth config for a provider.
@@ -33,7 +33,7 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $system_provider_id
      *           Optional. Immutable. Developer Connect provided OAuth.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Required. User selected scopes to apply to the Oauth config
      *           In the event of changing scopes, user records under AccountConnector will
      *           be deleted and users will re-auth again.
@@ -81,7 +81,7 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
      * be deleted and users will re-auth again.
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -94,7 +94,7 @@ class ProviderOAuthConfig extends \Google\Protobuf\Internal\Message
      * be deleted and users will re-auth again.
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

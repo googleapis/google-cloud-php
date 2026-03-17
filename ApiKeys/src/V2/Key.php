@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The representation of a key managed by the API Keys API.

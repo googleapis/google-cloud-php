@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `DeleteBlueprint`.
@@ -18,7 +18,7 @@ class DeleteBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of blueprint to delete.
      * Blueprint name should be in the format {blueprint_id}, if
-     * {blueprint_id}&#64;{revision_id} is passed then the API throws invalid
+     * {blueprint_id}\@{revision_id} is passed then the API throws invalid
      * argument.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -51,7 +51,7 @@ class DeleteBlueprintRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of blueprint to delete.
      *           Blueprint name should be in the format {blueprint_id}, if
-     *           {blueprint_id}&#64;{revision_id} is passed then the API throws invalid
+     *           {blueprint_id}\@{revision_id} is passed then the API throws invalid
      *           argument.
      * }
      */
@@ -63,7 +63,7 @@ class DeleteBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of blueprint to delete.
      * Blueprint name should be in the format {blueprint_id}, if
-     * {blueprint_id}&#64;{revision_id} is passed then the API throws invalid
+     * {blueprint_id}\@{revision_id} is passed then the API throws invalid
      * argument.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -77,7 +77,7 @@ class DeleteBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of blueprint to delete.
      * Blueprint name should be in the format {blueprint_id}, if
-     * {blueprint_id}&#64;{revision_id} is passed then the API throws invalid
+     * {blueprint_id}\@{revision_id} is passed then the API throws invalid
      * argument.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

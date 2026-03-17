@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a result from running a test case in an agent environment.
@@ -61,7 +61,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
      *     @type string $environment
      *           Environment where the test was run. If not set, it indicates the draft
      *           environment.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>|\Google\Protobuf\Internal\RepeatedField $conversation_turns
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ConversationTurn[] $conversation_turns
      *           The conversation turns uttered during the test case replay in chronological
      *           order.
      *     @type int $test_result
@@ -136,7 +136,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ConversationTurn conversation_turns = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>
      */
     public function getConversationTurns()
     {
@@ -148,7 +148,7 @@ class TestCaseResult extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ConversationTurn conversation_turns = 3;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ConversationTurn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ConversationTurn[] $var
      * @return $this
      */
     public function setConversationTurns($var)

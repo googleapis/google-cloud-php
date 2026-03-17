@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A provisioning configuration.
@@ -114,11 +114,11 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The system-generated name of the provisioning config. This
      *           follows the UUID format.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\InstanceConfig>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\BareMetalSolution\V2\InstanceConfig[] $instances
      *           Instances to be created.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkConfig[] $networks
      *           Networks to be created.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\BareMetalSolution\V2\VolumeConfig[] $volumes
      *           Volumes to be created.
      *     @type string $ticket_id
      *           A generated ticket id to track provisioning request.
@@ -182,7 +182,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Instances to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.InstanceConfig instances = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\InstanceConfig>
      */
     public function getInstances()
     {
@@ -193,7 +193,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Instances to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.InstanceConfig instances = 2;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\InstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\InstanceConfig[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -208,7 +208,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Networks to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkConfig networks = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NetworkConfig>
      */
     public function getNetworks()
     {
@@ -219,7 +219,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Networks to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkConfig networks = 3;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NetworkConfig[] $var
      * @return $this
      */
     public function setNetworks($var)
@@ -234,7 +234,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Volumes to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig volumes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\VolumeConfig>
      */
     public function getVolumes()
     {
@@ -245,7 +245,7 @@ class ProvisioningConfig extends \Google\Protobuf\Internal\Message
      * Volumes to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VolumeConfig volumes = 4;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\VolumeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\VolumeConfig[] $var
      * @return $this
      */
     public function setVolumes($var)

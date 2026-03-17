@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A cluster instance.
@@ -238,14 +238,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           the next integer.
      *     @type int $shard_count
      *           Optional. Number of shards for the Redis cluster.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\PscConfig>|\Google\Protobuf\Internal\RepeatedField $psc_configs
+     *     @type \Google\Cloud\Redis\Cluster\V1\PscConfig[] $psc_configs
      *           Optional. Each PscConfig configures the consumer network where IPs will
      *           be designated to the cluster for client access through Private Service
      *           Connect Automation. Currently, only one PscConfig is supported.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $discovery_endpoints
+     *     @type \Google\Cloud\Redis\Cluster\V1\DiscoveryEndpoint[] $discovery_endpoints
      *           Output only. Endpoints created on each given network, for Redis clients to
      *           connect to the cluster. Currently only one discovery endpoint is supported.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\PscConnection>|\Google\Protobuf\Internal\RepeatedField $psc_connections
+     *     @type \Google\Cloud\Redis\Cluster\V1\PscConnection[] $psc_connections
      *           Output only. The list of PSC connections that are auto-created through
      *           service connectivity automation.
      *     @type \Google\Cloud\Redis\Cluster\V1\Cluster\StateInfo $state_info
@@ -273,9 +273,9 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Redis\Cluster\V1\ClusterMaintenanceSchedule $maintenance_schedule
      *           Output only. ClusterMaintenanceSchedule Output only Published maintenance
      *           schedule.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\PscServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $psc_service_attachments
+     *     @type \Google\Cloud\Redis\Cluster\V1\PscServiceAttachment[] $psc_service_attachments
      *           Output only. Service attachment details to configure Psc connections
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\ClusterEndpoint>|\Google\Protobuf\Internal\RepeatedField $cluster_endpoints
+     *     @type \Google\Cloud\Redis\Cluster\V1\ClusterEndpoint[] $cluster_endpoints
      *           Optional. A list of cluster enpoints.
      *     @type string $backup_collection
      *           Optional. Output only. The backup collection full resource name. Example:
@@ -653,7 +653,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Connect Automation. Currently, only one PscConfig is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscConfig psc_configs = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\PscConfig>
      */
     public function getPscConfigs()
     {
@@ -666,7 +666,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Connect Automation. Currently, only one PscConfig is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscConfig psc_configs = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\PscConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\PscConfig[] $var
      * @return $this
      */
     public function setPscConfigs($var)
@@ -682,7 +682,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * connect to the cluster. Currently only one discovery endpoint is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.DiscoveryEndpoint discovery_endpoints = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\DiscoveryEndpoint>
      */
     public function getDiscoveryEndpoints()
     {
@@ -694,7 +694,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * connect to the cluster. Currently only one discovery endpoint is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.DiscoveryEndpoint discovery_endpoints = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\DiscoveryEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\DiscoveryEndpoint[] $var
      * @return $this
      */
     public function setDiscoveryEndpoints($var)
@@ -710,7 +710,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * service connectivity automation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscConnection psc_connections = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\PscConnection>
      */
     public function getPscConnections()
     {
@@ -722,7 +722,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * service connectivity automation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscConnection psc_connections = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\PscConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\PscConnection[] $var
      * @return $this
      */
     public function setPscConnections($var)
@@ -1087,7 +1087,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. Service attachment details to configure Psc connections
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscServiceAttachment psc_service_attachments = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\PscServiceAttachment>
      */
     public function getPscServiceAttachments()
     {
@@ -1098,7 +1098,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. Service attachment details to configure Psc connections
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.PscServiceAttachment psc_service_attachments = 30 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\PscServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\PscServiceAttachment[] $var
      * @return $this
      */
     public function setPscServiceAttachments($var)
@@ -1113,7 +1113,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Optional. A list of cluster enpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ClusterEndpoint cluster_endpoints = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\ClusterEndpoint>
      */
     public function getClusterEndpoints()
     {
@@ -1124,7 +1124,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Optional. A list of cluster enpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ClusterEndpoint cluster_endpoints = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\ClusterEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\ClusterEndpoint[] $var
      * @return $this
      */
     public function setClusterEndpoints($var)

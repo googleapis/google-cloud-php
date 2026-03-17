@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PostgreSQL table.
@@ -38,7 +38,7 @@ class PostgresqlTable extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Table name.
-     *     @type array<\Google\Cloud\Datastream\V1\PostgresqlColumn>|\Google\Protobuf\Internal\RepeatedField $postgresql_columns
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlColumn[] $postgresql_columns
      *           PostgreSQL columns in the schema.
      *           When unspecified as part of include/exclude objects,
      *           includes/excludes everything.
@@ -81,7 +81,7 @@ class PostgresqlTable extends \Google\Protobuf\Internal\Message
      * includes/excludes everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlColumn postgresql_columns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\PostgresqlColumn>
      */
     public function getPostgresqlColumns()
     {
@@ -94,7 +94,7 @@ class PostgresqlTable extends \Google\Protobuf\Internal\Message
      * includes/excludes everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlColumn postgresql_columns = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\PostgresqlColumn>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\PostgresqlColumn[] $var
      * @return $this
      */
     public function setPostgresqlColumns($var)

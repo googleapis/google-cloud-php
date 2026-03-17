@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to PollAirflowCommandRequest.
@@ -41,7 +41,7 @@ class PollAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse\Line>|\Google\Protobuf\Internal\RepeatedField $output
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse\Line[] $output
      *           Output from the command execution. It may not contain the full output
      *           and the caller may need to poll for more lines.
      *     @type bool $output_end
@@ -60,7 +60,7 @@ class PollAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      * and the caller may need to poll for more lines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line output = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse\Line>
      */
     public function getOutput()
     {
@@ -72,7 +72,7 @@ class PollAirflowCommandResponse extends \Google\Protobuf\Internal\Message
      * and the caller may need to poll for more lines.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.PollAirflowCommandResponse.Line output = 1;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse\Line>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse\Line[] $var
      * @return $this
      */
     public function setOutput($var)

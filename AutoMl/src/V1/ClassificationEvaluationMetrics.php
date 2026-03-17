@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Model evaluation metrics for classification problems.
@@ -79,7 +79,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *           Micro-averaged for the overall evaluation.
      *     @type float $log_loss
      *           Output only. The Log Loss metric.
-     *     @type array<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entry
+     *     @type \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry[] $confidence_metrics_entry
      *           Output only. Metrics for each confidence_threshold in
      *           0.00,0.05,0.10,...,0.95,0.96,0.97,0.98,0.99 and
      *           position_threshold = INT32_MAX_VALUE.
@@ -92,7 +92,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *           Only set for MULTICLASS classification problems where number
      *           of labels is no more than 10.
      *           Only set for model level evaluation, not for evaluation per label.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_id
+     *     @type string[] $annotation_spec_id
      *           Output only. The annotation spec ids used for this evaluation.
      * }
      */
@@ -193,7 +193,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * metrics are computed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry confidence_metrics_entry = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry>
      */
     public function getConfidenceMetricsEntry()
     {
@@ -210,7 +210,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * metrics are computed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfidenceMetricsEntry confidence_metrics_entry = 3;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfidenceMetricsEntry[] $var
      * @return $this
      */
     public function setConfidenceMetricsEntry($var)
@@ -267,7 +267,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Output only. The annotation spec ids used for this evaluation.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAnnotationSpecId()
     {
@@ -278,7 +278,7 @@ class ClassificationEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Output only. The annotation spec ids used for this evaluation.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAnnotationSpecId($var)

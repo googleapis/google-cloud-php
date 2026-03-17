@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for predict method.
@@ -62,14 +62,14 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult[] $results
      *           A list of recommended items. The order represents the ranking (from the
      *           most relevant item to the least).
      *     @type string $recommendation_token
      *           A unique recommendation token. This should be included in the user event
      *           logs resulting from this recommendation, which enables accurate attribution
      *           of recommendation model performance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $items_missing_in_catalog
+     *     @type string[] $items_missing_in_catalog
      *           IDs of items in the request that were missing from the catalog.
      *     @type bool $dry_run
      *           True if the dryRun property was set in the request.
@@ -90,7 +90,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * most relevant item to the least).
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.PredictResponse.PredictionResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult>
      */
     public function getResults()
     {
@@ -102,7 +102,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * most relevant item to the least).
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.PredictResponse.PredictionResult results = 1;</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictResponse\PredictionResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -147,7 +147,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * IDs of items in the request that were missing from the catalog.
      *
      * Generated from protobuf field <code>repeated string items_missing_in_catalog = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItemsMissingInCatalog()
     {
@@ -158,7 +158,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * IDs of items in the request that were missing from the catalog.
      *
      * Generated from protobuf field <code>repeated string items_missing_in_catalog = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItemsMissingInCatalog($var)

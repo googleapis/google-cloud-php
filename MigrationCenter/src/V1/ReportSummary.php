@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the Summary view of a Report, which contains aggregated values
@@ -37,7 +37,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\AssetAggregateStats $all_assets_stats
      *           Aggregate statistics for all the assets across all the groups.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupFinding>|\Google\Protobuf\Internal\RepeatedField $group_findings
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\GroupFinding[] $group_findings
      *           Findings for each Group included in this report.
      * }
      */
@@ -86,7 +86,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
      * Findings for each Group included in this report.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.GroupFinding group_findings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupFinding>
      */
     public function getGroupFindings()
     {
@@ -97,7 +97,7 @@ class ReportSummary extends \Google\Protobuf\Internal\Message
      * Findings for each Group included in this report.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.GroupFinding group_findings = 2;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportSummary\GroupFinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\GroupFinding[] $var
      * @return $this
      */
     public function setGroupFindings($var)

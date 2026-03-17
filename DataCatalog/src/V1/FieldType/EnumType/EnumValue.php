@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\FieldType\EnumType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue</code>
@@ -78,5 +78,4 @@ class EnumValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

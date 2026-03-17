@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for SearchCaseClassifications endpoint.
@@ -36,7 +36,7 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Support\V2beta\CaseClassification>|\Google\Protobuf\Internal\RepeatedField $case_classifications
+     *     @type \Google\Cloud\Support\V2beta\CaseClassification[] $case_classifications
      *           The classifications retrieved.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Set this in the `page_token`
@@ -53,7 +53,7 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
      * The classifications retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2beta.CaseClassification case_classifications = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Support\V2beta\CaseClassification>
      */
     public function getCaseClassifications()
     {
@@ -64,7 +64,7 @@ class SearchCaseClassificationsResponse extends \Google\Protobuf\Internal\Messag
      * The classifications retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2beta.CaseClassification case_classifications = 1;</code>
-     * @param array<\Google\Cloud\Support\V2beta\CaseClassification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Support\V2beta\CaseClassification[] $var
      * @return $this
      */
     public function setCaseClassifications($var)

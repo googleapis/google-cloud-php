@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Confusion matrix of the model running the classification.
@@ -52,19 +52,19 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_id
+     *     @type string[] $annotation_spec_id
      *           Output only. IDs of the annotation specs used in the confusion matrix.
      *           For Tables CLASSIFICATION
      *           [prediction_type][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type]
      *           only list of [annotation_spec_display_name-s][] is populated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $display_name
+     *     @type string[] $display_name
      *           Output only. Display name of the annotation specs used in the confusion
      *           matrix, as they were at the moment of the evaluation. For Tables
      *           CLASSIFICATION
      *           [prediction_type-s][google.cloud.automl.v1p1beta.TablesModelMetadata.prediction_type],
      *           distinct values of the target column at the moment of the model
      *           evaluation are populated here.
-     *     @type array<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $row
+     *     @type \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix\Row[] $row
      *           Output only. Rows in the confusion matrix. The number of rows is equal to
      *           the size of `annotation_spec_id`.
      *           `row[i].example_count[j]` is the number of examples that have ground
@@ -84,7 +84,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * only list of [annotation_spec_display_name-s][] is populated.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAnnotationSpecId()
     {
@@ -98,7 +98,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * only list of [annotation_spec_display_name-s][] is populated.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAnnotationSpecId($var)
@@ -118,7 +118,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * evaluation are populated here.
      *
      * Generated from protobuf field <code>repeated string display_name = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisplayName()
     {
@@ -134,7 +134,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * evaluation are populated here.
      *
      * Generated from protobuf field <code>repeated string display_name = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisplayName($var)
@@ -153,7 +153,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * `annotation_spec_id[j]` by the model being evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.Row row = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix\Row>
      */
     public function getRow()
     {
@@ -168,7 +168,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * `annotation_spec_id[j]` by the model being evaluated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.ClassificationEvaluationMetrics.ConfusionMatrix.Row row = 2;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\ClassificationEvaluationMetrics\ConfusionMatrix\Row[] $var
      * @return $this
      */
     public function setRow($var)
@@ -180,5 +180,4 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

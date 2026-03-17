@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MaintenanceUpdatePolicy defines the policy for system updates.
@@ -34,9 +34,9 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $maintenance_windows
+     *     @type \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow[] $maintenance_windows
      *           Preferred windows to perform maintenance. Currently limited to 1.
-     *     @type array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_periods
+     *     @type \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod[] $deny_maintenance_periods
      *           Periods to deny maintenance. Currently limited to 1.
      * }
      */
@@ -49,7 +49,7 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * Preferred windows to perform maintenance. Currently limited to 1.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow maintenance_windows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow>
      */
     public function getMaintenanceWindows()
     {
@@ -60,7 +60,7 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * Preferred windows to perform maintenance. Currently limited to 1.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.MaintenanceWindow maintenance_windows = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\MaintenanceWindow[] $var
      * @return $this
      */
     public function setMaintenanceWindows($var)
@@ -75,7 +75,7 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * Periods to deny maintenance. Currently limited to 1.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod deny_maintenance_periods = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod>
      */
     public function getDenyMaintenancePeriods()
     {
@@ -86,7 +86,7 @@ class MaintenanceUpdatePolicy extends \Google\Protobuf\Internal\Message
      * Periods to deny maintenance. Currently limited to 1.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.MaintenanceUpdatePolicy.DenyMaintenancePeriod deny_maintenance_periods = 2;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\MaintenanceUpdatePolicy\DenyMaintenancePeriod[] $var
      * @return $this
      */
     public function setDenyMaintenancePeriods($var)

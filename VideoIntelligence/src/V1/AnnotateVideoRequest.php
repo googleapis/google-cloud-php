@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Video annotation request.
@@ -121,7 +121,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      *           The video data bytes.
      *           If unset, the input video(s) should be specified via the `input_uri`.
      *           If set, `input_uri` must be unset.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type int[] $features
      *           Required. Requested video annotation features.
      *     @type \Google\Cloud\VideoIntelligence\V1\VideoContext $video_context
      *           Additional video context and/or feature-specific parameters.
@@ -225,7 +225,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested video annotation features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Feature features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getFeatures()
     {
@@ -236,7 +236,7 @@ class AnnotateVideoRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested video annotation features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Feature features = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setFeatures($var)

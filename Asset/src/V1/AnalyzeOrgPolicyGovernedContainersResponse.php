@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -42,7 +42,7 @@ class AnalyzeOrgPolicyGovernedContainersResponse extends \Google\Protobuf\Intern
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer>|\Google\Protobuf\Internal\RepeatedField $governed_containers
+     *     @type \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer[] $governed_containers
      *           The list of the analyzed governed containers.
      *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicyConstraint $constraint
      *           The definition of the constraint in the request.
@@ -60,7 +60,7 @@ class AnalyzeOrgPolicyGovernedContainersResponse extends \Google\Protobuf\Intern
      * The list of the analyzed governed containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer governed_containers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer>
      */
     public function getGovernedContainers()
     {
@@ -71,7 +71,7 @@ class AnalyzeOrgPolicyGovernedContainersResponse extends \Google\Protobuf\Intern
      * The list of the analyzed governed containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer governed_containers = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse\GovernedContainer[] $var
      * @return $this
      */
     public function setGovernedContainers($var)

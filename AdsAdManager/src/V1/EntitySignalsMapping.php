@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `EntitySignalsMapping` resource.
@@ -56,7 +56,7 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      *           `networks/{network_code}/entitySignalsMappings/{entity_signals_mapping_id}`
      *     @type int|string $entity_signals_mapping_id
      *           Output only. `EntitySignalsMapping` ID.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $taxonomy_category_ids
+     *     @type int[]|string[] $taxonomy_category_ids
      *           Optional. The IDs of the categories that are associated with the
      *           referencing entity.
      * }
@@ -230,7 +230,7 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      * referencing entity.
      *
      * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getTaxonomyCategoryIds()
     {
@@ -242,7 +242,7 @@ class EntitySignalsMapping extends \Google\Protobuf\Internal\Message
      * referencing entity.
      *
      * Generated from protobuf field <code>repeated int64 taxonomy_category_ids = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setTaxonomyCategoryIds($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input provided by the business.
@@ -38,7 +38,7 @@ class ActionInput extends \Google\Protobuf\Internal\Message
      *     @type string $action_flow_id
      *           Required. [Id][google.shopping.merchant.issueresolution.v1.ActionFlow.id]
      *           of the selected action flow.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\InputValue>|\Google\Protobuf\Internal\RepeatedField $input_values
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\InputValue[] $input_values
      *           Required. Values for input fields.
      * }
      */
@@ -79,7 +79,7 @@ class ActionInput extends \Google\Protobuf\Internal\Message
      * Required. Values for input fields.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputValue input_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\InputValue>
      */
     public function getInputValues()
     {
@@ -90,7 +90,7 @@ class ActionInput extends \Google\Protobuf\Internal\Message
      * Required. Values for input fields.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.InputValue input_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\InputValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\InputValue[] $var
      * @return $this
      */
     public function setInputValues($var)

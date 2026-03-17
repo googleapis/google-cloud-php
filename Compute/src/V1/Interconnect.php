@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Interconnect resource.
@@ -346,7 +346,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\InterconnectApplicationAwareInterconnect $application_aware_interconnect
      *           Configuration information for application awareness on this Cloud
      *           Interconnect.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
+     *     @type string[] $available_features
      *           [Output only] List of features available for this Interconnect connection,
      *           which can take one of the following values:
      *              - IF_MACSEC: If present, then the Interconnect connection is
@@ -359,7 +359,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *              connection is not provisioned for Cross-Site Networking. Any attempt to use
      *              it for Cross-Site Networking will fail.
      *           Check the AvailableFeatures enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
+     *     @type \Google\Cloud\Compute\V1\InterconnectCircuitInfo[] $circuit_infos
      *           Output only. [Output Only] A list of CircuitInfo objects, that describe the individual
      *           circuits in this LAG.
      *     @type string $creation_timestamp
@@ -371,7 +371,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $expected_outages
+     *     @type \Google\Cloud\Compute\V1\InterconnectOutageNotification[] $expected_outages
      *           Output only. [Output Only] A list of outages expected for this Interconnect.
      *     @type string $google_ip_address
      *           Output only. [Output Only] IP address configured on the Google side of the Interconnect
@@ -382,10 +382,10 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
+     *     @type string[] $interconnect_attachments
      *           Output only. [Output Only] A list of the URLs of all InterconnectAttachments configured
      *           to use  this Interconnect.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_groups
+     *     @type string[] $interconnect_groups
      *           Output only. [Output Only] URLs of InterconnectGroups that include this Interconnect.
      *           Order is arbitrary and items are unique.
      *     @type string $interconnect_type
@@ -465,7 +465,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $remote_location
      *           Indicates that this is a Cross-Cloud Interconnect. This field specifies the
      *           location outside of Google's network that the interconnect is connected to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $requested_features
+     *     @type string[] $requested_features
      *           Optional. This parameter can be provided only with Interconnect INSERT. It
      *           isn't valid for Interconnect PATCH. List of features requested for this
      *           Interconnect connection, which can take one of the following values:
@@ -497,7 +497,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *     @type string $subzone
      *           To be deprecated.
      *           Check the Subzone enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $wire_groups
+     *     @type string[] $wire_groups
      *           Output only. [Output Only] A list of the URLs of all CrossSiteNetwork WireGroups
      *           configured to use this Interconnect. The Interconnect cannot be deleted if
      *           this list is non-empty.
@@ -641,7 +641,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableFeatures()
     {
@@ -663,7 +663,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableFeatures($var)
@@ -679,7 +679,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>
      */
     public function getCircuitInfos()
     {
@@ -691,7 +691,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectCircuitInfo[] $var
      * @return $this
      */
     public function setCircuitInfos($var)
@@ -820,7 +820,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectOutageNotification>
      */
     public function getExpectedOutages()
     {
@@ -831,7 +831,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectOutageNotification[] $var
      * @return $this
      */
     public function setExpectedOutages($var)
@@ -961,7 +961,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * to use  this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInterconnectAttachments()
     {
@@ -973,7 +973,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * to use  this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInterconnectAttachments($var)
@@ -989,7 +989,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Order is arbitrary and items are unique.
      *
      * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInterconnectGroups()
     {
@@ -1001,7 +1001,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Order is arbitrary and items are unique.
      *
      * Generated from protobuf field <code>repeated string interconnect_groups = 237049509;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInterconnectGroups($var)
@@ -1649,7 +1649,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequestedFeatures()
     {
@@ -1669,7 +1669,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * Check the RequestedFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string requested_features = 461240814;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequestedFeatures($var)
@@ -1888,7 +1888,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * this list is non-empty.
      *
      * Generated from protobuf field <code>repeated string wire_groups = 40662734;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWireGroups()
     {
@@ -1901,7 +1901,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * this list is non-empty.
      *
      * Generated from protobuf field <code>repeated string wire_groups = 40662734;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWireGroups($var)

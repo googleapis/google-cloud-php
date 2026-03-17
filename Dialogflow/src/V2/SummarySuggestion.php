@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Suggested summary of the conversation.
@@ -28,7 +28,7 @@ class SummarySuggestion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>|\Google\Protobuf\Internal\RepeatedField $summary_sections
+     *     @type \Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection[] $summary_sections
      *           Required. All the parts of generated summary.
      * }
      */
@@ -41,7 +41,7 @@ class SummarySuggestion extends \Google\Protobuf\Internal\Message
      * Required. All the parts of generated summary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarySuggestion.SummarySection summary_sections = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>
      */
     public function getSummarySections()
     {
@@ -52,7 +52,7 @@ class SummarySuggestion extends \Google\Protobuf\Internal\Message
      * Required. All the parts of generated summary.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarySuggestion.SummarySection summary_sections = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarySuggestion\SummarySection[] $var
      * @return $this
      */
     public function setSummarySections($var)

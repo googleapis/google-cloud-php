@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary of validation errors that occurred during the verification phase.
@@ -118,5 +118,4 @@ class ValidationErrorsBeforeIngestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Notifications\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The message that the merchant will receive to notify about product status
@@ -82,7 +82,7 @@ class ProductStatusChangeMessage extends \Google\Protobuf\Internal\Message
      *     @type int $attribute
      *           The attribute in the resource that changed, in this case it will be always
      *           `Status`.
-     *     @type array<\Google\Shopping\Merchant\Notifications\V1beta\ProductChange>|\Google\Protobuf\Internal\RepeatedField $changes
+     *     @type \Google\Shopping\Merchant\Notifications\V1beta\ProductChange[] $changes
      *           A message to describe the change that happened to the product
      *     @type string $resource_id
      *           The product id.
@@ -252,7 +252,7 @@ class ProductStatusChangeMessage extends \Google\Protobuf\Internal\Message
      * A message to describe the change that happened to the product
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.notifications.v1beta.ProductChange changes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Notifications\V1beta\ProductChange>
      */
     public function getChanges()
     {
@@ -263,7 +263,7 @@ class ProductStatusChangeMessage extends \Google\Protobuf\Internal\Message
      * A message to describe the change that happened to the product
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.notifications.v1beta.ProductChange changes = 5;</code>
-     * @param array<\Google\Shopping\Merchant\Notifications\V1beta\ProductChange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Notifications\V1beta\ProductChange[] $var
      * @return $this
      */
     public function setChanges($var)

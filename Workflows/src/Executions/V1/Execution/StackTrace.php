@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\Executions\V1\Execution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of stack elements (frames) where an error occurred.
@@ -28,7 +28,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Workflows\Executions\V1\Execution\StackTraceElement>|\Google\Protobuf\Internal\RepeatedField $elements
+     *     @type \Google\Cloud\Workflows\Executions\V1\Execution\StackTraceElement[] $elements
      *           An array of stack elements.
      * }
      */
@@ -41,7 +41,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      * An array of stack elements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution.StackTraceElement elements = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Workflows\Executions\V1\Execution\StackTraceElement>
      */
     public function getElements()
     {
@@ -52,7 +52,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      * An array of stack elements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.executions.v1.Execution.StackTraceElement elements = 1;</code>
-     * @param array<\Google\Cloud\Workflows\Executions\V1\Execution\StackTraceElement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Workflows\Executions\V1\Execution\StackTraceElement[] $var
      * @return $this
      */
     public function setElements($var)
@@ -64,7 +64,4 @@ class StackTrace extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StackTrace::class, \Google\Cloud\Workflows\Executions\V1\Execution_StackTrace::class);
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SipTrunk is the resource that represents a SIP trunk to connect to Google
@@ -54,10 +54,10 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      *           Identifier. The unique identifier of the SIP trunk.
      *           Format: `projects/<Project ID>/locations/<Location ID>/sipTrunks/<SipTrunk
      *           ID>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $expected_hostname
+     *     @type string[] $expected_hostname
      *           Required. The expected hostnames in the peer certificate from partner that
      *           is used for TLS authentication.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Dialogflow\V2\Connection[] $connections
      *           Output only. Connections of the SIP trunk.
      *     @type string $display_name
      *           Optional. Human readable alias for this trunk.
@@ -103,7 +103,7 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      * is used for TLS authentication.
      *
      * Generated from protobuf field <code>repeated string expected_hostname = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExpectedHostname()
     {
@@ -115,7 +115,7 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      * is used for TLS authentication.
      *
      * Generated from protobuf field <code>repeated string expected_hostname = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExpectedHostname($var)
@@ -130,7 +130,7 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      * Output only. Connections of the SIP trunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Connection connections = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Connection>
      */
     public function getConnections()
     {
@@ -141,7 +141,7 @@ class SipTrunk extends \Google\Protobuf\Internal\Message
      * Output only. Connections of the SIP trunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Connection connections = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Connection[] $var
      * @return $this
      */
     public function setConnections($var)

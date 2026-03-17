@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ProductCatalogItem captures item metadata specific to retail products.
@@ -87,7 +87,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      *     @type string $canonical_product_uri
      *           Optional. Canonical URL directly linking to the item detail page with a
      *           length limit of 5 KiB..
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\Image[] $images
      *           Optional. Product images for the catalog item.
      * }
      */
@@ -306,7 +306,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Product images for the catalog item.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.Image images = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\Image>
      */
     public function getImages()
     {
@@ -317,7 +317,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Product images for the catalog item.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.Image images = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\Image[] $var
      * @return $this
      */
     public function setImages($var)

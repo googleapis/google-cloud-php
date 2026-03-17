@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A subscription resource. If none of `push_config`, `bigquery_config`, or
@@ -151,7 +151,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -372,7 +372,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           lettering is disabled.
      *           The Pub/Sub service account associated with this subscriptions's
      *           parent project (i.e.,
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      *           permission to Acknowledge() messages on this subscription.
      *     @type \Google\Cloud\PubSub\V1\RetryPolicy $retry_policy
      *           Optional. A policy that specifies how Pub/Sub retries message delivery for
@@ -411,7 +411,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\PubSub\V1\Subscription\AnalyticsHubSubscriptionInfo $analytics_hub_subscription_info
      *           Output only. Information about the associated Analytics Hub subscription.
      *           Only set if the subscription is created by Analytics Hub.
-     *     @type array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
+     *     @type \Google\Cloud\PubSub\V1\MessageTransform[] $message_transforms
      *           Optional. Transforms to be applied to messages before they are delivered to
      *           subscribers. Transforms are applied in the order specified.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
@@ -932,7 +932,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -959,7 +959,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * lettering is disabled.
      * The Pub/Sub service account associated with this subscriptions's
      * parent project (i.e.,
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must have
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must have
      * permission to Acknowledge() messages on this subscription.
      *
      * Generated from protobuf field <code>.google.pubsub.v1.DeadLetterPolicy dead_letter_policy = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -1215,7 +1215,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * subscribers. Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\MessageTransform>
      */
     public function getMessageTransforms()
     {
@@ -1227,7 +1227,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * subscribers. Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\MessageTransform[] $var
      * @return $this
      */
     public function setMessageTransforms($var)

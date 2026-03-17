@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an operating system process.
@@ -99,17 +99,17 @@ class Process extends \Google\Protobuf\Internal\Message
      *           `prctl(PR_SET_NAME)`.
      *     @type \Google\Cloud\SecurityCenter\V2\File $binary
      *           File information for the process executable.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\File>|\Google\Protobuf\Internal\RepeatedField $libraries
+     *     @type \Google\Cloud\SecurityCenter\V2\File[] $libraries
      *           File information for libraries loaded by the process.
      *     @type \Google\Cloud\SecurityCenter\V2\File $script
      *           When the process represents the invocation of a script, `binary` provides
      *           information about the interpreter, while `script` provides information
      *           about the script file provided to the interpreter.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Process arguments as JSON encoded strings.
      *     @type bool $arguments_truncated
      *           True if `args` is incomplete.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\EnvironmentVariable>|\Google\Protobuf\Internal\RepeatedField $env_variables
+     *     @type \Google\Cloud\SecurityCenter\V2\EnvironmentVariable[] $env_variables
      *           Process environment variables.
      *     @type bool $env_variables_truncated
      *           True if `env_variables` is incomplete.
@@ -197,7 +197,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * File information for libraries loaded by the process.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File libraries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\File>
      */
     public function getLibraries()
     {
@@ -208,7 +208,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * File information for libraries loaded by the process.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File libraries = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\File[] $var
      * @return $this
      */
     public function setLibraries($var)
@@ -263,7 +263,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * Process arguments as JSON encoded strings.
      *
      * Generated from protobuf field <code>repeated string args = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -274,7 +274,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * Process arguments as JSON encoded strings.
      *
      * Generated from protobuf field <code>repeated string args = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -315,7 +315,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * Process environment variables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.EnvironmentVariable env_variables = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\EnvironmentVariable>
      */
     public function getEnvVariables()
     {
@@ -326,7 +326,7 @@ class Process extends \Google\Protobuf\Internal\Message
      * Process environment variables.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.EnvironmentVariable env_variables = 7;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\EnvironmentVariable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\EnvironmentVariable[] $var
      * @return $this
      */
     public function setEnvVariables($var)

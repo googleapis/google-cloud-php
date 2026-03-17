@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Playbook is the basic building block to instruct the LLM how to execute a
@@ -154,9 +154,9 @@ class Playbook extends \Google\Protobuf\Internal\Message
      *           Required. High level description of the goal the playbook intend to
      *           accomplish. A goal should be concise since it's visible to other playbooks
      *           that may reference this playbook.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $input_parameter_definitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $input_parameter_definitions
      *           Optional. Defined structured input parameters for this playbook.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $output_parameter_definitions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $output_parameter_definitions
      *           Optional. Defined structured output parameters for this playbook.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Playbook\Instruction $instruction
      *           Instruction to accomplish target goal.
@@ -167,17 +167,17 @@ class Playbook extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp of initial playbook creation.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Last time the playbook version was updated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_playbooks
+     *     @type string[] $referenced_playbooks
      *           Output only. The resource name of other playbooks referenced by the current
      *           playbook in the instructions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_flows
+     *     @type string[] $referenced_flows
      *           Output only. The resource name of flows referenced by the current playbook
      *           in the instructions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_tools
+     *     @type string[] $referenced_tools
      *           Optional. The resource name of tools referenced by the current playbook in
      *           the instructions. If not provided explicitly, they are will
      *           be implied using the tool being referenced in goal and steps.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inline_actions
+     *     @type string[] $inline_actions
      *           Optional. Output only. Names of inline actions scoped to this playbook.
      *           These actions are in addition to those belonging to referenced tools, child
      *           playbooks, and flows, e.g. actions that are defined in the playbook's code
@@ -187,7 +187,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      *           and actions.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\LlmModelSettings $llm_model_settings
      *           Optional. Llm model settings for the playbook.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Handler>|\Google\Protobuf\Internal\RepeatedField $handlers
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Handler[] $handlers
      *           Optional. A list of registered handlers to execuate based on the specified
      *           triggers.
      *     @type int $playbook_type
@@ -289,7 +289,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured input parameters for this playbook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>
      */
     public function getInputParameterDefinitions()
     {
@@ -300,7 +300,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured input parameters for this playbook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition input_parameter_definitions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $var
      * @return $this
      */
     public function setInputParameterDefinitions($var)
@@ -315,7 +315,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured output parameters for this playbook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>
      */
     public function getOutputParameterDefinitions()
     {
@@ -326,7 +326,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * Optional. Defined structured output parameters for this playbook.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ParameterDefinition output_parameter_definitions = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ParameterDefinition[] $var
      * @return $this
      */
     public function setOutputParameterDefinitions($var)
@@ -478,7 +478,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * playbook in the instructions.
      *
      * Generated from protobuf field <code>repeated string referenced_playbooks = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedPlaybooks()
     {
@@ -490,7 +490,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * playbook in the instructions.
      *
      * Generated from protobuf field <code>repeated string referenced_playbooks = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedPlaybooks($var)
@@ -506,7 +506,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * in the instructions.
      *
      * Generated from protobuf field <code>repeated string referenced_flows = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedFlows()
     {
@@ -518,7 +518,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * in the instructions.
      *
      * Generated from protobuf field <code>repeated string referenced_flows = 12 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedFlows($var)
@@ -535,7 +535,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * be implied using the tool being referenced in goal and steps.
      *
      * Generated from protobuf field <code>repeated string referenced_tools = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedTools()
     {
@@ -548,7 +548,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * be implied using the tool being referenced in goal and steps.
      *
      * Generated from protobuf field <code>repeated string referenced_tools = 13 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedTools($var)
@@ -566,7 +566,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * block.
      *
      * Generated from protobuf field <code>repeated string inline_actions = 22 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInlineActions()
     {
@@ -580,7 +580,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * block.
      *
      * Generated from protobuf field <code>repeated string inline_actions = 22 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInlineActions($var)
@@ -670,7 +670,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * triggers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Handler handlers = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Handler>
      */
     public function getHandlers()
     {
@@ -682,7 +682,7 @@ class Playbook extends \Google\Protobuf\Internal\Message
      * triggers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Handler handlers = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Handler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Handler[] $var
      * @return $this
      */
     public function setHandlers($var)

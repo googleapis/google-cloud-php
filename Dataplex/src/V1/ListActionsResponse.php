@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List actions response.
@@ -35,7 +35,7 @@ class ListActionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Dataplex\V1\Action[] $actions
      *           Actions under the given parent lake/zone/asset.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListActionsResponse extends \Google\Protobuf\Internal\Message
      * Actions under the given parent lake/zone/asset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Action actions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\Action>
      */
     public function getActions()
     {
@@ -62,7 +62,7 @@ class ListActionsResponse extends \Google\Protobuf\Internal\Message
      * Actions under the given parent lake/zone/asset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Action actions = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\Action[] $var
      * @return $this
      */
     public function setActions($var)

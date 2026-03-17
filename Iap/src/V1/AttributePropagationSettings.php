@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for propagating attributes to applications protected
@@ -87,7 +87,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      *            `<list>` to the end of `<target_list>`.
      *           Example expression: `attributes.saml_attributes.filter(x, x.name in
      *           ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $output_credentials
+     *     @type int[] $output_credentials
      *           Optional. Which output credentials attributes selected by the CEL
      *           expression should be propagated in. All attributes will be fully duplicated
      *           in each selected output credential.
@@ -184,7 +184,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      * in each selected output credential.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOutputCredentials()
     {
@@ -197,7 +197,7 @@ class AttributePropagationSettings extends \Google\Protobuf\Internal\Message
      * in each selected output credential.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.AttributePropagationSettings.OutputCredentials output_credentials = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOutputCredentials($var)

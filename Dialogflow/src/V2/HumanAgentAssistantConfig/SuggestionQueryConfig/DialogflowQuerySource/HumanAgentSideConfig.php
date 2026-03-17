@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig\DialogflowQuerySource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration used for human agent side Dialogflow assist
@@ -73,5 +73,4 @@ class HumanAgentSideConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

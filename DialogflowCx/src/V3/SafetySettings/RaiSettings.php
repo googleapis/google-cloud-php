@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\SafetySettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for Responsible AI.
@@ -28,7 +28,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings\CategoryFilter>|\Google\Protobuf\Internal\RepeatedField $category_filters
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings\CategoryFilter[] $category_filters
      *           Optional. RAI blocking configurations.
      * }
      */
@@ -41,7 +41,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * Optional. RAI blocking configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings.CategoryFilter category_filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings\CategoryFilter>
      */
     public function getCategoryFilters()
     {
@@ -52,7 +52,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * Optional. RAI blocking configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SafetySettings.RaiSettings.CategoryFilter category_filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings\CategoryFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SafetySettings\RaiSettings\CategoryFilter[] $var
      * @return $this
      */
     public function setCategoryFilters($var)
@@ -64,5 +64,4 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

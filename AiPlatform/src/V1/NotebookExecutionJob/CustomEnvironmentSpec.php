@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NotebookExecutionJob;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compute configuration to use for an execution job.
@@ -162,5 +162,4 @@ class CustomEnvironmentSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

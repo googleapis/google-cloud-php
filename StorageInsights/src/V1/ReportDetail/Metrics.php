@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\ReportDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Different metrics associated with the generated report.
@@ -64,5 +64,4 @@ class Metrics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

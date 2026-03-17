@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [EkmConnection][google.cloud.kms.v1.EkmConnection] represents an
@@ -25,7 +25,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`.
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -83,11 +83,11 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for the
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`.
+     *           `projects/{@*}locations/{@*}ekmConnections/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection] was created.
-     *     @type array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $service_resolvers
+     *     @type \Google\Cloud\Kms\V1\EkmConnection\ServiceResolver[] $service_resolvers
      *           Optional. A list of
      *           [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      *           the EKM can be reached. There should be one ServiceResolver per EKM
@@ -117,7 +117,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`.
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -130,7 +130,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConnection][google.cloud.kms.v1.EkmConnection] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`.
+     * `projects/{@*}locations/{@*}ekmConnections/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -191,7 +191,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>
      */
     public function getServiceResolvers()
     {
@@ -207,7 +207,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\EkmConnection\ServiceResolver[] $var
      * @return $this
      */
     public function setServiceResolvers($var)

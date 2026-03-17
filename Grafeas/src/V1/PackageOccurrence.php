@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details on how a particular software package was installed on a system.
@@ -71,7 +71,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the installed package.
-     *     @type array<\Grafeas\V1\Location>|\Google\Protobuf\Internal\RepeatedField $location
+     *     @type \Grafeas\V1\Location[] $location
      *           All of the places within the filesystem versions of this package
      *           have been found.
      *     @type string $package_type
@@ -126,7 +126,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Location>
      */
     public function getLocation()
     {
@@ -138,7 +138,7 @@ class PackageOccurrence extends \Google\Protobuf\Internal\Message
      * have been found.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Location location = 2;</code>
-     * @param array<\Grafeas\V1\Location>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Location[] $var
      * @return $this
      */
     public function setLocation($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\SafetySettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for prompt security checks.
@@ -64,5 +64,4 @@ class PromptSecuritySettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

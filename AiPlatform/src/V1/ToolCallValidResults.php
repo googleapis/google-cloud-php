@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results for tool call valid metric.
@@ -28,7 +28,7 @@ class ToolCallValidResults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ToolCallValidMetricValue>|\Google\Protobuf\Internal\RepeatedField $tool_call_valid_metric_values
+     *     @type \Google\Cloud\AIPlatform\V1\ToolCallValidMetricValue[] $tool_call_valid_metric_values
      *           Output only. Tool call valid metric values.
      * }
      */
@@ -41,7 +41,7 @@ class ToolCallValidResults extends \Google\Protobuf\Internal\Message
      * Output only. Tool call valid metric values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolCallValidMetricValue tool_call_valid_metric_values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ToolCallValidMetricValue>
      */
     public function getToolCallValidMetricValues()
     {
@@ -52,7 +52,7 @@ class ToolCallValidResults extends \Google\Protobuf\Internal\Message
      * Output only. Tool call valid metric values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolCallValidMetricValue tool_call_valid_metric_values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ToolCallValidMetricValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ToolCallValidMetricValue[] $var
      * @return $this
      */
     public function setToolCallValidMetricValues($var)

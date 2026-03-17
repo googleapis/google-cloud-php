@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GcpBackupConfig captures the Backup configuration details for Google Cloud
@@ -67,7 +67,7 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      *           The description of the backup plan.
      *     @type string $backup_plan_association
      *           The name of the backup plan association.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $backup_plan_rules
+     *     @type string[] $backup_plan_rules
      *           The names of the backup plan rules which point to this backupvault
      *     @type string $backup_plan_revision_name
      *           The name of the backup plan revision.
@@ -163,7 +163,7 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      * The names of the backup plan rules which point to this backupvault
      *
      * Generated from protobuf field <code>repeated string backup_plan_rules = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBackupPlanRules()
     {
@@ -174,7 +174,7 @@ class GcpBackupConfig extends \Google\Protobuf\Internal\Message
      * The names of the backup plan rules which point to this backupvault
      *
      * Generated from protobuf field <code>repeated string backup_plan_rules = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBackupPlanRules($var)

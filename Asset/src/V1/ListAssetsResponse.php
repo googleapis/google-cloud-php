@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListAssets response.
@@ -44,7 +44,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time the snapshot was taken.
-     *     @type array<\Google\Cloud\Asset\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type \Google\Cloud\Asset\V1\Asset[] $assets
      *           Assets.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results. It expires 72 hours after the
@@ -97,7 +97,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * Assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Asset assets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\Asset>
      */
     public function getAssets()
     {
@@ -108,7 +108,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * Assets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Asset assets = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\Asset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\Asset[] $var
      * @return $this
      */
     public function setAssets($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The text response message.
@@ -28,7 +28,7 @@ class Text extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text
+     *     @type string[] $text
      *           Optional. The collection of the agent's responses.
      * }
      */
@@ -41,7 +41,7 @@ class Text extends \Google\Protobuf\Internal\Message
      * Optional. The collection of the agent's responses.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getText()
     {
@@ -52,7 +52,7 @@ class Text extends \Google\Protobuf\Internal\Message
      * Optional. The collection of the agent's responses.
      *
      * Generated from protobuf field <code>repeated string text = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setText($var)
@@ -64,5 +64,4 @@ class Text extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

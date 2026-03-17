@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.ComplianceNote</code>
@@ -62,7 +62,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      *           The title that identifies this compliance check.
      *     @type string $description
      *           A description about this compliance check.
-     *     @type array<\Grafeas\V1\ComplianceVersion>|\Google\Protobuf\Internal\RepeatedField $version
+     *     @type \Grafeas\V1\ComplianceVersion[] $version
      *           The OS and config versions the benchmark applies to.
      *     @type string $rationale
      *           A rationale for the existence of this compliance check.
@@ -135,7 +135,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      * The OS and config versions the benchmark applies to.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.ComplianceVersion version = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\ComplianceVersion>
      */
     public function getVersion()
     {
@@ -146,7 +146,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      * The OS and config versions the benchmark applies to.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.ComplianceVersion version = 3;</code>
-     * @param array<\Grafeas\V1\ComplianceVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\ComplianceVersion[] $var
      * @return $this
      */
     public function setVersion($var)

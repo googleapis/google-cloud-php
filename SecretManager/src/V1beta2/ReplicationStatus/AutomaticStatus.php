@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2\ReplicationStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The replication status of a
@@ -87,5 +87,4 @@ class AutomaticStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

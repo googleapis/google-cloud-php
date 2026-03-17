@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stats indicates the type of aggregate and the corresponding aggregates.
@@ -40,7 +40,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      *     @type string $group_by
      *           groupBy specifies the type of aggregate.
      *           For example a group_by might be `"state"`
-     *     @type array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary\Aggregate>|\Google\Protobuf\Internal\RepeatedField $aggregates
+     *     @type \Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary\Aggregate[] $aggregates
      *           Aggregates is a list <group, count> pairs. For example, if the
      *           group_by is `"state"` a possible tuple in the aggregates list could be
      *           "SCHEDULED" : `11`,
@@ -85,7 +85,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * "SCHEDULED" : `11`,
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceSummary.Aggregate aggregates = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary\Aggregate>
      */
     public function getAggregates()
     {
@@ -98,7 +98,7 @@ class Stats extends \Google\Protobuf\Internal\Message
      * "SCHEDULED" : `11`,
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1beta.MaintenanceSummary.Aggregate aggregates = 2;</code>
-     * @param array<\Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary\Aggregate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Maintenance\Api\V1beta\MaintenanceSummary\Aggregate[] $var
      * @return $this
      */
     public function setAggregates($var)
@@ -110,5 +110,4 @@ class Stats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

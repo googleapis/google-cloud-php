@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Performance statistics for a model deployment.
@@ -74,7 +74,7 @@ class PerformanceStats extends \Google\Protobuf\Internal\Message
      *     @type int $ttft_milliseconds
      *           Output only. The Time To First Token (TTFT) in milliseconds. This is the
      *           time it takes to generate the first token for a request.
-     *     @type array<\Google\Cloud\GkeRecommender\V1\Cost>|\Google\Protobuf\Internal\RepeatedField $cost
+     *     @type \Google\Cloud\GkeRecommender\V1\Cost[] $cost
      *           Output only. The cost of running the model deployment.
      * }
      */
@@ -205,7 +205,7 @@ class PerformanceStats extends \Google\Protobuf\Internal\Message
      * Output only. The cost of running the model deployment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.Cost cost = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeRecommender\V1\Cost>
      */
     public function getCost()
     {
@@ -216,7 +216,7 @@ class PerformanceStats extends \Google\Protobuf\Internal\Message
      * Output only. The cost of running the model deployment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.Cost cost = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeRecommender\V1\Cost>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeRecommender\V1\Cost[] $var
      * @return $this
      */
     public function setCost($var)

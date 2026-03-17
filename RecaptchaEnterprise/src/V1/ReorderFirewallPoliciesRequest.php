@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The reorder firewall policies request message.
@@ -58,7 +58,7 @@ class ReorderFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the project to list the policies for, in the format
      *           `projects/{project}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. A list containing all policy names, in the new order. Each name
      *           is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.
      * }
@@ -101,7 +101,7 @@ class ReorderFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      * is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -113,7 +113,7 @@ class ReorderFirewallPoliciesRequest extends \Google\Protobuf\Internal\Message
      * is in the format `projects/{project}/firewallpolicies/{firewallpolicy}`.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

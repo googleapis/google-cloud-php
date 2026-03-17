@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An attribute in the API Hub.
@@ -117,7 +117,7 @@ class Attribute extends \Google\Protobuf\Internal\Message
      *           Hub to which the attribute can be linked.
      *     @type int $data_type
      *           Required. The type of the data of the attribute.
-     *     @type array<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type \Google\Cloud\ApiHub\V1\Attribute\AllowedValue[] $allowed_values
      *           Optional. The list of allowed values when the attribute value is of type
      *           enum. This is required when the data_type of the attribute is ENUM. The
      *           maximum number of allowed values of an attribute will be 1000.
@@ -310,7 +310,7 @@ class Attribute extends \Google\Protobuf\Internal\Message
      * maximum number of allowed values of an attribute will be 1000.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute.AllowedValue allowed_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>
      */
     public function getAllowedValues()
     {
@@ -323,7 +323,7 @@ class Attribute extends \Google\Protobuf\Internal\Message
      * maximum number of allowed values of an attribute will be 1000.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute.AllowedValue allowed_values = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Attribute\AllowedValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Attribute\AllowedValue[] $var
      * @return $this
      */
     public function setAllowedValues($var)

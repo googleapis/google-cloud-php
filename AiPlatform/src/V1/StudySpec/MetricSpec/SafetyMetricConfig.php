@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used in safe optimization to specify threshold levels and risk tolerance.
@@ -132,5 +132,4 @@ class SafetyMetricConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

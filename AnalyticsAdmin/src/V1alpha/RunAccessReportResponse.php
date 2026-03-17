@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The customized Data Access Record Report response.
@@ -63,15 +63,15 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type \Google\Analytics\Admin\V1alpha\AccessDimensionHeader[] $dimension_headers
      *           The header for a column in the report that corresponds to a specific
      *           dimension. The number of DimensionHeaders and ordering of DimensionHeaders
      *           matches the dimensions present in rows.
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessMetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type \Google\Analytics\Admin\V1alpha\AccessMetricHeader[] $metric_headers
      *           The header for a column in the report that corresponds to a specific
      *           metric. The number of MetricHeaders and ordering of MetricHeaders matches
      *           the metrics present in rows.
-     *     @type array<\Google\Analytics\Admin\V1alpha\AccessRow>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Analytics\Admin\V1alpha\AccessRow[] $rows
      *           Rows of dimension value combinations and metric values in the report.
      *     @type int $row_count
      *           The total number of rows in the query result. `rowCount` is independent of
@@ -97,7 +97,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessDimensionHeader dimension_headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessDimensionHeader>
      */
     public function getDimensionHeaders()
     {
@@ -110,7 +110,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessDimensionHeader dimension_headers = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessDimensionHeader[] $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -127,7 +127,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessMetricHeader metric_headers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessMetricHeader>
      */
     public function getMetricHeaders()
     {
@@ -140,7 +140,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessMetricHeader metric_headers = 2;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessMetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessMetricHeader[] $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -155,7 +155,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessRow rows = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AccessRow>
      */
     public function getRows()
     {
@@ -166,7 +166,7 @@ class RunAccessReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccessRow rows = 3;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AccessRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AccessRow[] $var
      * @return $this
      */
     public function setRows($var)

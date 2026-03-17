@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single row in the result set.
@@ -28,7 +28,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Value>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Value[] $values
      *           The values in the row, corresponding positionally to the columns.
      * }
      */
@@ -41,7 +41,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The values in the row, corresponding positionally to the columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Value values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Value>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The values in the row, corresponding positionally to the columns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExecutedQueryResult.Value values = 1;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExecutedQueryResult\Value[] $var
      * @return $this
      */
     public function setValues($var)
@@ -64,5 +64,4 @@ class Row extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

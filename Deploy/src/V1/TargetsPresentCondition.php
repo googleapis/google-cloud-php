@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `TargetsPresentCondition` contains information on any Targets referenced in
@@ -44,7 +44,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $status
      *           True if there aren't any missing Targets.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_targets
+     *     @type string[] $missing_targets
      *           The list of Target names that do not exist. For example,
      *           `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -87,7 +87,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>repeated string missing_targets = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMissingTargets()
     {
@@ -99,7 +99,7 @@ class TargetsPresentCondition extends \Google\Protobuf\Internal\Message
      * `projects/{project_id}/locations/{location_name}/targets/{target_name}`.
      *
      * Generated from protobuf field <code>repeated string missing_targets = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMissingTargets($var)

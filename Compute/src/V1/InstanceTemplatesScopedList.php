@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -35,7 +35,7 @@ class InstanceTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceTemplate>|\Google\Protobuf\Internal\RepeatedField $instance_templates
+     *     @type \Google\Cloud\Compute\V1\InstanceTemplate[] $instance_templates
      *           [Output Only] A list of instance templates that are contained within
      *           the specified project and zone.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -53,7 +53,7 @@ class InstanceTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceTemplate instance_templates = 459889679;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceTemplate>
      */
     public function getInstanceTemplates()
     {
@@ -65,7 +65,7 @@ class InstanceTemplatesScopedList extends \Google\Protobuf\Internal\Message
      * the specified project and zone.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceTemplate instance_templates = 459889679;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceTemplate[] $var
      * @return $this
      */
     public function setInstanceTemplates($var)

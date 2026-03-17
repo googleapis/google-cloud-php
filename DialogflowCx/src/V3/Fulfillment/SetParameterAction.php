@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Fulfillment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Setting a parameter value.
@@ -108,5 +108,4 @@ class SetParameterAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

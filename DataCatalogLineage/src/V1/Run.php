@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A lineage run represents an execution of a process that creates

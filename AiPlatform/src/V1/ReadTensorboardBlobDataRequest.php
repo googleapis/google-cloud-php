@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -57,7 +57,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the TensorboardTimeSeries to list Blobs.
      *           Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blob_ids
+     *     @type string[] $blob_ids
      *           IDs of the blobs to read.
      * }
      */
@@ -100,7 +100,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      * IDs of the blobs to read.
      *
      * Generated from protobuf field <code>repeated string blob_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlobIds()
     {
@@ -111,7 +111,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      * IDs of the blobs to read.
      *
      * Generated from protobuf field <code>repeated string blob_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlobIds($var)

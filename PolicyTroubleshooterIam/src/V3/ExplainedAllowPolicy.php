@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a specific IAM allow policy contributed to the final access
@@ -88,7 +88,7 @@ class ExplainedAllowPolicy extends \Google\Protobuf\Internal\Message
      *           is omitted.
      *           For examples of full resource names for Google Cloud services, see
      *           https://cloud.google.com/iam/help/troubleshooter/full-resource-names.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation>|\Google\Protobuf\Internal\RepeatedField $binding_explanations
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation[] $binding_explanations
      *           Details about how each role binding in the policy affects the principal's
      *           ability, or inability, to use the permission for the resource. The order of
      *           the role bindings matches the role binding order in the policy.
@@ -192,7 +192,7 @@ class ExplainedAllowPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.AllowBindingExplanation binding_explanations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation>
      */
     public function getBindingExplanations()
     {
@@ -207,7 +207,7 @@ class ExplainedAllowPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.AllowBindingExplanation binding_explanations = 3;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\AllowBindingExplanation[] $var
      * @return $this
      */
     public function setBindingExplanations($var)

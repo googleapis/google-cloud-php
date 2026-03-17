@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\DatabaseInstance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Any scheduled maintenance for this instance.
@@ -186,5 +186,4 @@ class SqlScheduledMaintenance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

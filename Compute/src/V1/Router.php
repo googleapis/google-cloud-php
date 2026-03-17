@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Cloud Router resource.
@@ -139,7 +139,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\RouterBgp $bgp
      *           BGP information specific to this router.
-     *     @type array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $bgp_peers
+     *     @type \Google\Cloud\Compute\V1\RouterBgpPeer[] $bgp_peers
      *           BGP information that must be configured into the routing stack to
      *           establish BGP peering. This information must specify the peer ASN and
      *           either the interface name, IP address, or peer IP address. Please refer toRFC4273.
@@ -155,7 +155,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
+     *     @type \Google\Cloud\Compute\V1\RouterInterface[] $interfaces
      *           Router interfaces.
      *           To create a BGP peer that uses a router interface,
      *           the interface must have one of the following fields specified:
@@ -167,7 +167,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Always compute#router for
      *           routers.
-     *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
+     *     @type \Google\Cloud\Compute\V1\RouterMd5AuthenticationKey[] $md5_authentication_keys
      *           Keys used for MD5 authentication.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created.
@@ -177,7 +177,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must
      *           be a dash, lowercase letter, or digit, except the last character, which
      *           cannot be a dash.
-     *     @type array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $nats
+     *     @type \Google\Cloud\Compute\V1\RouterNat[] $nats
      *           A list of NAT services created in this router.
      *     @type string $network
      *           URI of the network to which this router belongs.
@@ -239,7 +239,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterBgpPeer>
      */
     public function getBgpPeers()
     {
@@ -252,7 +252,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * either the interface name, IP address, or peer IP address. Please refer toRFC4273.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterBgpPeer bgp_peers = 452695773;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterBgpPeer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterBgpPeer[] $var
      * @return $this
      */
     public function setBgpPeers($var)
@@ -426,7 +426,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterInterface>
      */
     public function getInterfaces()
     {
@@ -444,7 +444,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * However, you cannot create a BGP peer that uses that interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterInterface interfaces = 12073562;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterInterface[] $var
      * @return $this
      */
     public function setInterfaces($var)
@@ -497,7 +497,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * Keys used for MD5 authentication.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>
      */
     public function getMd5AuthenticationKeys()
     {
@@ -508,7 +508,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * Keys used for MD5 authentication.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterMd5AuthenticationKey[] $var
      * @return $this
      */
     public function setMd5AuthenticationKeys($var)
@@ -571,7 +571,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * A list of NAT services created in this router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNat nats = 3373938;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterNat>
      */
     public function getNats()
     {
@@ -582,7 +582,7 @@ class Router extends \Google\Protobuf\Internal\Message
      * A list of NAT services created in this router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNat nats = 3373938;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterNat[] $var
      * @return $this
      */
     public function setNats($var)

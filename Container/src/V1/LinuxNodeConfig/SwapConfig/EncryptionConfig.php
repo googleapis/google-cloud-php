@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1\LinuxNodeConfig\SwapConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines encryption settings for the swap space.
@@ -78,5 +78,4 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response's metadata carrying additional information about the report content.
@@ -138,7 +138,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           data is absent from the report, and this happens when all data is above the
      *           thresholds. To learn more, see [Data
      *           thresholds](https://support.google.com/analytics/answer/9383630).
-     *     @type array<\Google\Analytics\Data\V1beta\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $sampling_metadatas
+     *     @type \Google\Analytics\Data\V1beta\SamplingMetadata[] $sampling_metadatas
      *           If this report results is
      *           [sampled](https://support.google.com/analytics/answer/13331292), this
      *           describes the percentage of events used in this report. One
@@ -425,7 +425,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\SamplingMetadata>
      */
     public function getSamplingMetadatas()
     {
@@ -442,7 +442,7 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.SamplingMetadata sampling_metadatas = 9;</code>
-     * @param array<\Google\Analytics\Data\V1beta\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\SamplingMetadata[] $var
      * @return $this
      */
     public function setSamplingMetadatas($var)

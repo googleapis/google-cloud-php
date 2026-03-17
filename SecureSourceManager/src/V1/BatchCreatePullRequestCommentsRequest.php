@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to batch create pull request comments.
@@ -64,7 +64,7 @@ class BatchCreatePullRequestCommentsRequest extends \Google\Protobuf\Internal\Me
      *           Required. The pull request in which to create the pull request comments.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/repositories/{repository_id}/pullRequests/{pull_request_id}`
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest[] $requests
      *           Required. The request message specifying the resources to create. There
      *           should be exactly one CreatePullRequestCommentRequest with CommentDetail
      *           being REVIEW in the list, and no more than 100
@@ -113,7 +113,7 @@ class BatchCreatePullRequestCommentsRequest extends \Google\Protobuf\Internal\Me
      * CreatePullRequestCommentRequests with CommentDetail being CODE in the list
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.CreatePullRequestCommentRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest>
      */
     public function getRequests()
     {
@@ -127,7 +127,7 @@ class BatchCreatePullRequestCommentsRequest extends \Google\Protobuf\Internal\Me
      * CreatePullRequestCommentRequests with CommentDetail being CODE in the list
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.CreatePullRequestCommentRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\CreatePullRequestCommentRequest[] $var
      * @return $this
      */
     public function setRequests($var)

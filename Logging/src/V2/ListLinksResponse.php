@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from ListLinks.
@@ -36,7 +36,7 @@ class ListLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Logging\V2\Link>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\Logging\V2\Link[] $links
      *           A list of links.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
@@ -53,7 +53,7 @@ class ListLinksResponse extends \Google\Protobuf\Internal\Message
      * A list of links.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.Link links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\Link>
      */
     public function getLinks()
     {
@@ -64,7 +64,7 @@ class ListLinksResponse extends \Google\Protobuf\Internal\Message
      * A list of links.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.Link links = 1;</code>
-     * @param array<\Google\Cloud\Logging\V2\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\Link[] $var
      * @return $this
      */
     public function setLinks($var)

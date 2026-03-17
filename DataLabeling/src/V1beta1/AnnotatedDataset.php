@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AnnotatedDataset is a set holding annotations for data in a Dataset. Each
@@ -127,7 +127,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      *           Output only. Time the AnnotatedDataset was created.
      *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotatedDatasetMetadata $metadata
      *           Output only. Additional information about AnnotatedDataset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type string[] $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the annotated dataset.
      * }
@@ -448,7 +448,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      * to the annotated dataset.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockingResources()
     {
@@ -460,7 +460,7 @@ class AnnotatedDataset extends \Google\Protobuf\Internal\Message
      * to the annotated dataset.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockingResources($var)

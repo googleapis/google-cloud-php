@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Target HTTPS Proxy resource.
@@ -329,7 +329,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *           regional forwardingRules with theloadBalancingScheme set to EXTERNAL_MANAGED orINTERNAL_MANAGED. For details whichServerTlsPolicy resources are accepted withINTERNAL_SELF_MANAGED and which with EXTERNAL,INTERNAL_MANAGED, EXTERNAL_MANAGEDloadBalancingScheme consult ServerTlsPolicy
      *           documentation.
      *             If left blank, communications are not encrypted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *     @type string[] $ssl_certificates
      *           URLs to SslCertificate resources that are used to authenticate
      *           connections between users and the load balancer. At least one SSL
      *           certificate must be specified. SslCertificates do not apply when the load
@@ -1025,7 +1025,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSslCertificates()
     {
@@ -1051,7 +1051,7 @@ class TargetHttpsProxy extends \Google\Protobuf\Internal\Message
      *    - https://certificatemanager.googleapis.com/v1alpha1/projects/{project}/locations/{location}/certificates/{resourceName}.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSslCertificates($var)

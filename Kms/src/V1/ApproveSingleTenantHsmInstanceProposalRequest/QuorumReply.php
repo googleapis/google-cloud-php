@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\ApproveSingleTenantHsmInstanceProposalRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The reply to
@@ -34,7 +34,7 @@ class QuorumReply extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\ChallengeReply>|\Google\Protobuf\Internal\RepeatedField $challenge_replies
+     *     @type \Google\Cloud\Kms\V1\ChallengeReply[] $challenge_replies
      *           Required. The challenge replies to approve the proposal. Challenge
      *           replies can be sent across multiple requests. The proposal will be
      *           approved when
@@ -55,7 +55,7 @@ class QuorumReply extends \Google\Protobuf\Internal\Message
      * challenge replies are provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ChallengeReply challenge_replies = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\ChallengeReply>
      */
     public function getChallengeReplies()
     {
@@ -70,7 +70,7 @@ class QuorumReply extends \Google\Protobuf\Internal\Message
      * challenge replies are provided.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.ChallengeReply challenge_replies = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Kms\V1\ChallengeReply>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\ChallengeReply[] $var
      * @return $this
      */
     public function setChallengeReplies($var)
@@ -82,5 +82,4 @@ class QuorumReply extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

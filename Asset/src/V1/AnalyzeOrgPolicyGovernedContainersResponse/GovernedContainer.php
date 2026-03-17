@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedContainersResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The organization/folder/project resource governed by organization policies
@@ -106,7 +106,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *           [AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.policy_bundle][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer.policy_bundle].
      *           The evaluation will respect the organization policy [hierarchy
      *           rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy).
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $policy_bundle
+     *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicy[] $policy_bundle
      *           The ordered list of all organization policies from the
      *           [consolidated_policy.attached_resource][google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource].
      *           to the scope specified in the request.
@@ -116,7 +116,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *           The project that this resource belongs to, in the format of
      *           projects/{PROJECT_NUMBER}. This field is available when the resource
      *           belongs to a project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type string[] $folders
      *           The folder(s) that this resource belongs to, in the format of
      *           folders/{FOLDER_NUMBER}. This field is available when the resource
      *           belongs (directly or cascadingly) to one or more folders.
@@ -124,7 +124,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      *           The organization that this resource belongs to, in the format of
      *           organizations/{ORGANIZATION_NUMBER}. This field is available when the
      *           resource belongs (directly or cascadingly) to an organization.
-     *     @type array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *     @type \Google\Cloud\Asset\V1\EffectiveTagDetails[] $effective_tags
      *           The effective tags on this resource.
      * }
      */
@@ -247,7 +247,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy policy_bundle = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>
      */
     public function getPolicyBundle()
     {
@@ -262,7 +262,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy policy_bundle = 4;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzerOrgPolicy[] $var
      * @return $this
      */
     public function setPolicyBundle($var)
@@ -309,7 +309,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFolders()
     {
@@ -322,7 +322,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFolders($var)
@@ -367,7 +367,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * The effective tags on this resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\EffectiveTagDetails>
      */
     public function getEffectiveTags()
     {
@@ -378,7 +378,7 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
      * The effective tags on this resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.EffectiveTagDetails effective_tags = 8;</code>
-     * @param array<\Google\Cloud\Asset\V1\EffectiveTagDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\EffectiveTagDetails[] $var
      * @return $this
      */
     public function setEffectiveTags($var)
@@ -390,5 +390,4 @@ class GovernedContainer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

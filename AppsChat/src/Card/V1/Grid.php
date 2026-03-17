@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Displays a grid with a collection of items. Items can only include text or
@@ -100,7 +100,7 @@ class Grid extends \Google\Protobuf\Internal\Message
      *
      *     @type string $title
      *           The text that displays in the grid header.
-     *     @type array<\Google\Apps\Card\V1\Grid\GridItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Apps\Card\V1\Grid\GridItem[] $items
      *           The items to display in the grid.
      *     @type \Google\Apps\Card\V1\BorderStyle $border_style
      *           The border style to apply to each grid item.
@@ -149,7 +149,7 @@ class Grid extends \Google\Protobuf\Internal\Message
      * The items to display in the grid.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Grid.GridItem items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Grid\GridItem>
      */
     public function getItems()
     {
@@ -160,7 +160,7 @@ class Grid extends \Google\Protobuf\Internal\Message
      * The items to display in the grid.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Grid.GridItem items = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Grid\GridItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Grid\GridItem[] $var
      * @return $this
      */
     public function setItems($var)

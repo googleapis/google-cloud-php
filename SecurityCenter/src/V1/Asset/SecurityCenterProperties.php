@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Security Command Center managed properties. These properties are managed by
@@ -101,7 +101,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *     @type string $resource_project
      *           The full resource name of the project the resource belongs to. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_owners
+     *     @type string[] $resource_owners
      *           Owners of the Google Cloud resource.
      *     @type string $resource_display_name
      *           The user defined display name for this resource.
@@ -109,7 +109,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *           The user defined display name for the parent of this resource.
      *     @type string $resource_project_display_name
      *           The user defined display name for the project of this resource.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type \Google\Cloud\SecurityCenter\V1\Folder[] $folders
      *           Contains a Folder message for each folder in the assets ancestry.
      *           The first folder is the deepest nested folder, and the last folder is the
      *           folder directly under the Organization.
@@ -242,7 +242,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * Owners of the Google Cloud resource.
      *
      * Generated from protobuf field <code>repeated string resource_owners = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceOwners()
     {
@@ -253,7 +253,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * Owners of the Google Cloud resource.
      *
      * Generated from protobuf field <code>repeated string resource_owners = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceOwners($var)
@@ -348,7 +348,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Folder>
      */
     public function getFolders()
     {
@@ -361,7 +361,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 10;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Folder[] $var
      * @return $this
      */
     public function setFolders($var)
@@ -373,5 +373,4 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

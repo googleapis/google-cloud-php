@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a stopping point on a vehicle's route or an ending point on a
@@ -91,7 +91,7 @@ class TripWaypoint extends \Google\Protobuf\Internal\Message
      *           The trip associated with this waypoint.
      *     @type int $waypoint_type
      *           The role this waypoint plays in this trip, such as pickup or dropoff.
-     *     @type array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $path_to_waypoint
+     *     @type \Google\Type\LatLng[] $path_to_waypoint
      *           The path from the previous waypoint to the current waypoint.  Undefined for
      *           the first waypoint in a list. This field is only populated when requested.
      *     @type string $encoded_path_to_waypoint
@@ -211,7 +211,7 @@ class TripWaypoint extends \Google\Protobuf\Internal\Message
      * the first waypoint in a list. This field is only populated when requested.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng path_to_waypoint = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Type\LatLng>
      */
     public function getPathToWaypoint()
     {
@@ -223,7 +223,7 @@ class TripWaypoint extends \Google\Protobuf\Internal\Message
      * the first waypoint in a list. This field is only populated when requested.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng path_to_waypoint = 4;</code>
-     * @param array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Type\LatLng[] $var
      * @return $this
      */
     public function setPathToWaypoint($var)

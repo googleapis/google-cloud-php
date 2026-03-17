@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\AccountIssue;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The impact of the issue on a destination.
@@ -36,7 +36,7 @@ class ImpactedDestination extends \Google\Protobuf\Internal\Message
      *
      *     @type int $reporting_context
      *           The impacted reporting context.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination\Impact>|\Google\Protobuf\Internal\RepeatedField $impacts
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination\Impact[] $impacts
      *           The (negative) impact for various regions on the given destination.
      * }
      */
@@ -85,7 +85,7 @@ class ImpactedDestination extends \Google\Protobuf\Internal\Message
      * The (negative) impact for various regions on the given destination.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountIssue.ImpactedDestination.Impact impacts = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination\Impact>
      */
     public function getImpacts()
     {
@@ -96,7 +96,7 @@ class ImpactedDestination extends \Google\Protobuf\Internal\Message
      * The (negative) impact for various regions on the given destination.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountIssue.ImpactedDestination.Impact impacts = 2;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination\Impact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\AccountIssue\ImpactedDestination\Impact[] $var
      * @return $this
      */
     public function setImpacts($var)
@@ -108,5 +108,4 @@ class ImpactedDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

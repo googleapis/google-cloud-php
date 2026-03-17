@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AuthorizedDomains.ListAuthorizedDomains`.
@@ -34,7 +34,7 @@ class ListAuthorizedDomainsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\AuthorizedDomain>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type \Google\Cloud\AppEngine\V1\AuthorizedDomain[] $domains
      *           The authorized domains belonging to the user.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -49,7 +49,7 @@ class ListAuthorizedDomainsResponse extends \Google\Protobuf\Internal\Message
      * The authorized domains belonging to the user.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.AuthorizedDomain domains = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\AuthorizedDomain>
      */
     public function getDomains()
     {
@@ -60,7 +60,7 @@ class ListAuthorizedDomainsResponse extends \Google\Protobuf\Internal\Message
      * The authorized domains belonging to the user.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.AuthorizedDomain domains = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\AuthorizedDomain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\AuthorizedDomain[] $var
      * @return $this
      */
     public function setDomains($var)

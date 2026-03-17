@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Columns;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A column.
@@ -59,7 +59,7 @@ class Column extends \Google\Protobuf\Internal\Message
      *     @type int $vertical_alignment
      *           Specifies whether widgets align to the top, bottom, or center of a
      *           column.
-     *     @type array<\Google\Apps\Card\V1\Columns\Column\Widgets>|\Google\Protobuf\Internal\RepeatedField $widgets
+     *     @type \Google\Apps\Card\V1\Columns\Column\Widgets[] $widgets
      *           An array of widgets included in a column. Widgets appear in the order
      *           that they are specified.
      * }
@@ -156,7 +156,7 @@ class Column extends \Google\Protobuf\Internal\Message
      * that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Columns.Column.Widgets widgets = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Columns\Column\Widgets>
      */
     public function getWidgets()
     {
@@ -168,7 +168,7 @@ class Column extends \Google\Protobuf\Internal\Message
      * that they are specified.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Columns.Column.Widgets widgets = 4;</code>
-     * @param array<\Google\Apps\Card\V1\Columns\Column\Widgets>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Columns\Column\Widgets[] $var
      * @return $this
      */
     public function setWidgets($var)
@@ -180,5 +180,4 @@ class Column extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

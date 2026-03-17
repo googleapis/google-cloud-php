@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -47,7 +47,7 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
      *           The unique identifier of the flow validation result.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/validationResult`.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $validation_messages
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ValidationMessage[] $validation_messages
      *           Contains all validation messages.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Last time the flow was validated.
@@ -92,7 +92,7 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
      * Contains all validation messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ValidationMessage validation_messages = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ValidationMessage>
      */
     public function getValidationMessages()
     {
@@ -103,7 +103,7 @@ class FlowValidationResult extends \Google\Protobuf\Internal\Message
      * Contains all validation messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ValidationMessage validation_messages = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ValidationMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ValidationMessage[] $var
      * @return $this
      */
     public function setValidationMessages($var)

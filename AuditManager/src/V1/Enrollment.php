@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The enrollment resource.
@@ -38,7 +38,7 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The name of this Enrollment, in the format of scope given in
      *           request.
-     *     @type array<\Google\Cloud\AuditManager\V1\DestinationDetails>|\Google\Protobuf\Internal\RepeatedField $destination_details
+     *     @type \Google\Cloud\AuditManager\V1\DestinationDetails[] $destination_details
      *           Output only. The locations where the generated reports can be uploaded.
      * }
      */
@@ -79,7 +79,7 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      * Output only. The locations where the generated reports can be uploaded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.DestinationDetails destination_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AuditManager\V1\DestinationDetails>
      */
     public function getDestinationDetails()
     {
@@ -90,7 +90,7 @@ class Enrollment extends \Google\Protobuf\Internal\Message
      * Output only. The locations where the generated reports can be uploaded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.DestinationDetails destination_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AuditManager\V1\DestinationDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AuditManager\V1\DestinationDetails[] $var
      * @return $this
      */
     public function setDestinationDetails($var)

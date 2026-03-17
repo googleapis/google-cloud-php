@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\ExperimentInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for active serving config A/B tests.
@@ -19,7 +19,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the original
      * [SearchRequest.placement][google.cloud.retail.v2.SearchRequest.placement]
      * in the search request prior to reassignment by experiment API. For
-     * example: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * example: `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string original_serving_config = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -28,7 +28,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the serving config
      * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string experiment_serving_config = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -44,12 +44,12 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      *           The fully qualified resource name of the original
      *           [SearchRequest.placement][google.cloud.retail.v2.SearchRequest.placement]
      *           in the search request prior to reassignment by experiment API. For
-     *           example: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     *           example: `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *     @type string $experiment_serving_config
      *           The fully qualified resource name of the serving config
      *           `Experiment.VariantArm.serving_config_id` responsible for generating
      *           the search response. For example:
-     *           `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     *           `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +61,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the original
      * [SearchRequest.placement][google.cloud.retail.v2.SearchRequest.placement]
      * in the search request prior to reassignment by experiment API. For
-     * example: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * example: `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string original_serving_config = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the original
      * [SearchRequest.placement][google.cloud.retail.v2.SearchRequest.placement]
      * in the search request prior to reassignment by experiment API. For
-     * example: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * example: `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string original_serving_config = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -93,7 +93,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the serving config
      * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string experiment_serving_config = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
      * The fully qualified resource name of the serving config
      * `Experiment.VariantArm.serving_config_id` responsible for generating
      * the search response. For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;servingConfigs/&#42;`.
+     * `projects/{@*}locations/{@*}catalogs/{@*}servingConfigs/*`.
      *
      * Generated from protobuf field <code>string experiment_serving_config = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -122,5 +122,4 @@ class ServingConfigExperiment extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

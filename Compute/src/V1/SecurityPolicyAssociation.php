@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -67,9 +67,9 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      *           The resource that the security policy is attached to.
      *     @type string $display_name
      *           Output only. [Output Only] The display name of the security policy of the association.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_folders
+     *     @type string[] $excluded_folders
      *           A list of folders to exclude from the security policy.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_projects
+     *     @type string[] $excluded_projects
      *           A list of projects to exclude from the security policy.
      *     @type string $name
      *           The name for an association.
@@ -160,7 +160,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      * A list of folders to exclude from the security policy.
      *
      * Generated from protobuf field <code>repeated string excluded_folders = 310611024;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedFolders()
     {
@@ -171,7 +171,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      * A list of folders to exclude from the security policy.
      *
      * Generated from protobuf field <code>repeated string excluded_folders = 310611024;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedFolders($var)
@@ -186,7 +186,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      * A list of projects to exclude from the security policy.
      *
      * Generated from protobuf field <code>repeated string excluded_projects = 283070287;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedProjects()
     {
@@ -197,7 +197,7 @@ class SecurityPolicyAssociation extends \Google\Protobuf\Internal\Message
      * A list of projects to exclude from the security policy.
      *
      * Generated from protobuf field <code>repeated string excluded_projects = 283070287;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedProjects($var)

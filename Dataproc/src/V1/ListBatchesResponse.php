@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of batch workloads.
@@ -43,12 +43,12 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\Batch>|\Google\Protobuf\Internal\RepeatedField $batches
+     *     @type \Google\Cloud\Dataproc\V1\Batch[] $batches
      *           The batches from the specified collection.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Output only. List of Batches that could not be included in the response.
      *           Attempting to get one of these resources may indicate why it was not
      *           included in the list response.
@@ -63,7 +63,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * The batches from the specified collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\Batch>
      */
     public function getBatches()
     {
@@ -74,7 +74,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * The batches from the specified collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Batch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\Batch[] $var
      * @return $this
      */
     public function setBatches($var)
@@ -119,7 +119,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * included in the list response.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -132,7 +132,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * included in the list response.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

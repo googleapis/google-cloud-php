@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha\ReportTask;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The report metadata for a specific report task.
@@ -368,5 +368,4 @@ class ReportMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

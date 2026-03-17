@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents article answer.
@@ -68,7 +68,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      *           The article title.
      *     @type string $uri
      *           The article URI.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $snippets
+     *     @type string[] $snippets
      *           Article snippets.
      *     @type float $confidence
      *           Article match confidence.
@@ -145,7 +145,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      * Article snippets.
      *
      * Generated from protobuf field <code>repeated string snippets = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSnippets()
     {
@@ -156,7 +156,7 @@ class ArticleAnswer extends \Google\Protobuf\Internal\Message
      * Article snippets.
      *
      * Generated from protobuf field <code>repeated string snippets = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSnippets($var)

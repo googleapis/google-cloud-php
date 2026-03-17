@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a specific IAM deny policy [Policy][google.iam.v2.Policy]
@@ -74,7 +74,7 @@ class ExplainedDenyPolicy extends \Google\Protobuf\Internal\Message
      *           The IAM deny policy attached to the resource.
      *           If the sender of the request does not have access to the policy, this field
      *           is omitted.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation>|\Google\Protobuf\Internal\RepeatedField $rule_explanations
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation[] $rule_explanations
      *           Details about how each rule in the policy affects the principal's inability
      *           to use the permission for the resource. The order of the deny rule matches
      *           the order of the rules in the deny policy.
@@ -178,7 +178,7 @@ class ExplainedDenyPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.DenyRuleExplanation rule_explanations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation>
      */
     public function getRuleExplanations()
     {
@@ -193,7 +193,7 @@ class ExplainedDenyPolicy extends \Google\Protobuf\Internal\Message
      * is omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.DenyRuleExplanation rule_explanations = 3;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation[] $var
      * @return $this
      */
     public function setRuleExplanations($var)

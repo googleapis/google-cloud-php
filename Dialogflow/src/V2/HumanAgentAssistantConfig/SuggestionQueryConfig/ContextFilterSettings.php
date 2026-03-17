@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionQueryConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings that determine how to filter recent conversation context when
@@ -137,5 +137,4 @@ class ContextFilterSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an OAuth token of the account that authorized the Connection,
@@ -18,8 +18,8 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A SecretManager resource containing the OAuth token that
-     * authorizes the connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * authorizes the connection. Format: `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -40,8 +40,8 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
      *
      *     @type string $oauth_token_secret_version
      *           Required. A SecretManager resource containing the OAuth token that
-     *           authorizes the connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     *           `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     *           authorizes the connection. Format: `projects/{@*}secrets/{@*}versions/*` or
+     *           `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      *           supported in that location).
      *     @type string $username
      *           Output only. The username associated with this token.
@@ -54,8 +54,8 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A SecretManager resource containing the OAuth token that
-     * authorizes the connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * authorizes the connection. Format: `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -68,8 +68,8 @@ class OAuthCredential extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A SecretManager resource containing the OAuth token that
-     * authorizes the connection. Format: `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` or
-     * `projects/&#42;&#47;locations/&#42;&#47;secrets/&#42;&#47;versions/&#42;` (if regional secrets are
+     * authorizes the connection. Format: `projects/{@*}secrets/{@*}versions/*` or
+     * `projects/{@*}locations/{@*}secrets/{@*}versions/*` (if regional secrets are
      * supported in that location).
      *
      * Generated from protobuf field <code>string oauth_token_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

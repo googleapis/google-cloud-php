@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A card interface displayed in a Google Chat message or Google Workspace
@@ -53,7 +53,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *                    "startIcon": {
  *                      "knownIcon": "EMAIL"
  *                    },
- *                    "text": "sasha&#64;example.com"
+ *                    "text": "sasha\@example.com"
  *                  }
  *                },
  *                {
@@ -223,14 +223,14 @@ class Card extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Card\V1\Card\CardHeader $header
      *           The header of the card. A header usually contains a leading image and a
      *           title. Headers always appear at the top of a card.
-     *     @type array<\Google\Apps\Card\V1\Card\Section>|\Google\Protobuf\Internal\RepeatedField $sections
+     *     @type \Google\Apps\Card\V1\Card\Section[] $sections
      *           Contains a collection of widgets. Each section has its own, optional
      *           header. Sections are visually separated by a line divider. For an example
      *           in Google Chat apps, see [Define a section of a
      *           card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *     @type int $section_divider_style
      *           The divider style between the header, sections and footer.
-     *     @type array<\Google\Apps\Card\V1\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $card_actions
+     *     @type \Google\Apps\Card\V1\Card\CardAction[] $card_actions
      *           The card's actions. Actions are added to the card's toolbar menu.
      *           [Google Workspace
      *           add-ons](https://developers.google.com/workspace/add-ons):
@@ -340,7 +340,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.Section sections = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Card\Section>
      */
     public function getSections()
     {
@@ -354,7 +354,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * card](https://developers.google.com/workspace/chat/design-components-card-dialog#define_a_section_of_a_card).
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.Section sections = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Card\Section>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Card\Section[] $var
      * @return $this
      */
     public function setSections($var)
@@ -426,7 +426,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.CardAction card_actions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Card\CardAction>
      */
     public function getCardActions()
     {
@@ -468,7 +468,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Card.CardAction card_actions = 3;</code>
-     * @param array<\Google\Apps\Card\V1\Card\CardAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Card\CardAction[] $var
      * @return $this
      */
     public function setCardActions($var)

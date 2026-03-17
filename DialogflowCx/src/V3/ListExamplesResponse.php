@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -39,7 +39,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Example>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Example[] $examples
      *           The list of examples. There will be a maximum number of items returned
      *           based on the
      *           [page_size][google.cloud.dialogflow.cx.v3.ListExamplesRequest.page_size]
@@ -61,7 +61,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Example examples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Example>
      */
     public function getExamples()
     {
@@ -75,7 +75,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Example examples = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Example>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Example[] $var
      * @return $this
      */
     public function setExamples($var)

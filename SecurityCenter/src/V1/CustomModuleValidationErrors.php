@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of zero or more errors encountered while validating the uploaded
@@ -27,7 +27,7 @@ class CustomModuleValidationErrors extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\CustomModuleValidationError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\SecurityCenter\V1\CustomModuleValidationError[] $errors
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class CustomModuleValidationErrors extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CustomModuleValidationError errors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\CustomModuleValidationError>
      */
     public function getErrors()
     {
@@ -46,7 +46,7 @@ class CustomModuleValidationErrors extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CustomModuleValidationError errors = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\CustomModuleValidationError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\CustomModuleValidationError[] $var
      * @return $this
      */
     public function setErrors($var)

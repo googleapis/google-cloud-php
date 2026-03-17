@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List jobs response.
@@ -43,7 +43,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Talent\V4\Job[] $jobs
      *           The Jobs for a given company.
      *           The maximum number of items returned is based on the limit field
      *           provided in the request.
@@ -65,7 +65,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * provided in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Job jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\Job>
      */
     public function getJobs()
     {
@@ -78,7 +78,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * provided in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Job jobs = 1;</code>
-     * @param array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\Job[] $var
      * @return $this
      */
     public function setJobs($var)

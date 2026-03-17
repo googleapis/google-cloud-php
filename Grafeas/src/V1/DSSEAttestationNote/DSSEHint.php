@@ -5,8 +5,8 @@
 namespace Grafeas\V1\DSSEAttestationNote;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This submessage provides human-readable hints about the purpose of the
@@ -74,5 +74,4 @@ class DSSEHint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

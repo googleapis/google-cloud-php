@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `BasicLevel` is an `AccessLevel` using a set of recommended features.
@@ -38,7 +38,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Identity\AccessContextManager\V1\Condition[] $conditions
      *           Required. A list of requirements for the `AccessLevel` to be granted.
      *     @type int $combining_function
      *           How the `conditions` list should be combined to determine if a request is
@@ -57,7 +57,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      * Required. A list of requirements for the `AccessLevel` to be granted.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.Condition conditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\Condition>
      */
     public function getConditions()
     {
@@ -68,7 +68,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      * Required. A list of requirements for the `AccessLevel` to be granted.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.Condition conditions = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\Condition[] $var
      * @return $this
      */
     public function setConditions($var)

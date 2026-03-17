@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a phrase in the text that is a known entity, such as
@@ -68,7 +68,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           Metadata associated with the entity.
      *           For the metadata
      *           associated with other entity types, see the Type table below.
-     *     @type array<\Google\Cloud\Language\V2\EntityMention>|\Google\Protobuf\Internal\RepeatedField $mentions
+     *     @type \Google\Cloud\Language\V2\EntityMention[] $mentions
      *           The mentions of this entity in the input document. The API currently
      *           supports proper noun mentions.
      *     @type \Google\Cloud\Language\V2\Sentiment $sentiment
@@ -170,7 +170,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * supports proper noun mentions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.EntityMention mentions = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V2\EntityMention>
      */
     public function getMentions()
     {
@@ -182,7 +182,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * supports proper noun mentions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.EntityMention mentions = 5;</code>
-     * @param array<\Google\Cloud\Language\V2\EntityMention>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V2\EntityMention[] $var
      * @return $this
      */
     public function setMentions($var)

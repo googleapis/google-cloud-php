@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a speech recognition result corresponding to a portion of the audio
@@ -145,7 +145,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      *             `TRANSCRIPT` results with `is_final = false`.
      *           * Otherwise, the value is in (0.0, 1.0] where 0.0 means completely
      *             unstable and 1.0 means completely stable.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\SpeechWordInfo>|\Google\Protobuf\Internal\RepeatedField $speech_word_info
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\SpeechWordInfo[] $speech_word_info
      *           Word-specific information for the words recognized by Speech in
      *           [transcript][google.cloud.dialogflow.cx.v3.StreamingRecognitionResult.transcript].
      *           Populated if and only if `message_type` = `TRANSCRIPT` and
@@ -330,7 +330,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * [InputAudioConfig.enable_word_info] is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SpeechWordInfo speech_word_info = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\SpeechWordInfo>
      */
     public function getSpeechWordInfo()
     {
@@ -344,7 +344,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * [InputAudioConfig.enable_word_info] is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.SpeechWordInfo speech_word_info = 7;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\SpeechWordInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\SpeechWordInfo[] $var
      * @return $this
      */
     public function setSpeechWordInfo($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\DatabaseInstance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of a single read pool node of a read pool.
@@ -80,19 +80,19 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      *           metrics and logs.
      *     @type string $gce_zone
      *           Output only. The zone of the read pool node.
-     *     @type array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type \Google\Cloud\Sql\V1\IpMapping[] $ip_addresses
      *           Output only. Mappings containing IP addresses that can be used to connect
      *           to the read pool node.
      *     @type string $dns_name
      *           Output only. The DNS name of the read pool node.
      *     @type int $state
      *           Output only. The current state of the read pool node.
-     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this read pool node.
      *     @type string $psc_service_attachment_link
      *           Output only. The Private Service Connect (PSC) service attachment of the
      *           read pool node.
-     *     @type array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $psc_auto_connections
+     *     @type \Google\Cloud\Sql\V1\PscAutoConnectionConfig[] $psc_auto_connections
      *           Output only. The list of settings for requested automatically-setup
      *           Private Service Connect (PSC) consumer endpoints that can be used to
      *           connect to this read pool node.
@@ -182,7 +182,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * to the read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\IpMapping>
      */
     public function getIpAddresses()
     {
@@ -194,7 +194,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * to the read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\IpMapping[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -281,7 +281,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DnsNameMapping>
      */
     public function getDnsNames()
     {
@@ -292,7 +292,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DnsNameMapping[] $var
      * @return $this
      */
     public function setDnsNames($var)
@@ -347,7 +347,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * connect to this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>
      */
     public function getPscAutoConnections()
     {
@@ -360,7 +360,7 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
      * connect to this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.PscAutoConnectionConfig psc_auto_connections = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\PscAutoConnectionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\PscAutoConnectionConfig[] $var
      * @return $this
      */
     public function setPscAutoConnections($var)
@@ -372,5 +372,4 @@ class PoolNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

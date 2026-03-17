@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how the relevant IAM deny policies affect the final access
@@ -63,7 +63,7 @@ class DenyPolicyExplanation extends \Google\Protobuf\Internal\Message
      *           Indicates whether the principal is denied the specified permission for
      *           the specified resource, based on evaluating all applicable IAM deny
      *           policies.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyResource>|\Google\Protobuf\Internal\RepeatedField $explained_resources
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyResource[] $explained_resources
      *           List of resources with IAM deny policies that were evaluated to check the
      *           principal's denied permissions, with annotations to indicate how each
      *           policy contributed to the final result.
@@ -129,7 +129,7 @@ class DenyPolicyExplanation extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/help/resource-hierarchy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedDenyResource explained_resources = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyResource>
      */
     public function getExplainedResources()
     {
@@ -149,7 +149,7 @@ class DenyPolicyExplanation extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/help/resource-hierarchy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedDenyResource explained_resources = 2;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedDenyResource[] $var
      * @return $this
      */
     public function setExplainedResources($var)

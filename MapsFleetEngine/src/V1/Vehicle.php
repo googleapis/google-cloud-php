@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Vehicle metadata.
@@ -205,14 +205,14 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           The format is `providers/{provider}/vehicles/{vehicle}`.
      *     @type int $vehicle_state
      *           The vehicle state.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_trip_types
+     *     @type int[] $supported_trip_types
      *           Trip types supported by this vehicle.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $current_trips
+     *     @type string[] $current_trips
      *           Output only. List of `trip_id`'s for trips currently assigned to this
      *           vehicle.
      *     @type \Google\Maps\FleetEngine\V1\VehicleLocation $last_location
      *           Last reported location of the vehicle.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleLocation>|\Google\Protobuf\Internal\RepeatedField $past_locations
+     *     @type \Google\Maps\FleetEngine\V1\VehicleLocation[] $past_locations
      *           Input only. Locations where this vehicle has been in the past that haven't
      *           yet been reported to Fleet Engine. This is used in `UpdateVehicleRequest`
      *           to record locations which were previously unable to be sent to the server.
@@ -221,7 +221,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *     @type int $maximum_capacity
      *           The total numbers of riders this vehicle can carry.  The driver is not
      *           considered in this value. This value must be greater than or equal to one.
-     *     @type array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\V1\VehicleAttribute[] $attributes
      *           List of vehicle attributes. A vehicle can have at most 100
      *           attributes, and each attribute must have a unique key.
      *     @type \Google\Maps\FleetEngine\V1\Vehicle\VehicleType $vehicle_type
@@ -229,7 +229,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           `SearchVehicles` results.  Also influences ETA and route calculations.
      *     @type \Google\Maps\FleetEngine\V1\LicensePlate $license_plate
      *           License plate information for the vehicle.
-     *     @type array<\Google\Maps\FleetEngine\V1\TerminalLocation>|\Google\Protobuf\Internal\RepeatedField $route
+     *     @type \Google\Maps\FleetEngine\V1\TerminalLocation[] $route
      *           Deprecated: Use `Vehicle.waypoints` instead.
      *     @type string $current_route_segment
      *           The polyline specifying the route the driver app intends to take to
@@ -270,7 +270,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      *           clock.
      *           When updating a vehicle, `remaining_time_seconds` takes precedence over
      *           `eta_to_first_waypoint` in the same request.
-     *     @type array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $waypoints
+     *     @type \Google\Maps\FleetEngine\V1\TripWaypoint[] $waypoints
      *           The remaining waypoints assigned to this Vehicle.
      *     @type \Google\Protobuf\Timestamp $waypoints_version
      *           Output only. Last time the `waypoints` field was updated. Clients should
@@ -350,7 +350,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Trip types supported by this vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripType supported_trip_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedTripTypes()
     {
@@ -361,7 +361,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Trip types supported by this vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripType supported_trip_types = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedTripTypes($var)
@@ -377,7 +377,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated string current_trips = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCurrentTrips()
     {
@@ -389,7 +389,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated string current_trips = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCurrentTrips($var)
@@ -444,7 +444,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * connectivity.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleLocation past_locations = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleLocation>
      */
     public function getPastLocations()
     {
@@ -459,7 +459,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * connectivity.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleLocation past_locations = 30 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleLocation[] $var
      * @return $this
      */
     public function setPastLocations($var)
@@ -503,7 +503,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * attributes, and each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute attributes = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VehicleAttribute>
      */
     public function getAttributes()
     {
@@ -515,7 +515,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * attributes, and each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VehicleAttribute attributes = 8;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VehicleAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VehicleAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)
@@ -604,7 +604,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Deprecated: Use `Vehicle.waypoints` instead.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TerminalLocation route = 12 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TerminalLocation>
      * @deprecated
      */
     public function getRoute()
@@ -619,7 +619,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * Deprecated: Use `Vehicle.waypoints` instead.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TerminalLocation route = 12 [deprecated = true];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TerminalLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TerminalLocation[] $var
      * @return $this
      * @deprecated
      */
@@ -1002,7 +1002,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * The remaining waypoints assigned to this Vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint waypoints = 22;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TripWaypoint>
      */
     public function getWaypoints()
     {
@@ -1013,7 +1013,7 @@ class Vehicle extends \Google\Protobuf\Internal\Message
      * The remaining waypoints assigned to this Vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint waypoints = 22;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TripWaypoint[] $var
      * @return $this
      */
     public function setWaypoints($var)

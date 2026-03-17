@@ -5,8 +5,8 @@
 namespace Google\Cloud\Scheduler\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Http target. The job will be pushed to the job handler by means of

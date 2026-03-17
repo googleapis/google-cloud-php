@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Form\Parameter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for how the filling of a parameter should be handled.
@@ -64,7 +64,7 @@ class FillBehavior extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Fulfillment $initial_prompt_fulfillment
      *           Required. The fulfillment to provide the initial prompt that the agent
      *           can present to the user in order to fill the parameter.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $reprompt_event_handlers
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $reprompt_event_handlers
      *           The handlers for parameter-level events, used to provide reprompt for
      *           the parameter or transition to a different page/flow. The supported
      *           events are:
@@ -167,7 +167,7 @@ class FillBehavior extends \Google\Protobuf\Internal\Message
      * parameter, `initial_prompt_fulfillment` will be re-prompted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler reprompt_event_handlers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>
      */
     public function getRepromptEventHandlers()
     {
@@ -204,7 +204,7 @@ class FillBehavior extends \Google\Protobuf\Internal\Message
      * parameter, `initial_prompt_fulfillment` will be re-prompted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EventHandler reprompt_event_handlers = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\EventHandler>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EventHandler[] $var
      * @return $this
      */
     public function setRepromptEventHandlers($var)
@@ -216,5 +216,4 @@ class FillBehavior extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Central configuration for custom search criteria.
@@ -47,7 +47,7 @@ class SearchCriteriaProperty extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mapped_fields
+     *     @type string[] $mapped_fields
      *           Each mapped_field corresponds to a UGA key. To understand how this property
      *           works, take the following example. In the SearchConfig table, the
      *           user adds this entry:
@@ -98,7 +98,7 @@ class SearchCriteriaProperty extends \Google\Protobuf\Internal\Message
      * coach=Tom Brady || player=Bill Belichick || coach=Bill Belichick).
      *
      * Generated from protobuf field <code>repeated string mapped_fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMappedFields()
     {
@@ -128,7 +128,7 @@ class SearchCriteriaProperty extends \Google\Protobuf\Internal\Message
      * coach=Tom Brady || player=Bill Belichick || coach=Bill Belichick).
      *
      * Generated from protobuf field <code>repeated string mapped_fields = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMappedFields($var)

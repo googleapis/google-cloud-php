@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Columns\Column;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The supported widgets that you can include in a column.
@@ -305,5 +305,4 @@ class Widgets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

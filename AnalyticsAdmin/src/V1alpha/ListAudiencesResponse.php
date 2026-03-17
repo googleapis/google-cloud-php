@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListAudiences RPC.
@@ -35,7 +35,7 @@ class ListAudiencesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\Audience>|\Google\Protobuf\Internal\RepeatedField $audiences
+     *     @type \Google\Analytics\Admin\V1alpha\Audience[] $audiences
      *           List of Audiences.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAudiencesResponse extends \Google\Protobuf\Internal\Message
      * List of Audiences.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.Audience audiences = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\Audience>
      */
     public function getAudiences()
     {
@@ -62,7 +62,7 @@ class ListAudiencesResponse extends \Google\Protobuf\Internal\Message
      * List of Audiences.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.Audience audiences = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\Audience>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\Audience[] $var
      * @return $this
      */
     public function setAudiences($var)

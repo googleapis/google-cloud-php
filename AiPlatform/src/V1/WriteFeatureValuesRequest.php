@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -70,7 +70,7 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *           {featurestore}/entityTypes/{entityType}`. For example,
      *           for a machine learning model predicting user clicks on a website, an
      *           EntityType ID could be `user`.
-     *     @type array<\Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload>|\Google\Protobuf\Internal\RepeatedField $payloads
+     *     @type \Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload[] $payloads
      *           Required. The entities to be written. Up to 100,000 feature values can be
      *           written across all `payloads`.
      * }
@@ -121,7 +121,7 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * written across all `payloads`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteFeatureValuesPayload payloads = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload>
      */
     public function getPayloads()
     {
@@ -133,7 +133,7 @@ class WriteFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * written across all `payloads`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WriteFeatureValuesPayload payloads = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\WriteFeatureValuesPayload[] $var
      * @return $this
      */
     public function setPayloads($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of a term within a specific domain.
@@ -51,7 +51,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      *           Required. The description or meaning of the term.
      *           For example: "Click-through rate", "The percentage of users who complete a
      *           desired action", "An order that is waiting to be processed."
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type string[] $labels
      *           Optional. A list of general purpose labels associated to this term.
      *           For example: ["click rate", "clickthrough", "waiting"]
      * }
@@ -124,7 +124,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      * For example: ["click rate", "clickthrough", "waiting"]
      *
      * Generated from protobuf field <code>repeated string labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLabels()
     {
@@ -136,7 +136,7 @@ class GlossaryTerm extends \Google\Protobuf\Internal\Message
      * For example: ["click rate", "clickthrough", "waiting"]
      *
      * Generated from protobuf field <code>repeated string labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLabels($var)

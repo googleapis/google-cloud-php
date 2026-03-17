@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a customer of a user list global license.  This will
@@ -118,7 +118,7 @@ class UserListGlobalLicenseCustomerInfo extends \Google\Protobuf\Internal\Messag
      *     @type string $client_account_display_name
      *           Output only. Name of client customer which the user list is being licensed
      *           to.
-     *     @type array<\Google\Ads\DataManager\V1\UserListLicensePricing>|\Google\Protobuf\Internal\RepeatedField $historical_pricings
+     *     @type \Google\Ads\DataManager\V1\UserListLicensePricing[] $historical_pricings
      *           Output only. Pricing history of this user list license.
      *     @type \Google\Ads\DataManager\V1\UserListLicenseMetrics $metrics
      *           Output only. Metrics related to this license
@@ -387,7 +387,7 @@ class UserListGlobalLicenseCustomerInfo extends \Google\Protobuf\Internal\Messag
      * Output only. Pricing history of this user list license.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListLicensePricing historical_pricings = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserListLicensePricing>
      */
     public function getHistoricalPricings()
     {
@@ -398,7 +398,7 @@ class UserListGlobalLicenseCustomerInfo extends \Google\Protobuf\Internal\Messag
      * Output only. Pricing history of this user list license.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListLicensePricing historical_pricings = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\DataManager\V1\UserListLicensePricing>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserListLicensePricing[] $var
      * @return $this
      */
     public function setHistoricalPricings($var)

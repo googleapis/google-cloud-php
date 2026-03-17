@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results of listing Examples in and annotated dataset.
@@ -34,7 +34,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\DataLabeling\V1beta1\Example[] $examples
      *           The list of examples to return.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -49,7 +49,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * The list of examples to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Example examples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\Example>
      */
     public function getExamples()
     {
@@ -60,7 +60,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * The list of examples to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Example examples = 1;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\Example[] $var
      * @return $this
      */
     public function setExamples($var)

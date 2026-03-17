@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how metastore metadata should be integrated with the Data Catalog

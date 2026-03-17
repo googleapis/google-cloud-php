@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about SMS toll fraud.
@@ -38,7 +38,7 @@ class SmsTollFraudVerdict extends \Google\Protobuf\Internal\Message
      *     @type float $risk
      *           Output only. Probability of an SMS event being fraudulent.
      *           Values are from 0.0 (lowest) to 1.0 (highest).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type int[] $reasons
      *           Output only. Reasons contributing to the SMS toll fraud verdict.
      * }
      */
@@ -79,7 +79,7 @@ class SmsTollFraudVerdict extends \Google\Protobuf\Internal\Message
      * Output only. Reasons contributing to the SMS toll fraud verdict.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getReasons()
     {
@@ -90,7 +90,7 @@ class SmsTollFraudVerdict extends \Google\Protobuf\Internal\Message
      * Output only. Reasons contributing to the SMS toll fraud verdict.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.SmsTollFraudVerdict.SmsTollFraudReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setReasons($var)

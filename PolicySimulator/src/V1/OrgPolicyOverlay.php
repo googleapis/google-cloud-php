@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The proposed changes to OrgPolicy.
@@ -44,12 +44,12 @@ class OrgPolicyOverlay extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\PolicyOverlay>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type \Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\PolicyOverlay[] $policies
      *           Optional. The OrgPolicy changes to preview violations for.
      *           Any existing OrgPolicies with the same name will be overridden
      *           in the simulation. That is, violations will be determined as if all
      *           policies in the overlay were created or updated.
-     *     @type array<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\CustomConstraintOverlay>|\Google\Protobuf\Internal\RepeatedField $custom_constraints
+     *     @type \Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\CustomConstraintOverlay[] $custom_constraints
      *           Optional. The OrgPolicy CustomConstraint changes to preview violations for.
      *           Any existing CustomConstraints with the same name will be overridden
      *           in the simulation. That is, violations will be determined as if all
@@ -72,7 +72,7 @@ class OrgPolicyOverlay extends \Google\Protobuf\Internal\Message
      * policies in the overlay were created or updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay policies = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\PolicyOverlay>
      */
     public function getPolicies()
     {
@@ -86,7 +86,7 @@ class OrgPolicyOverlay extends \Google\Protobuf\Internal\Message
      * policies in the overlay were created or updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyOverlay.PolicyOverlay policies = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\PolicyOverlay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\PolicyOverlay[] $var
      * @return $this
      */
     public function setPolicies($var)
@@ -108,7 +108,7 @@ class OrgPolicyOverlay extends \Google\Protobuf\Internal\Message
      * evaluates a single constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay custom_constraints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\CustomConstraintOverlay>
      */
     public function getCustomConstraints()
     {
@@ -126,7 +126,7 @@ class OrgPolicyOverlay extends \Google\Protobuf\Internal\Message
      * evaluates a single constraint.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyOverlay.CustomConstraintOverlay custom_constraints = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\CustomConstraintOverlay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay\CustomConstraintOverlay[] $var
      * @return $this
      */
     public function setCustomConstraints($var)

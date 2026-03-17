@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Sql Server user on the Cloud SQL instance.
@@ -36,7 +36,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disabled
      *           If the user has been disabled
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $server_roles
+     *     @type string[] $server_roles
      *           The server roles for this user
      * }
      */
@@ -75,7 +75,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      * The server roles for this user
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServerRoles()
     {
@@ -86,7 +86,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      * The server roles for this user
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServerRoles($var)

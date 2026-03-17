@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for updating a QuotaPreference
@@ -93,7 +93,7 @@ class UpdateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, validate the request, but do not actually update.
      *           Note that a request being valid does not mean that the request is
      *           guaranteed to be fulfilled.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ignore_safety_checks
+     *     @type int[] $ignore_safety_checks
      *           The list of quota safety checks to be ignored.
      * }
      */
@@ -244,7 +244,7 @@ class UpdateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      * The list of quota safety checks to be ignored.
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1beta.QuotaSafetyCheck ignore_safety_checks = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIgnoreSafetyChecks()
     {
@@ -255,7 +255,7 @@ class UpdateQuotaPreferenceRequest extends \Google\Protobuf\Internal\Message
      * The list of quota safety checks to be ignored.
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1beta.QuotaSafetyCheck ignore_safety_checks = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIgnoreSafetyChecks($var)

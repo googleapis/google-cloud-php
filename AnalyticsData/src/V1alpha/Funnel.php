@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures the funnel in a funnel report request. A funnel reports on users
@@ -46,7 +46,7 @@ class Funnel extends \Google\Protobuf\Internal\Message
      *           In an open funnel, users can enter the funnel in any step, and in a closed
      *           funnel, users must enter the funnel in the first step. Optional. If
      *           unspecified, a closed funnel is used.
-     *     @type array<\Google\Analytics\Data\V1alpha\FunnelStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Analytics\Data\V1alpha\FunnelStep[] $steps
      *           The sequential steps of this funnel.
      * }
      */
@@ -89,7 +89,7 @@ class Funnel extends \Google\Protobuf\Internal\Message
      * The sequential steps of this funnel.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.FunnelStep steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\FunnelStep>
      */
     public function getSteps()
     {
@@ -100,7 +100,7 @@ class Funnel extends \Google\Protobuf\Internal\Message
      * The sequential steps of this funnel.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.FunnelStep steps = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\FunnelStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\FunnelStep[] $var
      * @return $this
      */
     public function setSteps($var)

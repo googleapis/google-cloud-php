@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult\IdentifiedBox;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Bounding Box in the normalized coordinates.
@@ -166,5 +166,4 @@ class NormalizedBoundingBox extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

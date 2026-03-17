@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An output only view of all the member clusters participating in the cross
@@ -40,7 +40,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster $primary_cluster
      *           Output only. The primary cluster that acts as the source of replication
      *           for the secondary clusters.
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster>|\Google\Protobuf\Internal\RepeatedField $secondary_clusters
+     *     @type \Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster[] $secondary_clusters
      *           Output only. The list of secondary clusters replicating from the primary
      *           cluster.
      * }
@@ -93,7 +93,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      * cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster secondary_clusters = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster>
      */
     public function getSecondaryClusters()
     {
@@ -105,7 +105,7 @@ class Membership extends \Google\Protobuf\Internal\Message
      * cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.CrossClusterReplicationConfig.RemoteCluster secondary_clusters = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\CrossClusterReplicationConfig\RemoteCluster[] $var
      * @return $this
      */
     public function setSecondaryClusters($var)
@@ -117,5 +117,4 @@ class Membership extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

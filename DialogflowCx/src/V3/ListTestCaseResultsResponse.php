@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListTestCaseResultsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>|\Google\Protobuf\Internal\RepeatedField $test_case_results
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TestCaseResult[] $test_case_results
      *           The list of test case results.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -52,7 +52,7 @@ class ListTestCaseResultsResponse extends \Google\Protobuf\Internal\Message
      * The list of test case results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestCaseResult test_case_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>
      */
     public function getTestCaseResults()
     {
@@ -63,7 +63,7 @@ class ListTestCaseResultsResponse extends \Google\Protobuf\Internal\Message
      * The list of test case results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TestCaseResult test_case_results = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\TestCaseResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TestCaseResult[] $var
      * @return $this
      */
     public function setTestCaseResults($var)

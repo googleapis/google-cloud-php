@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of a batch workload in the service.
@@ -149,7 +149,7 @@ class Batch extends \Google\Protobuf\Internal\Message
      *           Optional. Environment configuration for the batch execution.
      *     @type string $operation
      *           Output only. The resource name of the operation associated with this batch.
-     *     @type array<\Google\Cloud\Dataproc\V1\Batch\StateHistory>|\Google\Protobuf\Internal\RepeatedField $state_history
+     *     @type \Google\Cloud\Dataproc\V1\Batch\StateHistory[] $state_history
      *           Output only. Historical state information for the batch.
      * }
      */
@@ -664,7 +664,7 @@ class Batch extends \Google\Protobuf\Internal\Message
      * Output only. Historical state information for the batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch.StateHistory state_history = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\Batch\StateHistory>
      */
     public function getStateHistory()
     {
@@ -675,7 +675,7 @@ class Batch extends \Google\Protobuf\Internal\Message
      * Output only. Historical state information for the batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch.StateHistory state_history = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Batch\StateHistory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\Batch\StateHistory[] $var
      * @return $this
      */
     public function setStateHistory($var)

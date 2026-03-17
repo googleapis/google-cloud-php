@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing McpTool object
@@ -102,7 +102,7 @@ class McpTool extends \Google\Protobuf\Internal\Message
      *           Optional. A human-readable name for the tool, suitable for display.
      *     @type string $description
      *           A human-readable description of the tool's functionality.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mcp_server_urls
+     *     @type string[] $mcp_server_urls
      *           Automatically populated reference to MCP Server. Helpful when multiple
      *           tools are requested across different MCP Servers.
      *     @type \Google\Protobuf\Struct $input_schema
@@ -232,7 +232,7 @@ class McpTool extends \Google\Protobuf\Internal\Message
      * tools are requested across different MCP Servers.
      *
      * Generated from protobuf field <code>repeated string mcp_server_urls = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMcpServerUrls()
     {
@@ -244,7 +244,7 @@ class McpTool extends \Google\Protobuf\Internal\Message
      * tools are requested across different MCP Servers.
      *
      * Generated from protobuf field <code>repeated string mcp_server_urls = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMcpServerUrls($var)

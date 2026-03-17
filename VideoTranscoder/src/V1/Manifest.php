@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Manifest configuration.
@@ -55,7 +55,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           [Manifest.type][google.cloud.video.transcoder.v1.Manifest.type].
      *     @type int $type
      *           Required. Type of the manifest.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type string[] $mux_streams
      *           Required. List of user supplied
      *           [MuxStream.key][google.cloud.video.transcoder.v1.MuxStream.key] values that
      *           should appear in this manifest.
@@ -138,7 +138,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * extension is generated for each element in this list.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMuxStreams()
     {
@@ -155,7 +155,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * extension is generated for each element in this list.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMuxStreams($var)

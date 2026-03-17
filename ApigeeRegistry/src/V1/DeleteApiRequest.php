@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for DeleteApi.
@@ -17,7 +17,7 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the API to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -53,7 +53,7 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the API to delete.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
+     *           Format: `projects/{@*}locations/{@*}apis/*`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -66,7 +66,7 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the API to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -78,7 +78,7 @@ class DeleteApiRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the API to delete.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

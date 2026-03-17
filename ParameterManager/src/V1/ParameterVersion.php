@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing ParameterVersion resource
@@ -17,7 +17,7 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. [Output only] The resource name of the ParameterVersion in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -70,7 +70,7 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. [Output only] The resource name of the ParameterVersion in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     *           format `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. [Output only] Create time stamp
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -99,7 +99,7 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. [Output only] The resource name of the ParameterVersion in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -111,7 +111,7 @@ class ParameterVersion extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. [Output only] The resource name of the ParameterVersion in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

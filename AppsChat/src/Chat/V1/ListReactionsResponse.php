@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to a list reactions request.
@@ -35,7 +35,7 @@ class ListReactionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\Reaction>|\Google\Protobuf\Internal\RepeatedField $reactions
+     *     @type \Google\Apps\Chat\V1\Reaction[] $reactions
      *           List of reactions in the requested (or first) page.
      *     @type string $next_page_token
      *           Continuation token to retrieve the next page of results. It's empty
@@ -51,7 +51,7 @@ class ListReactionsResponse extends \Google\Protobuf\Internal\Message
      * List of reactions in the requested (or first) page.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Reaction reactions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Reaction>
      */
     public function getReactions()
     {
@@ -62,7 +62,7 @@ class ListReactionsResponse extends \Google\Protobuf\Internal\Message
      * List of reactions in the requested (or first) page.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Reaction reactions = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\Reaction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Reaction[] $var
      * @return $this
      */
     public function setReactions($var)

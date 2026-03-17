@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Dataform release configuration.
@@ -69,7 +69,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      * when this resource is updated by API call (perhaps to roll back to an
      * earlier release). The compilation result must have been created using this
      * release config. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -114,7 +114,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *           cron_schedule. Must be a time zone name from the time zone database
      *           (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left
      *           unspecified, the default is UTC.
-     *     @type array<\Google\Cloud\Dataform\V1\ReleaseConfig\ScheduledReleaseRecord>|\Google\Protobuf\Internal\RepeatedField $recent_scheduled_release_records
+     *     @type \Google\Cloud\Dataform\V1\ReleaseConfig\ScheduledReleaseRecord[] $recent_scheduled_release_records
      *           Output only. Records of the 10 most recent scheduled release attempts,
      *           ordered in descending order of `release_time`. Updated whenever automatic
      *           creation of a compilation result is triggered by cron_schedule.
@@ -125,7 +125,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      *           when this resource is updated by API call (perhaps to roll back to an
      *           earlier release). The compilation result must have been created using this
      *           release config. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *     @type bool $disabled
      *           Optional. Disables automatic creation of compilation results.
      *     @type string $internal_metadata
@@ -303,7 +303,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      * creation of a compilation result is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.ReleaseConfig.ScheduledReleaseRecord recent_scheduled_release_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\ReleaseConfig\ScheduledReleaseRecord>
      */
     public function getRecentScheduledReleaseRecords()
     {
@@ -316,7 +316,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      * creation of a compilation result is triggered by cron_schedule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.ReleaseConfig.ScheduledReleaseRecord recent_scheduled_release_records = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataform\V1\ReleaseConfig\ScheduledReleaseRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\ReleaseConfig\ScheduledReleaseRecord[] $var
      * @return $this
      */
     public function setRecentScheduledReleaseRecords($var)
@@ -334,7 +334,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      * when this resource is updated by API call (perhaps to roll back to an
      * earlier release). The compilation result must have been created using this
      * release config. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -351,7 +351,7 @@ class ReleaseConfig extends \Google\Protobuf\Internal\Message
      * when this resource is updated by API call (perhaps to roll back to an
      * earlier release). The compilation result must have been created using this
      * release config. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;compilationResults/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}compilationResults/*`.
      *
      * Generated from protobuf field <code>string release_compilation_result = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var

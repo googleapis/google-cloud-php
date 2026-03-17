@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * See full explanation of fields at slsa.dev/provenance/v0.2.
@@ -51,7 +51,7 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
      *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaInvocation $invocation
      *     @type \Google\Protobuf\Struct $build_config
      *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMetadata $metadata
-     *     @type array<\Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial>|\Google\Protobuf\Internal\RepeatedField $materials
+     *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial[] $materials
      * }
      */
     public function __construct($data = NULL) {
@@ -211,7 +211,7 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial materials = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial>
      */
     public function getMaterials()
     {
@@ -220,7 +220,7 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial materials = 6;</code>
-     * @param array<\Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial[] $var
      * @return $this
      */
     public function setMaterials($var)

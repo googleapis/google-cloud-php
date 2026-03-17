@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\PluginInstanceAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of resources created for a given plugin instance action.
@@ -102,5 +102,4 @@ class ResourceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

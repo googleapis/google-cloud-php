@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata of a BranchRule. BranchRule is the protection rule to enforce
@@ -169,7 +169,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      *     @type bool $require_linear_history
      *           Optional. Determines if require linear history before merging to the
      *           branch.
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\BranchRule\Check>|\Google\Protobuf\Internal\RepeatedField $required_status_checks
+     *     @type \Google\Cloud\SecureSourceManager\V1\BranchRule\Check[] $required_status_checks
      *           Optional. List of required status checks before merging to the branch.
      * }
      */
@@ -594,7 +594,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      * Optional. List of required status checks before merging to the branch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.BranchRule.Check required_status_checks = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\BranchRule\Check>
      */
     public function getRequiredStatusChecks()
     {
@@ -605,7 +605,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      * Optional. List of required status checks before merging to the branch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.BranchRule.Check required_status_checks = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\BranchRule\Check>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\BranchRule\Check[] $var
      * @return $this
      */
     public function setRequiredStatusChecks($var)

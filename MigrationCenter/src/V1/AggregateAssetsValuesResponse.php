@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a request to aggregated assets values.
@@ -28,7 +28,7 @@ class AggregateAssetsValuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\AggregationResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\MigrationCenter\V1\AggregationResult[] $results
      *           The aggregation results.
      * }
      */
@@ -41,7 +41,7 @@ class AggregateAssetsValuesResponse extends \Google\Protobuf\Internal\Message
      * The aggregation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AggregationResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\AggregationResult>
      */
     public function getResults()
     {
@@ -52,7 +52,7 @@ class AggregateAssetsValuesResponse extends \Google\Protobuf\Internal\Message
      * The aggregation results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AggregationResult results = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\AggregationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\AggregationResult[] $var
      * @return $this
      */
     public function setResults($var)

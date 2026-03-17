@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListConsumerGroups.
@@ -36,7 +36,7 @@ class ListConsumerGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\V1\ConsumerGroup>|\Google\Protobuf\Internal\RepeatedField $consumer_groups
+     *     @type \Google\Cloud\ManagedKafka\V1\ConsumerGroup[] $consumer_groups
      *           The list of consumer group in the requested parent. The order of the
      *           consumer groups is unspecified.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListConsumerGroupsResponse extends \Google\Protobuf\Internal\Message
      * consumer groups is unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.ConsumerGroup consumer_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\ConsumerGroup>
      */
     public function getConsumerGroups()
     {
@@ -66,7 +66,7 @@ class ListConsumerGroupsResponse extends \Google\Protobuf\Internal\Message
      * consumer groups is unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.ConsumerGroup consumer_groups = 1;</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\ConsumerGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\ConsumerGroup[] $var
      * @return $this
      */
     public function setConsumerGroups($var)

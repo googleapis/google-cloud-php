@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Company resource represents a company in the service. A company is the
@@ -173,7 +173,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *           site, for example, "https://careers.google.com".
      *     @type string $image_uri
      *           A URI that hosts the employer's company logo.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
+     *     @type string[] $keyword_searchable_job_custom_attributes
      *           This field is deprecated. Please set the searchability of the custom
      *           attribute in the
      *           [Job.custom_attributes][google.cloud.talent.v4.Job.custom_attributes] going
@@ -510,7 +510,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * and those keyword queries must be surrounded by quotes.
      *
      * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      * @deprecated
      */
     public function getKeywordSearchableJobCustomAttributes()
@@ -535,7 +535,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * and those keyword queries must be surrounded by quotes.
      *
      * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11 [deprecated = true];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      * @deprecated
      */

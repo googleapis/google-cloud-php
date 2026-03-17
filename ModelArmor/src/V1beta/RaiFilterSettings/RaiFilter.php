@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta\RaiFilterSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Responsible AI filter.
@@ -114,5 +114,4 @@ class RaiFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

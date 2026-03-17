@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\Attribute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The value that can be assigned to the attribute when the data type is
@@ -203,5 +203,4 @@ class AllowedValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Encryption;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for HLS SAMPLE-AES encryption.
@@ -30,5 +30,4 @@ class SampleAesEncryption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

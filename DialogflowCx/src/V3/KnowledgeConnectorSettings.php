@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Knowledge Connector settings for this page or flow.
@@ -65,7 +65,7 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      *           The target flow to transition to.
      *           Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>`.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>|\Google\Protobuf\Internal\RepeatedField $data_store_connections
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection[] $data_store_connections
      *           Optional. List of related data store connections.
      * }
      */
@@ -220,7 +220,7 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of related data store connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnection data_store_connections = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>
      */
     public function getDataStoreConnections()
     {
@@ -231,7 +231,7 @@ class KnowledgeConnectorSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of related data store connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnection data_store_connections = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnection[] $var
      * @return $this
      */
     public function setDataStoreConnections($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data Clean Room (DCR), used for privacy-safe and secured data sharing.
@@ -154,5 +154,4 @@ class DcrExchangeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

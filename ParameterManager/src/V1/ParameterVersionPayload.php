@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for storing a ParameterVersion resource's payload data

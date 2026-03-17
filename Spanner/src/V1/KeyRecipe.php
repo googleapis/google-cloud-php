@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `KeyRecipe` provides the metadata required to translate reads, mutations,
@@ -40,7 +40,7 @@ class KeyRecipe extends \Google\Protobuf\Internal\Message
      *           An index name, matching the name from the database schema.
      *     @type int|string $operation_uid
      *           The UID of a query, matching the UID from `RoutingHint`.
-     *     @type array<\Google\Cloud\Spanner\V1\KeyRecipe\Part>|\Google\Protobuf\Internal\RepeatedField $part
+     *     @type \Google\Cloud\Spanner\V1\KeyRecipe\Part[] $part
      *           Parts are in the order they should appear in the encoded key.
      * }
      */
@@ -146,7 +146,7 @@ class KeyRecipe extends \Google\Protobuf\Internal\Message
      * Parts are in the order they should appear in the encoded key.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRecipe.Part part = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\KeyRecipe\Part>
      */
     public function getPart()
     {
@@ -157,7 +157,7 @@ class KeyRecipe extends \Google\Protobuf\Internal\Message
      * Parts are in the order they should appear in the encoded key.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRecipe.Part part = 4;</code>
-     * @param array<\Google\Cloud\Spanner\V1\KeyRecipe\Part>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\KeyRecipe\Part[] $var
      * @return $this
      */
     public function setPart($var)

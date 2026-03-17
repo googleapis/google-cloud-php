@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Mutes the stream.
@@ -78,5 +78,4 @@ class MuteTask extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Mesh represents a logical configuration grouping for workload to workload
@@ -19,7 +19,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/global/meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -83,7 +83,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the Mesh resource. It matches pattern
-     *           `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
+     *           `projects/{@*}locations/global/meshes/<mesh_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -115,7 +115,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/global/meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -127,7 +127,7 @@ class Mesh extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Mesh resource. It matches pattern
-     * `projects/&#42;&#47;locations/global/meshes/<mesh_name>`.
+     * `projects/{@*}locations/global/meshes/<mesh_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\BigQueryDestinationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Destination datasets are created so that hierarchy of the destination data
@@ -123,5 +123,4 @@ class SourceHierarchyDatasets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Translation configuration. Use to translate the given audio into text for the

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response details for data quality rule recommendations.
@@ -29,7 +29,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $rule
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule[] $rule
      *           The data quality rules that Dataplex Universal Catalog generates based on
      *           the results of a data profiling scan.
      * }
@@ -44,7 +44,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
      * the results of a data profiling scan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityRule>
      */
     public function getRule()
     {
@@ -56,7 +56,7 @@ class GenerateDataQualityRulesResponse extends \Google\Protobuf\Internal\Message
      * the results of a data profiling scan.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rule = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule[] $var
      * @return $this
      */
     public function setRule($var)

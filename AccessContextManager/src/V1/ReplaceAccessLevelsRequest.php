@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to replace all existing Access Levels in an Access Policy with
@@ -60,7 +60,7 @@ class ReplaceAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      *           [Access Levels]
      *           [google.identity.accesscontextmanager.v1.AccessLevel].
      *           Format: `accessPolicies/{policy_id}`
-     *     @type array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type \Google\Identity\AccessContextManager\V1\AccessLevel[] $access_levels
      *           Required. The desired [Access Levels]
      *           [google.identity.accesscontextmanager.v1.AccessLevel] that should
      *           replace all existing [Access Levels]
@@ -123,7 +123,7 @@ class ReplaceAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessLevel access_levels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\AccessLevel>
      */
     public function getAccessLevels()
     {
@@ -139,7 +139,7 @@ class ReplaceAccessLevelsRequest extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessLevel access_levels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\AccessLevel[] $var
      * @return $this
      */
     public function setAccessLevels($var)

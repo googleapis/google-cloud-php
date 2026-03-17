@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details of the egress info. One of the following options should be set.
@@ -72,5 +72,4 @@ class Egress extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\Inventory;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details related to a Windows Update package.
@@ -87,14 +87,14 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      *           The localized title of the update package.
      *     @type string $description
      *           The localized description of the update package.
-     *     @type array<\Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage\WindowsUpdateCategory>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type \Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage\WindowsUpdateCategory[] $categories
      *           The categories that are associated with this update package.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kb_article_ids
+     *     @type string[] $kb_article_ids
      *           A collection of Microsoft Knowledge Base article IDs that are associated
      *           with the update package.
      *     @type string $support_url
      *           A hyperlink to the language-specific support information for the update.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $more_info_urls
+     *     @type string[] $more_info_urls
      *           A collection of URLs that provide more information about the update
      *           package.
      *     @type string $update_id
@@ -167,7 +167,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * The categories that are associated with this update package.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory categories = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage\WindowsUpdateCategory>
      */
     public function getCategories()
     {
@@ -178,7 +178,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * The categories that are associated with this update package.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.Inventory.WindowsUpdatePackage.WindowsUpdateCategory categories = 3;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage\WindowsUpdateCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\Inventory\WindowsUpdatePackage\WindowsUpdateCategory[] $var
      * @return $this
      */
     public function setCategories($var)
@@ -194,7 +194,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * with the update package.
      *
      * Generated from protobuf field <code>repeated string kb_article_ids = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKbArticleIds()
     {
@@ -206,7 +206,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * with the update package.
      *
      * Generated from protobuf field <code>repeated string kb_article_ids = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKbArticleIds($var)
@@ -248,7 +248,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * package.
      *
      * Generated from protobuf field <code>repeated string more_info_urls = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMoreInfoUrls()
     {
@@ -260,7 +260,7 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
      * package.
      *
      * Generated from protobuf field <code>repeated string more_info_urls = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMoreInfoUrls($var)
@@ -362,5 +362,4 @@ class WindowsUpdatePackage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

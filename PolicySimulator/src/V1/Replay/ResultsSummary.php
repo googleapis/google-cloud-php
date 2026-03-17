@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1\Replay;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summary statistics about the replayed log entries.
@@ -262,5 +262,4 @@ class ResultsSummary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

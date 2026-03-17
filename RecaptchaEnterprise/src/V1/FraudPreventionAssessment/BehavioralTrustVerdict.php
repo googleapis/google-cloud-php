@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about behavioral trust of the transaction.
@@ -72,5 +72,4 @@ class BehavioralTrustVerdict extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

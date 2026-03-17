@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Conversions\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * "Google Analytics Link" sources can be used to get conversion data from an

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -38,7 +38,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\Backup[] $backups
      *           The list of matching backups. Backups returned are ordered by `create_time`
      *           in descending order, starting from the most recent `create_time`.
      *     @type string $next_page_token
@@ -57,7 +57,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * in descending order, starting from the most recent `create_time`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Backup backups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\Backup>
      */
     public function getBackups()
     {
@@ -69,7 +69,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * in descending order, starting from the most recent `create_time`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Backup backups = 1;</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\Backup[] $var
      * @return $this
      */
     public function setBackups($var)

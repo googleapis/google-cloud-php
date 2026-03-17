@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a name-pair value for a single label.
@@ -102,5 +102,4 @@ class MetadataLabels extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result returned from `ListExclusions`.
@@ -36,7 +36,7 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $exclusions
+     *     @type \Google\Cloud\Logging\V2\LogExclusion[] $exclusions
      *           A list of exclusions.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -53,7 +53,7 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      * A list of exclusions.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogExclusion exclusions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\LogExclusion>
      */
     public function getExclusions()
     {
@@ -64,7 +64,7 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      * A list of exclusions.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogExclusion exclusions = 1;</code>
-     * @param array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\LogExclusion[] $var
      * @return $this
      */
     public function setExclusions($var)

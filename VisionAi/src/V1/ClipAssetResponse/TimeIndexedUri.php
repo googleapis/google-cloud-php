@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ClipAssetResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Signed uri with corresponding time range.
@@ -108,5 +108,4 @@ class TimeIndexedUri extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

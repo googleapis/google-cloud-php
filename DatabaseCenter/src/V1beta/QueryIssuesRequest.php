@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QueryIssuesRequest is the request to get a list of issues.
@@ -122,7 +122,7 @@ class QueryIssuesRequest extends \Google\Protobuf\Internal\Message
      *           `issue_severity`,
      *           'tags',
      *           'labels',
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\SignalProductsFilters>|\Google\Protobuf\Internal\RepeatedField $signal_products_filters
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\SignalProductsFilters[] $signal_products_filters
      *           Optional. Filters based on signal and product. The filter list will be ORed
      *           across pairs and ANDed within a signal and products pair.
      *     @type string $order_by
@@ -232,7 +232,7 @@ class QueryIssuesRequest extends \Google\Protobuf\Internal\Message
      * across pairs and ANDed within a signal and products pair.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalProductsFilters signal_products_filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\SignalProductsFilters>
      */
     public function getSignalProductsFilters()
     {
@@ -244,7 +244,7 @@ class QueryIssuesRequest extends \Google\Protobuf\Internal\Message
      * across pairs and ANDed within a signal and products pair.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.SignalProductsFilters signal_products_filters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\SignalProductsFilters>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\SignalProductsFilters[] $var
      * @return $this
      */
     public function setSignalProductsFilters($var)

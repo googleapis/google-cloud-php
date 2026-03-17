@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Finding represents an issue which prevents PAM from functioning properly
@@ -73,5 +73,4 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

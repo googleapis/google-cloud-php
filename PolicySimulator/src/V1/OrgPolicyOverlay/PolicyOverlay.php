@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1\OrgPolicyOverlay;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A change to an OrgPolicy.
@@ -112,5 +112,4 @@ class PolicyOverlay extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

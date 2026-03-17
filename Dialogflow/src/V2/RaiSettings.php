@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for Responsible AI checks.
@@ -28,7 +28,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\RaiSettings\RaiCategoryConfig>|\Google\Protobuf\Internal\RepeatedField $rai_category_configs
+     *     @type \Google\Cloud\Dialogflow\V2\RaiSettings\RaiCategoryConfig[] $rai_category_configs
      *           Configuration for a set of RAI categories.
      * }
      */
@@ -41,7 +41,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * Configuration for a set of RAI categories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.RaiSettings.RaiCategoryConfig rai_category_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\RaiSettings\RaiCategoryConfig>
      */
     public function getRaiCategoryConfigs()
     {
@@ -52,7 +52,7 @@ class RaiSettings extends \Google\Protobuf\Internal\Message
      * Configuration for a set of RAI categories.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.RaiSettings.RaiCategoryConfig rai_category_configs = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\RaiSettings\RaiCategoryConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\RaiSettings\RaiCategoryConfig[] $var
      * @return $this
      */
     public function setRaiCategoryConfigs($var)

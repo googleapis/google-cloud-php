@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies tile navigation related parameters.
@@ -45,7 +45,7 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
      *     @type bool $tile_navigation_requested
      *           This field specifies whether the customer would like to request tile
      *           navigation.
-     *     @type array<\Google\Cloud\Retail\V2\Tile>|\Google\Protobuf\Internal\RepeatedField $applied_tiles
+     *     @type \Google\Cloud\Retail\V2\Tile[] $applied_tiles
      *           This optional field specifies the tiles which are already clicked in
      *           client side. While the feature works without this field set, particularly
      *           for an initial query, it is highly recommended to set this field because
@@ -100,7 +100,7 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile applied_tiles = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Tile>
      */
     public function getAppliedTiles()
     {
@@ -118,7 +118,7 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
      * [SearchRequest.filter][google.cloud.retail.v2.SearchRequest.filter].
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Tile applied_tiles = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\Tile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Tile[] $var
      * @return $this
      */
     public function setAppliedTiles($var)
@@ -130,5 +130,4 @@ class TileNavigationSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -39,7 +39,7 @@ class FeatureViewDirectWriteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $feature_view
      *           FeatureView resource format
      *           `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues>|\Google\Protobuf\Internal\RepeatedField $data_key_and_feature_values
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues[] $data_key_and_feature_values
      *           Required. The data keys and associated feature values.
      * }
      */
@@ -80,7 +80,7 @@ class FeatureViewDirectWriteRequest extends \Google\Protobuf\Internal\Message
      * Required. The data keys and associated feature values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues data_key_and_feature_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues>
      */
     public function getDataKeyAndFeatureValues()
     {
@@ -91,7 +91,7 @@ class FeatureViewDirectWriteRequest extends \Google\Protobuf\Internal\Message
      * Required. The data keys and associated feature values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues data_key_and_feature_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues[] $var
      * @return $this
      */
     public function setDataKeyAndFeatureValues($var)

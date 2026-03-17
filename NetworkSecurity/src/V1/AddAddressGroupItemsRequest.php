@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used by the AddAddressGroupItems method.
@@ -17,7 +17,7 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the AddressGroup to add items to. Must be in the format
-     * `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -70,8 +70,8 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $address_group
      *           Required. A name of the AddressGroup to add items to. Must be in the format
-     *           `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $items
+     *           `projects|organization/{@*}locations/{location}/addressGroups/*`.
+     *     @type string[] $items
      *           Required. List of items to add.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
@@ -94,7 +94,7 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to add items to. Must be in the format
-     * `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,7 +106,7 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the AddressGroup to add items to. Must be in the format
-     * `projects|organization/&#42;&#47;locations/{location}/addressGroups/&#42;`.
+     * `projects|organization/{@*}locations/{location}/addressGroups/*`.
      *
      * Generated from protobuf field <code>string address_group = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -124,7 +124,7 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
      * Required. List of items to add.
      *
      * Generated from protobuf field <code>repeated string items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItems()
     {
@@ -135,7 +135,7 @@ class AddAddressGroupItemsRequest extends \Google\Protobuf\Internal\Message
      * Required. List of items to add.
      *
      * Generated from protobuf field <code>repeated string items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItems($var)

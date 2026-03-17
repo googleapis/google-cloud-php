@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta\Violation\Remediation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instructions to remediate violation
@@ -118,5 +118,4 @@ class Instructions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

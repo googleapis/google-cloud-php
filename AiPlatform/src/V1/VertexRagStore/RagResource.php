@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\VertexRagStore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The definition of the Rag resource.
@@ -41,7 +41,7 @@ class RagResource extends \Google\Protobuf\Internal\Message
      *           Optional. RagCorpora resource name.
      *           Format:
      *           `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rag_file_ids
+     *     @type string[] $rag_file_ids
      *           Optional. rag_file_id. The files should be in the same rag_corpus set in
      *           rag_corpus field.
      * }
@@ -86,7 +86,7 @@ class RagResource extends \Google\Protobuf\Internal\Message
      * rag_corpus field.
      *
      * Generated from protobuf field <code>repeated string rag_file_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRagFileIds()
     {
@@ -98,7 +98,7 @@ class RagResource extends \Google\Protobuf\Internal\Message
      * rag_corpus field.
      *
      * Generated from protobuf field <code>repeated string rag_file_ids = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRagFileIds($var)
@@ -110,5 +110,4 @@ class RagResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

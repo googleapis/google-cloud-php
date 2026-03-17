@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A field in a schema.
@@ -98,17 +98,17 @@ class Field extends \Google\Protobuf\Internal\Message
      *           Optional. A brief description of the field.
      *     @type string $mode
      *           Optional. The mode of the field (e.g., NULLABLE, REPEATED).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Optional. A list of alternative names or synonyms that can be used to refer
      *           to this field. For example: ["id", "customerid", "cust_id"]. Currently only
      *           used for BigQuery data sources.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. A list of tags or keywords associated with the field, used for
      *           categorization. For example: ["identifier", "customer", "pii"]. Currently
      *           only used for BigQuery data sources.
      *     @type string $display_name
      *           Optional. Field display_name (same as label in
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $subfields
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Field[] $subfields
      *           Optional. Recursive property for nested schema structures.
      *     @type string $category
      *           Optional. Field category, not required, currently only useful for Looker.
@@ -235,7 +235,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -248,7 +248,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string synonyms = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -265,7 +265,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -278,7 +278,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * only used for BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated string tags = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -319,7 +319,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Optional. Recursive property for nested schema structures.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Field subfields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>
      */
     public function getSubfields()
     {
@@ -330,7 +330,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Optional. Recursive property for nested schema structures.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Field subfields = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Field>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Field[] $var
      * @return $this
      */
     public function setSubfields($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional instructions to add account services during creation of the
@@ -361,5 +361,4 @@ class AddAccountService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

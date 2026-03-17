@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `ListKeys` method.
@@ -34,7 +34,7 @@ class ListKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiKeys\V2\Key>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\ApiKeys\V2\Key[] $keys
      *           A list of API keys.
      *     @type string $next_page_token
      *           The pagination token for the next page of results.
@@ -49,7 +49,7 @@ class ListKeysResponse extends \Google\Protobuf\Internal\Message
      * A list of API keys.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.Key keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiKeys\V2\Key>
      */
     public function getKeys()
     {
@@ -60,7 +60,7 @@ class ListKeysResponse extends \Google\Protobuf\Internal\Message
      * A list of API keys.
      *
      * Generated from protobuf field <code>repeated .google.api.apikeys.v2.Key keys = 1;</code>
-     * @param array<\Google\Cloud\ApiKeys\V2\Key>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiKeys\V2\Key[] $var
      * @return $this
      */
     public function setKeys($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Clusters
@@ -40,11 +40,11 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\Cluster>|\Google\Protobuf\Internal\RepeatedField $clusters
+     *     @type \Google\Cloud\AlloyDb\V1\Cluster[] $clusters
      *           The list of Cluster
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of Cluster
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Cluster clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\Cluster>
      */
     public function getClusters()
     {
@@ -68,7 +68,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of Cluster
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.Cluster clusters = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\Cluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\Cluster[] $var
      * @return $this
      */
     public function setClusters($var)
@@ -109,7 +109,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\RolloutConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single rollout step with specified traffic allocation.
@@ -154,5 +154,4 @@ class RolloutStep extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

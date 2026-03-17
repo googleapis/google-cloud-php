@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\Cluster\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClusterEndpoint consists of PSC connections that are created
@@ -31,7 +31,7 @@ class ClusterEndpoint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Redis\Cluster\V1\ConnectionDetail>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Redis\Cluster\V1\ConnectionDetail[] $connections
      *           A group of PSC connections. They are created in the same VPC network, one
      *           for each service attachment in the cluster.
      * }
@@ -46,7 +46,7 @@ class ClusterEndpoint extends \Google\Protobuf\Internal\Message
      * for each service attachment in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ConnectionDetail connections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\Cluster\V1\ConnectionDetail>
      */
     public function getConnections()
     {
@@ -58,7 +58,7 @@ class ClusterEndpoint extends \Google\Protobuf\Internal\Message
      * for each service attachment in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.cluster.v1.ConnectionDetail connections = 1;</code>
-     * @param array<\Google\Cloud\Redis\Cluster\V1\ConnectionDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\Cluster\V1\ConnectionDetail[] $var
      * @return $this
      */
     public function setConnections($var)

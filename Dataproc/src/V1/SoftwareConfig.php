@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the selection and config of software inside the cluster.
@@ -84,7 +84,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           * yarn:   `yarn-site.xml`
      *           For more information, see [Cluster
      *           properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $optional_components
+     *     @type int[] $optional_components
      *           Optional. The set of components to activate on the cluster.
      * }
      */
@@ -189,7 +189,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of components to activate on the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOptionalComponents()
     {
@@ -200,7 +200,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of components to activate on the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOptionalComponents($var)

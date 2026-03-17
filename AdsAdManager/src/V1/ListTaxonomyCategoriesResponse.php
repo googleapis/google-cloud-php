@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListTaxonomyCategoriesRequest` containing matching
@@ -50,7 +50,7 @@ class ListTaxonomyCategoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\TaxonomyCategory>|\Google\Protobuf\Internal\RepeatedField $taxonomy_categories
+     *     @type \Google\Ads\AdManager\V1\TaxonomyCategory[] $taxonomy_categories
      *           The `TaxonomyCategory` objects.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListTaxonomyCategoriesResponse extends \Google\Protobuf\Internal\Message
      * The `TaxonomyCategory` objects.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.TaxonomyCategory taxonomy_categories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\TaxonomyCategory>
      */
     public function getTaxonomyCategories()
     {
@@ -87,7 +87,7 @@ class ListTaxonomyCategoriesResponse extends \Google\Protobuf\Internal\Message
      * The `TaxonomyCategory` objects.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.TaxonomyCategory taxonomy_categories = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\TaxonomyCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\TaxonomyCategory[] $var
      * @return $this
      */
     public function setTaxonomyCategories($var)

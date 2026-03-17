@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of information for attaching an input resource to this channel.

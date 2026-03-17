@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Mobile IDs for the audience. At least one mobile ID is required.
@@ -30,7 +30,7 @@ class MobileData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mobile_ids
+     *     @type string[] $mobile_ids
      *           Required. The list of mobile device IDs (advertising ID/IDFA). At most 10
      *           `mobileIds` can be provided in a single
      *           [AudienceMember][google.ads.datamanager.v1.AudienceMember].
@@ -47,7 +47,7 @@ class MobileData extends \Google\Protobuf\Internal\Message
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string mobile_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMobileIds()
     {
@@ -60,7 +60,7 @@ class MobileData extends \Google\Protobuf\Internal\Message
      * [AudienceMember][google.ads.datamanager.v1.AudienceMember].
      *
      * Generated from protobuf field <code>repeated string mobile_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMobileIds($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about vulnerable request parameters.
@@ -28,7 +28,7 @@ class VulnerableParameters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parameter_names
+     *     @type string[] $parameter_names
      *           The vulnerable parameter names.
      * }
      */
@@ -41,7 +41,7 @@ class VulnerableParameters extends \Google\Protobuf\Internal\Message
      * The vulnerable parameter names.
      *
      * Generated from protobuf field <code>repeated string parameter_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getParameterNames()
     {
@@ -52,7 +52,7 @@ class VulnerableParameters extends \Google\Protobuf\Internal\Message
      * The vulnerable parameter names.
      *
      * Generated from protobuf field <code>repeated string parameter_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setParameterNames($var)

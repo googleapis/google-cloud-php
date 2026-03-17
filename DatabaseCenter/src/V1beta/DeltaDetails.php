@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Captures the details of items that have increased or decreased in some bucket
@@ -38,9 +38,9 @@ class DeltaDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>|\Google\Protobuf\Internal\RepeatedField $increased_resources
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\ResourceDetails[] $increased_resources
      *           Details of resources that have increased.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>|\Google\Protobuf\Internal\RepeatedField $decreased_resources
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\ResourceDetails[] $decreased_resources
      *           Details of resources that have decreased.
      * }
      */
@@ -53,7 +53,7 @@ class DeltaDetails extends \Google\Protobuf\Internal\Message
      * Details of resources that have increased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceDetails increased_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>
      */
     public function getIncreasedResources()
     {
@@ -64,7 +64,7 @@ class DeltaDetails extends \Google\Protobuf\Internal\Message
      * Details of resources that have increased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceDetails increased_resources = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\ResourceDetails[] $var
      * @return $this
      */
     public function setIncreasedResources($var)
@@ -79,7 +79,7 @@ class DeltaDetails extends \Google\Protobuf\Internal\Message
      * Details of resources that have decreased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceDetails decreased_resources = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>
      */
     public function getDecreasedResources()
     {
@@ -90,7 +90,7 @@ class DeltaDetails extends \Google\Protobuf\Internal\Message
      * Details of resources that have decreased.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceDetails decreased_resources = 2;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\ResourceDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\ResourceDetails[] $var
      * @return $this
      */
     public function setDecreasedResources($var)

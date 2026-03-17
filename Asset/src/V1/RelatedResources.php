@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The related resources of the primary resource.
@@ -28,7 +28,7 @@ class RelatedResources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *     @type \Google\Cloud\Asset\V1\RelatedResource[] $related_resources
      *           The detailed related resources of the primary resource.
      * }
      */
@@ -41,7 +41,7 @@ class RelatedResources extends \Google\Protobuf\Internal\Message
      * The detailed related resources of the primary resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedResource related_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\RelatedResource>
      */
     public function getRelatedResources()
     {
@@ -52,7 +52,7 @@ class RelatedResources extends \Google\Protobuf\Internal\Message
      * The detailed related resources of the primary resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedResource related_resources = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\RelatedResource[] $var
      * @return $this
      */
     public function setRelatedResources($var)

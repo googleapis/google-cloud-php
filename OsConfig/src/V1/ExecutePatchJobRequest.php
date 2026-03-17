@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request message to initiate patching across Compute Engine
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project in which to run this patch in the form `projects/&#42;`
+     * Required. The project in which to run this patch in the form `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -77,7 +77,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The project in which to run this patch in the form `projects/&#42;`
+     *           Required. The project in which to run this patch in the form `projects/*`
      *     @type string $description
      *           Description of the patch job. Length of the description is limited
      *           to 1024 characters.
@@ -105,7 +105,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to run this patch in the form `projects/&#42;`
+     * Required. The project in which to run this patch in the form `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -116,7 +116,7 @@ class ExecutePatchJobRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project in which to run this patch in the form `projects/&#42;`
+     * Required. The project in which to run this patch in the form `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

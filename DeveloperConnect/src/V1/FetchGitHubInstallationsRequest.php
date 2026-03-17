@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for fetching github installations.
@@ -17,7 +17,7 @@ class FetchGitHubInstallationsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the connection in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class FetchGitHubInstallationsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $connection
      *           Required. The resource name of the connection in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     *           `projects/{@*}locations/{@*}connections/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class FetchGitHubInstallationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the connection in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class FetchGitHubInstallationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the connection in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

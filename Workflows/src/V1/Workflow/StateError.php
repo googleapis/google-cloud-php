@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\V1\Workflow;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes an error related to the current state of the workflow.
@@ -98,5 +98,4 @@ class StateError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

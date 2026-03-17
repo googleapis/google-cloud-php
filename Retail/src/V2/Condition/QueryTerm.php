@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Condition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Query terms that we want to match on.
@@ -118,5 +118,4 @@ class QueryTerm extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

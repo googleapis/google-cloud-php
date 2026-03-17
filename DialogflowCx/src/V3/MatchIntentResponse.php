@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of [MatchIntent][].
@@ -52,7 +52,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
      *     @type string $trigger_event
      *           If an [event][google.cloud.dialogflow.cx.v3.EventInput] was provided as
      *           input, this field will contain a copy of the event name.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\PBMatch>|\Google\Protobuf\Internal\RepeatedField $matches
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\PBMatch[] $matches
      *           Match results, if more than one, ordered descendingly by the confidence
      *           we have that the particular intent matches the query.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Page $current_page
@@ -207,7 +207,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
      * we have that the particular intent matches the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Match matches = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\PBMatch>
      */
     public function getMatches()
     {
@@ -219,7 +219,7 @@ class MatchIntentResponse extends \Google\Protobuf\Internal\Message
      * we have that the particular intent matches the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Match matches = 4;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\PBMatch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\PBMatch[] $var
      * @return $this
      */
     public function setMatches($var)

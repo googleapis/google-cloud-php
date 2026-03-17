@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\Grant\Timeline\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event representing that the grant was approved.
@@ -102,5 +102,4 @@ class Approved extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

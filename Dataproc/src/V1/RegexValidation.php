@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Validation based on regular expressions.
@@ -30,7 +30,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regexes
+     *     @type string[] $regexes
      *           Required. RE2 regular expressions used to validate the parameter's value.
      *           The value must match the regex in its entirety (substring
      *           matches are not sufficient).
@@ -47,7 +47,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * matches are not sufficient).
      *
      * Generated from protobuf field <code>repeated string regexes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegexes()
     {
@@ -60,7 +60,7 @@ class RegexValidation extends \Google\Protobuf\Internal\Message
      * matches are not sufficient).
      *
      * Generated from protobuf field <code>repeated string regexes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegexes($var)

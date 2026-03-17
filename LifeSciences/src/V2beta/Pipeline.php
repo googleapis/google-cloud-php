@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a series of actions to execute, expressed as Docker containers.
@@ -63,7 +63,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\LifeSciences\V2beta\Action[] $actions
      *           The list of actions to execute, in the order they are specified.
      *     @type \Google\Cloud\LifeSciences\V2beta\Resources $resources
      *           The resources required for execution.
@@ -95,7 +95,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * The list of actions to execute, in the order they are specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Action actions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Action>
      */
     public function getActions()
     {
@@ -106,7 +106,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * The list of actions to execute, in the order they are specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Action actions = 1;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Action[] $var
      * @return $this
      */
     public function setActions($var)

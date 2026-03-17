@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `CreateWorkflowConfig` request message.
@@ -17,7 +17,7 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The repository in which to create the workflow config. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -64,7 +64,7 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The repository in which to create the workflow config. Must be in
-     *           the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     *           the format `projects/{@*}locations/{@*}repositories/*`.
      *     @type \Google\Cloud\Dataform\V1beta1\WorkflowConfig $workflow_config
      *           Required. The workflow config to create.
      *     @type string $workflow_config_id
@@ -79,7 +79,7 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to create the workflow config. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class CreateWorkflowConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to create the workflow config. Must be in
-     * the format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * the format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

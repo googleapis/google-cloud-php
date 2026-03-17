@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `ListWorkspaces` request message.
@@ -17,7 +17,7 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The repository in which to list workspaces. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -78,7 +78,7 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The repository in which to list workspaces. Must be in the
-     *           format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     *           format `projects/{@*}locations/{@*}repositories/*`.
      *     @type int $page_size
      *           Optional. Maximum number of workspaces to return. The server may return
      *           fewer items than requested. If unspecified, the server will pick an
@@ -104,7 +104,7 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to list workspaces. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -116,7 +116,7 @@ class ListWorkspacesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The repository in which to list workspaces. Must be in the
-     * format `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;`.
+     * format `projects/{@*}locations/{@*}repositories/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

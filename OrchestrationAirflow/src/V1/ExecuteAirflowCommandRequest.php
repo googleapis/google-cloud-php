@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execute Airflow Command request.
@@ -57,7 +57,7 @@ class ExecuteAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      *           Airflow command.
      *     @type string $subcommand
      *           Airflow subcommand.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type string[] $parameters
      *           Parameters for the Airflow command/subcommand as an array of arguments.
      *           It may contain positional arguments like `["my-dag-id"]`, key-value
      *           parameters like `["--foo=bar"]` or `["--foo","bar"]`,
@@ -156,7 +156,7 @@ class ExecuteAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      * or other flags like `["-f"]`.
      *
      * Generated from protobuf field <code>repeated string parameters = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getParameters()
     {
@@ -170,7 +170,7 @@ class ExecuteAirflowCommandRequest extends \Google\Protobuf\Internal\Message
      * or other flags like `["-f"]`.
      *
      * Generated from protobuf field <code>repeated string parameters = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setParameters($var)

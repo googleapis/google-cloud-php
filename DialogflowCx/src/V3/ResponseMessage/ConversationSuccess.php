@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\ResponseMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates that the conversation succeeded, i.e., the bot handled the issue
@@ -87,5 +87,4 @@ class ConversationSuccess extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

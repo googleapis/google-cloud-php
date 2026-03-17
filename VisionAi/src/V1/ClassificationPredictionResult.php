@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Image and Text Classification.
@@ -42,12 +42,12 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type int[]|string[] $ids
      *           The resource IDs of the AnnotationSpecs that had been identified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $display_names
+     *     @type string[] $display_names
      *           The display names of the AnnotationSpecs that had been identified, order
      *           matches the IDs.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $confidences
+     *     @type float[] $confidences
      *           The Model's confidences in correctness of the predicted IDs, higher value
      *           means higher confidence. Order matches the Ids.
      * }
@@ -61,7 +61,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * The resource IDs of the AnnotationSpecs that had been identified.
      *
      * Generated from protobuf field <code>repeated int64 ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getIds()
     {
@@ -72,7 +72,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * The resource IDs of the AnnotationSpecs that had been identified.
      *
      * Generated from protobuf field <code>repeated int64 ids = 1;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setIds($var)
@@ -88,7 +88,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * matches the IDs.
      *
      * Generated from protobuf field <code>repeated string display_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisplayNames()
     {
@@ -100,7 +100,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * matches the IDs.
      *
      * Generated from protobuf field <code>repeated string display_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisplayNames($var)
@@ -116,7 +116,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * means higher confidence. Order matches the Ids.
      *
      * Generated from protobuf field <code>repeated float confidences = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getConfidences()
     {
@@ -128,7 +128,7 @@ class ClassificationPredictionResult extends \Google\Protobuf\Internal\Message
      * means higher confidence. Order matches the Ids.
      *
      * Generated from protobuf field <code>repeated float confidences = 3;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setConfidences($var)

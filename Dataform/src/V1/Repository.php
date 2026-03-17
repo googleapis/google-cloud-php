@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Dataform Git repository.
@@ -42,7 +42,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -119,7 +119,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *     @type string $npmrc_environment_variables_secret_version
      *           Optional. The name of the Secret Manager secret version to be used to
      *           interpolate variables into the .npmrc file for package installation
-     *           operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     *           operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      *           file itself must be in a JSON format.
      *     @type \Google\Cloud\Dataform\V1\Repository\WorkspaceCompilationOverrides $workspace_compilation_overrides
      *           Optional. If set, fields of `workspace_compilation_overrides` override the
@@ -280,7 +280,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -294,7 +294,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A general annotation message that uses struct format to represent different
@@ -109,5 +109,4 @@ class StructedInputAnnotation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

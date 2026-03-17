@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -58,7 +58,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the agent to delete all entities types for. Format:
      *           `projects/<Project ID>/agent`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_type_names
+     *     @type string[] $entity_type_names
      *           Required. The names entity types to delete. All names must point to the
      *           same agent as `parent`.
      * }
@@ -101,7 +101,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * same agent as `parent`.
      *
      * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityTypeNames()
     {
@@ -113,7 +113,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * same agent as `parent`.
      *
      * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityTypeNames($var)

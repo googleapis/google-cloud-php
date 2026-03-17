@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition\MetricThreshold;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options used when forecasting the time series and testing
@@ -95,5 +95,4 @@ class ForecastOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

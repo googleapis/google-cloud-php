@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for SearchAssets.
@@ -41,11 +41,11 @@ class SearchAssetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\SearchResultItem>|\Google\Protobuf\Internal\RepeatedField $search_result_items
+     *     @type \Google\Cloud\VisionAI\V1\SearchResultItem[] $search_result_items
      *           Returned search results.
      *     @type string $next_page_token
      *           The next-page continuation token.
-     *     @type array<\Google\Cloud\VisionAI\V1\FacetGroup>|\Google\Protobuf\Internal\RepeatedField $facet_results
+     *     @type \Google\Cloud\VisionAI\V1\FacetGroup[] $facet_results
      *           Facet search results of a given query, which contains user's
      *           already-selected facet values and updated facet search results.
      * }
@@ -59,7 +59,7 @@ class SearchAssetsResponse extends \Google\Protobuf\Internal\Message
      * Returned search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchResultItem search_result_items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\SearchResultItem>
      */
     public function getSearchResultItems()
     {
@@ -70,7 +70,7 @@ class SearchAssetsResponse extends \Google\Protobuf\Internal\Message
      * Returned search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchResultItem search_result_items = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\SearchResultItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\SearchResultItem[] $var
      * @return $this
      */
     public function setSearchResultItems($var)
@@ -112,7 +112,7 @@ class SearchAssetsResponse extends \Google\Protobuf\Internal\Message
      * already-selected facet values and updated facet search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetGroup facet_results = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\FacetGroup>
      */
     public function getFacetResults()
     {
@@ -124,7 +124,7 @@ class SearchAssetsResponse extends \Google\Protobuf\Internal\Message
      * already-selected facet values and updated facet search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetGroup facet_results = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\FacetGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\FacetGroup[] $var
      * @return $this
      */
     public function setFacetResults($var)

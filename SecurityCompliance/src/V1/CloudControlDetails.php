@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details of a cloud control.
@@ -51,7 +51,7 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
      *           The only supported location is `global`.
      *     @type int|string $major_revision_id
      *           Required. The major version of the cloud control.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\Parameter[] $parameters
      *           Optional. Parameters are key-value pairs that let you provide your custom
      *           location requirements, environment requirements, or other settings that are
      *           relevant to the cloud control. An example parameter is
@@ -126,7 +126,7 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
      * `{"name": "location","value": "us-west-1"}`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Parameter parameters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\Parameter>
      */
     public function getParameters()
     {
@@ -140,7 +140,7 @@ class CloudControlDetails extends \Google\Protobuf\Internal\Message
      * `{"name": "location","value": "us-west-1"}`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Parameter parameters = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

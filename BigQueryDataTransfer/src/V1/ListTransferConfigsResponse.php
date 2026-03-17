@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The returned list of pipelines in the project.
@@ -37,7 +37,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig>|\Google\Protobuf\Internal\RepeatedField $transfer_configs
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[] $transfer_configs
      *           Output only. The stored pipeline transfer configurations.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -55,7 +55,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig>
      */
     public function getTransferConfigs()
     {
@@ -66,7 +66,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[] $var
      * @return $this
      */
     public function setTransferConfigs($var)

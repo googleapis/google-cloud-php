@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListOrganizations RPC.
@@ -36,7 +36,7 @@ class ListOrganizationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\MarketingPlatform\Admin\V1alpha\Organization>|\Google\Protobuf\Internal\RepeatedField $organizations
+     *     @type \Google\Ads\MarketingPlatform\Admin\V1alpha\Organization[] $organizations
      *           The Organization resource that the user has access to, which includes the
      *           org id and display name.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListOrganizationsResponse extends \Google\Protobuf\Internal\Message
      * org id and display name.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.Organization organizations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\MarketingPlatform\Admin\V1alpha\Organization>
      */
     public function getOrganizations()
     {
@@ -66,7 +66,7 @@ class ListOrganizationsResponse extends \Google\Protobuf\Internal\Message
      * org id and display name.
      *
      * Generated from protobuf field <code>repeated .google.marketingplatform.admin.v1alpha.Organization organizations = 1;</code>
-     * @param array<\Google\Ads\MarketingPlatform\Admin\V1alpha\Organization>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\MarketingPlatform\Admin\V1alpha\Organization[] $var
      * @return $this
      */
     public function setOrganizations($var)

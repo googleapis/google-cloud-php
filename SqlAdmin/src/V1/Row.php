@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the values for a row.
@@ -28,7 +28,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\Value>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\Sql\V1\Value[] $values
      *           The values for the row.
      * }
      */
@@ -41,7 +41,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The values for the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Value values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Value>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The values for the row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Value values = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Value[] $var
      * @return $this
      */
     public function setValues($var)

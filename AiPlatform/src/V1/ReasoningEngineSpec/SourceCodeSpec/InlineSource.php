@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies source code provided as a byte stream.
@@ -68,5 +68,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

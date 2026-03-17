@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\InputField\ChoiceInput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A choice that the business can select.
@@ -164,5 +164,4 @@ class ChoiceInputOption extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

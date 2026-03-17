@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -43,10 +43,10 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns
+     *     @type int[] $asns
      *           Output only. [Output only] ASNs in the path segment. When type is SEQUENCE, these are
      *           ordered.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $asns32
+     *     @type int[] $asns32
      *           Output only. [Output only] ASNs in the path segment. This field is for better
      *           support of 32 bit ASNs as the other asns field suffers from overflow when
      *           the ASN is larger. When type is SEQUENCE, these are ordered.
@@ -65,7 +65,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAsns()
     {
@@ -77,7 +77,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      * ordered.
      *
      * Generated from protobuf field <code>repeated int32 asns = 3003767;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAsns($var)
@@ -94,7 +94,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      * the ASN is larger. When type is SEQUENCE, these are ordered.
      *
      * Generated from protobuf field <code>repeated uint32 asns32 = 202267158;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAsns32()
     {
@@ -107,7 +107,7 @@ class BgpRouteAsPath extends \Google\Protobuf\Internal\Message
      * the ASN is larger. When type is SEQUENCE, these are ordered.
      *
      * Generated from protobuf field <code>repeated uint32 asns32 = 202267158;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAsns32($var)

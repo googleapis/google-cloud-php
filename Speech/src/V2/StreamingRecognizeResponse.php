@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `StreamingRecognizeResponse` is the only message returned to the client by
@@ -86,7 +86,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Speech\V2\StreamingRecognitionResult[] $results
      *           This repeated list contains zero or more results that
      *           correspond to consecutive portions of the audio currently being processed.
      *           It contains zero or one
@@ -117,7 +117,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * results (the interim results).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.StreamingRecognitionResult results = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\StreamingRecognitionResult>
      */
     public function getResults()
     {
@@ -134,7 +134,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * results (the interim results).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.StreamingRecognitionResult results = 6;</code>
-     * @param array<\Google\Cloud\Speech\V2\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\StreamingRecognitionResult[] $var
      * @return $this
      */
     public function setResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to enroll a set of data sources so they are visible in the
@@ -40,7 +40,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the project resource in the form:
      *           `projects/{project_id}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
+     *     @type string[] $data_source_ids
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
      * }
@@ -83,7 +83,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataSourceIds()
     {
@@ -95,7 +95,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataSourceIds($var)

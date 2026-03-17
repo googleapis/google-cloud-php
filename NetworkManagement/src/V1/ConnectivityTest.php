@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Connectivity Test for a network reachability analysis.
@@ -156,7 +156,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           destination that you don't intend to test.
      *     @type string $protocol
      *           IP Protocol of the test. When not provided, "TCP" is assumed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_projects
+     *     @type string[] $related_projects
      *           Other projects that may be relevant for reachability analysis.
      *           This is applicable to scenarios where a test can cross project boundaries.
      *     @type string $display_name
@@ -372,7 +372,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * This is applicable to scenarios where a test can cross project boundaries.
      *
      * Generated from protobuf field <code>repeated string related_projects = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedProjects()
     {
@@ -384,7 +384,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * This is applicable to scenarios where a test can cross project boundaries.
      *
      * Generated from protobuf field <code>repeated string related_projects = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedProjects($var)

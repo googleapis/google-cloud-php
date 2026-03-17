@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -49,7 +49,7 @@ class ListSingleTenantHsmInstanceProposalsResponse extends \Google\Protobuf\Inte
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal>|\Google\Protobuf\Internal\RepeatedField $single_tenant_hsm_instance_proposals
+     *     @type \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal[] $single_tenant_hsm_instance_proposals
      *           The list of
      *           [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
      *     @type string $next_page_token
@@ -75,7 +75,7 @@ class ListSingleTenantHsmInstanceProposalsResponse extends \Google\Protobuf\Inte
      * [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.SingleTenantHsmInstanceProposal single_tenant_hsm_instance_proposals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal>
      */
     public function getSingleTenantHsmInstanceProposals()
     {
@@ -87,7 +87,7 @@ class ListSingleTenantHsmInstanceProposalsResponse extends \Google\Protobuf\Inte
      * [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.SingleTenantHsmInstanceProposal single_tenant_hsm_instance_proposals = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal[] $var
      * @return $this
      */
     public function setSingleTenantHsmInstanceProposals($var)

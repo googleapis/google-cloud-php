@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateDescription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of fingerprints for the x509 certificate.
@@ -64,5 +64,4 @@ class CertificateFingerprint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

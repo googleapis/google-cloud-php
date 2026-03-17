@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregate statistics for a collection of assets.
@@ -430,5 +430,4 @@ class AssetAggregateStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

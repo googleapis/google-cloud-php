@@ -68,4 +68,3 @@ class Ipv6AccessType
     }
 }
 
-

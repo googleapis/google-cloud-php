@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Zone resource.
@@ -95,7 +95,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_cpu_platforms
+     *     @type string[] $available_cpu_platforms
      *           [Output Only] Available cpu/platform selections for the zone.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp inRFC3339
@@ -132,7 +132,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      * [Output Only] Available cpu/platform selections for the zone.
      *
      * Generated from protobuf field <code>repeated string available_cpu_platforms = 175536531;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableCpuPlatforms()
     {
@@ -143,7 +143,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      * [Output Only] Available cpu/platform selections for the zone.
      *
      * Generated from protobuf field <code>repeated string available_cpu_platforms = 175536531;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableCpuPlatforms($var)

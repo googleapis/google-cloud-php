@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1\OperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the status of one operation step.
@@ -98,5 +98,4 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

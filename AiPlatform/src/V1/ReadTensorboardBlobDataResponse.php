@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -29,7 +29,7 @@ class ReadTensorboardBlobDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $blobs
+     *     @type \Google\Cloud\AIPlatform\V1\TensorboardBlob[] $blobs
      *           Blob messages containing blob bytes.
      * }
      */
@@ -42,7 +42,7 @@ class ReadTensorboardBlobDataResponse extends \Google\Protobuf\Internal\Message
      * Blob messages containing blob bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob blobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TensorboardBlob>
      */
     public function getBlobs()
     {
@@ -53,7 +53,7 @@ class ReadTensorboardBlobDataResponse extends \Google\Protobuf\Internal\Message
      * Blob messages containing blob bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob blobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardBlob[] $var
      * @return $this
      */
     public function setBlobs($var)

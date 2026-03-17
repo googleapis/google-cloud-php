@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnections\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A BeyondCorp AppConnection resource represents a BeyondCorp protected
@@ -116,7 +116,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BeyondCorp\AppConnections\V1\AppConnection\ApplicationEndpoint $application_endpoint
      *           Required. Address of the remote application endpoint for the BeyondCorp
      *           AppConnection.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $connectors
+     *     @type string[] $connectors
      *           Optional. List of [google.cloud.beyondcorp.v1main.Connector.name] that are
      *           authorised to be associated with this AppConnection.
      *     @type int $state
@@ -381,7 +381,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
      * authorised to be associated with this AppConnection.
      *
      * Generated from protobuf field <code>repeated string connectors = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getConnectors()
     {
@@ -393,7 +393,7 @@ class AppConnection extends \Google\Protobuf\Internal\Message
      * authorised to be associated with this AppConnection.
      *
      * Generated from protobuf field <code>repeated string connectors = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setConnectors($var)

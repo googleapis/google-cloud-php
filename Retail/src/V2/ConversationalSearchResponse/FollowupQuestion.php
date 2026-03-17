@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\ConversationalSearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The conversational followup question generated for Intent refinement.
@@ -36,7 +36,7 @@ class FollowupQuestion extends \Google\Protobuf\Internal\Message
      *
      *     @type string $followup_question
      *           The conversational followup question generated for Intent refinement.
-     *     @type array<\Google\Cloud\Retail\V2\ConversationalSearchResponse\FollowupQuestion\SuggestedAnswer>|\Google\Protobuf\Internal\RepeatedField $suggested_answers
+     *     @type \Google\Cloud\Retail\V2\ConversationalSearchResponse\FollowupQuestion\SuggestedAnswer[] $suggested_answers
      *           The answer options provided to client for the follow-up question.
      * }
      */
@@ -75,7 +75,7 @@ class FollowupQuestion extends \Google\Protobuf\Internal\Message
      * The answer options provided to client for the follow-up question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer suggested_answers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\ConversationalSearchResponse\FollowupQuestion\SuggestedAnswer>
      */
     public function getSuggestedAnswers()
     {
@@ -86,7 +86,7 @@ class FollowupQuestion extends \Google\Protobuf\Internal\Message
      * The answer options provided to client for the follow-up question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ConversationalSearchResponse.FollowupQuestion.SuggestedAnswer suggested_answers = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\ConversationalSearchResponse\FollowupQuestion\SuggestedAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\ConversationalSearchResponse\FollowupQuestion\SuggestedAnswer[] $var
      * @return $this
      */
     public function setSuggestedAnswers($var)
@@ -98,5 +98,4 @@ class FollowupQuestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

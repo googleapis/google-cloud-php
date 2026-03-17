@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Assessment for Fraud Prevention.
@@ -61,7 +61,7 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      *           Output only. Probability of this transaction being fraudulent. Summarizes
      *           the combined risk of attack vectors below. Values are from 0.0 (lowest)
      *           to 1.0 (highest).
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason>|\Google\Protobuf\Internal\RepeatedField $risk_reasons
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason[] $risk_reasons
      *           Output only. Reasons why the transaction is probably fraudulent and
      *           received a high transaction risk score.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\StolenInstrumentVerdict $stolen_instrument_verdict
@@ -114,7 +114,7 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      * received a high transaction risk score.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason risk_reasons = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason>
      */
     public function getRiskReasons()
     {
@@ -126,7 +126,7 @@ class FraudPreventionAssessment extends \Google\Protobuf\Internal\Message
      * received a high transaction risk score.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudPreventionAssessment.RiskReason risk_reasons = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment\RiskReason[] $var
      * @return $this
      */
     public function setRiskReasons($var)

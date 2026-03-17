@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * LLM generator.
@@ -97,12 +97,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      *           * To use the latest model version, specify the model name without version
      *             number. Example: `text-bison`
      *           * To use a stable model version, specify the version number as well.
-     *             Example: `text-bison&#64;002`.
+     *             Example: `text-bison\@002`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of this generator.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Update time of this generator.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type string[] $tools
      *           Optional. Resource names of the tools that the generator can choose from.
      *           Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
      *     @type \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig $suggestion_deduping_config
@@ -331,7 +331,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * * To use the latest model version, specify the model name without version
      *   number. Example: `text-bison`
      * * To use a stable model version, specify the version number as well.
-     *   Example: `text-bison&#64;002`.
+     *   Example: `text-bison\@002`.
      *
      * Generated from protobuf field <code>string published_model = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -351,7 +351,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * * To use the latest model version, specify the model name without version
      *   number. Example: `text-bison`
      * * To use a stable model version, specify the version number as well.
-     *   Example: `text-bison&#64;002`.
+     *   Example: `text-bison\@002`.
      *
      * Generated from protobuf field <code>string published_model = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -442,7 +442,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
      *
      * Generated from protobuf field <code>repeated string tools = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTools()
     {
@@ -454,7 +454,7 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Format: `projects/<Project ID>/locations/<Location ID>/tools/<tool ID>`.
      *
      * Generated from protobuf field <code>repeated string tools = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTools($var)

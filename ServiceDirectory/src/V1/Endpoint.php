@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceDirectory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An individual endpoint that provides a
@@ -19,7 +19,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. The resource name for the endpoint in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/{@*}endpoints/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -67,7 +67,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
     private $annotations;
     /**
      * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
-     * format `projects/<project number>/locations/global/networks/&#42;`.
+     * format `projects/<project number>/locations/global/networks/*`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, we also check to make sure
      * that you have the servicedirectory.networks.attach permission on the
@@ -92,7 +92,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. The resource name for the endpoint in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
+     *           `projects/{@*}locations/{@*}namespaces/{@*}services/{@*}endpoints/*`.
      *     @type string $address
      *           Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses
      *           like:
@@ -124,7 +124,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           Directory.
      *     @type string $network
      *           Immutable. The Google Compute Engine network (VPC) of the endpoint in the
-     *           format `projects/<project number>/locations/global/networks/&#42;`.
+     *           format `projects/<project number>/locations/global/networks/*`.
      *           The project must be specified by project number (project id is rejected).
      *           Incorrectly formatted networks are rejected, we also check to make sure
      *           that you have the servicedirectory.networks.attach permission on the
@@ -141,7 +141,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/{@*}endpoints/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -153,7 +153,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The resource name for the endpoint in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;&#47;endpoints/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/{@*}endpoints/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -293,7 +293,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
-     * format `projects/<project number>/locations/global/networks/&#42;`.
+     * format `projects/<project number>/locations/global/networks/*`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, we also check to make sure
      * that you have the servicedirectory.networks.attach permission on the
@@ -309,7 +309,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. The Google Compute Engine network (VPC) of the endpoint in the
-     * format `projects/<project number>/locations/global/networks/&#42;`.
+     * format `projects/<project number>/locations/global/networks/*`.
      * The project must be specified by project number (project id is rejected).
      * Incorrectly formatted networks are rejected, we also check to make sure
      * that you have the servicedirectory.networks.attach permission on the

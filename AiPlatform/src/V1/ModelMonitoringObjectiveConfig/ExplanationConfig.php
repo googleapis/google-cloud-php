@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ModelMonitoringObjectiveConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config for integrating with Vertex Explainable AI. Only applicable if
@@ -117,5 +117,4 @@ class ExplanationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

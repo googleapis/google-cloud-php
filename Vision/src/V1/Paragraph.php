@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structural unit of text representing a number of words in certain order.
@@ -78,7 +78,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      *                |    |
      *                1----0
      *             and the vertex order will still be (0, 1, 2, 3).
-     *     @type array<\Google\Cloud\Vision\V1\Word>|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type \Google\Cloud\Vision\V1\Word[] $words
      *           List of all words in this paragraph.
      *     @type float $confidence
      *           Confidence of the OCR results for the paragraph. Range [0, 1].
@@ -193,7 +193,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      * List of all words in this paragraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Word>
      */
     public function getWords()
     {
@@ -204,7 +204,7 @@ class Paragraph extends \Google\Protobuf\Internal\Message
      * List of all words in this paragraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Word words = 3;</code>
-     * @param array<\Google\Cloud\Vision\V1\Word>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Word[] $var
      * @return $this
      */
     public function setWords($var)

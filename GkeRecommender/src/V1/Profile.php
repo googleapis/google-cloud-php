@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A profile containing information about a model deployment.
@@ -72,7 +72,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      *           Output only. The instance type. Expected format: `a2-highgpu-1g`.
      *     @type \Google\Cloud\GkeRecommender\V1\ResourcesUsed $resources_used
      *           Output only. The resources used by the model deployment.
-     *     @type array<\Google\Cloud\GkeRecommender\V1\PerformanceStats>|\Google\Protobuf\Internal\RepeatedField $performance_stats
+     *     @type \Google\Cloud\GkeRecommender\V1\PerformanceStats[] $performance_stats
      *           Output only. The performance statistics for this profile.
      * }
      */
@@ -239,7 +239,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Output only. The performance statistics for this profile.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.PerformanceStats performance_stats = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeRecommender\V1\PerformanceStats>
      */
     public function getPerformanceStats()
     {
@@ -250,7 +250,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      * Output only. The performance statistics for this profile.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.PerformanceStats performance_stats = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeRecommender\V1\PerformanceStats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeRecommender\V1\PerformanceStats[] $var
      * @return $this
      */
     public function setPerformanceStats($var)

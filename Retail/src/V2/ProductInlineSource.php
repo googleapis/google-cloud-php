@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for ImportProducts method.
@@ -30,7 +30,7 @@ class ProductInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type \Google\Cloud\Retail\V2\Product[] $products
      *           Required. A list of products to update/create. Each product must have a
      *           valid [Product.id][google.cloud.retail.v2.Product.id]. Recommended max of
      *           100 items.
@@ -47,7 +47,7 @@ class ProductInlineSource extends \Google\Protobuf\Internal\Message
      * 100 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Product>
      */
     public function getProducts()
     {
@@ -60,7 +60,7 @@ class ProductInlineSource extends \Google\Protobuf\Internal\Message
      * 100 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Product[] $var
      * @return $this
      */
     public function setProducts($var)

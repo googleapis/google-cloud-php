@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to listing DeploymentEvents.
@@ -35,7 +35,7 @@ class ListDeploymentEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\DeploymentEvent>|\Google\Protobuf\Internal\RepeatedField $deployment_events
+     *     @type \Google\Cloud\DeveloperConnect\V1\DeploymentEvent[] $deployment_events
      *           The list of DeploymentEvents.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDeploymentEventsResponse extends \Google\Protobuf\Internal\Message
      * The list of DeploymentEvents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.DeploymentEvent deployment_events = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\DeploymentEvent>
      */
     public function getDeploymentEvents()
     {
@@ -62,7 +62,7 @@ class ListDeploymentEventsResponse extends \Google\Protobuf\Internal\Message
      * The list of DeploymentEvents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.DeploymentEvent deployment_events = 1;</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\DeploymentEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\DeploymentEvent[] $var
      * @return $this
      */
     public function setDeploymentEvents($var)

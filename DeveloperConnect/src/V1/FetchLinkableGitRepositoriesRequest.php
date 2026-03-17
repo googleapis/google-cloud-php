@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for FetchLinkableGitRepositoriesRequest.
@@ -17,7 +17,7 @@ class FetchLinkableGitRepositoriesRequest extends \Google\Protobuf\Internal\Mess
 {
     /**
      * Required. The name of the Connection.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class FetchLinkableGitRepositoriesRequest extends \Google\Protobuf\Internal\Mess
      *
      *     @type string $connection
      *           Required. The name of the Connection.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     *           Format: `projects/{@*}locations/{@*}connections/*`.
      *     @type int $page_size
      *           Optional. Number of results to return in the list. Defaults to 20.
      *     @type string $page_token
@@ -72,7 +72,7 @@ class FetchLinkableGitRepositoriesRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. The name of the Connection.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -84,7 +84,7 @@ class FetchLinkableGitRepositoriesRequest extends \Google\Protobuf\Internal\Mess
 
     /**
      * Required. The name of the Connection.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;`.
+     * Format: `projects/{@*}locations/{@*}connections/*`.
      *
      * Generated from protobuf field <code>string connection = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

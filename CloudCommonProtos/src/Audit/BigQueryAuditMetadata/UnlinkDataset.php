@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Unlink linked dataset from its source dataset event
@@ -140,5 +140,4 @@ class UnlinkDataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

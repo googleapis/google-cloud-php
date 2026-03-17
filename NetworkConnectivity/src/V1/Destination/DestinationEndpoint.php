@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\Destination;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata for a `DestinationEndpoint` resource.
@@ -176,5 +176,4 @@ class DestinationEndpoint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

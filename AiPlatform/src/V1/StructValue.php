@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Struct (or object) type feature value.
@@ -28,7 +28,7 @@ class StructValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\StructFieldValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\AIPlatform\V1\StructFieldValue[] $values
      *           A list of field values.
      * }
      */
@@ -41,7 +41,7 @@ class StructValue extends \Google\Protobuf\Internal\Message
      * A list of field values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StructFieldValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\StructFieldValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class StructValue extends \Google\Protobuf\Internal\Message
      * A list of field values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StructFieldValue values = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\StructFieldValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\StructFieldValue[] $var
      * @return $this
      */
     public function setValues($var)

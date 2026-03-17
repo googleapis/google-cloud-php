@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListTopics.
@@ -36,7 +36,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
+     *     @type \Google\Cloud\ManagedKafka\V1\Topic[] $topics
      *           The list of topics in the requested parent. The order of the topics is
      *           unspecified.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.Topic topics = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\Topic>
      */
     public function getTopics()
     {
@@ -66,7 +66,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.Topic topics = 1;</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\Topic[] $var
      * @return $this
      */
     public function setTopics($var)

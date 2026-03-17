@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2\SpeechAdaptation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A biasing PhraseSet, which can be either a string referencing the name of
@@ -109,5 +109,4 @@ class AdaptationPhraseSet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

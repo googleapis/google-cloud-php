@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A data change record contains a set of changes to a table with the same
@@ -167,11 +167,11 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      *            records for a transaction in the current partition have been received.
      *     @type string $table
      *           Name of the table affected by the change.
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ColumnMetadata>|\Google\Protobuf\Internal\RepeatedField $column_metadata
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ColumnMetadata[] $column_metadata
      *           Provides metadata describing the columns associated with the
      *           [mods][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.mods] listed
      *           below.
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\Mod>|\Google\Protobuf\Internal\RepeatedField $mods
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\Mod[] $mods
      *           Describes the changes that were made.
      *     @type int $mod_type
      *           Describes the type of change.
@@ -389,7 +389,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      * below.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ColumnMetadata column_metadata = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ColumnMetadata>
      */
     public function getColumnMetadata()
     {
@@ -402,7 +402,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      * below.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ColumnMetadata column_metadata = 6;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ColumnMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ColumnMetadata[] $var
      * @return $this
      */
     public function setColumnMetadata($var)
@@ -417,7 +417,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      * Describes the changes that were made.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.Mod mods = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\Mod>
      */
     public function getMods()
     {
@@ -428,7 +428,7 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
      * Describes the changes that were made.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.Mod mods = 7;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\Mod>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\Mod[] $var
      * @return $this
      */
     public function setMods($var)
@@ -610,5 +610,4 @@ class DataChangeRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

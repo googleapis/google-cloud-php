@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the
@@ -43,12 +43,12 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $workflows
+     *     @type \Google\Cloud\Workflows\V1\Workflow[] $workflows
      *           The workflows that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources.
      * }
      */
@@ -61,7 +61,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * The workflows that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Workflows\V1\Workflow>
      */
     public function getWorkflows()
     {
@@ -72,7 +72,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * The workflows that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1.Workflow workflows = 1;</code>
-     * @param array<\Google\Cloud\Workflows\V1\Workflow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Workflows\V1\Workflow[] $var
      * @return $this
      */
     public function setWorkflows($var)
@@ -115,7 +115,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -126,7 +126,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

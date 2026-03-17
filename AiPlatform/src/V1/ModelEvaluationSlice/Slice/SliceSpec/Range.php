@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ModelEvaluationSlice\Slice\SliceSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A range of values for slice(s).
@@ -99,5 +99,4 @@ class Range extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Spec of a task
@@ -96,7 +96,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Batch\V1\Runnable>|\Google\Protobuf\Internal\RepeatedField $runnables
+     *     @type \Google\Cloud\Batch\V1\Runnable[] $runnables
      *           Required. The sequence of one or more runnables (executable scripts,
      *           executable containers, and/or barriers) for each task in this task group to
      *           run. Each task runs this list of runnables in order. For a task to succeed,
@@ -122,7 +122,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *           Maximum number of retries on failures.
      *           The default, 0, which means never retry.
      *           The valid value range is [0, 10].
-     *     @type array<\Google\Cloud\Batch\V1\LifecyclePolicy>|\Google\Protobuf\Internal\RepeatedField $lifecycle_policies
+     *     @type \Google\Cloud\Batch\V1\LifecyclePolicy[] $lifecycle_policies
      *           Lifecycle management schema when any task in a task group is failed.
      *           Currently we only support one lifecycle policy.
      *           When the lifecycle policy condition is met,
@@ -133,7 +133,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *           If task ends with non-zero exit code, retry the task with max_retry_count.
      *     @type array|\Google\Protobuf\Internal\MapField $environments
      *           Deprecated: please use environment(non-plural) instead.
-     *     @type array<\Google\Cloud\Batch\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\Batch\V1\Volume[] $volumes
      *           Volumes to mount before running Tasks using this TaskSpec.
      *     @type \Google\Cloud\Batch\V1\Environment $environment
      *           Environment variables to set before running the Task.
@@ -156,7 +156,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *   `ignore_exit_status` subfield.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Runnable runnables = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\Runnable>
      */
     public function getRunnables()
     {
@@ -175,7 +175,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      *   `ignore_exit_status` subfield.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Runnable runnables = 8;</code>
-     * @param array<\Google\Cloud\Batch\V1\Runnable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\Runnable[] $var
      * @return $this
      */
     public function setRunnables($var)
@@ -315,7 +315,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      * If task ends with non-zero exit code, retry the task with max_retry_count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.LifecyclePolicy lifecycle_policies = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\LifecyclePolicy>
      */
     public function getLifecyclePolicies()
     {
@@ -333,7 +333,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      * If task ends with non-zero exit code, retry the task with max_retry_count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.LifecyclePolicy lifecycle_policies = 9;</code>
-     * @param array<\Google\Cloud\Batch\V1\LifecyclePolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\LifecyclePolicy[] $var
      * @return $this
      */
     public function setLifecyclePolicies($var)
@@ -382,7 +382,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      * Volumes to mount before running Tasks using this TaskSpec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Volume volumes = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\Volume>
      */
     public function getVolumes()
     {
@@ -393,7 +393,7 @@ class TaskSpec extends \Google\Protobuf\Internal\Message
      * Volumes to mount before running Tasks using this TaskSpec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Volume volumes = 7;</code>
-     * @param array<\Google\Cloud\Batch\V1\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)

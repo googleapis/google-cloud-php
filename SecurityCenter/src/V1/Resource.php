@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to the Google Cloud resource.
@@ -136,7 +136,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           The full resource name of resource's parent.
      *     @type string $parent_display_name
      *           The human readable name of resource's parent.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type \Google\Cloud\SecurityCenter\V1\Folder[] $folders
      *           Output only. Contains a Folder message for each folder in the assets
      *           ancestry. The first folder is the deepest nested folder, and the last
      *           folder is the folder directly under the Organization.
@@ -364,7 +364,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * folder is the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Folder>
      */
     public function getFolders()
     {
@@ -377,7 +377,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * folder is the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Folder[] $var
      * @return $this
      */
     public function setFolders($var)

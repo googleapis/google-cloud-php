@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message containing a list of Jobs.
@@ -35,7 +35,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Run\V2\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Run\V2\Job[] $jobs
      *           The resulting list of Jobs.
      *     @type string $next_page_token
      *           A token indicating there are more items than page_size. Use it in the next
@@ -51,7 +51,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Job jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Job>
      */
     public function getJobs()
     {
@@ -62,7 +62,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * The resulting list of Jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Job jobs = 1;</code>
-     * @param array<\Google\Cloud\Run\V2\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Job[] $var
      * @return $this
      */
     public function setJobs($var)

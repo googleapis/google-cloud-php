@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Event payload for multiple deleted memberships.
@@ -29,7 +29,7 @@ class MembershipBatchDeletedEventData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\MembershipDeletedEventData>|\Google\Protobuf\Internal\RepeatedField $memberships
+     *     @type \Google\Apps\Chat\V1\MembershipDeletedEventData[] $memberships
      *           A list of deleted memberships.
      * }
      */
@@ -42,7 +42,7 @@ class MembershipBatchDeletedEventData extends \Google\Protobuf\Internal\Message
      * A list of deleted memberships.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.MembershipDeletedEventData memberships = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\MembershipDeletedEventData>
      */
     public function getMemberships()
     {
@@ -53,7 +53,7 @@ class MembershipBatchDeletedEventData extends \Google\Protobuf\Internal\Message
      * A list of deleted memberships.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.MembershipDeletedEventData memberships = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\MembershipDeletedEventData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\MembershipDeletedEventData[] $var
      * @return $this
      */
     public function setMemberships($var)

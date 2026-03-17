@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -98,7 +98,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Endpoint requested to serve the prediction.
      *           Format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Protobuf\Value[] $instances
      *           Required. The instances that are the input to the prediction call.
      *           A DeployedModel may have an upper limit on the number of instances it
      *           supports per request, and when it is exceeded the prediction call errors
@@ -166,7 +166,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Value>
      */
     public function getInstances()
     {
@@ -185,7 +185,7 @@ class PredictRequest extends \Google\Protobuf\Internal\Message
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Value[] $var
      * @return $this
      */
     public function setInstances($var)

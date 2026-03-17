@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for `BatchDeactivateSites` method.
@@ -52,7 +52,7 @@ class BatchDeactivateSitesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Format: `networks/{network_code}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The resource names of the `Site` objects to deactivate.
      * }
      */
@@ -91,7 +91,7 @@ class BatchDeactivateSitesRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource names of the `Site` objects to deactivate.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -102,7 +102,7 @@ class BatchDeactivateSitesRequest extends \Google\Protobuf\Internal\Message
      * Required. The resource names of the `Site` objects to deactivate.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

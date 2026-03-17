@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\Release;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SkaffoldSupportedCondition contains information about when support for the
@@ -195,5 +195,4 @@ class SkaffoldSupportedCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of requests to annotate files using the BatchAnnotateFiles API.
@@ -66,7 +66,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\AnnotateFileRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\Vision\V1\AnnotateFileRequest[] $requests
      *           Required. The list of file annotation requests. Right now we support only
      *           one AnnotateFileRequest in BatchAnnotateFilesRequest.
      *     @type string $parent
@@ -96,7 +96,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * one AnnotateFileRequest in BatchAnnotateFilesRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\AnnotateFileRequest>
      */
     public function getRequests()
     {
@@ -108,7 +108,7 @@ class BatchAnnotateFilesRequest extends \Google\Protobuf\Internal\Message
      * one AnnotateFileRequest in BatchAnnotateFilesRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateFileRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Vision\V1\AnnotateFileRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\AnnotateFileRequest[] $var
      * @return $this
      */
     public function setRequests($var)

@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the vehicle and related estimates for a vehicle that match the
@@ -155,7 +155,7 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
      *     @type int $trip_type
      *           Required. The trip type of the request that was used to calculate the ETA
      *           to the pickup point.
-     *     @type array<\Google\Maps\FleetEngine\V1\Waypoint>|\Google\Protobuf\Internal\RepeatedField $vehicle_trips_waypoints
+     *     @type \Google\Maps\FleetEngine\V1\Waypoint[] $vehicle_trips_waypoints
      *           The ordered list of waypoints used to calculate the ETA. The list
      *           includes vehicle location, the pickup points of active
      *           trips for the vehicle, and the pickup points provided in the
@@ -581,7 +581,7 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Waypoint vehicle_trips_waypoints = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\Waypoint>
      */
     public function getVehicleTripsWaypoints()
     {
@@ -596,7 +596,7 @@ class VehicleMatch extends \Google\Protobuf\Internal\Message
      * vehicle.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.Waypoint vehicle_trips_waypoints = 7;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\Waypoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\Waypoint[] $var
      * @return $this
      */
     public function setVehicleTripsWaypoints($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\SingleTenantHsmInstance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for M of N quorum auth.
@@ -57,7 +57,7 @@ class QuorumAuth extends \Google\Protobuf\Internal\Message
      *           to
      *           [total_approver_count][google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]
      *           - 1.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $two_factor_public_key_pems
+     *     @type string[] $two_factor_public_key_pems
      *           Output only. The public keys associated with the 2FA keys for M of N
      *           quorum auth.
      * }
@@ -136,7 +136,7 @@ class QuorumAuth extends \Google\Protobuf\Internal\Message
      * quorum auth.
      *
      * Generated from protobuf field <code>repeated string two_factor_public_key_pems = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTwoFactorPublicKeyPems()
     {
@@ -148,7 +148,7 @@ class QuorumAuth extends \Google\Protobuf\Internal\Message
      * quorum auth.
      *
      * Generated from protobuf field <code>repeated string two_factor_public_key_pems = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTwoFactorPublicKeyPems($var)
@@ -160,5 +160,4 @@ class QuorumAuth extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

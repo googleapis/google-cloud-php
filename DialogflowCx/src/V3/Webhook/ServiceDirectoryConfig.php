@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Webhook;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents configuration for a [Service
@@ -129,5 +129,4 @@ class ServiceDirectoryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

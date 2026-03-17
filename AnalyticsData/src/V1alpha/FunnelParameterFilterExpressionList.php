@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of funnel parameter filter expressions.
@@ -28,7 +28,7 @@ class FunnelParameterFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\FunnelParameterFilterExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type \Google\Analytics\Data\V1alpha\FunnelParameterFilterExpression[] $expressions
      *           The list of funnel parameter filter expressions.
      * }
      */
@@ -41,7 +41,7 @@ class FunnelParameterFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * The list of funnel parameter filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.FunnelParameterFilterExpression expressions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\FunnelParameterFilterExpression>
      */
     public function getExpressions()
     {
@@ -52,7 +52,7 @@ class FunnelParameterFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * The list of funnel parameter filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.FunnelParameterFilterExpression expressions = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\FunnelParameterFilterExpression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\FunnelParameterFilterExpression[] $var
      * @return $this
      */
     public function setExpressions($var)

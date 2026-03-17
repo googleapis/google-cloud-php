@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `Rollout` resource in the Cloud Deploy API.
@@ -237,7 +237,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type int $deploy_failure_cause
      *           Output only. The reason this rollout failed. This will always be
      *           unspecified while the rollout is in progress.
-     *     @type array<\Google\Cloud\Deploy\V1\Phase>|\Google\Protobuf\Internal\RepeatedField $phases
+     *     @type \Google\Cloud\Deploy\V1\Phase[] $phases
      *           Output only. The phases that represent the workflows of this `Rollout`.
      *     @type \Google\Cloud\Deploy\V1\Metadata $metadata
      *           Output only. Metadata contains information about the rollout.
@@ -247,7 +247,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      *     @type string $rollback_of_rollout
      *           Output only. Name of the `Rollout` that is rolled back by this `Rollout`.
      *           Empty if this `Rollout` wasn't created as a rollback.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rolled_back_by_rollouts
+     *     @type string[] $rolled_back_by_rollouts
      *           Output only. Names of `Rollouts` that rolled back this `Rollout`.
      *     @type string $active_repair_automation_run
      *           Output only. The AutomationRun actively repairing the rollout.
@@ -794,7 +794,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Output only. The phases that represent the workflows of this `Rollout`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Phase phases = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\Phase>
      */
     public function getPhases()
     {
@@ -805,7 +805,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Output only. The phases that represent the workflows of this `Rollout`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Phase phases = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\Phase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\Phase[] $var
      * @return $this
      */
     public function setPhases($var)
@@ -912,7 +912,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Output only. Names of `Rollouts` that rolled back this `Rollout`.
      *
      * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRolledBackByRollouts()
     {
@@ -923,7 +923,7 @@ class Rollout extends \Google\Protobuf\Internal\Message
      * Output only. Names of `Rollouts` that rolled back this `Rollout`.
      *
      * Generated from protobuf field <code>repeated string rolled_back_by_rollouts = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRolledBackByRollouts($var)

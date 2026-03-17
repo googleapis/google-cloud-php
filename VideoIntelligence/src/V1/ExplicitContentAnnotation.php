@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Explicit content annotation (based on per-frame visual signals only).
@@ -36,7 +36,7 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame>|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame[] $frames
      *           All video frames where explicit content was detected.
      *     @type string $version
      *           Feature version.
@@ -51,7 +51,7 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where explicit content was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ExplicitContentFrame frames = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame>
      */
     public function getFrames()
     {
@@ -62,7 +62,7 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where explicit content was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ExplicitContentFrame frames = 1;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\ExplicitContentFrame[] $var
      * @return $this
      */
     public function setFrames($var)

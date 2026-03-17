@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2\ReplicationStatus\UserManagedStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the status of a user-managed replica for the
@@ -121,5 +121,4 @@ class ReplicaStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

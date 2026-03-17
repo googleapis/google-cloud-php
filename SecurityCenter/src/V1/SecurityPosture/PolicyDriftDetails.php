@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\SecurityPosture;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The policy field that violates the deployed posture and its expected and
@@ -145,5 +145,4 @@ class PolicyDriftDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

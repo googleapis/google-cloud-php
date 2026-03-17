@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A bounding polygon of a detected object on a plane.
@@ -30,7 +30,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AutoMl\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type \Google\Cloud\AutoMl\V1\NormalizedVertex[] $normalized_vertices
      *           Output only . The bounding polygon normalized vertices.
      * }
      */
@@ -43,7 +43,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * Output only . The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\NormalizedVertex>
      */
     public function getNormalizedVertices()
     {
@@ -54,7 +54,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * Output only . The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\NormalizedVertex[] $var
      * @return $this
      */
     public function setNormalizedVertices($var)

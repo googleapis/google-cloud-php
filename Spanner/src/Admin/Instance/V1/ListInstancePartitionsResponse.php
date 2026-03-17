@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -46,13 +46,13 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition>|\Google\Protobuf\Internal\RepeatedField $instance_partitions
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition[] $instance_partitions
      *           The list of requested instancePartitions.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
      *           [ListInstancePartitions][google.spanner.admin.instance.v1.InstanceAdmin.ListInstancePartitions]
      *           call to fetch more of the matching instance partitions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           The list of unreachable instances or instance partitions.
      *           It includes the names of instances or instance partitions whose metadata
      *           could not be retrieved within
@@ -68,7 +68,7 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instancePartitions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstancePartition instance_partitions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition>
      */
     public function getInstancePartitions()
     {
@@ -79,7 +79,7 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instancePartitions.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstancePartition instance_partitions = 1;</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstancePartition[] $var
      * @return $this
      */
     public function setInstancePartitions($var)
@@ -127,7 +127,7 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      * [instance_partition_deadline][google.spanner.admin.instance.v1.ListInstancePartitionsRequest.instance_partition_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -141,7 +141,7 @@ class ListInstancePartitionsResponse extends \Google\Protobuf\Internal\Message
      * [instance_partition_deadline][google.spanner.admin.instance.v1.ListInstancePartitionsRequest.instance_partition_deadline].
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

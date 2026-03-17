@@ -21,7 +21,7 @@ class NotificationSetting
      */
     const NOTIFICATION_SETTING_UNSPECIFIED = 0;
     /**
-     * Notifications are triggered by &#64;mentions, followed threads, first
+     * Notifications are triggered by \@mentions, followed threads, first
      * message of new threads. All new threads are automatically followed,
      * unless manually unfollowed by the user.
      *
@@ -29,14 +29,14 @@ class NotificationSetting
      */
     const ALL = 1;
     /**
-     * The notification is triggered by &#64;mentions, followed threads, first
+     * The notification is triggered by \@mentions, followed threads, first
      * message of new threads. Not available for 1:1 direct messages.
      *
      * Generated from protobuf enum <code>MAIN_CONVERSATIONS = 2;</code>
      */
     const MAIN_CONVERSATIONS = 2;
     /**
-     * The notification is triggered by &#64;mentions, followed threads. Not
+     * The notification is triggered by \@mentions, followed threads. Not
      * available for 1:1 direct messages.
      *
      * Generated from protobuf enum <code>FOR_YOU = 3;</code>
@@ -77,5 +77,4 @@ class NotificationSetting
         return constant($const);
     }
 }
-
 

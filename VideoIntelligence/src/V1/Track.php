@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A track of an object instance.
@@ -48,9 +48,9 @@ class Track extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
      *           Video segment of a track.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\TimestampedObject>|\Google\Protobuf\Internal\RepeatedField $timestamped_objects
+     *     @type \Google\Cloud\VideoIntelligence\V1\TimestampedObject[] $timestamped_objects
      *           The object with timestamp and attributes per frame in the track.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\DetectedAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Cloud\VideoIntelligence\V1\DetectedAttribute[] $attributes
      *           Optional. Attributes in the track level.
      *     @type float $confidence
      *           Optional. The confidence score of the tracked object.
@@ -101,7 +101,7 @@ class Track extends \Google\Protobuf\Internal\Message
      * The object with timestamp and attributes per frame in the track.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TimestampedObject timestamped_objects = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\TimestampedObject>
      */
     public function getTimestampedObjects()
     {
@@ -112,7 +112,7 @@ class Track extends \Google\Protobuf\Internal\Message
      * The object with timestamp and attributes per frame in the track.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TimestampedObject timestamped_objects = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\TimestampedObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\TimestampedObject[] $var
      * @return $this
      */
     public function setTimestampedObjects($var)
@@ -127,7 +127,7 @@ class Track extends \Google\Protobuf\Internal\Message
      * Optional. Attributes in the track level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.DetectedAttribute attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\DetectedAttribute>
      */
     public function getAttributes()
     {
@@ -138,7 +138,7 @@ class Track extends \Google\Protobuf\Internal\Message
      * Optional. Attributes in the track level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.DetectedAttribute attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\DetectedAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\DetectedAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

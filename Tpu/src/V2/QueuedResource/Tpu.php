@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the TPU resource(s) being requested.
@@ -28,7 +28,7 @@ class Tpu extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec>|\Google\Protobuf\Internal\RepeatedField $node_spec
+     *     @type \Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec[] $node_spec
      *           Optional. The TPU node(s) being requested.
      * }
      */
@@ -41,7 +41,7 @@ class Tpu extends \Google\Protobuf\Internal\Message
      * Optional. The TPU node(s) being requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec node_spec = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec>
      */
     public function getNodeSpec()
     {
@@ -52,7 +52,7 @@ class Tpu extends \Google\Protobuf\Internal\Message
      * Optional. The TPU node(s) being requested.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.QueuedResource.Tpu.NodeSpec node_spec = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\QueuedResource\Tpu\NodeSpec[] $var
      * @return $this
      */
     public function setNodeSpec($var)
@@ -64,5 +64,4 @@ class Tpu extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a regional resource-based commitment resource.
@@ -252,7 +252,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type string $end_timestamp
      *           Output only. [Output Only] Commitment end time inRFC3339
      *           text format.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $existing_reservations
+     *     @type string[] $existing_reservations
      *     @type int|string $id
      *           Output only. [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
@@ -261,7 +261,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           for commitments.
      *     @type \Google\Cloud\Compute\V1\LicenseResourceCommitment $license_resource
      *           The license specification required as part of a license commitment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $merge_source_commitments
+     *     @type string[] $merge_source_commitments
      *           The list of source commitments that you are merging to create the new
      *           merged commitment. For more information, see
      *           Merging commitments.
@@ -284,7 +284,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Output only. [Output Only] URL of the region where the commitment and committed
      *           resources are located.
-     *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type \Google\Cloud\Compute\V1\Reservation[] $reservations
      *           The list of new reservations that you want to create and attach to this
      *           commitment.
      *           You must attach reservations to your commitment if your commitment
@@ -294,7 +294,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           reservations to attach. To attach existing reservations, specify theexistingReservations property instead.
      *     @type \Google\Cloud\Compute\V1\CommitmentResourceStatus $resource_status
      *           Output only. [Output Only] Status information for Commitment resource.
-     *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\Compute\V1\ResourceCommitment[] $resources
      *           The list of all the hardware resources, with their types and amounts, that
      *           you want to commit to. Specify as a separate entry in the list for each
      *           individual resource type.
@@ -587,7 +587,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExistingReservations()
     {
@@ -596,7 +596,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string existing_reservations = 493028443;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExistingReservations($var)
@@ -725,7 +725,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * Merging commitments.
      *
      * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMergeSourceCommitments()
     {
@@ -738,7 +738,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * Merging commitments.
      *
      * Generated from protobuf field <code>repeated string merge_source_commitments = 188093761;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMergeSourceCommitments($var)
@@ -893,7 +893,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * reservations to attach. To attach existing reservations, specify theexistingReservations property instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Reservation>
      */
     public function getReservations()
     {
@@ -910,7 +910,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * reservations to attach. To attach existing reservations, specify theexistingReservations property instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
-     * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Reservation[] $var
      * @return $this
      */
     public function setReservations($var)
@@ -963,7 +963,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * individual resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ResourceCommitment>
      */
     public function getResources()
     {
@@ -976,7 +976,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * individual resource type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
-     * @param array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ResourceCommitment[] $var
      * @return $this
      */
     public function setResources($var)

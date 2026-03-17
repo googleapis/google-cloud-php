@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The LRO metadata for exporting an artifact.
@@ -28,7 +28,7 @@ class ExportArtifactMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata\ExportedFile>|\Google\Protobuf\Internal\RepeatedField $exported_files
+     *     @type \Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata\ExportedFile[] $exported_files
      *           The exported artifact files.
      * }
      */
@@ -41,7 +41,7 @@ class ExportArtifactMetadata extends \Google\Protobuf\Internal\Message
      * The exported artifact files.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ExportArtifactMetadata.ExportedFile exported_files = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata\ExportedFile>
      */
     public function getExportedFiles()
     {
@@ -52,7 +52,7 @@ class ExportArtifactMetadata extends \Google\Protobuf\Internal\Message
      * The exported artifact files.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ExportArtifactMetadata.ExportedFile exported_files = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata\ExportedFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\ExportArtifactMetadata\ExportedFile[] $var
      * @return $this
      */
     public function setExportedFiles($var)

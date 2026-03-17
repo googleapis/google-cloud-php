@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Action details for invalid or unsupported data files detected by discovery.
@@ -41,7 +41,7 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *     @type string[] $sampled_data_locations
      *           The list of data locations sampled and used for format/schema
      *           inference.
      *     @type string $expected_format
@@ -60,7 +60,7 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      * inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSampledDataLocations()
     {
@@ -72,7 +72,7 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
      * inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSampledDataLocations($var)
@@ -136,5 +136,4 @@ class InvalidDataFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

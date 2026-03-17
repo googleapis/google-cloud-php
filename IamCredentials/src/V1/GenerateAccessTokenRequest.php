@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\Credentials\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.iam.credentials.v1.GenerateAccessTokenRequest</code>
@@ -104,7 +104,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      *           are requested, in the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $delegates
+     *     @type string[] $delegates
      *           The sequence of service accounts in a delegation chain. Each service
      *           account must be granted the `roles/iam.serviceAccountTokenCreator` role
      *           on its next service account in the chain. The last service account in the
@@ -114,7 +114,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      *           The delegates must have the following format:
      *           `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard
      *           character is required; replacing it with a project ID is invalid.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scope
+     *     @type string[] $scope
      *           Required. Code to identify the scopes to be included in the OAuth 2.0 access token.
      *           See https://developers.google.com/identity/protocols/googlescopes for more
      *           information.
@@ -175,7 +175,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      * character is required; replacing it with a project ID is invalid.
      *
      * Generated from protobuf field <code>repeated string delegates = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDelegates()
     {
@@ -194,7 +194,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      * character is required; replacing it with a project ID is invalid.
      *
      * Generated from protobuf field <code>repeated string delegates = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDelegates($var)
@@ -212,7 +212,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      * At least one value required.
      *
      * Generated from protobuf field <code>repeated string scope = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScope()
     {
@@ -226,7 +226,7 @@ class GenerateAccessTokenRequest extends \Google\Protobuf\Internal\Message
      * At least one value required.
      *
      * Generated from protobuf field <code>repeated string scope = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScope($var)

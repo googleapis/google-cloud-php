@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A mod describes all data changes in a watched table row.
@@ -46,15 +46,15 @@ class Mod extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $keys
      *           Returns the value of the primary key of the modified row.
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $old_values
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $old_values
      *           Returns the old values before the change for the modified columns.
      *           Always empty for
      *           [INSERT][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModType.INSERT],
      *           or if old values are not being captured specified by
      *           [value_capture_type][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ValueCaptureType].
-     *     @type array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $new_values
+     *     @type \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $new_values
      *           Returns the new values after the change for the modified columns.
      *           Always empty for
      *           [DELETE][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModType.DELETE].
@@ -69,7 +69,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * Returns the value of the primary key of the modified row.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>
      */
     public function getKeys()
     {
@@ -80,7 +80,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * Returns the value of the primary key of the modified row.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue keys = 1;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $var
      * @return $this
      */
     public function setKeys($var)
@@ -99,7 +99,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * [value_capture_type][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ValueCaptureType].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue old_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>
      */
     public function getOldValues()
     {
@@ -114,7 +114,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * [value_capture_type][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ValueCaptureType].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue old_values = 2;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $var
      * @return $this
      */
     public function setOldValues($var)
@@ -131,7 +131,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * [DELETE][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModType.DELETE].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue new_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>
      */
     public function getNewValues()
     {
@@ -144,7 +144,7 @@ class Mod extends \Google\Protobuf\Internal\Message
      * [DELETE][google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModType.DELETE].
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ChangeStreamRecord.DataChangeRecord.ModValue new_values = 3;</code>
-     * @param array<\Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord\ModValue[] $var
      * @return $this
      */
     public function setNewValues($var)
@@ -156,5 +156,4 @@ class Mod extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

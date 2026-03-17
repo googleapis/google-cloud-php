@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for the primary cluster. It has the list of clusters that are
@@ -31,7 +31,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_cluster_names
+     *     @type string[] $secondary_cluster_names
      *           Output only. Names of the clusters that are replicating from this
      *           cluster.
      * }
@@ -46,7 +46,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * cluster.
      *
      * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondaryClusterNames()
     {
@@ -58,7 +58,7 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
      * cluster.
      *
      * Generated from protobuf field <code>repeated string secondary_cluster_names = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondaryClusterNames($var)
@@ -70,5 +70,4 @@ class PrimaryConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Per month usage data
@@ -28,7 +28,7 @@ class PerMonthUsageData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse\PerUserUsageData>|\Google\Protobuf\Internal\RepeatedField $user_usage_data
+     *     @type \Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse\PerUserUsageData[] $user_usage_data
      *           Usage data for each user in the given month.
      * }
      */
@@ -41,7 +41,7 @@ class PerMonthUsageData extends \Google\Protobuf\Internal\Message
      * Usage data for each user in the given month.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageData user_usage_data = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse\PerUserUsageData>
      */
     public function getUserUsageData()
     {
@@ -52,7 +52,7 @@ class PerMonthUsageData extends \Google\Protobuf\Internal\Message
      * Usage data for each user in the given month.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadTensorboardUsageResponse.PerUserUsageData user_usage_data = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse\PerUserUsageData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ReadTensorboardUsageResponse\PerUserUsageData[] $var
      * @return $this
      */
     public function setUserUsageData($var)
@@ -64,5 +64,4 @@ class PerMonthUsageData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

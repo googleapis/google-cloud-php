@@ -186,4 +186,3 @@ class Reducer
     }
 }
 
-

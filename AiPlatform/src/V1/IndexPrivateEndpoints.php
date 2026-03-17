@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IndexPrivateEndpoints proto is used to provide paths for users to send
@@ -51,7 +51,7 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      *     @type string $service_attachment
      *           Output only. The name of the service attachment resource. Populated if
      *           private service connect is enabled.
-     *     @type array<\Google\Cloud\AIPlatform\V1\PscAutomatedEndpoints>|\Google\Protobuf\Internal\RepeatedField $psc_automated_endpoints
+     *     @type \Google\Cloud\AIPlatform\V1\PscAutomatedEndpoints[] $psc_automated_endpoints
      *           Output only. PscAutomatedEndpoints is populated if private service connect
      *           is enabled if PscAutomatedConfig is set.
      * }
@@ -120,7 +120,7 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      * is enabled if PscAutomatedConfig is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PscAutomatedEndpoints psc_automated_endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PscAutomatedEndpoints>
      */
     public function getPscAutomatedEndpoints()
     {
@@ -132,7 +132,7 @@ class IndexPrivateEndpoints extends \Google\Protobuf\Internal\Message
      * is enabled if PscAutomatedConfig is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PscAutomatedEndpoints psc_automated_endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PscAutomatedEndpoints>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PscAutomatedEndpoints[] $var
      * @return $this
      */
     public function setPscAutomatedEndpoints($var)

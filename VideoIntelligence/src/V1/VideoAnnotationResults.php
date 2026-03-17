@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Annotation results for a single video.
@@ -146,47 +146,47 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      *           [Cloud Storage](https://cloud.google.com/storage/).
      *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment $segment
      *           Video segment on which the annotation is run.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $segment_label_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $segment_label_annotations
      *           Topical label annotations on video level or user-specified segment level.
      *           There is exactly one element for each unique label.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $segment_presence_label_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $segment_presence_label_annotations
      *           Presence label annotations on video level or user-specified segment level.
      *           There is exactly one element for each unique label. Compared to the
      *           existing topical `segment_label_annotations`, this field presents more
      *           fine-grained, segment-level labels detected in video content and is made
      *           available only when the client sets `LabelDetectionConfig.model` to
      *           "builtin/latest" in the request.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $shot_label_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $shot_label_annotations
      *           Topical label annotations on shot level.
      *           There is exactly one element for each unique label.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $shot_presence_label_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $shot_presence_label_annotations
      *           Presence label annotations on shot level. There is exactly one element for
      *           each unique label. Compared to the existing topical
      *           `shot_label_annotations`, this field presents more fine-grained, shot-level
      *           labels detected in video content and is made available only when the client
      *           sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $frame_label_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $frame_label_annotations
      *           Label annotations on frame level.
      *           There is exactly one element for each unique label.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceAnnotation>|\Google\Protobuf\Internal\RepeatedField $face_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\FaceAnnotation[] $face_annotations
      *           Deprecated. Please use `face_detection_annotations` instead.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceDetectionAnnotation>|\Google\Protobuf\Internal\RepeatedField $face_detection_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\FaceDetectionAnnotation[] $face_detection_annotations
      *           Face detection annotations.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $shot_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment[] $shot_annotations
      *           Shot annotations. Each shot is represented as a video segment.
      *     @type \Google\Cloud\VideoIntelligence\V1\ExplicitContentAnnotation $explicit_annotation
      *           Explicit content annotation.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\SpeechTranscription>|\Google\Protobuf\Internal\RepeatedField $speech_transcriptions
+     *     @type \Google\Cloud\VideoIntelligence\V1\SpeechTranscription[] $speech_transcriptions
      *           Speech transcription.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\TextAnnotation>|\Google\Protobuf\Internal\RepeatedField $text_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\TextAnnotation[] $text_annotations
      *           OCR text detection and tracking.
      *           Annotations for list of detected text snippets. Each will have list of
      *           frame information associated with it.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation>|\Google\Protobuf\Internal\RepeatedField $object_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation[] $object_annotations
      *           Annotations for list of objects detected and tracked in video.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation>|\Google\Protobuf\Internal\RepeatedField $logo_recognition_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation[] $logo_recognition_annotations
      *           Annotations for list of logos detected, tracked and recognized in video.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\PersonDetectionAnnotation>|\Google\Protobuf\Internal\RepeatedField $person_detection_annotations
+     *     @type \Google\Cloud\VideoIntelligence\V1\PersonDetectionAnnotation[] $person_detection_annotations
      *           Person detection annotations.
      *     @type \Google\Rpc\Status $error
      *           If set, indicates an error. Note that for a single `AnnotateVideoRequest`
@@ -267,7 +267,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_label_annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>
      */
     public function getSegmentLabelAnnotations()
     {
@@ -279,7 +279,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_label_annotations = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $var
      * @return $this
      */
     public function setSegmentLabelAnnotations($var)
@@ -299,7 +299,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>
      */
     public function getSegmentPresenceLabelAnnotations()
     {
@@ -315,7 +315,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation segment_presence_label_annotations = 23;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $var
      * @return $this
      */
     public function setSegmentPresenceLabelAnnotations($var)
@@ -331,7 +331,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>
      */
     public function getShotLabelAnnotations()
     {
@@ -343,7 +343,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_label_annotations = 3;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $var
      * @return $this
      */
     public function setShotLabelAnnotations($var)
@@ -362,7 +362,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>
      */
     public function getShotPresenceLabelAnnotations()
     {
@@ -377,7 +377,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation shot_presence_label_annotations = 24;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $var
      * @return $this
      */
     public function setShotPresenceLabelAnnotations($var)
@@ -393,7 +393,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation frame_label_annotations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>
      */
     public function getFrameLabelAnnotations()
     {
@@ -405,7 +405,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * There is exactly one element for each unique label.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LabelAnnotation frame_label_annotations = 4;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LabelAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LabelAnnotation[] $var
      * @return $this
      */
     public function setFrameLabelAnnotations($var)
@@ -420,7 +420,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Deprecated. Please use `face_detection_annotations` instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceAnnotation face_annotations = 5 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\FaceAnnotation>
      * @deprecated
      */
     public function getFaceAnnotations()
@@ -435,7 +435,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Deprecated. Please use `face_detection_annotations` instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceAnnotation face_annotations = 5 [deprecated = true];</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\FaceAnnotation[] $var
      * @return $this
      * @deprecated
      */
@@ -454,7 +454,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Face detection annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\FaceDetectionAnnotation>
      */
     public function getFaceDetectionAnnotations()
     {
@@ -465,7 +465,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Face detection annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceDetectionAnnotation face_detection_annotations = 13;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceDetectionAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\FaceDetectionAnnotation[] $var
      * @return $this
      */
     public function setFaceDetectionAnnotations($var)
@@ -480,7 +480,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Shot annotations. Each shot is represented as a video segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment shot_annotations = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\VideoSegment>
      */
     public function getShotAnnotations()
     {
@@ -491,7 +491,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Shot annotations. Each shot is represented as a video segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment shot_annotations = 6;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment[] $var
      * @return $this
      */
     public function setShotAnnotations($var)
@@ -542,7 +542,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Speech transcription.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechTranscription speech_transcriptions = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\SpeechTranscription>
      */
     public function getSpeechTranscriptions()
     {
@@ -553,7 +553,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Speech transcription.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechTranscription speech_transcriptions = 11;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\SpeechTranscription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\SpeechTranscription[] $var
      * @return $this
      */
     public function setSpeechTranscriptions($var)
@@ -570,7 +570,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * frame information associated with it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextAnnotation text_annotations = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\TextAnnotation>
      */
     public function getTextAnnotations()
     {
@@ -583,7 +583,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * frame information associated with it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextAnnotation text_annotations = 12;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\TextAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\TextAnnotation[] $var
      * @return $this
      */
     public function setTextAnnotations($var)
@@ -598,7 +598,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Annotations for list of objects detected and tracked in video.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingAnnotation object_annotations = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation>
      */
     public function getObjectAnnotations()
     {
@@ -609,7 +609,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Annotations for list of objects detected and tracked in video.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingAnnotation object_annotations = 14;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\ObjectTrackingAnnotation[] $var
      * @return $this
      */
     public function setObjectAnnotations($var)
@@ -624,7 +624,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Annotations for list of logos detected, tracked and recognized in video.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LogoRecognitionAnnotation logo_recognition_annotations = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation>
      */
     public function getLogoRecognitionAnnotations()
     {
@@ -635,7 +635,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Annotations for list of logos detected, tracked and recognized in video.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.LogoRecognitionAnnotation logo_recognition_annotations = 19;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\LogoRecognitionAnnotation[] $var
      * @return $this
      */
     public function setLogoRecognitionAnnotations($var)
@@ -650,7 +650,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Person detection annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.PersonDetectionAnnotation person_detection_annotations = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\PersonDetectionAnnotation>
      */
     public function getPersonDetectionAnnotations()
     {
@@ -661,7 +661,7 @@ class VideoAnnotationResults extends \Google\Protobuf\Internal\Message
      * Person detection annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.PersonDetectionAnnotation person_detection_annotations = 20;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\PersonDetectionAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\PersonDetectionAnnotation[] $var
      * @return $this
      */
     public function setPersonDetectionAnnotations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\SimulateSecurityHealthAnalyticsCustomModuleRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Manually constructed resource name. If the custom module evaluates against
@@ -162,5 +162,4 @@ class SimulatedResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

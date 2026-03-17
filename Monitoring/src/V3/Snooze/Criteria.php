@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Snooze;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Criteria specific to the `AlertPolicy`s that this `Snooze` applies to. The
@@ -54,7 +54,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type string[] $policies
      *           The specific `AlertPolicy` names for the alert that should be snoozed.
      *           The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]
@@ -93,7 +93,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * time.
      *
      * Generated from protobuf field <code>repeated string policies = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPolicies()
     {
@@ -110,7 +110,7 @@ class Criteria extends \Google\Protobuf\Internal\Message
      * time.
      *
      * Generated from protobuf field <code>repeated string policies = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPolicies($var)
@@ -172,5 +172,4 @@ class Criteria extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

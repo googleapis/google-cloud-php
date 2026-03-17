@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The merchant account's [shipping
@@ -63,9 +63,9 @@ class ShippingSettings extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the shipping setting.
      *           Format: `accounts/{account}/shippingSetting`
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Service>|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Service[] $services
      *           Optional. The target account's list of services.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Warehouse>|\Google\Protobuf\Internal\RepeatedField $warehouses
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Warehouse[] $warehouses
      *           Optional. A list of warehouses which can be referred to in `services`.
      *     @type string $etag
      *           Required. This field is used for avoid async issue. Make sure shipping
@@ -120,7 +120,7 @@ class ShippingSettings extends \Google\Protobuf\Internal\Message
      * Optional. The target account's list of services.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Service services = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Service>
      */
     public function getServices()
     {
@@ -131,7 +131,7 @@ class ShippingSettings extends \Google\Protobuf\Internal\Message
      * Optional. The target account's list of services.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Service services = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Service>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Service[] $var
      * @return $this
      */
     public function setServices($var)
@@ -146,7 +146,7 @@ class ShippingSettings extends \Google\Protobuf\Internal\Message
      * Optional. A list of warehouses which can be referred to in `services`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Warehouse warehouses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Warehouse>
      */
     public function getWarehouses()
     {
@@ -157,7 +157,7 @@ class ShippingSettings extends \Google\Protobuf\Internal\Message
      * Optional. A list of warehouses which can be referred to in `services`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Warehouse warehouses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Warehouse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Warehouse[] $var
      * @return $this
      */
     public function setWarehouses($var)

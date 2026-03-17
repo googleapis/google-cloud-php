@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Spot tier definition.
@@ -30,5 +30,4 @@ class Spot extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

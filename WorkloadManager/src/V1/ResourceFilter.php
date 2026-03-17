@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource filter for an evaluation defining the scope of resources to be
@@ -56,13 +56,13 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           The scopes of evaluation resource.
      *           Format:
      *           * `projects/{project_id}`
      *           * `folders/{folder_id}`
      *           * `organizations/{organization_id}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_id_patterns
+     *     @type string[] $resource_id_patterns
      *           The pattern to filter resources by their id
      *           For example, a pattern of ".*prod-cluster.*" will match all resources that
      *           contain "prod-cluster" in their ID.
@@ -88,7 +88,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>repeated string scopes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -103,7 +103,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * * `organizations/{organization_id}`
      *
      * Generated from protobuf field <code>repeated string scopes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)
@@ -120,7 +120,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * contain "prod-cluster" in their ID.
      *
      * Generated from protobuf field <code>repeated string resource_id_patterns = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceIdPatterns()
     {
@@ -133,7 +133,7 @@ class ResourceFilter extends \Google\Protobuf\Internal\Message
      * contain "prod-cluster" in their ID.
      *
      * Generated from protobuf field <code>repeated string resource_id_patterns = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceIdPatterns($var)

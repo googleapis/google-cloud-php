@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an SSL certificate resource.
@@ -181,7 +181,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *           [Output only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate $self_managed
      *           Configuration and status of a self-managed SSL certificate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alternative_names
+     *     @type string[] $subject_alternative_names
      *           Output only. [Output Only] Domains associated with the certificate via Subject
      *           Alternative Name.
      *     @type string $type
@@ -660,7 +660,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubjectAlternativeNames()
     {
@@ -672,7 +672,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      * Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubjectAlternativeNames($var)

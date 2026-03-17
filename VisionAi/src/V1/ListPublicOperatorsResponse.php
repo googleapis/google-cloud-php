@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message of ListPublicOperators API.
@@ -34,7 +34,7 @@ class ListPublicOperatorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Operator>|\Google\Protobuf\Internal\RepeatedField $operators
+     *     @type \Google\Cloud\VisionAI\V1\Operator[] $operators
      *           The list of Operator
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListPublicOperatorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Operator
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Operator operators = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Operator>
      */
     public function getOperators()
     {
@@ -60,7 +60,7 @@ class ListPublicOperatorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Operator
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Operator operators = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Operator>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Operator[] $var
      * @return $this
      */
     public function setOperators($var)

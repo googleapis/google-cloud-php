@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * References to data sources and context to use for the query.
@@ -21,6 +21,12 @@ class QueryDataContext extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.DatasourceReferences datasource_references = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $datasource_references = null;
+    /**
+     * Optional. Parameters for Parameterized Secure Views (PSV).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters parameterized_secure_view_parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $parameterized_secure_view_parameters = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class QueryDataContext extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences $datasource_references
      *           Required. The datasource references to use for the query.
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters $parameterized_secure_view_parameters
+     *           Optional. Parameters for Parameterized Secure Views (PSV).
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class QueryDataContext extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\DatasourceReferences::class);
         $this->datasource_references = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Parameters for Parameterized Secure Views (PSV).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters parameterized_secure_view_parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters|null
+     */
+    public function getParameterizedSecureViewParameters()
+    {
+        return $this->parameterized_secure_view_parameters;
+    }
+
+    public function hasParameterizedSecureViewParameters()
+    {
+        return isset($this->parameterized_secure_view_parameters);
+    }
+
+    public function clearParameterizedSecureViewParameters()
+    {
+        unset($this->parameterized_secure_view_parameters);
+    }
+
+    /**
+     * Optional. Parameters for Parameterized Secure Views (PSV).
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ParameterizedSecureViewParameters parameterized_secure_view_parameters = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters $var
+     * @return $this
+     */
+    public function setParameterizedSecureViewParameters($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ParameterizedSecureViewParameters::class);
+        $this->parameterized_secure_view_parameters = $var;
 
         return $this;
     }

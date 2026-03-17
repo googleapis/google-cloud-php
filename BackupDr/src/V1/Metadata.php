@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A metadata key/value entry.
@@ -29,7 +29,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\BackupDR\V1\Entry[] $items
      *           Optional. Array of key/value pairs. The total size of all keys and values
      *           must be less than 512 KB.
      * }
@@ -44,7 +44,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * must be less than 512 KB.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.Entry items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\Entry>
      */
     public function getItems()
     {
@@ -56,7 +56,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * must be less than 512 KB.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.Entry items = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\Entry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\Entry[] $var
      * @return $this
      */
     public function setItems($var)

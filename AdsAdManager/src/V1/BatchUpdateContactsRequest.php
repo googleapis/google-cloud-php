@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `BatchUpdateContacts` method.
@@ -63,7 +63,7 @@ class BatchUpdateContactsRequest extends \Google\Protobuf\Internal\Message
      *           Format: `networks/{network_code}`
      *           The parent field in the UpdateContactRequest must match this
      *           field.
-     *     @type array<\Google\Ads\AdManager\V1\UpdateContactRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Ads\AdManager\V1\UpdateContactRequest[] $requests
      *           Required. The `Contact` objects to update.
      *           A maximum of 100 objects can be updated in a batch.
      * }
@@ -110,7 +110,7 @@ class BatchUpdateContactsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.UpdateContactRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\UpdateContactRequest>
      */
     public function getRequests()
     {
@@ -122,7 +122,7 @@ class BatchUpdateContactsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.UpdateContactRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\UpdateContactRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\UpdateContactRequest[] $var
      * @return $this
      */
     public function setRequests($var)

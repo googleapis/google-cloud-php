@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the Publish method.
@@ -55,7 +55,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      *     @type string $topic
      *           Required. The messages in the request will be published on this topic.
      *           Format is `projects/{project}/topics/{topic}`.
-     *     @type array<\Google\Cloud\PubSub\V1\PubsubMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\PubSub\V1\PubsubMessage[] $messages
      *           Required. The messages to publish.
      * }
      */
@@ -96,7 +96,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * Required. The messages to publish.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\PubsubMessage>
      */
     public function getMessages()
     {
@@ -107,7 +107,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * Required. The messages to publish.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\PubSub\V1\PubsubMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\PubsubMessage[] $var
      * @return $this
      */
     public function setMessages($var)

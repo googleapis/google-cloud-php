@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An OS policy resource is used to define the desired state configuration
@@ -229,5 +229,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

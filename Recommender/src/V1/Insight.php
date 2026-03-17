@@ -5,8 +5,8 @@
 namespace Google\Cloud\Recommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An insight along with the information used to derive the insight. The insight
@@ -105,7 +105,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Free-form human readable summary in English. The maximum length is 500
      *           characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_resources
+     *     @type string[] $target_resources
      *           Fully qualified resource names that this insight is targeting.
      *     @type string $insight_subtype
      *           Insight subtype. Insight content schema will be stable for a given subtype.
@@ -127,7 +127,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Fingerprint of the Insight. Provides optimistic locking when updating
      *           states.
-     *     @type array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $associated_recommendations
+     *     @type \Google\Cloud\Recommender\V1\Insight\RecommendationReference[] $associated_recommendations
      *           Recommendations derived from this insight.
      * }
      */
@@ -194,7 +194,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Fully qualified resource names that this insight is targeting.
      *
      * Generated from protobuf field <code>repeated string target_resources = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetResources()
     {
@@ -205,7 +205,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Fully qualified resource names that this insight is targeting.
      *
      * Generated from protobuf field <code>repeated string target_resources = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetResources($var)
@@ -476,7 +476,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Recommendations derived from this insight.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Insight.RecommendationReference associated_recommendations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>
      */
     public function getAssociatedRecommendations()
     {
@@ -487,7 +487,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Recommendations derived from this insight.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Insight.RecommendationReference associated_recommendations = 8;</code>
-     * @param array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Recommender\V1\Insight\RecommendationReference[] $var
      * @return $this
      */
     public function setAssociatedRecommendations($var)

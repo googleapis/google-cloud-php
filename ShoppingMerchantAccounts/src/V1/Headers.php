@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A non-empty list of row or column headers for a table.
@@ -79,7 +79,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Type\Price>|\Google\Protobuf\Internal\RepeatedField $prices
+     *     @type \Google\Shopping\Type\Price[] $prices
      *           Required. A list of inclusive order price upper bounds. The last price's
      *           value can be infinity by setting price amount_micros = -1. For example
      *           `[{"amount_micros": 10000000, "currency_code": "USD"},
@@ -88,7 +88,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      *           "<= $10", "<= $500", and "> $500". All prices within a service must have
      *           the same currency. Must be non-empty. Must be positive except -1. Can only
      *           be set if all other fields are not set.
-     *     @type array<\Google\Shopping\Type\Weight>|\Google\Protobuf\Internal\RepeatedField $weights
+     *     @type \Google\Shopping\Type\Weight[] $weights
      *           Required. A list of inclusive order weight upper bounds. The last weight's
      *           value can be infinity by setting price amount_micros = -1. For example
      *           `[{"amount_micros": 10000000, "unit": "kg"}, {"amount_micros": 50000000,
@@ -97,20 +97,20 @@ class Headers extends \Google\Protobuf\Internal\Message
      *           "<= 10kg", "<= 50kg", and "> 50kg". All weights within a service must have
      *           the same unit. Must be non-empty. Must be positive except -1. Can only be
      *           set if all other fields are not set.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $number_of_items
+     *     @type string[] $number_of_items
      *           Required. A list of inclusive number of items upper bounds. The last value
      *           can be
      *           `"infinity"`. For example
      *           `["10", "50", "infinity"]` represents the headers
      *           "<= 10 items", "<= 50 items", and "> 50 items". Must be non-empty. Can
      *           only be set if all other fields are not set.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $postal_code_group_names
+     *     @type string[] $postal_code_group_names
      *           Required. A list of postal group names. The last value can be
      *           `"all other locations"`. Example:
      *           `["zone 1", "zone 2", "all other locations"]`. The referred
      *           postal code groups must match the delivery country of the service. Must
      *           be non-empty. Can only be set if all other fields are not set.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\LocationIdSet>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type \Google\Shopping\Merchant\Accounts\V1\LocationIdSet[] $locations
      *           Required. A list of location ID sets. Must be non-empty. Can only be set if
      *           all other fields are not set.
      * }
@@ -131,7 +131,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Price prices = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\Price>
      */
     public function getPrices()
     {
@@ -149,7 +149,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Price prices = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Type\Price>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\Price[] $var
      * @return $this
      */
     public function setPrices($var)
@@ -171,7 +171,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Weight weights = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\Weight>
      */
     public function getWeights()
     {
@@ -189,7 +189,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Weight weights = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Type\Weight>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\Weight[] $var
      * @return $this
      */
     public function setWeights($var)
@@ -209,7 +209,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * only be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated string number_of_items = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNumberOfItems()
     {
@@ -225,7 +225,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * only be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated string number_of_items = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNumberOfItems($var)
@@ -244,7 +244,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * be non-empty. Can only be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated string postal_code_group_names = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPostalCodeGroupNames()
     {
@@ -259,7 +259,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * be non-empty. Can only be set if all other fields are not set.
      *
      * Generated from protobuf field <code>repeated string postal_code_group_names = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPostalCodeGroupNames($var)
@@ -275,7 +275,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.LocationIdSet locations = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\LocationIdSet>
      */
     public function getLocations()
     {
@@ -287,7 +287,7 @@ class Headers extends \Google\Protobuf\Internal\Message
      * all other fields are not set.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.LocationIdSet locations = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\LocationIdSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\LocationIdSet[] $var
      * @return $this
      */
     public function setLocations($var)

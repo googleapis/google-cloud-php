@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ResourcePool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The min/max number of replicas allowed if enabling autoscaling
@@ -150,5 +150,4 @@ class AutoscalingSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

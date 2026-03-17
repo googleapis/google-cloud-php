@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\StragglerInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information useful for debugging a straggler. Each type will provide
@@ -74,5 +74,4 @@ class StragglerDebuggingInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for CheckCompatibility.
@@ -18,7 +18,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the resource to check compatibility for. The format
      * is either of following:
-     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/&#42;&#47;versions: Check compatibility with one or
+     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{@*}versions: Check compatibility with one or
      *   more versions of the specified subject.
      * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check
      *   compatibility with a specific version of the subject.
@@ -81,7 +81,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the resource to check compatibility for. The format
      *           is either of following:
-     *           * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/&#42;&#47;versions: Check compatibility with one or
+     *           * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{@*}versions: Check compatibility with one or
      *             more versions of the specified subject.
      *           * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check
      *             compatibility with a specific version of the subject.
@@ -89,7 +89,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The schema type of the schema.
      *     @type string $schema
      *           Required. The schema payload
-     *     @type array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $references
      *           Optional. The schema references used by the schema.
      *     @type bool $verbose
      *           Optional. If true, the response will contain the compatibility check result
@@ -104,7 +104,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the resource to check compatibility for. The format
      * is either of following:
-     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/&#42;&#47;versions: Check compatibility with one or
+     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{@*}versions: Check compatibility with one or
      *   more versions of the specified subject.
      * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check
      *   compatibility with a specific version of the subject.
@@ -120,7 +120,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the resource to check compatibility for. The format
      * is either of following:
-     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/&#42;&#47;versions: Check compatibility with one or
+     * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{@*}versions: Check compatibility with one or
      *   more versions of the specified subject.
      * * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check
      *   compatibility with a specific version of the subject.
@@ -203,7 +203,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>
      */
     public function getReferences()
     {
@@ -214,7 +214,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $var
      * @return $this
      */
     public function setReferences($var)

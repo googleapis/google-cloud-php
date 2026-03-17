@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource where data was exfiltrated from or exfiltrated to.
@@ -42,7 +42,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The resource's [full resource
      *           name](https://cloud.google.com/apis/design/resource_names#full_resource_name).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $components
+     *     @type string[] $components
      *           Subcomponents of the asset that was exfiltrated, like URIs used during
      *           exfiltration, table names, databases, and filenames. For example, multiple
      *           tables might have been exfiltrated from the same Cloud SQL instance, or
@@ -91,7 +91,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      * bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComponents()
     {
@@ -106,7 +106,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      * bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComponents($var)

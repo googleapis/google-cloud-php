@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Interconnect Attachment (VLAN) Location resource.
@@ -190,13 +190,13 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *           [Output Only] Availability zone for this InterconnectLocation. Within a
      *           metropolitan area (metro), maintenance will not be simultaneously scheduled
      *           in more than one availability zone.  Example: "zone1" or "zone2".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
+     *     @type string[] $available_features
      *           [Output only] List of features available at this InterconnectLocation,
      *           which can take one of the following values:
      *              - IF_MACSEC
      *              - IF_CROSS_SITE_NETWORK
      *           Check the AvailableFeatures enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_link_types
+     *     @type string[] $available_link_types
      *           [Output only] List of link types available at this InterconnectLocation,
      *           which can take one of the following values:
      *              - LINK_TYPE_ETHERNET_10G_LR
@@ -219,7 +219,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo>|\Google\Protobuf\Internal\RepeatedField $cross_site_interconnect_infos
+     *     @type \Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo[] $cross_site_interconnect_infos
      *           [Output Only] A list of InterconnectLocation.CrossSiteInterconnectInfo
      *           objects, that describe where Cross-Site Interconnect wires may connect to
      *           from this location and associated connection parameters. Cross-Site
@@ -241,13 +241,13 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      *     @type string $peeringdb_facility_id
      *           Output only. [Output Only] The peeringdb identifier for this facility (corresponding
      *           with a netfac type in peeringdb).
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>|\Google\Protobuf\Internal\RepeatedField $region_infos
+     *     @type \Google\Cloud\Compute\V1\InterconnectLocationRegionInfo[] $region_infos
      *           Output only. [Output Only] A list of InterconnectLocation.RegionInfo objects, that
      *           describe parameters pertaining to the relation between this
      *           InterconnectLocation and various Google Cloud regions.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $single_region_production_critical_peer_locations
+     *     @type string[] $single_region_production_critical_peer_locations
      *           Output only. [Output Only] URLs of the other locations that can pair up with this
      *           location to support Single-Region 99.99% SLA. E.g. iad-zone1-1 and
      *           iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
@@ -354,7 +354,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableFeatures()
     {
@@ -369,7 +369,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Check the AvailableFeatures enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_features = 496344307;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableFeatures($var)
@@ -389,7 +389,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableLinkTypes()
     {
@@ -405,7 +405,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Check the AvailableLinkTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string available_link_types = 509504298;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableLinkTypes($var)
@@ -551,7 +551,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Interconnect isn't allowed to locations which are not listed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationCrossSiteInterconnectInfo cross_site_interconnect_infos = 248573837;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo>
      */
     public function getCrossSiteInterconnectInfos()
     {
@@ -565,7 +565,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * Interconnect isn't allowed to locations which are not listed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationCrossSiteInterconnectInfo cross_site_interconnect_infos = 248573837;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectLocationCrossSiteInterconnectInfo[] $var
      * @return $this
      */
     public function setCrossSiteInterconnectInfos($var)
@@ -840,7 +840,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * InterconnectLocation and various Google Cloud regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>
      */
     public function getRegionInfos()
     {
@@ -853,7 +853,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * InterconnectLocation and various Google Cloud regions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectLocationRegionInfo region_infos = 312194170;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectLocationRegionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectLocationRegionInfo[] $var
      * @return $this
      */
     public function setRegionInfos($var)
@@ -906,7 +906,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *
      * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSingleRegionProductionCriticalPeerLocations()
     {
@@ -919,7 +919,7 @@ class InterconnectLocation extends \Google\Protobuf\Internal\Message
      * iad-zone2-5467 are Single-Region 99.99% peer locations of each other.
      *
      * Generated from protobuf field <code>repeated string single_region_production_critical_peer_locations = 439537103;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSingleRegionProductionCriticalPeerLocations($var)

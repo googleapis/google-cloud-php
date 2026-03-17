@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification for fault injection introduced into traffic to test the
@@ -123,5 +123,4 @@ class FaultInjectionPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

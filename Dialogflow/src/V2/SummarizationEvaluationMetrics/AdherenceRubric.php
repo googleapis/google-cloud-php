@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rubric result of the adherence evaluation. A rubric is ued to determine
@@ -151,5 +151,4 @@ class AdherenceRubric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `SearchTeamFolders` request message.
@@ -17,7 +17,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Location in which to query TeamFolders.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -68,7 +68,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $location
      *           Required. Location in which to query TeamFolders.
-     *           Format: `projects/&#42;&#47;locations/&#42;`.
+     *           Format: `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Optional. Maximum number of TeamFolders to return. The server may return
      *           fewer items than requested. If unspecified, the server will pick an
@@ -99,7 +99,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Location in which to query TeamFolders.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -111,7 +111,7 @@ class SearchTeamFoldersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Location in which to query TeamFolders.
-     * Format: `projects/&#42;&#47;locations/&#42;`.
+     * Format: `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string location = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

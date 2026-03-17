@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [Secret][google.cloud.secretmanager.v1.Secret] is a logical secret whose
@@ -22,7 +22,7 @@ class Secret extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/{@*}secrets/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -150,7 +150,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name of the
      *           [Secret][google.cloud.secretmanager.v1.Secret] in the format
-     *           `projects/&#42;&#47;secrets/&#42;`.
+     *           `projects/{@*}secrets/*`.
      *     @type \Google\Cloud\SecretManager\V1\Replication $replication
      *           Optional. Immutable. The replication policy of the secret data attached to
      *           the [Secret][google.cloud.secretmanager.v1.Secret].
@@ -167,7 +167,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           encoding of maximum 128 bytes, and must conform to the following PCRE
      *           regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`
      *           No more than 64 labels can be assigned to a given resource.
-     *     @type array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
+     *     @type \Google\Cloud\SecretManager\V1\Topic[] $topics
      *           Optional. A list of up to 10 Pub/Sub topics to which messages are published
      *           when control plane operations are called on the secret or its versions.
      *     @type \Google\Protobuf\Timestamp $expire_time
@@ -236,7 +236,7 @@ class Secret extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/{@*}secrets/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -249,7 +249,7 @@ class Secret extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [Secret][google.cloud.secretmanager.v1.Secret] in the format
-     * `projects/&#42;&#47;secrets/&#42;`.
+     * `projects/{@*}secrets/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -386,7 +386,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * when control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecretManager\V1\Topic>
      */
     public function getTopics()
     {
@@ -398,7 +398,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * when control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecretManager\V1\Topic[] $var
      * @return $this
      */
     public function setTopics($var)

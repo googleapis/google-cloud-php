@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\CompilationResultAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a compiled Data Preparation entity
@@ -46,11 +46,11 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataform\V1\CompilationResultAction\DataPreparation\SqlDefinition $contents_sql
      *           SQL definition for a Data Preparation. Contains a SQL query and
      *           additional context information.
-     *     @type array<\Google\Cloud\Dataform\V1\Target>|\Google\Protobuf\Internal\RepeatedField $dependency_targets
+     *     @type \Google\Cloud\Dataform\V1\Target[] $dependency_targets
      *           A list of actions that this action depends on.
      *     @type bool $disabled
      *           Whether this action is disabled (i.e. should not be run).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Arbitrary, user-defined tags on this action.
      * }
      */
@@ -127,7 +127,7 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.Target dependency_targets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\Target>
      */
     public function getDependencyTargets()
     {
@@ -138,7 +138,7 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.Target dependency_targets = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1\Target>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\Target[] $var
      * @return $this
      */
     public function setDependencyTargets($var)
@@ -179,7 +179,7 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -190,7 +190,7 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -210,5 +210,4 @@ class DataPreparation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\ChangeStreamRecord\DataChangeRecord;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Returns the value and associated metadata for a particular field of the
@@ -117,5 +117,4 @@ class ModValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

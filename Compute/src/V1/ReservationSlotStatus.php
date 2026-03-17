@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -41,9 +41,9 @@ class ReservationSlotStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Compute\V1\ReservationSlotPhysicalTopology $physical_topology
      *           Output only. [Output Only] The physical topology of the reservation sub-block.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rdma_ip_addresses
+     *     @type string[] $rdma_ip_addresses
      *           Output only. The RDMA IP address of the physical host.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $running_instances
+     *     @type string[] $running_instances
      *           Output only. The URIs of the instances currently running on this slot.
      * }
      */
@@ -92,7 +92,7 @@ class ReservationSlotStatus extends \Google\Protobuf\Internal\Message
      * Output only. The RDMA IP address of the physical host.
      *
      * Generated from protobuf field <code>repeated string rdma_ip_addresses = 167842531;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRdmaIpAddresses()
     {
@@ -103,7 +103,7 @@ class ReservationSlotStatus extends \Google\Protobuf\Internal\Message
      * Output only. The RDMA IP address of the physical host.
      *
      * Generated from protobuf field <code>repeated string rdma_ip_addresses = 167842531;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRdmaIpAddresses($var)
@@ -118,7 +118,7 @@ class ReservationSlotStatus extends \Google\Protobuf\Internal\Message
      * Output only. The URIs of the instances currently running on this slot.
      *
      * Generated from protobuf field <code>repeated string running_instances = 536292350;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRunningInstances()
     {
@@ -129,7 +129,7 @@ class ReservationSlotStatus extends \Google\Protobuf\Internal\Message
      * Output only. The URIs of the instances currently running on this slot.
      *
      * Generated from protobuf field <code>repeated string running_instances = 536292350;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRunningInstances($var)

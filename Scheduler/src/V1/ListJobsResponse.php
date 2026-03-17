@@ -5,8 +5,8 @@
 namespace Google\Cloud\Scheduler\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing jobs using
@@ -41,7 +41,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Scheduler\V1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Scheduler\V1\Job[] $jobs
      *           The list of jobs.
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in the
@@ -62,7 +62,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.scheduler.v1.Job jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Scheduler\V1\Job>
      */
     public function getJobs()
     {
@@ -73,7 +73,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.scheduler.v1.Job jobs = 1;</code>
-     * @param array<\Google\Cloud\Scheduler\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Scheduler\V1\Job[] $var
      * @return $this
      */
     public function setJobs($var)

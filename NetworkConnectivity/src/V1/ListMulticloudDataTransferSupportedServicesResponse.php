@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message to list the services in your project in regions that are
@@ -35,7 +35,7 @@ class ListMulticloudDataTransferSupportedServicesResponse extends \Google\Protob
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferSupportedService>|\Google\Protobuf\Internal\RepeatedField $multicloud_data_transfer_supported_services
+     *     @type \Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferSupportedService[] $multicloud_data_transfer_supported_services
      *           The list of supported services.
      *     @type string $next_page_token
      *           The next page token.
@@ -50,7 +50,7 @@ class ListMulticloudDataTransferSupportedServicesResponse extends \Google\Protob
      * The list of supported services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.MulticloudDataTransferSupportedService multicloud_data_transfer_supported_services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferSupportedService>
      */
     public function getMulticloudDataTransferSupportedServices()
     {
@@ -61,7 +61,7 @@ class ListMulticloudDataTransferSupportedServicesResponse extends \Google\Protob
      * The list of supported services.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.MulticloudDataTransferSupportedService multicloud_data_transfer_supported_services = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferSupportedService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\MulticloudDataTransferSupportedService[] $var
      * @return $this
      */
     public function setMulticloudDataTransferSupportedServices($var)

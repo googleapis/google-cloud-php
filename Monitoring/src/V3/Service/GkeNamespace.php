@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GKE Namespace. The field names correspond to the resource metadata labels
@@ -176,5 +176,4 @@ class GkeNamespace extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

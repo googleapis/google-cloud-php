@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Register 2FA keys for the
@@ -53,7 +53,7 @@ class RegisterTwoFactorAuthKeys extends \Google\Protobuf\Internal\Message
      *           equal to 2 and less than or equal to
      *           [total_approver_count][google.cloud.kms.v1.SingleTenantHsmInstance.QuorumAuth.total_approver_count]
      *           - 1.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $two_factor_public_key_pems
+     *     @type string[] $two_factor_public_key_pems
      *           Required. The public keys associated with the 2FA keys for M of N quorum
      *           auth. Public keys must be associated with RSA 2048 keys.
      * }
@@ -104,7 +104,7 @@ class RegisterTwoFactorAuthKeys extends \Google\Protobuf\Internal\Message
      * auth. Public keys must be associated with RSA 2048 keys.
      *
      * Generated from protobuf field <code>repeated string two_factor_public_key_pems = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTwoFactorPublicKeyPems()
     {
@@ -116,7 +116,7 @@ class RegisterTwoFactorAuthKeys extends \Google\Protobuf\Internal\Message
      * auth. Public keys must be associated with RSA 2048 keys.
      *
      * Generated from protobuf field <code>repeated string two_factor_public_key_pems = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTwoFactorPublicKeyPems($var)
@@ -128,5 +128,4 @@ class RegisterTwoFactorAuthKeys extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

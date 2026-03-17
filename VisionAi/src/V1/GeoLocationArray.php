@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of locations.
@@ -28,7 +28,7 @@ class GeoLocationArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\CircleArea>|\Google\Protobuf\Internal\RepeatedField $circle_areas
+     *     @type \Google\Cloud\VisionAI\V1\CircleArea[] $circle_areas
      *           A list of circle areas.
      * }
      */
@@ -41,7 +41,7 @@ class GeoLocationArray extends \Google\Protobuf\Internal\Message
      * A list of circle areas.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.CircleArea circle_areas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\CircleArea>
      */
     public function getCircleAreas()
     {
@@ -52,7 +52,7 @@ class GeoLocationArray extends \Google\Protobuf\Internal\Message
      * A list of circle areas.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.CircleArea circle_areas = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\CircleArea>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\CircleArea[] $var
      * @return $this
      */
     public function setCircleAreas($var)

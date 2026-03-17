@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of fetching github installations.
@@ -29,7 +29,7 @@ class FetchGitHubInstallationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse\Installation>|\Google\Protobuf\Internal\RepeatedField $installations
+     *     @type \Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse\Installation[] $installations
      *           List of installations available to the OAuth user (for github.com)
      *           or all the installations (for GitHub enterprise).
      * }
@@ -44,7 +44,7 @@ class FetchGitHubInstallationsResponse extends \Google\Protobuf\Internal\Message
      * or all the installations (for GitHub enterprise).
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.FetchGitHubInstallationsResponse.Installation installations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse\Installation>
      */
     public function getInstallations()
     {
@@ -56,7 +56,7 @@ class FetchGitHubInstallationsResponse extends \Google\Protobuf\Internal\Message
      * or all the installations (for GitHub enterprise).
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.FetchGitHubInstallationsResponse.Installation installations = 1;</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse\Installation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse\Installation[] $var
      * @return $this
      */
     public function setInstallations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `IntelligenceConfig` resource associated with your organization, folder,

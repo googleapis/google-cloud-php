@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures metadata that is used to generate serving time results (e.g.
@@ -18,7 +18,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;servingConfig/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}servingConfig/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -276,7 +276,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;servingConfig/&#42;`
+     *           `projects/{@*}locations/global/catalogs/{@*}servingConfig/*`
      *     @type string $display_name
      *           Required. The human readable serving config display name. Used in Retail
      *           UI.
@@ -307,7 +307,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_RECOMMENDATION][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_RECOMMENDATION].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $facet_control_ids
+     *     @type string[] $facet_control_ids
      *           Facet specifications for faceted search. If empty, no facets are returned.
      *           The ids refer to the ids of [Control][google.cloud.retail.v2.Control]
      *           resources with only the Facet control set. These controls are assumed to be
@@ -324,7 +324,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $boost_control_ids
+     *     @type string[] $boost_control_ids
      *           Condition boost specifications. If a product matches multiple conditions
      *           in the specifications, boost scores from these specifications are all
      *           applied and combined in a non-linear way. Maximum number of
@@ -339,7 +339,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $filter_control_ids
+     *     @type string[] $filter_control_ids
      *           Condition filter specifications. If a product matches multiple conditions
      *           in the specifications, filters from these specifications are all
      *           applied and combined via the AND operator. Maximum number of
@@ -347,14 +347,14 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $redirect_control_ids
+     *     @type string[] $redirect_control_ids
      *           Condition redirect specifications. Only the first triggered redirect action
      *           is applied, even if multiple apply. Maximum number of specifications is
      *           1000.
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $twoway_synonyms_control_ids
+     *     @type string[] $twoway_synonyms_control_ids
      *           Condition synonyms specifications. If multiple syonyms conditions match,
      *           all matching synonyms control in the list will execute. Order of controls
      *           in the list will not matter. Maximum number of specifications is
@@ -362,7 +362,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oneway_synonyms_control_ids
+     *     @type string[] $oneway_synonyms_control_ids
      *           Condition oneway synonyms specifications. If multiple oneway synonyms
      *           conditions match, all matching oneway synonyms controls in the list will
      *           execute. Order of controls in the list will not matter. Maximum number of
@@ -370,7 +370,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $do_not_associate_control_ids
+     *     @type string[] $do_not_associate_control_ids
      *           Condition do not associate specifications. If multiple do not associate
      *           conditions match, all matching do not associate controls in the list will
      *           execute.
@@ -379,7 +379,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replacement_control_ids
+     *     @type string[] $replacement_control_ids
      *           Condition replacement specifications.
      *           - Applied according to the order in the list.
      *           - A previously replaced term can not be re-replaced.
@@ -387,7 +387,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [solution_types][google.cloud.retail.v2.ServingConfig.solution_types] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ignore_control_ids
+     *     @type string[] $ignore_control_ids
      *           Condition ignore specifications. If multiple ignore
      *           conditions match, all matching ignore controls in the list will
      *           execute.
@@ -442,7 +442,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
      *           will override
      *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $solution_types
+     *     @type int[] $solution_types
      *           Required. Immutable. Specifies the solution types that a serving config can
      *           be associated with. Currently we support setting only one type of solution.
      * }
@@ -454,7 +454,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;servingConfig/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}servingConfig/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -466,7 +466,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/global/catalogs/&#42;&#47;servingConfig/&#42;`
+     * `projects/{@*}locations/global/catalogs/{@*}servingConfig/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -619,7 +619,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string facet_control_ids = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFacetControlIds()
     {
@@ -639,7 +639,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string facet_control_ids = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFacetControlIds($var)
@@ -711,7 +711,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBoostControlIds()
     {
@@ -735,7 +735,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBoostControlIds($var)
@@ -756,7 +756,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilterControlIds()
     {
@@ -773,7 +773,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilterControlIds($var)
@@ -793,7 +793,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRedirectControlIds()
     {
@@ -809,7 +809,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRedirectControlIds($var)
@@ -830,7 +830,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string twoway_synonyms_control_ids = 18;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTwowaySynonymsControlIds()
     {
@@ -847,7 +847,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string twoway_synonyms_control_ids = 18;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTwowaySynonymsControlIds($var)
@@ -868,7 +868,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOnewaySynonymsControlIds()
     {
@@ -885,7 +885,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOnewaySynonymsControlIds($var)
@@ -907,7 +907,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string do_not_associate_control_ids = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDoNotAssociateControlIds()
     {
@@ -925,7 +925,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string do_not_associate_control_ids = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDoNotAssociateControlIds($var)
@@ -946,7 +946,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplacementControlIds()
     {
@@ -963,7 +963,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 14;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplacementControlIds($var)
@@ -985,7 +985,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIgnoreControlIds()
     {
@@ -1003,7 +1003,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.retail.v2.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIgnoreControlIds($var)
@@ -1231,7 +1231,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * be associated with. Currently we support setting only one type of solution.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SolutionType solution_types = 19 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSolutionTypes()
     {
@@ -1243,7 +1243,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * be associated with. Currently we support setting only one type of solution.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SolutionType solution_types = 19 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSolutionTypes($var)

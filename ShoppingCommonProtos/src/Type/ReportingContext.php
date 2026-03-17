@@ -5,8 +5,8 @@
 namespace Google\Shopping\Type;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Reporting contexts that your account and product issues apply to.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the identifying information, config, and status of
@@ -132,7 +132,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           associated with a cluster.
      *     @type \Google\Cloud\Dataproc\V1\ClusterStatus $status
      *           Output only. Cluster status.
-     *     @type array<\Google\Cloud\Dataproc\V1\ClusterStatus>|\Google\Protobuf\Internal\RepeatedField $status_history
+     *     @type \Google\Cloud\Dataproc\V1\ClusterStatus[] $status_history
      *           Output only. The previous cluster status.
      *     @type string $cluster_uuid
      *           Output only. A cluster UUID (Unique Universal Identifier). Dataproc
@@ -378,7 +378,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. The previous cluster status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\ClusterStatus>
      */
     public function getStatusHistory()
     {
@@ -389,7 +389,7 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Output only. The previous cluster status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterStatus status_history = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\ClusterStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\ClusterStatus[] $var
      * @return $this
      */
     public function setStatusHistory($var)

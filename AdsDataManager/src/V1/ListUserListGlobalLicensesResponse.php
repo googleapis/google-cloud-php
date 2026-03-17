@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from the
@@ -36,7 +36,7 @@ class ListUserListGlobalLicensesResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\DataManager\V1\UserListGlobalLicense>|\Google\Protobuf\Internal\RepeatedField $user_list_global_licenses
+     *     @type \Google\Ads\DataManager\V1\UserListGlobalLicense[] $user_list_global_licenses
      *           The licenses for the given user list in the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListUserListGlobalLicensesResponse extends \Google\Protobuf\Internal\Messa
      * The licenses for the given user list in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListGlobalLicense user_list_global_licenses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserListGlobalLicense>
      */
     public function getUserListGlobalLicenses()
     {
@@ -63,7 +63,7 @@ class ListUserListGlobalLicensesResponse extends \Google\Protobuf\Internal\Messa
      * The licenses for the given user list in the request.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListGlobalLicense user_list_global_licenses = 1;</code>
-     * @param array<\Google\Ads\DataManager\V1\UserListGlobalLicense>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserListGlobalLicense[] $var
      * @return $this
      */
     public function setUserListGlobalLicenses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Reports the actual load of the vehicle at some point along the route,
@@ -74,5 +74,4 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

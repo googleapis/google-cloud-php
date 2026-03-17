@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `BatchDeleteRegions` method.
@@ -39,7 +39,7 @@ class BatchDeleteRegionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The account to delete one or more regions from.
      *           Format: `accounts/{account}`
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest[] $requests
      *           Required. The names of the regions to delete.
      *           A maximum of 100 regions can be deleted in a batch.
      * }
@@ -82,7 +82,7 @@ class BatchDeleteRegionsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 regions can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.DeleteRegionRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest>
      */
     public function getRequests()
     {
@@ -94,7 +94,7 @@ class BatchDeleteRegionsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 regions can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.DeleteRegionRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\DeleteRegionRequest[] $var
      * @return $this
      */
     public function setRequests($var)

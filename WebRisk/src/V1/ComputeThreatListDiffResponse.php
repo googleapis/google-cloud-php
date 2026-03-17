@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.webrisk.v1.ComputeThreatListDiffResponse</code>

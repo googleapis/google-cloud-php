@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This reservation type is specified by total resource amounts (e.g. total
@@ -51,9 +51,9 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $in_use_resources
+     *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo[] $in_use_resources
      *           Output only. [Output only] List of resources currently in use.
-     *     @type array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $reserved_resources
+     *     @type \Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo[] $reserved_resources
      *           List of reserved resources (CPUs, memory, accelerators).
      *     @type string $vm_family
      *           The VM family that all instances scheduled against this reservation must
@@ -73,7 +73,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] List of resources currently in use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo in_use_resources = 409009107;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>
      */
     public function getInUseResources()
     {
@@ -84,7 +84,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      * Output only. [Output only] List of resources currently in use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo in_use_resources = 409009107;</code>
-     * @param array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo[] $var
      * @return $this
      */
     public function setInUseResources($var)
@@ -99,7 +99,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      * List of reserved resources (CPUs, memory, accelerators).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo reserved_resources = 213217742;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>
      */
     public function getReservedResources()
     {
@@ -110,7 +110,7 @@ class AllocationAggregateReservation extends \Google\Protobuf\Internal\Message
      * List of reserved resources (CPUs, memory, accelerators).
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationAggregateReservationReservedResourceInfo reserved_resources = 213217742;</code>
-     * @param array<\Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AllocationAggregateReservationReservedResourceInfo[] $var
      * @return $this
      */
     public function setReservedResources($var)

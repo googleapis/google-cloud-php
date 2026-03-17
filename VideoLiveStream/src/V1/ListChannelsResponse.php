@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for "LivestreamService.ListChannels".
@@ -41,12 +41,12 @@ class ListChannelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\Channel>|\Google\Protobuf\Internal\RepeatedField $channels
+     *     @type \Google\Cloud\Video\LiveStream\V1\Channel[] $channels
      *           A list of channels.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListChannelsResponse extends \Google\Protobuf\Internal\Message
      * A list of channels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Channel channels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\Channel>
      */
     public function getChannels()
     {
@@ -70,7 +70,7 @@ class ListChannelsResponse extends \Google\Protobuf\Internal\Message
      * A list of channels.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Channel channels = 1;</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\Channel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\Channel[] $var
      * @return $this
      */
     public function setChannels($var)
@@ -113,7 +113,7 @@ class ListChannelsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListChannelsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for a companion.
@@ -103,7 +103,7 @@ class Companion extends \Google\Protobuf\Internal\Message
      *           The ID used to identify the desired placement on a publisher's page.
      *           Values to be used should be discussed between publishers and
      *           advertisers.
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Cloud\Video\Stitcher\V1\Event[] $events
      *           The list of tracking events for the companion.
      * }
      */
@@ -421,7 +421,7 @@ class Companion extends \Google\Protobuf\Internal\Message
      * The list of tracking events for the companion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Event events = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\Event>
      */
     public function getEvents()
     {
@@ -432,7 +432,7 @@ class Companion extends \Google\Protobuf\Internal\Message
      * The list of tracking events for the companion.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Event events = 9;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\Event[] $var
      * @return $this
      */
     public function setEvents($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CompleteQueryResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource that represents completion results.
@@ -122,5 +122,4 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

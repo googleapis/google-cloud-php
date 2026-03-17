@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\WorkflowInvocationAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a workflow action that will run against BigQuery.
@@ -102,5 +102,4 @@ class BigQueryAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

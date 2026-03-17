@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Subject][google.cloud.security.privateca.v1.Subject] describes parts of a
@@ -93,7 +93,7 @@ class Subject extends \Google\Protobuf\Internal\Message
      *           The street address of the subject.
      *     @type string $postal_code
      *           The postal code of the subject.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName>|\Google\Protobuf\Internal\RepeatedField $rdn_sequence
+     *     @type \Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName[] $rdn_sequence
      *           This field can be used in place of the named subject fields.
      * }
      */
@@ -314,7 +314,7 @@ class Subject extends \Google\Protobuf\Internal\Message
      * This field can be used in place of the named subject fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.RelativeDistinguishedName rdn_sequence = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName>
      */
     public function getRdnSequence()
     {
@@ -325,7 +325,7 @@ class Subject extends \Google\Protobuf\Internal\Message
      * This field can be used in place of the named subject fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.RelativeDistinguishedName rdn_sequence = 9;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\RelativeDistinguishedName[] $var
      * @return $this
      */
     public function setRdnSequence($var)

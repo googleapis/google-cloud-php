@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * InstanceGroupManagers.updatePerInstanceConfigs
@@ -29,7 +29,7 @@ class InstanceGroupManagersUpdatePerInstanceConfigsReq extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $per_instance_configs
+     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[] $per_instance_configs
      *           The list of per-instance configurations to insert or patch on this managed
      *           instance group.
      * }
@@ -44,7 +44,7 @@ class InstanceGroupManagersUpdatePerInstanceConfigsReq extends \Google\Protobuf\
      * instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PerInstanceConfig>
      */
     public function getPerInstanceConfigs()
     {
@@ -56,7 +56,7 @@ class InstanceGroupManagersUpdatePerInstanceConfigsReq extends \Google\Protobuf\
      * instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
-     * @param array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[] $var
      * @return $this
      */
     public function setPerInstanceConfigs($var)

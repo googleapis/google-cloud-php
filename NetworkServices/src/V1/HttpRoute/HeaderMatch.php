@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how to select a route rule based on HTTP request headers.
@@ -324,5 +324,4 @@ class HeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

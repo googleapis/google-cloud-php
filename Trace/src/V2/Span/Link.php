@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\Span;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pointer from the current span to another span in the same trace or in a
@@ -183,7 +183,4 @@ class Link extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Link::class, \Google\Cloud\Trace\V2\Span_Link::class);
 

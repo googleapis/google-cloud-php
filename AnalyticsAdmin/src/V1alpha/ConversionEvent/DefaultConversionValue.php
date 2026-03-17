@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\ConversionEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a default value/currency for a conversion event. Both value and
@@ -135,5 +135,4 @@ class DefaultConversionValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

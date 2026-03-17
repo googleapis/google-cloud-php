@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ReplicationCycle contains information about the current replication cycle
@@ -101,14 +101,14 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      *           The current progress in percentage of this cycle.
      *           Was replaced by 'steps' field, which breaks down the cycle progression more
      *           accurately.
-     *     @type array<\Google\Cloud\VMMigration\V1\CycleStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\VMMigration\V1\CycleStep[] $steps
      *           The cycle's steps list representing its progress.
      *     @type int $state
      *           State of the ReplicationCycle.
      *     @type \Google\Rpc\Status $error
      *           Output only. Provides details on the state of the cycle in case of an
      *           error.
-     *     @type array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\VMMigration\V1\MigrationWarning[] $warnings
      *           Output only. Warnings that occurred during the cycle.
      * }
      */
@@ -317,7 +317,7 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      * The cycle's steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CycleStep steps = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\CycleStep>
      */
     public function getSteps()
     {
@@ -328,7 +328,7 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      * The cycle's steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CycleStep steps = 9;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\CycleStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\CycleStep[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -407,7 +407,7 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      * Output only. Warnings that occurred during the cycle.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\MigrationWarning>
      */
     public function getWarnings()
     {
@@ -418,7 +418,7 @@ class ReplicationCycle extends \Google\Protobuf\Internal\Message
      * Output only. Warnings that occurred during the cycle.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.MigrationWarning warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\MigrationWarning>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\MigrationWarning[] $var
      * @return $this
      */
     public function setWarnings($var)

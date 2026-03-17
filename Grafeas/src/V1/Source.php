@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Source describes the location of the source used for the build.
@@ -67,7 +67,7 @@ class Source extends \Google\Protobuf\Internal\Message
      *           (.tar.gz), the FileHash will be for the single path to that file.
      *     @type \Grafeas\V1\SourceContext $context
      *           If provided, the source code used for the build came from this location.
-     *     @type array<\Grafeas\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $additional_contexts
+     *     @type \Grafeas\V1\SourceContext[] $additional_contexts
      *           If provided, some of the source code used for the build may be found in
      *           these locations, in the case where the source repository had multiple
      *           remotes or submodules. This list will not include the context specified in
@@ -186,7 +186,7 @@ class Source extends \Google\Protobuf\Internal\Message
      * the context field.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SourceContext additional_contexts = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\SourceContext>
      */
     public function getAdditionalContexts()
     {
@@ -200,7 +200,7 @@ class Source extends \Google\Protobuf\Internal\Message
      * the context field.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SourceContext additional_contexts = 4;</code>
-     * @param array<\Grafeas\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\SourceContext[] $var
      * @return $this
      */
     public function setAdditionalContexts($var)

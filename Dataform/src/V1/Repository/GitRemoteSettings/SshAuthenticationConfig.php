@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\Repository\GitRemoteSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures fields for performing SSH authentication.
@@ -18,7 +18,7 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Secret Manager secret version to use as a
      * ssh private key for Git operations.
-     * Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Must be in the format `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_private_key_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,7 +40,7 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
      *     @type string $user_private_key_secret_version
      *           Required. The name of the Secret Manager secret version to use as a
      *           ssh private key for Git operations.
-     *           Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           Must be in the format `projects/{@*}secrets/{@*}versions/*`.
      *     @type string $host_public_key
      *           Required. Content of a public SSH key to verify an identity of a remote
      *           Git host.
@@ -54,7 +54,7 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Secret Manager secret version to use as a
      * ssh private key for Git operations.
-     * Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Must be in the format `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_private_key_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,7 +67,7 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Secret Manager secret version to use as a
      * ssh private key for Git operations.
-     * Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * Must be in the format `projects/{@*}secrets/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string user_private_key_secret_version = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -110,5 +110,4 @@ class SshAuthenticationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output format for Personal Protective Equipment Detection Operator.
@@ -36,7 +36,7 @@ class PersonalProtectiveEquipmentDetectionOutput extends \Google\Protobuf\Intern
      *
      *     @type \Google\Protobuf\Timestamp $current_time
      *           Current timestamp.
-     *     @type array<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\DetectedPerson>|\Google\Protobuf\Internal\RepeatedField $detected_persons
+     *     @type \Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\DetectedPerson[] $detected_persons
      *           A list of DetectedPersons.
      * }
      */
@@ -85,7 +85,7 @@ class PersonalProtectiveEquipmentDetectionOutput extends \Google\Protobuf\Intern
      * A list of DetectedPersons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.DetectedPerson detected_persons = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\DetectedPerson>
      */
     public function getDetectedPersons()
     {
@@ -96,7 +96,7 @@ class PersonalProtectiveEquipmentDetectionOutput extends \Google\Protobuf\Intern
      * A list of DetectedPersons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.DetectedPerson detected_persons = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\DetectedPerson>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\DetectedPerson[] $var
      * @return $this
      */
     public function setDetectedPersons($var)

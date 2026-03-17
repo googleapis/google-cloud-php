@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1\GkeNodePoolConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters that describe cluster nodes.
@@ -113,7 +113,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      *           (/dataproc/docs/reference/rest/v1/projects.regions.clusters#role)
      *           or in the DEFAULT node pool if the CONTROLLER role is not assigned (the
      *           DEFAULT node pool will assume the CONTROLLER role).
-     *     @type array<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig[] $accelerators
      *           Optional. A list of [hardware
      *           accelerators](https://cloud.google.com/compute/docs/gpus) to attach to
      *           each node.
@@ -255,7 +255,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * each node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAcceleratorConfig accelerators = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>
      */
     public function getAccelerators()
     {
@@ -268,7 +268,7 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
      * each node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolConfig.GkeNodePoolAcceleratorConfig accelerators = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodePoolAcceleratorConfig[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -392,5 +392,4 @@ class GkeNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

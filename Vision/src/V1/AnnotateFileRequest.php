@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
@@ -57,11 +57,11 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
      *           Required. Information about the input file.
-     *     @type array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type \Google\Cloud\Vision\V1\Feature[] $features
      *           Required. Requested features.
      *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
      *           Additional context that may accompany the image(s) in the file.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type int[] $pages
      *           Pages of the file to perform image annotation.
      *           Pages starts from 1, we assume the first page of the file is page 1.
      *           At most 5 pages are supported per request. Pages can be negative.
@@ -119,7 +119,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Feature>
      */
     public function getFeatures()
     {
@@ -130,7 +130,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @param array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Feature[] $var
      * @return $this
      */
     public function setFeatures($var)
@@ -190,7 +190,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * for the first 5 pages of the file.
      *
      * Generated from protobuf field <code>repeated int32 pages = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPages()
     {
@@ -210,7 +210,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * for the first 5 pages of the file.
      *
      * Generated from protobuf field <code>repeated int32 pages = 4;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPages($var)

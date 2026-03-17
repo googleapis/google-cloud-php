@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each DetectedObject is one particular identification of an object
@@ -228,5 +228,4 @@ class DetectedObject extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

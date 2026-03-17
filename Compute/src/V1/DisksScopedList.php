@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -34,7 +34,7 @@ class DisksScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\Disk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\Disk[] $disks
      *           [Output Only] A list of disks contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of disks when
@@ -50,7 +50,7 @@ class DisksScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of disks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Disk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Disk>
      */
     public function getDisks()
     {
@@ -61,7 +61,7 @@ class DisksScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of disks contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Disk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\Disk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Disk[] $var
      * @return $this
      */
     public function setDisks($var)

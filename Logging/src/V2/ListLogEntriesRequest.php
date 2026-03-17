@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parameters to `ListLogEntries`.
@@ -122,7 +122,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type string[] $resource_names
      *           Required. Names of one or more parent resources from which to
      *           retrieve log entries:
      *           *  `projects/[PROJECT_ID]`
@@ -182,7 +182,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 resources may be specified in a single request.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceNames()
     {
@@ -205,7 +205,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 resources may be specified in a single request.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceNames($var)

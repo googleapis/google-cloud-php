@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A certificate managed by App Engine.
@@ -19,7 +19,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Time at which the certificate was last renewed. The renewal process is
      * fully managed. Certificate renewal will automatically occur before the
      * certificate expires. Renewal errors can be tracked via `ManagementStatus`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_renewal_time = 1;</code>
      */
@@ -27,7 +27,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Status of certificate management. Refers to the most recent certificate
      * acquisition or renewal attempt.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.appengine.v1.ManagementStatus status = 2;</code>
      */
@@ -43,11 +43,11 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      *           Time at which the certificate was last renewed. The renewal process is
      *           fully managed. Certificate renewal will automatically occur before the
      *           certificate expires. Renewal errors can be tracked via `ManagementStatus`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type int $status
      *           Status of certificate management. Refers to the most recent certificate
      *           acquisition or renewal attempt.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -59,7 +59,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Time at which the certificate was last renewed. The renewal process is
      * fully managed. Certificate renewal will automatically occur before the
      * certificate expires. Renewal errors can be tracked via `ManagementStatus`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_renewal_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -83,7 +83,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      * Time at which the certificate was last renewed. The renewal process is
      * fully managed. Certificate renewal will automatically occur before the
      * certificate expires. Renewal errors can be tracked via `ManagementStatus`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_renewal_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -100,7 +100,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Status of certificate management. Refers to the most recent certificate
      * acquisition or renewal attempt.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.appengine.v1.ManagementStatus status = 2;</code>
      * @return int
@@ -113,7 +113,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
     /**
      * Status of certificate management. Refers to the most recent certificate
      * acquisition or renewal attempt.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.appengine.v1.ManagementStatus status = 2;</code>
      * @param int $var

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An additional, user-created field on an entity.
@@ -99,7 +99,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
      *           Required. The data type of the `CustomField`.
      *     @type int $visibility
      *           Required. The visibility of the `CustomField`.
-     *     @type array<\Google\Ads\AdManager\V1\CustomFieldOption>|\Google\Protobuf\Internal\RepeatedField $options
+     *     @type \Google\Ads\AdManager\V1\CustomFieldOption[] $options
      *           Optional. The drop-down options for the `CustomField`.
      *           Only applicable for `CustomField` with the drop-down data type.
      * }
@@ -398,7 +398,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
      * Only applicable for `CustomField` with the drop-down data type.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldOption options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomFieldOption>
      */
     public function getOptions()
     {
@@ -410,7 +410,7 @@ class CustomField extends \Google\Protobuf\Internal\Message
      * Only applicable for `CustomField` with the drop-down data type.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomFieldOption options = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomFieldOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomFieldOption[] $var
      * @return $this
      */
     public function setOptions($var)

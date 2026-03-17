@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListManagedFolders.
@@ -35,7 +35,7 @@ class ListManagedFoldersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Storage\Control\V2\ManagedFolder>|\Google\Protobuf\Internal\RepeatedField $managed_folders
+     *     @type \Google\Cloud\Storage\Control\V2\ManagedFolder[] $managed_folders
      *           The list of matching managed folders
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -51,7 +51,7 @@ class ListManagedFoldersResponse extends \Google\Protobuf\Internal\Message
      * The list of matching managed folders
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.ManagedFolder managed_folders = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Storage\Control\V2\ManagedFolder>
      */
     public function getManagedFolders()
     {
@@ -62,7 +62,7 @@ class ListManagedFoldersResponse extends \Google\Protobuf\Internal\Message
      * The list of matching managed folders
      *
      * Generated from protobuf field <code>repeated .google.storage.control.v2.ManagedFolder managed_folders = 1;</code>
-     * @param array<\Google\Cloud\Storage\Control\V2\ManagedFolder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Storage\Control\V2\ManagedFolder[] $var
      * @return $this
      */
     public function setManagedFolders($var)

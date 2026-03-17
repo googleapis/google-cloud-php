@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The user workloads ConfigMaps for a given environment.
@@ -34,7 +34,7 @@ class ListUserWorkloadsConfigMapsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap>|\Google\Protobuf\Internal\RepeatedField $user_workloads_config_maps
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap[] $user_workloads_config_maps
      *           The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.
      *     @type string $next_page_token
      *           The page token used to query for the next page if one exists.
@@ -49,7 +49,7 @@ class ListUserWorkloadsConfigMapsResponse extends \Google\Protobuf\Internal\Mess
      * The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.UserWorkloadsConfigMap user_workloads_config_maps = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap>
      */
     public function getUserWorkloadsConfigMaps()
     {
@@ -60,7 +60,7 @@ class ListUserWorkloadsConfigMapsResponse extends \Google\Protobuf\Internal\Mess
      * The list of ConfigMaps returned by a ListUserWorkloadsConfigMapsRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.UserWorkloadsConfigMap user_workloads_config_maps = 1;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\UserWorkloadsConfigMap[] $var
      * @return $this
      */
     public function setUserWorkloadsConfigMaps($var)

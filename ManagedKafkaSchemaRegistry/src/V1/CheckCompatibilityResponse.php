@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for CheckCompatibility.
@@ -38,7 +38,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      *     @type bool $is_compatible
      *           The compatibility check result. If true, the schema is compatible with the
      *           resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type string[] $messages
      *           Failure reasons if verbose = true.
      * }
      */
@@ -79,7 +79,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * Failure reasons if verbose = true.
      *
      * Generated from protobuf field <code>repeated string messages = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMessages()
     {
@@ -90,7 +90,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * Failure reasons if verbose = true.
      *
      * Generated from protobuf field <code>repeated string messages = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMessages($var)

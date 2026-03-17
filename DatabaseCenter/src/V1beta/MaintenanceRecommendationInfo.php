@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Info associated with maintenance recommendation.
@@ -29,7 +29,7 @@ class MaintenanceRecommendationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule>|\Google\Protobuf\Internal\RepeatedField $resource_maintenance_schedules
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule[] $resource_maintenance_schedules
      *           Optional. List of recommended maintenance schedules for the database
      *           resource.
      * }
@@ -44,7 +44,7 @@ class MaintenanceRecommendationInfo extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceMaintenanceSchedule resource_maintenance_schedules = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule>
      */
     public function getResourceMaintenanceSchedules()
     {
@@ -56,7 +56,7 @@ class MaintenanceRecommendationInfo extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceMaintenanceSchedule resource_maintenance_schedules = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule[] $var
      * @return $this
      */
     public function setResourceMaintenanceSchedules($var)

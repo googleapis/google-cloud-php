@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PhraseSet for biasing in speech recognition. A PhraseSet is used to provide
@@ -137,7 +137,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/locations/{location}/phraseSets/{phrase_set}`.
      *     @type string $uid
      *           Output only. System-assigned unique identifier for the PhraseSet.
-     *     @type array<\Google\Cloud\Speech\V2\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type \Google\Cloud\Speech\V2\PhraseSet\Phrase[] $phrases
      *           A list of word and phrases.
      *     @type float $boost
      *           Hint Boost. Positive value will increase the probability that a specific
@@ -245,7 +245,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * A list of word and phrases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.PhraseSet.Phrase phrases = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\PhraseSet\Phrase>
      */
     public function getPhrases()
     {
@@ -256,7 +256,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * A list of word and phrases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.PhraseSet.Phrase phrases = 3;</code>
-     * @param array<\Google\Cloud\Speech\V2\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\PhraseSet\Phrase[] $var
      * @return $this
      */
     public function setPhrases($var)

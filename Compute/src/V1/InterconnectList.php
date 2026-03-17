@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to the list request, and contains a list of interconnects.
@@ -64,7 +64,7 @@ class InterconnectList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\Interconnect>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\Interconnect[] $items
      *           A list of Interconnect resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Alwayscompute#interconnectList for lists of interconnects.
@@ -125,7 +125,7 @@ class InterconnectList extends \Google\Protobuf\Internal\Message
      * A list of Interconnect resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Interconnect items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Interconnect>
      */
     public function getItems()
     {
@@ -136,7 +136,7 @@ class InterconnectList extends \Google\Protobuf\Internal\Message
      * A list of Interconnect resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Interconnect items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\Interconnect>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Interconnect[] $var
      * @return $this
      */
     public function setItems($var)

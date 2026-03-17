@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [PartitionQuery][google.spanner.v1.Spanner.PartitionQuery]
@@ -35,7 +35,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $partitions
+     *     @type \Google\Cloud\Spanner\V1\Partition[] $partitions
      *           Partitions created by this request.
      *     @type \Google\Cloud\Spanner\V1\Transaction $transaction
      *           Transaction created by this request.
@@ -50,7 +50,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      * Partitions created by this request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Partition partitions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Partition>
      */
     public function getPartitions()
     {
@@ -61,7 +61,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      * Partitions created by this request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Partition partitions = 1;</code>
-     * @param array<\Google\Cloud\Spanner\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Partition[] $var
      * @return $this
      */
     public function setPartitions($var)

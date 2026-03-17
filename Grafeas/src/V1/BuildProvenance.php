@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provenance of a build. Contains all information needed to verify the full
@@ -108,9 +108,9 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *           Required. Unique identifier of the build.
      *     @type string $project_id
      *           ID of the project.
-     *     @type array<\Grafeas\V1\Command>|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type \Grafeas\V1\Command[] $commands
      *           Commands requested by the build.
-     *     @type array<\Grafeas\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $built_artifacts
+     *     @type \Grafeas\V1\Artifact[] $built_artifacts
      *           Output of the build.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Time at which the build was created.
@@ -196,7 +196,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Commands requested by the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Command commands = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Command>
      */
     public function getCommands()
     {
@@ -207,7 +207,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Commands requested by the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Command commands = 3;</code>
-     * @param array<\Grafeas\V1\Command>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Command[] $var
      * @return $this
      */
     public function setCommands($var)
@@ -222,7 +222,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Output of the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Artifact built_artifacts = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Artifact>
      */
     public function getBuiltArtifacts()
     {
@@ -233,7 +233,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Output of the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Artifact built_artifacts = 4;</code>
-     * @param array<\Grafeas\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Artifact[] $var
      * @return $this
      */
     public function setBuiltArtifacts($var)

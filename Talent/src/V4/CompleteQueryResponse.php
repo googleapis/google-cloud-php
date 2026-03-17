@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of auto-complete query.
@@ -35,7 +35,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $completion_results
+     *     @type \Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult[] $completion_results
      *           Results of the matching job/company candidates.
      *     @type \Google\Cloud\Talent\V4\ResponseMetadata $metadata
      *           Additional information for the API invocation, such as the request
@@ -51,7 +51,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Results of the matching job/company candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompleteQueryResponse.CompletionResult completion_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult>
      */
     public function getCompletionResults()
     {
@@ -62,7 +62,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Results of the matching job/company candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompleteQueryResponse.CompletionResult completion_results = 1;</code>
-     * @param array<\Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult[] $var
      * @return $this
      */
     public function setCompletionResults($var)

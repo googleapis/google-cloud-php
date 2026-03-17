@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -105,7 +105,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $entity_id_field
      *           Source column that holds entity IDs. If not provided, entity IDs are
      *           extracted from the column named entity_id.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec>|\Google\Protobuf\Internal\RepeatedField $feature_specs
+     *     @type \Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec[] $feature_specs
      *           Required. Specifications defining which Feature values to import from the
      *           entity. The request fails if no feature_specs are provided, and having
      *           multiple feature_specs for one Feature is not allowed.
@@ -340,7 +340,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * multiple feature_specs for one Feature is not allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportFeatureValuesRequest.FeatureSpec feature_specs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec>
      */
     public function getFeatureSpecs()
     {
@@ -353,7 +353,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * multiple feature_specs for one Feature is not allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportFeatureValuesRequest.FeatureSpec feature_specs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec[] $var
      * @return $this
      */
     public function setFeatureSpecs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about vulnerable or missing HTTP Headers.
@@ -34,9 +34,9 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type \Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header[] $headers
      *           List of vulnerable headers.
-     *     @type array<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $missing_headers
+     *     @type \Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header[] $missing_headers
      *           List of missing headers.
      * }
      */
@@ -49,7 +49,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of vulnerable headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.VulnerableHeaders.Header headers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>
      */
     public function getHeaders()
     {
@@ -60,7 +60,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of vulnerable headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.VulnerableHeaders.Header headers = 1;</code>
-     * @param array<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header[] $var
      * @return $this
      */
     public function setHeaders($var)
@@ -75,7 +75,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of missing headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.VulnerableHeaders.Header missing_headers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>
      */
     public function getMissingHeaders()
     {
@@ -86,7 +86,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of missing headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.VulnerableHeaders.Header missing_headers = 2;</code>
-     * @param array<\Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders\Header[] $var
      * @return $this
      */
     public function setMissingHeaders($var)

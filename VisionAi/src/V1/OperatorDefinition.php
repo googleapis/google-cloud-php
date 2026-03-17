@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the interface of an Operator.
@@ -72,11 +72,11 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      *           The name of this operator.
      *           Tentatively [A-Z][a-zA-Z0-9]*, e.g., BboxCounter, PetDetector,
      *           PetDetector1.
-     *     @type array<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>|\Google\Protobuf\Internal\RepeatedField $input_args
+     *     @type \Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition[] $input_args
      *           Declares input arguments.
-     *     @type array<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>|\Google\Protobuf\Internal\RepeatedField $output_args
+     *     @type \Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition[] $output_args
      *           Declares output arguments.
-     *     @type array<\Google\Cloud\VisionAI\V1\OperatorDefinition\AttributeDefinition>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Cloud\VisionAI\V1\OperatorDefinition\AttributeDefinition[] $attributes
      *           Declares the attributes.
      *     @type \Google\Cloud\VisionAI\V1\ResourceSpecification $resources
      *           The resources for running the operator.
@@ -125,7 +125,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares input arguments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.ArgumentDefinition input_args = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>
      */
     public function getInputArgs()
     {
@@ -136,7 +136,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares input arguments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.ArgumentDefinition input_args = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition[] $var
      * @return $this
      */
     public function setInputArgs($var)
@@ -151,7 +151,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares output arguments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.ArgumentDefinition output_args = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>
      */
     public function getOutputArgs()
     {
@@ -162,7 +162,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares output arguments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.ArgumentDefinition output_args = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OperatorDefinition\ArgumentDefinition[] $var
      * @return $this
      */
     public function setOutputArgs($var)
@@ -177,7 +177,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares the attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.AttributeDefinition attributes = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\OperatorDefinition\AttributeDefinition>
      */
     public function getAttributes()
     {
@@ -188,7 +188,7 @@ class OperatorDefinition extends \Google\Protobuf\Internal\Message
      * Declares the attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.OperatorDefinition.AttributeDefinition attributes = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\OperatorDefinition\AttributeDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\OperatorDefinition\AttributeDefinition[] $var
      * @return $this
      */
     public function setAttributes($var)

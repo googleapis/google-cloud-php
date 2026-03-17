@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for "LivestreamService.ListClips".
@@ -40,11 +40,11 @@ class ListClipsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\Clip>|\Google\Protobuf\Internal\RepeatedField $clips
+     *     @type \Google\Cloud\Video\LiveStream\V1\Clip[] $clips
      *           The list of Clip
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListClipsResponse extends \Google\Protobuf\Internal\Message
      * The list of Clip
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip clips = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\Clip>
      */
     public function getClips()
     {
@@ -68,7 +68,7 @@ class ListClipsResponse extends \Google\Protobuf\Internal\Message
      * The list of Clip
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Clip clips = 1;</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\Clip>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\Clip[] $var
      * @return $this
      */
     public function setClips($var)
@@ -109,7 +109,7 @@ class ListClipsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListClipsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

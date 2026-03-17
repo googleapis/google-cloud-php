@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AzureVmDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message describing a data disk.
@@ -132,5 +132,4 @@ class Disk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

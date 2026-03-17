@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CVE stands for Common Vulnerabilities and Exposures.
@@ -84,7 +84,7 @@ class Cve extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The unique identifier for the vulnerability. e.g. CVE-2021-34527
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Reference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\SecurityCenter\V1\Reference[] $references
      *           Additional information about the CVE.
      *           e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      *     @type \Google\Cloud\SecurityCenter\V1\Cvssv3 $cvssv3
@@ -141,7 +141,7 @@ class Cve extends \Google\Protobuf\Internal\Message
      * e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Reference references = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Reference>
      */
     public function getReferences()
     {
@@ -153,7 +153,7 @@ class Cve extends \Google\Protobuf\Internal\Message
      * e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Reference references = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Reference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Reference[] $var
      * @return $this
      */
     public function setReferences($var)

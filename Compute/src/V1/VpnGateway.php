@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a HA VPN gateway.
@@ -185,7 +185,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *           The stack type for this VPN gateway to identify the IP protocols that are
      *           enabled. Possible values are: IPV4_ONLY,IPV4_IPV6, IPV6_ONLY. If not specified,IPV4_ONLY is used if the gateway IP version isIPV4, or IPV4_IPV6 if the gateway IP version isIPV6.
      *           Check the StackType enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $vpn_interfaces
+     *     @type \Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface[] $vpn_interfaces
      *           The list of VPN interfaces associated with this VPN gateway.
      * }
      */
@@ -704,7 +704,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      * The list of VPN interfaces associated with this VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayVpnGatewayInterface vpn_interfaces = 91842181;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>
      */
     public function getVpnInterfaces()
     {
@@ -715,7 +715,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      * The list of VPN interfaces associated with this VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayVpnGatewayInterface vpn_interfaces = 91842181;</code>
-     * @param array<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface[] $var
      * @return $this
      */
     public function setVpnInterfaces($var)

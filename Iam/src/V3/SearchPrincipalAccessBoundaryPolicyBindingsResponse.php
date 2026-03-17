@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for SearchPrincipalAccessBoundaryPolicyBindings rpc.
@@ -35,7 +35,7 @@ class SearchPrincipalAccessBoundaryPolicyBindingsResponse extends \Google\Protob
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Iam\V3\PolicyBinding>|\Google\Protobuf\Internal\RepeatedField $policy_bindings
+     *     @type \Google\Cloud\Iam\V3\PolicyBinding[] $policy_bindings
      *           The policy bindings that reference the specified policy.
      *     @type string $next_page_token
      *           Optional. A token, which can be sent as `page_token` to retrieve the next
@@ -51,7 +51,7 @@ class SearchPrincipalAccessBoundaryPolicyBindingsResponse extends \Google\Protob
      * The policy bindings that reference the specified policy.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PolicyBinding policy_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iam\V3\PolicyBinding>
      */
     public function getPolicyBindings()
     {
@@ -62,7 +62,7 @@ class SearchPrincipalAccessBoundaryPolicyBindingsResponse extends \Google\Protob
      * The policy bindings that reference the specified policy.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PolicyBinding policy_bindings = 1;</code>
-     * @param array<\Google\Cloud\Iam\V3\PolicyBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iam\V3\PolicyBinding[] $var
      * @return $this
      */
     public function setPolicyBindings($var)

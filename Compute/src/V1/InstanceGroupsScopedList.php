@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -35,7 +35,7 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $instance_groups
+     *     @type \Google\Cloud\Compute\V1\InstanceGroup[] $instance_groups
      *           Output only. [Output Only] The list ofinstance
      *           groups that are contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -53,7 +53,7 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
      * groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup instance_groups = 366469310;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InstanceGroup>
      */
     public function getInstanceGroups()
     {
@@ -65,7 +65,7 @@ class InstanceGroupsScopedList extends \Google\Protobuf\Internal\Message
      * groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup instance_groups = 366469310;</code>
-     * @param array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InstanceGroup[] $var
      * @return $this
      */
     public function setInstanceGroups($var)

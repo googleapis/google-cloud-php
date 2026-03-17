@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -59,7 +59,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      *           Required. The name of the parent ModelEvaluation resource.
      *           Format:
      *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $model_evaluation_slices
+     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $model_evaluation_slices
      *           Required. Model evaluation slice resource to be imported.
      * }
      */
@@ -102,7 +102,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      * Required. Model evaluation slice resource to be imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>
      */
     public function getModelEvaluationSlices()
     {
@@ -113,7 +113,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      * Required. Model evaluation slice resource to be imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[] $var
      * @return $this
      */
     public function setModelEvaluationSlices($var)

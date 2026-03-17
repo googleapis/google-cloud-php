@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This operation resource represents operations that may have happened or are
@@ -185,10 +185,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type \Google\Cloud\Container\V1\OperationProgress $progress
      *           Output only. Progress information for an operation.
-     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
+     *     @type \Google\Cloud\Container\V1\StatusCondition[] $cluster_conditions
      *           Which conditions caused the current cluster state.
      *           Deprecated. Use field error instead.
-     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
+     *     @type \Google\Cloud\Container\V1\StatusCondition[] $nodepool_conditions
      *           Which conditions caused the current node pool state.
      *           Deprecated. Use field error instead.
      *     @type \Google\Rpc\Status $error
@@ -581,7 +581,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\StatusCondition>
      * @deprecated
      */
     public function getClusterConditions()
@@ -597,7 +597,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\StatusCondition[] $var
      * @return $this
      * @deprecated
      */
@@ -617,7 +617,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\StatusCondition>
      * @deprecated
      */
     public function getNodepoolConditions()
@@ -633,7 +633,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\StatusCondition[] $var
      * @return $this
      * @deprecated
      */

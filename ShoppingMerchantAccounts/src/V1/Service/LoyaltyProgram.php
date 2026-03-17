@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Loyalty program](https://support.google.com/merchants/answer/12922446)
@@ -41,7 +41,7 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      *           This is the loyalty program label set in your loyalty program settings in
      *           Merchant Center. This sub-attribute allows Google to map your loyalty
      *           program to eligible offers.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\Service\LoyaltyProgram\LoyaltyProgramTiers>|\Google\Protobuf\Internal\RepeatedField $loyalty_program_tiers
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Service\LoyaltyProgram\LoyaltyProgramTiers[] $loyalty_program_tiers
      *           Optional. Loyalty program tier of this shipping service.
      * }
      */
@@ -94,7 +94,7 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      * Optional. Loyalty program tier of this shipping service.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Service.LoyaltyProgram.LoyaltyProgramTiers loyalty_program_tiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\Service\LoyaltyProgram\LoyaltyProgramTiers>
      */
     public function getLoyaltyProgramTiers()
     {
@@ -105,7 +105,7 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
      * Optional. Loyalty program tier of this shipping service.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Service.LoyaltyProgram.LoyaltyProgramTiers loyalty_program_tiers = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\Service\LoyaltyProgram\LoyaltyProgramTiers>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\Service\LoyaltyProgram\LoyaltyProgramTiers[] $var
      * @return $this
      */
     public function setLoyaltyProgramTiers($var)
@@ -117,5 +117,4 @@ class LoyaltyProgram extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

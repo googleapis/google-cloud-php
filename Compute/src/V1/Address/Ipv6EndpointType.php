@@ -61,4 +61,3 @@ class Ipv6EndpointType
     }
 }
 
-

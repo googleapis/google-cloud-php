@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an item in the cart associated with the event.
@@ -65,7 +65,7 @@ class Item extends \Google\Protobuf\Internal\Message
      *           discounts.
      *     @type string $item_id
      *           Optional. A unique identifier to reference the item.
-     *     @type array<\Google\Ads\DataManager\V1\ItemParameter>|\Google\Protobuf\Internal\RepeatedField $additional_item_parameters
+     *     @type \Google\Ads\DataManager\V1\ItemParameter[] $additional_item_parameters
      *           Optional. A bucket of any [event parameters related to an
      *           item](https://developers.google.com/analytics/devguides/collection/protocol/ga4/reference/events)
      *           to be included within the event that were not already specified using other
@@ -190,7 +190,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * structured fields.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemParameter additional_item_parameters = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\ItemParameter>
      */
     public function getAdditionalItemParameters()
     {
@@ -204,7 +204,7 @@ class Item extends \Google\Protobuf\Internal\Message
      * structured fields.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.ItemParameter additional_item_parameters = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\ItemParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\ItemParameter[] $var
      * @return $this
      */
     public function setAdditionalItemParameters($var)

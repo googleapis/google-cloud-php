@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1\VulnerableHeaders;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a HTTP Header.
@@ -98,5 +98,4 @@ class Header extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

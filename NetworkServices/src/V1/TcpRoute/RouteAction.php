@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\TcpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specifications for routing traffic and applying associated policies.
@@ -48,7 +48,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\TcpRoute\RouteDestination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\NetworkServices\V1\TcpRoute\RouteDestination[] $destinations
      *           Optional. The destination services to which traffic should be forwarded.
      *           At least one destination service is required. Only one of route
      *           destination or original destination can be set.
@@ -75,7 +75,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * destination or original destination can be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TcpRoute.RouteDestination destinations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\TcpRoute\RouteDestination>
      */
     public function getDestinations()
     {
@@ -88,7 +88,7 @@ class RouteAction extends \Google\Protobuf\Internal\Message
      * destination or original destination can be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.TcpRoute.RouteDestination destinations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\TcpRoute\RouteDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\TcpRoute\RouteDestination[] $var
      * @return $this
      */
     public function setDestinations($var)
@@ -174,5 +174,4 @@ class RouteAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

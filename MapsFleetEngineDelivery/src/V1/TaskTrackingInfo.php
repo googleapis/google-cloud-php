@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `TaskTrackingInfo` message. The message contains task tracking
@@ -134,7 +134,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      *           ',', or '#'.
      *     @type \Google\Maps\FleetEngine\Delivery\V1\DeliveryVehicleLocation $vehicle_location
      *           The vehicle's last location.
-     *     @type array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $route_polyline_points
+     *     @type \Google\Type\LatLng[] $route_polyline_points
      *           A list of points which when connected forms a polyline of the vehicle's
      *           expected route to the location of this task.
      *     @type \Google\Protobuf\Int32Value $remaining_stop_count
@@ -159,7 +159,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      *           Immutable. The location where the Task will be completed.
      *     @type \Google\Maps\FleetEngine\Delivery\V1\TimeWindow $target_time_window
      *           The time window during which the task should be completed.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\TaskAttribute[] $attributes
      *           The custom attributes set on the task.
      * }
      */
@@ -275,7 +275,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      * expected route to the location of this task.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng route_polyline_points = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Type\LatLng>
      */
     public function getRoutePolylinePoints()
     {
@@ -287,7 +287,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      * expected route to the location of this task.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng route_polyline_points = 4;</code>
-     * @param array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Type\LatLng[] $var
      * @return $this
      */
     public function setRoutePolylinePoints($var)
@@ -672,7 +672,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      * The custom attributes set on the task.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.TaskAttribute attributes = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>
      */
     public function getAttributes()
     {
@@ -683,7 +683,7 @@ class TaskTrackingInfo extends \Google\Protobuf\Internal\Message
      * The custom attributes set on the task.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.TaskAttribute attributes = 14;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\TaskAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

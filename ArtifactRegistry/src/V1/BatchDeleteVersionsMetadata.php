@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata of an LRO from deleting multiple versions.
@@ -28,7 +28,7 @@ class BatchDeleteVersionsMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_versions
+     *     @type string[] $failed_versions
      *           The versions the operation failed to delete.
      * }
      */
@@ -41,7 +41,7 @@ class BatchDeleteVersionsMetadata extends \Google\Protobuf\Internal\Message
      * The versions the operation failed to delete.
      *
      * Generated from protobuf field <code>repeated string failed_versions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedVersions()
     {
@@ -52,7 +52,7 @@ class BatchDeleteVersionsMetadata extends \Google\Protobuf\Internal\Message
      * The versions the operation failed to delete.
      *
      * Generated from protobuf field <code>repeated string failed_versions = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedVersions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * HTTPGetAction describes an action based on HTTP Get requests.
@@ -45,7 +45,7 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      *
      *     @type string $path
      *           Optional. Path to access on the HTTP server. Defaults to '/'.
-     *     @type array<\Google\Cloud\Run\V2\HTTPHeader>|\Google\Protobuf\Internal\RepeatedField $http_headers
+     *     @type \Google\Cloud\Run\V2\HTTPHeader[] $http_headers
      *           Optional. Custom headers to set in the request. HTTP allows repeated
      *           headers.
      *     @type int $port
@@ -90,7 +90,7 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      * headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\HTTPHeader>
      */
     public function getHttpHeaders()
     {
@@ -102,7 +102,7 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      * headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.HTTPHeader http_headers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Run\V2\HTTPHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\HTTPHeader[] $var
      * @return $this
      */
     public function setHttpHeaders($var)

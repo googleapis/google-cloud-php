@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response Message for listing Prebuilt Processors.
@@ -28,7 +28,7 @@ class ListPrebuiltProcessorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Processor>|\Google\Protobuf\Internal\RepeatedField $processors
+     *     @type \Google\Cloud\VisionAI\V1\Processor[] $processors
      *           The list of Processor.
      * }
      */
@@ -41,7 +41,7 @@ class ListPrebuiltProcessorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Processor processors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Processor>
      */
     public function getProcessors()
     {
@@ -52,7 +52,7 @@ class ListPrebuiltProcessorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Processor processors = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Processor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Processor[] $var
      * @return $this
      */
     public function setProcessors($var)

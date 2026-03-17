@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Interconnect Attachment (VLAN) resource.
@@ -548,9 +548,9 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $candidate_customer_router_ipv6_address
      *           Single IPv6 address + prefix length to be configured on the customer router
      *           interface for this interconnect attachment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $candidate_ipv6_subnets
+     *     @type string[] $candidate_ipv6_subnets
      *           This field is not available.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $candidate_subnets
+     *     @type string[] $candidate_subnets
      *           Input only. Up to 16 candidate prefixes that can be used to restrict the allocation
      *           of cloudRouterIpAddress and customerRouterIpAddress for this attachment.
      *           All prefixes must be within link-local address space (169.254.0.0/16) and
@@ -623,7 +623,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      *     @type string $interconnect
      *           URL of the underlying Interconnect object that this attachment's traffic
      *           will traverse through.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ipsec_internal_addresses
+     *     @type string[] $ipsec_internal_addresses
      *           A list of URLs of addresses that have been reserved for the VLAN
      *           attachment. Used only for the VLAN attachment that has the encryption
      *           option as IPSEC. The addresses must be regional internal IP address ranges.
@@ -1117,7 +1117,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * This field is not available.
      *
      * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCandidateIpv6Subnets()
     {
@@ -1128,7 +1128,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * This field is not available.
      *
      * Generated from protobuf field <code>repeated string candidate_ipv6_subnets = 70682522;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCandidateIpv6Subnets($var)
@@ -1149,7 +1149,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * randomly select an unused /29 from all of link-local space.
      *
      * Generated from protobuf field <code>repeated string candidate_subnets = 237842938;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCandidateSubnets()
     {
@@ -1166,7 +1166,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * randomly select an unused /29 from all of link-local space.
      *
      * Generated from protobuf field <code>repeated string candidate_subnets = 237842938;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCandidateSubnets($var)
@@ -1804,7 +1804,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * pool.
      *
      * Generated from protobuf field <code>repeated string ipsec_internal_addresses = 407648565;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpsecInternalAddresses()
     {
@@ -1828,7 +1828,7 @@ class InterconnectAttachment extends \Google\Protobuf\Internal\Message
      * pool.
      *
      * Generated from protobuf field <code>repeated string ipsec_internal_addresses = 407648565;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpsecInternalAddresses($var)

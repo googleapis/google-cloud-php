@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -41,7 +41,7 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\LongRunning\Operation[] $operations
      *           The list of matching instance configuration long-running operations. Each
      *           operation's name will be
      *           prefixed by the name of the instance configuration. The operation's
@@ -66,7 +66,7 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\LongRunning\Operation>
      */
     public function getOperations()
     {
@@ -81,7 +81,7 @@ class ListInstanceConfigOperationsResponse extends \Google\Protobuf\Internal\Mes
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\LongRunning\Operation[] $var
      * @return $this
      */
     public function setOperations($var)

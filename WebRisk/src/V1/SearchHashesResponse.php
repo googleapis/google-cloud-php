@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.webrisk.v1.SearchHashesResponse</code>
@@ -34,7 +34,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash>|\Google\Protobuf\Internal\RepeatedField $threats
+     *     @type \Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash[] $threats
      *           The full hashes that matched the requested prefixes.
      *           The hash will be populated in the key.
      *     @type \Google\Protobuf\Timestamp $negative_expire_time
@@ -52,7 +52,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * The hash will be populated in the key.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.SearchHashesResponse.ThreatHash threats = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash>
      */
     public function getThreats()
     {
@@ -64,7 +64,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * The hash will be populated in the key.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.SearchHashesResponse.ThreatHash threats = 1;</code>
-     * @param array<\Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash[] $var
      * @return $this
      */
     public function setThreats($var)

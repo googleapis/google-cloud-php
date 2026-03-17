@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\WebDetection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Label to provide extra metadata for the web detection.
@@ -106,5 +106,4 @@ class WebLabel extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

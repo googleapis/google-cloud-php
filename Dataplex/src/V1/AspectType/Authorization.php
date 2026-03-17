@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\AspectType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Authorization for an AspectType.
@@ -72,5 +72,4 @@ class Authorization extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

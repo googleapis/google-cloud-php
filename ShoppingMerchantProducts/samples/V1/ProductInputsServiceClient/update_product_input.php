@@ -30,6 +30,8 @@ use Google\Shopping\Merchant\Products\V1\UpdateProductInputRequest;
 
 /**
  * Updates the existing product input in your Merchant Center account.
+ * The name of the product input to update is taken from the `name` field
+ * within the `ProductInput` resource.
  *
  * After inserting, updating, or deleting a product input, it may take several
  * minutes before the processed product can be retrieved.

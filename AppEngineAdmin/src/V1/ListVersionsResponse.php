@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `Versions.ListVersions`.
@@ -34,7 +34,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\Version>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type \Google\Cloud\AppEngine\V1\Version[] $versions
      *           The versions belonging to the requested service.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -49,7 +49,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * The versions belonging to the requested service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Version versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\Version>
      */
     public function getVersions()
     {
@@ -60,7 +60,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * The versions belonging to the requested service.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Version versions = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\Version>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\Version[] $var
      * @return $this
      */
     public function setVersions($var)

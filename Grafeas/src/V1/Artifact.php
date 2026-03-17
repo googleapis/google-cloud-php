@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Artifact describes a build product.
@@ -24,7 +24,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
     protected $checksum = '';
     /**
      * Artifact ID, if any; for container images, this will be a URL by digest
-     * like `gcr.io/projectID/imagename&#64;sha256:123456`.
+     * like `gcr.io/projectID/imagename\@sha256:123456`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      */
@@ -51,8 +51,8 @@ class Artifact extends \Google\Protobuf\Internal\Message
      *           container.
      *     @type string $id
      *           Artifact ID, if any; for container images, this will be a URL by digest
-     *           like `gcr.io/projectID/imagename&#64;sha256:123456`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *           like `gcr.io/projectID/imagename\@sha256:123456`.
+     *     @type string[] $names
      *           Related artifact names. This may be the path to a binary or jar file, or in
      *           the case of a container build, the name used to push the container image to
      *           Google Container Registry, as presented to `docker push`. Note that a
@@ -95,7 +95,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
 
     /**
      * Artifact ID, if any; for container images, this will be a URL by digest
-     * like `gcr.io/projectID/imagename&#64;sha256:123456`.
+     * like `gcr.io/projectID/imagename\@sha256:123456`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @return string
@@ -107,7 +107,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
 
     /**
      * Artifact ID, if any; for container images, this will be a URL by digest
-     * like `gcr.io/projectID/imagename&#64;sha256:123456`.
+     * like `gcr.io/projectID/imagename\@sha256:123456`.
      *
      * Generated from protobuf field <code>string id = 2;</code>
      * @param string $var
@@ -129,7 +129,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      * applied to one image.
      *
      * Generated from protobuf field <code>repeated string names = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -144,7 +144,7 @@ class Artifact extends \Google\Protobuf\Internal\Message
      * applied to one image.
      *
      * Generated from protobuf field <code>repeated string names = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

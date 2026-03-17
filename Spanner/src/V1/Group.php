@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `Group` represents a paxos group in a database. A group is a set of
@@ -60,7 +60,7 @@ class Group extends \Google\Protobuf\Internal\Message
      *     @type int|string $group_uid
      *           The UID of the paxos group, unique within the database. Matches the
      *           `group_uid` field in `Range`.
-     *     @type array<\Google\Cloud\Spanner\V1\Tablet>|\Google\Protobuf\Internal\RepeatedField $tablets
+     *     @type \Google\Cloud\Spanner\V1\Tablet[] $tablets
      *           A list of tablets that are part of the group. Note that this list may not
      *           be exhaustive; it will only include tablets the server considers useful
      *           to the client. The returned list is ordered ascending by distance.
@@ -116,7 +116,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * Tablet UIDs reference `Tablet.tablet_uid`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Tablet tablets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Tablet>
      */
     public function getTablets()
     {
@@ -130,7 +130,7 @@ class Group extends \Google\Protobuf\Internal\Message
      * Tablet UIDs reference `Tablet.tablet_uid`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Tablet tablets = 2;</code>
-     * @param array<\Google\Cloud\Spanner\V1\Tablet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Tablet[] $var
      * @return $this
      */
     public function setTablets($var)

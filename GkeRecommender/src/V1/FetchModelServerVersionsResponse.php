@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class FetchModelServerVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $model_server_versions
+     *     @type string[] $model_server_versions
      *           Output only. A list of available model server versions.
      *     @type string $next_page_token
      *           Output only. A token which may be sent as
@@ -58,7 +58,7 @@ class FetchModelServerVersionsResponse extends \Google\Protobuf\Internal\Message
      * Output only. A list of available model server versions.
      *
      * Generated from protobuf field <code>repeated string model_server_versions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getModelServerVersions()
     {
@@ -69,7 +69,7 @@ class FetchModelServerVersionsResponse extends \Google\Protobuf\Internal\Message
      * Output only. A list of available model server versions.
      *
      * Generated from protobuf field <code>repeated string model_server_versions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setModelServerVersions($var)

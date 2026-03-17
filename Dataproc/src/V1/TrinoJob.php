@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc job for running [Trino](https://trino.io/) queries.
@@ -73,7 +73,7 @@ class TrinoJob extends \Google\Protobuf\Internal\Message
      *     @type string $output_format
      *           Optional. The format in which query output will be displayed. See the
      *           Trino documentation for supported output formats
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $client_tags
+     *     @type string[] $client_tags
      *           Optional. Trino client tags to attach to this query
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values. Used to set Trino
@@ -212,7 +212,7 @@ class TrinoJob extends \Google\Protobuf\Internal\Message
      * Optional. Trino client tags to attach to this query
      *
      * Generated from protobuf field <code>repeated string client_tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClientTags()
     {
@@ -223,7 +223,7 @@ class TrinoJob extends \Google\Protobuf\Internal\Message
      * Optional. Trino client tags to attach to this query
      *
      * Generated from protobuf field <code>repeated string client_tags = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClientTags($var)

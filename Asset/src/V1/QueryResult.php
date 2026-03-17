@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execution results of the query.
@@ -49,7 +49,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Protobuf\Struct[] $rows
      *           Each row hold a query result in the format of `Struct`.
      *     @type \Google\Cloud\Asset\V1\TableSchema $schema
      *           Describes the format of the [rows].
@@ -68,7 +68,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Each row hold a query result in the format of `Struct`.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct rows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getRows()
     {
@@ -79,7 +79,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Each row hold a query result in the format of `Struct`.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct rows = 1;</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setRows($var)

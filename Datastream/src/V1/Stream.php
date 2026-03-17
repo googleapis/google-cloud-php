@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource representing streaming data from a source to a destination.
@@ -126,7 +126,7 @@ class Stream extends \Google\Protobuf\Internal\Message
      *           configuration. Specific objects can be excluded.
      *     @type \Google\Cloud\Datastream\V1\Stream\BackfillNoneStrategy $backfill_none
      *           Do not automatically backfill any objects.
-     *     @type array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Datastream\V1\Error[] $errors
      *           Output only. Errors on the Stream.
      *     @type string $customer_managed_encryption_key
      *           Immutable. A reference to a KMS encryption key.
@@ -463,7 +463,7 @@ class Stream extends \Google\Protobuf\Internal\Message
      * Output only. Errors on the Stream.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Error>
      */
     public function getErrors()
     {
@@ -474,7 +474,7 @@ class Stream extends \Google\Protobuf\Internal\Message
      * Output only. Errors on the Stream.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\Error[] $var
      * @return $this
      */
     public function setErrors($var)

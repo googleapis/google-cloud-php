@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListFindings` method.
@@ -35,7 +35,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WebSecurityScanner\V1\Finding>|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type \Google\Cloud\WebSecurityScanner\V1\Finding[] $findings
      *           The list of Findings returned.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -51,7 +51,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * The list of Findings returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.Finding findings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebSecurityScanner\V1\Finding>
      */
     public function getFindings()
     {
@@ -62,7 +62,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * The list of Findings returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.Finding findings = 1;</code>
-     * @param array<\Google\Cloud\WebSecurityScanner\V1\Finding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebSecurityScanner\V1\Finding[] $var
      * @return $this
      */
     public function setFindings($var)

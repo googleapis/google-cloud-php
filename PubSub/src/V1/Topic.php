@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A topic resource.
@@ -44,7 +44,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource name of the Cloud KMS CryptoKey to be used to
      * protect access to messages published on this topic.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -148,7 +148,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     @type string $kms_key_name
      *           Optional. The resource name of the Cloud KMS CryptoKey to be used to
      *           protect access to messages published on this topic.
-     *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *     @type \Google\Cloud\PubSub\V1\SchemaSettings $schema_settings
      *           Optional. Settings for validating messages published against a schema.
      *     @type bool $satisfies_pzs
@@ -168,7 +168,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      *           Output only. An output-only field indicating the state of the topic.
      *     @type \Google\Cloud\PubSub\V1\IngestionDataSourceSettings $ingestion_data_source_settings
      *           Optional. Settings for ingestion from a data source into this topic.
-     *     @type array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $message_transforms
+     *     @type \Google\Cloud\PubSub\V1\MessageTransform[] $message_transforms
      *           Optional. Transforms to be applied to messages published to the topic.
      *           Transforms are applied in the order specified.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
@@ -292,7 +292,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource name of the Cloud KMS CryptoKey to be used to
      * protect access to messages published on this topic.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -305,7 +305,7 @@ class Topic extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The resource name of the Cloud KMS CryptoKey to be used to
      * protect access to messages published on this topic.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -502,7 +502,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\MessageTransform>
      */
     public function getMessageTransforms()
     {
@@ -514,7 +514,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Transforms are applied in the order specified.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.MessageTransform message_transforms = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\MessageTransform>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\MessageTransform[] $var
      * @return $this
      */
     public function setMessageTransforms($var)

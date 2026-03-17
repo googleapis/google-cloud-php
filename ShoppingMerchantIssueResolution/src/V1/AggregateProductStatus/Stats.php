@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Products statistics.
@@ -166,5 +166,4 @@ class Stats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

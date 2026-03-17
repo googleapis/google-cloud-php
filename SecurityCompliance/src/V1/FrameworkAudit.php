@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A framework audit.
@@ -118,9 +118,9 @@ class FrameworkAudit extends \Google\Protobuf\Internal\Message
      *           Output only. The overall compliance state of the audit.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\ReportSummary $report_summary
      *           Output only. The summary of the report.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlGroupAuditDetails>|\Google\Protobuf\Internal\RepeatedField $cloud_control_group_audit_details
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlGroupAuditDetails[] $cloud_control_group_audit_details
      *           Optional. The details for the cloud control groups within this audit.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>|\Google\Protobuf\Internal\RepeatedField $cloud_control_audit_details
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails[] $cloud_control_audit_details
      *           Optional. The details for the cloud controls within this audit.
      *     @type string $operation_id
      *           Output only. The ID of the long-running operation.
@@ -411,7 +411,7 @@ class FrameworkAudit extends \Google\Protobuf\Internal\Message
      * Optional. The details for the cloud control groups within this audit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlGroupAuditDetails cloud_control_group_audit_details = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlGroupAuditDetails>
      */
     public function getCloudControlGroupAuditDetails()
     {
@@ -422,7 +422,7 @@ class FrameworkAudit extends \Google\Protobuf\Internal\Message
      * Optional. The details for the cloud control groups within this audit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlGroupAuditDetails cloud_control_group_audit_details = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlGroupAuditDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlGroupAuditDetails[] $var
      * @return $this
      */
     public function setCloudControlGroupAuditDetails($var)
@@ -437,7 +437,7 @@ class FrameworkAudit extends \Google\Protobuf\Internal\Message
      * Optional. The details for the cloud controls within this audit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlAuditDetails cloud_control_audit_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>
      */
     public function getCloudControlAuditDetails()
     {
@@ -448,7 +448,7 @@ class FrameworkAudit extends \Google\Protobuf\Internal\Message
      * Optional. The details for the cloud controls within this audit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlAuditDetails cloud_control_audit_details = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlAuditDetails[] $var
      * @return $this
      */
     public function setCloudControlAuditDetails($var)

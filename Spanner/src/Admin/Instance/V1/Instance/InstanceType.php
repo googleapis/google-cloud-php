@@ -65,6 +65,3 @@ class InstanceType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstanceType::class, \Google\Cloud\Spanner\Admin\Instance\V1\Instance_InstanceType::class);
-

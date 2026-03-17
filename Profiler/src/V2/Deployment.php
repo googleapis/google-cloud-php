@@ -5,8 +5,8 @@
 namespace Google\Cloud\Profiler\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Deployment contains the deployment identification information.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Manifest configuration.
@@ -96,7 +96,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           manifests are added to the channel, each must have a unique file name.
      *     @type int $type
      *           Required. Type of the manifest, can be `HLS` or `DASH`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type string[] $mux_streams
      *           Required. List of `MuxStream`
      *           [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear
      *           in this manifest.
@@ -202,7 +202,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * - For DASH, only `fmp4` mux streams can be specified.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMuxStreams()
     {
@@ -218,7 +218,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * - For DASH, only `fmp4` mux streams can be specified.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMuxStreams($var)

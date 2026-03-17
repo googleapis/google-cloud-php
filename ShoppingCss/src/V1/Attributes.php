@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attributes for CSS Product.
@@ -213,7 +213,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The cut of the item. It can be used to represent combined size types for
      * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * [size type](https://support.google.com/merchants/answer/6324497).
      *
      * Generated from protobuf field <code>repeated string size_types = 28;</code>
      */
@@ -348,6 +348,43 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.shopping.css.v1.HeadlineOfferSubscriptionCost headline_offer_subscription_cost = 52;</code>
      */
     protected $headline_offer_subscription_cost = null;
+    /**
+     * Number of reviews of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 review_count = 54;</code>
+     */
+    protected $review_count = null;
+    /**
+     * Minimum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 min_rating = 55;</code>
+     */
+    protected $min_rating = null;
+    /**
+     * Maximum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 max_rating = 56;</code>
+     */
+    protected $max_rating = null;
+    /**
+     * Average rating score of the product. The value must be within the
+     * range of [`min_rating`, `max_rating`], inclusive. When displayed on the
+     * product page, this rating is normalized to a scale of [1, 5] with one
+     * decimal place. If provided,
+     * [`review_count`][google.shopping.css.v1.Attributes.review_count],
+     * [`min_rating`][google.shopping.css.v1.Attributes.min_rating], and
+     * [`max_rating`][google.shopping.css.v1.Attributes.max_rating] are also
+     * required. This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional double rating = 57;</code>
+     */
+    protected $rating = null;
 
     /**
      * Constructor.
@@ -382,7 +419,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Title of the item.
      *     @type string $image_link
      *           URL of an image of the item.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_image_links
+     *     @type string[] $additional_image_links
      *           Additional URL of images of the item.
      *     @type string $description
      *           Description of the item.
@@ -397,7 +434,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           Global Trade Item Number
      *           ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the
      *           item.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_types
+     *     @type string[] $product_types
      *           Categories of the item (formatted as in [products data
      *           specification](https://support.google.com/merchants/answer/6324406)).
      *     @type string $google_product_category
@@ -430,13 +467,13 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           [https://support.google.com/merchants/answer/6324492](size definition)).
      *     @type string $size_system
      *           System in which the size is specified. Recommended for apparel items.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $size_types
+     *     @type string[] $size_types
      *           The cut of the item. It can be used to represent combined size types for
      *           apparel items. Maximum two of size types can be provided (see
-     *           [https://support.google.com/merchants/answer/6324497](size type)).
+     *           [size type](https://support.google.com/merchants/answer/6324497).
      *     @type string $item_group_id
      *           Shared identifier for all variants of the same product.
-     *     @type array<\Google\Shopping\Css\V1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $product_details
+     *     @type \Google\Shopping\Css\V1\ProductDetail[] $product_details
      *           Technical specification or additional product details.
      *     @type \Google\Shopping\Css\V1\ProductWeight $product_weight
      *           The weight of the product in the units provided. The value must be
@@ -451,9 +488,9 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           The height of the product in the units provided. The value must be
      *           between
      *           0 (exclusive) and 3000 (inclusive).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_highlights
+     *     @type string[] $product_highlights
      *           Bullet points describing the most relevant highlights of a product.
-     *     @type array<\Google\Shopping\Css\V1\Certification>|\Google\Protobuf\Internal\RepeatedField $certifications
+     *     @type \Google\Shopping\Css\V1\Certification[] $certifications
      *           A list of certificates claimed by the CSS for the given product.
      *     @type \Google\Protobuf\Timestamp $expiration_date
      *           Date on which the item should expire, as specified upon insertion, in
@@ -464,11 +501,11 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *           and might be earlier if `expirationDate` is too far in the future.
      *           Note: It may take 2+ days from the expiration date for the item to
      *           actually get deleted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_destinations
+     *     @type string[] $included_destinations
      *           The list of destinations to include for this target (corresponds to
      *           checked check boxes in Merchant Center). Default destinations are always
      *           included unless provided in `excludedDestinations`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_destinations
+     *     @type string[] $excluded_destinations
      *           The list of destinations to exclude for this target (corresponds to
      *           unchecked check boxes in Merchant Center).
      *     @type string $pause
@@ -488,6 +525,27 @@ class Attributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost $headline_offer_subscription_cost
      *           Number of periods (months or years) and amount of payment per period
      *           for an item with an associated subscription contract.
+     *     @type int|string $review_count
+     *           Number of reviews of the product. Required if
+     *           [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     *           This field is for an upcoming feature and is not yet used.
+     *     @type int|string $min_rating
+     *           Minimum rating score of the product. Required if
+     *           [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     *           This field is for an upcoming feature and is not yet used.
+     *     @type int|string $max_rating
+     *           Maximum rating score of the product. Required if
+     *           [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     *           This field is for an upcoming feature and is not yet used.
+     *     @type float $rating
+     *           Average rating score of the product. The value must be within the
+     *           range of [`min_rating`, `max_rating`], inclusive. When displayed on the
+     *           product page, this rating is normalized to a scale of [1, 5] with one
+     *           decimal place. If provided,
+     *           [`review_count`][google.shopping.css.v1.Attributes.review_count],
+     *           [`min_rating`][google.shopping.css.v1.Attributes.min_rating], and
+     *           [`max_rating`][google.shopping.css.v1.Attributes.max_rating] are also
+     *           required. This field is for an upcoming feature and is not yet used.
      * }
      */
     public function __construct($data = NULL) {
@@ -969,7 +1027,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Additional URL of images of the item.
      *
      * Generated from protobuf field <code>repeated string additional_image_links = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalImageLinks()
     {
@@ -980,7 +1038,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Additional URL of images of the item.
      *
      * Generated from protobuf field <code>repeated string additional_image_links = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalImageLinks($var)
@@ -1150,7 +1208,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/6324406)).
      *
      * Generated from protobuf field <code>repeated string product_types = 36;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductTypes()
     {
@@ -1162,7 +1220,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * specification](https://support.google.com/merchants/answer/6324406)).
      *
      * Generated from protobuf field <code>repeated string product_types = 36;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductTypes($var)
@@ -1588,10 +1646,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The cut of the item. It can be used to represent combined size types for
      * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * [size type](https://support.google.com/merchants/answer/6324497).
      *
      * Generated from protobuf field <code>repeated string size_types = 28;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSizeTypes()
     {
@@ -1601,10 +1659,10 @@ class Attributes extends \Google\Protobuf\Internal\Message
     /**
      * The cut of the item. It can be used to represent combined size types for
      * apparel items. Maximum two of size types can be provided (see
-     * [https://support.google.com/merchants/answer/6324497](size type)).
+     * [size type](https://support.google.com/merchants/answer/6324497).
      *
      * Generated from protobuf field <code>repeated string size_types = 28;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSizeTypes($var)
@@ -1655,7 +1713,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Technical specification or additional product details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.ProductDetail product_details = 30;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\ProductDetail>
      */
     public function getProductDetails()
     {
@@ -1666,7 +1724,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Technical specification or additional product details.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.ProductDetail product_details = 30;</code>
-     * @param array<\Google\Shopping\Css\V1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\ProductDetail[] $var
      * @return $this
      */
     public function setProductDetails($var)
@@ -1835,7 +1893,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Bullet points describing the most relevant highlights of a product.
      *
      * Generated from protobuf field <code>repeated string product_highlights = 35;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductHighlights()
     {
@@ -1846,7 +1904,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * Bullet points describing the most relevant highlights of a product.
      *
      * Generated from protobuf field <code>repeated string product_highlights = 35;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductHighlights($var)
@@ -1861,7 +1919,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * A list of certificates claimed by the CSS for the given product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.Certification certifications = 39;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\Certification>
      */
     public function getCertifications()
     {
@@ -1872,7 +1930,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * A list of certificates claimed by the CSS for the given product.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.Certification certifications = 39;</code>
-     * @param array<\Google\Shopping\Css\V1\Certification>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\Certification[] $var
      * @return $this
      */
     public function setCertifications($var)
@@ -1939,7 +1997,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * included unless provided in `excludedDestinations`.
      *
      * Generated from protobuf field <code>repeated string included_destinations = 43;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludedDestinations()
     {
@@ -1952,7 +2010,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * included unless provided in `excludedDestinations`.
      *
      * Generated from protobuf field <code>repeated string included_destinations = 43;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludedDestinations($var)
@@ -1968,7 +2026,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * unchecked check boxes in Merchant Center).
      *
      * Generated from protobuf field <code>repeated string excluded_destinations = 44;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedDestinations()
     {
@@ -1980,7 +2038,7 @@ class Attributes extends \Google\Protobuf\Internal\Message
      * unchecked check boxes in Merchant Center).
      *
      * Generated from protobuf field <code>repeated string excluded_destinations = 44;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedDestinations($var)
@@ -2277,6 +2335,176 @@ class Attributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Shopping\Css\V1\HeadlineOfferSubscriptionCost::class);
         $this->headline_offer_subscription_cost = $var;
+
+        return $this;
+    }
+
+    /**
+     * Number of reviews of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 review_count = 54;</code>
+     * @return int|string
+     */
+    public function getReviewCount()
+    {
+        return isset($this->review_count) ? $this->review_count : 0;
+    }
+
+    public function hasReviewCount()
+    {
+        return isset($this->review_count);
+    }
+
+    public function clearReviewCount()
+    {
+        unset($this->review_count);
+    }
+
+    /**
+     * Number of reviews of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 review_count = 54;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setReviewCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->review_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Minimum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 min_rating = 55;</code>
+     * @return int|string
+     */
+    public function getMinRating()
+    {
+        return isset($this->min_rating) ? $this->min_rating : 0;
+    }
+
+    public function hasMinRating()
+    {
+        return isset($this->min_rating);
+    }
+
+    public function clearMinRating()
+    {
+        unset($this->min_rating);
+    }
+
+    /**
+     * Minimum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 min_rating = 55;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMinRating($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->min_rating = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 max_rating = 56;</code>
+     * @return int|string
+     */
+    public function getMaxRating()
+    {
+        return isset($this->max_rating) ? $this->max_rating : 0;
+    }
+
+    public function hasMaxRating()
+    {
+        return isset($this->max_rating);
+    }
+
+    public function clearMaxRating()
+    {
+        unset($this->max_rating);
+    }
+
+    /**
+     * Maximum rating score of the product. Required if
+     * [`rating`][google.shopping.css.v1.Attributes.rating] is provided.
+     * This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional int64 max_rating = 56;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxRating($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_rating = $var;
+
+        return $this;
+    }
+
+    /**
+     * Average rating score of the product. The value must be within the
+     * range of [`min_rating`, `max_rating`], inclusive. When displayed on the
+     * product page, this rating is normalized to a scale of [1, 5] with one
+     * decimal place. If provided,
+     * [`review_count`][google.shopping.css.v1.Attributes.review_count],
+     * [`min_rating`][google.shopping.css.v1.Attributes.min_rating], and
+     * [`max_rating`][google.shopping.css.v1.Attributes.max_rating] are also
+     * required. This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional double rating = 57;</code>
+     * @return float
+     */
+    public function getRating()
+    {
+        return isset($this->rating) ? $this->rating : 0.0;
+    }
+
+    public function hasRating()
+    {
+        return isset($this->rating);
+    }
+
+    public function clearRating()
+    {
+        unset($this->rating);
+    }
+
+    /**
+     * Average rating score of the product. The value must be within the
+     * range of [`min_rating`, `max_rating`], inclusive. When displayed on the
+     * product page, this rating is normalized to a scale of [1, 5] with one
+     * decimal place. If provided,
+     * [`review_count`][google.shopping.css.v1.Attributes.review_count],
+     * [`min_rating`][google.shopping.css.v1.Attributes.min_rating], and
+     * [`max_rating`][google.shopping.css.v1.Attributes.max_rating] are also
+     * required. This field is for an upcoming feature and is not yet used.
+     *
+     * Generated from protobuf field <code>optional double rating = 57;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setRating($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->rating = $var;
 
         return $this;
     }

@@ -43,6 +43,8 @@ use Google\Cloud\VectorSearch\V1\CreateCollectionRequest;
 use Google\Cloud\VectorSearch\V1\CreateIndexRequest;
 use Google\Cloud\VectorSearch\V1\DeleteCollectionRequest;
 use Google\Cloud\VectorSearch\V1\DeleteIndexRequest;
+use Google\Cloud\VectorSearch\V1\ExportDataObjectsRequest;
+use Google\Cloud\VectorSearch\V1\ExportDataObjectsResponse;
 use Google\Cloud\VectorSearch\V1\GetCollectionRequest;
 use Google\Cloud\VectorSearch\V1\GetIndexRequest;
 use Google\Cloud\VectorSearch\V1\ImportDataObjectsRequest;
@@ -75,6 +77,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> createIndexAsync(CreateIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteCollectionAsync(DeleteCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteIndexAsync(DeleteIndexRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> exportDataObjectsAsync(ExportDataObjectsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Collection> getCollectionAsync(GetCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Index> getIndexAsync(GetIndexRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> importDataObjectsAsync(ImportDataObjectsRequest $request, array $optionalArgs = [])
@@ -451,6 +454,33 @@ final class VectorSearchServiceClient
     public function deleteIndex(DeleteIndexRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('DeleteIndex', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates a Long-Running Operation to export DataObjects from a Collection.
+     *
+     * The async variant is {@see VectorSearchServiceClient::exportDataObjectsAsync()}
+     * .
+     *
+     * @example samples/V1/VectorSearchServiceClient/export_data_objects.php
+     *
+     * @param ExportDataObjectsRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<ExportDataObjectsResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function exportDataObjects(ExportDataObjectsRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('ExportDataObjects', $request, $callOptions)->wait();
     }
 
     /**

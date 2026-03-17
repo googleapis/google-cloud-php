@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata returned to client when grounding is enabled.
@@ -67,13 +67,13 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $web_search_queries
+     *     @type string[] $web_search_queries
      *           Optional. Web search queries for the following-up web search.
      *     @type \Google\Cloud\AIPlatform\V1\SearchEntryPoint $search_entry_point
      *           Optional. Google search entry for the following-up web searches.
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingChunk>|\Google\Protobuf\Internal\RepeatedField $grounding_chunks
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk[] $grounding_chunks
      *           List of supporting references retrieved from specified grounding source.
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_supports
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingSupport[] $grounding_supports
      *           Optional. List of grounding support.
      *     @type \Google\Cloud\AIPlatform\V1\RetrievalMetadata $retrieval_metadata
      *           Optional. Output only. Retrieval metadata.
@@ -81,7 +81,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      *           Optional. Output only. Resource name of the Google Maps widget context
      *           token to be used with the PlacesContextElement widget to render contextual
      *           data. This is populated only for Google Maps grounding.
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri>|\Google\Protobuf\Internal\RepeatedField $source_flagging_uris
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri[] $source_flagging_uris
      *           List of source flagging uris. This is currently populated only for Google
      *           Maps grounding.
      * }
@@ -95,7 +95,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Web search queries for the following-up web search.
      *
      * Generated from protobuf field <code>repeated string web_search_queries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWebSearchQueries()
     {
@@ -106,7 +106,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Web search queries for the following-up web search.
      *
      * Generated from protobuf field <code>repeated string web_search_queries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWebSearchQueries($var)
@@ -157,7 +157,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * List of supporting references retrieved from specified grounding source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\GroundingChunk>
      */
     public function getGroundingChunks()
     {
@@ -168,7 +168,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * List of supporting references retrieved from specified grounding source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk grounding_chunks = 5;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingChunk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\GroundingChunk[] $var
      * @return $this
      */
     public function setGroundingChunks($var)
@@ -183,7 +183,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Optional. List of grounding support.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\GroundingSupport>
      */
     public function getGroundingSupports()
     {
@@ -194,7 +194,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Optional. List of grounding support.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingSupport grounding_supports = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\GroundingSupport[] $var
      * @return $this
      */
     public function setGroundingSupports($var)
@@ -286,7 +286,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Maps grounding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingMetadata.SourceFlaggingUri source_flagging_uris = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri>
      */
     public function getSourceFlaggingUris()
     {
@@ -298,7 +298,7 @@ class GroundingMetadata extends \Google\Protobuf\Internal\Message
      * Maps grounding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingMetadata.SourceFlaggingUri source_flagging_uris = 9;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\GroundingMetadata\SourceFlaggingUri[] $var
      * @return $this
      */
     public function setSourceFlaggingUris($var)

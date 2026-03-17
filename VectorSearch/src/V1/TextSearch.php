@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a text search operation.
@@ -55,7 +55,7 @@ class TextSearch extends \Google\Protobuf\Internal\Message
      *
      *     @type string $search_text
      *           Required. The query text.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_field_names
+     *     @type string[] $data_field_names
      *           Required. The data field names to search.
      *     @type \Google\Cloud\VectorSearch\V1\OutputFields $output_fields
      *           Optional. The fields to return in the search results.
@@ -101,7 +101,7 @@ class TextSearch extends \Google\Protobuf\Internal\Message
      * Required. The data field names to search.
      *
      * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataFieldNames()
     {
@@ -112,7 +112,7 @@ class TextSearch extends \Google\Protobuf\Internal\Message
      * Required. The data field names to search.
      *
      * Generated from protobuf field <code>repeated string data_field_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataFieldNames($var)

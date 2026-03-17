@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to delete the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -83,7 +83,7 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      *           such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      *           If the caller does not have permission to delete the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
@@ -108,7 +108,7 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to delete the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -135,7 +135,7 @@ class DeleteProductRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to delete the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used when the image import is not using OS adaptation process.
@@ -35,7 +35,7 @@ class DataDiskImageImport extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type string[] $guest_os_features
      *           Optional. A list of guest OS features to apply to the imported image. These
      *           features are flags that are used by Compute Engine to enable certain
      *           capabilities for virtual machine instances that are created from the image.
@@ -62,7 +62,7 @@ class DataDiskImageImport extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
      *
      * Generated from protobuf field <code>repeated string guest_os_features = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGuestOsFeatures()
     {
@@ -80,7 +80,7 @@ class DataDiskImageImport extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/compute/docs/images/create-custom#guest-os-features.
      *
      * Generated from protobuf field <code>repeated string guest_os_features = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGuestOsFeatures($var)

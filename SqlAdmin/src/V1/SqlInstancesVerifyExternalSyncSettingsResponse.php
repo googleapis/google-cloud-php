@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instance verify external sync settings response.
@@ -42,9 +42,9 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      *
      *     @type string $kind
      *           This is always `sql#migrationSettingErrorList`.
-     *     @type array<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Sql\V1\SqlExternalSyncSettingError[] $errors
      *           List of migration violations.
-     *     @type array<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Sql\V1\SqlExternalSyncSettingError[] $warnings
      *           List of migration warnings.
      * }
      */
@@ -83,7 +83,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      * List of migration violations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlExternalSyncSettingError errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>
      */
     public function getErrors()
     {
@@ -94,7 +94,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      * List of migration violations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlExternalSyncSettingError errors = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SqlExternalSyncSettingError[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -109,7 +109,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      * List of migration warnings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlExternalSyncSettingError warnings = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>
      */
     public function getWarnings()
     {
@@ -120,7 +120,7 @@ class SqlInstancesVerifyExternalSyncSettingsResponse extends \Google\Protobuf\In
      * List of migration warnings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SqlExternalSyncSettingError warnings = 3;</code>
-     * @param array<\Google\Cloud\Sql\V1\SqlExternalSyncSettingError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SqlExternalSyncSettingError[] $var
      * @return $this
      */
     public function setWarnings($var)

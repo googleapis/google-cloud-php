@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A cloud control is a set of rules and associated metadata that you can
@@ -138,11 +138,11 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Optional. The friendly name of the cloud control. The maximum length is 200
      *           characters.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_enforcement_modes
+     *     @type int[] $supported_enforcement_modes
      *           Output only. The supported enforcement modes for the cloud control.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $parameter_spec
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec[] $parameter_spec
      *           Optional. The parameter specifications for the cloud control.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\Rule[] $rules
      *           Optional. The rules that you can enforce to meet your security or
      *           compliance intent.
      *     @type int $severity
@@ -151,20 +151,20 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      *     @type string $finding_category
      *           Optional. The finding category for the cloud control findings. The maximum
      *           length is 255 characters.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_cloud_providers
+     *     @type int[] $supported_cloud_providers
      *           Optional. The supported cloud providers.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_frameworks
+     *     @type string[] $related_frameworks
      *           Output only. The frameworks that include this cloud control.
      *     @type string $remediation_steps
      *           Optional. The remediation steps for the cloud control findings. The
      *           maximum length is 400 characters.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type int[] $categories
      *           Optional. The categories for the cloud control.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time that the cloud control was last updated.
      *           `create_time` is used because a new cloud control is created
      *           whenever an existing cloud control is updated.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_target_resource_types
+     *     @type int[] $supported_target_resource_types
      *           Optional. The target resource types that are supported by the cloud
      *           control.
      * }
@@ -292,7 +292,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Output only. The supported enforcement modes for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.EnforcementMode supported_enforcement_modes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedEnforcementModes()
     {
@@ -303,7 +303,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Output only. The supported enforcement modes for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.EnforcementMode supported_enforcement_modes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedEnforcementModes($var)
@@ -318,7 +318,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The parameter specifications for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec parameter_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>
      */
     public function getParameterSpec()
     {
@@ -329,7 +329,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The parameter specifications for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParameterSpec parameter_spec = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\ParameterSpec[] $var
      * @return $this
      */
     public function setParameterSpec($var)
@@ -345,7 +345,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * compliance intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Rule rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\Rule>
      */
     public function getRules()
     {
@@ -357,7 +357,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * compliance intent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Rule rules = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Rule[] $var
      * @return $this
      */
     public function setRules($var)
@@ -428,7 +428,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The supported cloud providers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedCloudProviders()
     {
@@ -439,7 +439,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The supported cloud providers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudProvider supported_cloud_providers = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedCloudProviders($var)
@@ -454,7 +454,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Output only. The frameworks that include this cloud control.
      *
      * Generated from protobuf field <code>repeated string related_frameworks = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedFrameworks()
     {
@@ -465,7 +465,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Output only. The frameworks that include this cloud control.
      *
      * Generated from protobuf field <code>repeated string related_frameworks = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedFrameworks($var)
@@ -508,7 +508,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The categories for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlCategory categories = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCategories()
     {
@@ -519,7 +519,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * Optional. The categories for the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlCategory categories = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCategories($var)
@@ -575,7 +575,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceType supported_target_resource_types = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedTargetResourceTypes()
     {
@@ -587,7 +587,7 @@ class CloudControl extends \Google\Protobuf\Internal\Message
      * control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.TargetResourceType supported_target_resource_types = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedTargetResourceTypes($var)

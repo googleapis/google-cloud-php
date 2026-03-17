@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A batch of results produced by a query.
@@ -93,7 +93,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      *           Will be set when `skipped_results` != 0.
      *     @type int $entity_result_type
      *           The result type for every entity in `entity_results`.
-     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $entity_results
+     *     @type \Google\Cloud\Datastore\V1\EntityResult[] $entity_results
      *           The results for this batch.
      *     @type string $end_cursor
      *           A cursor that points to the position after the last result in the batch.
@@ -209,7 +209,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      * The results for this batch.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult entity_results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\EntityResult>
      */
     public function getEntityResults()
     {
@@ -220,7 +220,7 @@ class QueryResultBatch extends \Google\Protobuf\Internal\Message
      * The results for this batch.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult entity_results = 2;</code>
-     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\EntityResult[] $var
      * @return $this
      */
     public function setEntityResults($var)

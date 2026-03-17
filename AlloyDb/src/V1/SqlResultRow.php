@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single row from a sql result.
@@ -28,7 +28,7 @@ class SqlResultRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\SqlResultValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\AlloyDb\V1\SqlResultValue[] $values
      *           List of values in a row of sql result.
      * }
      */
@@ -41,7 +41,7 @@ class SqlResultRow extends \Google\Protobuf\Internal\Message
      * List of values in a row of sql result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultValue values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\SqlResultValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class SqlResultRow extends \Google\Protobuf\Internal\Message
      * List of values in a row of sql result.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SqlResultValue values = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\SqlResultValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\SqlResultValue[] $var
      * @return $this
      */
     public function setValues($var)

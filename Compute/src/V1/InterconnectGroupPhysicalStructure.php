@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] An analysis of the physical layout of Interconnects in this
@@ -27,7 +27,7 @@ class InterconnectGroupPhysicalStructure extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetros>|\Google\Protobuf\Internal\RepeatedField $metros
+     *     @type \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetros[] $metros
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class InterconnectGroupPhysicalStructure extends \Google\Protobuf\Internal\Messa
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetros metros = 533067386;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetros>
      */
     public function getMetros()
     {
@@ -46,7 +46,7 @@ class InterconnectGroupPhysicalStructure extends \Google\Protobuf\Internal\Messa
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectGroupPhysicalStructureMetros metros = 533067386;</code>
-     * @param array<\Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetros>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\InterconnectGroupPhysicalStructureMetros[] $var
      * @return $this
      */
     public function setMetros($var)

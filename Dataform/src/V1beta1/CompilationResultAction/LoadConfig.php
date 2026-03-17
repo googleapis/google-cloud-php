@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Simplified load configuration for actions
@@ -177,5 +177,4 @@ class LoadConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

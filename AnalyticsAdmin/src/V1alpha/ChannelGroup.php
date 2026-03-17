@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource message representing a Channel Group.
@@ -74,7 +74,7 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type string $description
      *           The description of the Channel Group. Max length of 256 characters.
-     *     @type array<\Google\Analytics\Admin\V1alpha\GroupingRule>|\Google\Protobuf\Internal\RepeatedField $grouping_rule
+     *     @type \Google\Analytics\Admin\V1alpha\GroupingRule[] $grouping_rule
      *           Required. The grouping rules of channels. Maximum number of rules is 50.
      *     @type bool $system_defined
      *           Output only. If true, then this channel group is the Default Channel Group
@@ -179,7 +179,7 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      * Required. The grouping rules of channels. Maximum number of rules is 50.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.GroupingRule grouping_rule = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\GroupingRule>
      */
     public function getGroupingRule()
     {
@@ -190,7 +190,7 @@ class ChannelGroup extends \Google\Protobuf\Internal\Message
      * Required. The grouping rules of channels. Maximum number of rules is 50.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.GroupingRule grouping_rule = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\GroupingRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\GroupingRule[] $var
      * @return $this
      */
     public function setGroupingRule($var)

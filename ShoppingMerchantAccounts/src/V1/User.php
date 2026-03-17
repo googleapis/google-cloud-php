@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `User` resource represents a user associated with a Merchant Center
@@ -55,7 +55,7 @@ class User extends \Google\Protobuf\Internal\Message
      *           `accounts/{account}/users/me`.
      *     @type int $state
      *           Output only. The state of the user.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $access_rights
+     *     @type int[] $access_rights
      *           Required. The [access
      *           rights](https://support.google.com/merchants/answer/12160472?sjid=6789834943175119429-EU#accesstypes)
      *           the user has.
@@ -130,7 +130,7 @@ class User extends \Google\Protobuf\Internal\Message
      * the user has.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccessRight access_rights = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAccessRights()
     {
@@ -143,7 +143,7 @@ class User extends \Google\Protobuf\Internal\Message
      * the user has.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccessRight access_rights = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAccessRights($var)

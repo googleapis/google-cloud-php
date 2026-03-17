@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\Contacts;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A contact person for the entry.
@@ -22,8 +22,8 @@ class Person extends \Google\Protobuf\Internal\Message
      */
     protected $designation = '';
     /**
-     * Email of the person in the format of `john.doe&#64;xyz`,
-     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
+     * Email of the person in the format of `john.doe\@xyz`,
+     * `<john.doe\@xyz>`, or `John Doe<john.doe\@xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      */
@@ -38,8 +38,8 @@ class Person extends \Google\Protobuf\Internal\Message
      *     @type string $designation
      *           Designation of the person, for example, Data Steward.
      *     @type string $email
-     *           Email of the person in the format of `john.doe&#64;xyz`,
-     *           `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
+     *           Email of the person in the format of `john.doe\@xyz`,
+     *           `<john.doe\@xyz>`, or `John Doe<john.doe\@xyz>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -74,8 +74,8 @@ class Person extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the person in the format of `john.doe&#64;xyz`,
-     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
+     * Email of the person in the format of `john.doe\@xyz`,
+     * `<john.doe\@xyz>`, or `John Doe<john.doe\@xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      * @return string
@@ -86,8 +86,8 @@ class Person extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Email of the person in the format of `john.doe&#64;xyz`,
-     * `<john.doe&#64;xyz>`, or `John Doe<john.doe&#64;xyz>`.
+     * Email of the person in the format of `john.doe\@xyz`,
+     * `<john.doe\@xyz>`, or `John Doe<john.doe\@xyz>`.
      *
      * Generated from protobuf field <code>string email = 2;</code>
      * @param string $var
@@ -102,5 +102,4 @@ class Person extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

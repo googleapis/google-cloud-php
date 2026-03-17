@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [PredictionService.Predict][google.cloud.automl.v1.PredictionService.Predict].
@@ -61,7 +61,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AutoMl\V1\AnnotationPayload>|\Google\Protobuf\Internal\RepeatedField $payload
+     *     @type \Google\Cloud\AutoMl\V1\AnnotationPayload[] $payload
      *           Prediction result.
      *           AutoML Translation and AutoML Natural Language Sentiment Analysis
      *           return precisely one payload.
@@ -101,7 +101,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * return precisely one payload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.AnnotationPayload payload = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\AnnotationPayload>
      */
     public function getPayload()
     {
@@ -114,7 +114,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * return precisely one payload.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.AnnotationPayload payload = 1;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\AnnotationPayload>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\AnnotationPayload[] $var
      * @return $this
      */
     public function setPayload($var)

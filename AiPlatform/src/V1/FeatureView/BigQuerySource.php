@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.FeatureView.BigQuerySource</code>
@@ -36,7 +36,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Required. The BigQuery view URI that will be materialized on each sync
      *           trigger based on FeatureView.SyncConfig.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_id_columns
+     *     @type string[] $entity_id_columns
      *           Required. Columns to construct entity_id / row keys.
      * }
      */
@@ -77,7 +77,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Required. Columns to construct entity_id / row keys.
      *
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntityIdColumns()
     {
@@ -88,7 +88,7 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
      * Required. Columns to construct entity_id / row keys.
      *
      * Generated from protobuf field <code>repeated string entity_id_columns = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntityIdColumns($var)
@@ -100,5 +100,4 @@ class BigQuerySource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

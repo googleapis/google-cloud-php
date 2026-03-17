@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A batch of aggregation results produced by an aggregation query.
@@ -45,7 +45,7 @@ class AggregationResultBatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastore\V1\AggregationResult>|\Google\Protobuf\Internal\RepeatedField $aggregation_results
+     *     @type \Google\Cloud\Datastore\V1\AggregationResult[] $aggregation_results
      *           The aggregation results for this batch.
      *     @type int $more_results
      *           The state of the query after the current batch.
@@ -67,7 +67,7 @@ class AggregationResultBatch extends \Google\Protobuf\Internal\Message
      * The aggregation results for this batch.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.AggregationResult aggregation_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\AggregationResult>
      */
     public function getAggregationResults()
     {
@@ -78,7 +78,7 @@ class AggregationResultBatch extends \Google\Protobuf\Internal\Message
      * The aggregation results for this batch.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.AggregationResult aggregation_results = 1;</code>
-     * @param array<\Google\Cloud\Datastore\V1\AggregationResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\AggregationResult[] $var
      * @return $this
      */
     public function setAggregationResults($var)

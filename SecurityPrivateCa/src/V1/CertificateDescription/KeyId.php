@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateDescription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A KeyId identifies a specific public key, usually by hashing the public
@@ -69,5 +69,4 @@ class KeyId extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

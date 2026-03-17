@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a BigQuery subscription.
@@ -64,7 +64,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,7 +105,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      *           `iam.serviceAccounts.actAs` permission on the service account. If not
      *           specified, the Pub/Sub [service
      *           agent](https://cloud.google.com/iam/docs/service-agents),
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,7 +275,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -291,7 +291,7 @@ class BigQueryConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

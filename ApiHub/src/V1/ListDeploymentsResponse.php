@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListDeployments][google.cloud.apihub.v1.ApiHub.ListDeployments] method's
@@ -36,7 +36,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $deployments
+     *     @type \Google\Cloud\ApiHub\V1\Deployment[] $deployments
      *           The deployment resources present in the API hub.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The deployment resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Deployment deployments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Deployment>
      */
     public function getDeployments()
     {
@@ -63,7 +63,7 @@ class ListDeploymentsResponse extends \Google\Protobuf\Internal\Message
      * The deployment resources present in the API hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Deployment deployments = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Deployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Deployment[] $var
      * @return $this
      */
     public function setDeployments($var)

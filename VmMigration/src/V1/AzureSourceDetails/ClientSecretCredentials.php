@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AzureSourceDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Azure Credentials using tenant ID, client ID and secret.
@@ -132,5 +132,4 @@ class ClientSecretCredentials extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

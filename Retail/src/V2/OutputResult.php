@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Output result that stores the information about where the exported data is
@@ -35,9 +35,9 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\BigQueryOutputResult>|\Google\Protobuf\Internal\RepeatedField $bigquery_result
+     *     @type \Google\Cloud\Retail\V2\BigQueryOutputResult[] $bigquery_result
      *           The BigQuery location where the result is stored.
-     *     @type array<\Google\Cloud\Retail\V2\GcsOutputResult>|\Google\Protobuf\Internal\RepeatedField $gcs_result
+     *     @type \Google\Cloud\Retail\V2\GcsOutputResult[] $gcs_result
      *           The Google Cloud Storage location where the result is stored.
      * }
      */
@@ -50,7 +50,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * The BigQuery location where the result is stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.BigQueryOutputResult bigquery_result = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\BigQueryOutputResult>
      */
     public function getBigqueryResult()
     {
@@ -61,7 +61,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * The BigQuery location where the result is stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.BigQueryOutputResult bigquery_result = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\BigQueryOutputResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\BigQueryOutputResult[] $var
      * @return $this
      */
     public function setBigqueryResult($var)
@@ -76,7 +76,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * The Google Cloud Storage location where the result is stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.GcsOutputResult gcs_result = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\GcsOutputResult>
      */
     public function getGcsResult()
     {
@@ -87,7 +87,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      * The Google Cloud Storage location where the result is stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.GcsOutputResult gcs_result = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\GcsOutputResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\GcsOutputResult[] $var
      * @return $this
      */
     public function setGcsResult($var)

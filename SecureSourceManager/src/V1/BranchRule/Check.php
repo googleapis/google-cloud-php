@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\BranchRule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Check is a type for status check.
@@ -64,5 +64,4 @@ class Check extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

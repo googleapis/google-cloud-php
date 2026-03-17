@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A carousel, also known as a slider, rotates and displays a list of widgets in
@@ -65,7 +65,7 @@ class Carousel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Card\V1\Carousel\CarouselCard>|\Google\Protobuf\Internal\RepeatedField $carousel_cards
+     *     @type \Google\Apps\Card\V1\Carousel\CarouselCard[] $carousel_cards
      *           A list of cards included in the carousel.
      * }
      */
@@ -78,7 +78,7 @@ class Carousel extends \Google\Protobuf\Internal\Message
      * A list of cards included in the carousel.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Carousel.CarouselCard carousel_cards = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Carousel\CarouselCard>
      */
     public function getCarouselCards()
     {
@@ -89,7 +89,7 @@ class Carousel extends \Google\Protobuf\Internal\Message
      * A list of cards included in the carousel.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Carousel.CarouselCard carousel_cards = 4;</code>
-     * @param array<\Google\Apps\Card\V1\Carousel\CarouselCard>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Carousel\CarouselCard[] $var
      * @return $this
      */
     public function setCarouselCards($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * When set in
@@ -76,10 +76,10 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmLoginNodes $login_nodes
      *           Required. Configuration for login nodes, which allow users to access the
      *           cluster over SSH.
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet>|\Google\Protobuf\Internal\RepeatedField $node_sets
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet[] $node_sets
      *           Required. Configuration of Slurm nodesets, which define groups of compute
      *           resources that can be used by Slurm. At least one compute node is required.
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition>|\Google\Protobuf\Internal\RepeatedField $partitions
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition[] $partitions
      *           Required. Configuration of Slurm partitions, which group one or more
      *           nodesets. Acts as a queue against which jobs can be submitted. At least one
      *           partition is required.
@@ -87,12 +87,12 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      *           Optional. Default partition to use for submitted jobs that do not
      *           explicitly specify a partition. Required if and only if there is more than
      *           one partition, in which case it must match the id of one of the partitions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prolog_bash_scripts
+     *     @type string[] $prolog_bash_scripts
      *           Optional. Slurm [prolog
      *           scripts](https://slurm.schedmd.com/prolog_epilog.html), which will be
      *           executed by compute nodes before a node begins running a new job. Values
      *           must not be empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $epilog_bash_scripts
+     *     @type string[] $epilog_bash_scripts
      *           Optional. Slurm [epilog
      *           scripts](https://slurm.schedmd.com/prolog_epilog.html), which will be
      *           executed by compute nodes whenever a node finishes running a job. Values
@@ -147,7 +147,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * resources that can be used by Slurm. At least one compute node is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet>
      */
     public function getNodeSets()
     {
@@ -159,7 +159,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * resources that can be used by Slurm. At least one compute node is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmNodeSet node_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\SlurmNodeSet[] $var
      * @return $this
      */
     public function setNodeSets($var)
@@ -176,7 +176,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * partition is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition>
      */
     public function getPartitions()
     {
@@ -189,7 +189,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * partition is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.SlurmPartition partitions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\SlurmPartition[] $var
      * @return $this
      */
     public function setPartitions($var)
@@ -237,7 +237,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * must not be empty.
      *
      * Generated from protobuf field <code>repeated string prolog_bash_scripts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrologBashScripts()
     {
@@ -251,7 +251,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * must not be empty.
      *
      * Generated from protobuf field <code>repeated string prolog_bash_scripts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrologBashScripts($var)
@@ -269,7 +269,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * must not be empty.
      *
      * Generated from protobuf field <code>repeated string epilog_bash_scripts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEpilogBashScripts()
     {
@@ -283,7 +283,7 @@ class SlurmOrchestrator extends \Google\Protobuf\Internal\Message
      * must not be empty.
      *
      * Generated from protobuf field <code>repeated string epilog_bash_scripts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEpilogBashScripts($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\WorkflowConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A record of an attempt to create a workflow invocation for this workflow
@@ -33,7 +33,7 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
      *     @type string $workflow_invocation
      *           The name of the created workflow invocation, if one was successfully
      *           created. Must be in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowInvocations/&#42;`.
+     *           `projects/{@*}locations/{@*}repositories/{@*}workflowInvocations/*`.
      *     @type \Google\Rpc\Status $error_status
      *           The error status encountered upon this attempt to create the
      *           workflow invocation, if the attempt was unsuccessful.
@@ -49,7 +49,7 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
     /**
      * The name of the created workflow invocation, if one was successfully
      * created. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowInvocations/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}workflowInvocations/*`.
      *
      * Generated from protobuf field <code>string workflow_invocation = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -67,7 +67,7 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
     /**
      * The name of the created workflow invocation, if one was successfully
      * created. Must be in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;repositories/&#42;&#47;workflowInvocations/&#42;`.
+     * `projects/{@*}locations/{@*}repositories/{@*}workflowInvocations/*`.
      *
      * Generated from protobuf field <code>string workflow_invocation = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -159,5 +159,4 @@ class ScheduledExecutionRecord extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

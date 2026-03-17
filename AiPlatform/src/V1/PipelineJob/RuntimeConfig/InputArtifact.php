@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PipelineJob\RuntimeConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The type of an input artifact.
@@ -84,5 +84,4 @@ class InputArtifact extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

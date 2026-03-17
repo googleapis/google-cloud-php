@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message containing one of more group of relevant health issues
@@ -49,14 +49,14 @@ class AggregateIssueStatsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\IssueGroupStats>|\Google\Protobuf\Internal\RepeatedField $issue_group_stats
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\IssueGroupStats[] $issue_group_stats
      *           List of issue group stats where each group contains stats for resources
      *           having a particular combination of relevant issues.
      *     @type int $total_resources_count
      *           Total count of the resources filtered in based on the user given filter.
      *     @type int $total_resource_groups_count
      *           Total count of the resource filtered in based on the user given filter.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. List of unreachable regions from where data could not be
      *           retrieved.
      * }
@@ -71,7 +71,7 @@ class AggregateIssueStatsResponse extends \Google\Protobuf\Internal\Message
      * having a particular combination of relevant issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueGroupStats issue_group_stats = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\IssueGroupStats>
      */
     public function getIssueGroupStats()
     {
@@ -83,7 +83,7 @@ class AggregateIssueStatsResponse extends \Google\Protobuf\Internal\Message
      * having a particular combination of relevant issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueGroupStats issue_group_stats = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\IssueGroupStats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\IssueGroupStats[] $var
      * @return $this
      */
     public function setIssueGroupStats($var)
@@ -151,7 +151,7 @@ class AggregateIssueStatsResponse extends \Google\Protobuf\Internal\Message
      * retrieved.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -163,7 +163,7 @@ class AggregateIssueStatsResponse extends \Google\Protobuf\Internal\Message
      * retrieved.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

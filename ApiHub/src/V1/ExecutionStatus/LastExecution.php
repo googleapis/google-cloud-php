@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\ExecutionStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of the last execution of the plugin instance.
@@ -190,5 +190,4 @@ class LastExecution extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

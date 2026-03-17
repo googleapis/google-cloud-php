@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For display only. Metadata associated with a specific load balancer backend.
@@ -58,9 +58,9 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      *           URI of a Compute Engine instance or network endpoint.
      *     @type int $health_check_firewall_state
      *           State of the health check firewall configuration.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_check_allowing_firewall_rules
+     *     @type string[] $health_check_allowing_firewall_rules
      *           A list of firewall rule URIs allowing probes from health check IP ranges.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_check_blocking_firewall_rules
+     *     @type string[] $health_check_blocking_firewall_rules
      *           A list of firewall rule URIs blocking probes from health check IP ranges.
      * }
      */
@@ -151,7 +151,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs allowing probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_allowing_firewall_rules = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHealthCheckAllowingFirewallRules()
     {
@@ -162,7 +162,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs allowing probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_allowing_firewall_rules = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHealthCheckAllowingFirewallRules($var)
@@ -177,7 +177,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs blocking probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_blocking_firewall_rules = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHealthCheckBlockingFirewallRules()
     {
@@ -188,7 +188,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs blocking probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_blocking_firewall_rules = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHealthCheckBlockingFirewallRules($var)

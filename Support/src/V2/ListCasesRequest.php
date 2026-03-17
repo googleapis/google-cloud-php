@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for the ListCases endpoint.
@@ -34,7 +34,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
      * - `creator.email`: The email address of the case creator.
      * EXAMPLES:
      * - `state=CLOSED`
-     * - `state=OPEN AND creator.email="tester&#64;example.com"`
+     * - `state=OPEN AND creator.email="tester\@example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -89,7 +89,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
      *           - `creator.email`: The email address of the case creator.
      *           EXAMPLES:
      *           - `state=CLOSED`
-     *           - `state=OPEN AND creator.email="tester&#64;example.com"`
+     *           - `state=OPEN AND creator.email="tester\@example.com"`
      *           - `state=OPEN AND (priority=P0 OR priority=P1)`
      *     @type int $page_size
      *           The maximum number of cases fetched with each request. Defaults to 10.
@@ -142,7 +142,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
      * - `creator.email`: The email address of the case creator.
      * EXAMPLES:
      * - `state=CLOSED`
-     * - `state=OPEN AND creator.email="tester&#64;example.com"`
+     * - `state=OPEN AND creator.email="tester\@example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
@@ -166,7 +166,7 @@ class ListCasesRequest extends \Google\Protobuf\Internal\Message
      * - `creator.email`: The email address of the case creator.
      * EXAMPLES:
      * - `state=CLOSED`
-     * - `state=OPEN AND creator.email="tester&#64;example.com"`
+     * - `state=OPEN AND creator.email="tester\@example.com"`
      * - `state=OPEN AND (priority=P0 OR priority=P1)`
      *
      * Generated from protobuf field <code>string filter = 2;</code>

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list versions.
@@ -58,9 +58,9 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"`
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version"`
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version*"`
      *  To filter the results of your request to versions with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request:
@@ -124,9 +124,9 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"`
      *            You can also use wildcards to match any number of characters before or
      *            after the value:
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version"`
      *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version*"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version*"`
      *            To filter the results of your request to versions with the annotation
      *            key-value pair [`external_link`: `external_link_value`], append the
      *            following filter expression to your request:
@@ -293,9 +293,9 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"`
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version"`
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version*"`
      *  To filter the results of your request to versions with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request:
@@ -334,9 +334,9 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"`
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version"`
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/&#42;version*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/*version*"`
      *  To filter the results of your request to versions with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request:

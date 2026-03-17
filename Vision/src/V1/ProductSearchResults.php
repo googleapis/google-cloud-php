@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results for a product search request.
@@ -49,9 +49,9 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      *           Timestamp of the index which provided these results. Products added to the
      *           product set and products removed from the product set after this time are
      *           not reflected in the current results.
-     *     @type array<\Google\Cloud\Vision\V1\ProductSearchResults\Result>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Vision\V1\ProductSearchResults\Result[] $results
      *           List of results, one for each product match.
-     *     @type array<\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult>|\Google\Protobuf\Internal\RepeatedField $product_grouped_results
+     *     @type \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult[] $product_grouped_results
      *           List of results grouped by products detected in the query image. Each entry
      *           corresponds to one bounding polygon in the query image, and contains the
      *           matching products specific to that region. There may be duplicate product
@@ -107,7 +107,7 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      * List of results, one for each product match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\ProductSearchResults\Result>
      */
     public function getResults()
     {
@@ -118,7 +118,7 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      * List of results, one for each product match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.Result results = 5;</code>
-     * @param array<\Google\Cloud\Vision\V1\ProductSearchResults\Result>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\ProductSearchResults\Result[] $var
      * @return $this
      */
     public function setResults($var)
@@ -136,7 +136,7 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      * matches in the union of all the per-product results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.GroupedResult product_grouped_results = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult>
      */
     public function getProductGroupedResults()
     {
@@ -150,7 +150,7 @@ class ProductSearchResults extends \Google\Protobuf\Internal\Message
      * matches in the union of all the per-product results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSearchResults.GroupedResult product_grouped_results = 6;</code>
-     * @param array<\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult[] $var
      * @return $this
      */
     public function setProductGroupedResults($var)

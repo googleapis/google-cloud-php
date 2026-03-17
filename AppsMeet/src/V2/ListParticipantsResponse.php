@@ -5,8 +5,8 @@
 namespace Google\Apps\Meet\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListParticipants method.
@@ -44,7 +44,7 @@ class ListParticipantsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Meet\V2\Participant>|\Google\Protobuf\Internal\RepeatedField $participants
+     *     @type \Google\Apps\Meet\V2\Participant[] $participants
      *           List of participants in one page.
      *     @type string $next_page_token
      *           Token to be circulated back for further List call if current List doesn't
@@ -65,7 +65,7 @@ class ListParticipantsResponse extends \Google\Protobuf\Internal\Message
      * List of participants in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2.Participant participants = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Meet\V2\Participant>
      */
     public function getParticipants()
     {
@@ -76,7 +76,7 @@ class ListParticipantsResponse extends \Google\Protobuf\Internal\Message
      * List of participants in one page.
      *
      * Generated from protobuf field <code>repeated .google.apps.meet.v2.Participant participants = 1;</code>
-     * @param array<\Google\Apps\Meet\V2\Participant>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Meet\V2\Participant[] $var
      * @return $this
      */
     public function setParticipants($var)

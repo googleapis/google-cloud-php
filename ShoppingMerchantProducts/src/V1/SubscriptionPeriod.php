@@ -31,11 +31,18 @@ class SubscriptionPeriod
      * Generated from protobuf enum <code>YEAR = 2;</code>
      */
     const YEAR = 2;
+    /**
+     * Indicates that the subscription period is week.
+     *
+     * Generated from protobuf enum <code>WEEK = 3;</code>
+     */
+    const WEEK = 3;
 
     private static $valueToName = [
         self::SUBSCRIPTION_PERIOD_UNSPECIFIED => 'SUBSCRIPTION_PERIOD_UNSPECIFIED',
         self::MONTH => 'MONTH',
         self::YEAR => 'YEAR',
+        self::WEEK => 'WEEK',
     ];
 
     public static function name($value)

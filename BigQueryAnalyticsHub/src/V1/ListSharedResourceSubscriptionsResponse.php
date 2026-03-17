@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to the listing of shared resource subscriptions.
@@ -34,7 +34,7 @@ class ListSharedResourceSubscriptionsResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $shared_resource_subscriptions
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription[] $shared_resource_subscriptions
      *           The list of subscriptions.
      *     @type string $next_page_token
      *           Next page token.
@@ -49,7 +49,7 @@ class ListSharedResourceSubscriptionsResponse extends \Google\Protobuf\Internal\
      * The list of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription shared_resource_subscriptions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>
      */
     public function getSharedResourceSubscriptions()
     {
@@ -60,7 +60,7 @@ class ListSharedResourceSubscriptionsResponse extends \Google\Protobuf\Internal\
      * The list of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription shared_resource_subscriptions = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription[] $var
      * @return $this
      */
     public function setSharedResourceSubscriptions($var)

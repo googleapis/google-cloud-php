@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response after trying to list account services.
@@ -35,7 +35,7 @@ class ListAccountServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\AccountService>|\Google\Protobuf\Internal\RepeatedField $account_services
+     *     @type \Google\Shopping\Merchant\Accounts\V1\AccountService[] $account_services
      *           The account services that match your filter.
      *     @type string $next_page_token
      *           A page token. You can send the `page_token` to get the next page.
@@ -51,7 +51,7 @@ class ListAccountServicesResponse extends \Google\Protobuf\Internal\Message
      * The account services that match your filter.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccountService account_services = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\AccountService>
      */
     public function getAccountServices()
     {
@@ -62,7 +62,7 @@ class ListAccountServicesResponse extends \Google\Protobuf\Internal\Message
      * The account services that match your filter.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccountService account_services = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\AccountService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\AccountService[] $var
      * @return $this
      */
     public function setAccountServices($var)

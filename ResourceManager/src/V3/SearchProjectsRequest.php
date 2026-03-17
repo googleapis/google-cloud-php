@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request sent to the
@@ -24,7 +24,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * fields. Some eligible fields are:
      * - **`displayName`, `name`**: Filters by displayName.
      * - **`parent`**: Project's parent (for example: `folders/123`,
-     * `organizations/&#42;`). Prefer `parent` field over `parent.type` and
+     * `organizations/*`). Prefer `parent` field over `parent.type` and
      * `parent.id`.
      * - **`parent.type`**: Parent's type: `folder` or `organization`.
      * - **`parent.id`**: Parent's id number (for example: `123`).
@@ -124,7 +124,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      *           fields. Some eligible fields are:
      *           - **`displayName`, `name`**: Filters by displayName.
      *           - **`parent`**: Project's parent (for example: `folders/123`,
-     *           `organizations/&#42;`). Prefer `parent` field over `parent.type` and
+     *           `organizations/*`). Prefer `parent` field over `parent.type` and
      *           `parent.id`.
      *           - **`parent.type`**: Parent's type: `folder` or `organization`.
      *           - **`parent.id`**: Parent's id number (for example: `123`).
@@ -167,7 +167,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * fields. Some eligible fields are:
      * - **`displayName`, `name`**: Filters by displayName.
      * - **`parent`**: Project's parent (for example: `folders/123`,
-     * `organizations/&#42;`). Prefer `parent` field over `parent.type` and
+     * `organizations/*`). Prefer `parent` field over `parent.type` and
      * `parent.id`.
      * - **`parent.type`**: Parent's type: `folder` or `organization`.
      * - **`parent.id`**: Parent's id number (for example: `123`).
@@ -204,7 +204,7 @@ class SearchProjectsRequest extends \Google\Protobuf\Internal\Message
      * fields. Some eligible fields are:
      * - **`displayName`, `name`**: Filters by displayName.
      * - **`parent`**: Project's parent (for example: `folders/123`,
-     * `organizations/&#42;`). Prefer `parent` field over `parent.type` and
+     * `organizations/*`). Prefer `parent` field over `parent.type` and
      * `parent.id`.
      * - **`parent.type`**: Parent's type: `folder` or `organization`.
      * - **`parent.id`**: Parent's id number (for example: `123`).

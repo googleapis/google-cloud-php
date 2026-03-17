@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The color information of a [Product][google.cloud.retail.v2.Product].
@@ -56,7 +56,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $color_families
+     *     @type string[] $color_families
      *           The standard color families. Strongly recommended to use the following
      *           standard color groups: "Red", "Pink", "Orange", "Yellow", "Purple",
      *           "Green", "Cyan", "Blue", "Brown", "White", "Gray", "Black" and "Mixed".
@@ -71,7 +71,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      *           The colorFamilies field as a system attribute is not a required field but
      *           strongly recommended to be specified. Google Search models treat this field
      *           as more important than a custom product attribute when specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $colors
+     *     @type string[] $colors
      *           The color display names, which may be different from standard color family
      *           names, such as the color aliases used in the website frontend. Normally
      *           it is expected to have only 1 color. May consider using single "Mixed"
@@ -106,7 +106,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * as more important than a custom product attribute when specified.
      *
      * Generated from protobuf field <code>repeated string color_families = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColorFamilies()
     {
@@ -130,7 +130,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * as more important than a custom product attribute when specified.
      *
      * Generated from protobuf field <code>repeated string color_families = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColorFamilies($var)
@@ -154,7 +154,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * property [Product.color](https://schema.org/color).
      *
      * Generated from protobuf field <code>repeated string colors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getColors()
     {
@@ -174,7 +174,7 @@ class ColorInfo extends \Google\Protobuf\Internal\Message
      * property [Product.color](https://schema.org/color).
      *
      * Generated from protobuf field <code>repeated string colors = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setColors($var)

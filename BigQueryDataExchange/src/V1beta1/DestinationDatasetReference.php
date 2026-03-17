@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataExchange\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the reference that identifies a destination bigquery dataset.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagFileParsingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Document AI Layout Parser config.
@@ -134,5 +134,4 @@ class LayoutParser extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

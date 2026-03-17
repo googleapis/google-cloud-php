@@ -23,6 +23,17 @@
 return [
     'interfaces' => [
         'google.cloud.compute.v1.RegionNotificationEndpoints' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/notificationEndpoints',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
             'Delete' => [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/regions/{region}/notificationEndpoints/{notification_endpoint}',

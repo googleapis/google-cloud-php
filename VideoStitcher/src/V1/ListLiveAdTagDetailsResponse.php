@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for VideoStitcherService.listLiveAdTagDetails.
@@ -34,7 +34,7 @@ class ListLiveAdTagDetailsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail>|\Google\Protobuf\Internal\RepeatedField $live_ad_tag_details
+     *     @type \Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail[] $live_ad_tag_details
      *           A list of live session ad tag details.
      *     @type string $next_page_token
      *           The pagination token.
@@ -49,7 +49,7 @@ class ListLiveAdTagDetailsResponse extends \Google\Protobuf\Internal\Message
      * A list of live session ad tag details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.LiveAdTagDetail live_ad_tag_details = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail>
      */
     public function getLiveAdTagDetails()
     {
@@ -60,7 +60,7 @@ class ListLiveAdTagDetailsResponse extends \Google\Protobuf\Internal\Message
      * A list of live session ad tag details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.LiveAdTagDetail live_ad_tag_details = 1;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\LiveAdTagDetail[] $var
      * @return $this
      */
     public function setLiveAdTagDetails($var)

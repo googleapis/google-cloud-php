@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\Shipment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for a visit which can be done by a vehicle: it has a geo-location
@@ -159,10 +159,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           `VisitRequest`. Can be omitted if it is the same as `arrival_waypoint`.
      *           If the shipment model has duration distance matrices,
      *           `departure_waypoint` must not be specified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Specifies tags attached to the visit request.
      *           Empty or duplicate strings are not allowed.
-     *     @type array<\Google\Maps\RouteOptimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $time_windows
+     *     @type \Google\Maps\RouteOptimization\V1\TimeWindow[] $time_windows
      *           Time windows which constrain the arrival time at a visit.
      *           Note that a vehicle may depart outside of the arrival time window, i.e.
      *           arrival time + duration do not need to be inside a time window. This can
@@ -192,7 +192,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           [Shipment][google.maps.routeoptimization.v1.Shipment]. The demands listed
      *           here are added to the demands listed in
      *           [Shipment.load_demands][google.maps.routeoptimization.v1.Shipment.load_demands].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $visit_types
+     *     @type string[] $visit_types
      *           Specifies the types of the visit. This may be used to allocate additional
      *           time required for a vehicle to complete this visit (see
      *           [Vehicle.extra_visit_duration_for_visit_type][google.maps.routeoptimization.v1.Vehicle.extra_visit_duration_for_visit_type]).
@@ -385,7 +385,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * Empty or duplicate strings are not allowed.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -397,7 +397,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * Empty or duplicate strings are not allowed.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -422,7 +422,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * be set if there is a single time window.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.TimeWindow time_windows = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\TimeWindow>
      */
     public function getTimeWindows()
     {
@@ -443,7 +443,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * be set if there is a single time window.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.TimeWindow time_windows = 6;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\TimeWindow[] $var
      * @return $this
      */
     public function setTimeWindows($var)
@@ -573,7 +573,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * A type can only appear once.
      *
      * Generated from protobuf field <code>repeated string visit_types = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVisitTypes()
     {
@@ -587,7 +587,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * A type can only appear once.
      *
      * Generated from protobuf field <code>repeated string visit_types = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVisitTypes($var)
@@ -677,5 +677,4 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ProcessorIOSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for output channel specification.
@@ -125,5 +125,4 @@ class GraphOutputChannelSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

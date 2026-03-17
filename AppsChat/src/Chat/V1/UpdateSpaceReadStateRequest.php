@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for UpdateSpaceReadState API.
@@ -21,7 +21,7 @@ class UpdateSpaceReadStateRequest extends \Google\Protobuf\Internal\Message
      * To refer to the calling user, set one of the following:
      * - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/spaceReadState`.
+     * `users/user\@example.com/spaces/{space}/spaceReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/spaceReadState`.
      * Format: users/{user}/spaces/{space}/spaceReadState
@@ -98,7 +98,7 @@ class UpdateSpaceReadStateRequest extends \Google\Protobuf\Internal\Message
      *           To refer to the calling user, set one of the following:
      *           - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
      *           - Their Workspace email address. For example,
-     *           `users/user&#64;example.com/spaces/{space}/spaceReadState`.
+     *           `users/user\@example.com/spaces/{space}/spaceReadState`.
      *           - Their user id. For example,
      *           `users/123456789/spaces/{space}/spaceReadState`.
      *           Format: users/{user}/spaces/{space}/spaceReadState
@@ -126,7 +126,7 @@ class UpdateSpaceReadStateRequest extends \Google\Protobuf\Internal\Message
      * To refer to the calling user, set one of the following:
      * - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/spaceReadState`.
+     * `users/user\@example.com/spaces/{space}/spaceReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/spaceReadState`.
      * Format: users/{user}/spaces/{space}/spaceReadState
@@ -155,7 +155,7 @@ class UpdateSpaceReadStateRequest extends \Google\Protobuf\Internal\Message
      * To refer to the calling user, set one of the following:
      * - The `me` alias. For example, `users/me/spaces/{space}/spaceReadState`.
      * - Their Workspace email address. For example,
-     * `users/user&#64;example.com/spaces/{space}/spaceReadState`.
+     * `users/user\@example.com/spaces/{space}/spaceReadState`.
      * - Their user id. For example,
      * `users/123456789/spaces/{space}/spaceReadState`.
      * Format: users/{user}/spaces/{space}/spaceReadState

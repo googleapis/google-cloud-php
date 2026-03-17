@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListProducts method.
@@ -36,7 +36,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Products\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type \Google\Shopping\Merchant\Products\V1beta\Product[] $products
      *           The processed products from the specified account. These are your processed
      *           products after applying rules and supplemental data sources.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * products after applying rules and supplemental data sources.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Product products = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Products\V1beta\Product>
      */
     public function getProducts()
     {
@@ -66,7 +66,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * products after applying rules and supplemental data sources.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.products.v1beta.Product products = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Products\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Products\V1beta\Product[] $var
      * @return $this
      */
     public function setProducts($var)

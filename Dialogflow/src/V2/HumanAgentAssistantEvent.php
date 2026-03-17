@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a notification sent to Cloud Pub/Sub subscribers for
@@ -51,7 +51,7 @@ class HumanAgentAssistantEvent extends \Google\Protobuf\Internal\Message
      *           The participant that the suggestion is compiled for.
      *           Format: `projects/<Project ID>/conversations/<Conversation
      *           ID>/participants/<Participant ID>`. It will not be set in legacy workflow.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $suggestion_results
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestionResult[] $suggestion_results
      *           The suggestion results payload that this notification refers to.
      * }
      */
@@ -122,7 +122,7 @@ class HumanAgentAssistantEvent extends \Google\Protobuf\Internal\Message
      * The suggestion results payload that this notification refers to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult suggestion_results = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SuggestionResult>
      */
     public function getSuggestionResults()
     {
@@ -133,7 +133,7 @@ class HumanAgentAssistantEvent extends \Google\Protobuf\Internal\Message
      * The suggestion results payload that this notification refers to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestionResult suggestion_results = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SuggestionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SuggestionResult[] $var
      * @return $this
      */
     public function setSuggestionResults($var)

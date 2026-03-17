@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\BatchWriteRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of mutations to be committed together. Related mutations should be
@@ -30,7 +30,7 @@ class MutationGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type \Google\Cloud\Spanner\V1\Mutation[] $mutations
      *           Required. The mutations in this group.
      * }
      */
@@ -43,7 +43,7 @@ class MutationGroup extends \Google\Protobuf\Internal\Message
      * Required. The mutations in this group.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\Mutation>
      */
     public function getMutations()
     {
@@ -54,7 +54,7 @@ class MutationGroup extends \Google\Protobuf\Internal\Message
      * Required. The mutations in this group.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Spanner\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\Mutation[] $var
      * @return $this
      */
     public function setMutations($var)
@@ -66,5 +66,4 @@ class MutationGroup extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

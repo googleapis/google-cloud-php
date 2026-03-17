@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A lineage event represents an operation on assets. Within the operation, the
@@ -63,7 +63,7 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
      *           Can be specified or auto-assigned.
      *           {lineage_event} must be not longer than 200 characters and only
      *           contain characters in a set: `a-zA-Z0-9_-:.`
-     *     @type array<\Google\Cloud\DataCatalog\Lineage\V1\EventLink>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\EventLink[] $links
      *           Optional. List of source-target pairs. Can't contain more than 100 tuples.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Required. The beginning of the transformation which resulted in this
@@ -120,7 +120,7 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
      * Optional. List of source-target pairs. Can't contain more than 100 tuples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.EventLink links = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\Lineage\V1\EventLink>
      */
     public function getLinks()
     {
@@ -131,7 +131,7 @@ class LineageEvent extends \Google\Protobuf\Internal\Message
      * Optional. List of source-target pairs. Can't contain more than 100 tuples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.EventLink links = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DataCatalog\Lineage\V1\EventLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\EventLink[] $var
      * @return $this
      */
     public function setLinks($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Distribution represents a frequency distribution of double-valued sample
@@ -97,7 +97,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *             Sum[i=1..count]((x_i - mean)^2)
      *           where each x_i is a sample values. If `count` is zero then this field
      *           must be zero, otherwise validation of the request fails.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $bucket_counts
+     *     @type int[]|string[] $bucket_counts
      *           The number of samples in each histogram bucket. `bucket_counts` are
      *           optional. If present, they must sum to the `count` value.
      *           The buckets are defined below in `bucket_option`. There are N buckets.
@@ -113,7 +113,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *           Buckets with exponentially growing width.
      *     @type \Google\Cloud\ServiceControl\V1\Distribution\ExplicitBuckets $explicit_buckets
      *           Buckets with arbitrary user-provided width.
-     *     @type array<\Google\Api\Distribution\Exemplar>|\Google\Protobuf\Internal\RepeatedField $exemplars
+     *     @type \Google\Api\Distribution\Exemplar[] $exemplars
      *           Example points. Must be in increasing order of `value` field.
      * }
      */
@@ -272,7 +272,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Any suffix of trailing zeros may be omitted.
      *
      * Generated from protobuf field <code>repeated int64 bucket_counts = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getBucketCounts()
     {
@@ -291,7 +291,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Any suffix of trailing zeros may be omitted.
      *
      * Generated from protobuf field <code>repeated int64 bucket_counts = 6;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setBucketCounts($var)
@@ -399,7 +399,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Example points. Must be in increasing order of `value` field.
      *
      * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Distribution\Exemplar>
      */
     public function getExemplars()
     {
@@ -410,7 +410,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Example points. Must be in increasing order of `value` field.
      *
      * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
-     * @param array<\Google\Api\Distribution\Exemplar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Distribution\Exemplar[] $var
      * @return $this
      */
     public function setExemplars($var)

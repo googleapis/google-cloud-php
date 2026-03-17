@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListScanConfigs` method.
@@ -35,7 +35,7 @@ class ListScanConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\WebSecurityScanner\V1\ScanConfig>|\Google\Protobuf\Internal\RepeatedField $scan_configs
+     *     @type \Google\Cloud\WebSecurityScanner\V1\ScanConfig[] $scan_configs
      *           The list of ScanConfigs returned.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -51,7 +51,7 @@ class ListScanConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of ScanConfigs returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.ScanConfig scan_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\WebSecurityScanner\V1\ScanConfig>
      */
     public function getScanConfigs()
     {
@@ -62,7 +62,7 @@ class ListScanConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of ScanConfigs returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1.ScanConfig scan_configs = 1;</code>
-     * @param array<\Google\Cloud\WebSecurityScanner\V1\ScanConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\WebSecurityScanner\V1\ScanConfig[] $var
      * @return $this
      */
     public function setScanConfigs($var)

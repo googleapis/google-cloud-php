@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of widgets that can be displayed in a containing layout, such
@@ -140,5 +140,4 @@ class NestedWidget extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

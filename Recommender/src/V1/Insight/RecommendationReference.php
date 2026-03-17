@@ -5,8 +5,8 @@
 namespace Google\Cloud\Recommender\V1\Insight;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Reference to an associated recommendation.
@@ -68,5 +68,4 @@ class RecommendationReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

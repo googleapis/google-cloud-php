@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An existing VPC network.
@@ -68,17 +68,17 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Required. The URI of the VPC network resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_export_ranges
+     *     @type string[] $exclude_export_ranges
      *           Optional. IP ranges encompassing the subnets to be excluded from peering.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_export_ranges
+     *     @type string[] $include_export_ranges
      *           Optional. IP ranges allowed to be included from peering.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_include_export_ranges
+     *     @type string[] $proposed_include_export_ranges
      *           Optional. The proposed include export IP ranges waiting for hub
      *           administration's approval.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_exclude_export_ranges
+     *     @type string[] $proposed_exclude_export_ranges
      *           Output only. The proposed exclude export IP ranges waiting for hub
      *           administration's approval.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $producer_vpc_spokes
+     *     @type string[] $producer_vpc_spokes
      *           Output only. The list of Producer VPC spokes that this VPC spoke is a
      *           service consumer VPC spoke for. These producer VPCs are connected through
      *           VPC peering to this spoke's backing VPC network. Because they are directly
@@ -123,7 +123,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      *
      * Generated from protobuf field <code>repeated string exclude_export_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeExportRanges()
     {
@@ -134,7 +134,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      *
      * Generated from protobuf field <code>repeated string exclude_export_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeExportRanges($var)
@@ -149,7 +149,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges allowed to be included from peering.
      *
      * Generated from protobuf field <code>repeated string include_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeExportRanges()
     {
@@ -160,7 +160,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges allowed to be included from peering.
      *
      * Generated from protobuf field <code>repeated string include_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeExportRanges($var)
@@ -176,7 +176,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProposedIncludeExportRanges()
     {
@@ -188,7 +188,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProposedIncludeExportRanges($var)
@@ -204,7 +204,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProposedExcludeExportRanges()
     {
@@ -216,7 +216,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProposedExcludeExportRanges($var)
@@ -237,7 +237,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * connected to the NCC Hub.
      *
      * Generated from protobuf field <code>repeated string producer_vpc_spokes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProducerVpcSpokes()
     {
@@ -254,7 +254,7 @@ class LinkedVpcNetwork extends \Google\Protobuf\Internal\Message
      * connected to the NCC Hub.
      *
      * Generated from protobuf field <code>repeated string producer_vpc_spokes = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProducerVpcSpokes($var)

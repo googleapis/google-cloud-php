@@ -22,247 +22,7 @@ class VideoIntelligence
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         \GPBMetadata\Google\Rpc\Status::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ŸJ
-:google/cloud/videointelligence/v1/video_intelligence.proto!google.cloud.videointelligence.v1google/api/client.protogoogle/api/field_behavior.proto#google/longrunning/operations.protogoogle/protobuf/duration.protogoogle/protobuf/timestamp.protogoogle/rpc/status.proto"˛
-AnnotateVideoRequest
-	input_uri (	
-input_content (A
-features (2*.google.cloud.videointelligence.v1.FeatureB‡AF
-video_context (2/.google.cloud.videointelligence.v1.VideoContext
-
-output_uri (	B‡A
-location_id (	B‡A"¡
-VideoContextA
-segments (2/.google.cloud.videointelligence.v1.VideoSegmentW
-label_detection_config (27.google.cloud.videointelligence.v1.LabelDetectionConfigb
-shot_change_detection_config (2<.google.cloud.videointelligence.v1.ShotChangeDetectionConfigl
-!explicit_content_detection_config (2A.google.cloud.videointelligence.v1.ExplicitContentDetectionConfigU
-face_detection_config (26.google.cloud.videointelligence.v1.FaceDetectionConfiga
-speech_transcription_config (2<.google.cloud.videointelligence.v1.SpeechTranscriptionConfigU
-text_detection_config (26.google.cloud.videointelligence.v1.TextDetectionConfigY
-person_detection_config (28.google.cloud.videointelligence.v1.PersonDetectionConfigW
-object_tracking_config (27.google.cloud.videointelligence.v1.ObjectTrackingConfig"›
-LabelDetectionConfigS
-label_detection_mode (25.google.cloud.videointelligence.v1.LabelDetectionMode
-stationary_camera (
-model (	"
-frame_confidence_threshold ("
-video_confidence_threshold ("*
-ShotChangeDetectionConfig
-model (	"%
-ObjectTrackingConfig
-model (	"`
-FaceDetectionConfig
-model (	
-include_bounding_boxes (
-include_attributes ("s
-PersonDetectionConfig
-include_bounding_boxes (
-include_pose_landmarks (
-include_attributes ("/
-ExplicitContentDetectionConfig
-model (	"<
-TextDetectionConfig
-language_hints (	
-model (	"x
-VideoSegment4
-start_time_offset (2.google.protobuf.Duration2
-end_time_offset (2.google.protobuf.Duration"d
-LabelSegment@
-segment (2/.google.cloud.videointelligence.v1.VideoSegment
-
-confidence ("P
-
-LabelFrame.
-time_offset (2.google.protobuf.Duration
-
-confidence ("G
-Entity
-	entity_id (	
-description (	
-language_code (	"•
-LabelAnnotation9
-entity (2).google.cloud.videointelligence.v1.EntityD
-category_entities (2).google.cloud.videointelligence.v1.EntityA
-segments (2/.google.cloud.videointelligence.v1.LabelSegment=
-frames (2-.google.cloud.videointelligence.v1.LabelFrame
-version (	"ï
-ExplicitContentFrame.
-time_offset (2.google.protobuf.DurationM
-pornography_likelihood (2-.google.cloud.videointelligence.v1.Likelihood"u
-ExplicitContentAnnotationG
-frames (27.google.cloud.videointelligence.v1.ExplicitContentFrame
-version (	"Q
-NormalizedBoundingBox
-left (
-top (
-right (
-bottom ("w
-FaceDetectionAnnotation8
-tracks (2(.google.cloud.videointelligence.v1.Track
-	thumbnail (
-version (	"f
-PersonDetectionAnnotation8
-tracks (2(.google.cloud.videointelligence.v1.Track
-version (	"O
-FaceSegment@
-segment (2/.google.cloud.videointelligence.v1.VideoSegment"ú
-	FaceFrame[
-normalized_bounding_boxes (28.google.cloud.videointelligence.v1.NormalizedBoundingBox.
-time_offset (2.google.protobuf.Duration:"ß
-FaceAnnotation
-	thumbnail (@
-segments (2..google.cloud.videointelligence.v1.FaceSegment<
-frames (2,.google.cloud.videointelligence.v1.FaceFrame:"∫
-TimestampedObjectY
-normalized_bounding_box (28.google.cloud.videointelligence.v1.NormalizedBoundingBox.
-time_offset (2.google.protobuf.DurationM
-
-attributes (24.google.cloud.videointelligence.v1.DetectedAttributeB‡AK
-	landmarks (23.google.cloud.videointelligence.v1.DetectedLandmarkB‡A"Ñ
-Track@
-segment (2/.google.cloud.videointelligence.v1.VideoSegmentQ
-timestamped_objects (24.google.cloud.videointelligence.v1.TimestampedObjectM
-
-attributes (24.google.cloud.videointelligence.v1.DetectedAttributeB‡A
-
-confidence (B‡A"D
-DetectedAttribute
-name (	
-
-confidence (
-value (	"x
-DetectedLandmark
-name (	B
-point (23.google.cloud.videointelligence.v1.NormalizedVertex
-
-confidence ("È
-
-VideoAnnotationResults
-	input_uri (	@
-segment
- (2/.google.cloud.videointelligence.v1.VideoSegmentU
-segment_label_annotations (22.google.cloud.videointelligence.v1.LabelAnnotation^
-"segment_presence_label_annotations (22.google.cloud.videointelligence.v1.LabelAnnotationR
-shot_label_annotations (22.google.cloud.videointelligence.v1.LabelAnnotation[
-shot_presence_label_annotations (22.google.cloud.videointelligence.v1.LabelAnnotationS
-frame_label_annotations (22.google.cloud.videointelligence.v1.LabelAnnotationO
-face_annotations (21.google.cloud.videointelligence.v1.FaceAnnotationB^
-face_detection_annotations (2:.google.cloud.videointelligence.v1.FaceDetectionAnnotationI
-shot_annotations (2/.google.cloud.videointelligence.v1.VideoSegmentY
-explicit_annotation (2<.google.cloud.videointelligence.v1.ExplicitContentAnnotationU
-speech_transcriptions (26.google.cloud.videointelligence.v1.SpeechTranscriptionK
-text_annotations (21.google.cloud.videointelligence.v1.TextAnnotationW
-object_annotations (2;.google.cloud.videointelligence.v1.ObjectTrackingAnnotationb
-logo_recognition_annotations (2<.google.cloud.videointelligence.v1.LogoRecognitionAnnotationb
-person_detection_annotations (2<.google.cloud.videointelligence.v1.PersonDetectionAnnotation!
-error	 (2.google.rpc.Status"n
-AnnotateVideoResponseU
-annotation_results (29.google.cloud.videointelligence.v1.VideoAnnotationResults"¶
-VideoAnnotationProgress
-	input_uri (	
-progress_percent (.
-
-start_time (2.google.protobuf.Timestamp/
-update_time (2.google.protobuf.Timestamp;
-feature (2*.google.cloud.videointelligence.v1.Feature@
-segment (2/.google.cloud.videointelligence.v1.VideoSegment"p
-AnnotateVideoProgressW
-annotation_progress (2:.google.cloud.videointelligence.v1.VideoAnnotationProgress"Å
-SpeechTranscriptionConfig
-language_code (	B‡A
-max_alternatives (B‡A
-filter_profanity (B‡AN
-speech_contexts (20.google.cloud.videointelligence.v1.SpeechContextB‡A)
-enable_automatic_punctuation (B‡A
-audio_tracks (B‡A\'
-enable_speaker_diarization (B‡A&
-diarization_speaker_count (B‡A#
-enable_word_confidence	 (B‡A"%
-SpeechContext
-phrases (	B‡A"à
-SpeechTranscriptionU
-alternatives (2?.google.cloud.videointelligence.v1.SpeechRecognitionAlternative
-language_code (	B‡A"å
-SpeechRecognitionAlternative
-
-transcript (	
-
-confidence (B‡A?
-words (2+.google.cloud.videointelligence.v1.WordInfoB‡A"ß
-WordInfo-
-
-start_time (2.google.protobuf.Duration+
-end_time (2.google.protobuf.Duration
-word (	
-
-confidence (B‡A
-speaker_tag (B‡A"(
-NormalizedVertex	
-x (	
-y ("_
-NormalizedBoundingPolyE
-vertices (23.google.cloud.videointelligence.v1.NormalizedVertex"°
-TextSegment@
-segment (2/.google.cloud.videointelligence.v1.VideoSegment
-
-confidence (<
-frames (2,.google.cloud.videointelligence.v1.TextFrame"î
-	TextFrameW
-rotated_bounding_box (29.google.cloud.videointelligence.v1.NormalizedBoundingPoly.
-time_offset (2.google.protobuf.Duration"q
-TextAnnotation
-text (	@
-segments (2..google.cloud.videointelligence.v1.TextSegment
-version (	"†
-ObjectTrackingFrameY
-normalized_bounding_box (28.google.cloud.videointelligence.v1.NormalizedBoundingBox.
-time_offset (2.google.protobuf.Duration"®
-ObjectTrackingAnnotationB
-segment (2/.google.cloud.videointelligence.v1.VideoSegmentH 
-track_id (H 9
-entity (2).google.cloud.videointelligence.v1.Entity
-
-confidence (F
-frames (26.google.cloud.videointelligence.v1.ObjectTrackingFrame
-version (	B
-
-track_info"”
-LogoRecognitionAnnotation9
-entity (2).google.cloud.videointelligence.v1.Entity8
-tracks (2(.google.cloud.videointelligence.v1.TrackA
-segments (2/.google.cloud.videointelligence.v1.VideoSegment*ı
-Feature
-FEATURE_UNSPECIFIED 
-LABEL_DETECTION
-SHOT_CHANGE_DETECTION
-EXPLICIT_CONTENT_DETECTION
-FACE_DETECTION
-SPEECH_TRANSCRIPTION
-TEXT_DETECTION
-OBJECT_TRACKING	
-LOGO_RECOGNITION
-PERSON_DETECTION*r
-LabelDetectionMode$
- LABEL_DETECTION_MODE_UNSPECIFIED 
-	SHOT_MODE
-
-FRAME_MODE
-SHOT_AND_FRAME_MODE*t
-
-Likelihood
-LIKELIHOOD_UNSPECIFIED 
-VERY_UNLIKELY
-UNLIKELY
-POSSIBLE
-
-LIKELY
-VERY_LIKELY2¿
-VideoIntelligenceServiceÕ
-AnnotateVideo7.google.cloud.videointelligence.v1.AnnotateVideoRequest.google.longrunning.Operation"d A.
-AnnotateVideoResponseAnnotateVideoProgress⁄Ainput_uri,featuresÇ”‰ì"/v1/videos:annotate:*T A videointelligence.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBå
-%com.google.cloud.videointelligence.v1BVideoIntelligenceServiceProtoPZScloud.google.com/go/videointelligence/apiv1/videointelligencepb;videointelligencepb™!Google.Cloud.VideoIntelligence.V1 !Google\\Cloud\\VideoIntelligence\\V1Í$Google::Cloud::VideoIntelligence::V1bproto3'
+            "\x0A\xD9J\x0A:google/cloud/videointelligence/v1/video_intelligence.proto\x12!google.cloud.videointelligence.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A#google/longrunning/operations.proto\x1A\x1Egoogle/protobuf/duration.proto\x1A\x1Fgoogle/protobuf/timestamp.proto\x1A\x17google/rpc/status.proto\"\xFE\x01\x0A\x14AnnotateVideoRequest\x12\x11\x0A\x09input_uri\x18\x01 \x01(\x09\x12\x15\x0A\x0Dinput_content\x18\x06 \x01(\x0C\x12A\x0A\x08features\x18\x02 \x03(\x0E2*.google.cloud.videointelligence.v1.FeatureB\x03\xE0A\x02\x12F\x0A\x0Dvideo_context\x18\x03 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoContext\x12\x17\x0A\x0Aoutput_uri\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x18\x0A\x0Blocation_id\x18\x05 \x01(\x09B\x03\xE0A\x01\"\xC1\x06\x0A\x0CVideoContext\x12A\x0A\x08segments\x18\x01 \x03(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12W\x0A\x16label_detection_config\x18\x02 \x01(\x0B27.google.cloud.videointelligence.v1.LabelDetectionConfig\x12b\x0A\x1Cshot_change_detection_config\x18\x03 \x01(\x0B2<.google.cloud.videointelligence.v1.ShotChangeDetectionConfig\x12l\x0A!explicit_content_detection_config\x18\x04 \x01(\x0B2A.google.cloud.videointelligence.v1.ExplicitContentDetectionConfig\x12U\x0A\x15face_detection_config\x18\x05 \x01(\x0B26.google.cloud.videointelligence.v1.FaceDetectionConfig\x12a\x0A\x1Bspeech_transcription_config\x18\x06 \x01(\x0B2<.google.cloud.videointelligence.v1.SpeechTranscriptionConfig\x12U\x0A\x15text_detection_config\x18\x08 \x01(\x0B26.google.cloud.videointelligence.v1.TextDetectionConfig\x12Y\x0A\x17person_detection_config\x18\x0B \x01(\x0B28.google.cloud.videointelligence.v1.PersonDetectionConfig\x12W\x0A\x16object_tracking_config\x18\x0D \x01(\x0B27.google.cloud.videointelligence.v1.ObjectTrackingConfig\"\xDD\x01\x0A\x14LabelDetectionConfig\x12S\x0A\x14label_detection_mode\x18\x01 \x01(\x0E25.google.cloud.videointelligence.v1.LabelDetectionMode\x12\x19\x0A\x11stationary_camera\x18\x02 \x01(\x08\x12\x0D\x0A\x05model\x18\x03 \x01(\x09\x12\"\x0A\x1Aframe_confidence_threshold\x18\x04 \x01(\x02\x12\"\x0A\x1Avideo_confidence_threshold\x18\x05 \x01(\x02\"*\x0A\x19ShotChangeDetectionConfig\x12\x0D\x0A\x05model\x18\x01 \x01(\x09\"%\x0A\x14ObjectTrackingConfig\x12\x0D\x0A\x05model\x18\x01 \x01(\x09\"`\x0A\x13FaceDetectionConfig\x12\x0D\x0A\x05model\x18\x01 \x01(\x09\x12\x1E\x0A\x16include_bounding_boxes\x18\x02 \x01(\x08\x12\x1A\x0A\x12include_attributes\x18\x05 \x01(\x08\"s\x0A\x15PersonDetectionConfig\x12\x1E\x0A\x16include_bounding_boxes\x18\x01 \x01(\x08\x12\x1E\x0A\x16include_pose_landmarks\x18\x02 \x01(\x08\x12\x1A\x0A\x12include_attributes\x18\x03 \x01(\x08\"/\x0A\x1EExplicitContentDetectionConfig\x12\x0D\x0A\x05model\x18\x01 \x01(\x09\"<\x0A\x13TextDetectionConfig\x12\x16\x0A\x0Elanguage_hints\x18\x01 \x03(\x09\x12\x0D\x0A\x05model\x18\x02 \x01(\x09\"x\x0A\x0CVideoSegment\x124\x0A\x11start_time_offset\x18\x01 \x01(\x0B2\x19.google.protobuf.Duration\x122\x0A\x0Fend_time_offset\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration\"d\x0A\x0CLabelSegment\x12@\x0A\x07segment\x18\x01 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12\x12\x0A\x0Aconfidence\x18\x02 \x01(\x02\"P\x0A\x0ALabelFrame\x12.\x0A\x0Btime_offset\x18\x01 \x01(\x0B2\x19.google.protobuf.Duration\x12\x12\x0A\x0Aconfidence\x18\x02 \x01(\x02\"G\x0A\x06Entity\x12\x11\x0A\x09entity_id\x18\x01 \x01(\x09\x12\x13\x0A\x0Bdescription\x18\x02 \x01(\x09\x12\x15\x0A\x0Dlanguage_code\x18\x03 \x01(\x09\"\xA5\x02\x0A\x0FLabelAnnotation\x129\x0A\x06entity\x18\x01 \x01(\x0B2).google.cloud.videointelligence.v1.Entity\x12D\x0A\x11category_entities\x18\x02 \x03(\x0B2).google.cloud.videointelligence.v1.Entity\x12A\x0A\x08segments\x18\x03 \x03(\x0B2/.google.cloud.videointelligence.v1.LabelSegment\x12=\x0A\x06frames\x18\x04 \x03(\x0B2-.google.cloud.videointelligence.v1.LabelFrame\x12\x0F\x0A\x07version\x18\x05 \x01(\x09\"\x95\x01\x0A\x14ExplicitContentFrame\x12.\x0A\x0Btime_offset\x18\x01 \x01(\x0B2\x19.google.protobuf.Duration\x12M\x0A\x16pornography_likelihood\x18\x02 \x01(\x0E2-.google.cloud.videointelligence.v1.Likelihood\"u\x0A\x19ExplicitContentAnnotation\x12G\x0A\x06frames\x18\x01 \x03(\x0B27.google.cloud.videointelligence.v1.ExplicitContentFrame\x12\x0F\x0A\x07version\x18\x02 \x01(\x09\"Q\x0A\x15NormalizedBoundingBox\x12\x0C\x0A\x04left\x18\x01 \x01(\x02\x12\x0B\x0A\x03top\x18\x02 \x01(\x02\x12\x0D\x0A\x05right\x18\x03 \x01(\x02\x12\x0E\x0A\x06bottom\x18\x04 \x01(\x02\"w\x0A\x17FaceDetectionAnnotation\x128\x0A\x06tracks\x18\x03 \x03(\x0B2(.google.cloud.videointelligence.v1.Track\x12\x11\x0A\x09thumbnail\x18\x04 \x01(\x0C\x12\x0F\x0A\x07version\x18\x05 \x01(\x09\"f\x0A\x19PersonDetectionAnnotation\x128\x0A\x06tracks\x18\x01 \x03(\x0B2(.google.cloud.videointelligence.v1.Track\x12\x0F\x0A\x07version\x18\x02 \x01(\x09\"O\x0A\x0BFaceSegment\x12@\x0A\x07segment\x18\x01 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\"\x9C\x01\x0A\x09FaceFrame\x12[\x0A\x19normalized_bounding_boxes\x18\x01 \x03(\x0B28.google.cloud.videointelligence.v1.NormalizedBoundingBox\x12.\x0A\x0Btime_offset\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration:\x02\x18\x01\"\xA7\x01\x0A\x0EFaceAnnotation\x12\x11\x0A\x09thumbnail\x18\x01 \x01(\x0C\x12@\x0A\x08segments\x18\x02 \x03(\x0B2..google.cloud.videointelligence.v1.FaceSegment\x12<\x0A\x06frames\x18\x03 \x03(\x0B2,.google.cloud.videointelligence.v1.FaceFrame:\x02\x18\x01\"\xBA\x02\x0A\x11TimestampedObject\x12Y\x0A\x17normalized_bounding_box\x18\x01 \x01(\x0B28.google.cloud.videointelligence.v1.NormalizedBoundingBox\x12.\x0A\x0Btime_offset\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration\x12M\x0A\x0Aattributes\x18\x03 \x03(\x0B24.google.cloud.videointelligence.v1.DetectedAttributeB\x03\xE0A\x01\x12K\x0A\x09landmarks\x18\x04 \x03(\x0B23.google.cloud.videointelligence.v1.DetectedLandmarkB\x03\xE0A\x01\"\x84\x02\x0A\x05Track\x12@\x0A\x07segment\x18\x01 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12Q\x0A\x13timestamped_objects\x18\x02 \x03(\x0B24.google.cloud.videointelligence.v1.TimestampedObject\x12M\x0A\x0Aattributes\x18\x03 \x03(\x0B24.google.cloud.videointelligence.v1.DetectedAttributeB\x03\xE0A\x01\x12\x17\x0A\x0Aconfidence\x18\x04 \x01(\x02B\x03\xE0A\x01\"D\x0A\x11DetectedAttribute\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12\x12\x0A\x0Aconfidence\x18\x02 \x01(\x02\x12\x0D\x0A\x05value\x18\x03 \x01(\x09\"x\x0A\x10DetectedLandmark\x12\x0C\x0A\x04name\x18\x01 \x01(\x09\x12B\x0A\x05point\x18\x02 \x01(\x0B23.google.cloud.videointelligence.v1.NormalizedVertex\x12\x12\x0A\x0Aconfidence\x18\x03 \x01(\x02\"\xE9\x0A\x0A\x16VideoAnnotationResults\x12\x11\x0A\x09input_uri\x18\x01 \x01(\x09\x12@\x0A\x07segment\x18\x0A \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12U\x0A\x19segment_label_annotations\x18\x02 \x03(\x0B22.google.cloud.videointelligence.v1.LabelAnnotation\x12^\x0A\"segment_presence_label_annotations\x18\x17 \x03(\x0B22.google.cloud.videointelligence.v1.LabelAnnotation\x12R\x0A\x16shot_label_annotations\x18\x03 \x03(\x0B22.google.cloud.videointelligence.v1.LabelAnnotation\x12[\x0A\x1Fshot_presence_label_annotations\x18\x18 \x03(\x0B22.google.cloud.videointelligence.v1.LabelAnnotation\x12S\x0A\x17frame_label_annotations\x18\x04 \x03(\x0B22.google.cloud.videointelligence.v1.LabelAnnotation\x12O\x0A\x10face_annotations\x18\x05 \x03(\x0B21.google.cloud.videointelligence.v1.FaceAnnotationB\x02\x18\x01\x12^\x0A\x1Aface_detection_annotations\x18\x0D \x03(\x0B2:.google.cloud.videointelligence.v1.FaceDetectionAnnotation\x12I\x0A\x10shot_annotations\x18\x06 \x03(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12Y\x0A\x13explicit_annotation\x18\x07 \x01(\x0B2<.google.cloud.videointelligence.v1.ExplicitContentAnnotation\x12U\x0A\x15speech_transcriptions\x18\x0B \x03(\x0B26.google.cloud.videointelligence.v1.SpeechTranscription\x12K\x0A\x10text_annotations\x18\x0C \x03(\x0B21.google.cloud.videointelligence.v1.TextAnnotation\x12W\x0A\x12object_annotations\x18\x0E \x03(\x0B2;.google.cloud.videointelligence.v1.ObjectTrackingAnnotation\x12b\x0A\x1Clogo_recognition_annotations\x18\x13 \x03(\x0B2<.google.cloud.videointelligence.v1.LogoRecognitionAnnotation\x12b\x0A\x1Cperson_detection_annotations\x18\x14 \x03(\x0B2<.google.cloud.videointelligence.v1.PersonDetectionAnnotation\x12!\x0A\x05error\x18\x09 \x01(\x0B2\x12.google.rpc.Status\"n\x0A\x15AnnotateVideoResponse\x12U\x0A\x12annotation_results\x18\x01 \x03(\x0B29.google.cloud.videointelligence.v1.VideoAnnotationResults\"\xA6\x02\x0A\x17VideoAnnotationProgress\x12\x11\x0A\x09input_uri\x18\x01 \x01(\x09\x12\x18\x0A\x10progress_percent\x18\x02 \x01(\x05\x12.\x0A\x0Astart_time\x18\x03 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12/\x0A\x0Bupdate_time\x18\x04 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12;\x0A\x07feature\x18\x05 \x01(\x0E2*.google.cloud.videointelligence.v1.Feature\x12@\x0A\x07segment\x18\x06 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\"p\x0A\x15AnnotateVideoProgress\x12W\x0A\x13annotation_progress\x18\x01 \x03(\x0B2:.google.cloud.videointelligence.v1.VideoAnnotationProgress\"\x81\x03\x0A\x19SpeechTranscriptionConfig\x12\x1A\x0A\x0Dlanguage_code\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x1D\x0A\x10max_alternatives\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x1D\x0A\x10filter_profanity\x18\x03 \x01(\x08B\x03\xE0A\x01\x12N\x0A\x0Fspeech_contexts\x18\x04 \x03(\x0B20.google.cloud.videointelligence.v1.SpeechContextB\x03\xE0A\x01\x12)\x0A\x1Cenable_automatic_punctuation\x18\x05 \x01(\x08B\x03\xE0A\x01\x12\x19\x0A\x0Caudio_tracks\x18\x06 \x03(\x05B\x03\xE0A\x01\x12'\x0A\x1Aenable_speaker_diarization\x18\x07 \x01(\x08B\x03\xE0A\x01\x12&\x0A\x19diarization_speaker_count\x18\x08 \x01(\x05B\x03\xE0A\x01\x12#\x0A\x16enable_word_confidence\x18\x09 \x01(\x08B\x03\xE0A\x01\"%\x0A\x0DSpeechContext\x12\x14\x0A\x07phrases\x18\x01 \x03(\x09B\x03\xE0A\x01\"\x88\x01\x0A\x13SpeechTranscription\x12U\x0A\x0Calternatives\x18\x01 \x03(\x0B2?.google.cloud.videointelligence.v1.SpeechRecognitionAlternative\x12\x1A\x0A\x0Dlanguage_code\x18\x02 \x01(\x09B\x03\xE0A\x03\"\x8C\x01\x0A\x1CSpeechRecognitionAlternative\x12\x12\x0A\x0Atranscript\x18\x01 \x01(\x09\x12\x17\x0A\x0Aconfidence\x18\x02 \x01(\x02B\x03\xE0A\x03\x12?\x0A\x05words\x18\x03 \x03(\x0B2+.google.cloud.videointelligence.v1.WordInfoB\x03\xE0A\x03\"\xA7\x01\x0A\x08WordInfo\x12-\x0A\x0Astart_time\x18\x01 \x01(\x0B2\x19.google.protobuf.Duration\x12+\x0A\x08end_time\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration\x12\x0C\x0A\x04word\x18\x03 \x01(\x09\x12\x17\x0A\x0Aconfidence\x18\x04 \x01(\x02B\x03\xE0A\x03\x12\x18\x0A\x0Bspeaker_tag\x18\x05 \x01(\x05B\x03\xE0A\x03\"(\x0A\x10NormalizedVertex\x12\x09\x0A\x01x\x18\x01 \x01(\x02\x12\x09\x0A\x01y\x18\x02 \x01(\x02\"_\x0A\x16NormalizedBoundingPoly\x12E\x0A\x08vertices\x18\x01 \x03(\x0B23.google.cloud.videointelligence.v1.NormalizedVertex\"\xA1\x01\x0A\x0BTextSegment\x12@\x0A\x07segment\x18\x01 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegment\x12\x12\x0A\x0Aconfidence\x18\x02 \x01(\x02\x12<\x0A\x06frames\x18\x03 \x03(\x0B2,.google.cloud.videointelligence.v1.TextFrame\"\x94\x01\x0A\x09TextFrame\x12W\x0A\x14rotated_bounding_box\x18\x01 \x01(\x0B29.google.cloud.videointelligence.v1.NormalizedBoundingPoly\x12.\x0A\x0Btime_offset\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration\"q\x0A\x0ETextAnnotation\x12\x0C\x0A\x04text\x18\x01 \x01(\x09\x12@\x0A\x08segments\x18\x02 \x03(\x0B2..google.cloud.videointelligence.v1.TextSegment\x12\x0F\x0A\x07version\x18\x03 \x01(\x09\"\xA0\x01\x0A\x13ObjectTrackingFrame\x12Y\x0A\x17normalized_bounding_box\x18\x01 \x01(\x0B28.google.cloud.videointelligence.v1.NormalizedBoundingBox\x12.\x0A\x0Btime_offset\x18\x02 \x01(\x0B2\x19.google.protobuf.Duration\"\xA8\x02\x0A\x18ObjectTrackingAnnotation\x12B\x0A\x07segment\x18\x03 \x01(\x0B2/.google.cloud.videointelligence.v1.VideoSegmentH\x00\x12\x12\x0A\x08track_id\x18\x05 \x01(\x03H\x00\x129\x0A\x06entity\x18\x01 \x01(\x0B2).google.cloud.videointelligence.v1.Entity\x12\x12\x0A\x0Aconfidence\x18\x04 \x01(\x02\x12F\x0A\x06frames\x18\x02 \x03(\x0B26.google.cloud.videointelligence.v1.ObjectTrackingFrame\x12\x0F\x0A\x07version\x18\x06 \x01(\x09B\x0C\x0A\x0Atrack_info\"\xD3\x01\x0A\x19LogoRecognitionAnnotation\x129\x0A\x06entity\x18\x01 \x01(\x0B2).google.cloud.videointelligence.v1.Entity\x128\x0A\x06tracks\x18\x02 \x03(\x0B2(.google.cloud.videointelligence.v1.Track\x12A\x0A\x08segments\x18\x03 \x03(\x0B2/.google.cloud.videointelligence.v1.VideoSegment*\xF5\x01\x0A\x07Feature\x12\x17\x0A\x13FEATURE_UNSPECIFIED\x10\x00\x12\x13\x0A\x0FLABEL_DETECTION\x10\x01\x12\x19\x0A\x15SHOT_CHANGE_DETECTION\x10\x02\x12\x1E\x0A\x1AEXPLICIT_CONTENT_DETECTION\x10\x03\x12\x12\x0A\x0EFACE_DETECTION\x10\x04\x12\x18\x0A\x14SPEECH_TRANSCRIPTION\x10\x06\x12\x12\x0A\x0ETEXT_DETECTION\x10\x07\x12\x13\x0A\x0FOBJECT_TRACKING\x10\x09\x12\x14\x0A\x10LOGO_RECOGNITION\x10\x0C\x12\x14\x0A\x10PERSON_DETECTION\x10\x0E*r\x0A\x12LabelDetectionMode\x12\$\x0A LABEL_DETECTION_MODE_UNSPECIFIED\x10\x00\x12\x0D\x0A\x09SHOT_MODE\x10\x01\x12\x0E\x0A\x0AFRAME_MODE\x10\x02\x12\x17\x0A\x13SHOT_AND_FRAME_MODE\x10\x03*t\x0A\x0ALikelihood\x12\x1A\x0A\x16LIKELIHOOD_UNSPECIFIED\x10\x00\x12\x11\x0A\x0DVERY_UNLIKELY\x10\x01\x12\x0C\x0A\x08UNLIKELY\x10\x02\x12\x0C\x0A\x08POSSIBLE\x10\x03\x12\x0A\x0A\x06LIKELY\x10\x04\x12\x0F\x0A\x0BVERY_LIKELY\x10\x052\xC0\x02\x0A\x18VideoIntelligenceService\x12\xCD\x01\x0A\x0DAnnotateVideo\x127.google.cloud.videointelligence.v1.AnnotateVideoRequest\x1A\x1D.google.longrunning.Operation\"d\xCAA.\x0A\x15AnnotateVideoResponse\x12\x15AnnotateVideoProgress\xDAA\x12input_uri,features\x82\xD3\xE4\x93\x02\x18\"\x13/v1/videos:annotate:\x01*\x1AT\xCAA videointelligence.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\x8C\x02\x0A%com.google.cloud.videointelligence.v1B\x1DVideoIntelligenceServiceProtoP\x01ZScloud.google.com/go/videointelligence/apiv1/videointelligencepb;videointelligencepb\xAA\x02!Google.Cloud.VideoIntelligence.V1\xCA\x02!Google\\Cloud\\VideoIntelligence\\V1\xEA\x02\$Google::Cloud::VideoIntelligence::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

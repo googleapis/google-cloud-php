@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identifies the cloud resource that is referenced by this asset.
@@ -148,5 +148,4 @@ class ResourceSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

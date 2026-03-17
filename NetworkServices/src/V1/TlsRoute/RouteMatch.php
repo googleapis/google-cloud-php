@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\TlsRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RouteMatch defines the predicate used to match requests to a given action.
@@ -45,7 +45,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sni_host
+     *     @type string[] $sni_host
      *           Optional. SNI (server name indicator) to match against.
      *           SNI will be matched against all wildcard domains, i.e. `www.example.com`
      *           will be first matched against `www.example.com`, then `*.example.com`,
@@ -54,7 +54,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      *           invalid.
      *           At least one of sni_host and alpn is required.
      *           Up to 100 sni hosts across all matches can be set.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alpn
+     *     @type string[] $alpn
      *           Optional. ALPN (Application-Layer Protocol Negotiation) to match against.
      *           Examples: "http/1.1", "h2".
      *           At least one of sni_host and alpn is required.
@@ -77,7 +77,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Up to 100 sni hosts across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string sni_host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSniHost()
     {
@@ -95,7 +95,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Up to 100 sni hosts across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string sni_host = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSniHost($var)
@@ -113,7 +113,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Up to 5 alpns across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string alpn = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAlpn()
     {
@@ -127,7 +127,7 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
      * Up to 5 alpns across all matches can be set.
      *
      * Generated from protobuf field <code>repeated string alpn = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAlpn($var)
@@ -139,5 +139,4 @@ class RouteMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

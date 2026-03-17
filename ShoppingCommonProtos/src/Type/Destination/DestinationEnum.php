@@ -57,6 +57,43 @@ class DestinationEnum
      * Generated from protobuf enum <code>YOUTUBE_SHOPPING = 6;</code>
      */
     const YOUTUBE_SHOPPING = 6;
+    /**
+     * Youtube shopping checkout.
+     *
+     * Generated from protobuf enum <code>YOUTUBE_SHOPPING_CHECKOUT = 7;</code>
+     */
+    const YOUTUBE_SHOPPING_CHECKOUT = 7;
+    /**
+     * [Youtube Affiliate](https://support.google.com/youtube/answer/13376398).
+     *
+     * Generated from protobuf enum <code>YOUTUBE_AFFILIATE = 8;</code>
+     */
+    const YOUTUBE_AFFILIATE = 8;
+    /**
+     * [Free vehicle
+     * listings](https://support.google.com/merchants/answer/11189169).
+     *
+     * Generated from protobuf enum <code>FREE_VEHICLE_LISTINGS = 9;</code>
+     */
+    const FREE_VEHICLE_LISTINGS = 9;
+    /**
+     * [Vehicle ads](https://support.google.com/merchants/answer/11189169).
+     *
+     * Generated from protobuf enum <code>VEHICLE_ADS = 10;</code>
+     */
+    const VEHICLE_ADS = 10;
+    /**
+     * [Cloud retail](https://cloud.google.com/solutions/retail).
+     *
+     * Generated from protobuf enum <code>CLOUD_RETAIL = 11;</code>
+     */
+    const CLOUD_RETAIL = 11;
+    /**
+     * [Local cloud retail](https://cloud.google.com/solutions/retail).
+     *
+     * Generated from protobuf enum <code>LOCAL_CLOUD_RETAIL = 12;</code>
+     */
+    const LOCAL_CLOUD_RETAIL = 12;
 
     private static $valueToName = [
         self::DESTINATION_ENUM_UNSPECIFIED => 'DESTINATION_ENUM_UNSPECIFIED',
@@ -66,6 +103,12 @@ class DestinationEnum
         self::FREE_LISTINGS => 'FREE_LISTINGS',
         self::FREE_LOCAL_LISTINGS => 'FREE_LOCAL_LISTINGS',
         self::YOUTUBE_SHOPPING => 'YOUTUBE_SHOPPING',
+        self::YOUTUBE_SHOPPING_CHECKOUT => 'YOUTUBE_SHOPPING_CHECKOUT',
+        self::YOUTUBE_AFFILIATE => 'YOUTUBE_AFFILIATE',
+        self::FREE_VEHICLE_LISTINGS => 'FREE_VEHICLE_LISTINGS',
+        self::VEHICLE_ADS => 'VEHICLE_ADS',
+        self::CLOUD_RETAIL => 'CLOUD_RETAIL',
+        self::LOCAL_CLOUD_RETAIL => 'LOCAL_CLOUD_RETAIL',
     ];
 
     public static function name($value)
@@ -88,7 +131,4 @@ class DestinationEnum
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DestinationEnum::class, \Google\Shopping\Type\Destination_DestinationEnum::class);
 

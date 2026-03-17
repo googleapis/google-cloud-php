@@ -80,6 +80,25 @@ return [
                     ],
                 ],
             ],
+            'CreateMetadataFeed' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataplex\V1\MetadataFeed',
+                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateMetadataJob' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dataplex\V1\MetadataJob',
@@ -156,6 +175,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteMetadataFeed' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateAspectType' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Dataplex\V1\AspectType',
@@ -211,6 +249,26 @@ return [
                         'keyName' => 'entry_type.name',
                         'fieldAccessors' => [
                             'getEntryType',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateMetadataFeed' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Dataplex\V1\MetadataFeed',
+                    'metadataReturnType' => '\Google\Cloud\Dataplex\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'metadata_feed.name',
+                        'fieldAccessors' => [
+                            'getMetadataFeed',
                             'getName',
                         ],
                     ],
@@ -336,6 +394,18 @@ return [
                     ],
                 ],
             ],
+            'GetMetadataFeed' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\MetadataFeed',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetMetadataJob' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\MetadataJob',
@@ -428,6 +498,26 @@ return [
                     ],
                 ],
             ],
+            'ListMetadataFeeds' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMetadataFeeds',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\ListMetadataFeedsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListMetadataJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -448,9 +538,41 @@ return [
                     ],
                 ],
             ],
+            'LookupContext' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\LookupContextResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'LookupEntry' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Dataplex\V1\Entry',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'LookupEntryLinks' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getEntryLinks',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\LookupEntryLinksResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -493,6 +615,53 @@ return [
                     ],
                 ],
             ],
+            'UpdateEntryLink' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Dataplex\V1\EntryLink',
+                'headerParams' => [
+                    [
+                        'keyName' => 'entry_link.name',
+                        'fieldAccessors' => [
+                            'getEntryLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'ListLocations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLocations',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+                'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
             'GetIamPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Iam\V1\Policy',
@@ -532,40 +701,6 @@ return [
                 ],
                 'interfaceOverride' => 'google.iam.v1.IAMPolicy',
             ],
-            'GetLocation' => [
-                'callType' => \Google\ApiCore\Call::UNARY_CALL,
-                'responseType' => 'Google\Cloud\Location\Location',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.cloud.location.Locations',
-            ],
-            'ListLocations' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getLocations',
-                ],
-                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
-                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
-                'headerParams' => [
-                    [
-                        'keyName' => 'name',
-                        'fieldAccessors' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-                'interfaceOverride' => 'google.cloud.location.Locations',
-            ],
             'templateMap' => [
                 'aspectType' => 'projects/{project}/locations/{location}/aspectTypes/{aspect_type}',
                 'entry' => 'projects/{project}/locations/{location}/entryGroups/{entry_group}/entries/{entry}',
@@ -574,6 +709,7 @@ return [
                 'entryType' => 'projects/{project}/locations/{location}/entryTypes/{entry_type}',
                 'glossary' => 'projects/{project}/locations/{location}/glossaries/{glossary}',
                 'location' => 'projects/{project}/locations/{location}',
+                'metadataFeed' => 'projects/{project}/locations/{location}/metadataFeeds/{metadata_feed}',
                 'metadataJob' => 'projects/{project}/locations/{location}/metadataJobs/{metadataJob}',
                 'project' => 'projects/{project}',
             ],

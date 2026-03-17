@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Job represents the configuration of a single job, which references a
@@ -297,7 +297,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Run\V2\Condition $terminal_condition
      *           Output only. The Condition of this Job, containing its readiness status,
      *           and detailed error information in case it did not reach the desired state.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Run\V2\Condition[] $conditions
      *           Output only. The Conditions of all other associated sub-resources. They
      *           contain additional diagnostics information in case the Job does not reach
      *           its desired state. See comments in `reconciling` for additional information
@@ -962,7 +962,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Condition>
      */
     public function getConditions()
     {
@@ -976,7 +976,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Condition[] $var
      * @return $this
      */
     public function setConditions($var)

@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\WidgetMarkup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A link that opens a new window.
@@ -64,5 +64,4 @@ class OpenLink extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

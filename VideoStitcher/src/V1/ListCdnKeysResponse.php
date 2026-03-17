@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for VideoStitcher.ListCdnKeys.
@@ -40,11 +40,11 @@ class ListCdnKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\CdnKey>|\Google\Protobuf\Internal\RepeatedField $cdn_keys
+     *     @type \Google\Cloud\Video\Stitcher\V1\CdnKey[] $cdn_keys
      *           List of CDN keys.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListCdnKeysResponse extends \Google\Protobuf\Internal\Message
      * List of CDN keys.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.CdnKey cdn_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\CdnKey>
      */
     public function getCdnKeys()
     {
@@ -68,7 +68,7 @@ class ListCdnKeysResponse extends \Google\Protobuf\Internal\Message
      * List of CDN keys.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.CdnKey cdn_keys = 1;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\CdnKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\CdnKey[] $var
      * @return $this
      */
     public function setCdnKeys($var)
@@ -109,7 +109,7 @@ class ListCdnKeysResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListCdnKeysResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListGroupMembers` response.
@@ -42,7 +42,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Api\MonitoredResource>|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type \Google\Api\MonitoredResource[] $members
      *           A set of monitored resources in the group.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is
@@ -61,7 +61,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * A set of monitored resources in the group.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MonitoredResource>
      */
     public function getMembers()
     {
@@ -72,7 +72,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * A set of monitored resources in the group.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
-     * @param array<\Google\Api\MonitoredResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MonitoredResource[] $var
      * @return $this
      */
     public function setMembers($var)

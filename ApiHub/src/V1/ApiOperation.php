@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an operation contained in an API version in the API Hub.
@@ -107,7 +107,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      *           operation resource. The key is the attribute name. It will be of the
      *           format: `projects/{project}/locations/{location}/attributes/{attribute}`.
      *           The value is the attribute values associated with the resource.
-     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *     @type \Google\Cloud\ApiHub\V1\SourceMetadata[] $source_metadata
      *           Output only. The list of sources and metadata from the sources of the API
      *           operation.
      * }
@@ -330,7 +330,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SourceMetadata>
      */
     public function getSourceMetadata()
     {
@@ -342,7 +342,7 @@ class ApiOperation extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SourceMetadata[] $var
      * @return $this
      */
     public function setSourceMetadata($var)

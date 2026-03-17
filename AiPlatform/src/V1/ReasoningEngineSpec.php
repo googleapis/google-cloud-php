@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ReasoningEngine configurations
@@ -82,7 +82,7 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *           specified.
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\DeploymentSpec $deployment_spec
      *           Optional. The specification of a Reasoning Engine deployment.
-     *     @type array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $class_methods
+     *     @type \Google\Protobuf\Struct[] $class_methods
      *           Optional. Declarations for object class methods in OpenAPI specification
      *           format.
      *     @type string $agent_framework
@@ -258,7 +258,7 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * format.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct class_methods = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Struct>
      */
     public function getClassMethods()
     {
@@ -270,7 +270,7 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      * format.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Struct class_methods = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Protobuf\Struct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Struct[] $var
      * @return $this
      */
     public function setClassMethods($var)

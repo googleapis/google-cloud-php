@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Description of a voice supported by the TTS service.
@@ -48,7 +48,7 @@ class Voice extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type string[] $language_codes
      *           The languages that this voice supports, expressed as
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags (e.g.
      *           "en-US", "es-419", "cmn-tw").
@@ -71,7 +71,7 @@ class Voice extends \Google\Protobuf\Internal\Message
      * "en-US", "es-419", "cmn-tw").
      *
      * Generated from protobuf field <code>repeated string language_codes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLanguageCodes()
     {
@@ -84,7 +84,7 @@ class Voice extends \Google\Protobuf\Internal\Message
      * "en-US", "es-419", "cmn-tw").
      *
      * Generated from protobuf field <code>repeated string language_codes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLanguageCodes($var)

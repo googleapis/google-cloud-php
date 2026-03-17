@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Cloud VPN Tunnel resource.
@@ -296,7 +296,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels for this resource. These can only be added or modified by thesetLabels method. Each label key/value pair must comply withRFC1035.
      *           Label values may be empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $local_traffic_selector
+     *     @type string[] $local_traffic_selector
      *           Local traffic selector to use when establishing the VPN tunnel with the
      *           peer VPN gateway. The value should be a CIDR formatted string, for
      *           example: 192.168.0.0/16. The ranges must be disjoint.
@@ -337,7 +337,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      *           [Output Only] URL of the region where the VPN tunnel resides.
      *           You must specify this field as part of the HTTP request URL. It is
      *           not settable as a field in the request body.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $remote_traffic_selector
+     *     @type string[] $remote_traffic_selector
      *           Remote traffic selectors to use when establishing the VPN tunnel with
      *           the peer VPN gateway. The value should be a CIDR formatted string,
      *           for example: 192.168.0.0/16. The ranges should be disjoint. Only IPv4 is
@@ -757,7 +757,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocalTrafficSelector()
     {
@@ -772,7 +772,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * for HA VPN tunnels.
      *
      * Generated from protobuf field <code>repeated string local_traffic_selector = 317314613;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocalTrafficSelector($var)
@@ -1085,7 +1085,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * tunnels.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRemoteTrafficSelector()
     {
@@ -1100,7 +1100,7 @@ class VpnTunnel extends \Google\Protobuf\Internal\Message
      * tunnels.
      *
      * Generated from protobuf field <code>repeated string remote_traffic_selector = 358887098;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRemoteTrafficSelector($var)

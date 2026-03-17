@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\ManualApprovals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Step represents a logical step in a manual approval workflow.
@@ -44,14 +44,14 @@ class Step extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>|\Google\Protobuf\Internal\RepeatedField $approvers
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry[] $approvers
      *           Optional. The potential set of approvers in this step. This list must
      *           contain at most one entry.
      *     @type int $approvals_needed
      *           Required. How many users from the above list need to approve. If there
      *           aren't enough distinct users in the list, then the workflow indefinitely
      *           blocks. Should always be greater than 0. 1 is the only supported value.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $approver_email_recipients
+     *     @type string[] $approver_email_recipients
      *           Optional. Additional email addresses to be notified when a grant is
      *           pending approval.
      * }
@@ -66,7 +66,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * contain at most one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.AccessControlEntry approvers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>
      */
     public function getApprovers()
     {
@@ -78,7 +78,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * contain at most one entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.AccessControlEntry approvers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\AccessControlEntry[] $var
      * @return $this
      */
     public function setApprovers($var)
@@ -124,7 +124,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * pending approval.
      *
      * Generated from protobuf field <code>repeated string approver_email_recipients = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApproverEmailRecipients()
     {
@@ -136,7 +136,7 @@ class Step extends \Google\Protobuf\Internal\Message
      * pending approval.
      *
      * Generated from protobuf field <code>repeated string approver_email_recipients = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApproverEmailRecipients($var)
@@ -148,5 +148,4 @@ class Step extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

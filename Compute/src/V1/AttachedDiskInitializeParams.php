@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Input Only] Specifies the parameters for a new disk that will be created
@@ -256,7 +256,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by thedisks.setLabels method. This field is only applicable for
      *           persistent disks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
      *     @type string $on_update_action
      *           Specifies which action to take on instance update with this disk. Default
@@ -271,7 +271,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Indicates how much throughput to provision for the disk. This sets the
      *           number of throughput mb per second that the disk can handle. Values must
      *           greater than or equal to 1.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           Required for each regional disk associated with the instance. Specify
      *           the URLs of the zones where the disk should be replicated to.
      *           You must provide exactly two replica zones, and one zone must be the same
@@ -284,7 +284,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           format such as `{org_id|project_id}/{tag_key_short_name}` and
      *           `{tag_value_short_name}`. The field is ignored (both PUT & PATCH) when
      *           empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
      *           Specified using the full or partial URL. For instance template, specify
      *           only the resource policy name.
@@ -633,7 +633,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -644,7 +644,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -784,7 +784,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -798,7 +798,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * as the instance zone.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)
@@ -853,7 +853,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -866,7 +866,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)

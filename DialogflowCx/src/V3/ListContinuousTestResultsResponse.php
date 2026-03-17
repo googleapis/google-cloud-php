@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [Environments.ListTestCaseResults][].
@@ -35,7 +35,7 @@ class ListContinuousTestResultsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult>|\Google\Protobuf\Internal\RepeatedField $continuous_test_results
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult[] $continuous_test_results
      *           The list of continuous test results.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListContinuousTestResultsResponse extends \Google\Protobuf\Internal\Messag
      * The list of continuous test results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ContinuousTestResult continuous_test_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult>
      */
     public function getContinuousTestResults()
     {
@@ -62,7 +62,7 @@ class ListContinuousTestResultsResponse extends \Google\Protobuf\Internal\Messag
      * The list of continuous test results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ContinuousTestResult continuous_test_results = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ContinuousTestResult[] $var
      * @return $this
      */
     public function setContinuousTestResults($var)

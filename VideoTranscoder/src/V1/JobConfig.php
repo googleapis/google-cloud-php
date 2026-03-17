@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Job configuration
@@ -94,30 +94,30 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\Input>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\Video\Transcoder\V1\Input[] $inputs
      *           List of input assets stored in Cloud Storage.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\EditAtom>|\Google\Protobuf\Internal\RepeatedField $edit_list
+     *     @type \Google\Cloud\Video\Transcoder\V1\EditAtom[] $edit_list
      *           List of edit atoms. Defines the ultimate timeline of the resulting
      *           file or manifest.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type \Google\Cloud\Video\Transcoder\V1\ElementaryStream[] $elementary_streams
      *           List of elementary streams.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\MuxStream>|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type \Google\Cloud\Video\Transcoder\V1\MuxStream[] $mux_streams
      *           List of multiplexing settings for output streams.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\Manifest>|\Google\Protobuf\Internal\RepeatedField $manifests
+     *     @type \Google\Cloud\Video\Transcoder\V1\Manifest[] $manifests
      *           List of output manifests.
      *     @type \Google\Cloud\Video\Transcoder\V1\Output $output
      *           Output configuration.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\AdBreak>|\Google\Protobuf\Internal\RepeatedField $ad_breaks
+     *     @type \Google\Cloud\Video\Transcoder\V1\AdBreak[] $ad_breaks
      *           List of ad breaks. Specifies where to insert ad break tags in the output
      *           manifests.
      *     @type \Google\Cloud\Video\Transcoder\V1\PubsubDestination $pubsub_destination
      *           Destination on Pub/Sub.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\SpriteSheet>|\Google\Protobuf\Internal\RepeatedField $sprite_sheets
+     *     @type \Google\Cloud\Video\Transcoder\V1\SpriteSheet[] $sprite_sheets
      *           List of output sprite sheets.
      *           Spritesheets require at least one VideoStream in the Jobconfig.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\Overlay>|\Google\Protobuf\Internal\RepeatedField $overlays
+     *     @type \Google\Cloud\Video\Transcoder\V1\Overlay[] $overlays
      *           List of overlays on the output video, in descending Z-order.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $encryptions
+     *     @type \Google\Cloud\Video\Transcoder\V1\Encryption[] $encryptions
      *           List of encryption configurations for the content.
      *           Each configuration has an ID. Specify this ID in the
      *           [MuxStream.encryption_id][google.cloud.video.transcoder.v1.MuxStream.encryption_id]
@@ -133,7 +133,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of input assets stored in Cloud Storage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Input inputs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\Input>
      */
     public function getInputs()
     {
@@ -144,7 +144,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of input assets stored in Cloud Storage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Input inputs = 1;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\Input>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\Input[] $var
      * @return $this
      */
     public function setInputs($var)
@@ -160,7 +160,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * file or manifest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.EditAtom edit_list = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\EditAtom>
      */
     public function getEditList()
     {
@@ -172,7 +172,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * file or manifest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.EditAtom edit_list = 2;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\EditAtom>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\EditAtom[] $var
      * @return $this
      */
     public function setEditList($var)
@@ -187,7 +187,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of elementary streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.ElementaryStream elementary_streams = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\ElementaryStream>
      */
     public function getElementaryStreams()
     {
@@ -198,7 +198,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of elementary streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.ElementaryStream elementary_streams = 3;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\ElementaryStream[] $var
      * @return $this
      */
     public function setElementaryStreams($var)
@@ -213,7 +213,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of multiplexing settings for output streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.MuxStream mux_streams = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\MuxStream>
      */
     public function getMuxStreams()
     {
@@ -224,7 +224,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of multiplexing settings for output streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.MuxStream mux_streams = 4;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\MuxStream>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\MuxStream[] $var
      * @return $this
      */
     public function setMuxStreams($var)
@@ -239,7 +239,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of output manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Manifest manifests = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\Manifest>
      */
     public function getManifests()
     {
@@ -250,7 +250,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of output manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Manifest manifests = 5;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\Manifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\Manifest[] $var
      * @return $this
      */
     public function setManifests($var)
@@ -302,7 +302,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.AdBreak ad_breaks = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\AdBreak>
      */
     public function getAdBreaks()
     {
@@ -314,7 +314,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.AdBreak ad_breaks = 7;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\AdBreak>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\AdBreak[] $var
      * @return $this
      */
     public function setAdBreaks($var)
@@ -366,7 +366,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * Spritesheets require at least one VideoStream in the Jobconfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.SpriteSheet sprite_sheets = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\SpriteSheet>
      */
     public function getSpriteSheets()
     {
@@ -378,7 +378,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * Spritesheets require at least one VideoStream in the Jobconfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.SpriteSheet sprite_sheets = 9;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\SpriteSheet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\SpriteSheet[] $var
      * @return $this
      */
     public function setSpriteSheets($var)
@@ -393,7 +393,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of overlays on the output video, in descending Z-order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay overlays = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\Overlay>
      */
     public function getOverlays()
     {
@@ -404,7 +404,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * List of overlays on the output video, in descending Z-order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay overlays = 10;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\Overlay>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\Overlay[] $var
      * @return $this
      */
     public function setOverlays($var)
@@ -422,7 +422,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * field to indicate the configuration to use for that `MuxStream` output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Encryption encryptions = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\Encryption>
      */
     public function getEncryptions()
     {
@@ -436,7 +436,7 @@ class JobConfig extends \Google\Protobuf\Internal\Message
      * field to indicate the configuration to use for that `MuxStream` output.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Encryption encryptions = 11;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\Encryption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\Encryption[] $var
      * @return $this
      */
     public function setEncryptions($var)

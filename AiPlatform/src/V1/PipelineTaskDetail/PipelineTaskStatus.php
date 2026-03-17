@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PipelineTaskDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single record of the task status.
@@ -168,5 +168,4 @@ class PipelineTaskStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

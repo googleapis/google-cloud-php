@@ -5,8 +5,8 @@
 namespace Google\Cloud\Shell\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud-shell specific information that will be included as details in failure

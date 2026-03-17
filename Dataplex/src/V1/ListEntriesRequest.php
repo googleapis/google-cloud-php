@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List Entries request.
@@ -54,7 +54,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      * * "entry_source.display_name=AnExampleDisplayName"
      * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
      * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     * entry_type=projects/another-project/locations/&#42;"
+     * entry_type=projects/another-project/locations/*"
      * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      * * "parent_entry=projects/example-project/locations/us/entryGroups/example-entry-group/entries/example-entry"
      *
@@ -110,7 +110,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      *           * "entry_source.display_name=AnExampleDisplayName"
      *           * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
      *           * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     *           entry_type=projects/another-project/locations/&#42;"
+     *           entry_type=projects/another-project/locations/*"
      *           * "NOT entry_source.display_name=AnotherExampleDisplayName"
      *           * "parent_entry=projects/example-project/locations/us/entryGroups/example-entry-group/entries/example-entry"
      * }
@@ -224,7 +224,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      * * "entry_source.display_name=AnExampleDisplayName"
      * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
      * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     * entry_type=projects/another-project/locations/&#42;"
+     * entry_type=projects/another-project/locations/*"
      * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      * * "parent_entry=projects/example-project/locations/us/entryGroups/example-entry-group/entries/example-entry"
      *
@@ -252,7 +252,7 @@ class ListEntriesRequest extends \Google\Protobuf\Internal\Message
      * * "entry_source.display_name=AnExampleDisplayName"
      * * "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type"
      * * "entry_type=projects/example-project/locations/us/entryTypes/a* OR
-     * entry_type=projects/another-project/locations/&#42;"
+     * entry_type=projects/another-project/locations/*"
      * * "NOT entry_source.display_name=AnotherExampleDisplayName"
      * * "parent_entry=projects/example-project/locations/us/entryGroups/example-entry-group/entries/example-entry"
      *

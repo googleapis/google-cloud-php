@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents information regarding a quota operation.
@@ -111,7 +111,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      *             api_key:<api_key>.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels describing the operation.
-     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $quota_metrics
+     *     @type \Google\Cloud\ServiceControl\V1\MetricValueSet[] $quota_metrics
      *           Represents information about this operation. Each MetricValueSet
      *           corresponds to a metric defined in the service configuration.
      *           The data type used in the MetricValueSet must agree with
@@ -284,7 +284,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      * This field is mutually exclusive with method_name.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet quota_metrics = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\MetricValueSet>
      */
     public function getQuotaMetrics()
     {
@@ -304,7 +304,7 @@ class QuotaOperation extends \Google\Protobuf\Internal\Message
      * This field is mutually exclusive with method_name.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet quota_metrics = 5;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\MetricValueSet[] $var
      * @return $this
      */
     public function setQuotaMetrics($var)

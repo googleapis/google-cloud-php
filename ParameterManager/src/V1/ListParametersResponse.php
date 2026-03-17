@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Parameters
@@ -40,11 +40,11 @@ class ListParametersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ParameterManager\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\ParameterManager\V1\Parameter[] $parameters
      *           The list of Parameters
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListParametersResponse extends \Google\Protobuf\Internal\Message
      * The list of Parameters
      *
      * Generated from protobuf field <code>repeated .google.cloud.parametermanager.v1.Parameter parameters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ParameterManager\V1\Parameter>
      */
     public function getParameters()
     {
@@ -68,7 +68,7 @@ class ListParametersResponse extends \Google\Protobuf\Internal\Message
      * The list of Parameters
      *
      * Generated from protobuf field <code>repeated .google.cloud.parametermanager.v1.Parameter parameters = 1;</code>
-     * @param array<\Google\Cloud\ParameterManager\V1\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ParameterManager\V1\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)
@@ -109,7 +109,7 @@ class ListParametersResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListParametersResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

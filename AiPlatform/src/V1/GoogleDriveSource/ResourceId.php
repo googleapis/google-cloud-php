@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GoogleDriveSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The type and ID of the Google Drive resource.
@@ -98,5 +98,4 @@ class ResourceId extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

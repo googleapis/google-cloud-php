@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * / AdManagerError contains all the information required for processing a
@@ -72,7 +72,7 @@ class AdManagerError extends \Google\Protobuf\Internal\Message
      *           The value that triggered this error.
      *     @type string $stack_trace
      *           The stack trace that accompanies this error.
-     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type \Google\Protobuf\Any[] $details
      *           A list of messages that carry any additional error details.
      * }
      */
@@ -215,7 +215,7 @@ class AdManagerError extends \Google\Protobuf\Internal\Message
      * A list of messages that carry any additional error details.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Any>
      */
     public function getDetails()
     {
@@ -226,7 +226,7 @@ class AdManagerError extends \Google\Protobuf\Internal\Message
      * A list of messages that carry any additional error details.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any details = 6;</code>
-     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Any[] $var
      * @return $this
      */
     public function setDetails($var)

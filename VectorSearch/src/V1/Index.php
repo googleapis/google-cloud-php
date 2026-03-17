@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing Index object
@@ -108,10 +108,10 @@ class Index extends \Google\Protobuf\Internal\Message
      *           to DOT_PRODUCT.
      *     @type string $index_field
      *           Required. The collection schema field to index.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $filter_fields
+     *     @type string[] $filter_fields
      *           Optional. The fields to push into the index to enable fast ANN inline
      *           filtering.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $store_fields
+     *     @type string[] $store_fields
      *           Optional. The fields to push into the index to enable inline data
      *           retrieval.
      * }
@@ -418,7 +418,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * filtering.
      *
      * Generated from protobuf field <code>repeated string filter_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilterFields()
     {
@@ -430,7 +430,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * filtering.
      *
      * Generated from protobuf field <code>repeated string filter_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilterFields($var)
@@ -446,7 +446,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * retrieval.
      *
      * Generated from protobuf field <code>repeated string store_fields = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStoreFields()
     {
@@ -458,7 +458,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * retrieval.
      *
      * Generated from protobuf field <code>repeated string store_fields = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStoreFields($var)

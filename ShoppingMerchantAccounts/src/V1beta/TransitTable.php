@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Transit time table, number of business days spent in transit based on row
@@ -53,18 +53,18 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $postal_code_group_names
+     *     @type string[] $postal_code_group_names
      *           Required. A list of region names
      *           [Region.name][google.shopping.merchant.accounts.v1beta.Region.name] . The
      *           last value can be
      *           `"all other locations"`. Example:
      *           `["zone 1", "zone 2", "all other locations"]`. The referred
      *           postal code groups must match the delivery country of the service.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $transit_time_labels
+     *     @type string[] $transit_time_labels
      *           Required. A list of transit time labels. The last value can be
      *           `"all other labels"`. Example:
      *           `["food", "electronics", "all other labels"]`.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow[] $rows
      *           Required. If there's only one dimension set of `postal_code_group_names` or
      *           `transit_time_labels`, there are multiple rows each with one value
      *           for that dimension. If there are two dimensions, each row corresponds to a
@@ -86,7 +86,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * postal code groups must match the delivery country of the service.
      *
      * Generated from protobuf field <code>repeated string postal_code_group_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPostalCodeGroupNames()
     {
@@ -102,7 +102,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * postal code groups must match the delivery country of the service.
      *
      * Generated from protobuf field <code>repeated string postal_code_group_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPostalCodeGroupNames($var)
@@ -119,7 +119,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * `["food", "electronics", "all other labels"]`.
      *
      * Generated from protobuf field <code>repeated string transit_time_labels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTransitTimeLabels()
     {
@@ -132,7 +132,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * `["food", "electronics", "all other labels"]`.
      *
      * Generated from protobuf field <code>repeated string transit_time_labels = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTransitTimeLabels($var)
@@ -151,7 +151,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * `transit_time_labels`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TransitTable.TransitTimeRow rows = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow>
      */
     public function getRows()
     {
@@ -166,7 +166,7 @@ class TransitTable extends \Google\Protobuf\Internal\Message
      * `transit_time_labels`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TransitTable.TransitTimeRow rows = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\TransitTable\TransitTimeRow[] $var
      * @return $this
      */
     public function setRows($var)

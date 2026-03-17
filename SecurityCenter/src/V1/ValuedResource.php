@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that is determined to have value to a user's system
@@ -93,7 +93,7 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      *     @type float $exposed_score
      *           Exposed score for this valued resource. A value of 0 means no exposure was
      *           detected exposure.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ResourceValueConfigMetadata>|\Google\Protobuf\Internal\RepeatedField $resource_value_configs_used
+     *     @type \Google\Cloud\SecurityCenter\V1\ResourceValueConfigMetadata[] $resource_value_configs_used
      *           List of resource value configurations' metadata used to determine the value
      *           of this resource. Maximum of 100.
      * }
@@ -280,7 +280,7 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      * of this resource. Maximum of 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourceValueConfigMetadata resource_value_configs_used = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ResourceValueConfigMetadata>
      */
     public function getResourceValueConfigsUsed()
     {
@@ -292,7 +292,7 @@ class ValuedResource extends \Google\Protobuf\Internal\Message
      * of this resource. Maximum of 100.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourceValueConfigMetadata resource_value_configs_used = 7;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ResourceValueConfigMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ResourceValueConfigMetadata[] $var
      * @return $this
      */
     public function setResourceValueConfigsUsed($var)

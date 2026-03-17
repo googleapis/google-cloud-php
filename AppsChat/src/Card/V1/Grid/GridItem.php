@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Grid;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an item in a grid layout. Items can contain text, an image, or
@@ -217,5 +217,4 @@ class GridItem extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

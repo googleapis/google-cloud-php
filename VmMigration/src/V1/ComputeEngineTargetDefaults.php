@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ComputeEngineTargetDefaults is a collection of details for creating a VM in a
@@ -204,9 +204,9 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *           The machine type series to create the VM with.
      *     @type string $machine_type
      *           The machine type to create the VM with.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           A list of network tags to associate with the VM.
-     *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\VMMigration\V1\NetworkInterface[] $network_interfaces
      *           List of NICs connected to this VM.
      *     @type string $service_account
      *           Optional. The service account to associate the VM with.
@@ -234,7 +234,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *           Output only. The VM Boot Option, as set in the source VM.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key/value pairs to assign to the VM.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *     @type string[] $additional_licenses
      *           Additional licenses to assign to the VM.
      *     @type string $hostname
      *           The hostname to assign to the VM.
@@ -244,10 +244,10 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      *           Optional. By default the virtual machine will keep its existing boot
      *           option. Setting this property will trigger an internal process which will
      *           convert the virtual machine from using the existing boot option to another.
-     *     @type array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $adaptation_modifiers
+     *     @type \Google\Cloud\VMMigration\V1\AdaptationModifier[] $adaptation_modifiers
      *           Optional. AdaptationModifiers are the set of modifiers used during OS
      *           adaptation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disk_replica_zones
+     *     @type string[] $disk_replica_zones
      *           Optional. Additional replica zones of the target regional disks.
      *           If this list is not empty a regional disk will be created. The first
      *           supported zone would be the one stated in the
@@ -406,7 +406,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -417,7 +417,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -432,7 +432,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * List of NICs connected to this VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -443,7 +443,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * List of NICs connected to this VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 7;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -772,7 +772,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * Additional licenses to assign to the VM.
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalLicenses()
     {
@@ -783,7 +783,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * Additional licenses to assign to the VM.
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalLicenses($var)
@@ -891,7 +891,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * adaptation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\AdaptationModifier>
      */
     public function getAdaptationModifiers()
     {
@@ -903,7 +903,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * adaptation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\AdaptationModifier[] $var
      * @return $this
      */
     public function setAdaptationModifiers($var)
@@ -926,7 +926,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * zonal disk will be created in the same zone the VM is created.
      *
      * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDiskReplicaZones()
     {
@@ -945,7 +945,7 @@ class ComputeEngineTargetDefaults extends \Google\Protobuf\Internal\Message
      * zonal disk will be created in the same zone the VM is created.
      *
      * Generated from protobuf field <code>repeated string disk_replica_zones = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDiskReplicaZones($var)

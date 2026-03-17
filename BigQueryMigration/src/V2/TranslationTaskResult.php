@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Translation specific result details from the migration task.
@@ -34,9 +34,9 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\Literal>|\Google\Protobuf\Internal\RepeatedField $translated_literals
+     *     @type \Google\Cloud\BigQuery\Migration\V2\Literal[] $translated_literals
      *           The list of the translated literals.
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage>|\Google\Protobuf\Internal\RepeatedField $report_log_messages
+     *     @type \Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage[] $report_log_messages
      *           The records from the aggregate CSV report for a migration workflow.
      * }
      */
@@ -49,7 +49,7 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * The list of the translated literals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.Literal translated_literals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\Literal>
      */
     public function getTranslatedLiterals()
     {
@@ -60,7 +60,7 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * The list of the translated literals.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.Literal translated_literals = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\Literal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\Literal[] $var
      * @return $this
      */
     public function setTranslatedLiterals($var)
@@ -75,7 +75,7 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * The records from the aggregate CSV report for a migration workflow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.GcsReportLogMessage report_log_messages = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage>
      */
     public function getReportLogMessages()
     {
@@ -86,7 +86,7 @@ class TranslationTaskResult extends \Google\Protobuf\Internal\Message
      * The records from the aggregate CSV report for a migration workflow.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.GcsReportLogMessage report_log_messages = 2;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\GcsReportLogMessage[] $var
      * @return $this
      */
     public function setReportLogMessages($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListBatchPredictionJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\BatchPredictionJob>|\Google\Protobuf\Internal\RepeatedField $batch_prediction_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\BatchPredictionJob[] $batch_prediction_jobs
      *           List of BatchPredictionJobs in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListBatchPredictionJobsResponse extends \Google\Protobuf\Internal\Message
      * List of BatchPredictionJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchPredictionJob batch_prediction_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\BatchPredictionJob>
      */
     public function getBatchPredictionJobs()
     {
@@ -67,7 +67,7 @@ class ListBatchPredictionJobsResponse extends \Google\Protobuf\Internal\Message
      * List of BatchPredictionJobs in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchPredictionJob batch_prediction_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\BatchPredictionJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\BatchPredictionJob[] $var
      * @return $this
      */
     public function setBatchPredictionJobs($var)

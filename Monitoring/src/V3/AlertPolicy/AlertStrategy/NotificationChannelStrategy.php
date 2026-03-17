@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Control over how the notification channels in `notification_channels`
@@ -41,7 +41,7 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channel_names
+     *     @type string[] $notification_channel_names
      *           The full REST resource name for the notification channels that these
      *           settings apply to. Each of these correspond to the name field in one
      *           of the NotificationChannel objects referenced in the
@@ -67,7 +67,7 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channel_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNotificationChannelNames()
     {
@@ -83,7 +83,7 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channel_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNotificationChannelNames($var)
@@ -133,5 +133,4 @@ class NotificationChannelStrategy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

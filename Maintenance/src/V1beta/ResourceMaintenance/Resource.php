@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1beta\ResourceMaintenance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource contains information about the resource affected by maintenance.
@@ -164,5 +164,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

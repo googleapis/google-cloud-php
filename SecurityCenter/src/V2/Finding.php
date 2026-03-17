@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Security Command Center finding.
@@ -243,10 +243,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *       "security": {
      *         "contacts": [
      *           {
-     *             "email": "person1&#64;company.com"
+     *             "email": "person1\@company.com"
      *           },
      *           {
-     *             "email": "person2&#64;company.com"
+     *             "email": "person2\@company.com"
      *           }
      *         ]
      *       }
@@ -602,14 +602,14 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\SecurityCenter\V2\Access $access
      *           Access details associated with the finding, such as more information on the
      *           caller, which method was accessed, and from where.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\SecurityCenter\V2\Connection[] $connections
      *           Contains information about the IP connection associated with the finding.
      *     @type string $mute_initiator
      *           Records additional information about the mute operation, for example, the
      *           [mute
      *           configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings)
      *           that muted the finding and the user who muted the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Process>|\Google\Protobuf\Internal\RepeatedField $processes
+     *     @type \Google\Cloud\SecurityCenter\V2\Process[] $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
      *           Output only. Map containing the points of contact for the given finding.
@@ -620,15 +620,15 @@ class Finding extends \Google\Protobuf\Internal\Message
      *                 "security": {
      *                   "contacts": [
      *                     {
-     *                       "email": "person1&#64;company.com"
+     *                       "email": "person1\@company.com"
      *                     },
      *                     {
-     *                       "email": "person2&#64;company.com"
+     *                       "email": "person2\@company.com"
      *                     }
      *                   ]
      *                 }
      *               }
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Compliance>|\Google\Protobuf\Internal\RepeatedField $compliances
+     *     @type \Google\Cloud\SecurityCenter\V2\Compliance[] $compliances
      *           Contains compliance information for security standards associated to the
      *           finding.
      *     @type string $parent_display_name
@@ -638,7 +638,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Contains more details about the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Exfiltration $exfiltration
      *           Represents exfiltrations associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\IamBinding>|\Google\Protobuf\Internal\RepeatedField $iam_bindings
+     *     @type \Google\Cloud\SecurityCenter\V2\IamBinding[] $iam_bindings
      *           Represents IAM bindings associated with the finding.
      *     @type string $next_steps
      *           Steps to address the finding.
@@ -646,7 +646,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Unique identifier of the module which generated the finding.
      *           Example:
      *           folders/598186756061/securityHealthAnalyticsSettings/customModules/56799441161885
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type \Google\Cloud\SecurityCenter\V2\Container[] $containers
      *           Containers associated with the finding. This field provides information for
      *           both Kubernetes and non-Kubernetes containers.
      *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes $kubernetes
@@ -655,7 +655,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Database associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\AttackExposure $attack_exposure
      *           The results of an attack path simulation relevant to this finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Google\Cloud\SecurityCenter\V2\File[] $files
      *           File associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\CloudDlpInspection $cloud_dlp_inspection
      *           Cloud Data Loss Prevention (Cloud DLP) inspection results that are
@@ -664,7 +664,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Cloud DLP data profile that is associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\KernelRootkit $kernel_rootkit
      *           Signature of the kernel rootkit.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\OrgPolicy>|\Google\Protobuf\Internal\RepeatedField $org_policies
+     *     @type \Google\Cloud\SecurityCenter\V2\OrgPolicy[] $org_policies
      *           Contains information about the org policies associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\Job $job
      *           Job associated with the finding.
@@ -676,9 +676,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Fields related to Backup and DR findings.
      *     @type \Google\Cloud\SecurityCenter\V2\SecurityPosture $security_posture
      *           The security posture associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $log_entries
+     *     @type \Google\Cloud\SecurityCenter\V2\LogEntry[] $log_entries
      *           Log entries that are relevant to the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $load_balancers
+     *     @type \Google\Cloud\SecurityCenter\V2\LoadBalancer[] $load_balancers
      *           The load balancers associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\CloudArmor $cloud_armor
      *           Fields related to Cloud Armor findings.
@@ -690,19 +690,19 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           independently. A group of such issues is referred to as a toxic
      *           combination.
      *           This field cannot be updated. Its value is ignored in all update requests.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $group_memberships
+     *     @type \Google\Cloud\SecurityCenter\V2\GroupMembership[] $group_memberships
      *           Contains details about groups of which this finding is a member. A group is
      *           a collection of findings that are related in some way.
      *           This field cannot be updated. Its value is ignored in all update requests.
      *     @type \Google\Cloud\SecurityCenter\V2\Disk $disk
      *           Disk associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $data_access_events
+     *     @type \Google\Cloud\SecurityCenter\V2\DataAccessEvent[] $data_access_events
      *           Data access events associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $data_flow_events
+     *     @type \Google\Cloud\SecurityCenter\V2\DataFlowEvent[] $data_flow_events
      *           Data flow events associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Network>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\SecurityCenter\V2\Network[] $networks
      *           Represents the VPC networks that the resource is attached to.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $data_retention_deletion_events
+     *     @type \Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent[] $data_retention_deletion_events
      *           Data retention deletion events associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V2\AffectedResources $affected_resources
      *           AffectedResources associated with the finding.
@@ -1496,7 +1496,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Contains information about the IP connection associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Connection connections = 23;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Connection>
      */
     public function getConnections()
     {
@@ -1507,7 +1507,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Contains information about the IP connection associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Connection connections = 23;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Connection[] $var
      * @return $this
      */
     public function setConnections($var)
@@ -1554,7 +1554,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents operating system processes associated with the Finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Process processes = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Process>
      */
     public function getProcesses()
     {
@@ -1565,7 +1565,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents operating system processes associated with the Finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Process processes = 25;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Process>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Process[] $var
      * @return $this
      */
     public function setProcesses($var)
@@ -1585,10 +1585,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *       "security": {
      *         "contacts": [
      *           {
-     *             "email": "person1&#64;company.com"
+     *             "email": "person1\@company.com"
      *           },
      *           {
-     *             "email": "person2&#64;company.com"
+     *             "email": "person2\@company.com"
      *           }
      *         ]
      *       }
@@ -1611,10 +1611,10 @@ class Finding extends \Google\Protobuf\Internal\Message
      *       "security": {
      *         "contacts": [
      *           {
-     *             "email": "person1&#64;company.com"
+     *             "email": "person1\@company.com"
      *           },
      *           {
-     *             "email": "person2&#64;company.com"
+     *             "email": "person2\@company.com"
      *           }
      *         ]
      *       }
@@ -1637,7 +1637,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Compliance compliances = 27;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Compliance>
      */
     public function getCompliances()
     {
@@ -1649,7 +1649,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Compliance compliances = 27;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Compliance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Compliance[] $var
      * @return $this
      */
     public function setCompliances($var)
@@ -1754,7 +1754,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents IAM bindings associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IamBinding iam_bindings = 32;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\IamBinding>
      */
     public function getIamBindings()
     {
@@ -1765,7 +1765,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents IAM bindings associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IamBinding iam_bindings = 32;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\IamBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\IamBinding[] $var
      * @return $this
      */
     public function setIamBindings($var)
@@ -1837,7 +1837,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Container containers = 35;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Container>
      */
     public function getContainers()
     {
@@ -1849,7 +1849,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * both Kubernetes and non-Kubernetes containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Container containers = 35;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Container[] $var
      * @return $this
      */
     public function setContainers($var)
@@ -1972,7 +1972,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * File associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File files = 39;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\File>
      */
     public function getFiles()
     {
@@ -1983,7 +1983,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * File associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File files = 39;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\File[] $var
      * @return $this
      */
     public function setFiles($var)
@@ -2108,7 +2108,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Contains information about the org policies associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.OrgPolicy org_policies = 43;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\OrgPolicy>
      */
     public function getOrgPolicies()
     {
@@ -2119,7 +2119,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Contains information about the org policies associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.OrgPolicy org_policies = 43;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\OrgPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\OrgPolicy[] $var
      * @return $this
      */
     public function setOrgPolicies($var)
@@ -2314,7 +2314,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Log entries that are relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.LogEntry log_entries = 49;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\LogEntry>
      */
     public function getLogEntries()
     {
@@ -2325,7 +2325,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Log entries that are relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.LogEntry log_entries = 49;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\LogEntry[] $var
      * @return $this
      */
     public function setLogEntries($var)
@@ -2340,7 +2340,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * The load balancers associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.LoadBalancer load_balancers = 50;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\LoadBalancer>
      */
     public function getLoadBalancers()
     {
@@ -2351,7 +2351,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * The load balancers associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.LoadBalancer load_balancers = 50;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\LoadBalancer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\LoadBalancer[] $var
      * @return $this
      */
     public function setLoadBalancers($var)
@@ -2484,7 +2484,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * This field cannot be updated. Its value is ignored in all update requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\GroupMembership>
      */
     public function getGroupMemberships()
     {
@@ -2497,7 +2497,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * This field cannot be updated. Its value is ignored in all update requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.GroupMembership group_memberships = 57;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\GroupMembership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\GroupMembership[] $var
      * @return $this
      */
     public function setGroupMemberships($var)
@@ -2548,7 +2548,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data access events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>
      */
     public function getDataAccessEvents()
     {
@@ -2559,7 +2559,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data access events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataAccessEvent data_access_events = 61;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\DataAccessEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\DataAccessEvent[] $var
      * @return $this
      */
     public function setDataAccessEvents($var)
@@ -2574,7 +2574,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data flow events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>
      */
     public function getDataFlowEvents()
     {
@@ -2585,7 +2585,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data flow events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataFlowEvent data_flow_events = 62;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\DataFlowEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\DataFlowEvent[] $var
      * @return $this
      */
     public function setDataFlowEvents($var)
@@ -2600,7 +2600,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents the VPC networks that the resource is attached to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Network networks = 63;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Network>
      */
     public function getNetworks()
     {
@@ -2611,7 +2611,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Represents the VPC networks that the resource is attached to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Network networks = 63;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Network>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Network[] $var
      * @return $this
      */
     public function setNetworks($var)
@@ -2626,7 +2626,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data retention deletion events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>
      */
     public function getDataRetentionDeletionEvents()
     {
@@ -2637,7 +2637,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Data retention deletion events associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.DataRetentionDeletionEvent data_retention_deletion_events = 64;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\DataRetentionDeletionEvent[] $var
      * @return $this
      */
     public function setDataRetentionDeletionEvents($var)

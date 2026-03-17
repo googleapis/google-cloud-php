@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message containing information of one individual backend.
@@ -203,7 +203,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      *           backend attached to the backend service.
      *           Not available with backends that don't support using abalancingMode. This includes backends such as global
      *           internet NEGs, regional serverless NEGs, and PSC NEGs.
-     *     @type array<\Google\Cloud\Compute\V1\BackendCustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
+     *     @type \Google\Cloud\Compute\V1\BackendCustomMetric[] $custom_metrics
      *           List of custom metrics that are used for CUSTOM_METRICS
      *           BalancingMode.
      *     @type string $description
@@ -400,7 +400,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      * BalancingMode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendCustomMetric custom_metrics = 429453813;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendCustomMetric>
      */
     public function getCustomMetrics()
     {
@@ -412,7 +412,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      * BalancingMode.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendCustomMetric custom_metrics = 429453813;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendCustomMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendCustomMetric[] $var
      * @return $this
      */
     public function setCustomMetrics($var)

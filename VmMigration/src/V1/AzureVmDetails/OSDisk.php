@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AzureVmDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message describing the OS disk.
@@ -132,5 +132,4 @@ class OSDisk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

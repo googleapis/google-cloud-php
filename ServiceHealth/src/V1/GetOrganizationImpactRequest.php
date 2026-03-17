@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceHealth\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Gets information about an event that affects a project under an organization.

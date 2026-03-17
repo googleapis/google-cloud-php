@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1\Template;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing TemplateMetadata
@@ -366,5 +366,4 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for VideoStitcherService.listSlates.
@@ -40,11 +40,11 @@ class ListSlatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\Slate>|\Google\Protobuf\Internal\RepeatedField $slates
+     *     @type \Google\Cloud\Video\Stitcher\V1\Slate[] $slates
      *           The list of slates
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListSlatesResponse extends \Google\Protobuf\Internal\Message
      * The list of slates
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Slate slates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\Slate>
      */
     public function getSlates()
     {
@@ -68,7 +68,7 @@ class ListSlatesResponse extends \Google\Protobuf\Internal\Message
      * The list of slates
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Slate slates = 1;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\Slate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\Slate[] $var
      * @return $this
      */
     public function setSlates($var)
@@ -109,7 +109,7 @@ class ListSlatesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListSlatesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

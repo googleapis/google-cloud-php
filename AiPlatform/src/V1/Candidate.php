@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response candidate generated from the model.
@@ -104,7 +104,7 @@ class Candidate extends \Google\Protobuf\Internal\Message
      *     @type int $finish_reason
      *           Output only. The reason why the model stopped generating tokens.
      *           If empty, the model has not stopped generating the tokens.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $safety_ratings
+     *     @type \Google\Cloud\AIPlatform\V1\SafetyRating[] $safety_ratings
      *           Output only. List of ratings for the safety of a response candidate.
      *           There is at most one rating per category.
      *     @type string $finish_message
@@ -306,7 +306,7 @@ class Candidate extends \Google\Protobuf\Internal\Message
      * There is at most one rating per category.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetyRating safety_ratings = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SafetyRating>
      */
     public function getSafetyRatings()
     {
@@ -318,7 +318,7 @@ class Candidate extends \Google\Protobuf\Internal\Message
      * There is at most one rating per category.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetyRating safety_ratings = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SafetyRating[] $var
      * @return $this
      */
     public function setSafetyRatings($var)

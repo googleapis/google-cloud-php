@@ -123,6 +123,11 @@
                                 "deleteIndex"
                             ]
                         },
+                        "ExportDataObjects": {
+                            "methods": [
+                                "exportDataObjects"
+                            ]
+                        },
                         "GetCollection": {
                             "methods": [
                                 "getCollection"

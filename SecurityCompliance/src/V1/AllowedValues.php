@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The allowed set of values for the parameter.
@@ -28,7 +28,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\ParamValue>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\ParamValue[] $values
      *           Required. The list of allowed values for the parameter.
      * }
      */
@@ -41,7 +41,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
      * Required. The list of allowed values for the parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParamValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\ParamValue>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class AllowedValues extends \Google\Protobuf\Internal\Message
      * Required. The list of allowed values for the parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.ParamValue values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\ParamValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\ParamValue[] $var
      * @return $this
      */
     public function setValues($var)

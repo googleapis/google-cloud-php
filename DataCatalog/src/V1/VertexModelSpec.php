@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification for vertex model resources.
@@ -56,7 +56,7 @@ class VertexModelSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type string $version_id
      *           The version ID of the model.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_aliases
+     *     @type string[] $version_aliases
      *           User provided version aliases so that a model version can be referenced via
      *           alias
      *     @type string $version_description
@@ -104,7 +104,7 @@ class VertexModelSpec extends \Google\Protobuf\Internal\Message
      * alias
      *
      * Generated from protobuf field <code>repeated string version_aliases = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVersionAliases()
     {
@@ -116,7 +116,7 @@ class VertexModelSpec extends \Google\Protobuf\Internal\Message
      * alias
      *
      * Generated from protobuf field <code>repeated string version_aliases = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVersionAliases($var)

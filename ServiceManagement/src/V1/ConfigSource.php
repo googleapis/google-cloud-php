@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a source file which is used to generate the service configuration
@@ -42,7 +42,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      *           A unique ID for a specific instance of this message, typically assigned
      *           by the client for tracking purpose. If empty, the server may choose to
      *           generate one instead.
-     *     @type array<\Google\Cloud\ServiceManagement\V1\ConfigFile>|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type \Google\Cloud\ServiceManagement\V1\ConfigFile[] $files
      *           Set of source configuration files that are used to generate a service
      *           configuration (`google.api.Service`).
      * }
@@ -87,7 +87,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      * configuration (`google.api.Service`).
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ConfigFile files = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceManagement\V1\ConfigFile>
      */
     public function getFiles()
     {
@@ -99,7 +99,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      * configuration (`google.api.Service`).
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ConfigFile files = 2;</code>
-     * @param array<\Google\Cloud\ServiceManagement\V1\ConfigFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceManagement\V1\ConfigFile[] $var
      * @return $this
      */
     public function setFiles($var)

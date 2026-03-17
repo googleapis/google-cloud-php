@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] A connection connected to this network attachment.
@@ -79,7 +79,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      *           interface and the consumer subnet are IPv4_IPv6.
      *     @type string $project_id_or_num
      *           The project id or number of the interface to which the IP was assigned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_cidr_ranges
+     *     @type string[] $secondary_ip_cidr_ranges
      *           Alias IP ranges from the same subnetwork.
      *     @type string $status
      *           The status of a connected endpoint to this network attachment.
@@ -215,7 +215,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * Alias IP ranges from the same subnetwork.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_cidr_ranges = 117184788;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondaryIpCidrRanges()
     {
@@ -226,7 +226,7 @@ class NetworkAttachmentConnectedEndpoint extends \Google\Protobuf\Internal\Messa
      * Alias IP ranges from the same subnetwork.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_cidr_ranges = 117184788;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondaryIpCidrRanges($var)

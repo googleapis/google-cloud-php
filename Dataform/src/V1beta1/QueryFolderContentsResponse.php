@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `QueryFolderContents` response message.
@@ -35,7 +35,7 @@ class QueryFolderContentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry[] $entries
      *           List of entries in the folder.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class QueryFolderContentsResponse extends \Google\Protobuf\Internal\Message
      * List of entries in the folder.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.QueryFolderContentsResponse.FolderContentsEntry entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry>
      */
     public function getEntries()
     {
@@ -62,7 +62,7 @@ class QueryFolderContentsResponse extends \Google\Protobuf\Internal\Message
      * List of entries in the folder.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.QueryFolderContentsResponse.FolderContentsEntry entries = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\QueryFolderContentsResponse\FolderContentsEntry[] $var
      * @return $this
      */
     public function setEntries($var)

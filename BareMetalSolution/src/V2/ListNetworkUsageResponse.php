@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response with Networks with IPs
@@ -28,7 +28,7 @@ class ListNetworkUsageResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkUsage>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkUsage[] $networks
      *           Networks with IPs.
      * }
      */
@@ -41,7 +41,7 @@ class ListNetworkUsageResponse extends \Google\Protobuf\Internal\Message
      * Networks with IPs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkUsage networks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NetworkUsage>
      */
     public function getNetworks()
     {
@@ -52,7 +52,7 @@ class ListNetworkUsageResponse extends \Google\Protobuf\Internal\Message
      * Networks with IPs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkUsage networks = 1;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkUsage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NetworkUsage[] $var
      * @return $this
      */
     public function setNetworks($var)

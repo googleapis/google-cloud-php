@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Issues with your Merchant Center account that can impact all your products.
@@ -71,7 +71,7 @@ class AccountIssue extends \Google\Protobuf\Internal\Message
      *           The localized title of the issue.
      *     @type int $severity
      *           The overall severity of the issue.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\AccountIssue\ImpactedDestination>|\Google\Protobuf\Internal\RepeatedField $impacted_destinations
+     *     @type \Google\Shopping\Merchant\Accounts\V1\AccountIssue\ImpactedDestination[] $impacted_destinations
      *           The impact this issue has on various destinations.
      *     @type string $detail
      *           Further localized details about the issue.
@@ -171,7 +171,7 @@ class AccountIssue extends \Google\Protobuf\Internal\Message
      * The impact this issue has on various destinations.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccountIssue.ImpactedDestination impacted_destinations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\AccountIssue\ImpactedDestination>
      */
     public function getImpactedDestinations()
     {
@@ -182,7 +182,7 @@ class AccountIssue extends \Google\Protobuf\Internal\Message
      * The impact this issue has on various destinations.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.AccountIssue.ImpactedDestination impacted_destinations = 4;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\AccountIssue\ImpactedDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\AccountIssue\ImpactedDestination[] $var
      * @return $this
      */
     public function setImpactedDestinations($var)

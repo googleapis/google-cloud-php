@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListEntitySignalsMappingsRequest` containing matching
@@ -50,7 +50,7 @@ class ListEntitySignalsMappingsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\EntitySignalsMapping>|\Google\Protobuf\Internal\RepeatedField $entity_signals_mappings
+     *     @type \Google\Ads\AdManager\V1\EntitySignalsMapping[] $entity_signals_mappings
      *           The `EntitySignalsMapping` from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListEntitySignalsMappingsResponse extends \Google\Protobuf\Internal\Messag
      * The `EntitySignalsMapping` from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.EntitySignalsMapping entity_signals_mappings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\EntitySignalsMapping>
      */
     public function getEntitySignalsMappings()
     {
@@ -87,7 +87,7 @@ class ListEntitySignalsMappingsResponse extends \Google\Protobuf\Internal\Messag
      * The `EntitySignalsMapping` from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.EntitySignalsMapping entity_signals_mappings = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\EntitySignalsMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\EntitySignalsMapping[] $var
      * @return $this
      */
     public function setEntitySignalsMappings($var)

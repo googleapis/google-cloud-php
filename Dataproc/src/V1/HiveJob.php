@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc job for running [Apache Hive](https://hive.apache.org/)
@@ -34,7 +34,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API might be
-     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -70,9 +70,9 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names and values, used to configure Hive.
      *           Properties that conflict with values set by the Dataproc API might be
-     *           overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
+     *           overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type string[] $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATH of the
      *           Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
      *           and UDFs.
@@ -206,7 +206,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API might be
-     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -220,7 +220,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Dataproc API might be
-     * overwritten. Can include properties set in `/etc/hadoop/conf/&#42;-site.xml`,
+     * overwritten. Can include properties set in `/etc/hadoop/conf/*-site.xml`,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      *
      * Generated from protobuf field <code>map<string, string> properties = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -241,7 +241,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * and UDFs.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJarFileUris()
     {
@@ -254,7 +254,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * and UDFs.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJarFileUris($var)

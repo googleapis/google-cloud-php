@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Device Manufacturer Targeting.
@@ -67,21 +67,21 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_device_manufacturers
+     *     @type string[] $targeted_device_manufacturers
      *           Optional. A list of device manufacturer resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_device_manufacturers
+     *     @type string[] $excluded_device_manufacturers
      *           Optional. A list of device manufacturer resource names that should be
      *           excluded.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_mobile_devices
+     *     @type string[] $targeted_mobile_devices
      *           Optional. A list of mobile device resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_mobile_devices
+     *     @type string[] $excluded_mobile_devices
      *           Optional. A list of mobile device resource names that should be excluded.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_mobile_device_submodels
+     *     @type string[] $targeted_mobile_device_submodels
      *           Optional. A list of mobile device submodel resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_mobile_device_submodels
+     *     @type string[] $excluded_mobile_device_submodels
      *           Optional. A list of mobile device submodel resource names that should be
      *           excluded.
      * }
@@ -96,7 +96,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_device_manufacturers = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedDeviceManufacturers()
     {
@@ -108,7 +108,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_device_manufacturers = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedDeviceManufacturers($var)
@@ -124,7 +124,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_device_manufacturers = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedDeviceManufacturers()
     {
@@ -136,7 +136,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_device_manufacturers = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedDeviceManufacturers($var)
@@ -152,7 +152,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_devices = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedMobileDevices()
     {
@@ -164,7 +164,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_devices = 9 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedMobileDevices($var)
@@ -179,7 +179,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of mobile device resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_devices = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedMobileDevices()
     {
@@ -190,7 +190,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * Optional. A list of mobile device resource names that should be excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_devices = 10 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedMobileDevices($var)
@@ -206,7 +206,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_device_submodels = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedMobileDeviceSubmodels()
     {
@@ -218,7 +218,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_mobile_device_submodels = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedMobileDeviceSubmodels($var)
@@ -234,7 +234,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_device_submodels = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedMobileDeviceSubmodels()
     {
@@ -246,7 +246,7 @@ class DeviceManufacturerTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_mobile_device_submodels = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedMobileDeviceSubmodels($var)

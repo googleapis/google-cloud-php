@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\SecuritySettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for exporting conversations to
@@ -69,5 +69,4 @@ class InsightsExportSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

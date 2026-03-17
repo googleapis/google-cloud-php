@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -73,7 +73,7 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      *           The TensorboardRuns referenced by the parent fields in the
      *           CreateTensorboardTimeSeriesRequest messages must be sub resources of this
      *           TensorboardExperiment.
-     *     @type array<\Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest[] $requests
      *           Required. The request message specifying the TensorboardTimeSeries to
      *           create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      * }
@@ -126,7 +126,7 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      * create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest>
      */
     public function getRequests()
     {
@@ -138,7 +138,7 @@ class BatchCreateTensorboardTimeSeriesRequest extends \Google\Protobuf\Internal\
      * create. A maximum of 1000 TensorboardTimeSeries can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.CreateTensorboardTimeSeriesRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\CreateTensorboardTimeSeriesRequest[] $var
      * @return $this
      */
     public function setRequests($var)

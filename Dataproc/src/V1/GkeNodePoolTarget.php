@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GKE node pools that Dataproc workloads run on.
@@ -54,7 +54,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      *           Required. The target GKE node pool.
      *           Format:
      *           'projects/{project}/locations/{location}/clusters/{cluster}/nodePools/{node_pool}'
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type int[] $roles
      *           Required. The roles associated with the GKE node pool.
      *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig $node_pool_config
      *           Input only. The configuration for the GKE node pool.
@@ -107,7 +107,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      * Required. The roles associated with the GKE node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget.Role roles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRoles()
     {
@@ -118,7 +118,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      * Required. The roles associated with the GKE node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget.Role roles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRoles($var)

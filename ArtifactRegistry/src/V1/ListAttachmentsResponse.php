@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing attachments.
@@ -35,7 +35,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Attachment[] $attachments
      *           The attachments returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of attachments, or empty if there are
@@ -51,7 +51,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * The attachments returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Attachment attachments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Attachment>
      */
     public function getAttachments()
     {
@@ -62,7 +62,7 @@ class ListAttachmentsResponse extends \Google\Protobuf\Internal\Message
      * The attachments returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Attachment attachments = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Attachment[] $var
      * @return $this
      */
     public function setAttachments($var)

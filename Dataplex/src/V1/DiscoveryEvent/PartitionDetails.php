@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DiscoveryEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the partition.
@@ -57,7 +57,7 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      *           The name is the fully-qualified resource name.
      *     @type int $type
      *           The type of the containing entity resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *     @type string[] $sampled_data_locations
      *           The locations of the data items (e.g., a Cloud Storage objects) sampled
      *           for metadata inference.
      * }
@@ -154,7 +154,7 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      * for metadata inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSampledDataLocations()
     {
@@ -166,7 +166,7 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      * for metadata inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSampledDataLocations($var)
@@ -178,5 +178,4 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

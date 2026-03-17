@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response from ListTransferJobs.
@@ -34,7 +34,7 @@ class ListTransferJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageTransfer\V1\TransferJob>|\Google\Protobuf\Internal\RepeatedField $transfer_jobs
+     *     @type \Google\Cloud\StorageTransfer\V1\TransferJob[] $transfer_jobs
      *           A list of transfer jobs.
      *     @type string $next_page_token
      *           The list next page token.
@@ -49,7 +49,7 @@ class ListTransferJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of transfer jobs.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.TransferJob transfer_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageTransfer\V1\TransferJob>
      */
     public function getTransferJobs()
     {
@@ -60,7 +60,7 @@ class ListTransferJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of transfer jobs.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.TransferJob transfer_jobs = 1;</code>
-     * @param array<\Google\Cloud\StorageTransfer\V1\TransferJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageTransfer\V1\TransferJob[] $var
      * @return $this
      */
     public function setTransferJobs($var)

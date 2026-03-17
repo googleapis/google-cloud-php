@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VideoAsset represents a video. The supported formats are MP4, MPEG-TS, and
@@ -66,5 +66,4 @@ class VideoAsset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

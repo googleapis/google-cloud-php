@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for DataFoundryService.GenerateSyntheticData.
@@ -58,9 +58,9 @@ class GenerateSyntheticDataRequest extends \Google\Protobuf\Internal\Message
      *     @type int $count
      *           Required. The number of synthetic examples to generate.
      *           For this stateless API, the count is limited to a small number.
-     *     @type array<\Google\Cloud\AIPlatform\V1\OutputFieldSpec>|\Google\Protobuf\Internal\RepeatedField $output_field_specs
+     *     @type \Google\Cloud\AIPlatform\V1\OutputFieldSpec[] $output_field_specs
      *           Required. The schema of the desired output, defined by a list of fields.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SyntheticExample>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\AIPlatform\V1\SyntheticExample[] $examples
      *           Optional. A list of few-shot examples to guide the model's output style
      *           and format.
      * }
@@ -161,7 +161,7 @@ class GenerateSyntheticDataRequest extends \Google\Protobuf\Internal\Message
      * Required. The schema of the desired output, defined by a list of fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.OutputFieldSpec output_field_specs = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\OutputFieldSpec>
      */
     public function getOutputFieldSpecs()
     {
@@ -172,7 +172,7 @@ class GenerateSyntheticDataRequest extends \Google\Protobuf\Internal\Message
      * Required. The schema of the desired output, defined by a list of fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.OutputFieldSpec output_field_specs = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\OutputFieldSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\OutputFieldSpec[] $var
      * @return $this
      */
     public function setOutputFieldSpecs($var)
@@ -188,7 +188,7 @@ class GenerateSyntheticDataRequest extends \Google\Protobuf\Internal\Message
      * and format.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticExample examples = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SyntheticExample>
      */
     public function getExamples()
     {
@@ -200,7 +200,7 @@ class GenerateSyntheticDataRequest extends \Google\Protobuf\Internal\Message
      * and format.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticExample examples = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SyntheticExample>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SyntheticExample[] $var
      * @return $this
      */
     public function setExamples($var)

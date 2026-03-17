@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\EndpointMatcher;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The matcher that is based on node metadata presented by xDS clients.
@@ -78,7 +78,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      *           If there is more than one best match, (for example, if a
      *           config P4 with selector <A:1,D:1> exists and if a client with
      *           label <A:1,B:1,D:1> connects), pick up the one with older creation time.
-     *     @type array<\Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels>|\Google\Protobuf\Internal\RepeatedField $metadata_labels
+     *     @type \Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels[] $metadata_labels
      *           The list of label value pairs that must match labels in the
      *           provided metadata based on filterMatchCriteria This list can
      *           have at most 64 entries. The list can be empty if the match
@@ -163,7 +163,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      * matches any client).
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabels metadata_labels = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels>
      */
     public function getMetadataLabels()
     {
@@ -178,7 +178,7 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
      * matches any client).
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EndpointMatcher.MetadataLabelMatcher.MetadataLabels metadata_labels = 2;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\EndpointMatcher\MetadataLabelMatcher\MetadataLabels[] $var
      * @return $this
      */
     public function setMetadataLabels($var)
@@ -190,5 +190,4 @@ class MetadataLabelMatcher extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\VideoObjectTrackingPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boundingbox for detected object. I.e. the rectangle over the video frame
@@ -168,5 +168,4 @@ class BoundingBox extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

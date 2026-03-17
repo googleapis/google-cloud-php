@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The split points of a table/index.
@@ -55,7 +55,7 @@ class SplitPoints extends \Google\Protobuf\Internal\Message
      *     @type string $index
      *           The index to split.
      *           If specified, the `table` field must refer to the index's base table.
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints\Key>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\SplitPoints\Key[] $keys
      *           Required. The list of split keys, i.e., the split boundaries.
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Optional. The expiration timestamp of the split points.
@@ -127,7 +127,7 @@ class SplitPoints extends \Google\Protobuf\Internal\Message
      * Required. The list of split keys, i.e., the split boundaries.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.SplitPoints.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints\Key>
      */
     public function getKeys()
     {
@@ -138,7 +138,7 @@ class SplitPoints extends \Google\Protobuf\Internal\Message
      * Required. The list of split keys, i.e., the split boundaries.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.SplitPoints.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\SplitPoints\Key>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\SplitPoints\Key[] $var
      * @return $this
      */
     public function setKeys($var)

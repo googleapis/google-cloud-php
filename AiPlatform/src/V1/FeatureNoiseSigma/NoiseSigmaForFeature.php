@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureNoiseSigma;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Noise sigma for a single feature.
@@ -122,5 +122,4 @@ class NoiseSigmaForFeature extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

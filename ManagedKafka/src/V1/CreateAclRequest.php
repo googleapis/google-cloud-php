@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for CreateAcl.
@@ -39,9 +39,9 @@ class CreateAclRequest extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string acl_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -120,9 +120,9 @@ class CreateAclRequest extends \Google\Protobuf\Internal\Message
      *             `consumerGroupPrefixed/{resource_name}`
      *             `transactionalIdPrefixed/{resource_name}`
      *           For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *             `allTopics` (represents `topic/&#42;`)
-     *             `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *             `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *             `allTopics` (represents `topic/*`)
+     *             `allConsumerGroups` (represents `consumerGroup/*`)
+     *             `allTransactionalIds` (represents `transactionalId/*`)
      *     @type \Google\Cloud\ManagedKafka\V1\Acl $acl
      *           Required. Configuration of the acl to create. Its `name` field is ignored.
      * }
@@ -178,9 +178,9 @@ class CreateAclRequest extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string acl_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -206,9 +206,9 @@ class CreateAclRequest extends \Google\Protobuf\Internal\Message
      *   `consumerGroupPrefixed/{resource_name}`
      *   `transactionalIdPrefixed/{resource_name}`
      * For acls on all resources of a given type (i.e. the wildcard literal "*"):
-     *   `allTopics` (represents `topic/&#42;`)
-     *   `allConsumerGroups` (represents `consumerGroup/&#42;`)
-     *   `allTransactionalIds` (represents `transactionalId/&#42;`)
+     *   `allTopics` (represents `topic/*`)
+     *   `allConsumerGroups` (represents `consumerGroup/*`)
+     *   `allTransactionalIds` (represents `transactionalId/*`)
      *
      * Generated from protobuf field <code>string acl_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

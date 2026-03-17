@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A data key and associated feature values to write to the feature view.
@@ -36,7 +36,7 @@ class DataKeyAndFeatureValues extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDataKey $data_key
      *           The data key.
-     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues\Feature>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues\Feature[] $features
      *           List of features to write.
      * }
      */
@@ -85,7 +85,7 @@ class DataKeyAndFeatureValues extends \Google\Protobuf\Internal\Message
      * List of features to write.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues.Feature features = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues\Feature>
      */
     public function getFeatures()
     {
@@ -96,7 +96,7 @@ class DataKeyAndFeatureValues extends \Google\Protobuf\Internal\Message
      * List of features to write.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureViewDirectWriteRequest.DataKeyAndFeatureValues.Feature features = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues\Feature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FeatureViewDirectWriteRequest\DataKeyAndFeatureValues\Feature[] $var
      * @return $this
      */
     public function setFeatures($var)
@@ -108,5 +108,4 @@ class DataKeyAndFeatureValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

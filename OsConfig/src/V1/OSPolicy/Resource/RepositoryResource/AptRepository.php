@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicy\Resource\RepositoryResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single apt package repository. These will be added to
@@ -62,7 +62,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      *           Required. URI for this repository.
      *     @type string $distribution
      *           Required. Distribution of this repository.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $components
+     *     @type string[] $components
      *           Required. List of components for this repository. Must contain at
      *           least one item.
      *     @type string $gpg_key
@@ -158,7 +158,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      * least one item.
      *
      * Generated from protobuf field <code>repeated string components = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComponents()
     {
@@ -170,7 +170,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      * least one item.
      *
      * Generated from protobuf field <code>repeated string components = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComponents($var)
@@ -210,5 +210,4 @@ class AptRepository extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

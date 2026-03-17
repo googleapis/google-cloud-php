@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource that aggregates errors across import job files.
@@ -34,9 +34,9 @@ class ValidationReport extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\FileValidationReport>|\Google\Protobuf\Internal\RepeatedField $file_validations
+     *     @type \Google\Cloud\MigrationCenter\V1\FileValidationReport[] $file_validations
      *           List of errors found in files.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $job_errors
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportError[] $job_errors
      *           List of job level errors.
      * }
      */
@@ -49,7 +49,7 @@ class ValidationReport extends \Google\Protobuf\Internal\Message
      * List of errors found in files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.FileValidationReport file_validations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\FileValidationReport>
      */
     public function getFileValidations()
     {
@@ -60,7 +60,7 @@ class ValidationReport extends \Google\Protobuf\Internal\Message
      * List of errors found in files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.FileValidationReport file_validations = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\FileValidationReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\FileValidationReport[] $var
      * @return $this
      */
     public function setFileValidations($var)
@@ -75,7 +75,7 @@ class ValidationReport extends \Google\Protobuf\Internal\Message
      * List of job level errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError job_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportError>
      */
     public function getJobErrors()
     {
@@ -86,7 +86,7 @@ class ValidationReport extends \Google\Protobuf\Internal\Message
      * List of job level errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportError job_errors = 2;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportError[] $var
      * @return $this
      */
     public function setJobErrors($var)

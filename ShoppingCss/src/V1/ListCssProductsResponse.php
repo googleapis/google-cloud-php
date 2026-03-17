@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListCssProducts method.
@@ -36,7 +36,7 @@ class ListCssProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Css\V1\CssProduct>|\Google\Protobuf\Internal\RepeatedField $css_products
+     *     @type \Google\Shopping\Css\V1\CssProduct[] $css_products
      *           The processed CSS products from the specified account. These are your
      *           processed CSS products after applying rules and supplemental feeds.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListCssProductsResponse extends \Google\Protobuf\Internal\Message
      * processed CSS products after applying rules and supplemental feeds.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.CssProduct css_products = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\CssProduct>
      */
     public function getCssProducts()
     {
@@ -66,7 +66,7 @@ class ListCssProductsResponse extends \Google\Protobuf\Internal\Message
      * processed CSS products after applying rules and supplemental feeds.
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.CssProduct css_products = 1;</code>
-     * @param array<\Google\Shopping\Css\V1\CssProduct>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\CssProduct[] $var
      * @return $this
      */
     public function setCssProducts($var)

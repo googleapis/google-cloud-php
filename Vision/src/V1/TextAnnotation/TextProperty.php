@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1\TextAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional information detected on the structural component.
@@ -34,7 +34,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage[] $detected_languages
      *           A list of detected languages together with confidence.
      *     @type \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak $detected_break
      *           Detected start or end of a text segment.
@@ -49,7 +49,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage>
      */
     public function getDetectedLanguages()
     {
@@ -60,7 +60,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
-     * @param array<\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage[] $var
      * @return $this
      */
     public function setDetectedLanguages($var)
@@ -108,5 +108,4 @@ class TextProperty extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

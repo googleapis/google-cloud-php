@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifications of a destination to which the request should be routed to.
@@ -254,5 +254,4 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

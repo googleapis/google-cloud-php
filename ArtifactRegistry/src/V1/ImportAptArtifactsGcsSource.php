@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Google Cloud Storage location where the artifacts currently reside.
@@ -34,7 +34,7 @@ class ImportAptArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      *     @type bool $use_wildcards
      *           Supports URI wildcards for matching multiple objects from a single URI.
@@ -49,7 +49,7 @@ class ImportAptArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -60,7 +60,7 @@ class ImportAptArtifactsGcsSource extends \Google\Protobuf\Internal\Message
      * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
      *
      * Generated from protobuf field <code>repeated string uris = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)

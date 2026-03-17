@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\CachedContent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata on the usage of the cached content.
@@ -200,5 +200,4 @@ class UsageMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

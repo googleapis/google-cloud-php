@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PostgreSQL database structure.
@@ -28,7 +28,7 @@ class PostgresqlRdbms extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\PostgresqlSchema>|\Google\Protobuf\Internal\RepeatedField $postgresql_schemas
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlSchema[] $postgresql_schemas
      *           PostgreSQL schemas in the database server.
      * }
      */
@@ -41,7 +41,7 @@ class PostgresqlRdbms extends \Google\Protobuf\Internal\Message
      * PostgreSQL schemas in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlSchema postgresql_schemas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\PostgresqlSchema>
      */
     public function getPostgresqlSchemas()
     {
@@ -52,7 +52,7 @@ class PostgresqlRdbms extends \Google\Protobuf\Internal\Message
      * PostgreSQL schemas in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.PostgresqlSchema postgresql_schemas = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\PostgresqlSchema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\PostgresqlSchema[] $var
      * @return $this
      */
     public function setPostgresqlSchemas($var)

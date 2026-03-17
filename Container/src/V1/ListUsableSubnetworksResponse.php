@@ -5,8 +5,8 @@
 namespace Google\Cloud\Container\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListUsableSubnetworksResponse is the response of
@@ -38,7 +38,7 @@ class ListUsableSubnetworksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Container\V1\UsableSubnetwork>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type \Google\Cloud\Container\V1\UsableSubnetwork[] $subnetworks
      *           A list of usable subnetworks in the specified network project.
      *     @type string $next_page_token
      *           This token allows you to get the next page of results for list requests.
@@ -56,7 +56,7 @@ class ListUsableSubnetworksResponse extends \Google\Protobuf\Internal\Message
      * A list of usable subnetworks in the specified network project.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.UsableSubnetwork subnetworks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Container\V1\UsableSubnetwork>
      */
     public function getSubnetworks()
     {
@@ -67,7 +67,7 @@ class ListUsableSubnetworksResponse extends \Google\Protobuf\Internal\Message
      * A list of usable subnetworks in the specified network project.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.UsableSubnetwork subnetworks = 1;</code>
-     * @param array<\Google\Cloud\Container\V1\UsableSubnetwork>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Container\V1\UsableSubnetwork[] $var
      * @return $this
      */
     public function setSubnetworks($var)

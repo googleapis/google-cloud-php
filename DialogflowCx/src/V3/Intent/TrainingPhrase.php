@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Intent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an example that the agent is trained on to identify the intent.
@@ -56,7 +56,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           Output only. The unique identifier of the training phrase.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase\Part[] $parts
      *           Required. The ordered list of training phrase parts.
      *           The parts are concatenated in order to form the training phrase.
      *           Note: The API does not automatically annotate training phrases like the
@@ -125,7 +125,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     and the `parameter_id` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase.Part parts = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase\Part>
      */
     public function getParts()
     {
@@ -150,7 +150,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     and the `parameter_id` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Intent.TrainingPhrase.Part parts = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Intent\TrainingPhrase\Part[] $var
      * @return $this
      */
     public function setParts($var)
@@ -188,5 +188,4 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

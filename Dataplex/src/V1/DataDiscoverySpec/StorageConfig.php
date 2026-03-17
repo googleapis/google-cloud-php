@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDiscoverySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configurations related to Cloud Storage as the data source.
@@ -55,14 +55,14 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_patterns
+     *     @type string[] $include_patterns
      *           Optional. Defines the data to include during discovery when only a subset
      *           of the data should be considered. Provide a list of patterns that
      *           identify the data to include. For Cloud Storage bucket assets, these
      *           patterns are interpreted as glob patterns used to match object names. For
      *           BigQuery dataset assets, these patterns are interpreted as patterns to
      *           match table names.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_patterns
+     *     @type string[] $exclude_patterns
      *           Optional. Defines the data to exclude during discovery. Provide a list of
      *           patterns that identify the data to exclude. For Cloud Storage bucket
      *           assets, these patterns are interpreted as glob patterns used to match
@@ -88,7 +88,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludePatterns()
     {
@@ -104,7 +104,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludePatterns($var)
@@ -123,7 +123,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludePatterns()
     {
@@ -138,7 +138,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      * as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludePatterns($var)
@@ -222,5 +222,4 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

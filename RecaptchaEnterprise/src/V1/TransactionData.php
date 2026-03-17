@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Transaction data associated with a payment protected by reCAPTCHA Enterprise.
@@ -147,9 +147,9 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      *           Optional. Address associated with the payment method when applicable.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User $user
      *           Optional. Information about the user paying/initiating the transaction.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User>|\Google\Protobuf\Internal\RepeatedField $merchants
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User[] $merchants
      *           Optional. Information about the user or users fulfilling the transaction.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item[] $items
      *           Optional. Items purchased in this transaction.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\GatewayInfo $gateway_info
      *           Optional. Information about the payment gateway's response to the
@@ -491,7 +491,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * Optional. Information about the user or users fulfilling the transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User>
      */
     public function getMerchants()
     {
@@ -502,7 +502,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * Optional. Information about the user or users fulfilling the transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.User merchants = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\User[] $var
      * @return $this
      */
     public function setMerchants($var)
@@ -517,7 +517,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * Optional. Items purchased in this transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item>
      */
     public function getItems()
     {
@@ -528,7 +528,7 @@ class TransactionData extends \Google\Protobuf\Internal\Message
      * Optional. Items purchased in this transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.TransactionData.Item items = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TransactionData\Item[] $var
      * @return $this
      */
     public function setItems($var)

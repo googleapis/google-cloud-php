@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1\DataprocMetricConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Dataproc custom metric.
@@ -65,7 +65,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *           are specified for the metric source (see [Custom metrics]
      *           (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics)
      *           for more information).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metric_overrides
+     *     @type string[] $metric_overrides
      *           Optional. Specify one or more [Custom metrics]
      *           (https://cloud.google.com/dataproc/docs/guides/dataproc-metrics#custom_metrics)
      *           to collect for the metric course (for the `SPARK` metric source (any
@@ -156,7 +156,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *   metrics only, all YARN metrics are collected.
      *
      * Generated from protobuf field <code>repeated string metric_overrides = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetricOverrides()
     {
@@ -190,7 +190,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *   metrics only, all YARN metrics are collected.
      *
      * Generated from protobuf field <code>repeated string metric_overrides = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetricOverrides($var)
@@ -202,5 +202,4 @@ class Metric extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

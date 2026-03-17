@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Retrieve from Vertex RAG Store for grounding.
@@ -52,7 +52,7 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\VertexRagStore\RagResource>|\Google\Protobuf\Internal\RepeatedField $rag_resources
+     *     @type \Google\Cloud\AIPlatform\V1\VertexRagStore\RagResource[] $rag_resources
      *           Optional. The representation of the rag source. It can be used to specify
      *           corpus only or ragfiles. Currently only support one corpus or multiple
      *           files from one corpus. In the future we may open up multiple corpora
@@ -78,7 +78,7 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      * support.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexRagStore.RagResource rag_resources = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\VertexRagStore\RagResource>
      */
     public function getRagResources()
     {
@@ -92,7 +92,7 @@ class VertexRagStore extends \Google\Protobuf\Internal\Message
      * support.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.VertexRagStore.RagResource rag_resources = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\VertexRagStore\RagResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\VertexRagStore\RagResource[] $var
      * @return $this
      */
     public function setRagResources($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2\QueuedResourceState;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Further data for the suspending state.
@@ -30,5 +30,4 @@ class SuspendingData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

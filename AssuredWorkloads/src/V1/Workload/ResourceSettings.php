@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1\Workload;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represent the custom settings for the resources to be created.
@@ -164,5 +164,4 @@ class ResourceSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

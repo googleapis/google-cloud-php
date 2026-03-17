@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ItemLevelIssue of the product status.
@@ -302,5 +302,4 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

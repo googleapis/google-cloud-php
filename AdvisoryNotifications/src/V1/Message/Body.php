@@ -5,8 +5,8 @@
 namespace Google\Cloud\AdvisoryNotifications\V1\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message body containing text.
@@ -74,5 +74,4 @@ class Body extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

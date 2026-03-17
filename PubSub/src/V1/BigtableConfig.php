@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a Bigtable subscription. The Pub/Sub message will be
@@ -42,7 +42,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -86,7 +86,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      *           `iam.serviceAccounts.actAs` permission on the service account. If not
      *           specified, the Pub/Sub [service
      *           agent](https://cloud.google.com/iam/docs/service-agents),
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *     @type bool $write_metadata
      *           Optional. When true, write the subscription name, message_id, publish_time,
      *           attributes, and ordering_key to additional columns in the table under the
@@ -170,7 +170,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -186,7 +186,7 @@ class BigtableConfig extends \Google\Protobuf\Internal\Message
      * `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent](https://cloud.google.com/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

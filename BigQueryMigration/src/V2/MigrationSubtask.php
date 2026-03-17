@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A subtask for a migration which carries details about the configuration of
@@ -111,7 +111,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\ErrorInfo $processing_error
      *           Output only. An explanation that may be populated when the task is in
      *           FAILED state.
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail>|\Google\Protobuf\Internal\RepeatedField $resource_error_details
+     *     @type \Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail[] $resource_error_details
      *           Output only. Provides details to errors and issues encountered while
      *           processing the subtask. Presence of error details does not mean that the
      *           subtask failed.
@@ -124,7 +124,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      *           Time when the subtask was created.
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Time when the subtask was last updated.
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $metrics
      *           The metrics for the subtask.
      * }
      */
@@ -291,7 +291,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      * subtask failed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ResourceErrorDetail resource_error_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail>
      */
     public function getResourceErrorDetails()
     {
@@ -304,7 +304,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      * subtask failed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ResourceErrorDetail resource_error_details = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\ResourceErrorDetail[] $var
      * @return $this
      */
     public function setResourceErrorDetails($var)
@@ -423,7 +423,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      * The metrics for the subtask.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\TimeSeries>
      */
     public function getMetrics()
     {
@@ -434,7 +434,7 @@ class MigrationSubtask extends \Google\Protobuf\Internal\Message
      * The metrics for the subtask.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.TimeSeries metrics = 11;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\TimeSeries[] $var
      * @return $this
      */
     public function setMetrics($var)

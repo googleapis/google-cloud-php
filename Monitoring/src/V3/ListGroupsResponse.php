@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListGroups` response.
@@ -36,7 +36,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\Group>|\Google\Protobuf\Internal\RepeatedField $group
+     *     @type \Google\Cloud\Monitoring\V3\Group[] $group
      *           The groups that match the specified filters.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
@@ -53,7 +53,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * The groups that match the specified filters.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Group group = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\Group>
      */
     public function getGroup()
     {
@@ -64,7 +64,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * The groups that match the specified filters.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Group group = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\Group>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\Group[] $var
      * @return $this
      */
     public function setGroup($var)

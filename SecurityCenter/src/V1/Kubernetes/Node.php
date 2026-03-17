@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Kubernetes nodes associated with the finding.
@@ -68,5 +68,4 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

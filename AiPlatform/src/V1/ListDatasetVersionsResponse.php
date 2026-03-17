@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -35,7 +35,7 @@ class ListDatasetVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\DatasetVersion>|\Google\Protobuf\Internal\RepeatedField $dataset_versions
+     *     @type \Google\Cloud\AIPlatform\V1\DatasetVersion[] $dataset_versions
      *           A list of DatasetVersions that matches the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
@@ -50,7 +50,7 @@ class ListDatasetVersionsResponse extends \Google\Protobuf\Internal\Message
      * A list of DatasetVersions that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DatasetVersion dataset_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DatasetVersion>
      */
     public function getDatasetVersions()
     {
@@ -61,7 +61,7 @@ class ListDatasetVersionsResponse extends \Google\Protobuf\Internal\Message
      * A list of DatasetVersions that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DatasetVersion dataset_versions = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DatasetVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DatasetVersion[] $var
      * @return $this
      */
     public function setDatasetVersions($var)

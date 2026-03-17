@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the properties and custom parameters for a data source.
@@ -156,7 +156,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           User friendly data source description string.
      *     @type string $client_id
      *           Data source client id which should be used to receive refresh token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Api auth scopes for which refresh token needs to be obtained. These are
      *           scopes needed by a data source to prepare data and ingest them into
      *           BigQuery, e.g., https://www.googleapis.com/auth/bigquery
@@ -177,7 +177,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           Specifies whether the data source supports a user defined schedule, or
      *           operates on the default schedule.
      *           When set to `true`, user can override default schedule.
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[] $parameters
      *           Data source parameters.
      *     @type string $help_url
      *           Url for the help document for this data source.
@@ -339,7 +339,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -352,7 +352,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)
@@ -523,7 +523,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Data source parameters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter parameters = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>
      */
     public function getParameters()
     {
@@ -534,7 +534,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Data source parameters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter parameters = 12;</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[] $var
      * @return $this
      */
     public function setParameters($var)

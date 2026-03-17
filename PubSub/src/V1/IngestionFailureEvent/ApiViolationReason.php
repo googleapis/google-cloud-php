@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\IngestionFailureEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the reason why some data may have been left out of
@@ -37,5 +37,4 @@ class ApiViolationReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

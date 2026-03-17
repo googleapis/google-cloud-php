@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a business trade from which signals are extracted, such as
@@ -108,11 +108,11 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      *     @type string $order_id
      *           Required. The ID of the order on the businesses side. This field will be
      *           hashed in returned OrderTrackingSignal creation response.
-     *     @type array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo>|\Google\Protobuf\Internal\RepeatedField $shipping_info
+     *     @type \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo[] $shipping_info
      *           Required. The shipping information for the order.
-     *     @type array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails>|\Google\Protobuf\Internal\RepeatedField $line_items
+     *     @type \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails[] $line_items
      *           Required. Information about line items in the order.
-     *     @type array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShipmentLineItemMapping>|\Google\Protobuf\Internal\RepeatedField $shipment_line_item_mapping
+     *     @type \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShipmentLineItemMapping[] $shipment_line_item_mapping
      *           Optional. The mapping of the line items to the shipment information.
      *     @type \Google\Shopping\Type\Price $customer_shipping_fee
      *           Optional. The shipping fee of the order;
@@ -262,7 +262,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Required. The shipping information for the order.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.ShippingInfo shipping_info = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo>
      */
     public function getShippingInfo()
     {
@@ -273,7 +273,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Required. The shipping information for the order.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.ShippingInfo shipping_info = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShippingInfo[] $var
      * @return $this
      */
     public function setShippingInfo($var)
@@ -288,7 +288,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Required. Information about line items in the order.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.LineItemDetails line_items = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails>
      */
     public function getLineItems()
     {
@@ -299,7 +299,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Required. Information about line items in the order.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.LineItemDetails line_items = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\LineItemDetails[] $var
      * @return $this
      */
     public function setLineItems($var)
@@ -314,7 +314,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Optional. The mapping of the line items to the shipment information.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.ShipmentLineItemMapping shipment_line_item_mapping = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShipmentLineItemMapping>
      */
     public function getShipmentLineItemMapping()
     {
@@ -325,7 +325,7 @@ class OrderTrackingSignal extends \Google\Protobuf\Internal\Message
      * Optional. The mapping of the line items to the shipment information.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.ordertracking.v1.OrderTrackingSignal.ShipmentLineItemMapping shipment_line_item_mapping = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShipmentLineItemMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal\ShipmentLineItemMapping[] $var
      * @return $this
      */
     public function setShipmentLineItemMapping($var)

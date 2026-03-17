@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Normalized polyline.
@@ -28,7 +28,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type \Google\Cloud\DataLabeling\V1beta1\NormalizedVertex[] $normalized_vertices
      *           The normalized polyline vertices.
      * }
      */
@@ -41,7 +41,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * The normalized polyline vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.NormalizedVertex normalized_vertices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\NormalizedVertex>
      */
     public function getNormalizedVertices()
     {
@@ -52,7 +52,7 @@ class NormalizedPolyline extends \Google\Protobuf\Internal\Message
      * The normalized polyline vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.NormalizedVertex normalized_vertices = 1;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\NormalizedVertex[] $var
      * @return $this
      */
     public function setNormalizedVertices($var)

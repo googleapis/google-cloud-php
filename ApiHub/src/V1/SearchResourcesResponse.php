@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the
@@ -39,7 +39,7 @@ class SearchResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $search_results
+     *     @type \Google\Cloud\ApiHub\V1\SearchResult[] $search_results
      *           List of search results according to the filter and search query specified.
      *           The order of search results represents the ranking.
      *     @type string $next_page_token
@@ -59,7 +59,7 @@ class SearchResourcesResponse extends \Google\Protobuf\Internal\Message
      * The order of search results represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SearchResult search_results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SearchResult>
      */
     public function getSearchResults()
     {
@@ -71,7 +71,7 @@ class SearchResourcesResponse extends \Google\Protobuf\Internal\Message
      * The order of search results represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SearchResult search_results = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SearchResult[] $var
      * @return $this
      */
     public function setSearchResults($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for
@@ -41,11 +41,11 @@ class ListQueuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tpu\V2\QueuedResource>|\Google\Protobuf\Internal\RepeatedField $queued_resources
+     *     @type \Google\Cloud\Tpu\V2\QueuedResource[] $queued_resources
      *           The listed queued resources.
      *     @type string $next_page_token
      *           The next page token or empty if none.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -58,7 +58,7 @@ class ListQueuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * The listed queued resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.QueuedResource queued_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\QueuedResource>
      */
     public function getQueuedResources()
     {
@@ -69,7 +69,7 @@ class ListQueuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * The listed queued resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.QueuedResource queued_resources = 1;</code>
-     * @param array<\Google\Cloud\Tpu\V2\QueuedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\QueuedResource[] $var
      * @return $this
      */
     public function setQueuedResources($var)
@@ -110,7 +110,7 @@ class ListQueuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -121,7 +121,7 @@ class ListQueuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

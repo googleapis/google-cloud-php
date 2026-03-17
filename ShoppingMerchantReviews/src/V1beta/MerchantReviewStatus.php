@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of a merchant review, data validation issues, that is, information
@@ -49,9 +49,9 @@ class MerchantReviewStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewDestinationStatus>|\Google\Protobuf\Internal\RepeatedField $destination_statuses
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewDestinationStatus[] $destination_statuses
      *           Output only. The intended destinations for the merchant review.
-     *     @type array<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $item_level_issues
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewItemLevelIssue[] $item_level_issues
      *           Output only. A list of all issues associated with the merchant review.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Date on which the item has been created, in [ISO
@@ -70,7 +70,7 @@ class MerchantReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the merchant review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.MerchantReviewStatus.MerchantReviewDestinationStatus destination_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewDestinationStatus>
      */
     public function getDestinationStatuses()
     {
@@ -81,7 +81,7 @@ class MerchantReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the merchant review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.MerchantReviewStatus.MerchantReviewDestinationStatus destination_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewDestinationStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewDestinationStatus[] $var
      * @return $this
      */
     public function setDestinationStatuses($var)
@@ -96,7 +96,7 @@ class MerchantReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of all issues associated with the merchant review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.MerchantReviewStatus.MerchantReviewItemLevelIssue item_level_issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewItemLevelIssue>
      */
     public function getItemLevelIssues()
     {
@@ -107,7 +107,7 @@ class MerchantReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of all issues associated with the merchant review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.MerchantReviewStatus.MerchantReviewItemLevelIssue item_level_issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reviews\V1beta\MerchantReviewStatus\MerchantReviewItemLevelIssue[] $var
      * @return $this
      */
     public function setItemLevelIssues($var)

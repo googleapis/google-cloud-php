@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response of ListSSHKeys.
@@ -35,7 +35,7 @@ class ListSSHKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\SSHKey>|\Google\Protobuf\Internal\RepeatedField $ssh_keys
+     *     @type \Google\Cloud\BareMetalSolution\V2\SSHKey[] $ssh_keys
      *           The SSH keys registered in the project.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListSSHKeysResponse extends \Google\Protobuf\Internal\Message
      * The SSH keys registered in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.SSHKey ssh_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\SSHKey>
      */
     public function getSshKeys()
     {
@@ -62,7 +62,7 @@ class ListSSHKeysResponse extends \Google\Protobuf\Internal\Message
      * The SSH keys registered in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.SSHKey ssh_keys = 1;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\SSHKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\SSHKey[] $var
      * @return $this
      */
     public function setSshKeys($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a License resource.
@@ -177,7 +177,7 @@ class License extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_replacement_licenses
+     *     @type string[] $allowed_replacement_licenses
      *           Specifies licenseCodes of licenses that can replace this license. Note:
      *           such replacements are allowed even if removable_from_disk is false.
      *     @type bool $appendable_to_disk
@@ -195,7 +195,7 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is
      *           defined by the server.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $incompatible_licenses
+     *     @type string[] $incompatible_licenses
      *           Specifies licenseCodes of licenses that are incompatible with this license.
      *           If a license is incompatible with this license, it cannot be attached to
      *           the same disk or image.
@@ -222,7 +222,7 @@ class License extends \Google\Protobuf\Internal\Message
      *     @type bool $removable_from_disk
      *           If true, this license can be removed from a disk's set of licenses, with no
      *           replacement license needed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_coattached_licenses
+     *     @type string[] $required_coattached_licenses
      *           Specifies the set of permissible coattached licenseCodes of licenses that
      *           satisfy the coattachment requirement of this license. At least one license
      *           from the set must be attached to the same disk or image as this license.
@@ -252,7 +252,7 @@ class License extends \Google\Protobuf\Internal\Message
      * such replacements are allowed even if removable_from_disk is false.
      *
      * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedReplacementLicenses()
     {
@@ -264,7 +264,7 @@ class License extends \Google\Protobuf\Internal\Message
      * such replacements are allowed even if removable_from_disk is false.
      *
      * Generated from protobuf field <code>repeated string allowed_replacement_licenses = 195677718;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedReplacementLicenses($var)
@@ -471,7 +471,7 @@ class License extends \Google\Protobuf\Internal\Message
      * the same disk or image.
      *
      * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncompatibleLicenses()
     {
@@ -484,7 +484,7 @@ class License extends \Google\Protobuf\Internal\Message
      * the same disk or image.
      *
      * Generated from protobuf field <code>repeated string incompatible_licenses = 334239768;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncompatibleLicenses($var)
@@ -803,7 +803,7 @@ class License extends \Google\Protobuf\Internal\Message
      * from the set must be attached to the same disk or image as this license.
      *
      * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequiredCoattachedLicenses()
     {
@@ -816,7 +816,7 @@ class License extends \Google\Protobuf\Internal\Message
      * from the set must be attached to the same disk or image as this license.
      *
      * Generated from protobuf field <code>repeated string required_coattached_licenses = 129195265;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequiredCoattachedLicenses($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Denied IP rule.
@@ -28,7 +28,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\IpRule>|\Google\Protobuf\Internal\RepeatedField $ip_rules
+     *     @type \Google\Cloud\SecurityCenter\V2\IpRule[] $ip_rules
      *           Optional. Optional list of denied IP rules.
      * }
      */
@@ -41,7 +41,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      * Optional. Optional list of denied IP rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IpRule ip_rules = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\IpRule>
      */
     public function getIpRules()
     {
@@ -52,7 +52,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      * Optional. Optional list of denied IP rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IpRule ip_rules = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\IpRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\IpRule[] $var
      * @return $this
      */
     public function setIpRules($var)

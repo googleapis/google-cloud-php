@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message from importing YUM artifacts.
@@ -34,9 +34,9 @@ class ImportYumArtifactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\YumArtifact>|\Google\Protobuf\Internal\RepeatedField $yum_artifacts
+     *     @type \Google\Cloud\ArtifactRegistry\V1\YumArtifact[] $yum_artifacts
      *           The yum artifacts imported.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsErrorInfo[] $errors
      *           Detailed error info for packages that were not imported.
      * }
      */
@@ -49,7 +49,7 @@ class ImportYumArtifactsResponse extends \Google\Protobuf\Internal\Message
      * The yum artifacts imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.YumArtifact yum_artifacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\YumArtifact>
      */
     public function getYumArtifacts()
     {
@@ -60,7 +60,7 @@ class ImportYumArtifactsResponse extends \Google\Protobuf\Internal\Message
      * The yum artifacts imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.YumArtifact yum_artifacts = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\YumArtifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\YumArtifact[] $var
      * @return $this
      */
     public function setYumArtifacts($var)
@@ -75,7 +75,7 @@ class ImportYumArtifactsResponse extends \Google\Protobuf\Internal\Message
      * Detailed error info for packages that were not imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImportYumArtifactsErrorInfo errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsErrorInfo>
      */
     public function getErrors()
     {
@@ -86,7 +86,7 @@ class ImportYumArtifactsResponse extends \Google\Protobuf\Internal\Message
      * Detailed error info for packages that were not imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImportYumArtifactsErrorInfo errors = 2;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\ImportYumArtifactsErrorInfo[] $var
      * @return $this
      */
     public function setErrors($var)

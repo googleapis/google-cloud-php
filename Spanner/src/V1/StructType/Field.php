@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\StructType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing a single field of a struct.
@@ -132,5 +132,4 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

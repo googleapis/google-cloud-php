@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Dataform Git repository.
@@ -25,8 +25,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Optional. The name of the containing folder of the repository.
      * The field is immutable and it can be modified via a MoveRepository
      * operation.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
-     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     * Format: `projects/{@*}locations/{@*}folders/*`. or
+     * `projects/{@*}locations/{@*}teamFolders/*`.
      *
      * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,7 +61,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -135,8 +135,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the containing folder of the repository.
      *           The field is immutable and it can be modified via a MoveRepository
      *           operation.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
-     *           `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     *           Format: `projects/{@*}locations/{@*}folders/*`. or
+     *           `projects/{@*}locations/{@*}teamFolders/*`.
      *     @type string $team_folder_name
      *           Output only. The resource name of the TeamFolder that this Repository is
      *           associated with. This should take the format:
@@ -151,7 +151,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *     @type string $npmrc_environment_variables_secret_version
      *           Optional. The name of the Secret Manager secret version to be used to
      *           interpolate variables into the .npmrc file for package installation
-     *           operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     *           operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      *           file itself must be in a JSON format.
      *     @type \Google\Cloud\Dataform\V1beta1\Repository\WorkspaceCompilationOverrides $workspace_compilation_overrides
      *           Optional. If set, fields of `workspace_compilation_overrides` override the
@@ -217,8 +217,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Optional. The name of the containing folder of the repository.
      * The field is immutable and it can be modified via a MoveRepository
      * operation.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
-     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     * Format: `projects/{@*}locations/{@*}folders/*`. or
+     * `projects/{@*}locations/{@*}teamFolders/*`.
      *
      * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -242,8 +242,8 @@ class Repository extends \Google\Protobuf\Internal\Message
      * Optional. The name of the containing folder of the repository.
      * The field is immutable and it can be modified via a MoveRepository
      * operation.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`. or
-     * `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`.
+     * Format: `projects/{@*}locations/{@*}folders/*`. or
+     * `projects/{@*}locations/{@*}teamFolders/*`.
      *
      * Generated from protobuf field <code>optional string containing_folder = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -400,7 +400,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -414,7 +414,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Secret Manager secret version to be used to
      * interpolate variables into the .npmrc file for package installation
-     * operations. Must be in the format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. The
+     * operations. Must be in the format `projects/{@*}secrets/{@*}versions/*`. The
      * file itself must be in a JSON format.
      *
      * Generated from protobuf field <code>string npmrc_environment_variables_secret_version = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

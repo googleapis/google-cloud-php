@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Instance resource is the computing unit that App Engine uses to
@@ -65,7 +65,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $vm_id = '';
     /**
      * Output only. Time that this instance was started.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -156,7 +156,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           App Engine flexible environment.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Time that this instance was started.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type int $requests
      *           Output only. Number of requests since this instance was started.
      *     @type int $errors
@@ -380,7 +380,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Time that this instance was started.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -402,7 +402,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Time that this instance was started.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

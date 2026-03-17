@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Nat resource. It enables the VMs within the specified
@@ -232,7 +232,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *           If not specified, then the current
      *           project-level default tier is used.
      *           Check the AutoNetworkTier enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $drain_nat_ips
+     *     @type string[] $drain_nat_ips
      *           A list of URLs of the IP resources to be drained. These IPs
      *           must be valid static external IPs that have been assigned to the NAT.
      *           These IPs should be used for updating/patching a NAT only.
@@ -248,7 +248,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *              minimum of 32 ports will be allocated to a VM from this NAT
      *              config.
      *     @type bool $enable_endpoint_independent_mapping
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_types
+     *     @type string[] $endpoint_types
      *           List of NAT-ted endpoint types supported by the Nat Gateway. If the list
      *           is empty, then it will be equivalent to include ENDPOINT_TYPE_VM
      *           Check the EndpointTypes enum for the list of possible values.
@@ -274,7 +274,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Unique name of this Nat service.
      *           The name must be 1-63 characters long and comply withRFC1035.
-     *     @type array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64>|\Google\Protobuf\Internal\RepeatedField $nat64_subnetworks
+     *     @type \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64[] $nat64_subnetworks
      *           List of Subnetwork resources whose traffic should be translated by NAT64
      *           Gateway. It is used only when LIST_OF_IPV6_SUBNETWORKS is
      *           selected for the SubnetworkIpRangeToNat64Option above.
@@ -288,11 +288,11 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *              can't specify any Nat IPs. When choosing AUTO_ONLY, then nat_ip should
      *              be empty.
      *           Check the NatIpAllocateOption enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $nat_ips
+     *     @type string[] $nat_ips
      *           A list of URLs of the IP resources used for this Nat service. These IP
      *           addresses must be valid static external IP addresses assigned to the
      *           project.
-     *     @type array<\Google\Cloud\Compute\V1\RouterNatRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Compute\V1\RouterNatRule[] $rules
      *           A list of rules associated with this NAT.
      *     @type string $source_subnetwork_ip_ranges_to_nat
      *           Specify the Nat option, which can take one of the following values:
@@ -320,7 +320,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      *           Subnetworks in this network. Other Router.Nat sections can still be
      *           present to enable NAT44 only.
      *           Check the SourceSubnetworkIpRangesToNat64 enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat[] $subnetworks
      *           A list of Subnetwork resources whose traffic should be translated by NAT
      *           Gateway. It is used only when LIST_OF_SUBNETWORKS is selected for the
      *           SubnetworkIpRangeToNatOption above.
@@ -396,7 +396,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * These IPs should be used for updating/patching a NAT only.
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDrainNatIps()
     {
@@ -409,7 +409,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * These IPs should be used for updating/patching a NAT only.
      *
      * Generated from protobuf field <code>repeated string drain_nat_ips = 504078535;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDrainNatIps($var)
@@ -512,7 +512,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * Check the EndpointTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEndpointTypes()
     {
@@ -525,7 +525,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * Check the EndpointTypes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string endpoint_types = 502633807;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEndpointTypes($var)
@@ -746,7 +746,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * selected for the SubnetworkIpRangeToNat64Option above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat64 nat64_subnetworks = 63585701;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64>
      */
     public function getNat64Subnetworks()
     {
@@ -759,7 +759,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * selected for the SubnetworkIpRangeToNat64Option above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat64 nat64_subnetworks = 63585701;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat64[] $var
      * @return $this
      */
     public function setNat64Subnetworks($var)
@@ -828,7 +828,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * project.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNatIps()
     {
@@ -841,7 +841,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * project.
      *
      * Generated from protobuf field <code>repeated string nat_ips = 117635086;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNatIps($var)
@@ -856,7 +856,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of rules associated with this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatRule rules = 108873975;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterNatRule>
      */
     public function getRules()
     {
@@ -867,7 +867,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * A list of rules associated with this NAT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatRule rules = 108873975;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterNatRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterNatRule[] $var
      * @return $this
      */
     public function setRules($var)
@@ -1000,7 +1000,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * SubnetworkIpRangeToNatOption above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>
      */
     public function getSubnetworks()
     {
@@ -1013,7 +1013,7 @@ class RouterNat extends \Google\Protobuf\Internal\Message
      * SubnetworkIpRangeToNatOption above.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterNatSubnetworkToNat subnetworks = 415853125;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterNatSubnetworkToNat>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterNatSubnetworkToNat[] $var
      * @return $this
      */
     public function setSubnetworks($var)

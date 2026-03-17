@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration parameters for a new network.
@@ -101,7 +101,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           The type of this network, either Client or Private.
      *     @type int $bandwidth
      *           Interconnect bandwidth. Set only when type is CLIENT.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkConfig\IntakeVlanAttachment>|\Google\Protobuf\Internal\RepeatedField $vlan_attachments
+     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkConfig\IntakeVlanAttachment[] $vlan_attachments
      *           List of VLAN attachments. As of now there are always 2 attachments, but it
      *           is going to change in  the future (multi vlan).
      *     @type string $cidr
@@ -236,7 +236,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * is going to change in  the future (multi vlan).
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkConfig.IntakeVlanAttachment vlan_attachments = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NetworkConfig\IntakeVlanAttachment>
      */
     public function getVlanAttachments()
     {
@@ -248,7 +248,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * is going to change in  the future (multi vlan).
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkConfig.IntakeVlanAttachment vlan_attachments = 5;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkConfig\IntakeVlanAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NetworkConfig\IntakeVlanAttachment[] $var
      * @return $this
      */
     public function setVlanAttachments($var)

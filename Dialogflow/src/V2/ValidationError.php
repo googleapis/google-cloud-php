@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single validation error.
@@ -54,7 +54,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      *
      *     @type int $severity
      *           The severity of the error.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type string[] $entries
      *           The names of the entries that the error is associated with.
      *           Format:
      *           - `projects/<Project ID>/agent`, if the error is associated with the entire
@@ -119,7 +119,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      * associated with certain entities.
      *
      * Generated from protobuf field <code>repeated string entries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntries()
     {
@@ -142,7 +142,7 @@ class ValidationError extends \Google\Protobuf\Internal\Message
      * associated with certain entities.
      *
      * Generated from protobuf field <code>repeated string entries = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntries($var)

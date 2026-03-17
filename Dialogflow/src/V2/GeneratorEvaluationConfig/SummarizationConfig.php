@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\GeneratorEvaluationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluation configs for summarization generator.
@@ -246,5 +246,4 @@ class SummarizationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

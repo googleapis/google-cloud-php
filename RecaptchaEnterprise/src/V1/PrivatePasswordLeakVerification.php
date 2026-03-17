@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Private password leak verification info.
@@ -62,7 +62,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *           Optional. Encrypted Scrypt hash of the canonicalized username+password. It
      *           is re-encrypted by the server and returned through
      *           `reencrypted_user_credentials_hash`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $encrypted_leak_match_prefixes
+     *     @type string[] $encrypted_leak_match_prefixes
      *           Output only. List of prefixes of the encrypted potential password leaks
      *           that matched the given parameters. They must be compared with the
      *           client-side decryption prefix of `reencrypted_user_credentials_hash`
@@ -143,7 +143,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      * client-side decryption prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEncryptedLeakMatchPrefixes()
     {
@@ -156,7 +156,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      * client-side decryption prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEncryptedLeakMatchPrefixes($var)

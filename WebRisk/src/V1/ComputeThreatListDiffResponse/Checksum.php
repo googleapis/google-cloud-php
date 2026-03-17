@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1\ComputeThreatListDiffResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The expected state of a client's local database.
@@ -68,5 +68,4 @@ class Checksum extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used with the ListAddressGroups method.
@@ -18,7 +18,7 @@ class ListAddressGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location from which the AddressGroups
      * should be listed, specified in the format
-     * `projects/&#42;&#47;locations/{location}`.
+     * `projects/{@*}locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -71,7 +71,7 @@ class ListAddressGroupsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project and location from which the AddressGroups
      *           should be listed, specified in the format
-     *           `projects/&#42;&#47;locations/{location}`.
+     *           `projects/{@*}locations/{location}`.
      *     @type int $page_size
      *           Maximum number of AddressGroups to return per call.
      *     @type string $page_token
@@ -92,7 +92,7 @@ class ListAddressGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location from which the AddressGroups
      * should be listed, specified in the format
-     * `projects/&#42;&#47;locations/{location}`.
+     * `projects/{@*}locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -105,7 +105,7 @@ class ListAddressGroupsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project and location from which the AddressGroups
      * should be listed, specified in the format
-     * `projects/&#42;&#47;locations/{location}`.
+     * `projects/{@*}locations/{location}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

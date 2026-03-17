@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -40,7 +40,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type string[] $statements
      *           A list of formatted DDL statements defining the schema of the database
      *           specified in the request.
      *     @type string $proto_descriptors
@@ -61,7 +61,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * specified in the request.
      *
      * Generated from protobuf field <code>repeated string statements = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStatements()
     {
@@ -73,7 +73,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * specified in the request.
      *
      * Generated from protobuf field <code>repeated string statements = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStatements($var)

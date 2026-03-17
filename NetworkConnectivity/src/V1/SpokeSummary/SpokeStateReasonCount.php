@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\SpokeSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The number of spokes in the hub that are inactive for this reason.
@@ -102,5 +102,4 @@ class SpokeStateReasonCount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

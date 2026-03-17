@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Lfp\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A store for the merchant. This will be used to match to a store under the
@@ -136,7 +136,7 @@ class LfpStore extends \Google\Protobuf\Internal\Message
      *           `+15556767888`
      *     @type string $website_uri
      *           Optional. The website URL for the store or merchant.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gcid_category
+     *     @type string[] $gcid_category
      *           Optional. [Google My Business category
      *           id](https://gcid-explorer.corp.google.com/static/gcid.html).
      *     @type string $place_id
@@ -399,7 +399,7 @@ class LfpStore extends \Google\Protobuf\Internal\Message
      * id](https://gcid-explorer.corp.google.com/static/gcid.html).
      *
      * Generated from protobuf field <code>repeated string gcid_category = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGcidCategory()
     {
@@ -411,7 +411,7 @@ class LfpStore extends \Google\Protobuf\Internal\Message
      * id](https://gcid-explorer.corp.google.com/static/gcid.html).
      *
      * Generated from protobuf field <code>repeated string gcid_category = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGcidCategory($var)

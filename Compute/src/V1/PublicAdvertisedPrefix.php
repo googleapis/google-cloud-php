@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A public advertised prefix represents an aggregated IP prefix or netblock
@@ -200,7 +200,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      *                 BYOIP V1 legacy prefix. This is output only value and no longer
      *                 supported in BYOIP V2.
      *           Check the PdpScope enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $public_delegated_prefixs
+     *     @type \Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix[] $public_delegated_prefixs
      *           Output only. [Output Only] The list of public delegated prefixes that exist for this
      *           public advertised prefix.
      *     @type string $self_link
@@ -680,7 +680,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>
      */
     public function getPublicDelegatedPrefixs()
     {
@@ -692,7 +692,7 @@ class PublicAdvertisedPrefix extends \Google\Protobuf\Internal\Message
      * public advertised prefix.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PublicAdvertisedPrefixPublicDelegatedPrefix public_delegated_prefixs = 425811723;</code>
-     * @param array<\Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\PublicAdvertisedPrefixPublicDelegatedPrefix[] $var
      * @return $this
      */
     public function setPublicDelegatedPrefixs($var)

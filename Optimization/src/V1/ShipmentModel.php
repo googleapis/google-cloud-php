@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A shipment model contains a set of shipments which must be performed by a
@@ -239,9 +239,9 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Optimization\V1\Shipment>|\Google\Protobuf\Internal\RepeatedField $shipments
+     *     @type \Google\Cloud\Optimization\V1\Shipment[] $shipments
      *           Set of shipments which must be performed in the model.
-     *     @type array<\Google\Cloud\Optimization\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $vehicles
+     *     @type \Google\Cloud\Optimization\V1\Vehicle[] $vehicles
      *           Set of vehicles which can be used to perform visits.
      *     @type int $max_active_vehicles
      *           Constrains the maximum number of active vehicles. A vehicle is active if
@@ -270,7 +270,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           and optimize for earliest job completion, for example. This cost must be in
      *           the same unit as
      *           [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrices
+     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix[] $duration_distance_matrices
      *           Specifies duration and distance matrices used in the model. If this field
      *           is empty, Google Maps or geodesic distances will be used instead, depending
      *           on the value of the `use_geodesic_distances` field. If it is not empty,
@@ -352,7 +352,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *             }
      *           }
      *           ```
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrix_src_tags
+     *     @type string[] $duration_distance_matrix_src_tags
      *           Tags defining the sources of the duration and distance matrices;
      *           `duration_distance_matrices(i).rows(j)` defines durations and distances
      *           from visits with tag `duration_distance_matrix_src_tags(j)` to other visits
@@ -365,7 +365,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           the same; similarly a `VisitRequest`'s source and destination tags may be
      *           the same. All tags must be different and cannot be empty strings. If this
      *           field is not empty, then `duration_distance_matrices` must not be empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $duration_distance_matrix_dst_tags
+     *     @type string[] $duration_distance_matrix_dst_tags
      *           Tags defining the destinations of the duration and distance matrices;
      *           `duration_distance_matrices(i).rows(j).durations(k)` (resp.
      *           `duration_distance_matrices(i).rows(j).meters(k))` defines the duration
@@ -380,15 +380,15 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      *           the same; similarly a `VisitRequest`'s source and destination tags may be
      *           the same. All tags must be different and cannot be empty strings. If this
      *           field is not empty, then `duration_distance_matrices` must not be empty.
-     *     @type array<\Google\Cloud\Optimization\V1\TransitionAttributes>|\Google\Protobuf\Internal\RepeatedField $transition_attributes
+     *     @type \Google\Cloud\Optimization\V1\TransitionAttributes[] $transition_attributes
      *           Transition attributes added to the model.
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility>|\Google\Protobuf\Internal\RepeatedField $shipment_type_incompatibilities
+     *     @type \Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility[] $shipment_type_incompatibilities
      *           Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentTypeRequirement>|\Google\Protobuf\Internal\RepeatedField $shipment_type_requirements
+     *     @type \Google\Cloud\Optimization\V1\ShipmentTypeRequirement[] $shipment_type_requirements
      *           Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $precedence_rules
+     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\PrecedenceRule[] $precedence_rules
      *           Set of precedence rules which must be enforced in the model.
-     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule>|\Google\Protobuf\Internal\RepeatedField $break_rules
+     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule[] $break_rules
      *           Deprecated: No longer used.
      *           Set of break rules used in the model.
      *           Each vehicle specifies the `BreakRule` that applies to it via the
@@ -405,7 +405,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of shipments which must be performed in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Shipment shipments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\Shipment>
      */
     public function getShipments()
     {
@@ -416,7 +416,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of shipments which must be performed in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Shipment shipments = 1;</code>
-     * @param array<\Google\Cloud\Optimization\V1\Shipment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\Shipment[] $var
      * @return $this
      */
     public function setShipments($var)
@@ -431,7 +431,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of vehicles which can be used to perform visits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Vehicle vehicles = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\Vehicle>
      */
     public function getVehicles()
     {
@@ -442,7 +442,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of vehicles which can be used to perform visits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.Vehicle vehicles = 2;</code>
-     * @param array<\Google\Cloud\Optimization\V1\Vehicle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\Vehicle[] $var
      * @return $this
      */
     public function setVehicles($var)
@@ -709,7 +709,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix duration_distance_matrices = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix>
      */
     public function getDurationDistanceMatrices()
     {
@@ -800,7 +800,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix duration_distance_matrices = 8;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix[] $var
      * @return $this
      */
     public function setDurationDistanceMatrices($var)
@@ -826,7 +826,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_src_tags = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDurationDistanceMatrixSrcTags()
     {
@@ -848,7 +848,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_src_tags = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDurationDistanceMatrixSrcTags($var)
@@ -876,7 +876,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_dst_tags = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDurationDistanceMatrixDstTags()
     {
@@ -900,7 +900,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field is not empty, then `duration_distance_matrices` must not be empty.
      *
      * Generated from protobuf field <code>repeated string duration_distance_matrix_dst_tags = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDurationDistanceMatrixDstTags($var)
@@ -915,7 +915,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Transition attributes added to the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.TransitionAttributes transition_attributes = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\TransitionAttributes>
      */
     public function getTransitionAttributes()
     {
@@ -926,7 +926,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Transition attributes added to the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.TransitionAttributes transition_attributes = 11;</code>
-     * @param array<\Google\Cloud\Optimization\V1\TransitionAttributes>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\TransitionAttributes[] $var
      * @return $this
      */
     public function setTransitionAttributes($var)
@@ -941,7 +941,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentTypeIncompatibility shipment_type_incompatibilities = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility>
      */
     public function getShipmentTypeIncompatibilities()
     {
@@ -952,7 +952,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of incompatible shipment_types (see `ShipmentTypeIncompatibility`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentTypeIncompatibility shipment_type_incompatibilities = 12;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentTypeIncompatibility[] $var
      * @return $this
      */
     public function setShipmentTypeIncompatibilities($var)
@@ -967,7 +967,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentTypeRequirement shipment_type_requirements = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentTypeRequirement>
      */
     public function getShipmentTypeRequirements()
     {
@@ -978,7 +978,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Sets of `shipment_type` requirements (see `ShipmentTypeRequirement`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentTypeRequirement shipment_type_requirements = 13;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentTypeRequirement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentTypeRequirement[] $var
      * @return $this
      */
     public function setShipmentTypeRequirements($var)
@@ -993,7 +993,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of precedence rules which must be enforced in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentModel\PrecedenceRule>
      */
     public function getPrecedenceRules()
     {
@@ -1004,7 +1004,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * Set of precedence rules which must be enforced in the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.PrecedenceRule precedence_rules = 14;</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\PrecedenceRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentModel\PrecedenceRule[] $var
      * @return $this
      */
     public function setPrecedenceRules($var)
@@ -1023,7 +1023,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field (which must be a singleton).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule break_rules = 15 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule>
      * @deprecated
      */
     public function getBreakRules()
@@ -1042,7 +1042,7 @@ class ShipmentModel extends \Google\Protobuf\Internal\Message
      * field (which must be a singleton).
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.BreakRule break_rules = 15 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\BreakRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Optimization\V1\ShipmentModel\BreakRule[] $var
      * @return $this
      * @deprecated
      */

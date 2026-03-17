@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\MigratingVm;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Expiration holds information about the expiration of a MigratingVm.
@@ -142,5 +142,4 @@ class Expiration extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents configuration for private service connect.
@@ -52,10 +52,10 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable_private_service_connect
      *           Required. If true, expose the IndexEndpoint via private service connect.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $project_allowlist
+     *     @type string[] $project_allowlist
      *           A list of Projects from which the forwarding rule will target the service
      *           attachment.
-     *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
+     *     @type \Google\Cloud\AIPlatform\V1\PSCAutomationConfig[] $psc_automation_configs
      *           Optional. List of projects and networks where the PSC endpoints will be
      *           created. This field is used by Online Inference(Prediction) only.
      *     @type string $service_attachment
@@ -100,7 +100,7 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      * attachment.
      *
      * Generated from protobuf field <code>repeated string project_allowlist = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjectAllowlist()
     {
@@ -112,7 +112,7 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      * attachment.
      *
      * Generated from protobuf field <code>repeated string project_allowlist = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjectAllowlist($var)
@@ -128,7 +128,7 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      * created. This field is used by Online Inference(Prediction) only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>
      */
     public function getPscAutomationConfigs()
     {
@@ -140,7 +140,7 @@ class PrivateServiceConnectConfig extends \Google\Protobuf\Internal\Message
      * created. This field is used by Online Inference(Prediction) only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PSCAutomationConfig[] $var
      * @return $this
      */
     public function setPscAutomationConfigs($var)

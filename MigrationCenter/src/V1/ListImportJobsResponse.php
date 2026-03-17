@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response for listing import jobs.
@@ -40,11 +40,11 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ImportJob>|\Google\Protobuf\Internal\RepeatedField $import_jobs
+     *     @type \Google\Cloud\MigrationCenter\V1\ImportJob[] $import_jobs
      *           The list of import jobs.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of import jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportJob import_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ImportJob>
      */
     public function getImportJobs()
     {
@@ -68,7 +68,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of import jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ImportJob import_jobs = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ImportJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ImportJob[] $var
      * @return $this
      */
     public function setImportJobs($var)
@@ -109,7 +109,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListImportJobsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

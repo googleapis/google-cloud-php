@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Function tool describes the functions to be invoked on the client side.
@@ -142,5 +142,4 @@ class FunctionTool extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

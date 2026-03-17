@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2\Replication;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A replication policy that replicates the
@@ -33,7 +33,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecretManager\V1beta2\Replication\UserManaged\Replica>|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type \Google\Cloud\SecretManager\V1beta2\Replication\UserManaged\Replica[] $replicas
      *           Required. The list of Replicas for this
      *           [Secret][google.cloud.secretmanager.v1beta2.Secret].
      *           Cannot be empty.
@@ -50,7 +50,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecretManager\V1beta2\Replication\UserManaged\Replica>
      */
     public function getReplicas()
     {
@@ -63,7 +63,7 @@ class UserManaged extends \Google\Protobuf\Internal\Message
      * Cannot be empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1beta2.Replication.UserManaged.Replica replicas = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\SecretManager\V1beta2\Replication\UserManaged\Replica>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecretManager\V1beta2\Replication\UserManaged\Replica[] $var
      * @return $this
      */
     public function setReplicas($var)
@@ -75,5 +75,4 @@ class UserManaged extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

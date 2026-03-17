@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to update a list of assets.
@@ -54,7 +54,7 @@ class BatchUpdateAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent value for batch asset update.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\UpdateAssetRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\MigrationCenter\V1\UpdateAssetRequest[] $requests
      *           Required. The request message specifying the resources to update.
      *           A maximum of 1000 assets can be modified in a batch.
      * }
@@ -95,7 +95,7 @@ class BatchUpdateAssetsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 assets can be modified in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.UpdateAssetRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\UpdateAssetRequest>
      */
     public function getRequests()
     {
@@ -107,7 +107,7 @@ class BatchUpdateAssetsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 assets can be modified in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.UpdateAssetRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\UpdateAssetRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\UpdateAssetRequest[] $var
      * @return $this
      */
     public function setRequests($var)

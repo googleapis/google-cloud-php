@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies all related information that is needed on client
@@ -92,13 +92,13 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      *           [SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer][google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer]
      *           is `red color`, which does not match any product attribute value filters,
      *           the refined query will be `dress, red color`.
-     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter>|\Google\Protobuf\Internal\RepeatedField $additional_filters
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter[] $additional_filters
      *           This field is deprecated but will be kept for backward compatibility.
      *           There is expected to have only one additional filter and the value will
      *           be the same to the same as field `additional_filter`.
      *     @type string $followup_question
      *           The follow-up question. e.g., `What is the color?`
-     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\SuggestedAnswer>|\Google\Protobuf\Internal\RepeatedField $suggested_answers
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\SuggestedAnswer[] $suggested_answers
      *           The answer options provided to client for the follow-up question.
      *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter $additional_filter
      *           This is the incremental additional filters implied from the current
@@ -193,7 +193,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      * be the same to the same as field `additional_filter`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.AdditionalFilter additional_filters = 3 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter>
      * @deprecated
      */
     public function getAdditionalFilters()
@@ -210,7 +210,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      * be the same to the same as field `additional_filter`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.AdditionalFilter additional_filters = 3 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\AdditionalFilter[] $var
      * @return $this
      * @deprecated
      */
@@ -255,7 +255,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      * The answer options provided to client for the follow-up question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.SuggestedAnswer suggested_answers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\SuggestedAnswer>
      */
     public function getSuggestedAnswers()
     {
@@ -266,7 +266,7 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
      * The answer options provided to client for the follow-up question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.ConversationalSearchResult.SuggestedAnswer suggested_answers = 5;</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\SuggestedAnswer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult\SuggestedAnswer[] $var
      * @return $this
      */
     public function setSuggestedAnswers($var)
@@ -322,5 +322,4 @@ class ConversationalSearchResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

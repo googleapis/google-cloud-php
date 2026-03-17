@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A page of the response received from the
@@ -48,7 +48,7 @@ class ListProjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ResourceManager\V3\Project>|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type \Google\Cloud\ResourceManager\V3\Project[] $projects
      *           The list of Projects under the parent. This list can be paginated.
      *     @type string $next_page_token
      *           Pagination token.
@@ -70,7 +70,7 @@ class ListProjectsResponse extends \Google\Protobuf\Internal\Message
      * The list of Projects under the parent. This list can be paginated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.Project projects = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ResourceManager\V3\Project>
      */
     public function getProjects()
     {
@@ -81,7 +81,7 @@ class ListProjectsResponse extends \Google\Protobuf\Internal\Message
      * The list of Projects under the parent. This list can be paginated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.Project projects = 1;</code>
-     * @param array<\Google\Cloud\ResourceManager\V3\Project>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ResourceManager\V3\Project[] $var
      * @return $this
      */
     public function setProjects($var)

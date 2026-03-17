@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListOmnichannelSettings method.
@@ -35,7 +35,7 @@ class ListOmnichannelSettingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\OmnichannelSetting>|\Google\Protobuf\Internal\RepeatedField $omnichannel_settings
+     *     @type \Google\Shopping\Merchant\Accounts\V1\OmnichannelSetting[] $omnichannel_settings
      *           The omnichannel settings from the specified merchant.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListOmnichannelSettingsResponse extends \Google\Protobuf\Internal\Message
      * The omnichannel settings from the specified merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OmnichannelSetting omnichannel_settings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\OmnichannelSetting>
      */
     public function getOmnichannelSettings()
     {
@@ -62,7 +62,7 @@ class ListOmnichannelSettingsResponse extends \Google\Protobuf\Internal\Message
      * The omnichannel settings from the specified merchant.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.OmnichannelSetting omnichannel_settings = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\OmnichannelSetting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\OmnichannelSetting[] $var
      * @return $this
      */
     public function setOmnichannelSettings($var)

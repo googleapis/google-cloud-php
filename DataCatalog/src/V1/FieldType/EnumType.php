@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\FieldType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.FieldType.EnumType</code>
@@ -32,7 +32,7 @@ class EnumType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue>|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type \Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue[] $allowed_values
      *           The set of allowed values for this enum.
      *           This set must not be empty and can include up to 100 allowed values.
      *           The display names of the values in this set must not be empty and must
@@ -57,7 +57,7 @@ class EnumType extends \Google\Protobuf\Internal\Message
      * `RenameTagTemplateFieldEnumValue` method.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue allowed_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue>
      */
     public function getAllowedValues()
     {
@@ -74,7 +74,7 @@ class EnumType extends \Google\Protobuf\Internal\Message
      * `RenameTagTemplateFieldEnumValue` method.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.FieldType.EnumType.EnumValue allowed_values = 1;</code>
-     * @param array<\Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\V1\FieldType\EnumType\EnumValue[] $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -86,5 +86,4 @@ class EnumType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about the service in a location.
@@ -30,7 +30,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Metastore\V1beta\LocationMetadata\HiveMetastoreVersion>|\Google\Protobuf\Internal\RepeatedField $supported_hive_metastore_versions
+     *     @type \Google\Cloud\Metastore\V1beta\LocationMetadata\HiveMetastoreVersion[] $supported_hive_metastore_versions
      *           The versions of Hive Metastore that can be used when creating a new
      *           metastore service in this location. The server guarantees that exactly one
      *           `HiveMetastoreVersion` in the list will set `is_default`.
@@ -47,7 +47,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * `HiveMetastoreVersion` in the list will set `is_default`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1beta.LocationMetadata.HiveMetastoreVersion supported_hive_metastore_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Metastore\V1beta\LocationMetadata\HiveMetastoreVersion>
      */
     public function getSupportedHiveMetastoreVersions()
     {
@@ -60,7 +60,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * `HiveMetastoreVersion` in the list will set `is_default`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1beta.LocationMetadata.HiveMetastoreVersion supported_hive_metastore_versions = 1;</code>
-     * @param array<\Google\Cloud\Metastore\V1beta\LocationMetadata\HiveMetastoreVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Metastore\V1beta\LocationMetadata\HiveMetastoreVersion[] $var
      * @return $this
      */
     public function setSupportedHiveMetastoreVersions($var)

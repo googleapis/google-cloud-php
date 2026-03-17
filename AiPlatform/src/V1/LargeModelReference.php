@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information about the Large Model.
@@ -18,7 +18,7 @@ class LargeModelReference extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique name of the large Foundation or pre-built model. Like
      * "chat-bison", "text-bison". Or model name with version ID, like
-     * "chat-bison&#64;001", "text-bison&#64;005", etc.
+     * "chat-bison\@001", "text-bison\@005", etc.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,7 +33,7 @@ class LargeModelReference extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The unique name of the large Foundation or pre-built model. Like
      *           "chat-bison", "text-bison". Or model name with version ID, like
-     *           "chat-bison&#64;001", "text-bison&#64;005", etc.
+     *           "chat-bison\@001", "text-bison\@005", etc.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class LargeModelReference extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique name of the large Foundation or pre-built model. Like
      * "chat-bison", "text-bison". Or model name with version ID, like
-     * "chat-bison&#64;001", "text-bison&#64;005", etc.
+     * "chat-bison\@001", "text-bison\@005", etc.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -57,7 +57,7 @@ class LargeModelReference extends \Google\Protobuf\Internal\Message
     /**
      * Required. The unique name of the large Foundation or pre-built model. Like
      * "chat-bison", "text-bison". Or model name with version ID, like
-     * "chat-bison&#64;001", "text-bison&#64;005", etc.
+     * "chat-bison\@001", "text-bison\@005", etc.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

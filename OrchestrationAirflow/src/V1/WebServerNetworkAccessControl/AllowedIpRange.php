@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allowed IP range with user-provided description.
@@ -126,5 +126,4 @@ class AllowedIpRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `FetchFileGitStatuses` response message.
@@ -29,7 +29,7 @@ class FetchFileGitStatusesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1\FetchFileGitStatusesResponse\UncommittedFileChange>|\Google\Protobuf\Internal\RepeatedField $uncommitted_file_changes
+     *     @type \Google\Cloud\Dataform\V1\FetchFileGitStatusesResponse\UncommittedFileChange[] $uncommitted_file_changes
      *           A list of all files which have uncommitted Git changes. There will only be
      *           a single entry for any given file.
      * }
@@ -44,7 +44,7 @@ class FetchFileGitStatusesResponse extends \Google\Protobuf\Internal\Message
      * a single entry for any given file.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.FetchFileGitStatusesResponse.UncommittedFileChange uncommitted_file_changes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1\FetchFileGitStatusesResponse\UncommittedFileChange>
      */
     public function getUncommittedFileChanges()
     {
@@ -56,7 +56,7 @@ class FetchFileGitStatusesResponse extends \Google\Protobuf\Internal\Message
      * a single entry for any given file.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1.FetchFileGitStatusesResponse.UncommittedFileChange uncommitted_file_changes = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1\FetchFileGitStatusesResponse\UncommittedFileChange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1\FetchFileGitStatusesResponse\UncommittedFileChange[] $var
      * @return $this
      */
     public function setUncommittedFileChanges($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListContactsRequest` containing matching `Contact`
@@ -50,7 +50,7 @@ class ListContactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $contacts
+     *     @type \Google\Ads\AdManager\V1\Contact[] $contacts
      *           The `Contact` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListContactsResponse extends \Google\Protobuf\Internal\Message
      * The `Contact` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Contact contacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Contact>
      */
     public function getContacts()
     {
@@ -87,7 +87,7 @@ class ListContactsResponse extends \Google\Protobuf\Internal\Message
      * The `Contact` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Contact contacts = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Contact[] $var
      * @return $this
      */
     public function setContacts($var)

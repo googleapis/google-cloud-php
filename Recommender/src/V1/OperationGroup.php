@@ -5,8 +5,8 @@
 namespace Google\Cloud\Recommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Group of operations that need to be performed atomically.
@@ -29,7 +29,7 @@ class OperationGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Recommender\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\Cloud\Recommender\V1\Operation[] $operations
      *           List of operations across one or more resources that belong to this group.
      *           Loosely based on RFC6902 and should be performed in the order they appear.
      * }
@@ -44,7 +44,7 @@ class OperationGroup extends \Google\Protobuf\Internal\Message
      * Loosely based on RFC6902 and should be performed in the order they appear.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Operation operations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Recommender\V1\Operation>
      */
     public function getOperations()
     {
@@ -56,7 +56,7 @@ class OperationGroup extends \Google\Protobuf\Internal\Message
      * Loosely based on RFC6902 and should be performed in the order they appear.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Operation operations = 1;</code>
-     * @param array<\Google\Cloud\Recommender\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Recommender\V1\Operation[] $var
      * @return $this
      */
     public function setOperations($var)

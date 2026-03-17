@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1beta\ProductStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ItemLevelIssue of the product status.
@@ -93,7 +93,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      *           A detailed issue description in English.
      *     @type string $documentation
      *           The URL of a web page to help with resolving this issue.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applicable_countries
+     *     @type string[] $applicable_countries
      *           List of country codes (ISO 3166-1 alpha-2) where issue applies to the
      *           offer.
      * }
@@ -316,7 +316,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      * offer.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplicableCountries()
     {
@@ -328,7 +328,7 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
      * offer.
      *
      * Generated from protobuf field <code>repeated string applicable_countries = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplicableCountries($var)
@@ -340,5 +340,4 @@ class ItemLevelIssue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

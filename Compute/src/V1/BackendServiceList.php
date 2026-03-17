@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a list of BackendService resources.
@@ -64,7 +64,7 @@ class BackendServiceList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type array<\Google\Cloud\Compute\V1\BackendService>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Compute\V1\BackendService[] $items
      *           A list of BackendService resources.
      *     @type string $kind
      *           Output only. [Output Only] Type of resource. Alwayscompute#backendServiceList for lists of backend services.
@@ -125,7 +125,7 @@ class BackendServiceList extends \Google\Protobuf\Internal\Message
      * A list of BackendService resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService items = 100526016;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\BackendService>
      */
     public function getItems()
     {
@@ -136,7 +136,7 @@ class BackendServiceList extends \Google\Protobuf\Internal\Message
      * A list of BackendService resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.BackendService items = 100526016;</code>
-     * @param array<\Google\Cloud\Compute\V1\BackendService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\BackendService[] $var
      * @return $this
      */
     public function setItems($var)

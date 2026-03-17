@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the IP ranges that want to use NAT for a subnetwork.
@@ -50,11 +50,11 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           URL for the subnetwork resource that will use NAT.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_range_names
+     *     @type string[] $secondary_ip_range_names
      *           A list of the secondary ranges of the Subnetwork that are allowed to
      *           use NAT. This can be populated only if "LIST_OF_SECONDARY_IP_RANGES"
      *           is one of the values in source_ip_ranges_to_nat.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges_to_nat
+     *     @type string[] $source_ip_ranges_to_nat
      *           Specify the options for NAT ranges in the Subnetwork. All
      *           options of a single value are valid except
      *           NAT_IP_RANGE_OPTION_UNSPECIFIED.
@@ -111,7 +111,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * is one of the values in source_ip_ranges_to_nat.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_range_names = 264315097;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecondaryIpRangeNames()
     {
@@ -124,7 +124,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * is one of the values in source_ip_ranges_to_nat.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_range_names = 264315097;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecondaryIpRangeNames($var)
@@ -145,7 +145,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * Check the SourceIpRangesToNat enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceIpRangesToNat()
     {
@@ -162,7 +162,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * Check the SourceIpRangesToNat enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceIpRangesToNat($var)

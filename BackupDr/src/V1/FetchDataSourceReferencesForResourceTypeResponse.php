@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the FetchDataSourceReferencesForResourceType method.
@@ -35,7 +35,7 @@ class FetchDataSourceReferencesForResourceTypeResponse extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $data_source_references
+     *     @type \Google\Cloud\BackupDR\V1\DataSourceReference[] $data_source_references
      *           The DataSourceReferences from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class FetchDataSourceReferencesForResourceTypeResponse extends \Google\Protobuf\
      * The DataSourceReferences from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.DataSourceReference data_source_references = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\DataSourceReference>
      */
     public function getDataSourceReferences()
     {
@@ -62,7 +62,7 @@ class FetchDataSourceReferencesForResourceTypeResponse extends \Google\Protobuf\
      * The DataSourceReferences from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.DataSourceReference data_source_references = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\DataSourceReference[] $var
      * @return $this
      */
     public function setDataSourceReferences($var)

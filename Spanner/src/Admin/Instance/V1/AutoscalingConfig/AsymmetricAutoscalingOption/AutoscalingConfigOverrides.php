@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig\AsymmetricAutoscalingOption;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Overrides the top-level autoscaling configuration for the replicas
@@ -369,7 +369,4 @@ class AutoscalingConfigOverrides extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingConfigOverrides::class, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig_AsymmetricAutoscalingOption_AutoscalingConfigOverrides::class);
 

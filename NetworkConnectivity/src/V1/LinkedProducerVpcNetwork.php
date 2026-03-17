@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.LinkedProducerVpcNetwork</code>
@@ -84,14 +84,14 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      *           hub. This peering must be in ACTIVE state.
      *     @type string $producer_network
      *           Output only. The URI of the Producer VPC.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_export_ranges
+     *     @type string[] $exclude_export_ranges
      *           Optional. IP ranges encompassing the subnets to be excluded from peering.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_export_ranges
+     *     @type string[] $include_export_ranges
      *           Optional. IP ranges allowed to be included from peering.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_include_export_ranges
+     *     @type string[] $proposed_include_export_ranges
      *           Optional. The proposed include export IP ranges waiting for hub
      *           administration's approval.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $proposed_exclude_export_ranges
+     *     @type string[] $proposed_exclude_export_ranges
      *           Output only. The proposed exclude export IP ranges waiting for hub
      *           administration's approval.
      * }
@@ -215,7 +215,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      *
      * Generated from protobuf field <code>repeated string exclude_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeExportRanges()
     {
@@ -226,7 +226,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges encompassing the subnets to be excluded from peering.
      *
      * Generated from protobuf field <code>repeated string exclude_export_ranges = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeExportRanges($var)
@@ -241,7 +241,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges allowed to be included from peering.
      *
      * Generated from protobuf field <code>repeated string include_export_ranges = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludeExportRanges()
     {
@@ -252,7 +252,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * Optional. IP ranges allowed to be included from peering.
      *
      * Generated from protobuf field <code>repeated string include_export_ranges = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludeExportRanges($var)
@@ -268,7 +268,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProposedIncludeExportRanges()
     {
@@ -280,7 +280,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_include_export_ranges = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProposedIncludeExportRanges($var)
@@ -296,7 +296,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProposedExcludeExportRanges()
     {
@@ -308,7 +308,7 @@ class LinkedProducerVpcNetwork extends \Google\Protobuf\Internal\Message
      * administration's approval.
      *
      * Generated from protobuf field <code>repeated string proposed_exclude_export_ranges = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProposedExcludeExportRanges($var)

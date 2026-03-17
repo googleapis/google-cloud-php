@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * JobMetrics contains a collection of metrics describing the detailed progress
@@ -42,7 +42,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $metric_time
      *           Timestamp as of which metric values are current.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\Dataflow\V1beta3\MetricUpdate[] $metrics
      *           All metrics for this job.
      * }
      */
@@ -91,7 +91,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      * All metrics for this job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>
      */
     public function getMetrics()
     {
@@ -102,7 +102,7 @@ class JobMetrics extends \Google\Protobuf\Internal\Message
      * All metrics for this job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\MetricUpdate[] $var
      * @return $this
      */
     public function setMetrics($var)

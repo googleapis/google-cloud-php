@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Upgrade Note represents a potential upgrade of a package to a given
@@ -55,7 +55,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      *     @type \Grafeas\V1\Version $version
      *           Required for non-Windows OS. The version of the package in machine + human
      *           readable form.
-     *     @type array<\Grafeas\V1\UpgradeDistribution>|\Google\Protobuf\Internal\RepeatedField $distributions
+     *     @type \Grafeas\V1\UpgradeDistribution[] $distributions
      *           Metadata about the upgrade for each specific operating system.
      *     @type \Grafeas\V1\WindowsUpdate $windows_update
      *           Required for Windows OS. Represents the metadata about the Windows update.
@@ -134,7 +134,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      * Metadata about the upgrade for each specific operating system.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.UpgradeDistribution distributions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\UpgradeDistribution>
      */
     public function getDistributions()
     {
@@ -145,7 +145,7 @@ class UpgradeNote extends \Google\Protobuf\Internal\Message
      * Metadata about the upgrade for each specific operating system.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.UpgradeDistribution distributions = 3;</code>
-     * @param array<\Grafeas\V1\UpgradeDistribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\UpgradeDistribution[] $var
      * @return $this
      */
     public function setDistributions($var)

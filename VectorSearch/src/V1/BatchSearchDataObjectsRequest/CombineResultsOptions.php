@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1\BatchSearchDataObjectsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for combining the results of the batch search operations.
@@ -156,5 +156,4 @@ class CombineResultsOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

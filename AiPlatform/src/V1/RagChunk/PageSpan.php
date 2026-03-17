@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagChunk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents where the chunk starts and ends in the document.
@@ -98,5 +98,4 @@ class PageSpan extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

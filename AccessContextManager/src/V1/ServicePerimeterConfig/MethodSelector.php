@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An allowed method or permission of a service specified in [ApiOperation]
@@ -124,5 +124,4 @@ class MethodSelector extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

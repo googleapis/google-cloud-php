@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A subscription represents a subscribers' access to a particular set of
@@ -141,7 +141,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      *           Only contains values if state == STATE_ACTIVE.
      *     @type string $subscriber_contact
      *           Output only. Email of the subscriber.
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $linked_resources
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource[] $linked_resources
      *           Output only. Linked resources created in the subscription. Only contains
      *           values if state = STATE_ACTIVE.
      *     @type int $resource_type
@@ -473,7 +473,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * values if state = STATE_ACTIVE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>
      */
     public function getLinkedResources()
     {
@@ -485,7 +485,7 @@ class Subscription extends \Google\Protobuf\Internal\Message
      * values if state = STATE_ACTIVE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Subscription.LinkedResource linked_resources = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription\LinkedResource[] $var
      * @return $this
      */
     public function setLinkedResources($var)

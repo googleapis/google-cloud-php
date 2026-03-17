@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudControlsPartner\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container for workload onboarding steps.
@@ -28,7 +28,7 @@ class WorkloadOnboardingState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudControlsPartner\V1beta\WorkloadOnboardingStep>|\Google\Protobuf\Internal\RepeatedField $onboarding_steps
+     *     @type \Google\Cloud\CloudControlsPartner\V1beta\WorkloadOnboardingStep[] $onboarding_steps
      *           List of workload onboarding steps.
      * }
      */
@@ -41,7 +41,7 @@ class WorkloadOnboardingState extends \Google\Protobuf\Internal\Message
      * List of workload onboarding steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.WorkloadOnboardingStep onboarding_steps = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudControlsPartner\V1beta\WorkloadOnboardingStep>
      */
     public function getOnboardingSteps()
     {
@@ -52,7 +52,7 @@ class WorkloadOnboardingState extends \Google\Protobuf\Internal\Message
      * List of workload onboarding steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudcontrolspartner.v1beta.WorkloadOnboardingStep onboarding_steps = 1;</code>
-     * @param array<\Google\Cloud\CloudControlsPartner\V1beta\WorkloadOnboardingStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudControlsPartner\V1beta\WorkloadOnboardingStep[] $var
      * @return $this
      */
     public function setOnboardingSteps($var)

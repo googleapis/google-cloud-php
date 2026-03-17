@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GroundingMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Source content flagging uri for a place or review. This is currently
@@ -111,5 +111,4 @@ class SourceFlaggingUri extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

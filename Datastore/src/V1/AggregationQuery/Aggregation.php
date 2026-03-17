@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1\AggregationQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines an aggregation that produces a single result.
@@ -284,5 +284,4 @@ class Aggregation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

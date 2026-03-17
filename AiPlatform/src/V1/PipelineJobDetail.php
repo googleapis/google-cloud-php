@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The runtime detail of PipelineJob.
@@ -44,7 +44,7 @@ class PipelineJobDetail extends \Google\Protobuf\Internal\Message
      *           Output only. The context of the pipeline.
      *     @type \Google\Cloud\AIPlatform\V1\Context $pipeline_run_context
      *           Output only. The context of the current pipeline run.
-     *     @type array<\Google\Cloud\AIPlatform\V1\PipelineTaskDetail>|\Google\Protobuf\Internal\RepeatedField $task_details
+     *     @type \Google\Cloud\AIPlatform\V1\PipelineTaskDetail[] $task_details
      *           Output only. The runtime details of the tasks under the pipeline.
      * }
      */
@@ -129,7 +129,7 @@ class PipelineJobDetail extends \Google\Protobuf\Internal\Message
      * Output only. The runtime details of the tasks under the pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PipelineTaskDetail task_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PipelineTaskDetail>
      */
     public function getTaskDetails()
     {
@@ -140,7 +140,7 @@ class PipelineJobDetail extends \Google\Protobuf\Internal\Message
      * Output only. The runtime details of the tasks under the pipeline.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PipelineTaskDetail task_details = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PipelineTaskDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PipelineTaskDetail[] $var
      * @return $this
      */
     public function setTaskDetails($var)

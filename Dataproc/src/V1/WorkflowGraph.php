@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The workflow graph.
@@ -28,7 +28,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\WorkflowNode>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\Dataproc\V1\WorkflowNode[] $nodes
      *           Output only. The workflow nodes.
      * }
      */
@@ -41,7 +41,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
      * Output only. The workflow nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\WorkflowNode>
      */
     public function getNodes()
     {
@@ -52,7 +52,7 @@ class WorkflowGraph extends \Google\Protobuf\Internal\Message
      * Output only. The workflow nodes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowNode nodes = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\WorkflowNode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\WorkflowNode[] $var
      * @return $this
      */
     public function setNodes($var)

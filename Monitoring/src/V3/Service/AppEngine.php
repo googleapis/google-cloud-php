@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * App Engine service. Learn more at https://cloud.google.com/appengine.
@@ -72,5 +72,4 @@ class AppEngine extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

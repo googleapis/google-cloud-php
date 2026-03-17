@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\VirtualMachineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of the boot image used by the Runtime.
@@ -31,5 +31,4 @@ class BootImage extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

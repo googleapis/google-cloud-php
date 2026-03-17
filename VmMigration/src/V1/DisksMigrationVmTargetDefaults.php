@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details for creation of a VM that migrated data disks will be attached to.
@@ -128,9 +128,9 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      *           For presentation only.
      *     @type string $machine_type
      *           Required. The machine type to create the VM with.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Optional. A list of network tags to associate with the VM.
-     *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\VMMigration\V1\NetworkInterface[] $network_interfaces
      *           Optional. NICs to attach to the VM.
      *     @type string $service_account
      *           Optional. The service account to associate the VM with.
@@ -146,7 +146,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      *           Optional. Defines whether the instance has integrity monitoring enabled.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Optional. The metadata key/value pairs to assign to the VM.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *     @type string[] $additional_licenses
      *           Optional. Additional licenses to assign to the VM.
      *     @type string $hostname
      *           Optional. The hostname to assign to the VM.
@@ -247,7 +247,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -258,7 +258,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. A list of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -273,7 +273,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. NICs to attach to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -284,7 +284,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. NICs to attach to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -469,7 +469,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. Additional licenses to assign to the VM.
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalLicenses()
     {
@@ -480,7 +480,7 @@ class DisksMigrationVmTargetDefaults extends \Google\Protobuf\Internal\Message
      * Optional. Additional licenses to assign to the VM.
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalLicenses($var)

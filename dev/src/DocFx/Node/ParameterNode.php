@@ -84,7 +84,7 @@ class ParameterNode
         $parameterString = substr($parameterString, 1, -1);
 
         // Create an array item for each parameter.
-        $nestedParameters = explode('@type', $parameterString);
+        $nestedParameters = preg_split('/(?<!\\\\)@type/', $parameterString);
 
         // Remove the first, since that's the wrapping array param,
         // and use it for the wrapping param description

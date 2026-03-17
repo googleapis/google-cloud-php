@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClientTlsPolicy is a resource that specifies how a client should authenticate
@@ -19,7 +19,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -79,7 +79,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     *           `projects/&#42;&#47;locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     *           `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *     @type string $description
      *           Optional. Free-text description of the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -94,7 +94,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkSecurity\V1\CertificateProvider $client_certificate
      *           Optional. Defines a mechanism to provision client identity (public and private keys)
      *           for peer to peer authentication. The presence of this dictates mTLS.
-     *     @type array<\Google\Cloud\NetworkSecurity\V1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $server_validation_ca
+     *     @type \Google\Cloud\NetworkSecurity\V1\ValidationCA[] $server_validation_ca
      *           Optional. Defines the mechanism to obtain the Certificate Authority certificate to
      *           validate the server certificate. If empty, client does not validate the
      *           server certificate.
@@ -107,7 +107,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -119,7 +119,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -329,7 +329,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      * server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\ValidationCA>
      */
     public function getServerValidationCa()
     {
@@ -342,7 +342,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      * server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\NetworkSecurity\V1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkSecurity\V1\ValidationCA[] $var
      * @return $this
      */
     public function setServerValidationCa($var)

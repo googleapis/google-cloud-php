@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * File information about the related binary/library used by an executable, or
@@ -93,7 +93,7 @@ class File extends \Google\Protobuf\Internal\Message
      *           Prefix of the file contents as a JSON-encoded string.
      *     @type \Google\Cloud\SecurityCenter\V2\File\DiskPath $disk_path
      *           Path of the file in terms of underlying disk/partition identifiers.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\File\FileOperation>|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type \Google\Cloud\SecurityCenter\V2\File\FileOperation[] $operations
      *           Operation(s) performed on a file.
      * }
      */
@@ -306,7 +306,7 @@ class File extends \Google\Protobuf\Internal\Message
      * Operation(s) performed on a file.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File.FileOperation operations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\File\FileOperation>
      */
     public function getOperations()
     {
@@ -317,7 +317,7 @@ class File extends \Google\Protobuf\Internal\Message
      * Operation(s) performed on a file.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.File.FileOperation operations = 8;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\File\FileOperation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\File\FileOperation[] $var
      * @return $this
      */
     public function setOperations($var)

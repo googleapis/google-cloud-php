@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result returned from `ListLogEntries`.
@@ -44,7 +44,7 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Logging\V2\LogEntry[] $entries
      *           A list of log entries.  If `entries` is empty, `nextPageToken` may still be
      *           returned, indicating that more entries may exist.  See `nextPageToken` for
      *           more information.
@@ -71,7 +71,7 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Logging\V2\LogEntry>
      */
     public function getEntries()
     {
@@ -84,7 +84,7 @@ class ListLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * more information.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
-     * @param array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Logging\V2\LogEntry[] $var
      * @return $this
      */
     public function setEntries($var)

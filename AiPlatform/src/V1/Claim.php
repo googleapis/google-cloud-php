@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Claim that is extracted from the input text and facts that support it.
@@ -50,7 +50,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      *           Index in the input text where the claim starts (inclusive).
      *     @type int $end_index
      *           Index in the input text where the claim ends (exclusive).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $fact_indexes
+     *     @type int[] $fact_indexes
      *           Indexes of the facts supporting this claim.
      *     @type float $score
      *           Confidence score of this corroboration.
@@ -137,7 +137,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * Indexes of the facts supporting this claim.
      *
      * Generated from protobuf field <code>repeated int32 fact_indexes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getFactIndexes()
     {
@@ -148,7 +148,7 @@ class Claim extends \Google\Protobuf\Internal\Message
      * Indexes of the facts supporting this claim.
      *
      * Generated from protobuf field <code>repeated int32 fact_indexes = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setFactIndexes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Commercial info contains the information about the commercial data products
@@ -79,5 +79,4 @@ class CommercialInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

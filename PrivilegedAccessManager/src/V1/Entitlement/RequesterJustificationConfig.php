@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1\Entitlement;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines how a requester must provide a justification when requesting
@@ -115,5 +115,4 @@ class RequesterJustificationConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

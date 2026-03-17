@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing User object.
@@ -60,7 +60,7 @@ class User extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/cluster/{cluster}/users/{user}.
      *     @type string $password
      *           Input only. Password for the user.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *     @type string[] $database_roles
      *           Optional. List of database roles this user has.
      *           The database role strings are subject to the PostgreSQL naming conventions.
      *     @type int $user_type
@@ -134,7 +134,7 @@ class User extends \Google\Protobuf\Internal\Message
      * The database role strings are subject to the PostgreSQL naming conventions.
      *
      * Generated from protobuf field <code>repeated string database_roles = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatabaseRoles()
     {
@@ -146,7 +146,7 @@ class User extends \Google\Protobuf\Internal\Message
      * The database role strings are subject to the PostgreSQL naming conventions.
      *
      * Generated from protobuf field <code>repeated string database_roles = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatabaseRoles($var)

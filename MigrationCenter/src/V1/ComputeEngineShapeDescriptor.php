@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compute Engine target shape descriptor.
@@ -68,7 +68,7 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
      *           Compute Engine machine series.
      *     @type string $machine_type
      *           Compute Engine machine type.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor>|\Google\Protobuf\Internal\RepeatedField $storage
+     *     @type \Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor[] $storage
      *           Compute Engine storage. Never empty.
      * }
      */
@@ -211,7 +211,7 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
      * Compute Engine storage. Never empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ComputeStorageDescriptor storage = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor>
      */
     public function getStorage()
     {
@@ -222,7 +222,7 @@ class ComputeEngineShapeDescriptor extends \Google\Protobuf\Internal\Message
      * Compute Engine storage. Never empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ComputeStorageDescriptor storage = 6;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ComputeStorageDescriptor[] $var
      * @return $this
      */
     public function setStorage($var)

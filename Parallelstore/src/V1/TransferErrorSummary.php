@@ -5,8 +5,8 @@
 namespace Google\Cloud\Parallelstore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A summary of errors by error code, plus a count and sample error log
@@ -45,7 +45,7 @@ class TransferErrorSummary extends \Google\Protobuf\Internal\Message
      *           One of the error codes that caused the transfer failure.
      *     @type int|string $error_count
      *           Count of this type of error.
-     *     @type array<\Google\Cloud\Parallelstore\V1\TransferErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $error_log_entries
+     *     @type \Google\Cloud\Parallelstore\V1\TransferErrorLogEntry[] $error_log_entries
      *           A list of messages that carry the error details.
      * }
      */
@@ -110,7 +110,7 @@ class TransferErrorSummary extends \Google\Protobuf\Internal\Message
      * A list of messages that carry the error details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1.TransferErrorLogEntry error_log_entries = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Parallelstore\V1\TransferErrorLogEntry>
      */
     public function getErrorLogEntries()
     {
@@ -121,7 +121,7 @@ class TransferErrorSummary extends \Google\Protobuf\Internal\Message
      * A list of messages that carry the error details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.parallelstore.v1.TransferErrorLogEntry error_log_entries = 4;</code>
-     * @param array<\Google\Cloud\Parallelstore\V1\TransferErrorLogEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Parallelstore\V1\TransferErrorLogEntry[] $var
      * @return $this
      */
     public function setErrorLogEntries($var)

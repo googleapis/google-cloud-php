@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for current status of the Major Version Upgrade operation.
@@ -60,7 +60,7 @@ class UpgradeClusterStatus extends \Google\Protobuf\Internal\Message
      *           Source database major version.
      *     @type int $target_version
      *           Target database major version.
-     *     @type array<\Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus>|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus[] $stages
      *           Status of all upgrade stages.
      * }
      */
@@ -177,7 +177,7 @@ class UpgradeClusterStatus extends \Google\Protobuf\Internal\Message
      * Status of all upgrade stages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus stages = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus>
      */
     public function getStages()
     {
@@ -188,7 +188,7 @@ class UpgradeClusterStatus extends \Google\Protobuf\Internal\Message
      * Status of all upgrade stages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterStatus.StageStatus stages = 5;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\UpgradeClusterStatus\StageStatus[] $var
      * @return $this
      */
     public function setStages($var)

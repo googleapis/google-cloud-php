@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message representing a Trial. A Trial contains a unique set of Parameters
@@ -126,11 +126,11 @@ class Trial extends \Google\Protobuf\Internal\Message
      *           Output only. The identifier of the Trial assigned by the service.
      *     @type int $state
      *           Output only. The detailed state of the Trial.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\AIPlatform\V1\Trial\Parameter[] $parameters
      *           Output only. The parameters of the Trial.
      *     @type \Google\Cloud\AIPlatform\V1\Measurement $final_measurement
      *           Output only. The final measurement containing the objective value.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Measurement>|\Google\Protobuf\Internal\RepeatedField $measurements
+     *     @type \Google\Cloud\AIPlatform\V1\Measurement[] $measurements
      *           Output only. A list of measurements that are strictly lexicographically
      *           ordered by their induced tuples (steps, elapsed_duration).
      *           These are used for early stopping computations.
@@ -257,7 +257,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * Output only. The parameters of the Trial.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial.Parameter parameters = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Trial\Parameter>
      */
     public function getParameters()
     {
@@ -268,7 +268,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * Output only. The parameters of the Trial.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial.Parameter parameters = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Trial\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)
@@ -321,7 +321,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * These are used for early stopping computations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement measurements = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Measurement>
      */
     public function getMeasurements()
     {
@@ -334,7 +334,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * These are used for early stopping computations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement measurements = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Measurement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Measurement[] $var
      * @return $this
      */
     public function setMeasurements($var)

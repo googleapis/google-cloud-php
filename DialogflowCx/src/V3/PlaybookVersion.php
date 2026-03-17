@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Playbook version is a snapshot of the playbook at certain timestamp.
@@ -63,7 +63,7 @@ class PlaybookVersion extends \Google\Protobuf\Internal\Message
      *           Optional. The description of the playbook version.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\Playbook $playbook
      *           Output only. Snapshot of the playbook when the playbook version is created.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Example>|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Example[] $examples
      *           Output only. Snapshot of the examples belonging to the playbook when the
      *           playbook version is created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -172,7 +172,7 @@ class PlaybookVersion extends \Google\Protobuf\Internal\Message
      * playbook version is created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Example examples = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Example>
      */
     public function getExamples()
     {
@@ -184,7 +184,7 @@ class PlaybookVersion extends \Google\Protobuf\Internal\Message
      * playbook version is created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Example examples = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Example>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Example[] $var
      * @return $this
      */
     public function setExamples($var)

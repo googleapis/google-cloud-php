@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A message containing derived and authored example queries.
@@ -31,7 +31,7 @@ class ExampleQueries extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $example_queries
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $example_queries
      *           Optional. A list of derived and authored example queries, providing
      *           examples of relevant and commonly used SQL queries and their corresponding
      *           natural language queries optionally present. Currently only used for
@@ -50,7 +50,7 @@ class ExampleQueries extends \Google\Protobuf\Internal\Message
      * BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>
      */
     public function getExampleQueries()
     {
@@ -64,7 +64,7 @@ class ExampleQueries extends \Google\Protobuf\Internal\Message
      * BigQuery data sources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.ExampleQuery example_queries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\ExampleQuery[] $var
      * @return $this
      */
     public function setExampleQueries($var)

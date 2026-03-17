@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Gateway represents the configuration for a proxy, typically a load balancer.
@@ -20,7 +20,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the Gateway resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -115,7 +115,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Defines how a server should apply security policy to inbound
      * (VM to Proxy) initiated connections.
      * For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * `projects/{@*}locations/{@*}gatewaySecurityPolicies/swg-policy`.
      * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -124,7 +124,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying the VPC network that is
      * using this configuration. For example:
-     * `projects/&#42;&#47;global/networks/network-1`.
+     * `projects/{@*}global/networks/network-1`.
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -133,7 +133,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying  the subnetwork in which
      * this SWG is allocated. For example:
-     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * `projects/{@*}regions/us-central1/subnetworks/network-1`
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
      *
      * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -171,7 +171,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the Gateway resource. It matches pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
+     *           `projects/{@*}locations/{@*}gateways/<gateway_name>`.
      *     @type string $self_link
      *           Output only. Server-defined URL of this resource
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -186,13 +186,13 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Immutable. The type of the customer managed gateway.
      *           This field is required. If unspecified, an error is returned.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $addresses
+     *     @type string[] $addresses
      *           Optional. Zero or one IPv4 or IPv6 address on which the Gateway will
      *           receive the traffic. When no address is provided, an IP from the subnetwork
      *           is allocated
      *           This field only applies to gateways of type 'SECURE_WEB_GATEWAY'.
      *           Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type int[] $ports
      *           Required. One or more port numbers (1-65535), on which the Gateway will
      *           receive traffic. The proxy binds to the specified ports.
      *           Gateways of type 'SECURE_WEB_GATEWAY' are limited to 1 port.
@@ -209,7 +209,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *     @type string $server_tls_policy
      *           Optional. A fully-qualified ServerTLSPolicy URL reference. Specifies how
      *           TLS traffic is terminated. If empty, TLS termination is disabled.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $certificate_urls
+     *     @type string[] $certificate_urls
      *           Optional. A fully-qualified Certificates URL reference. The proxy presents
      *           a Certificate (selected based on SNI) when establishing a TLS connection.
      *           This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
@@ -218,17 +218,17 @@ class Gateway extends \Google\Protobuf\Internal\Message
      *           Defines how a server should apply security policy to inbound
      *           (VM to Proxy) initiated connections.
      *           For example:
-     *           `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     *           `projects/{@*}locations/{@*}gatewaySecurityPolicies/swg-policy`.
      *           This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *     @type string $network
      *           Optional. The relative resource name identifying the VPC network that is
      *           using this configuration. For example:
-     *           `projects/&#42;&#47;global/networks/network-1`.
+     *           `projects/{@*}global/networks/network-1`.
      *           Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *     @type string $subnetwork
      *           Optional. The relative resource name identifying  the subnetwork in which
      *           this SWG is allocated. For example:
-     *           `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     *           `projects/{@*}regions/us-central1/subnetworks/network-1`
      *           Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
      *     @type int $ip_version
      *           Optional. The IP Version that will be used by this gateway. Valid options
@@ -250,7 +250,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Gateway resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -262,7 +262,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the Gateway resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;gateways/<gateway_name>`.
+     * `projects/{@*}locations/{@*}gateways/<gateway_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -464,7 +464,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
      *
      * Generated from protobuf field <code>repeated string addresses = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAddresses()
     {
@@ -479,7 +479,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Gateways of type 'OPEN_MESH' listen on 0.0.0.0 for IPv4 and :: for IPv6.
      *
      * Generated from protobuf field <code>repeated string addresses = 7 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAddresses($var)
@@ -498,7 +498,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPorts()
     {
@@ -513,7 +513,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * support multiple ports.
      *
      * Generated from protobuf field <code>repeated int32 ports = 11 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -596,7 +596,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>repeated string certificate_urls = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCertificateUrls()
     {
@@ -609,7 +609,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>repeated string certificate_urls = 14 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCertificateUrls($var)
@@ -625,7 +625,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Defines how a server should apply security policy to inbound
      * (VM to Proxy) initiated connections.
      * For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * `projects/{@*}locations/{@*}gatewaySecurityPolicies/swg-policy`.
      * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -641,7 +641,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
      * Defines how a server should apply security policy to inbound
      * (VM to Proxy) initiated connections.
      * For example:
-     * `projects/&#42;&#47;locations/&#42;&#47;gatewaySecurityPolicies/swg-policy`.
+     * `projects/{@*}locations/{@*}gatewaySecurityPolicies/swg-policy`.
      * This policy is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string gateway_security_policy = 18 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -659,7 +659,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying the VPC network that is
      * using this configuration. For example:
-     * `projects/&#42;&#47;global/networks/network-1`.
+     * `projects/{@*}global/networks/network-1`.
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -673,7 +673,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying the VPC network that is
      * using this configuration. For example:
-     * `projects/&#42;&#47;global/networks/network-1`.
+     * `projects/{@*}global/networks/network-1`.
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY'.
      *
      * Generated from protobuf field <code>string network = 16 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -691,7 +691,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying  the subnetwork in which
      * this SWG is allocated. For example:
-     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * `projects/{@*}regions/us-central1/subnetworks/network-1`
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
      *
      * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -705,7 +705,7 @@ class Gateway extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The relative resource name identifying  the subnetwork in which
      * this SWG is allocated. For example:
-     * `projects/&#42;&#47;regions/us-central1/subnetworks/network-1`
+     * `projects/{@*}regions/us-central1/subnetworks/network-1`
      * Currently, this field is specific to gateways of type 'SECURE_WEB_GATEWAY".
      *
      * Generated from protobuf field <code>string subnetwork = 17 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

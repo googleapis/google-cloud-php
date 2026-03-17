@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ScheduleOptions\Schedule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Days of week to schedule report run.
@@ -28,7 +28,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $weekly_scheduled_days
+     *     @type int[] $weekly_scheduled_days
      *           Specifies days of the week on which to run report.
      * }
      */
@@ -41,7 +41,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * Specifies days of the week on which to run report.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek weekly_scheduled_days = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getWeeklyScheduledDays()
     {
@@ -52,7 +52,7 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
      * Specifies days of the week on which to run report.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek weekly_scheduled_days = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setWeeklyScheduledDays($var)
@@ -64,5 +64,4 @@ class WeeklySchedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides a summary of the project level error statistics.
@@ -83,19 +83,19 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      *           Optional. Count of successfully validated projects.
      *     @type int|string $outside_org_error_count
      *           Optional. Count of projects which are not in the same organization.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $outside_org_project_numbers
+     *     @type int[]|string[] $outside_org_project_numbers
      *           Optional. Subset of project numbers which are not in the same
      *           organization.
      *     @type int|string $non_management_hub_entitled_error_count
      *           Optional. Count of projects that are not subscribed to Storage
      *           Intelligence.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $non_management_hub_entitled_project_numbers
+     *     @type int[]|string[] $non_management_hub_entitled_project_numbers
      *           Optional. Subset of project numbers that are not subscribed to Storage
      *           Intelligence.
      *     @type int|string $non_storage_intelligence_entitled_error_count
      *           Optional. Count of projects that are not subscribed to Storage
      *           Intelligence.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $non_storage_intelligence_entitled_project_numbers
+     *     @type int[]|string[] $non_storage_intelligence_entitled_project_numbers
      *           Optional. Subset of project numbers that are not subscribed to Storage
      *           Intelligence.
      *     @type int|string $internal_error_count
@@ -192,7 +192,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * organization.
      *
      * Generated from protobuf field <code>repeated int64 outside_org_project_numbers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getOutsideOrgProjectNumbers()
     {
@@ -204,7 +204,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * organization.
      *
      * Generated from protobuf field <code>repeated int64 outside_org_project_numbers = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setOutsideOrgProjectNumbers($var)
@@ -268,7 +268,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated int64 non_management_hub_entitled_project_numbers = 8 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      * @deprecated
      */
     public function getNonManagementHubEntitledProjectNumbers()
@@ -284,7 +284,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated int64 non_management_hub_entitled_project_numbers = 8 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      * @deprecated
      */
@@ -342,7 +342,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated int64 non_storage_intelligence_entitled_project_numbers = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getNonStorageIntelligenceEntitledProjectNumbers()
     {
@@ -354,7 +354,7 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
      * Intelligence.
      *
      * Generated from protobuf field <code>repeated int64 non_storage_intelligence_entitled_project_numbers = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setNonStorageIntelligenceEntitledProjectNumbers($var)
@@ -480,5 +480,4 @@ class ProjectErrors extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

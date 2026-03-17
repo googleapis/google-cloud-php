@@ -5,8 +5,8 @@
 namespace Grafeas\V1\InTotoSlsaProvenanceV1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Keep in sync with schema at
@@ -106,5 +106,4 @@ class SlsaProvenanceV1 extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

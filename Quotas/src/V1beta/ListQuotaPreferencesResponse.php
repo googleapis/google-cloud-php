@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudQuotas\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing QuotaPreferences
@@ -41,12 +41,12 @@ class ListQuotaPreferencesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudQuotas\V1beta\QuotaPreference>|\Google\Protobuf\Internal\RepeatedField $quota_preferences
+     *     @type \Google\Cloud\CloudQuotas\V1beta\QuotaPreference[] $quota_preferences
      *           The list of QuotaPreference
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListQuotaPreferencesResponse extends \Google\Protobuf\Internal\Message
      * The list of QuotaPreference
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1beta.QuotaPreference quota_preferences = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudQuotas\V1beta\QuotaPreference>
      */
     public function getQuotaPreferences()
     {
@@ -70,7 +70,7 @@ class ListQuotaPreferencesResponse extends \Google\Protobuf\Internal\Message
      * The list of QuotaPreference
      *
      * Generated from protobuf field <code>repeated .google.api.cloudquotas.v1beta.QuotaPreference quota_preferences = 1;</code>
-     * @param array<\Google\Cloud\CloudQuotas\V1beta\QuotaPreference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudQuotas\V1beta\QuotaPreference[] $var
      * @return $this
      */
     public function setQuotaPreferences($var)
@@ -113,7 +113,7 @@ class ListQuotaPreferencesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListQuotaPreferencesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

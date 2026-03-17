@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\CustomConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of optional name-value pairs that define custom source properties to
@@ -31,7 +31,7 @@ class CustomOutputSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\CustomConfig\CustomOutputSpec\Property>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Cloud\SecurityCenter\V1\CustomConfig\CustomOutputSpec\Property[] $properties
      *           A list of custom output properties to add to the finding.
      * }
      */
@@ -44,7 +44,7 @@ class CustomOutputSpec extends \Google\Protobuf\Internal\Message
      * A list of custom output properties to add to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CustomConfig.CustomOutputSpec.Property properties = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\CustomConfig\CustomOutputSpec\Property>
      */
     public function getProperties()
     {
@@ -55,7 +55,7 @@ class CustomOutputSpec extends \Google\Protobuf\Internal\Message
      * A list of custom output properties to add to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.CustomConfig.CustomOutputSpec.Property properties = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\CustomConfig\CustomOutputSpec\Property>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\CustomConfig\CustomOutputSpec\Property[] $var
      * @return $this
      */
     public function setProperties($var)
@@ -67,5 +67,4 @@ class CustomOutputSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

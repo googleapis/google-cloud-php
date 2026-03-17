@@ -48,4 +48,3 @@ class Ipv6HealthState
     }
 }
 
-

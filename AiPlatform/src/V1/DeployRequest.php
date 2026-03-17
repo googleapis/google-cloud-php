@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -55,8 +55,8 @@ class DeployRequest extends \Google\Protobuf\Internal\Message
      *     @type string $publisher_model_name
      *           The Model Garden model to deploy.
      *           Format:
-     *           `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     *           `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`.
+     *           `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     *           `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`.
      *     @type string $hugging_face_model_id
      *           The Hugging Face model to deploy.
      *           Format: Hugging Face model ID like `google/gemma-2-2b-it`.
@@ -82,8 +82,8 @@ class DeployRequest extends \Google\Protobuf\Internal\Message
     /**
      * The Model Garden model to deploy.
      * Format:
-     * `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`.
+     * `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`.
      *
      * Generated from protobuf field <code>string publisher_model_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -101,8 +101,8 @@ class DeployRequest extends \Google\Protobuf\Internal\Message
     /**
      * The Model Garden model to deploy.
      * Format:
-     * `publishers/{publisher}/models/{publisher_model}&#64;{version_id}`, or
-     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}&#64;001`.
+     * `publishers/{publisher}/models/{publisher_model}\@{version_id}`, or
+     * `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}\@001`.
      *
      * Generated from protobuf field <code>string publisher_model_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

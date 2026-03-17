@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how many time series must fail a predicate to trigger a
@@ -112,5 +112,4 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

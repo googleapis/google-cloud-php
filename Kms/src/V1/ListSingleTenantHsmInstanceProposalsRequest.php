@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class ListSingleTenantHsmInstanceProposalsRequest extends \Google\Protobuf\Inter
      * Required. The resource name of the single tenant HSM instance associated
      * with the
      * [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -101,7 +101,7 @@ class ListSingleTenantHsmInstanceProposalsRequest extends \Google\Protobuf\Inter
      *           Required. The resource name of the single tenant HSM instance associated
      *           with the
      *           [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
-     *           to list, in the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     *           to list, in the format `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      *     @type int $page_size
      *           Optional. Optional limit on the number of
      *           [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
@@ -141,7 +141,7 @@ class ListSingleTenantHsmInstanceProposalsRequest extends \Google\Protobuf\Inter
      * Required. The resource name of the single tenant HSM instance associated
      * with the
      * [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -155,7 +155,7 @@ class ListSingleTenantHsmInstanceProposalsRequest extends \Google\Protobuf\Inter
      * Required. The resource name of the single tenant HSM instance associated
      * with the
      * [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
-     * to list, in the format `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * to list, in the format `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

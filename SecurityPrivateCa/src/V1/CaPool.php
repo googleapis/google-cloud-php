@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [CaPool][google.cloud.security.privateca.v1.CaPool] represents a group of
@@ -24,7 +24,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -74,7 +74,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           `projects/{@*}locations/{@*}caPools/*`.
      *     @type int $tier
      *           Required. Immutable. The
      *           [Tier][google.cloud.security.privateca.v1.CaPool.Tier] of this
@@ -104,7 +104,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -117,7 +117,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

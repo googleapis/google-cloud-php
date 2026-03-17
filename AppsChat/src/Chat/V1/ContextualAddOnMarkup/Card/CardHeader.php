@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\ContextualAddOnMarkup\Card;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.chat.v1.ContextualAddOnMarkup.Card.CardHeader</code>
@@ -172,5 +172,4 @@ class CardHeader extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

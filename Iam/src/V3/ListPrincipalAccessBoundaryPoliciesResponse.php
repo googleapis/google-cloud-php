@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListPrincipalAccessBoundaryPolicies method.
@@ -35,7 +35,7 @@ class ListPrincipalAccessBoundaryPoliciesResponse extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicy>|\Google\Protobuf\Internal\RepeatedField $principal_access_boundary_policies
+     *     @type \Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicy[] $principal_access_boundary_policies
      *           The principal access boundary policies from the specified parent.
      *     @type string $next_page_token
      *           Optional. A token, which can be sent as `page_token` to retrieve the next
@@ -51,7 +51,7 @@ class ListPrincipalAccessBoundaryPoliciesResponse extends \Google\Protobuf\Inter
      * The principal access boundary policies from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PrincipalAccessBoundaryPolicy principal_access_boundary_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicy>
      */
     public function getPrincipalAccessBoundaryPolicies()
     {
@@ -62,7 +62,7 @@ class ListPrincipalAccessBoundaryPoliciesResponse extends \Google\Protobuf\Inter
      * The principal access boundary policies from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.iam.v3.PrincipalAccessBoundaryPolicy principal_access_boundary_policies = 1;</code>
-     * @param array<\Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iam\V3\PrincipalAccessBoundaryPolicy[] $var
      * @return $this
      */
     public function setPrincipalAccessBoundaryPolicies($var)

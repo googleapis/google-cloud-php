@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Cluster;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata related to network configuration.
@@ -142,5 +142,4 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

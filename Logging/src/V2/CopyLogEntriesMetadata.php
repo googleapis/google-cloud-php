@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for CopyLogEntries long running operations.
@@ -56,7 +56,7 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      * destination.
      * If the service account is not granted permission to the destination within
      * an hour, the operation will be cancelled.
-     * For example: `"serviceAccount:foo&#64;bar.com"`
+     * For example: `"serviceAccount:foo\@bar.com"`
      *
      * Generated from protobuf field <code>string writer_identity = 7;</code>
      */
@@ -85,7 +85,7 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      *           destination.
      *           If the service account is not granted permission to the destination within
      *           an hour, the operation will be cancelled.
-     *           For example: `"serviceAccount:foo&#64;bar.com"`
+     *           For example: `"serviceAccount:foo\@bar.com"`
      * }
      */
     public function __construct($data = NULL) {
@@ -284,7 +284,7 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      * destination.
      * If the service account is not granted permission to the destination within
      * an hour, the operation will be cancelled.
-     * For example: `"serviceAccount:foo&#64;bar.com"`
+     * For example: `"serviceAccount:foo\@bar.com"`
      *
      * Generated from protobuf field <code>string writer_identity = 7;</code>
      * @return string
@@ -299,7 +299,7 @@ class CopyLogEntriesMetadata extends \Google\Protobuf\Internal\Message
      * destination.
      * If the service account is not granted permission to the destination within
      * an hour, the operation will be cancelled.
-     * For example: `"serviceAccount:foo&#64;bar.com"`
+     * For example: `"serviceAccount:foo\@bar.com"`
      *
      * Generated from protobuf field <code>string writer_identity = 7;</code>
      * @param string $var

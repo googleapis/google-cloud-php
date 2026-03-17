@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of Subproperty event filter expressions.
@@ -28,7 +28,7 @@ class SubpropertyEventFilterExpressionList extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression>|\Google\Protobuf\Internal\RepeatedField $filter_expressions
+     *     @type \Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression[] $filter_expressions
      *           Required. Unordered list. A list of Subproperty event filter expressions
      * }
      */
@@ -41,7 +41,7 @@ class SubpropertyEventFilterExpressionList extends \Google\Protobuf\Internal\Mes
      * Required. Unordered list. A list of Subproperty event filter expressions
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertyEventFilterExpression filter_expressions = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression>
      */
     public function getFilterExpressions()
     {
@@ -52,7 +52,7 @@ class SubpropertyEventFilterExpressionList extends \Google\Protobuf\Internal\Mes
      * Required. Unordered list. A list of Subproperty event filter expressions
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.SubpropertyEventFilterExpression filter_expressions = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\SubpropertyEventFilterExpression[] $var
      * @return $this
      */
     public function setFilterExpressions($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This resource represents input data you submit for a CSS Product, not
@@ -18,14 +18,14 @@ use Google\Protobuf\Internal\GPBUtil;
 class CssProductInput extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the CSS Product input.
+     * Identifier. The name of the CSS Product input.
      * Format:
      * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
      * last section `css_product_input` consists of 3 parts:
      * contentLanguage~feedLabel~offerId. Example:
      * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -110,7 +110,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The name of the CSS Product input.
+     *           Identifier. The name of the CSS Product input.
      *           Format:
      *           `accounts/{account}/cssProductInputs/{css_product_input}`, where the
      *           last section `css_product_input` consists of 3 parts:
@@ -154,7 +154,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      *           thrown.
      *     @type \Google\Shopping\Css\V1\Attributes $attributes
      *           A list of CSS Product attributes.
-     *     @type array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $custom_attributes
+     *     @type \Google\Shopping\Type\CustomAttribute[] $custom_attributes
      *           A list of custom (CSS-provided) attributes. It can also be used for
      *           submitting any attribute of the feed specification in its generic
      *           form (for example:
@@ -169,14 +169,14 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the CSS Product input.
+     * Identifier. The name of the CSS Product input.
      * Format:
      * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
      * last section `css_product_input` consists of 3 parts:
      * contentLanguage~feedLabel~offerId. Example:
      * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -185,14 +185,14 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the CSS Product input.
+     * Identifier. The name of the CSS Product input.
      * Format:
      * `accounts/{account}/cssProductInputs/{css_product_input}`, where the
      * last section `css_product_input` consists of 3 parts:
      * contentLanguage~feedLabel~offerId. Example:
      * accounts/123/cssProductInputs/de~DE~rawProvidedId123
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -451,7 +451,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      * API, such as additional attributes used for Buy on Google.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Type\CustomAttribute>
      */
     public function getCustomAttributes()
     {
@@ -467,7 +467,7 @@ class CssProductInput extends \Google\Protobuf\Internal\Message
      * API, such as additional attributes used for Buy on Google.
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.CustomAttribute custom_attributes = 8;</code>
-     * @param array<\Google\Shopping\Type\CustomAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Type\CustomAttribute[] $var
      * @return $this
      */
     public function setCustomAttributes($var)

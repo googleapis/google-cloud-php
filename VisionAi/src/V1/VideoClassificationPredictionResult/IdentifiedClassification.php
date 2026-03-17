@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\VideoClassificationPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each IdentifiedClassification is one particular identification of an
@@ -138,5 +138,4 @@ class IdentifiedClassification extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

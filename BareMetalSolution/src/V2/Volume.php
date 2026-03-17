@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A storage volume.
@@ -239,7 +239,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $expire_time
      *           Output only. Time after which volume will be fully deleted.
      *           It is filled only for volumes in COOLOFF state.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type string[] $instances
      *           Output only. Instances this Volume is attached to.
      *           This field is set only in Get requests.
      *     @type bool $attached
@@ -876,7 +876,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * This field is set only in Get requests.
      *
      * Generated from protobuf field <code>repeated string instances = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstances()
     {
@@ -888,7 +888,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      * This field is set only in Get requests.
      *
      * Generated from protobuf field <code>repeated string instances = 25 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstances($var)

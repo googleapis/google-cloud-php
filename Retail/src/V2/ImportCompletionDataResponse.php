@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of the
@@ -31,7 +31,7 @@ class ImportCompletionDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
+     *     @type \Google\Rpc\Status[] $error_samples
      *           A sample of errors encountered while processing the request.
      * }
      */
@@ -44,7 +44,7 @@ class ImportCompletionDataResponse extends \Google\Protobuf\Internal\Message
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrorSamples()
     {
@@ -55,7 +55,7 @@ class ImportCompletionDataResponse extends \Google\Protobuf\Internal\Message
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 1;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrorSamples($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restricted export policy used to configure restricted export on linked
@@ -256,5 +256,4 @@ class RestrictedExportPolicy extends \Google\Protobuf\Internal\Message
         return $this;}
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Output Only] The zones that Interconnects in this facility are
@@ -38,7 +38,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnects
+     *     @type string[] $interconnects
      *           Output only. [Output Only] URLs of Interconnects in this redundancy group in the
      *           given metro, facility, and zone.
      *     @type string $zone
@@ -57,7 +57,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInterconnects()
     {
@@ -69,7 +69,7 @@ class InterconnectGroupPhysicalStructureMetrosFacilitiesZones extends \Google\Pr
      * given metro, facility, and zone.
      *
      * Generated from protobuf field <code>repeated string interconnects = 520187301;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInterconnects($var)

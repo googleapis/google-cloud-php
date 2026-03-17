@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for connections to Secure Source Manager instance
@@ -17,7 +17,7 @@ class SecureSourceManagerInstanceConfig extends \Google\Protobuf\Internal\Messag
 {
     /**
      * Required. Immutable. Secure Source Manager instance resource, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;instances/&#42;`
+     * `projects/{@*}locations/{@*}instances/*`
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +31,7 @@ class SecureSourceManagerInstanceConfig extends \Google\Protobuf\Internal\Messag
      *
      *     @type string $instance
      *           Required. Immutable. Secure Source Manager instance resource, formatted as
-     *           `projects/&#42;&#47;locations/&#42;&#47;instances/&#42;`
+     *           `projects/{@*}locations/{@*}instances/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class SecureSourceManagerInstanceConfig extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. Immutable. Secure Source Manager instance resource, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;instances/&#42;`
+     * `projects/{@*}locations/{@*}instances/*`
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +53,7 @@ class SecureSourceManagerInstanceConfig extends \Google\Protobuf\Internal\Messag
 
     /**
      * Required. Immutable. Secure Source Manager instance resource, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;instances/&#42;`
+     * `projects/{@*}locations/{@*}instances/*`
      *
      * Generated from protobuf field <code>string instance = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var

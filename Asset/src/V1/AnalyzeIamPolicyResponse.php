@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response message for
@@ -49,7 +49,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis $main_analysis
      *           The main analysis that matches the original request.
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $service_account_impersonation_analysis
+     *     @type \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis[] $service_account_impersonation_analysis
      *           The service account impersonation analysis if
      *           [IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation][google.cloud.asset.v1.IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation]
      *           is enabled.
@@ -108,7 +108,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      * is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>
      */
     public function getServiceAccountImpersonationAnalysis()
     {
@@ -121,7 +121,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      * is enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis[] $var
      * @return $this
      */
     public function setServiceAccountImpersonationAnalysis($var)

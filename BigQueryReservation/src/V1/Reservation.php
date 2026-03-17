@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A reservation is a mechanism used to guarantee slots to users.
@@ -17,7 +17,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The resource name of the reservation, e.g.,
-     * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
+     * `projects/{@*}locations/{@*}reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.
@@ -226,7 +226,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The resource name of the reservation, e.g.,
-     *           `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
+     *           `projects/{@*}locations/{@*}reservations/team1-prod`.
      *           The reservation_id must only contain lower case alphanumeric characters or
      *           dashes. It must start with a letter and must not end with a dash. Its
      *           maximum length is 64 characters.
@@ -362,7 +362,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the reservation, e.g.,
-     * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
+     * `projects/{@*}locations/{@*}reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.
@@ -377,7 +377,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The resource name of the reservation, e.g.,
-     * `projects/&#42;&#47;locations/&#42;&#47;reservations/team1-prod`.
+     * `projects/{@*}locations/{@*}reservations/team1-prod`.
      * The reservation_id must only contain lower case alphanumeric characters or
      * dashes. It must start with a letter and must not end with a dash. Its
      * maximum length is 64 characters.

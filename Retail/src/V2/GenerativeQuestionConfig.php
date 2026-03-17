@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a single generated question.
@@ -78,7 +78,7 @@ class GenerativeQuestionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The question that will be used at serving time.
      *           Question can have a max length of 300 bytes.
      *           When not populated, generated_question should be used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $example_values
+     *     @type string[] $example_values
      *           Output only. Values that can be used to answer the question.
      *     @type float $frequency
      *           Output only. The ratio of how often a question was asked.
@@ -205,7 +205,7 @@ class GenerativeQuestionConfig extends \Google\Protobuf\Internal\Message
      * Output only. Values that can be used to answer the question.
      *
      * Generated from protobuf field <code>repeated string example_values = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExampleValues()
     {
@@ -216,7 +216,7 @@ class GenerativeQuestionConfig extends \Google\Protobuf\Internal\Message
      * Output only. Values that can be used to answer the question.
      *
      * Generated from protobuf field <code>repeated string example_values = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExampleValues($var)

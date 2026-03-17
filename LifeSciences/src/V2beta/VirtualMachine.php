@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Carries information about a Compute Engine VM resource.
@@ -175,12 +175,12 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           Labels keys with the prefix 'google-' are reserved for use by Google.
      *           Labels applied at creation time to the VM. Applied on a best-effort basis
      *           to attached disk resources shortly after VM creation.
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Disk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\LifeSciences\V2beta\Disk[] $disks
      *           The list of disks to create and attach to the VM.
      *           Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *     @type \Google\Cloud\LifeSciences\V2beta\Network $network
      *           The VM network configuration.
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type \Google\Cloud\LifeSciences\V2beta\Accelerator[] $accelerators
      *           The list of accelerators to attach to the VM.
      *     @type \Google\Cloud\LifeSciences\V2beta\ServiceAccount $service_account
      *           The service account to install on the VM. This account does not need
@@ -215,7 +215,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           hosted in the `nvidia-drivers-us-public` bucket on Google Cloud Storage.
      *     @type bool $enable_stackdriver_monitoring
      *           Whether Stackdriver monitoring should be enabled on the VM.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $docker_cache_images
+     *     @type string[] $docker_cache_images
      *           The Compute Engine Disk Images to use as a Docker cache. The disks will be
      *           mounted into the Docker folder in a way that the images present in the
      *           cache will not need to be pulled. The digests of the cached images must
@@ -225,7 +225,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *           Docker images have already been pulled. Any images pulled that are not
      *           cached will be stored on the first cache disk instead of the boot disk.
      *           Only a single image is supported.
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type \Google\Cloud\LifeSciences\V2beta\Volume[] $volumes
      *           The list of disks and other storage to create or attach to the VM.
      *           Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *     @type string $reservation
@@ -345,7 +345,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Disk disks = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Disk>
      */
     public function getDisks()
     {
@@ -357,7 +357,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Disk disks = 4;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Disk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Disk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -408,7 +408,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * The list of accelerators to attach to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Accelerator accelerators = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Accelerator>
      */
     public function getAccelerators()
     {
@@ -419,7 +419,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * The list of accelerators to attach to the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Accelerator accelerators = 6;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Accelerator>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Accelerator[] $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -656,7 +656,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Only a single image is supported.
      *
      * Generated from protobuf field <code>repeated string docker_cache_images = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDockerCacheImages()
     {
@@ -675,7 +675,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Only a single image is supported.
      *
      * Generated from protobuf field <code>repeated string docker_cache_images = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDockerCacheImages($var)
@@ -691,7 +691,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Volume volumes = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Volume>
      */
     public function getVolumes()
     {
@@ -703,7 +703,7 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Specify either the `volumes[]` field or the `disks[]` field, but not both.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Volume volumes = 14;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Volume>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Volume[] $var
      * @return $this
      */
     public function setVolumes($var)

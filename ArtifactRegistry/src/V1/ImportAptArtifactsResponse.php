@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message from importing APT artifacts.
@@ -34,9 +34,9 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\AptArtifact>|\Google\Protobuf\Internal\RepeatedField $apt_artifacts
+     *     @type \Google\Cloud\ArtifactRegistry\V1\AptArtifact[] $apt_artifacts
      *           The Apt artifacts imported.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsErrorInfo[] $errors
      *           Detailed error info for packages that were not imported.
      * }
      */
@@ -49,7 +49,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * The Apt artifacts imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.AptArtifact apt_artifacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\AptArtifact>
      */
     public function getAptArtifacts()
     {
@@ -60,7 +60,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * The Apt artifacts imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.AptArtifact apt_artifacts = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\AptArtifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\AptArtifact[] $var
      * @return $this
      */
     public function setAptArtifacts($var)
@@ -75,7 +75,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * Detailed error info for packages that were not imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImportAptArtifactsErrorInfo errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsErrorInfo>
      */
     public function getErrors()
     {
@@ -86,7 +86,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * Detailed error info for packages that were not imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImportAptArtifactsErrorInfo errors = 2;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\ImportAptArtifactsErrorInfo[] $var
      * @return $this
      */
     public function setErrors($var)

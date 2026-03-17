@@ -5,8 +5,8 @@
 namespace Google\Cloud\Shell\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud Shell environment, which is defined as the combination of a Docker
@@ -23,7 +23,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the
      * email address of the user to whom this environment belongs, and
      * `{environment_id}` is the identifier of this environment. For example,
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -98,7 +98,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the
      *           email address of the user to whom this environment belongs, and
      *           `{environment_id}` is the identifier of this environment. For example,
-     *           `users/someone&#64;example.com/environments/default`.
+     *           `users/someone\@example.com/environments/default`.
      *     @type string $id
      *           Output only. The environment's identifier, unique among the user's
      *           environments.
@@ -119,7 +119,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type int $ssh_port
      *           Output only. Port to which clients can connect to initiate SSH sessions
      *           with the environment.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type string[] $public_keys
      *           Output only. Public keys associated with the environment. Clients can
      *           connect to this environment via SSH only if they possess a private key
      *           corresponding to at least one of these public keys. Keys can be added to or
@@ -137,7 +137,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the
      * email address of the user to whom this environment belongs, and
      * `{environment_id}` is the identifier of this environment. For example,
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -152,7 +152,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * `users/{owner_email}/environments/{environment_id}`. `{owner_email}` is the
      * email address of the user to whom this environment belongs, and
      * `{environment_id}` is the identifier of this environment. For example,
-     * `users/someone&#64;example.com/environments/default`.
+     * `users/someone\@example.com/environments/default`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -368,7 +368,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * methods.
      *
      * Generated from protobuf field <code>repeated string public_keys = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPublicKeys()
     {
@@ -383,7 +383,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * methods.
      *
      * Generated from protobuf field <code>repeated string public_keys = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPublicKeys($var)

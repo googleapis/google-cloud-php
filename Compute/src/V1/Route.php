@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Route resource.
@@ -252,7 +252,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Compute\V1\RouteAsPath>|\Google\Protobuf\Internal\RepeatedField $as_paths
+     *     @type \Google\Cloud\Compute\V1\RouteAsPath[] $as_paths
      *           Output only. [Output Only] AS path.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
@@ -366,9 +366,9 @@ class Route extends \Google\Protobuf\Internal\Message
      *           Check the RouteType enum for the list of possible values.
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           A list of instance tags to which this route applies.
-     *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type \Google\Cloud\Compute\V1\Warnings[] $warnings
      *           Output only. [Output Only] If potential misconfigurations are detected for this
      *           route, this field will be populated with warning messages.
      * }
@@ -382,7 +382,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] AS path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouteAsPath>
      */
     public function getAsPaths()
     {
@@ -393,7 +393,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] AS path.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouteAsPath as_paths = 137568929;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouteAsPath>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouteAsPath[] $var
      * @return $this
      */
     public function setAsPaths($var)
@@ -1400,7 +1400,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * A list of instance tags to which this route applies.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -1411,7 +1411,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * A list of instance tags to which this route applies.
      *
      * Generated from protobuf field <code>repeated string tags = 3552281;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -1427,7 +1427,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * route, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\Warnings>
      */
     public function getWarnings()
     {
@@ -1439,7 +1439,7 @@ class Route extends \Google\Protobuf\Internal\Message
      * route, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\Warnings[] $var
      * @return $this
      */
     public function setWarnings($var)

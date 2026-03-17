@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListAssets request.
@@ -132,7 +132,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, the current time will be used. Due to delays in resource
      *           data collection and indexing, there is a volatile window during which
      *           running the same query may get different results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type string[] $asset_types
      *           A list of asset types to take a snapshot for. For example:
      *           "compute.googleapis.com/Disk".
      *           Regular expression is also supported. For example:
@@ -157,7 +157,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           The `next_page_token` returned from the previous `ListAssetsResponse`, or
      *           unspecified for the first `ListAssetsRequest`. It is a continuation of a
      *           prior `ListAssets` call, and the API should return the next page of assets.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *     @type string[] $relationship_types
      *           A list of relationship types to output, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      *           content_type=RELATIONSHIP.
@@ -275,7 +275,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssetTypes()
     {
@@ -299,7 +299,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -414,7 +414,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelationshipTypes()
     {
@@ -439,7 +439,7 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelationshipTypes($var)

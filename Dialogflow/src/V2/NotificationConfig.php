@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines notification behavior.
@@ -24,7 +24,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * For telephony integration to receive notification, make sure either this
      * topic is in the same project as the conversation or you grant
      * `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
      * For chat integration to receive notification, make sure API caller has been
      * granted the `Dialogflow Service Agent` role for the topic.
@@ -55,7 +55,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           For telephony integration to receive notification, make sure either this
      *           topic is in the same project as the conversation or you grant
      *           `service-<Conversation Project
-     *           Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
+     *           Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      *           Agent` role in the topic project.
      *           For chat integration to receive notification, make sure API caller has been
      *           granted the `Dialogflow Service Agent` role for the topic.
@@ -78,7 +78,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * For telephony integration to receive notification, make sure either this
      * topic is in the same project as the conversation or you grant
      * `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
      * For chat integration to receive notification, make sure API caller has been
      * granted the `Dialogflow Service Agent` role for the topic.
@@ -101,7 +101,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * For telephony integration to receive notification, make sure either this
      * topic is in the same project as the conversation or you grant
      * `service-<Conversation Project
-     * Number>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
+     * Number>\@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service
      * Agent` role in the topic project.
      * For chat integration to receive notification, make sure API caller has been
      * granted the `Dialogflow Service Agent` role for the topic.

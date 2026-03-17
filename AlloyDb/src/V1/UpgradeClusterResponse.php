@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UpgradeClusterResponse contains the response for upgrade cluster operation.
@@ -47,7 +47,7 @@ class UpgradeClusterResponse extends \Google\Protobuf\Internal\Message
      *     @type string $message
      *           A user friendly message summarising the upgrade operation details and the
      *           next steps for the user if there is any.
-     *     @type array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\ClusterUpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $cluster_upgrade_details
+     *     @type \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\ClusterUpgradeDetails[] $cluster_upgrade_details
      *           Array of upgrade details for the current cluster and all the secondary
      *           clusters associated with this cluster.
      * }
@@ -116,7 +116,7 @@ class UpgradeClusterResponse extends \Google\Protobuf\Internal\Message
      * clusters associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.ClusterUpgradeDetails cluster_upgrade_details = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\ClusterUpgradeDetails>
      */
     public function getClusterUpgradeDetails()
     {
@@ -128,7 +128,7 @@ class UpgradeClusterResponse extends \Google\Protobuf\Internal\Message
      * clusters associated with this cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.UpgradeClusterResponse.ClusterUpgradeDetails cluster_upgrade_details = 3;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\ClusterUpgradeDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\UpgradeClusterResponse\ClusterUpgradeDetails[] $var
      * @return $this
      */
     public function setClusterUpgradeDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing Managed Notebook Runtimes.
@@ -43,12 +43,12 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Notebooks\V1\Runtime>|\Google\Protobuf\Internal\RepeatedField $runtimes
+     *     @type \Google\Cloud\Notebooks\V1\Runtime[] $runtimes
      *           A list of returned Runtimes.
      *     @type string $next_page_token
      *           Page token that can be used to continue listing from the last result in the
      *           next list call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached. For example,
      *           `['us-west1', 'us-central1']`.
      *           A ListRuntimesResponse will only contain either runtimes or unreachables,
@@ -63,7 +63,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * A list of returned Runtimes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Runtime runtimes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Runtime>
      */
     public function getRuntimes()
     {
@@ -74,7 +74,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * A list of returned Runtimes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Runtime runtimes = 1;</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Runtime>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Runtime[] $var
      * @return $this
      */
     public function setRuntimes($var)
@@ -119,7 +119,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * A ListRuntimesResponse will only contain either runtimes or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -132,7 +132,7 @@ class ListRuntimesResponse extends \Google\Protobuf\Internal\Message
      * A ListRuntimesResponse will only contain either runtimes or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListVersions][google.cloud.apihub.v1.ApiHub.ListVersions] method's
@@ -36,7 +36,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Version>|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type \Google\Cloud\ApiHub\V1\Version[] $versions
      *           The versions corresponding to an API.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * The versions corresponding to an API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Version versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Version>
      */
     public function getVersions()
     {
@@ -63,7 +63,7 @@ class ListVersionsResponse extends \Google\Protobuf\Internal\Message
      * The versions corresponding to an API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Version versions = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Version>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Version[] $var
      * @return $this
      */
     public function setVersions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Conversation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The information about phone calls connected via phone gateway to the
@@ -55,9 +55,9 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      *           Optional. SDP of the call. It's initially the SDP answer to the incoming
      *           call, but maybe later updated for the purpose of making the link active,
      *           etc.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader>|\Google\Protobuf\Internal\RepeatedField $sip_headers
+     *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader[] $sip_headers
      *           Output only. The SIP headers from the initial SIP INVITE.
-     *     @type array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent>|\Google\Protobuf\Internal\RepeatedField $extra_mime_contents
+     *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent[] $extra_mime_contents
      *           Output only. The mime content from the initial SIP INVITE.
      * }
      */
@@ -126,7 +126,7 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The SIP headers from the initial SIP INVITE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.SipHeader sip_headers = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader>
      */
     public function getSipHeaders()
     {
@@ -137,7 +137,7 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The SIP headers from the initial SIP INVITE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.SipHeader sip_headers = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\SipHeader[] $var
      * @return $this
      */
     public function setSipHeaders($var)
@@ -152,7 +152,7 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The mime content from the initial SIP INVITE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.MimeContent extra_mime_contents = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent>
      */
     public function getExtraMimeContents()
     {
@@ -163,7 +163,7 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
      * Output only. The mime content from the initial SIP INVITE.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.TelephonyConnectionInfo.MimeContent extra_mime_contents = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo\MimeContent[] $var
      * @return $this
      */
     public function setExtraMimeContents($var)
@@ -175,5 +175,4 @@ class TelephonyConnectionInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

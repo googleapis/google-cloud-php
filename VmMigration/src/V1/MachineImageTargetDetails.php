@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The target details of the machine image resource that will be created by the
@@ -135,7 +135,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VMMigration\V1\ServiceAccount $service_account
      *           Optional. The service account to assign to the instance created by the
      *           machine image.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *     @type string[] $additional_licenses
      *           Optional. Additional licenses to assign to the instance created by the
      *           machine image. Format:
      *           https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME
@@ -143,11 +143,11 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      *           https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The labels to apply to the instance created by the machine image.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. The tags to apply to the instance created by the machine image.
      *     @type \Google\Cloud\VMMigration\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Optional. Shielded instance configuration.
-     *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\VMMigration\V1\NetworkInterface[] $network_interfaces
      *           Optional. The network interfaces to create with the instance created by the
      *           machine image. Internal and external IP addresses, and network tiers are
      *           ignored for machine image import.
@@ -456,7 +456,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalLicenses()
     {
@@ -471,7 +471,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalLicenses($var)
@@ -512,7 +512,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * Optional. The tags to apply to the instance created by the machine image.
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -523,7 +523,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * Optional. The tags to apply to the instance created by the machine image.
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -576,7 +576,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * ignored for machine image import.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -589,7 +589,7 @@ class MachineImageTargetDetails extends \Google\Protobuf\Internal\Message
      * ignored for machine image import.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)

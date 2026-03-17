@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of session templates.
@@ -35,7 +35,7 @@ class ListSessionTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\SessionTemplate>|\Google\Protobuf\Internal\RepeatedField $session_templates
+     *     @type \Google\Cloud\Dataproc\V1\SessionTemplate[] $session_templates
      *           Output only. Session template list
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListSessionTemplatesResponse extends \Google\Protobuf\Internal\Message
      * Output only. Session template list
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.SessionTemplate session_templates = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\SessionTemplate>
      */
     public function getSessionTemplates()
     {
@@ -62,7 +62,7 @@ class ListSessionTemplatesResponse extends \Google\Protobuf\Internal\Message
      * Output only. Session template list
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.SessionTemplate session_templates = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\SessionTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\SessionTemplate[] $var
      * @return $this
      */
     public function setSessionTemplates($var)

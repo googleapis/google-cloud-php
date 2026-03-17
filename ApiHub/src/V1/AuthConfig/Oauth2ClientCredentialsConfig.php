@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\AuthConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters to support Oauth 2.0 client credentials grant authentication.
@@ -117,5 +117,4 @@ class Oauth2ClientCredentialsConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * When set in a
@@ -65,7 +65,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. Immutable. Description of the instance. Maximum of 2048
      *           characters.
-     *     @type array<\Google\Cloud\HypercomputeCluster\V1beta\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $file_shares
+     *     @type \Google\Cloud\HypercomputeCluster\V1beta\FileShareConfig[] $file_shares
      *           Required. Immutable. File system shares on the instance. Exactly one file
      *           share must be specified.
      *     @type int $tier
@@ -141,7 +141,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
      * share must be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.FileShareConfig file_shares = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\HypercomputeCluster\V1beta\FileShareConfig>
      */
     public function getFileShares()
     {
@@ -153,7 +153,7 @@ class NewFilestoreConfig extends \Google\Protobuf\Internal\Message
      * share must be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.hypercomputecluster.v1beta.FileShareConfig file_shares = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<\Google\Cloud\HypercomputeCluster\V1beta\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\HypercomputeCluster\V1beta\FileShareConfig[] $var
      * @return $this
      */
     public function setFileShares($var)

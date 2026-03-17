@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AnalyzerDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options available for debugging purposes only.
@@ -64,5 +64,4 @@ class DebugOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

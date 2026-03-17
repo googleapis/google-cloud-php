@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for multi-region deployment.
@@ -34,7 +34,7 @@ class MultiRegionSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regions
+     *     @type string[] $regions
      *           Required. List of regions to deploy to, including primary region.
      *     @type string $multi_region_id
      *           Optional. System-generated unique id for the multi-region Service.
@@ -49,7 +49,7 @@ class MultiRegionSettings extends \Google\Protobuf\Internal\Message
      * Required. List of regions to deploy to, including primary region.
      *
      * Generated from protobuf field <code>repeated string regions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegions()
     {
@@ -60,7 +60,7 @@ class MultiRegionSettings extends \Google\Protobuf\Internal\Message
      * Required. List of regions to deploy to, including primary region.
      *
      * Generated from protobuf field <code>repeated string regions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegions($var)
@@ -98,5 +98,4 @@ class MultiRegionSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

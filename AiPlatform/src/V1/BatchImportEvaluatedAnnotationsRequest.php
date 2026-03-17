@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -59,7 +59,7 @@ class BatchImportEvaluatedAnnotationsRequest extends \Google\Protobuf\Internal\M
      *           Required. The name of the parent ModelEvaluationSlice resource.
      *           Format:
      *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}/slices/{slice}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotation>|\Google\Protobuf\Internal\RepeatedField $evaluated_annotations
+     *     @type \Google\Cloud\AIPlatform\V1\EvaluatedAnnotation[] $evaluated_annotations
      *           Required. Evaluated annotations resource to be imported.
      * }
      */
@@ -102,7 +102,7 @@ class BatchImportEvaluatedAnnotationsRequest extends \Google\Protobuf\Internal\M
      * Required. Evaluated annotations resource to be imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluatedAnnotation evaluated_annotations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotation>
      */
     public function getEvaluatedAnnotations()
     {
@@ -113,7 +113,7 @@ class BatchImportEvaluatedAnnotationsRequest extends \Google\Protobuf\Internal\M
      * Required. Evaluated annotations resource to be imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluatedAnnotation evaluated_annotations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EvaluatedAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EvaluatedAnnotation[] $var
      * @return $this
      */
     public function setEvaluatedAnnotations($var)

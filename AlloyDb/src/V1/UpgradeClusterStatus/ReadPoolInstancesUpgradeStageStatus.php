@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\UpgradeClusterStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Read pool instances upgrade specific status.
@@ -74,5 +74,4 @@ class ReadPoolInstancesUpgradeStageStatus extends \Google\Protobuf\Internal\Mess
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The translation details to capture the necessary settings for a translation
@@ -58,17 +58,17 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\SourceTargetMapping>|\Google\Protobuf\Internal\RepeatedField $source_target_mapping
+     *     @type \Google\Cloud\BigQuery\Migration\V2\SourceTargetMapping[] $source_target_mapping
      *           The mapping from source to target SQL.
      *     @type string $target_base_uri
      *           The base URI for all writes to persistent storage.
      *     @type \Google\Cloud\BigQuery\Migration\V2\SourceEnvironment $source_environment
      *           The default source environment values for the translation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_return_literals
+     *     @type string[] $target_return_literals
      *           The list of literal targets that will be directly returned to the response.
      *           Each entry consists of the constructed path, EXCLUDING the base path. Not
      *           providing a target_base_uri will prevent writing to persistent storage.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_types
+     *     @type string[] $target_types
      *           The types of output to generate, e.g. sql, metadata,
      *           lineage_from_sql_scripts, etc. If not specified, a default set of
      *           targets will be generated. Some additional target types may be slower to
@@ -84,7 +84,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * The mapping from source to target SQL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.SourceTargetMapping source_target_mapping = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\SourceTargetMapping>
      */
     public function getSourceTargetMapping()
     {
@@ -95,7 +95,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * The mapping from source to target SQL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.SourceTargetMapping source_target_mapping = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\SourceTargetMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\SourceTargetMapping[] $var
      * @return $this
      */
     public function setSourceTargetMapping($var)
@@ -174,7 +174,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * providing a target_base_uri will prevent writing to persistent storage.
      *
      * Generated from protobuf field <code>repeated string target_return_literals = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetReturnLiterals()
     {
@@ -187,7 +187,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * providing a target_base_uri will prevent writing to persistent storage.
      *
      * Generated from protobuf field <code>repeated string target_return_literals = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetReturnLiterals($var)
@@ -205,7 +205,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * generate. See the documentation for the set of available target types.
      *
      * Generated from protobuf field <code>repeated string target_types = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetTypes()
     {
@@ -219,7 +219,7 @@ class TranslationDetails extends \Google\Protobuf\Internal\Message
      * generate. See the documentation for the set of available target types.
      *
      * Generated from protobuf field <code>repeated string target_types = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetTypes($var)

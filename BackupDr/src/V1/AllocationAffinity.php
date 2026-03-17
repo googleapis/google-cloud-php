@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the reservations that this instance can consume from.
@@ -46,7 +46,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      *           consume
      *     @type string $key
      *           Optional. Corresponds to the label key of a reservation resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Optional. Corresponds to the label values of a reservation resource.
      * }
      */
@@ -133,7 +133,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of a reservation resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -144,7 +144,7 @@ class AllocationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of a reservation resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

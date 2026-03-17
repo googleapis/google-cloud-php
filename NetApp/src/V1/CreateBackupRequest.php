@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CreateBackupRequest creates a backup.
@@ -17,7 +17,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The NetApp backupVault to create the backups of, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;backupVaults/{backup_vault_id}`
+     * `projects/{@*}locations/{@*}backupVaults/{backup_vault_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -70,7 +70,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The NetApp backupVault to create the backups of, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupVaults/{backup_vault_id}`
+     *           `projects/{@*}locations/{@*}backupVaults/{backup_vault_id}`
      *     @type string $backup_id
      *           Required. The ID to use for the backup.
      *           The ID must be unique within the specified backupVault.
@@ -88,7 +88,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The NetApp backupVault to create the backups of, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;backupVaults/{backup_vault_id}`
+     * `projects/{@*}locations/{@*}backupVaults/{backup_vault_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -100,7 +100,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The NetApp backupVault to create the backups of, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;backupVaults/{backup_vault_id}`
+     * `projects/{@*}locations/{@*}backupVaults/{backup_vault_id}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Catalog level attribute config.
@@ -17,7 +17,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Immutable. The fully qualified resource name of the attribute
-     * config. Format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;attributesConfig`
+     * config. Format: `projects/{@*}locations/{@*}catalogs/{@*}attributesConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -51,7 +51,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Immutable. The fully qualified resource name of the attribute
-     *           config. Format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;attributesConfig`
+     *           config. Format: `projects/{@*}locations/{@*}catalogs/{@*}attributesConfig`
      *     @type array|\Google\Protobuf\Internal\MapField $catalog_attributes
      *           Enable attribute(s) config at catalog level.
      *           For example, indexable, dynamic_facetable, or searchable for each
@@ -73,7 +73,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The fully qualified resource name of the attribute
-     * config. Format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;attributesConfig`
+     * config. Format: `projects/{@*}locations/{@*}catalogs/{@*}attributesConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -85,7 +85,7 @@ class AttributesConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. The fully qualified resource name of the attribute
-     * config. Format: `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;attributesConfig`
+     * config. Format: `projects/{@*}locations/{@*}catalogs/{@*}attributesConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

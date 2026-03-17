@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiKeys\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The iOS apps that are allowed to use the key.
@@ -28,7 +28,7 @@ class IosKeyRestrictions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
+     *     @type string[] $allowed_bundle_ids
      *           A list of bundle IDs that are allowed when making API calls with this key.
      * }
      */
@@ -41,7 +41,7 @@ class IosKeyRestrictions extends \Google\Protobuf\Internal\Message
      * A list of bundle IDs that are allowed when making API calls with this key.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedBundleIds()
     {
@@ -52,7 +52,7 @@ class IosKeyRestrictions extends \Google\Protobuf\Internal\Message
      * A list of bundle IDs that are allowed when making API calls with this key.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedBundleIds($var)

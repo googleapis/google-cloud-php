@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Connection\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container for connection properties to execute stored procedures for Apache
@@ -25,7 +25,7 @@ class SparkProperties extends \Google\Protobuf\Internal\Message
      * procedure for Apache Spark in BigQuery, the service account is used to
      * connect to the desired resources in Google Cloud.
      * The account ID is in the form of:
-     * bqcx-<projectnumber>-<uniqueid>&#64;gcp-sa-bigquery-consp.iam.gserviceaccount.com
+     * bqcx-<projectnumber>-<uniqueid>\@gcp-sa-bigquery-consp.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -58,7 +58,7 @@ class SparkProperties extends \Google\Protobuf\Internal\Message
      *           procedure for Apache Spark in BigQuery, the service account is used to
      *           connect to the desired resources in Google Cloud.
      *           The account ID is in the form of:
-     *           bqcx-<projectnumber>-<uniqueid>&#64;gcp-sa-bigquery-consp.iam.gserviceaccount.com
+     *           bqcx-<projectnumber>-<uniqueid>\@gcp-sa-bigquery-consp.iam.gserviceaccount.com
      *     @type \Google\Cloud\BigQuery\Connection\V1\MetastoreServiceConfig $metastore_service_config
      *           Optional. Dataproc Metastore Service configuration for the connection.
      *     @type \Google\Cloud\BigQuery\Connection\V1\SparkHistoryServerConfig $spark_history_server_config
@@ -79,7 +79,7 @@ class SparkProperties extends \Google\Protobuf\Internal\Message
      * procedure for Apache Spark in BigQuery, the service account is used to
      * connect to the desired resources in Google Cloud.
      * The account ID is in the form of:
-     * bqcx-<projectnumber>-<uniqueid>&#64;gcp-sa-bigquery-consp.iam.gserviceaccount.com
+     * bqcx-<projectnumber>-<uniqueid>\@gcp-sa-bigquery-consp.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -98,7 +98,7 @@ class SparkProperties extends \Google\Protobuf\Internal\Message
      * procedure for Apache Spark in BigQuery, the service account is used to
      * connect to the desired resources in Google Cloud.
      * The account ID is in the form of:
-     * bqcx-<projectnumber>-<uniqueid>&#64;gcp-sa-bigquery-consp.iam.gserviceaccount.com
+     * bqcx-<projectnumber>-<uniqueid>\@gcp-sa-bigquery-consp.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

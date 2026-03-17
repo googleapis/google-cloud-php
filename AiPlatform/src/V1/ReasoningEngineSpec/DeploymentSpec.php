@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification of a Reasoning Engine deployment.
@@ -81,11 +81,11 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\AIPlatform\V1\EnvVar[] $env
      *           Optional. Environment variables to be set with the Reasoning Engine
      *           deployment. The environment variables can be updated through the
      *           UpdateReasoningEngine API.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $secret_env
+     *     @type \Google\Cloud\AIPlatform\V1\SecretEnvVar[] $secret_env
      *           Optional. Environment variables where the value is a secret in Cloud
      *           Secret Manager.
      *           To use this feature, add 'Secret Manager Secret Accessor' role
@@ -125,7 +125,7 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * UpdateReasoningEngine API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EnvVar>
      */
     public function getEnv()
     {
@@ -138,7 +138,7 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * UpdateReasoningEngine API.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EnvVar env = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)
@@ -157,7 +157,7 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * Service Agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SecretEnvVar secret_env = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SecretEnvVar>
      */
     public function getSecretEnv()
     {
@@ -172,7 +172,7 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
      * Service Agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SecretEnvVar secret_env = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SecretEnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SecretEnvVar[] $var
      * @return $this
      */
     public function setSecretEnv($var)
@@ -376,5 +376,4 @@ class DeploymentSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

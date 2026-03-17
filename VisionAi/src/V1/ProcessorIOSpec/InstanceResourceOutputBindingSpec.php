@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ProcessorIOSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceOutputBindingSpec</code>
@@ -134,5 +134,4 @@ class InstanceResourceOutputBindingSpec extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

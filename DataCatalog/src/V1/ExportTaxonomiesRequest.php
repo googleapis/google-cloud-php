@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -40,7 +40,7 @@ class ExportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Resource name of the project that the exported taxonomies belong
      *           to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $taxonomies
+     *     @type string[] $taxonomies
      *           Required. Resource names of the taxonomies to export.
      *     @type bool $serialized_taxonomies
      *           Serialized export taxonomies that contain all the policy
@@ -84,7 +84,7 @@ class ExportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      * Required. Resource names of the taxonomies to export.
      *
      * Generated from protobuf field <code>repeated string taxonomies = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTaxonomies()
     {
@@ -95,7 +95,7 @@ class ExportTaxonomiesRequest extends \Google\Protobuf\Internal\Message
      * Required. Resource names of the taxonomies to export.
      *
      * Generated from protobuf field <code>repeated string taxonomies = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTaxonomies($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagContexts;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A context of the query.
@@ -252,5 +252,4 @@ class Context extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

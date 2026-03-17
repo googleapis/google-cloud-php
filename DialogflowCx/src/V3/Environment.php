@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an environment for an agent. You can create multiple versions
@@ -88,7 +88,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The human-readable description of the environment. The maximum length is
      *           500 characters. If exceeded, the request is rejected.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Environment\VersionConfig>|\Google\Protobuf\Internal\RepeatedField $version_configs
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Environment\VersionConfig[] $version_configs
      *           A list of configurations for flow versions. You should include version
      *           configs for all flows that are reachable from [`Start
      *           Flow`][Agent.start_flow] in the agent. Otherwise, an error will be
@@ -199,7 +199,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Environment.VersionConfig version_configs = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Environment\VersionConfig>
      */
     public function getVersionConfigs()
     {
@@ -213,7 +213,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Environment.VersionConfig version_configs = 6;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Environment\VersionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Environment\VersionConfig[] $var
      * @return $this
      */
     public function setVersionConfigs($var)

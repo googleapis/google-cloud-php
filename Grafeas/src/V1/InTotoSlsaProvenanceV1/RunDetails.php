@@ -5,8 +5,8 @@
 namespace Grafeas\V1\InTotoSlsaProvenanceV1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.InTotoSlsaProvenanceV1.RunDetails</code>
@@ -34,7 +34,7 @@ class RunDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\ProvenanceBuilder $builder
      *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\BuildMetadata $metadata
-     *     @type array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $byproducts
+     *     @type \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $byproducts
      * }
      */
     public function __construct($data = NULL) {
@@ -108,7 +108,7 @@ class RunDetails extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor byproducts = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>
      */
     public function getByproducts()
     {
@@ -117,7 +117,7 @@ class RunDetails extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.InTotoSlsaProvenanceV1.ResourceDescriptor byproducts = 3;</code>
-     * @param array<\Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\InTotoSlsaProvenanceV1\ResourceDescriptor[] $var
      * @return $this
      */
     public function setByproducts($var)
@@ -129,5 +129,4 @@ class RunDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

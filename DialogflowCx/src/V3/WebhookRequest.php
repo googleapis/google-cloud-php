@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for a webhook call. The request is sent as a JSON object
@@ -127,7 +127,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      *           Information about page status.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\SessionInfo $session_info
      *           Information about session status.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $messages
      *           The list of rich message responses to present to the user. Webhook can
      *           choose to append or replace this list in
      *           [WebhookResponse.fulfillment_response][google.cloud.dialogflow.cx.v3.WebhookResponse.fulfillment_response];
@@ -525,7 +525,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      * [WebhookResponse.fulfillment_response][google.cloud.dialogflow.cx.v3.WebhookResponse.fulfillment_response];
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>
      */
     public function getMessages()
     {
@@ -538,7 +538,7 @@ class WebhookRequest extends \Google\Protobuf\Internal\Message
      * [WebhookResponse.fulfillment_response][google.cloud.dialogflow.cx.v3.WebhookResponse.fulfillment_response];
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.ResponseMessage messages = 7;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\ResponseMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\ResponseMessage[] $var
      * @return $this
      */
     public function setMessages($var)

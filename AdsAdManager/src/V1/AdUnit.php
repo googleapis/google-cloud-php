@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The AdUnit resource.
@@ -216,7 +216,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. The AdUnit's parent. Every ad unit has a parent except
      *           for the root ad unit, which is created by Google. Format:
      *           "networks/{network_code}/adUnits/{ad_unit_id}"
-     *     @type array<\Google\Ads\AdManager\V1\AdUnitParent>|\Google\Protobuf\Internal\RepeatedField $parent_path
+     *     @type \Google\Ads\AdManager\V1\AdUnitParent[] $parent_path
      *           Output only. The path to this AdUnit in the ad unit hierarchy represented
      *           as a list from the root to this ad unit's parent. For root ad units, this
      *           list is empty.
@@ -238,10 +238,10 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Output only. Non-empty default. The target window of this AdUnit. This
      *           value is inherited from ancestor AdUnits and defaults to TOP if no AdUnit
      *           in the hierarchy specifies it.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_teams
+     *     @type string[] $applied_teams
      *           Optional. The resource names of Teams directly applied to this AdUnit.
      *           Format: "networks/{network_code}/teams/{team_id}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $teams
+     *     @type string[] $teams
      *           Output only. The resource names of all Teams that this AdUnit is on as well
      *           as those inherited from parent AdUnits. Format:
      *           "networks/{network_code}/teams/{team_id}"
@@ -257,7 +257,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Output only. This field is set to true if the ad unit has any children.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time this AdUnit was last modified.
-     *     @type array<\Google\Ads\AdManager\V1\AdUnitSize>|\Google\Protobuf\Internal\RepeatedField $ad_unit_sizes
+     *     @type \Google\Ads\AdManager\V1\AdUnitSize[] $ad_unit_sizes
      *           Optional. The sizes that can be served inside this ad unit.
      *     @type string $external_set_top_box_channel_id
      *           Optional. Determines what set top box video on demand channel this ad unit
@@ -266,17 +266,17 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      *           Optional. The duration after which an Ad Unit will automatically refresh.
      *           This is only valid for ad units in mobile apps. If not set, the ad unit
      *           will not refresh.
-     *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $applied_labels
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $applied_labels
      *           Optional. The set of labels applied directly to this ad unit.
-     *     @type array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $effective_applied_labels
+     *     @type \Google\Ads\AdManager\V1\AppliedLabel[] $effective_applied_labels
      *           Output only. Contains the set of labels applied directly to the ad unit as
      *           well as those inherited from the parent ad units. If a label has been
      *           negated, only the negated label is returned. This attribute is assigned by
      *           Google.
-     *     @type array<\Google\Ads\AdManager\V1\LabelFrequencyCap>|\Google\Protobuf\Internal\RepeatedField $applied_label_frequency_caps
+     *     @type \Google\Ads\AdManager\V1\LabelFrequencyCap[] $applied_label_frequency_caps
      *           Optional. The set of label frequency caps applied directly to this ad unit.
      *           There is a limit of 10 label frequency caps per ad unit.
-     *     @type array<\Google\Ads\AdManager\V1\LabelFrequencyCap>|\Google\Protobuf\Internal\RepeatedField $effective_label_frequency_caps
+     *     @type \Google\Ads\AdManager\V1\LabelFrequencyCap[] $effective_label_frequency_caps
      *           Output only. The label frequency caps applied directly to the ad unit as
      *           well as those inherited from parent ad units.
      *     @type int $smart_size_mode
@@ -398,7 +398,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * list is empty.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitParent parent_path = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnitParent>
      */
     public function getParentPath()
     {
@@ -411,7 +411,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * list is empty.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitParent parent_path = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\AdManager\V1\AdUnitParent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdUnitParent[] $var
      * @return $this
      */
     public function setParentPath($var)
@@ -623,7 +623,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAppliedTeams()
     {
@@ -635,7 +635,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Format: "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string applied_teams = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAppliedTeams($var)
@@ -652,7 +652,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string teams = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTeams()
     {
@@ -665,7 +665,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * "networks/{network_code}/teams/{team_id}"
      *
      * Generated from protobuf field <code>repeated string teams = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTeams($var)
@@ -832,7 +832,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. The sizes that can be served inside this ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitSize ad_unit_sizes = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AdUnitSize>
      */
     public function getAdUnitSizes()
     {
@@ -843,7 +843,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. The sizes that can be served inside this ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AdUnitSize ad_unit_sizes = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AdUnitSize>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AdUnitSize[] $var
      * @return $this
      */
     public function setAdUnitSizes($var)
@@ -946,7 +946,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. The set of labels applied directly to this ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
      */
     public function getAppliedLabels()
     {
@@ -957,7 +957,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Optional. The set of labels applied directly to this ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel applied_labels = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
      * @return $this
      */
     public function setAppliedLabels($var)
@@ -975,7 +975,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\AppliedLabel>
      */
     public function getEffectiveAppliedLabels()
     {
@@ -989,7 +989,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * Google.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.AppliedLabel effective_applied_labels = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\AdManager\V1\AppliedLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\AppliedLabel[] $var
      * @return $this
      */
     public function setEffectiveAppliedLabels($var)
@@ -1005,7 +1005,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * There is a limit of 10 label frequency caps per ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LabelFrequencyCap applied_label_frequency_caps = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\LabelFrequencyCap>
      */
     public function getAppliedLabelFrequencyCaps()
     {
@@ -1017,7 +1017,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * There is a limit of 10 label frequency caps per ad unit.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LabelFrequencyCap applied_label_frequency_caps = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\AdManager\V1\LabelFrequencyCap>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\LabelFrequencyCap[] $var
      * @return $this
      */
     public function setAppliedLabelFrequencyCaps($var)
@@ -1033,7 +1033,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * well as those inherited from parent ad units.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LabelFrequencyCap effective_label_frequency_caps = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\LabelFrequencyCap>
      */
     public function getEffectiveLabelFrequencyCaps()
     {
@@ -1045,7 +1045,7 @@ class AdUnit extends \Google\Protobuf\Internal\Message
      * well as those inherited from parent ad units.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.LabelFrequencyCap effective_label_frequency_caps = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\AdManager\V1\LabelFrequencyCap>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\LabelFrequencyCap[] $var
      * @return $this
      */
     public function setEffectiveLabelFrequencyCaps($var)

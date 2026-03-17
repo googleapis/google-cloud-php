@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [ListInstances][].
@@ -43,14 +43,14 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Memorystore\V1beta\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Memorystore\V1beta\Instance[] $instances
      *           If the {location} requested was "-" the response contains a list of
      *           instances from all locations. Instances in unreachable locations will be
      *           omitted.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -65,7 +65,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance instances = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1beta\Instance>
      */
     public function getInstances()
     {
@@ -78,7 +78,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * omitted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance instances = 1;</code>
-     * @param array<\Google\Cloud\Memorystore\V1beta\Instance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1beta\Instance[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -121,7 +121,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -132,7 +132,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

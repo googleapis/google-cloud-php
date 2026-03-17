@@ -5,8 +5,8 @@
 namespace Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains the client data.
@@ -162,7 +162,4 @@ class ClientData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClientData::class, \Google\Ads\MarketingPlatform\Admin\V1alpha\FindSalesPartnerManagedClientsResponse_ClientData::class);
 

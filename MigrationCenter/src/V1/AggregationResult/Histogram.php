@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\AggregationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of a bucketed histogram aggregation.
@@ -32,7 +32,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\AggregationResult\Histogram\Bucket>|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type \Google\Cloud\MigrationCenter\V1\AggregationResult\Histogram\Bucket[] $buckets
      *           Buckets in the histogram.
      *           There will be `n+1` buckets matching `n` lower bounds in the request.
      *           The first bucket will be from -infinity to the first bound.
@@ -53,7 +53,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * The final bucket will be from the final bound to infinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AggregationResult.Histogram.Bucket buckets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\AggregationResult\Histogram\Bucket>
      */
     public function getBuckets()
     {
@@ -68,7 +68,7 @@ class Histogram extends \Google\Protobuf\Internal\Message
      * The final bucket will be from the final bound to infinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.AggregationResult.Histogram.Bucket buckets = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\AggregationResult\Histogram\Bucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\AggregationResult\Histogram\Bucket[] $var
      * @return $this
      */
     public function setBuckets($var)
@@ -80,5 +80,4 @@ class Histogram extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

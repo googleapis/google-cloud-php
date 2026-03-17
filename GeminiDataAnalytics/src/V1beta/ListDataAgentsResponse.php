@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing DataAgents.
@@ -40,11 +40,11 @@ class ListDataAgentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent>|\Google\Protobuf\Internal\RepeatedField $data_agents
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent[] $data_agents
      *           The list of DataAgent.
      *     @type string $next_page_token
      *           The next page token or empty if none.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListDataAgentsResponse extends \Google\Protobuf\Internal\Message
      * The list of DataAgent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataAgent data_agents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent>
      */
     public function getDataAgents()
     {
@@ -68,7 +68,7 @@ class ListDataAgentsResponse extends \Google\Protobuf\Internal\Message
      * The list of DataAgent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.DataAgent data_agents = 1;</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\DataAgent[] $var
      * @return $this
      */
     public function setDataAgents($var)
@@ -109,7 +109,7 @@ class ListDataAgentsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListDataAgentsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

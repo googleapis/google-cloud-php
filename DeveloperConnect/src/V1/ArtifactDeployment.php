@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ArtifactDeployment resource represents the deployment of the artifact
@@ -77,7 +77,7 @@ class ArtifactDeployment extends \Google\Protobuf\Internal\Message
      *     @type string $artifact_alias
      *           Output only. The artifact alias in the deployment spec, with Tag/SHA.
      *           e.g. us-docker.pkg.dev/my-project/my-repo/image:1.0.0
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_commit_uris
+     *     @type string[] $source_commit_uris
      *           Output only. The source commits at which this artifact was built. Extracted
      *           from provenance.
      *     @type \Google\Protobuf\Timestamp $deploy_time
@@ -181,7 +181,7 @@ class ArtifactDeployment extends \Google\Protobuf\Internal\Message
      * from provenance.
      *
      * Generated from protobuf field <code>repeated string source_commit_uris = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceCommitUris()
     {
@@ -193,7 +193,7 @@ class ArtifactDeployment extends \Google\Protobuf\Internal\Message
      * from provenance.
      *
      * Generated from protobuf field <code>repeated string source_commit_uris = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceCommitUris($var)

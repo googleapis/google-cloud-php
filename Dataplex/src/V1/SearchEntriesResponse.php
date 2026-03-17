@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.dataplex.v1.SearchEntriesResponse</code>
@@ -47,7 +47,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\SearchEntriesResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Dataplex\V1\SearchEntriesResult[] $results
      *           The results matching the search query.
      *     @type int $total_size
      *           The estimated total number of matching entries. This number isn't
@@ -55,7 +55,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that the service couldn't reach. Search results don't include
      *           data from these locations.
      * }
@@ -69,7 +69,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      * The results matching the search query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.SearchEntriesResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\SearchEntriesResult>
      */
     public function getResults()
     {
@@ -80,7 +80,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      * The results matching the search query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.SearchEntriesResult results = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\SearchEntriesResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\SearchEntriesResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -152,7 +152,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      * data from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -164,7 +164,7 @@ class SearchEntriesResponse extends \Google\Protobuf\Internal\Message
      * data from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

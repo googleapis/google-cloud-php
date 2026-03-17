@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of Cloud Storage buckets.
@@ -26,7 +26,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets\CloudStorageBucket>|\Google\Protobuf\Internal\RepeatedField $cloud_storage_buckets
+     *     @type \Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets\CloudStorageBucket[] $cloud_storage_buckets
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets.CloudStorageBucket cloud_storage_buckets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets\CloudStorageBucket>
      */
     public function getCloudStorageBuckets()
     {
@@ -45,7 +45,7 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.storageinsights.v1.DatasetConfig.CloudStorageBuckets.CloudStorageBucket cloud_storage_buckets = 1;</code>
-     * @param array<\Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets\CloudStorageBucket>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\StorageInsights\V1\DatasetConfig\CloudStorageBuckets\CloudStorageBucket[] $var
      * @return $this
      */
     public function setCloudStorageBuckets($var)
@@ -57,5 +57,4 @@ class CloudStorageBuckets extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

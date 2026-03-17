@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzeOrgPolicyGovernedAssetsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The IAM policies governed by the organization policies of the
@@ -89,7 +89,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      *           The project that this IAM policy belongs to, in the format of
      *           projects/{PROJECT_NUMBER}. This field is available when the IAM policy
      *           belongs to a project.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type string[] $folders
      *           The folder(s) that this IAM policy belongs to, in the format of
      *           folders/{FOLDER_NUMBER}. This field is available when the IAM policy
      *           belongs (directly or cascadingly) to one or more folders.
@@ -220,7 +220,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFolders()
     {
@@ -233,7 +233,7 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
      * belongs (directly or cascadingly) to one or more folders.
      *
      * Generated from protobuf field <code>repeated string folders = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFolders($var)
@@ -313,5 +313,4 @@ class GovernedIamPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

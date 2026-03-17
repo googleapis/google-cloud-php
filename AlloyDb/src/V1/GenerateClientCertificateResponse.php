@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message returned by a GenerateClientCertificate operation.
@@ -35,7 +35,7 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
+     *     @type string[] $pem_certificate_chain
      *           Output only. The pem-encoded chain that may be used to verify the X.509
      *           certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *     @type string $ca_cert
@@ -52,7 +52,7 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPemCertificateChain()
     {
@@ -64,7 +64,7 @@ class GenerateClientCertificateResponse extends \Google\Protobuf\Internal\Messag
      * certificate. Expected to be in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPemCertificateChain($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * BackupConfigDetails has information about how the resource is configured
@@ -120,7 +120,7 @@ class BackupConfigDetails extends \Google\Protobuf\Internal\Message
      *           of the backup vault that will store the backups generated through this
      *           backup configuration. Example:
      *           "//backupdr.googleapis.com/v1/projects/{project}/locations/{region}/backupVaults/{backupvaultId}"
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupLocation>|\Google\Protobuf\Internal\RepeatedField $backup_locations
+     *     @type \Google\Cloud\BackupDR\V1\BackupLocation[] $backup_locations
      *           The locations where the backups are to be stored.
      *     @type \Google\Cloud\BackupDR\V1\BackupDrPlanConfig $backup_dr_plan_config
      *           Google Cloud Backup and DR's Backup Plan specific data.
@@ -391,7 +391,7 @@ class BackupConfigDetails extends \Google\Protobuf\Internal\Message
      * The locations where the backups are to be stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLocation backup_locations = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupLocation>
      */
     public function getBackupLocations()
     {
@@ -402,7 +402,7 @@ class BackupConfigDetails extends \Google\Protobuf\Internal\Message
      * The locations where the backups are to be stored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLocation backup_locations = 12;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupLocation[] $var
      * @return $this
      */
     public function setBackupLocations($var)

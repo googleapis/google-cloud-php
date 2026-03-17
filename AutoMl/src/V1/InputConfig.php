@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input configuration for
@@ -382,7 +382,7 @@ use Google\Protobuf\Internal\GPBUtil;
  *     2 may be similar whereas the difference between 2 and 3 may be
  *     large.
  * Sample rows:
- *     TRAIN,"&#64;freewrytin this is way too good for your product",2
+ *     TRAIN,"\@freewrytin this is way too good for your product",2
  *     gs://folder/content.txt,3
  *     TEST,gs://folder/document.pdf
  *     VALIDATE,gs://folder/text_files.zip,2

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A query for retrieving data.
@@ -55,7 +55,7 @@ class DataQuery extends \Google\Protobuf\Internal\Message
      *           later steps.
      *           * Example: "total_sales_by_product"
      *           * Example: "sales_for_product_12345"
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>|\Google\Protobuf\Internal\RepeatedField $datasources
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Datasource[] $datasources
      *           Optional. The datasources available to answer the question.
      * }
      */
@@ -159,7 +159,7 @@ class DataQuery extends \Google\Protobuf\Internal\Message
      * Optional. The datasources available to answer the question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Datasource datasources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>
      */
     public function getDatasources()
     {
@@ -170,7 +170,7 @@ class DataQuery extends \Google\Protobuf\Internal\Message
      * Optional. The datasources available to answer the question.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Datasource datasources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Datasource[] $var
      * @return $this
      */
     public function setDatasources($var)

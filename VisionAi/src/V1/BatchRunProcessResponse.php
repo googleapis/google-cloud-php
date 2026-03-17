@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for running the processes in a batch.
@@ -36,7 +36,7 @@ class BatchRunProcessResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $batch_id
      *           The batch ID.
-     *     @type array<\Google\Cloud\VisionAI\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
+     *     @type \Google\Cloud\VisionAI\V1\Process[] $processes
      *           Processes created.
      * }
      */
@@ -75,7 +75,7 @@ class BatchRunProcessResponse extends \Google\Protobuf\Internal\Message
      * Processes created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Process processes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Process>
      */
     public function getProcesses()
     {
@@ -86,7 +86,7 @@ class BatchRunProcessResponse extends \Google\Protobuf\Internal\Message
      * Processes created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Process processes = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Process>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Process[] $var
      * @return $this
      */
     public function setProcesses($var)

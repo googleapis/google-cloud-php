@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message representing references to Looker explores.
@@ -38,7 +38,7 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference>|\Google\Protobuf\Internal\RepeatedField $explore_references
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference[] $explore_references
      *           Required. References to Looker explores.
      *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Credentials $credentials
      *           Optional. The credentials to use when calling the Looker API.
@@ -57,7 +57,7 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      * Required. References to Looker explores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerExploreReference explore_references = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference>
      */
     public function getExploreReferences()
     {
@@ -68,7 +68,7 @@ class LookerExploreReferences extends \Google\Protobuf\Internal\Message
      * Required. References to Looker explores.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.LookerExploreReference explore_references = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\LookerExploreReference[] $var
      * @return $this
      */
     public function setExploreReferences($var)

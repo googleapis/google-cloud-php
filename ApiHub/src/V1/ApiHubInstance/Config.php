@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\ApiHubInstance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Available configurations to provision an ApiHub Instance.
@@ -198,5 +198,4 @@ class Config extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

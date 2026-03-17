@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list packages.
@@ -47,8 +47,8 @@ class ListPackagesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;package"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;pack*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*package"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*pack*"`
      *  To filter the results of your request to packages with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request":
@@ -116,8 +116,8 @@ class ListPackagesRequest extends \Google\Protobuf\Internal\Message
      *            You can also use wildcards to match any number of characters before or
      *            after the value:
      *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;package"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;pack*"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*package"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*pack*"`
      *            To filter the results of your request to packages with the annotation
      *            key-value pair [`external_link`: `external_link_value`], append the
      *            following filter expression to your request":
@@ -235,8 +235,8 @@ class ListPackagesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;package"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;pack*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*package"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*pack*"`
      *  To filter the results of your request to packages with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request":
@@ -276,8 +276,8 @@ class ListPackagesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;package"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/&#42;pack*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*package"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/*pack*"`
      *  To filter the results of your request to packages with the annotation
      *  key-value pair [`external_link`: `external_link_value`], append the
      *  following filter expression to your request":

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For display only. Metadata associated with a VPC firewall rule, an implied
@@ -126,10 +126,10 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *     @type string $network_uri
      *           The URI of the VPC network that the firewall rule is associated with.
      *           This field is not applicable to hierarchical firewall policy rules.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_tags
+     *     @type string[] $target_tags
      *           The target tags defined by the VPC firewall rule. This field is not
      *           applicable to firewall policy rules.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
+     *     @type string[] $target_service_accounts
      *           The target service accounts specified by the firewall rule.
      *     @type string $policy
      *           The name of the firewall policy that this rule is associated with.
@@ -321,7 +321,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * applicable to firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetTags()
     {
@@ -333,7 +333,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * applicable to firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetTags($var)
@@ -348,7 +348,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The target service accounts specified by the firewall rule.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetServiceAccounts()
     {
@@ -359,7 +359,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The target service accounts specified by the firewall rule.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetServiceAccounts($var)

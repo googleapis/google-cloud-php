@@ -22,88 +22,7 @@ class Transfer
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Storagetransfer\V1\TransferTypes::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-Ê"
-(google/storagetransfer/v1/transfer.protogoogle.storagetransfer.v1google/api/client.protogoogle/api/field_behavior.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto.google/storagetransfer/v1/transfer_types.proto"9
-GetGoogleServiceAccountRequest
-
-project_id (	B‡A"]
-CreateTransferJobRequestA
-transfer_job (2&.google.storagetransfer.v1.TransferJobB‡A"—
-UpdateTransferJobRequest
-job_name (	B‡A
-
-project_id (	B‡AA
-transfer_job (2&.google.storagetransfer.v1.TransferJobB‡AB
-update_transfer_job_field_mask (2.google.protobuf.FieldMask"G
-GetTransferJobRequest
-job_name (	B‡A
-
-project_id (	B‡A"J
-DeleteTransferJobRequest
-job_name (	B‡A
-
-project_id (	B‡A"U
-ListTransferJobsRequest
-filter (	B‡A
-	page_size (
-
-page_token (	"r
-ListTransferJobsResponse=
-transfer_jobs (2&.google.storagetransfer.v1.TransferJob
-next_page_token (	"2
-PauseTransferOperationRequest
-name (	B‡A"3
-ResumeTransferOperationRequest
-name (	B‡A"G
-RunTransferJobRequest
-job_name (	B‡A
-
-project_id (	B‡A"å
-CreateAgentPoolRequest
-
-project_id (	B‡A=
-
-agent_pool (2$.google.storagetransfer.v1.AgentPoolB‡A
-agent_pool_id (	B‡A"à
-UpdateAgentPoolRequest=
-
-agent_pool (2$.google.storagetransfer.v1.AgentPoolB‡A/
-update_mask (2.google.protobuf.FieldMask"(
-GetAgentPoolRequest
-name (	B‡A"+
-DeleteAgentPoolRequest
-name (	B‡A"g
-ListAgentPoolsRequest
-
-project_id (	B‡A
-filter (	
-	page_size (
-
-page_token (	"l
-ListAgentPoolsResponse9
-agent_pools (2$.google.storagetransfer.v1.AgentPool
-next_page_token (	2ë
-StorageTransferServiceµ
-GetGoogleServiceAccount9.google.storagetransfer.v1.GetGoogleServiceAccountRequest/.google.storagetransfer.v1.GoogleServiceAccount".Ç”‰ì(&/v1/googleServiceAccounts/{project_id}ò
-CreateTransferJob3.google.storagetransfer.v1.CreateTransferJobRequest&.google.storagetransfer.v1.TransferJob"&Ç”‰ì "/v1/transferJobs:transfer_jobõ
-UpdateTransferJob3.google.storagetransfer.v1.UpdateTransferJobRequest&.google.storagetransfer.v1.TransferJob")Ç”‰ì#2/v1/{job_name=transferJobs/**}:*í
-GetTransferJob0.google.storagetransfer.v1.GetTransferJobRequest&.google.storagetransfer.v1.TransferJob"&Ç”‰ì /v1/{job_name=transferJobs/**}ï
-ListTransferJobs2.google.storagetransfer.v1.ListTransferJobsRequest3.google.storagetransfer.v1.ListTransferJobsResponse"Ç”‰ì/v1/transferJobsù
-PauseTransferOperation8.google.storagetransfer.v1.PauseTransferOperationRequest.google.protobuf.Empty"1Ç”‰ì+"&/v1/{name=transferOperations/**}:pause:*†
-ResumeTransferOperation9.google.storagetransfer.v1.ResumeTransferOperationRequest.google.protobuf.Empty"2Ç”‰ì,"\'/v1/{name=transferOperations/**}:resume:*Ω
-RunTransferJob0.google.storagetransfer.v1.RunTransferJobRequest.google.longrunning.Operation"Z A*
-google.protobuf.EmptyTransferOperationÇ”‰ì\'""/v1/{job_name=transferJobs/**}:run:*à
-DeleteTransferJob3.google.storagetransfer.v1.DeleteTransferJobRequest.google.protobuf.Empty"&Ç”‰ì */v1/{job_name=transferJobs/**}Ã
-CreateAgentPool1.google.storagetransfer.v1.CreateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"`⁄A#project_id,agent_pool,agent_pool_idÇ”‰ì4"&/v1/projects/{project_id=*}/agentPools:
-agent_pool∆
-UpdateAgentPool1.google.storagetransfer.v1.UpdateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"Z⁄Aagent_pool,update_maskÇ”‰ì;2-/v1/{agent_pool.name=projects/*/agentPools/*}:
-agent_pooló
-GetAgentPool..google.storagetransfer.v1.GetAgentPoolRequest$.google.storagetransfer.v1.AgentPool"1⁄AnameÇ”‰ì$"/v1/{name=projects/*/agentPools/*}≤
-ListAgentPools0.google.storagetransfer.v1.ListAgentPoolsRequest1.google.storagetransfer.v1.ListAgentPoolsResponse";⁄A
-project_idÇ”‰ì(&/v1/projects/{project_id=*}/agentPoolsè
-DeleteAgentPool1.google.storagetransfer.v1.DeleteAgentPoolRequest.google.protobuf.Empty"1⁄AnameÇ”‰ì$*"/v1/{name=projects/*/agentPools/*}R Astoragetransfer.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÏ
-#com.google.storagetransfer.v1.protoBTransferProtoZMcloud.google.com/go/storagetransfer/apiv1/storagetransferpb;storagetransferpb™Google.Cloud.StorageTransfer.V1 Google\\Cloud\\StorageTransfer\\V1Í"Google::Cloud::StorageTransfer::V1bproto3'
+            "\x0A\xE6\"\x0A(google/storagetransfer/v1/transfer.proto\x12\x19google.storagetransfer.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A#google/longrunning/operations.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\x1A.google/storagetransfer/v1/transfer_types.proto\"9\x0A\x1EGetGoogleServiceAccountRequest\x12\x17\x0A\x0Aproject_id\x18\x01 \x01(\x09B\x03\xE0A\x02\"]\x0A\x18CreateTransferJobRequest\x12A\x0A\x0Ctransfer_job\x18\x01 \x01(\x0B2&.google.storagetransfer.v1.TransferJobB\x03\xE0A\x02\"\xD1\x01\x0A\x18UpdateTransferJobRequest\x12\x15\x0A\x08job_name\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x17\x0A\x0Aproject_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12A\x0A\x0Ctransfer_job\x18\x03 \x01(\x0B2&.google.storagetransfer.v1.TransferJobB\x03\xE0A\x02\x12B\x0A\x1Eupdate_transfer_job_field_mask\x18\x04 \x01(\x0B2\x1A.google.protobuf.FieldMask\"G\x0A\x15GetTransferJobRequest\x12\x15\x0A\x08job_name\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x17\x0A\x0Aproject_id\x18\x02 \x01(\x09B\x03\xE0A\x02\"J\x0A\x18DeleteTransferJobRequest\x12\x15\x0A\x08job_name\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x17\x0A\x0Aproject_id\x18\x02 \x01(\x09B\x03\xE0A\x02\"U\x0A\x17ListTransferJobsRequest\x12\x13\x0A\x06filter\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x11\x0A\x09page_size\x18\x04 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x05 \x01(\x09\"r\x0A\x18ListTransferJobsResponse\x12=\x0A\x0Dtransfer_jobs\x18\x01 \x03(\x0B2&.google.storagetransfer.v1.TransferJob\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"2\x0A\x1DPauseTransferOperationRequest\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x02\"3\x0A\x1EResumeTransferOperationRequest\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x02\"G\x0A\x15RunTransferJobRequest\x12\x15\x0A\x08job_name\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x17\x0A\x0Aproject_id\x18\x02 \x01(\x09B\x03\xE0A\x02\"\x8C\x01\x0A\x16CreateAgentPoolRequest\x12\x17\x0A\x0Aproject_id\x18\x01 \x01(\x09B\x03\xE0A\x02\x12=\x0A\x0Aagent_pool\x18\x02 \x01(\x0B2\$.google.storagetransfer.v1.AgentPoolB\x03\xE0A\x02\x12\x1A\x0A\x0Dagent_pool_id\x18\x03 \x01(\x09B\x03\xE0A\x02\"\x88\x01\x0A\x16UpdateAgentPoolRequest\x12=\x0A\x0Aagent_pool\x18\x01 \x01(\x0B2\$.google.storagetransfer.v1.AgentPoolB\x03\xE0A\x02\x12/\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMask\"(\x0A\x13GetAgentPoolRequest\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x02\"+\x0A\x16DeleteAgentPoolRequest\x12\x11\x0A\x04name\x18\x01 \x01(\x09B\x03\xE0A\x02\"g\x0A\x15ListAgentPoolsRequest\x12\x17\x0A\x0Aproject_id\x18\x01 \x01(\x09B\x03\xE0A\x02\x12\x0E\x0A\x06filter\x18\x02 \x01(\x09\x12\x11\x0A\x09page_size\x18\x03 \x01(\x05\x12\x12\x0A\x0Apage_token\x18\x04 \x01(\x09\"l\x0A\x16ListAgentPoolsResponse\x129\x0A\x0Bagent_pools\x18\x01 \x03(\x0B2\$.google.storagetransfer.v1.AgentPool\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x092\x91\x13\x0A\x16StorageTransferService\x12\xB5\x01\x0A\x17GetGoogleServiceAccount\x129.google.storagetransfer.v1.GetGoogleServiceAccountRequest\x1A/.google.storagetransfer.v1.GoogleServiceAccount\".\x82\xD3\xE4\x93\x02(\x12&/v1/googleServiceAccounts/{project_id}\x12\x98\x01\x0A\x11CreateTransferJob\x123.google.storagetransfer.v1.CreateTransferJobRequest\x1A&.google.storagetransfer.v1.TransferJob\"&\x82\xD3\xE4\x93\x02 \"\x10/v1/transferJobs:\x0Ctransfer_job\x12\x9B\x01\x0A\x11UpdateTransferJob\x123.google.storagetransfer.v1.UpdateTransferJobRequest\x1A&.google.storagetransfer.v1.TransferJob\")\x82\xD3\xE4\x93\x02#2\x1E/v1/{job_name=transferJobs/**}:\x01*\x12\x92\x01\x0A\x0EGetTransferJob\x120.google.storagetransfer.v1.GetTransferJobRequest\x1A&.google.storagetransfer.v1.TransferJob\"&\x82\xD3\xE4\x93\x02 \x12\x1E/v1/{job_name=transferJobs/**}\x12\x95\x01\x0A\x10ListTransferJobs\x122.google.storagetransfer.v1.ListTransferJobsRequest\x1A3.google.storagetransfer.v1.ListTransferJobsResponse\"\x18\x82\xD3\xE4\x93\x02\x12\x12\x10/v1/transferJobs\x12\x9D\x01\x0A\x16PauseTransferOperation\x128.google.storagetransfer.v1.PauseTransferOperationRequest\x1A\x16.google.protobuf.Empty\"1\x82\xD3\xE4\x93\x02+\"&/v1/{name=transferOperations/**}:pause:\x01*\x12\xA0\x01\x0A\x17ResumeTransferOperation\x129.google.storagetransfer.v1.ResumeTransferOperationRequest\x1A\x16.google.protobuf.Empty\"2\x82\xD3\xE4\x93\x02,\"'/v1/{name=transferOperations/**}:resume:\x01*\x12\xBD\x01\x0A\x0ERunTransferJob\x120.google.storagetransfer.v1.RunTransferJobRequest\x1A\x1D.google.longrunning.Operation\"Z\xCAA*\x0A\x15google.protobuf.Empty\x12\x11TransferOperation\x82\xD3\xE4\x93\x02'\"\"/v1/{job_name=transferJobs/**}:run:\x01*\x12\x88\x01\x0A\x11DeleteTransferJob\x123.google.storagetransfer.v1.DeleteTransferJobRequest\x1A\x16.google.protobuf.Empty\"&\x82\xD3\xE4\x93\x02 *\x1E/v1/{job_name=transferJobs/**}\x12\xCC\x01\x0A\x0FCreateAgentPool\x121.google.storagetransfer.v1.CreateAgentPoolRequest\x1A\$.google.storagetransfer.v1.AgentPool\"`\xDAA#project_id,agent_pool,agent_pool_id\x82\xD3\xE4\x93\x024\"&/v1/projects/{project_id=*}/agentPools:\x0Aagent_pool\x12\xC6\x01\x0A\x0FUpdateAgentPool\x121.google.storagetransfer.v1.UpdateAgentPoolRequest\x1A\$.google.storagetransfer.v1.AgentPool\"Z\xDAA\x16agent_pool,update_mask\x82\xD3\xE4\x93\x02;2-/v1/{agent_pool.name=projects/*/agentPools/*}:\x0Aagent_pool\x12\x97\x01\x0A\x0CGetAgentPool\x12..google.storagetransfer.v1.GetAgentPoolRequest\x1A\$.google.storagetransfer.v1.AgentPool\"1\xDAA\x04name\x82\xD3\xE4\x93\x02\$\x12\"/v1/{name=projects/*/agentPools/*}\x12\xB2\x01\x0A\x0EListAgentPools\x120.google.storagetransfer.v1.ListAgentPoolsRequest\x1A1.google.storagetransfer.v1.ListAgentPoolsResponse\";\xDAA\x0Aproject_id\x82\xD3\xE4\x93\x02(\x12&/v1/projects/{project_id=*}/agentPools\x12\x8F\x01\x0A\x0FDeleteAgentPool\x121.google.storagetransfer.v1.DeleteAgentPoolRequest\x1A\x16.google.protobuf.Empty\"1\xDAA\x04name\x82\xD3\xE4\x93\x02\$*\"/v1/{name=projects/*/agentPools/*}\x1AR\xCAA\x1Estoragetransfer.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\xEC\x01\x0A#com.google.storagetransfer.v1.protoB\x0DTransferProtoZMcloud.google.com/go/storagetransfer/apiv1/storagetransferpb;storagetransferpb\xAA\x02\x1FGoogle.Cloud.StorageTransfer.V1\xCA\x02\x1FGoogle\\Cloud\\StorageTransfer\\V1\xEA\x02\"Google::Cloud::StorageTransfer::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

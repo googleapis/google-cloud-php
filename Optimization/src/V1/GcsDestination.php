@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Google Cloud Storage location where the output file will be written to.

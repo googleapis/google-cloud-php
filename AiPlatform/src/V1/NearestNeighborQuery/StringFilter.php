@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * String filter is used to search a subset of the entities by using boolean
@@ -49,9 +49,9 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Column names in BigQuery that used as filters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow_tokens
+     *     @type string[] $allow_tokens
      *           Optional. The allowed tokens.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deny_tokens
+     *     @type string[] $deny_tokens
      *           Optional. The denied tokens.
      * }
      */
@@ -90,7 +90,7 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      * Optional. The allowed tokens.
      *
      * Generated from protobuf field <code>repeated string allow_tokens = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowTokens()
     {
@@ -101,7 +101,7 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      * Optional. The allowed tokens.
      *
      * Generated from protobuf field <code>repeated string allow_tokens = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowTokens($var)
@@ -116,7 +116,7 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      * Optional. The denied tokens.
      *
      * Generated from protobuf field <code>repeated string deny_tokens = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDenyTokens()
     {
@@ -127,7 +127,7 @@ class StringFilter extends \Google\Protobuf\Internal\Message
      * Optional. The denied tokens.
      *
      * Generated from protobuf field <code>repeated string deny_tokens = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDenyTokens($var)
@@ -139,5 +139,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

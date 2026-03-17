@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structured PreCheckResponse containing message, type, and required
@@ -46,7 +46,7 @@ class PreCheckResponse extends \Google\Protobuf\Internal\Message
      *           The message to be displayed to the user.
      *     @type int $message_type
      *           The type of message whether it is an info, warning, or error.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $actions_required
+     *     @type string[] $actions_required
      *           The actions that the user needs to take. Use repeated for multiple
      *           actions.
      * }
@@ -133,7 +133,7 @@ class PreCheckResponse extends \Google\Protobuf\Internal\Message
      * actions.
      *
      * Generated from protobuf field <code>repeated string actions_required = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getActionsRequired()
     {
@@ -145,7 +145,7 @@ class PreCheckResponse extends \Google\Protobuf\Internal\Message
      * actions.
      *
      * Generated from protobuf field <code>repeated string actions_required = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setActionsRequired($var)

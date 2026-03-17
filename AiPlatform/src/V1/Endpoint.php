@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Models are deployed into it, and afterwards Endpoint is called to obtain
@@ -218,7 +218,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type string $description
      *           The description of the Endpoint.
-     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $deployed_models
+     *     @type \Google\Cloud\AIPlatform\V1\DeployedModel[] $deployed_models
      *           Output only. The models deployed in this Endpoint.
      *           To add or remove DeployedModels use
      *           [EndpointService.DeployModel][google.cloud.aiplatform.v1.EndpointService.DeployModel]
@@ -406,7 +406,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DeployedModel>
      */
     public function getDeployedModels()
     {
@@ -422,7 +422,7 @@ class Endpoint extends \Google\Protobuf\Internal\Message
      * respectively.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModel deployed_models = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DeployedModel[] $var
      * @return $this
      */
     public function setDeployedModels($var)

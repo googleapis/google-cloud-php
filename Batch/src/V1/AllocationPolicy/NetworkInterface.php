@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A network interface.
@@ -196,5 +196,4 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

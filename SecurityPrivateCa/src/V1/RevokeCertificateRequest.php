@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -74,7 +74,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The resource name for this
      *           [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     *           `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *     @type int $reason
      *           Required. The
      *           [RevocationReason][google.cloud.security.privateca.v1.RevocationReason] for
@@ -101,7 +101,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -114,7 +114,7 @@ class RevokeCertificateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for this
      * [Certificate][google.cloud.security.privateca.v1.Certificate] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificates/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/{@*}certificates/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for the given [google.longrunning.Operation][google.longrunning.Operation].
@@ -18,28 +18,28 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * API method that initiated this operation. Example:
      * `google.appengine.v1.Versions.CreateVersion`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string method = 1;</code>
      */
     protected $method = '';
     /**
      * Time that this operation was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 2;</code>
      */
     protected $insert_time = null;
     /**
      * Time that this operation completed.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      */
     protected $end_time = null;
     /**
      * User who requested this operation.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string user = 4;</code>
      */
@@ -47,21 +47,21 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that this operation is acting on. Example:
      * `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string target = 5;</code>
      */
     protected $target = '';
     /**
      * Ephemeral message that may change every time the operation is polled.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string ephemeral_message = 6;</code>
      */
     protected $ephemeral_message = '';
     /**
      * Durable messages that persist on every operation poll.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated string warning = 7;</code>
      */
@@ -77,26 +77,26 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      *     @type string $method
      *           API method that initiated this operation. Example:
      *           `google.appengine.v1.Versions.CreateVersion`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Protobuf\Timestamp $insert_time
      *           Time that this operation was created.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Protobuf\Timestamp $end_time
      *           Time that this operation completed.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $user
      *           User who requested this operation.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $target
      *           Name of the resource that this operation is acting on. Example:
      *           `apps/myapp/services/default`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $ephemeral_message
      *           Ephemeral message that may change every time the operation is polled.
-     *           &#64;OutputOnly
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warning
+     *           \@OutputOnly
+     *     @type string[] $warning
      *           Durable messages that persist on every operation poll.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Cloud\AppEngine\V1\CreateVersionMetadataV1 $create_version_metadata
      * }
      */
@@ -108,7 +108,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * API method that initiated this operation. Example:
      * `google.appengine.v1.Versions.CreateVersion`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string method = 1;</code>
      * @return string
@@ -121,7 +121,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * API method that initiated this operation. Example:
      * `google.appengine.v1.Versions.CreateVersion`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string method = 1;</code>
      * @param string $var
@@ -137,7 +137,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this operation was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -159,7 +159,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this operation was created.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -175,7 +175,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this operation completed.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -197,7 +197,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Time that this operation completed.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -213,7 +213,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * User who requested this operation.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string user = 4;</code>
      * @return string
@@ -225,7 +225,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * User who requested this operation.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string user = 4;</code>
      * @param string $var
@@ -242,7 +242,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that this operation is acting on. Example:
      * `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string target = 5;</code>
      * @return string
@@ -255,7 +255,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource that this operation is acting on. Example:
      * `apps/myapp/services/default`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string target = 5;</code>
      * @param string $var
@@ -271,7 +271,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Ephemeral message that may change every time the operation is polled.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string ephemeral_message = 6;</code>
      * @return string
@@ -283,7 +283,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Ephemeral message that may change every time the operation is polled.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string ephemeral_message = 6;</code>
      * @param string $var
@@ -299,10 +299,10 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Durable messages that persist on every operation poll.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated string warning = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWarning()
     {
@@ -311,10 +311,10 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
 
     /**
      * Durable messages that persist on every operation poll.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>repeated string warning = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWarning($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -52,7 +52,7 @@ class Errors extends \Google\Protobuf\Internal\Message
      *
      *     @type string $code
      *           [Output Only] The error type identifier for this error.
-     *     @type array<\Google\Cloud\Compute\V1\ErrorDetails>|\Google\Protobuf\Internal\RepeatedField $error_details
+     *     @type \Google\Cloud\Compute\V1\ErrorDetails[] $error_details
      *           [Output Only] An optional list of messages that contain the error
      *           details. There is a set of defined message types to use for providing
      *           details.The syntax depends on the error code. For example,
@@ -114,7 +114,7 @@ class Errors extends \Google\Protobuf\Internal\Message
      * QUOTA_EXCEEDED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ErrorDetails error_details = 274653963;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ErrorDetails>
      */
     public function getErrorDetails()
     {
@@ -129,7 +129,7 @@ class Errors extends \Google\Protobuf\Internal\Message
      * QUOTA_EXCEEDED.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ErrorDetails error_details = 274653963;</code>
-     * @param array<\Google\Cloud\Compute\V1\ErrorDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ErrorDetails[] $var
      * @return $this
      */
     public function setErrorDetails($var)

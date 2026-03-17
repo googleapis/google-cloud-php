@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceUsage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `BatchEnableServices` method.
@@ -49,7 +49,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      *           An example name would be:
      *           `projects/123` where `123` is the project number.
      *           The `BatchEnableServices` method currently only supports projects.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_ids
+     *     @type string[] $service_ids
      *           The identifiers of the services to enable on the project.
      *           A valid identifier would be:
      *           serviceusage.googleapis.com
@@ -108,7 +108,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      * will occur.
      *
      * Generated from protobuf field <code>repeated string service_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceIds()
     {
@@ -126,7 +126,7 @@ class BatchEnableServicesRequest extends \Google\Protobuf\Internal\Message
      * will occur.
      *
      * Generated from protobuf field <code>repeated string service_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceIds($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Static HTTP response object to be returned.
@@ -146,5 +146,4 @@ class HttpDirectResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

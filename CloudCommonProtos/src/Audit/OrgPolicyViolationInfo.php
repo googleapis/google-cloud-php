@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents OrgPolicy Violation information.
@@ -68,7 +68,7 @@ class OrgPolicyViolationInfo extends \Google\Protobuf\Internal\Message
      *           Optional field as of now. These tags are the Cloud tags that are
      *           available on the resource during the policy evaluation and will
      *           be available as part of the OrgPolicy check response for logging purposes.
-     *     @type array<\Google\Cloud\Audit\ViolationInfo>|\Google\Protobuf\Internal\RepeatedField $violation_info
+     *     @type \Google\Cloud\Audit\ViolationInfo[] $violation_info
      *           Optional. Policy violations
      * }
      */
@@ -185,7 +185,7 @@ class OrgPolicyViolationInfo extends \Google\Protobuf\Internal\Message
      * Optional. Policy violations
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.ViolationInfo violation_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\ViolationInfo>
      */
     public function getViolationInfo()
     {
@@ -196,7 +196,7 @@ class OrgPolicyViolationInfo extends \Google\Protobuf\Internal\Message
      * Optional. Policy violations
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.ViolationInfo violation_info = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Audit\ViolationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\ViolationInfo[] $var
      * @return $this
      */
     public function setViolationInfo($var)

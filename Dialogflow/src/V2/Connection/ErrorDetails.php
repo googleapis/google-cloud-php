@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Connection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The error details of Sip Trunk connection authentication.
@@ -118,5 +118,4 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

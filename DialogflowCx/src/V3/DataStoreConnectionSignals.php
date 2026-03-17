@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Data store connection feature output signals.
@@ -86,17 +86,17 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      *           Optional. Diagnostic info related to the rewriter model call.
      *     @type string $rewritten_query
      *           Optional. Rewritten string query used for search.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\SearchSnippet>|\Google\Protobuf\Internal\RepeatedField $search_snippets
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\SearchSnippet[] $search_snippets
      *           Optional. Search snippets included in the answer generation prompt.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerGenerationModelCallSignals $answer_generation_model_call_signals
      *           Optional. Diagnostic info related to the answer generation model call.
      *     @type string $answer
      *           Optional. The final compiled answer.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerPart>|\Google\Protobuf\Internal\RepeatedField $answer_parts
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerPart[] $answer_parts
      *           Optional. Answer parts with relevant citations.
      *           Concatenation of texts should add up the `answer` (not counting
      *           whitespaces).
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\CitedSnippet>|\Google\Protobuf\Internal\RepeatedField $cited_snippets
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\CitedSnippet[] $cited_snippets
      *           Optional. Snippets cited by the answer generation model from the most to
      *           least relevant.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\GroundingSignals $grounding_signals
@@ -176,7 +176,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * Optional. Search snippets included in the answer generation prompt.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.SearchSnippet search_snippets = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\SearchSnippet>
      */
     public function getSearchSnippets()
     {
@@ -187,7 +187,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * Optional. Search snippets included in the answer generation prompt.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.SearchSnippet search_snippets = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\SearchSnippet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\SearchSnippet[] $var
      * @return $this
      */
     public function setSearchSnippets($var)
@@ -266,7 +266,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * whitespaces).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.AnswerPart answer_parts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerPart>
      */
     public function getAnswerParts()
     {
@@ -279,7 +279,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * whitespaces).
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.AnswerPart answer_parts = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerPart>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\AnswerPart[] $var
      * @return $this
      */
     public function setAnswerParts($var)
@@ -295,7 +295,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * least relevant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.CitedSnippet cited_snippets = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\CitedSnippet>
      */
     public function getCitedSnippets()
     {
@@ -307,7 +307,7 @@ class DataStoreConnectionSignals extends \Google\Protobuf\Internal\Message
      * least relevant.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals.CitedSnippet cited_snippets = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\CitedSnippet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals\CitedSnippet[] $var
      * @return $this
      */
     public function setCitedSnippets($var)

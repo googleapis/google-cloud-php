@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A
@@ -23,7 +23,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -205,7 +205,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name for this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     *           in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     *           in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *     @type int $type
      *           Required. Immutable. The
      *           [Type][google.cloud.security.privateca.v1.CertificateAuthority.Type] of
@@ -242,7 +242,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *           [State][google.cloud.security.privateca.v1.CertificateAuthority.State] for
      *           this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_ca_certificates
+     *     @type string[] $pem_ca_certificates
      *           Output only. This
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s
      *           certificate chain, including the current
@@ -252,7 +252,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      *           current
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s
      *           certificate.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $ca_certificate_descriptions
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription[] $ca_certificate_descriptions
      *           Output only. A structured description of this
      *           [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]'s
      *           CA certificate and its issuers. Ordered as self-to-root.
@@ -307,7 +307,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -320,7 +320,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name for this
      * [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
-     * in the format `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;&#47;certificateAuthorities/&#42;`.
+     * in the format `projects/{@*}locations/{@*}caPools/{@*}certificateAuthorities/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -612,7 +612,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * certificate.
      *
      * Generated from protobuf field <code>repeated string pem_ca_certificates = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPemCaCertificates()
     {
@@ -631,7 +631,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * certificate.
      *
      * Generated from protobuf field <code>repeated string pem_ca_certificates = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPemCaCertificates($var)
@@ -648,7 +648,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * CA certificate and its issuers. Ordered as self-to-root.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateDescription ca_certificate_descriptions = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\CertificateDescription>
      */
     public function getCaCertificateDescriptions()
     {
@@ -661,7 +661,7 @@ class CertificateAuthority extends \Google\Protobuf\Internal\Message
      * CA certificate and its issuers. Ordered as self-to-root.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateDescription ca_certificate_descriptions = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\CertificateDescription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateDescription[] $var
      * @return $this
      */
     public function setCaCertificateDescriptions($var)

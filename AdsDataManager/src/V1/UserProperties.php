@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Advertiser-assessed information about the user at the time that the event
@@ -48,7 +48,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
      *           Optional. Type of the customer associated with the event.
      *     @type int $customer_value_bucket
      *           Optional. The advertiser-assessed value of the customer.
-     *     @type array<\Google\Ads\DataManager\V1\UserProperty>|\Google\Protobuf\Internal\RepeatedField $additional_user_properties
+     *     @type \Google\Ads\DataManager\V1\UserProperty[] $additional_user_properties
      *           Optional. A bucket of any additional [user
      *           properties](https://developers.google.com/analytics/devguides/collection/protocol/ga4/user-properties)
      *           for the user associated with this event.
@@ -117,7 +117,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
      * for the user associated with this event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserProperty additional_user_properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserProperty>
      */
     public function getAdditionalUserProperties()
     {
@@ -130,7 +130,7 @@ class UserProperties extends \Google\Protobuf\Internal\Message
      * for the user associated with this event.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserProperty additional_user_properties = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Ads\DataManager\V1\UserProperty>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserProperty[] $var
      * @return $this
      */
     public function setAdditionalUserProperties($var)

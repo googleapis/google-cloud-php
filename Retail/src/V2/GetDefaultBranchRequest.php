@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to show which branch is currently the default branch.
@@ -17,7 +17,7 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -45,7 +45,7 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $catalog
      *           The parent catalog resource name, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,7 +55,7 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -67,7 +67,7 @@ class GetDefaultBranchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog`.
+     * `projects/{@*}locations/global/catalogs/default_catalog`.
      *
      * Generated from protobuf field <code>string catalog = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

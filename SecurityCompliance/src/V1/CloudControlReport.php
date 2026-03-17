@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The cloud control report.
@@ -117,15 +117,15 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      *           The display name of the cloud control.
      *     @type string $description
      *           The description of the cloud control.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type string[] $categories
      *           The list of categories for the cloud control.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>|\Google\Protobuf\Internal\RepeatedField $similar_controls
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\SimilarControls[] $similar_controls
      *           The list of similar controls.
      *     @type int $cloud_control_type
      *           The type of the cloud control.
      *     @type string $finding_category
      *           The category of the finding.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\Rule[] $rules
      *           The list of rules that correspond to the cloud control.
      *     @type int $finding_severity
      *           The severity of the finding.
@@ -137,7 +137,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      *           The major revision ID of the cloud control.
      *     @type int|string $minor_revision_id
      *           The minor revision ID of the cloud control.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $framework_major_revision_ids
+     *     @type int[]|string[] $framework_major_revision_ids
      *           The major revision IDs of the frameworks that the cloud control belongs to.
      * }
      */
@@ -290,7 +290,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of categories for the cloud control.
      *
      * Generated from protobuf field <code>repeated string categories = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCategories()
     {
@@ -301,7 +301,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of categories for the cloud control.
      *
      * Generated from protobuf field <code>repeated string categories = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCategories($var)
@@ -316,7 +316,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of similar controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.SimilarControls similar_controls = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>
      */
     public function getSimilarControls()
     {
@@ -327,7 +327,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of similar controls.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.SimilarControls similar_controls = 9;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\SimilarControls>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\SimilarControls[] $var
      * @return $this
      */
     public function setSimilarControls($var)
@@ -394,7 +394,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of rules that correspond to the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Rule rules = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\Rule>
      */
     public function getRules()
     {
@@ -405,7 +405,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The list of rules that correspond to the cloud control.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.Rule rules = 12;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\Rule[] $var
      * @return $this
      */
     public function setRules($var)
@@ -550,7 +550,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The major revision IDs of the frameworks that the cloud control belongs to.
      *
      * Generated from protobuf field <code>repeated int64 framework_major_revision_ids = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getFrameworkMajorRevisionIds()
     {
@@ -561,7 +561,7 @@ class CloudControlReport extends \Google\Protobuf\Internal\Message
      * The major revision IDs of the frameworks that the cloud control belongs to.
      *
      * Generated from protobuf field <code>repeated int64 framework_major_revision_ids = 20;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setFrameworkMajorRevisionIds($var)

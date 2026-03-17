@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A face annotation object contains the results of face detection.
@@ -143,7 +143,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *           "amount of skin" visible in an image. It is not based on the
      *           landmarker results, only on the initial face detection, hence
      *           the <code>fd</code> (face detection) prefix.
-     *     @type array<\Google\Cloud\Vision\V1\FaceAnnotation\Landmark>|\Google\Protobuf\Internal\RepeatedField $landmarks
+     *     @type \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[] $landmarks
      *           Detected face landmarks.
      *     @type float $roll_angle
      *           Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
@@ -279,7 +279,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * Detected face landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\FaceAnnotation\Landmark>
      */
     public function getLandmarks()
     {
@@ -290,7 +290,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * Detected face landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
-     * @param array<\Google\Cloud\Vision\V1\FaceAnnotation\Landmark>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[] $var
      * @return $this
      */
     public function setLandmarks($var)

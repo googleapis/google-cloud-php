@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -116,7 +116,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $product
      *           Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      *           such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      *           If the caller does not have permission to access the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
@@ -137,7 +137,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           INVALID_ARGUMENT error is returned.
      *           This field directly corresponds to
      *           [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *     @type string[] $place_ids
      *           Required. The IDs for this
      *           [type][google.cloud.retail.v2.AddFulfillmentPlacesRequest.type], such as
      *           the store IDs for "pickup-in-store" or the region IDs for
@@ -172,7 +172,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -188,7 +188,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. Full resource name of [Product][google.cloud.retail.v2.Product],
      * such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`.
      * If the caller does not have permission to access the
      * [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      * exists, a PERMISSION_DENIED error is returned.
@@ -277,7 +277,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * adding, then the update will be rejected.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPlaceIds()
     {
@@ -300,7 +300,7 @@ class AddFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * adding, then the update will be rejected.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPlaceIds($var)

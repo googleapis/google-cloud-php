@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional context for troubleshooting conditional role bindings and deny
@@ -62,7 +62,7 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
      *           the last hop.
      *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\Request $request
      *           Represents a network request, such as an HTTP request.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\EffectiveTag>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\EffectiveTag[] $effective_tags
      *           Output only. The effective tags on the resource. The effective tags are
      *           fetched during troubleshooting.
      * }
@@ -193,7 +193,7 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
      * fetched during troubleshooting.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ConditionContext.EffectiveTag effective_tags = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\EffectiveTag>
      */
     public function getEffectiveTags()
     {
@@ -205,7 +205,7 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
      * fetched during troubleshooting.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ConditionContext.EffectiveTag effective_tags = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\EffectiveTag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext\EffectiveTag[] $var
      * @return $this
      */
     public function setEffectiveTags($var)

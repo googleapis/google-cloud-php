@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CompilationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An error encountered when attempting to compile a Dataform project.
@@ -184,5 +184,4 @@ class CompilationError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

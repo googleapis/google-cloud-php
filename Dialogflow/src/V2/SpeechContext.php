@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Hints for the speech recognizer to help with recognition in a specific
@@ -50,7 +50,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type string[] $phrases
      *           Optional. A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
      *           This list can be used to:
@@ -89,7 +89,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * limits.
      *
      * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhrases()
     {
@@ -109,7 +109,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * limits.
      *
      * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhrases($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListCollections.
@@ -35,7 +35,7 @@ class ListCollectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Collection>|\Google\Protobuf\Internal\RepeatedField $collections
+     *     @type \Google\Cloud\VisionAI\V1\Collection[] $collections
      *           The collections from the specified corpus.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListCollectionsResponse extends \Google\Protobuf\Internal\Message
      * The collections from the specified corpus.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Collection collections = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Collection>
      */
     public function getCollections()
     {
@@ -62,7 +62,7 @@ class ListCollectionsResponse extends \Google\Protobuf\Internal\Message
      * The collections from the specified corpus.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Collection collections = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Collection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Collection[] $var
      * @return $this
      */
     public function setCollections($var)

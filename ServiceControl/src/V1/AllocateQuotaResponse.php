@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the AllocateQuota method.
@@ -57,9 +57,9 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *     @type string $operation_id
      *           The same operation_id value used in the AllocateQuotaRequest. Used for
      *           logging and diagnostics purposes.
-     *     @type array<\Google\Cloud\ServiceControl\V1\QuotaError>|\Google\Protobuf\Internal\RepeatedField $allocate_errors
+     *     @type \Google\Cloud\ServiceControl\V1\QuotaError[] $allocate_errors
      *           Indicates the decision of the allocate.
-     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $quota_metrics
+     *     @type \Google\Cloud\ServiceControl\V1\MetricValueSet[] $quota_metrics
      *           Quota metrics to indicate the result of allocation. Depending on the
      *           request, one or more of the following metrics will be included:
      *           1. Per quota group or per quota metric incremental usage will be specified
@@ -109,7 +109,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      * Indicates the decision of the allocate.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.QuotaError allocate_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\QuotaError>
      */
     public function getAllocateErrors()
     {
@@ -120,7 +120,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      * Indicates the decision of the allocate.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.QuotaError allocate_errors = 2;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\QuotaError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\QuotaError[] $var
      * @return $this
      */
     public function setAllocateErrors($var)
@@ -142,7 +142,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *   "serviceruntime.googleapis.com/quota/exceeded"
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet quota_metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceControl\V1\MetricValueSet>
      */
     public function getQuotaMetrics()
     {
@@ -160,7 +160,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *   "serviceruntime.googleapis.com/quota/exceeded"
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet quota_metrics = 3;</code>
-     * @param array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceControl\V1\MetricValueSet[] $var
      * @return $this
      */
     public function setQuotaMetrics($var)

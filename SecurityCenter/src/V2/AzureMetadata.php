@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Azure metadata associated with the resource, only applicable if the finding's
@@ -48,7 +48,7 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureManagementGroup>|\Google\Protobuf\Internal\RepeatedField $management_groups
+     *     @type \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureManagementGroup[] $management_groups
      *           A list of Azure management groups associated with the resource, ordered
      *           from lowest level (closest to the subscription) to highest level.
      *     @type \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureSubscription $subscription
@@ -69,7 +69,7 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      * from lowest level (closest to the subscription) to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup management_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureManagementGroup>
      */
     public function getManagementGroups()
     {
@@ -81,7 +81,7 @@ class AzureMetadata extends \Google\Protobuf\Internal\Message
      * from lowest level (closest to the subscription) to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AzureMetadata.AzureManagementGroup management_groups = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureManagementGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\AzureMetadata\AzureManagementGroup[] $var
      * @return $this
      */
     public function setManagementGroups($var)

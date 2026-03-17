@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1\VodSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines fields related to Google Ad Manager (GAM). This should be set if
@@ -99,5 +99,4 @@ class GamSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

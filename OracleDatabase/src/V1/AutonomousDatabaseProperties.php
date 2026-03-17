@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties of an Autonomous Database.
@@ -475,7 +475,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Autonomous Database storage.
      *     @type int $license_type
      *           Required. The license type used for the Autonomous Database.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\CustomerContact>|\Google\Protobuf\Internal\RepeatedField $customer_contacts
+     *     @type \Google\Cloud\OracleDatabase\V1\CustomerContact[] $customer_contacts
      *           Optional. The list of customer contacts.
      *     @type string $secret_id
      *           Optional. The ID of the Oracle Cloud Infrastructure vault secret.
@@ -514,7 +514,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The current lifecycle state of the Autonomous Database.
      *     @type string $autonomous_container_database_id
      *           Output only. The Autonomous Container Database OCID.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_upgrade_versions
+     *     @type string[] $available_upgrade_versions
      *           Output only. The list of available Oracle Database upgrade versions for an
      *           Autonomous Database.
      *     @type \Google\Cloud\OracleDatabase\V1\AutonomousDatabaseConnectionStrings $connection_strings
@@ -553,7 +553,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *     @type int $operations_insights_state
      *           Output only. This field indicates the state of Operations Insights for the
      *           Autonomous Database.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $peer_db_ids
+     *     @type string[] $peer_db_ids
      *           Output only. The list of OCIDs of standby databases located in Autonomous
      *           Data Guard remote regions that are associated with the source database.
      *     @type int $permission_level
@@ -566,12 +566,12 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The refresh State of the clone.
      *     @type int $role
      *           Output only. The Data Guard role of the Autonomous Database.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\ScheduledOperationDetails>|\Google\Protobuf\Internal\RepeatedField $scheduled_operation_details
+     *     @type \Google\Cloud\OracleDatabase\V1\ScheduledOperationDetails[] $scheduled_operation_details
      *           Output only. The list and details of the scheduled operations of the
      *           Autonomous Database.
      *     @type string $sql_web_developer_url
      *           Output only. The SQL Web Developer URL for the Autonomous Database.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_clone_regions
+     *     @type string[] $supported_clone_regions
      *           Output only. The list of available regions that can be used to create a
      *           clone for the Autonomous Database.
      *     @type int $used_data_storage_size_tbs
@@ -594,13 +594,13 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The date and time when maintenance will begin.
      *     @type \Google\Protobuf\Timestamp $maintenance_end_time
      *           Output only. The date and time when maintenance will end.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowlisted_ips
+     *     @type string[] $allowlisted_ips
      *           Optional. The list of allowlisted IP addresses for the Autonomous Database.
      *     @type \Google\Cloud\OracleDatabase\V1\EncryptionKey $encryption_key
      *           Optional. The encryption key used to encrypt the Autonomous Database.
      *           Updating this field will add a new entry in the
      *           `encryption_key_history_entries` field with the former version.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $encryption_key_history_entries
+     *     @type \Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry[] $encryption_key_history_entries
      *           Output only. The history of the encryption keys used to encrypt the
      *           Autonomous Database.
      *     @type string $service_agent_email
@@ -1017,7 +1017,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. The list of customer contacts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\CustomerContact>
      */
     public function getCustomerContacts()
     {
@@ -1028,7 +1028,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. The list of customer contacts.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CustomerContact customer_contacts = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\CustomerContact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\CustomerContact[] $var
      * @return $this
      */
     public function setCustomerContacts($var)
@@ -1402,7 +1402,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string available_upgrade_versions = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableUpgradeVersions()
     {
@@ -1414,7 +1414,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string available_upgrade_versions = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableUpgradeVersions($var)
@@ -1828,7 +1828,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Data Guard remote regions that are associated with the source database.
      *
      * Generated from protobuf field <code>repeated string peer_db_ids = 43 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPeerDbIds()
     {
@@ -1840,7 +1840,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Data Guard remote regions that are associated with the source database.
      *
      * Generated from protobuf field <code>repeated string peer_db_ids = 43 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPeerDbIds($var)
@@ -1986,7 +1986,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ScheduledOperationDetails scheduled_operation_details = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\ScheduledOperationDetails>
      */
     public function getScheduledOperationDetails()
     {
@@ -1998,7 +1998,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ScheduledOperationDetails scheduled_operation_details = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\ScheduledOperationDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\ScheduledOperationDetails[] $var
      * @return $this
      */
     public function setScheduledOperationDetails($var)
@@ -2040,7 +2040,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * clone for the Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string supported_clone_regions = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedCloneRegions()
     {
@@ -2052,7 +2052,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * clone for the Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string supported_clone_regions = 51 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedCloneRegions($var)
@@ -2333,7 +2333,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. The list of allowlisted IP addresses for the Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowlistedIps()
     {
@@ -2344,7 +2344,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Optional. The list of allowlisted IP addresses for the Autonomous Database.
      *
      * Generated from protobuf field <code>repeated string allowlisted_ips = 67 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowlistedIps($var)
@@ -2400,7 +2400,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry encryption_key_history_entries = 69 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry>
      */
     public function getEncryptionKeyHistoryEntries()
     {
@@ -2412,7 +2412,7 @@ class AutonomousDatabaseProperties extends \Google\Protobuf\Internal\Message
      * Autonomous Database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.EncryptionKeyHistoryEntry encryption_key_history_entries = 69 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\EncryptionKeyHistoryEntry[] $var
      * @return $this
      */
     public function setEncryptionKeyHistoryEntries($var)

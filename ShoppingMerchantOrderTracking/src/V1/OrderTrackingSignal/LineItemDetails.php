@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1\OrderTrackingSignal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The line items of the order.
@@ -70,7 +70,7 @@ class LineItemDetails extends \Google\Protobuf\Internal\Message
      *     @type string $product_id
      *           Required. The Content API REST ID of the product, in the
      *           form channel:contentLanguage:targetCountry:offerId.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtins
+     *     @type string[] $gtins
      *           Optional. The Global Trade Item Numbers.
      *     @type string $mpn
      *           Optional. The manufacturer part number.
@@ -145,7 +145,7 @@ class LineItemDetails extends \Google\Protobuf\Internal\Message
      * Optional. The Global Trade Item Numbers.
      *
      * Generated from protobuf field <code>repeated string gtins = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGtins()
     {
@@ -156,7 +156,7 @@ class LineItemDetails extends \Google\Protobuf\Internal\Message
      * Optional. The Global Trade Item Numbers.
      *
      * Generated from protobuf field <code>repeated string gtins = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGtins($var)
@@ -292,5 +292,4 @@ class LineItemDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

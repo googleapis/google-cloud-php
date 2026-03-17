@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Summarization context that customer can configure.
@@ -50,10 +50,10 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationSection>|\Google\Protobuf\Internal\RepeatedField $summarization_sections
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationSection[] $summarization_sections
      *           Optional. List of sections. Note it contains both predefined section sand
      *           customer defined sections.
-     *     @type array<\Google\Cloud\Dialogflow\V2\FewShotExample>|\Google\Protobuf\Internal\RepeatedField $few_shot_examples
+     *     @type \Google\Cloud\Dialogflow\V2\FewShotExample[] $few_shot_examples
      *           Optional. List of few shot examples.
      *     @type string $version
      *           Optional. Version of the feature. If not set, default to latest version.
@@ -74,7 +74,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      * customer defined sections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationSection summarization_sections = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationSection>
      */
     public function getSummarizationSections()
     {
@@ -86,7 +86,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      * customer defined sections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationSection summarization_sections = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationSection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationSection[] $var
      * @return $this
      */
     public function setSummarizationSections($var)
@@ -101,7 +101,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      * Optional. List of few shot examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.FewShotExample few_shot_examples = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\FewShotExample>
      */
     public function getFewShotExamples()
     {
@@ -112,7 +112,7 @@ class SummarizationContext extends \Google\Protobuf\Internal\Message
      * Optional. List of few shot examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.FewShotExample few_shot_examples = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\FewShotExample>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\FewShotExample[] $var
      * @return $this
      */
     public function setFewShotExamples($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute\FaultInjectionPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of how client requests are delayed as part of fault
@@ -123,5 +123,4 @@ class Delay extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

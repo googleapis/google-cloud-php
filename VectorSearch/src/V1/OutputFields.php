@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a output fields struct for data in DataObject.
@@ -40,11 +40,11 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_fields
+     *     @type string[] $data_fields
      *           Optional. The fields from the data fields to include in the output.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $vector_fields
+     *     @type string[] $vector_fields
      *           Optional. The fields from the vector fields to include in the output.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metadata_fields
+     *     @type string[] $metadata_fields
      *           Optional. The fields from the DataObject metadata to include in the output.
      * }
      */
@@ -57,7 +57,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the data fields to include in the output.
      *
      * Generated from protobuf field <code>repeated string data_fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataFields()
     {
@@ -68,7 +68,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the data fields to include in the output.
      *
      * Generated from protobuf field <code>repeated string data_fields = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataFields($var)
@@ -83,7 +83,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the vector fields to include in the output.
      *
      * Generated from protobuf field <code>repeated string vector_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVectorFields()
     {
@@ -94,7 +94,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the vector fields to include in the output.
      *
      * Generated from protobuf field <code>repeated string vector_fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVectorFields($var)
@@ -109,7 +109,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the DataObject metadata to include in the output.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetadataFields()
     {
@@ -120,7 +120,7 @@ class OutputFields extends \Google\Protobuf\Internal\Message
      * Optional. The fields from the DataObject metadata to include in the output.
      *
      * Generated from protobuf field <code>repeated string metadata_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetadataFields($var)

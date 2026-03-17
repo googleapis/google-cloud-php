@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Database instance clone context.
@@ -137,7 +137,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      *           must be 1-63 characters long and match the regular expression
      *           [a-z]([-a-z0-9]*[a-z0-9])?.
      *           Reserved for future use.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_names
+     *     @type string[] $database_names
      *           (SQL Server only) Clone only the specified databases from the source
      *           instance. Clone all databases if empty.
      *     @type string $preferred_zone
@@ -368,7 +368,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      * instance. Clone all databases if empty.
      *
      * Generated from protobuf field <code>repeated string database_names = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatabaseNames()
     {
@@ -380,7 +380,7 @@ class CloneContext extends \Google\Protobuf\Internal\Message
      * instance. Clone all databases if empty.
      *
      * Generated from protobuf field <code>repeated string database_names = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatabaseNames($var)

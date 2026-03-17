@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -37,7 +37,7 @@ class ListWebhooksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Webhook>|\Google\Protobuf\Internal\RepeatedField $webhooks
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook[] $webhooks
      *           The list of webhooks. There will be a maximum number of items returned
      *           based on the page_size field in the request.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class ListWebhooksResponse extends \Google\Protobuf\Internal\Message
      * based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Webhook webhooks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Webhook>
      */
     public function getWebhooks()
     {
@@ -67,7 +67,7 @@ class ListWebhooksResponse extends \Google\Protobuf\Internal\Message
      * based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Webhook webhooks = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Webhook>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook[] $var
      * @return $this
      */
     public function setWebhooks($var)

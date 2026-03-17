@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\ExtensionChain;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single extension in the chain to execute for the matching request.
@@ -172,7 +172,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           Plugin extensions are currently supported for the
      *           `LbTrafficExtension`, the `LbRouteExtension`, and the `LbEdgeExtension`
      *           resources.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_events
+     *     @type int[] $supported_events
      *           Optional. A set of events during request or response processing for which
      *           this extension is called.
      *           For the `LbTrafficExtension` resource, this field is required.
@@ -198,7 +198,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      *           tailored by configuring a custom error response in the load balancer.
      *           * If response headers have been delivered, then the HTTP stream to the
      *           downstream client is reset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forward_headers
+     *     @type string[] $forward_headers
      *           Optional. List of the HTTP headers to forward to the extension
      *           (from the client or backend). If omitted, all headers are sent.
      *           Each element is a string indicating the header name.
@@ -373,7 +373,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      * contain `REQUEST_HEADERS` event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedEvents()
     {
@@ -390,7 +390,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      * contain `REQUEST_HEADERS` event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EventType supported_events = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedEvents($var)
@@ -497,7 +497,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Each element is a string indicating the header name.
      *
      * Generated from protobuf field <code>repeated string forward_headers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getForwardHeaders()
     {
@@ -510,7 +510,7 @@ class Extension extends \Google\Protobuf\Internal\Message
      * Each element is a string indicating the header name.
      *
      * Generated from protobuf field <code>repeated string forward_headers = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setForwardHeaders($var)
@@ -598,5 +598,4 @@ class Extension extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

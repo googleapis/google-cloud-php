@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Instance resource.
@@ -395,7 +395,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you
      *           create the resource.
-     *     @type array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\Compute\V1\AttachedDisk[] $disks
      *           Array of disks associated with this instance. Persistent disks must be
      *           created before you can assign them.
      *     @type \Google\Cloud\Compute\V1\DisplayDevice $display_device
@@ -408,7 +408,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           up-to-date fingerprint hash in order to update the instance.
      *           To see the latest fingerprint, make get() request to the
      *           instance.
-     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[] $guest_accelerators
      *           A list of the type and count of accelerator cards attached to the instance.
      *     @type string $hostname
      *           Specifies the hostname of the instance. The specified hostname must be
@@ -486,7 +486,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           character must be a lowercase letter, and all following characters must be
      *           a dash, lowercase letter, or digit, except the last character, which cannot
      *           be a dash.
-     *     @type array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\Compute\V1\NetworkInterface[] $network_interfaces
      *           An array of network configurations for this instance. These specify how
      *           interfaces are configured to interact with other network services, such as
      *           connecting to the internet. Multiple interfaces are supported
@@ -501,7 +501,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Check the PrivateIpv6GoogleAccess enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ReservationAffinity $reservation_affinity
      *           Specifies the reservations that this instance can consume from.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Resource policies applied to this instance.
      *     @type \Google\Cloud\Compute\V1\ResourceStatus $resource_status
      *           Output only. [Output Only] Specifies values set for instance attributes as
@@ -515,7 +515,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Sets the scheduling options for this instance.
      *     @type string $self_link
      *           Output only. [Output Only] Server-defined URL for this resource.
-     *     @type array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type \Google\Cloud\Compute\V1\ServiceAccount[] $service_accounts
      *           A list of service accounts, with their specified scopes, authorized for
      *           this instance. Only one service account per VM instance is supported.
      *           Service accounts generate access tokens that can be accessed
@@ -817,7 +817,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * created before you can assign them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AttachedDisk>
      */
     public function getDisks()
     {
@@ -829,7 +829,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * created before you can assign them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
-     * @param array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AttachedDisk[] $var
      * @return $this
      */
     public function setDisks($var)
@@ -928,7 +928,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * A list of the type and count of accelerator cards attached to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\AcceleratorConfig>
      */
     public function getGuestAccelerators()
     {
@@ -939,7 +939,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * A list of the type and count of accelerator cards attached to the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[] $var
      * @return $this
      */
     public function setGuestAccelerators($var)
@@ -1547,7 +1547,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * per instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkInterface network_interfaces = 52735243;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -1561,7 +1561,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * per instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkInterface network_interfaces = 52735243;</code>
-     * @param array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -1722,7 +1722,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this instance.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -1733,7 +1733,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this instance.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -1937,7 +1937,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for more information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAccount service_accounts = 277537328;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\ServiceAccount>
      */
     public function getServiceAccounts()
     {
@@ -1953,7 +1953,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * for more information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAccount service_accounts = 277537328;</code>
-     * @param array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\ServiceAccount[] $var
      * @return $this
      */
     public function setServiceAccounts($var)

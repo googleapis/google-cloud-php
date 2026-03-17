@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentAssistantFeedback;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feedback for knowledge search.
@@ -46,7 +46,7 @@ class KnowledgeSearchFeedback extends \Google\Protobuf\Internal\Message
      *           If the value is set to be true,
      *           [AnswerFeedback.clicked][google.cloud.dialogflow.v2.AnswerFeedback.clicked]
      *           will be updated to be true.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $clicked_uris
+     *     @type string[] $clicked_uris
      *           The URIs clicked by the human agent. The value is appended for each
      *           [UpdateAnswerRecordRequest][google.cloud.dialogflow.v2.UpdateAnswerRecordRequest].
      *           If the value is not empty,
@@ -99,7 +99,7 @@ class KnowledgeSearchFeedback extends \Google\Protobuf\Internal\Message
      * will be updated to be true.
      *
      * Generated from protobuf field <code>repeated string clicked_uris = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClickedUris()
     {
@@ -114,7 +114,7 @@ class KnowledgeSearchFeedback extends \Google\Protobuf\Internal\Message
      * will be updated to be true.
      *
      * Generated from protobuf field <code>repeated string clicked_uris = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClickedUris($var)
@@ -126,5 +126,4 @@ class KnowledgeSearchFeedback extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

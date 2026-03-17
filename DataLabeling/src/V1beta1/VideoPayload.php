@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container of information of a video.
@@ -56,7 +56,7 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      *           Video format.
      *     @type string $video_uri
      *           Video uri from the user bucket.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\VideoThumbnail>|\Google\Protobuf\Internal\RepeatedField $video_thumbnails
+     *     @type \Google\Cloud\DataLabeling\V1beta1\VideoThumbnail[] $video_thumbnails
      *           The list of video thumbnails.
      *     @type float $frame_rate
      *           FPS of the video.
@@ -125,7 +125,7 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      * The list of video thumbnails.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoThumbnail video_thumbnails = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\VideoThumbnail>
      */
     public function getVideoThumbnails()
     {
@@ -136,7 +136,7 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      * The list of video thumbnails.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoThumbnail video_thumbnails = 3;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\VideoThumbnail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\VideoThumbnail[] $var
      * @return $this
      */
     public function setVideoThumbnails($var)

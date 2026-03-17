@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The quick replies response message.
@@ -36,7 +36,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
      *
      *     @type string $title
      *           Optional. The title of the collection of quick replies.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $quick_replies
+     *     @type string[] $quick_replies
      *           Optional. The collection of quick replies.
      * }
      */
@@ -75,7 +75,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
      * Optional. The collection of quick replies.
      *
      * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQuickReplies()
     {
@@ -86,7 +86,7 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
      * Optional. The collection of quick replies.
      *
      * Generated from protobuf field <code>repeated string quick_replies = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQuickReplies($var)
@@ -98,5 +98,4 @@ class QuickReplies extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

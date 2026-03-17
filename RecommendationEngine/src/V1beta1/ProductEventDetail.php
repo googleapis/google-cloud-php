@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ProductEventDetail captures user event information specific to retail
@@ -92,14 +92,14 @@ class ProductEventDetail extends \Google\Protobuf\Internal\Message
      *     @type string $search_query
      *           Required for `search` events. Other event types should not set this field.
      *           The user's search query as UTF-8 encoded text with a length limit of 5 KiB.
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy>|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy[] $page_categories
      *           Required for `category-page-view` events. Other event types should not set
      *           this field.
      *           The categories associated with a category page.
      *           Category pages include special pages such as sales or promotions. For
      *           instance, a special sale page may have the category hierarchy:
      *           categories : ["Sales", "2017 Black Friday Deals"].
-     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $product_details
+     *     @type \Google\Cloud\RecommendationEngine\V1beta1\ProductDetail[] $product_details
      *           The main product details related to the event.
      *           This field is required for the following event types:
      *           * `add-to-cart`
@@ -175,7 +175,7 @@ class ProductEventDetail extends \Google\Protobuf\Internal\Message
      * categories : ["Sales", "2017 Black Friday Deals"].
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem.CategoryHierarchy page_categories = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy>
      */
     public function getPageCategories()
     {
@@ -191,7 +191,7 @@ class ProductEventDetail extends \Google\Protobuf\Internal\Message
      * categories : ["Sales", "2017 Black Friday Deals"].
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem.CategoryHierarchy page_categories = 2;</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy[] $var
      * @return $this
      */
     public function setPageCategories($var)
@@ -223,7 +223,7 @@ class ProductEventDetail extends \Google\Protobuf\Internal\Message
      * * `search`
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.ProductDetail product_details = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecommendationEngine\V1beta1\ProductDetail>
      */
     public function getProductDetails()
     {
@@ -251,7 +251,7 @@ class ProductEventDetail extends \Google\Protobuf\Internal\Message
      * * `search`
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.ProductDetail product_details = 3;</code>
-     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecommendationEngine\V1beta1\ProductDetail[] $var
      * @return $this
      */
     public function setProductDetails($var)

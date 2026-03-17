@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [PartitionQuery][google.spanner.v1.Spanner.PartitionQuery]
@@ -48,12 +48,12 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Parameter names and values that bind to placeholders in the SQL
      * string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -106,12 +106,12 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $params
      *           Optional. Parameter names and values that bind to placeholders in the SQL
      *           string.
-     *           A parameter placeholder consists of the `&#64;` character followed by the
-     *           parameter name (for example, `&#64;firstName`). Parameter names can contain
+     *           A parameter placeholder consists of the `\@` character followed by the
+     *           parameter name (for example, `\@firstName`). Parameter names can contain
      *           letters, numbers, and underscores.
      *           Parameters can appear anywhere that a literal value is expected. The same
      *           parameter name can be used more than once, for example:
-     *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *           `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           Optional. It isn't always possible for Cloud Spanner to infer the right SQL
@@ -246,12 +246,12 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Parameter names and values that bind to placeholders in the SQL
      * string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -275,12 +275,12 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Parameter names and values that bind to placeholders in the SQL
      * string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names can contain
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names can contain
      * letters, numbers, and underscores.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4 [(.google.api.field_behavior) = OPTIONAL];</code>

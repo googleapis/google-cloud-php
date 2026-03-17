@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing the valued resources for a given simulation.
@@ -41,7 +41,7 @@ class ListValuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ValuedResource>|\Google\Protobuf\Internal\RepeatedField $valued_resources
+     *     @type \Google\Cloud\SecurityCenter\V1\ValuedResource[] $valued_resources
      *           The valued resources that the attack path simulation identified.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -59,7 +59,7 @@ class ListValuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * The valued resources that the attack path simulation identified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ValuedResource valued_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ValuedResource>
      */
     public function getValuedResources()
     {
@@ -70,7 +70,7 @@ class ListValuedResourcesResponse extends \Google\Protobuf\Internal\Message
      * The valued resources that the attack path simulation identified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ValuedResource valued_resources = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ValuedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ValuedResource[] $var
      * @return $this
      */
     public function setValuedResources($var)

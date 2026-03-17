@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\AttributeValues;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The attribute values of data type string or JSON.
@@ -29,7 +29,7 @@ class StringAttributeValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. The attribute values in case attribute data type is string or
      *           JSON.
      * }
@@ -44,7 +44,7 @@ class StringAttributeValues extends \Google\Protobuf\Internal\Message
      * JSON.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -56,7 +56,7 @@ class StringAttributeValues extends \Google\Protobuf\Internal\Message
      * JSON.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -68,5 +68,4 @@ class StringAttributeValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -26,107 +26,7 @@ class RegistrationService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-7
-;google/cloud/servicedirectory/v1/registration_service.proto google.cloud.servicedirectory.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto0google/cloud/servicedirectory/v1/namespace.proto.google/cloud/servicedirectory/v1/service.protogoogle/iam/v1/iam_policy.protogoogle/iam/v1/policy.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"³
-CreateNamespaceRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location
-namespace_id (	BàAC
-	namespace (2+.google.cloud.servicedirectory.v1.NamespaceBàA"¯
-ListNamespacesRequest9
-parent (	B)àAúA#
-!locations.googleapis.com/Location
-	page_size (BàA
-
-page_token (	BàA
-filter (	BàA
-order_by (	BàA"r
-ListNamespacesResponse?
-
-namespaces (2+.google.cloud.servicedirectory.v1.Namespace
-next_page_token (	"V
-GetNamespaceRequest?
-name (	B1àAúA+
-)servicedirectory.googleapis.com/Namespace"“
-UpdateNamespaceRequestC
-	namespace (2+.google.cloud.servicedirectory.v1.NamespaceBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"Y
-DeleteNamespaceRequest?
-name (	B1àAúA+
-)servicedirectory.googleapis.com/Namespace"³
-CreateServiceRequestA
-parent (	B1àAúA+
-)servicedirectory.googleapis.com/Namespace
-
-service_id (	BàA?
-service (2).google.cloud.servicedirectory.v1.ServiceBàA"µ
-ListServicesRequestA
-parent (	B1àAúA+
-)servicedirectory.googleapis.com/Namespace
-	page_size (BàA
-
-page_token (	BàA
-filter (	BàA
-order_by (	BàA"l
-ListServicesResponse;
-services (2).google.cloud.servicedirectory.v1.Service
-next_page_token (	"R
-GetServiceRequest=
-name (	B/àAúA)
-\'servicedirectory.googleapis.com/Service"
-UpdateServiceRequest?
-service (2).google.cloud.servicedirectory.v1.ServiceBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"U
-DeleteServiceRequest=
-name (	B/àAúA)
-\'servicedirectory.googleapis.com/Service"µ
-CreateEndpointRequest?
-parent (	B/àAúA)
-\'servicedirectory.googleapis.com/Service
-endpoint_id (	BàAA
-endpoint (2*.google.cloud.servicedirectory.v1.EndpointBàA"´
-ListEndpointsRequest?
-parent (	B/àAúA)
-\'servicedirectory.googleapis.com/Service
-	page_size (BàA
-
-page_token (	BàA
-filter (	BàA
-order_by (	BàA"o
-ListEndpointsResponse=
-	endpoints (2*.google.cloud.servicedirectory.v1.Endpoint
-next_page_token (	"T
-GetEndpointRequest>
-name (	B0àAúA*
-(servicedirectory.googleapis.com/Endpoint"
-UpdateEndpointRequestA
-endpoint (2*.google.cloud.servicedirectory.v1.EndpointBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"W
-DeleteEndpointRequest>
-name (	B0àAúA*
-(servicedirectory.googleapis.com/Endpoint2ß
-RegistrationServiceÛ
-CreateNamespace8.google.cloud.servicedirectory.v1.CreateNamespaceRequest+.google.cloud.servicedirectory.v1.Namespace"aÚAparent,namespace,namespace_id‚Óä“;"./v1/{parent=projects/*/locations/*}/namespaces:	namespaceÄ
-ListNamespaces7.google.cloud.servicedirectory.v1.ListNamespacesRequest8.google.cloud.servicedirectory.v1.ListNamespacesResponse"?ÚAparent‚Óä“0./v1/{parent=projects/*/locations/*}/namespaces±
-GetNamespace5.google.cloud.servicedirectory.v1.GetNamespaceRequest+.google.cloud.servicedirectory.v1.Namespace"=ÚAname‚Óä“0./v1/{name=projects/*/locations/*/namespaces/*}Ý
-UpdateNamespace8.google.cloud.servicedirectory.v1.UpdateNamespaceRequest+.google.cloud.servicedirectory.v1.Namespace"cÚAnamespace,update_mask‚Óä“E28/v1/{namespace.name=projects/*/locations/*/namespaces/*}:	namespace¢
-DeleteNamespace8.google.cloud.servicedirectory.v1.DeleteNamespaceRequest.google.protobuf.Empty"=ÚAname‚Óä“0*./v1/{name=projects/*/locations/*/namespaces/*}Ú
-CreateService6.google.cloud.servicedirectory.v1.CreateServiceRequest).google.cloud.servicedirectory.v1.Service"fÚAparent,service,service_id‚Óä“D"9/v1/{parent=projects/*/locations/*/namespaces/*}/services:serviceÉ
-ListServices5.google.cloud.servicedirectory.v1.ListServicesRequest6.google.cloud.servicedirectory.v1.ListServicesResponse"JÚAparent‚Óä“;9/v1/{parent=projects/*/locations/*/namespaces/*}/services¶
-
-GetService3.google.cloud.servicedirectory.v1.GetServiceRequest).google.cloud.servicedirectory.v1.Service"HÚAname‚Óä“;9/v1/{name=projects/*/locations/*/namespaces/*/services/*}Ü
-UpdateService6.google.cloud.servicedirectory.v1.UpdateServiceRequest).google.cloud.servicedirectory.v1.Service"hÚAservice,update_mask‚Óä“L2A/v1/{service.name=projects/*/locations/*/namespaces/*/services/*}:service©
-DeleteService6.google.cloud.servicedirectory.v1.DeleteServiceRequest.google.protobuf.Empty"HÚAname‚Óä“;*9/v1/{name=projects/*/locations/*/namespaces/*/services/*}ì
-CreateEndpoint7.google.cloud.servicedirectory.v1.CreateEndpointRequest*.google.cloud.servicedirectory.v1.Endpoint"uÚAparent,endpoint,endpoint_id‚Óä“Q"E/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints:endpointØ
-ListEndpoints6.google.cloud.servicedirectory.v1.ListEndpointsRequest7.google.cloud.servicedirectory.v1.ListEndpointsResponse"VÚAparent‚Óä“GE/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpointsÅ
-GetEndpoint4.google.cloud.servicedirectory.v1.GetEndpointRequest*.google.cloud.servicedirectory.v1.Endpoint"TÚAname‚Óä“GE/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}î
-UpdateEndpoint7.google.cloud.servicedirectory.v1.UpdateEndpointRequest*.google.cloud.servicedirectory.v1.Endpoint"wÚAendpoint,update_mask‚Óä“Z2N/v1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}:endpoint·
-DeleteEndpoint7.google.cloud.servicedirectory.v1.DeleteEndpointRequest.google.protobuf.Empty"TÚAname‚Óä“G*E/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}è
-GetIamPolicy".google.iam.v1.GetIamPolicyRequest.google.iam.v1.Policy"œ‚Óä“•"?/v1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:*ZO"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:*è
-SetIamPolicy".google.iam.v1.SetIamPolicyRequest.google.iam.v1.Policy"œ‚Óä“•"?/v1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:*ZO"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:*”
-TestIamPermissions(.google.iam.v1.TestIamPermissionsRequest).google.iam.v1.TestIamPermissionsResponse"¨‚Óä“¡"E/v1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:*ZU"P/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:*SÊAservicedirectory.googleapis.comÒA.https://www.googleapis.com/auth/cloud-platformB€
-$com.google.cloud.servicedirectory.v1BRegistrationServiceProtoPZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypbª Google.Cloud.ServiceDirectory.V1Ê Google\\Cloud\\ServiceDirectory\\V1ê#Google::Cloud::ServiceDirectory::V1bproto3'
+            "\x0A\x8D7\x0A;google/cloud/servicedirectory/v1/registration_service.proto\x12 google.cloud.servicedirectory.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A/google/cloud/servicedirectory/v1/endpoint.proto\x1A0google/cloud/servicedirectory/v1/namespace.proto\x1A.google/cloud/servicedirectory/v1/service.proto\x1A\x1Egoogle/iam/v1/iam_policy.proto\x1A\x1Agoogle/iam/v1/policy.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\"\xB3\x01\x0A\x16CreateNamespaceRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12\x19\x0A\x0Cnamespace_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12C\x0A\x09namespace\x18\x03 \x01(\x0B2+.google.cloud.servicedirectory.v1.NamespaceB\x03\xE0A\x02\"\xAF\x01\x0A\x15ListNamespacesRequest\x129\x0A\x06parent\x18\x01 \x01(\x09B)\xE0A\x02\xFAA#\x0A!locations.googleapis.com/Location\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"r\x0A\x16ListNamespacesResponse\x12?\x0A\x0Anamespaces\x18\x01 \x03(\x0B2+.google.cloud.servicedirectory.v1.Namespace\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"V\x0A\x13GetNamespaceRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)servicedirectory.googleapis.com/Namespace\"\x93\x01\x0A\x16UpdateNamespaceRequest\x12C\x0A\x09namespace\x18\x01 \x01(\x0B2+.google.cloud.servicedirectory.v1.NamespaceB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x02\"Y\x0A\x16DeleteNamespaceRequest\x12?\x0A\x04name\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)servicedirectory.googleapis.com/Namespace\"\xB3\x01\x0A\x14CreateServiceRequest\x12A\x0A\x06parent\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)servicedirectory.googleapis.com/Namespace\x12\x17\x0A\x0Aservice_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12?\x0A\x07service\x18\x03 \x01(\x0B2).google.cloud.servicedirectory.v1.ServiceB\x03\xE0A\x02\"\xB5\x01\x0A\x13ListServicesRequest\x12A\x0A\x06parent\x18\x01 \x01(\x09B1\xE0A\x02\xFAA+\x0A)servicedirectory.googleapis.com/Namespace\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"l\x0A\x14ListServicesResponse\x12;\x0A\x08services\x18\x01 \x03(\x0B2).google.cloud.servicedirectory.v1.Service\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"R\x0A\x11GetServiceRequest\x12=\x0A\x04name\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x0A'servicedirectory.googleapis.com/Service\"\x8D\x01\x0A\x14UpdateServiceRequest\x12?\x0A\x07service\x18\x01 \x01(\x0B2).google.cloud.servicedirectory.v1.ServiceB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x02\"U\x0A\x14DeleteServiceRequest\x12=\x0A\x04name\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x0A'servicedirectory.googleapis.com/Service\"\xB5\x01\x0A\x15CreateEndpointRequest\x12?\x0A\x06parent\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x0A'servicedirectory.googleapis.com/Service\x12\x18\x0A\x0Bendpoint_id\x18\x02 \x01(\x09B\x03\xE0A\x02\x12A\x0A\x08endpoint\x18\x03 \x01(\x0B2*.google.cloud.servicedirectory.v1.EndpointB\x03\xE0A\x02\"\xB4\x01\x0A\x14ListEndpointsRequest\x12?\x0A\x06parent\x18\x01 \x01(\x09B/\xE0A\x02\xFAA)\x0A'servicedirectory.googleapis.com/Service\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\x12\x15\x0A\x08order_by\x18\x05 \x01(\x09B\x03\xE0A\x01\"o\x0A\x15ListEndpointsResponse\x12=\x0A\x09endpoints\x18\x01 \x03(\x0B2*.google.cloud.servicedirectory.v1.Endpoint\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"T\x0A\x12GetEndpointRequest\x12>\x0A\x04name\x18\x01 \x01(\x09B0\xE0A\x02\xFAA*\x0A(servicedirectory.googleapis.com/Endpoint\"\x90\x01\x0A\x15UpdateEndpointRequest\x12A\x0A\x08endpoint\x18\x01 \x01(\x0B2*.google.cloud.servicedirectory.v1.EndpointB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x02\"W\x0A\x15DeleteEndpointRequest\x12>\x0A\x04name\x18\x01 \x01(\x09B0\xE0A\x02\xFAA*\x0A(servicedirectory.googleapis.com/Endpoint2\xDF\x1E\x0A\x13RegistrationService\x12\xDB\x01\x0A\x0FCreateNamespace\x128.google.cloud.servicedirectory.v1.CreateNamespaceRequest\x1A+.google.cloud.servicedirectory.v1.Namespace\"a\xDAA\x1Dparent,namespace,namespace_id\x82\xD3\xE4\x93\x02;\"./v1/{parent=projects/*/locations/*}/namespaces:\x09namespace\x12\xC4\x01\x0A\x0EListNamespaces\x127.google.cloud.servicedirectory.v1.ListNamespacesRequest\x1A8.google.cloud.servicedirectory.v1.ListNamespacesResponse\"?\xDAA\x06parent\x82\xD3\xE4\x93\x020\x12./v1/{parent=projects/*/locations/*}/namespaces\x12\xB1\x01\x0A\x0CGetNamespace\x125.google.cloud.servicedirectory.v1.GetNamespaceRequest\x1A+.google.cloud.servicedirectory.v1.Namespace\"=\xDAA\x04name\x82\xD3\xE4\x93\x020\x12./v1/{name=projects/*/locations/*/namespaces/*}\x12\xDD\x01\x0A\x0FUpdateNamespace\x128.google.cloud.servicedirectory.v1.UpdateNamespaceRequest\x1A+.google.cloud.servicedirectory.v1.Namespace\"c\xDAA\x15namespace,update_mask\x82\xD3\xE4\x93\x02E28/v1/{namespace.name=projects/*/locations/*/namespaces/*}:\x09namespace\x12\xA2\x01\x0A\x0FDeleteNamespace\x128.google.cloud.servicedirectory.v1.DeleteNamespaceRequest\x1A\x16.google.protobuf.Empty\"=\xDAA\x04name\x82\xD3\xE4\x93\x020*./v1/{name=projects/*/locations/*/namespaces/*}\x12\xDA\x01\x0A\x0DCreateService\x126.google.cloud.servicedirectory.v1.CreateServiceRequest\x1A).google.cloud.servicedirectory.v1.Service\"f\xDAA\x19parent,service,service_id\x82\xD3\xE4\x93\x02D\"9/v1/{parent=projects/*/locations/*/namespaces/*}/services:\x07service\x12\xC9\x01\x0A\x0CListServices\x125.google.cloud.servicedirectory.v1.ListServicesRequest\x1A6.google.cloud.servicedirectory.v1.ListServicesResponse\"J\xDAA\x06parent\x82\xD3\xE4\x93\x02;\x129/v1/{parent=projects/*/locations/*/namespaces/*}/services\x12\xB6\x01\x0A\x0AGetService\x123.google.cloud.servicedirectory.v1.GetServiceRequest\x1A).google.cloud.servicedirectory.v1.Service\"H\xDAA\x04name\x82\xD3\xE4\x93\x02;\x129/v1/{name=projects/*/locations/*/namespaces/*/services/*}\x12\xDC\x01\x0A\x0DUpdateService\x126.google.cloud.servicedirectory.v1.UpdateServiceRequest\x1A).google.cloud.servicedirectory.v1.Service\"h\xDAA\x13service,update_mask\x82\xD3\xE4\x93\x02L2A/v1/{service.name=projects/*/locations/*/namespaces/*/services/*}:\x07service\x12\xA9\x01\x0A\x0DDeleteService\x126.google.cloud.servicedirectory.v1.DeleteServiceRequest\x1A\x16.google.protobuf.Empty\"H\xDAA\x04name\x82\xD3\xE4\x93\x02;*9/v1/{name=projects/*/locations/*/namespaces/*/services/*}\x12\xEC\x01\x0A\x0ECreateEndpoint\x127.google.cloud.servicedirectory.v1.CreateEndpointRequest\x1A*.google.cloud.servicedirectory.v1.Endpoint\"u\xDAA\x1Bparent,endpoint,endpoint_id\x82\xD3\xE4\x93\x02Q\"E/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints:\x08endpoint\x12\xD8\x01\x0A\x0DListEndpoints\x126.google.cloud.servicedirectory.v1.ListEndpointsRequest\x1A7.google.cloud.servicedirectory.v1.ListEndpointsResponse\"V\xDAA\x06parent\x82\xD3\xE4\x93\x02G\x12E/v1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints\x12\xC5\x01\x0A\x0BGetEndpoint\x124.google.cloud.servicedirectory.v1.GetEndpointRequest\x1A*.google.cloud.servicedirectory.v1.Endpoint\"T\xDAA\x04name\x82\xD3\xE4\x93\x02G\x12E/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}\x12\xEE\x01\x0A\x0EUpdateEndpoint\x127.google.cloud.servicedirectory.v1.UpdateEndpointRequest\x1A*.google.cloud.servicedirectory.v1.Endpoint\"w\xDAA\x14endpoint,update_mask\x82\xD3\xE4\x93\x02Z2N/v1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}:\x08endpoint\x12\xB7\x01\x0A\x0EDeleteEndpoint\x127.google.cloud.servicedirectory.v1.DeleteEndpointRequest\x1A\x16.google.protobuf.Empty\"T\xDAA\x04name\x82\xD3\xE4\x93\x02G*E/v1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}\x12\xE8\x01\x0A\x0CGetIamPolicy\x12\".google.iam.v1.GetIamPolicyRequest\x1A\x15.google.iam.v1.Policy\"\x9C\x01\x82\xD3\xE4\x93\x02\x95\x01\"?/v1/{resource=projects/*/locations/*/namespaces/*}:getIamPolicy:\x01*ZO\"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:getIamPolicy:\x01*\x12\xE8\x01\x0A\x0CSetIamPolicy\x12\".google.iam.v1.SetIamPolicyRequest\x1A\x15.google.iam.v1.Policy\"\x9C\x01\x82\xD3\xE4\x93\x02\x95\x01\"?/v1/{resource=projects/*/locations/*/namespaces/*}:setIamPolicy:\x01*ZO\"J/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:setIamPolicy:\x01*\x12\x94\x02\x0A\x12TestIamPermissions\x12(.google.iam.v1.TestIamPermissionsRequest\x1A).google.iam.v1.TestIamPermissionsResponse\"\xA8\x01\x82\xD3\xE4\x93\x02\xA1\x01\"E/v1/{resource=projects/*/locations/*/namespaces/*}:testIamPermissions:\x01*ZU\"P/v1/{resource=projects/*/locations/*/namespaces/*/services/*}:testIamPermissions:\x01*\x1AS\xCAA\x1Fservicedirectory.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\x80\x02\x0A\$com.google.cloud.servicedirectory.v1B\x18RegistrationServiceProtoP\x01ZPcloud.google.com/go/servicedirectory/apiv1/servicedirectorypb;servicedirectorypb\xAA\x02 Google.Cloud.ServiceDirectory.V1\xCA\x02 Google\\Cloud\\ServiceDirectory\\V1\xEA\x02#Google::Cloud::ServiceDirectory::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

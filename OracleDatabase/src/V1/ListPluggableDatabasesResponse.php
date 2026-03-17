@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `PluggableDatabase.List`.
@@ -34,7 +34,7 @@ class ListPluggableDatabasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\PluggableDatabase>|\Google\Protobuf\Internal\RepeatedField $pluggable_databases
+     *     @type \Google\Cloud\OracleDatabase\V1\PluggableDatabase[] $pluggable_databases
      *           The list of PluggableDatabases.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListPluggableDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The list of PluggableDatabases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.PluggableDatabase pluggable_databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\PluggableDatabase>
      */
     public function getPluggableDatabases()
     {
@@ -60,7 +60,7 @@ class ListPluggableDatabasesResponse extends \Google\Protobuf\Internal\Message
      * The list of PluggableDatabases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.PluggableDatabase pluggable_databases = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\PluggableDatabase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\PluggableDatabase[] $var
      * @return $this
      */
     public function setPluggableDatabases($var)

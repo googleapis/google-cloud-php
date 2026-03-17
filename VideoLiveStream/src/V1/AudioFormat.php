@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Properties of the audio format.
@@ -44,7 +44,7 @@ class AudioFormat extends \Google\Protobuf\Internal\Message
      *           Audio codec used in this audio stream.
      *     @type int $channel_count
      *           The number of audio channels.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $channel_layout
+     *     @type string[] $channel_layout
      *           A list of channel names specifying the layout of the audio channels.
      * }
      */
@@ -109,7 +109,7 @@ class AudioFormat extends \Google\Protobuf\Internal\Message
      * A list of channel names specifying the layout of the audio channels.
      *
      * Generated from protobuf field <code>repeated string channel_layout = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChannelLayout()
     {
@@ -120,7 +120,7 @@ class AudioFormat extends \Google\Protobuf\Internal\Message
      * A list of channel names specifying the layout of the audio channels.
      *
      * Generated from protobuf field <code>repeated string channel_layout = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChannelLayout($var)

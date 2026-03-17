@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of a port-based selector.
@@ -31,7 +31,7 @@ class TrafficPortSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type string[] $ports
      *           Optional. A list of ports. Can be port numbers or port range
      *           (example, [80-90] specifies all ports from 80 to 90, including
      *           80 and 90) or named ports or * to specify all ports. If the
@@ -50,7 +50,7 @@ class TrafficPortSelector extends \Google\Protobuf\Internal\Message
      * list is empty, all ports are selected.
      *
      * Generated from protobuf field <code>repeated string ports = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPorts()
     {
@@ -64,7 +64,7 @@ class TrafficPortSelector extends \Google\Protobuf\Internal\Message
      * list is empty, all ports are selected.
      *
      * Generated from protobuf field <code>repeated string ports = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPorts($var)

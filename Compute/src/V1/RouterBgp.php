@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -88,14 +88,14 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *           User-specified flag to indicate which mode to use for advertisement.
      *           The options are DEFAULT or CUSTOM.
      *           Check the AdvertiseMode enum for the list of possible values.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
+     *     @type string[] $advertised_groups
      *           User-specified list of prefix groups to advertise in custom mode.
      *           This field can only be populated if advertise_mode is CUSTOM and
      *           is advertised to all peers of the router.
      *           These groups will be advertised in addition to any specified prefixes.
      *           Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
-     *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
+     *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[] $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode.
      *           This field can only be populated if advertise_mode is CUSTOM and
      *           is advertised to all peers of the router.
@@ -179,7 +179,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvertisedGroups()
     {
@@ -195,7 +195,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvertisedGroups($var)
@@ -214,7 +214,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>
      */
     public function getAdvertisedIpRanges()
     {
@@ -229,7 +229,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @param array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[] $var
      * @return $this
      */
     public function setAdvertisedIpRanges($var)

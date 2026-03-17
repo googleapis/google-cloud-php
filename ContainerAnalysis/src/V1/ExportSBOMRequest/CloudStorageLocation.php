@@ -5,8 +5,8 @@
 namespace Google\Cloud\ContainerAnalysis\V1\ExportSBOMRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Empty placeholder to denote that this is a Google Cloud Storage
@@ -31,5 +31,4 @@ class CloudStorageLocation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

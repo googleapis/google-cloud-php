@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\StudySpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single parameter to optimize.
@@ -60,7 +60,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      *     @type int $scale_type
      *           How the parameter should be scaled.
      *           Leave unset for `CATEGORICAL` parameters.
-     *     @type array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec>|\Google\Protobuf\Internal\RepeatedField $conditional_parameter_specs
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec[] $conditional_parameter_specs
      *           A conditional parameter node is active if the parameter's value matches
      *           the conditional node's parent_value_condition.
      *           If two items in conditional_parameter_specs have the same name, they
@@ -259,7 +259,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * must have disjoint parent_value_condition.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec conditional_parameter_specs = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec>
      */
     public function getConditionalParameterSpecs()
     {
@@ -273,7 +273,7 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
      * must have disjoint parent_value_condition.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.ParameterSpec.ConditionalParameterSpec conditional_parameter_specs = 10;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec\ConditionalParameterSpec[] $var
      * @return $this
      */
     public function setConditionalParameterSpecs($var)
@@ -293,5 +293,4 @@ class ParameterSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

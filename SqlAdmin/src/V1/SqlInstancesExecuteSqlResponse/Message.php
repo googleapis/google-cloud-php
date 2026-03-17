@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\SqlInstancesExecuteSqlResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a notice or warning message from the database.
@@ -134,5 +134,4 @@ class Message extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

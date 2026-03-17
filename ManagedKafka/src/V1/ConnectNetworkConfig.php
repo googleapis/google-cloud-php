@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of a Virtual Private Cloud (VPC) network that can access
@@ -66,12 +66,12 @@ class ConnectNetworkConfig extends \Google\Protobuf\Internal\Message
      *           The CIDR range of the subnet must be within the IPv4 address ranges for
      *           private networks, as specified in RFC 1918. The primary subnet CIDR range
      *           must have a minimum size of /22 (1024 addresses).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_subnets
+     *     @type string[] $additional_subnets
      *           Optional. Additional subnets may be specified. They may be in another
      *           region, but must be in the same VPC network. The Connect workers can
      *           communicate with network endpoints in either the primary or additional
      *           subnets.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dns_domain_names
+     *     @type string[] $dns_domain_names
      *           Optional. Additional DNS domain names from the subnet's network to be made
      *           visible to the Connect Cluster. When using MirrorMaker2, it's necessary to
      *           add the bootstrap address's dns domain name of the target cluster to make
@@ -133,7 +133,7 @@ class ConnectNetworkConfig extends \Google\Protobuf\Internal\Message
      * subnets.
      *
      * Generated from protobuf field <code>repeated string additional_subnets = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalSubnets()
     {
@@ -147,7 +147,7 @@ class ConnectNetworkConfig extends \Google\Protobuf\Internal\Message
      * subnets.
      *
      * Generated from protobuf field <code>repeated string additional_subnets = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalSubnets($var)
@@ -166,7 +166,7 @@ class ConnectNetworkConfig extends \Google\Protobuf\Internal\Message
      * my-kafka-cluster.us-central1.managedkafka.my-project.cloud.goog
      *
      * Generated from protobuf field <code>repeated string dns_domain_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDnsDomainNames()
     {
@@ -181,7 +181,7 @@ class ConnectNetworkConfig extends \Google\Protobuf\Internal\Message
      * my-kafka-cluster.us-central1.managedkafka.my-project.cloud.goog
      *
      * Generated from protobuf field <code>repeated string dns_domain_names = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDnsDomainNames($var)

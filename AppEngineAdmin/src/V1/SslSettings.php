@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SSL configuration for a `DomainMapping` resource.
@@ -44,7 +44,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      * the new managed certificate and this field will be left empty. To remove
      * SSL support while there is still a pending managed certificate, clear the
      * `certificate_id` field with an `UpdateDomainMappingRequest`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string pending_managed_certificate_id = 4;</code>
      */
@@ -77,7 +77,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      *           the new managed certificate and this field will be left empty. To remove
      *           SSL support while there is still a pending managed certificate, clear the
      *           `certificate_id` field with an `UpdateDomainMappingRequest`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      * }
      */
     public function __construct($data = NULL) {
@@ -163,7 +163,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      * the new managed certificate and this field will be left empty. To remove
      * SSL support while there is still a pending managed certificate, clear the
      * `certificate_id` field with an `UpdateDomainMappingRequest`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string pending_managed_certificate_id = 4;</code>
      * @return string
@@ -181,7 +181,7 @@ class SslSettings extends \Google\Protobuf\Internal\Message
      * the new managed certificate and this field will be left empty. To remove
      * SSL support while there is still a pending managed certificate, clear the
      * `certificate_id` field with an `UpdateDomainMappingRequest`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string pending_managed_certificate_id = 4;</code>
      * @param string $var

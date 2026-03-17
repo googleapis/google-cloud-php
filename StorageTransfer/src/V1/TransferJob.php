@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This resource represents the configuration of a transfer job that runs
@@ -60,7 +60,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * Format is
      * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
      * Either the service account email
-     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * (`SERVICE_ACCOUNT_NAME\@PROJECT_ID.iam.gserviceaccount.com`) or the unique
      * ID (`123456789012345678901`) are accepted in the string. The `-`
      * wildcard character is required; replacing it with a project ID is invalid.
      * See
@@ -187,7 +187,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      *           Format is
      *           `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
      *           Either the service account email
-     *           (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     *           (`SERVICE_ACCOUNT_NAME\@PROJECT_ID.iam.gserviceaccount.com`) or the unique
      *           ID (`123456789012345678901`) are accepted in the string. The `-`
      *           wildcard character is required; replacing it with a project ID is invalid.
      *           See
@@ -357,7 +357,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * Format is
      * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
      * Either the service account email
-     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * (`SERVICE_ACCOUNT_NAME\@PROJECT_ID.iam.gserviceaccount.com`) or the unique
      * ID (`123456789012345678901`) are accepted in the string. The `-`
      * wildcard character is required; replacing it with a project ID is invalid.
      * See
@@ -379,7 +379,7 @@ class TransferJob extends \Google\Protobuf\Internal\Message
      * Format is
      * `projects/-/serviceAccounts/ACCOUNT_EMAIL_OR_UNIQUEID`
      * Either the service account email
-     * (`SERVICE_ACCOUNT_NAME&#64;PROJECT_ID.iam.gserviceaccount.com`) or the unique
+     * (`SERVICE_ACCOUNT_NAME\@PROJECT_ID.iam.gserviceaccount.com`) or the unique
      * ID (`123456789012345678901`) are accepted in the string. The `-`
      * wildcard character is required; replacing it with a project ID is invalid.
      * See

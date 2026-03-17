@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregate product statuses for a given reporting context and country.
@@ -68,7 +68,7 @@ class AggregateProductStatus extends \Google\Protobuf\Internal\Message
      *           code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      *     @type \Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\Stats $stats
      *           Products statistics for the given reporting context and country.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $item_level_issues
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\ItemLevelIssue[] $item_level_issues
      *           The product issues that affect the given reporting context and country.
      * }
      */
@@ -203,7 +203,7 @@ class AggregateProductStatus extends \Google\Protobuf\Internal\Message
      * The product issues that affect the given reporting context and country.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.AggregateProductStatus.ItemLevelIssue item_level_issues = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\ItemLevelIssue>
      */
     public function getItemLevelIssues()
     {
@@ -214,7 +214,7 @@ class AggregateProductStatus extends \Google\Protobuf\Internal\Message
      * The product issues that affect the given reporting context and country.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.AggregateProductStatus.ItemLevelIssue item_level_issues = 6;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\AggregateProductStatus\ItemLevelIssue[] $var
      * @return $this
      */
     public function setItemLevelIssues($var)

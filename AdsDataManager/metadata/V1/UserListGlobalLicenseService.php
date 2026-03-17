@@ -21,43 +21,7 @@ class UserListGlobalLicenseService
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-Ê
-@google/ads/datamanager/v1/user_list_global_license_service.protogoogle.ads.datamanager.v1google/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.proto"Ç
-"CreateUserListGlobalLicenseRequestH
-parent (	B8àAúA20datamanager.googleapis.com/UserListGlobalLicenseW
-user_list_global_license (20.google.ads.datamanager.v1.UserListGlobalLicenseBàA"³
-"UpdateUserListGlobalLicenseRequestW
-user_list_global_license (20.google.ads.datamanager.v1.UserListGlobalLicenseBàA4
-update_mask (2.google.protobuf.FieldMaskBàA"i
-GetUserListGlobalLicenseRequestF
-name (	B8àAúA2
-0datamanager.googleapis.com/UserListGlobalLicense"³
-!ListUserListGlobalLicensesRequestH
-parent (	B8àAúA20datamanager.googleapis.com/UserListGlobalLicense
-filter (	BàA
-	page_size (BàA
-
-page_token (	BàA"’
-"ListUserListGlobalLicensesResponseS
-user_list_global_licenses (20.google.ads.datamanager.v1.UserListGlobalLicense
-next_page_token (	"Ë
--ListUserListGlobalLicenseCustomerInfosRequestT
-parent (	BDàAúA><datamanager.googleapis.com/UserListGlobalLicenseCustomerInfo
-filter (	BàA
-	page_size (BàA
-
-page_token (	BàA"¸
-.ListUserListGlobalLicenseCustomerInfosResponsem
-\'user_list_global_license_customer_infos (2<.google.ads.datamanager.v1.UserListGlobalLicenseCustomerInfo
-next_page_token (	2­
-UserListGlobalLicenseService’
-CreateUserListGlobalLicense=.google.ads.datamanager.v1.CreateUserListGlobalLicenseRequest0.google.ads.datamanager.v1.UserListGlobalLicense"ÚAparent,user_list_global_license‚Óä“Y"=/v1/{parent=accountTypes/*/accounts/*}/userListGlobalLicenses:user_list_global_license°
-UpdateUserListGlobalLicense=.google.ads.datamanager.v1.UpdateUserListGlobalLicenseRequest0.google.ads.datamanager.v1.UserListGlobalLicense"ŸÚA$user_list_global_license,update_mask‚Óä“r2V/v1/{user_list_global_license.name=accountTypes/*/accounts/*/userListGlobalLicenses/*}:user_list_global_licenseÖ
-GetUserListGlobalLicense:.google.ads.datamanager.v1.GetUserListGlobalLicenseRequest0.google.ads.datamanager.v1.UserListGlobalLicense"LÚAname‚Óä“?=/v1/{name=accountTypes/*/accounts/*/userListGlobalLicenses/*}é
-ListUserListGlobalLicenses<.google.ads.datamanager.v1.ListUserListGlobalLicensesRequest=.google.ads.datamanager.v1.ListUserListGlobalLicensesResponse"NÚAparent‚Óä“?=/v1/{parent=accountTypes/*/accounts/*}/userListGlobalLicenses²
-&ListUserListGlobalLicenseCustomerInfosH.google.ads.datamanager.v1.ListUserListGlobalLicenseCustomerInfosRequestI.google.ads.datamanager.v1.ListUserListGlobalLicenseCustomerInfosResponse"sÚAparent‚Óä“db/v1/{parent=accountTypes/*/accounts/*/userListGlobalLicenses/*}/userListGlobalLicenseCustomerInfosKÊAdatamanager.googleapis.comÒA+https://www.googleapis.com/auth/datamanagerBÞ
-com.google.ads.datamanager.v1B!UserListGlobalLicenseServiceProtoPZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpbªGoogle.Ads.DataManager.V1ÊGoogle\\Ads\\DataManager\\V1êGoogle::Ads::DataManager::V1bproto3'
+            "\x0A\xCA\x18\x0A@google/ads/datamanager/v1/user_list_global_license_service.proto\x12\x19google.ads.datamanager.v1\x1A\x1Cgoogle/api/annotations.proto\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A google/protobuf/field_mask.proto\"\xC7\x01\x0A\"CreateUserListGlobalLicenseRequest\x12H\x0A\x06parent\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x120datamanager.googleapis.com/UserListGlobalLicense\x12W\x0A\x18user_list_global_license\x18\x02 \x01(\x0B20.google.ads.datamanager.v1.UserListGlobalLicenseB\x03\xE0A\x02\"\xB3\x01\x0A\"UpdateUserListGlobalLicenseRequest\x12W\x0A\x18user_list_global_license\x18\x01 \x01(\x0B20.google.ads.datamanager.v1.UserListGlobalLicenseB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x01\"i\x0A\x1FGetUserListGlobalLicenseRequest\x12F\x0A\x04name\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x0A0datamanager.googleapis.com/UserListGlobalLicense\"\xB3\x01\x0A!ListUserListGlobalLicensesRequest\x12H\x0A\x06parent\x18\x01 \x01(\x09B8\xE0A\x02\xFAA2\x120datamanager.googleapis.com/UserListGlobalLicense\x12\x13\x0A\x06filter\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x16\x0A\x09page_size\x18\x03 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x04 \x01(\x09B\x03\xE0A\x01\"\x92\x01\x0A\"ListUserListGlobalLicensesResponse\x12S\x0A\x19user_list_global_licenses\x18\x01 \x03(\x0B20.google.ads.datamanager.v1.UserListGlobalLicense\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x09\"\xCB\x01\x0A-ListUserListGlobalLicenseCustomerInfosRequest\x12T\x0A\x06parent\x18\x01 \x01(\x09BD\xE0A\x02\xFAA>\x12<datamanager.googleapis.com/UserListGlobalLicenseCustomerInfo\x12\x13\x0A\x06filter\x18\x02 \x01(\x09B\x03\xE0A\x01\x12\x16\x0A\x09page_size\x18\x03 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x04 \x01(\x09B\x03\xE0A\x01\"\xB8\x01\x0A.ListUserListGlobalLicenseCustomerInfosResponse\x12m\x0A'user_list_global_license_customer_infos\x18\x01 \x03(\x0B2<.google.ads.datamanager.v1.UserListGlobalLicenseCustomerInfo\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x092\xAD\x0B\x0A\x1CUserListGlobalLicenseService\x12\x92\x02\x0A\x1BCreateUserListGlobalLicense\x12=.google.ads.datamanager.v1.CreateUserListGlobalLicenseRequest\x1A0.google.ads.datamanager.v1.UserListGlobalLicense\"\x81\x01\xDAA\x1Fparent,user_list_global_license\x82\xD3\xE4\x93\x02Y\"=/v1/{parent=accountTypes/*/accounts/*}/userListGlobalLicenses:\x18user_list_global_license\x12\xB0\x02\x0A\x1BUpdateUserListGlobalLicense\x12=.google.ads.datamanager.v1.UpdateUserListGlobalLicenseRequest\x1A0.google.ads.datamanager.v1.UserListGlobalLicense\"\x9F\x01\xDAA\$user_list_global_license,update_mask\x82\xD3\xE4\x93\x02r2V/v1/{user_list_global_license.name=accountTypes/*/accounts/*/userListGlobalLicenses/*}:\x18user_list_global_license\x12\xD6\x01\x0A\x18GetUserListGlobalLicense\x12:.google.ads.datamanager.v1.GetUserListGlobalLicenseRequest\x1A0.google.ads.datamanager.v1.UserListGlobalLicense\"L\xDAA\x04name\x82\xD3\xE4\x93\x02?\x12=/v1/{name=accountTypes/*/accounts/*/userListGlobalLicenses/*}\x12\xE9\x01\x0A\x1AListUserListGlobalLicenses\x12<.google.ads.datamanager.v1.ListUserListGlobalLicensesRequest\x1A=.google.ads.datamanager.v1.ListUserListGlobalLicensesResponse\"N\xDAA\x06parent\x82\xD3\xE4\x93\x02?\x12=/v1/{parent=accountTypes/*/accounts/*}/userListGlobalLicenses\x12\xB2\x02\x0A&ListUserListGlobalLicenseCustomerInfos\x12H.google.ads.datamanager.v1.ListUserListGlobalLicenseCustomerInfosRequest\x1AI.google.ads.datamanager.v1.ListUserListGlobalLicenseCustomerInfosResponse\"s\xDAA\x06parent\x82\xD3\xE4\x93\x02d\x12b/v1/{parent=accountTypes/*/accounts/*/userListGlobalLicenses/*}/userListGlobalLicenseCustomerInfos\x1AK\xCAA\x1Adatamanager.googleapis.com\xD2A+https://www.googleapis.com/auth/datamanagerB\xDE\x01\x0A\x1Dcom.google.ads.datamanager.v1B!UserListGlobalLicenseServiceProtoP\x01ZAcloud.google.com/go/datamanager/apiv1/datamanagerpb;datamanagerpb\xAA\x02\x19Google.Ads.DataManager.V1\xCA\x02\x19Google\\Ads\\DataManager\\V1\xEA\x02\x1CGoogle::Ads::DataManager::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

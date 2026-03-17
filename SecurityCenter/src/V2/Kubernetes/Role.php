@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Kubernetes Role or ClusterRole.
@@ -132,5 +132,4 @@ class Role extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

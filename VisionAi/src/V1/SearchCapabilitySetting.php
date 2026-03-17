@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Setting for search capability to enable.
@@ -28,7 +28,7 @@ class SearchCapabilitySetting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\SearchCapability>|\Google\Protobuf\Internal\RepeatedField $search_capabilities
+     *     @type \Google\Cloud\VisionAI\V1\SearchCapability[] $search_capabilities
      *           The metadata of search capability to enable.
      * }
      */
@@ -41,7 +41,7 @@ class SearchCapabilitySetting extends \Google\Protobuf\Internal\Message
      * The metadata of search capability to enable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchCapability search_capabilities = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\SearchCapability>
      */
     public function getSearchCapabilities()
     {
@@ -52,7 +52,7 @@ class SearchCapabilitySetting extends \Google\Protobuf\Internal\Message
      * The metadata of search capability to enable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.SearchCapability search_capabilities = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\SearchCapability>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\SearchCapability[] $var
      * @return $this
      */
     public function setSearchCapabilities($var)

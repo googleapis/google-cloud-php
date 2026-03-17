@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Weekly windows. For example, blocking actions every Saturday and Sunday.
@@ -46,7 +46,7 @@ class WeeklyWindow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $days_of_week
+     *     @type int[] $days_of_week
      *           Optional. Days of week. If left empty, all days of the week will be
      *           included.
      *     @type \Google\Type\TimeOfDay $start_time
@@ -69,7 +69,7 @@ class WeeklyWindow extends \Google\Protobuf\Internal\Message
      * included.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getDaysOfWeek()
     {
@@ -81,7 +81,7 @@ class WeeklyWindow extends \Google\Protobuf\Internal\Message
      * included.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek days_of_week = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setDaysOfWeek($var)

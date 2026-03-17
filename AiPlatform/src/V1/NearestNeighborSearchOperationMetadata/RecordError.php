@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError</code>
@@ -206,5 +206,4 @@ class RecordError extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

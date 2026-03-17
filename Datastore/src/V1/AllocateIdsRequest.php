@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -66,7 +66,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      *           The ID of the database against which to make the request.
      *           '(default)' is not allowed; please use empty string '' to refer the default
      *           database.
-     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\Datastore\V1\Key[] $keys
      *           Required. A list of keys with incomplete key paths for which to allocate
      *           IDs. No key may be reserved/read-only.
      * }
@@ -137,7 +137,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      * IDs. No key may be reserved/read-only.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\Key>
      */
     public function getKeys()
     {
@@ -149,7 +149,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      * IDs. No key may be reserved/read-only.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\Key[] $var
      * @return $this
      */
     public function setKeys($var)

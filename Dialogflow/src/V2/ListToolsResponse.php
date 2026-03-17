@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListTools.
@@ -35,7 +35,7 @@ class ListToolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\Dialogflow\V2\Tool[] $tools
      *           List of tools retrieved.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListToolsResponse extends \Google\Protobuf\Internal\Message
      * List of tools retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool tools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Tool>
      */
     public function getTools()
     {
@@ -62,7 +62,7 @@ class ListToolsResponse extends \Google\Protobuf\Internal\Message
      * List of tools retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Tool tools = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Tool[] $var
      * @return $this
      */
     public function setTools($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Kubernetes-related attributes.
@@ -76,31 +76,31 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $pods
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Pod[] $pods
      *           Kubernetes
      *           [Pods](https://cloud.google.com/kubernetes-engine/docs/concepts/pod)
      *           associated with the finding. This field contains Pod records for each
      *           container that is owned by a Pod.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Node[] $nodes
      *           Provides Kubernetes
      *           [node](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture#nodes)
      *           information.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\NodePool[] $node_pools
      *           GKE [node
      *           pools](https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools)
      *           associated with the finding. This field contains node pool information for
      *           each node, when it is available.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Role[] $roles
      *           Provides Kubernetes role information for findings that involve [Roles or
      *           ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $bindings
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Binding[] $bindings
      *           Provides Kubernetes role binding information for findings that involve
      *           [RoleBindings or
      *           ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $access_reviews
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview[] $access_reviews
      *           Provides information on any Kubernetes access reviews (privilege checks)
      *           relevant to the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Object>|\Google\Protobuf\Internal\RepeatedField $objects
+     *     @type \Google\Cloud\SecurityCenter\V2\Kubernetes\Object[] $objects
      *           Kubernetes objects related to the finding.
      * }
      */
@@ -116,7 +116,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Pod pods = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Pod>
      */
     public function getPods()
     {
@@ -130,7 +130,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * container that is owned by a Pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Pod pods = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Pod>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Pod[] $var
      * @return $this
      */
     public function setPods($var)
@@ -147,7 +147,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Node nodes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Node>
      */
     public function getNodes()
     {
@@ -160,7 +160,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Node nodes = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Node[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -178,7 +178,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * each node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.NodePool node_pools = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\NodePool>
      */
     public function getNodePools()
     {
@@ -192,7 +192,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * each node, when it is available.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.NodePool node_pools = 3;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\NodePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\NodePool[] $var
      * @return $this
      */
     public function setNodePools($var)
@@ -208,7 +208,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Role roles = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Role>
      */
     public function getRoles()
     {
@@ -220,7 +220,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * ClusterRoles](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Role roles = 4;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Role>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Role[] $var
      * @return $this
      */
     public function setRoles($var)
@@ -237,7 +237,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Binding bindings = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Binding>
      */
     public function getBindings()
     {
@@ -250,7 +250,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * ClusterRoleBindings](https://cloud.google.com/kubernetes-engine/docs/how-to/role-based-access-control).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Binding bindings = 5;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Binding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Binding[] $var
      * @return $this
      */
     public function setBindings($var)
@@ -266,7 +266,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.AccessReview access_reviews = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview>
      */
     public function getAccessReviews()
     {
@@ -278,7 +278,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * relevant to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.AccessReview access_reviews = 6;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\AccessReview[] $var
      * @return $this
      */
     public function setAccessReviews($var)
@@ -293,7 +293,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Kubernetes objects related to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Object objects = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\Kubernetes\Object>
      */
     public function getObjects()
     {
@@ -304,7 +304,7 @@ class Kubernetes extends \Google\Protobuf\Internal\Message
      * Kubernetes objects related to the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.Kubernetes.Object objects = 7;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\Kubernetes\Object>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\Kubernetes\Object[] $var
      * @return $this
      */
     public function setObjects($var)

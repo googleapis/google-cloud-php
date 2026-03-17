@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2\VolumeConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A NFS export entry.
@@ -286,5 +286,4 @@ class NfsExport extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

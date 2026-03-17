@@ -5,8 +5,8 @@
 namespace Google\Cloud\Compute\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  *
@@ -90,7 +90,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $attached_instances
+     *     @type string[] $attached_instances
      *           Output only. [Output Only] Instances this disk is attached to.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
@@ -103,7 +103,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      *           Output only. [Output Only] The number of IOPS provisioned for the disk.
      *     @type int|string $provisioned_throughput
      *           Output only. [Output Only] The throughput provisioned for the disk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type string[] $resource_policies
      *           Output only. [Output Only] Resource policies applied to disk for automatic snapshot
      *           creations.
      *     @type int|string $size_gb
@@ -126,7 +126,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Instances this disk is attached to.
      *
      * Generated from protobuf field <code>repeated string attached_instances = 65255843;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAttachedInstances()
     {
@@ -137,7 +137,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      * Output only. [Output Only] Instances this disk is attached to.
      *
      * Generated from protobuf field <code>repeated string attached_instances = 65255843;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAttachedInstances($var)
@@ -335,7 +335,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourcePolicies()
     {
@@ -347,7 +347,7 @@ class StoragePoolDisk extends \Google\Protobuf\Internal\Message
      * creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourcePolicies($var)

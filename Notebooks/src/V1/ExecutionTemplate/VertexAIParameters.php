@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1\ExecutionTemplate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters used in Vertex AI JobType executions.
@@ -142,5 +142,4 @@ class VertexAIParameters extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

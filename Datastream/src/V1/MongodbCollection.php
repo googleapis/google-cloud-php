@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MongoDB Collection.
@@ -36,7 +36,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
      *
      *     @type string $collection
      *           Collection name.
-     *     @type array<\Google\Cloud\Datastream\V1\MongodbField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Datastream\V1\MongodbField[] $fields
      *           Fields in the collection.
      * }
      */
@@ -75,7 +75,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
      * Fields in the collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbField fields = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\MongodbField>
      */
     public function getFields()
     {
@@ -86,7 +86,7 @@ class MongodbCollection extends \Google\Protobuf\Internal\Message
      * Fields in the collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MongodbField fields = 2;</code>
-     * @param array<\Google\Cloud\Datastream\V1\MongodbField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\MongodbField[] $var
      * @return $this
      */
     public function setFields($var)

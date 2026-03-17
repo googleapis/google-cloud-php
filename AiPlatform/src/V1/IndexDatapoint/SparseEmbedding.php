@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\IndexDatapoint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feature embedding vector for sparse index. An array of numbers whose values
@@ -36,9 +36,9 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type float[] $values
      *           Required. The list of embedding values of the sparse vector.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type int[]|string[] $dimensions
      *           Required. The list of indexes for the embedding values of the sparse
      *           vector.
      * }
@@ -52,7 +52,7 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
      * Required. The list of embedding values of the sparse vector.
      *
      * Generated from protobuf field <code>repeated float values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getValues()
     {
@@ -63,7 +63,7 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
      * Required. The list of embedding values of the sparse vector.
      *
      * Generated from protobuf field <code>repeated float values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setValues($var)
@@ -79,7 +79,7 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
      * vector.
      *
      * Generated from protobuf field <code>repeated int64 dimensions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getDimensions()
     {
@@ -91,7 +91,7 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
      * vector.
      *
      * Generated from protobuf field <code>repeated int64 dimensions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -103,5 +103,4 @@ class SparseEmbedding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

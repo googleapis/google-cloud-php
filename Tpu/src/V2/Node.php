@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A TPU instance.
@@ -208,7 +208,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Network configurations for the TPU node. network_config and network_configs
      *           are mutually exclusive, you can only specify one of them. If both are
      *           specified, an error will be returned.
-     *     @type array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $network_configs
+     *     @type \Google\Cloud\Tpu\V2\NetworkConfig[] $network_configs
      *           Optional. Repeated network configurations for the TPU node. This field is
      *           used to specify multiple networks configs for the TPU node. network_config
      *           and network_configs are mutually exclusive, you can only specify one of
@@ -229,7 +229,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the node was created.
      *     @type \Google\Cloud\Tpu\V2\SchedulingConfig $scheduling_config
      *           The scheduling options for this node.
-     *     @type array<\Google\Cloud\Tpu\V2\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $network_endpoints
+     *     @type \Google\Cloud\Tpu\V2\NetworkEndpoint[] $network_endpoints
      *           Output only. The network endpoints where TPU workers can be accessed and
      *           sent work. It is recommended that runtime clients of the node reach out
      *           to the 0th entry in this map first.
@@ -240,16 +240,16 @@ class Node extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           Custom metadata to apply to the TPU Node.
      *           Can set startup-script and shutdown-script
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Tags to apply to the TPU Node. Tags are used to identify valid sources or
      *           targets for network firewalls.
      *     @type int|string $id
      *           Output only. The unique identifier for the TPU Node.
-     *     @type array<\Google\Cloud\Tpu\V2\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $data_disks
+     *     @type \Google\Cloud\Tpu\V2\AttachedDisk[] $data_disks
      *           The additional data disks for the Node.
      *     @type int $api_version
      *           Output only. The API version that created this Node.
-     *     @type array<\Google\Cloud\Tpu\V2\Symptom>|\Google\Protobuf\Internal\RepeatedField $symptoms
+     *     @type \Google\Cloud\Tpu\V2\Symptom[] $symptoms
      *           Output only. The Symptoms that have occurred to the TPU Node.
      *     @type \Google\Cloud\Tpu\V2\ShieldedInstanceConfig $shielded_instance_config
      *           Shielded Instance options.
@@ -472,7 +472,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * them. If both are specified, an error will be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\NetworkConfig>
      */
     public function getNetworkConfigs()
     {
@@ -486,7 +486,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * them. If both are specified, an error will be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkConfig network_configs = 49 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Tpu\V2\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\NetworkConfig[] $var
      * @return $this
      */
     public function setNetworkConfigs($var)
@@ -653,7 +653,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * to the 0th entry in this map first.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkEndpoint network_endpoints = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\NetworkEndpoint>
      */
     public function getNetworkEndpoints()
     {
@@ -666,7 +666,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * to the 0th entry in this map first.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.NetworkEndpoint network_endpoints = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Tpu\V2\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\NetworkEndpoint[] $var
      * @return $this
      */
     public function setNetworkEndpoints($var)
@@ -762,7 +762,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * targets for network firewalls.
      *
      * Generated from protobuf field <code>repeated string tags = 40;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -774,7 +774,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * targets for network firewalls.
      *
      * Generated from protobuf field <code>repeated string tags = 40;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -815,7 +815,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * The additional data disks for the Node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.AttachedDisk data_disks = 41;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\AttachedDisk>
      */
     public function getDataDisks()
     {
@@ -826,7 +826,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * The additional data disks for the Node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.AttachedDisk data_disks = 41;</code>
-     * @param array<\Google\Cloud\Tpu\V2\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\AttachedDisk[] $var
      * @return $this
      */
     public function setDataDisks($var)
@@ -867,7 +867,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * Output only. The Symptoms that have occurred to the TPU Node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.Symptom symptoms = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\Symptom>
      */
     public function getSymptoms()
     {
@@ -878,7 +878,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * Output only. The Symptoms that have occurred to the TPU Node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.Symptom symptoms = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Tpu\V2\Symptom>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\Symptom[] $var
      * @return $this
      */
     public function setSymptoms($var)

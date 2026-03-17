@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Kubernetes RoleBinding or ClusterRoleBinding.
@@ -53,7 +53,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      *           Name for the binding.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Role $role
      *           The Role or ClusterRole referenced by the binding.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $subjects
+     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Subject[] $subjects
      *           Represents one or more subjects that are bound to the role. Not always
      *           available for PATCH requests.
      * }
@@ -156,7 +156,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>
      */
     public function getSubjects()
     {
@@ -168,7 +168,7 @@ class Binding extends \Google\Protobuf\Internal\Message
      * available for PATCH requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Subject subjects = 4;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Subject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Subject[] $var
      * @return $this
      */
     public function setSubjects($var)
@@ -180,5 +180,4 @@ class Binding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

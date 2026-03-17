@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListSpecs][google.cloud.apihub.v1.ApiHub.ListSpecs] method's response.
@@ -35,7 +35,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Spec>|\Google\Protobuf\Internal\RepeatedField $specs
+     *     @type \Google\Cloud\ApiHub\V1\Spec[] $specs
      *           The specs corresponding to an API Version.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
      * The specs corresponding to an API Version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Spec specs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Spec>
      */
     public function getSpecs()
     {
@@ -62,7 +62,7 @@ class ListSpecsResponse extends \Google\Protobuf\Internal\Message
      * The specs corresponding to an API Version.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Spec specs = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Spec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Spec[] $var
      * @return $this
      */
     public function setSpecs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results from [Read][google.spanner.v1.Spanner.Read] or
@@ -75,7 +75,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\V1\ResultSetMetadata $metadata
      *           Metadata about the result set, such as row type information.
-     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Protobuf\ListValue[] $rows
      *           Each element in `rows` is a row whose format is defined by
      *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith
      *           element in each row matches the ith field in
@@ -154,7 +154,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\ListValue>
      */
     public function getRows()
     {
@@ -169,7 +169,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * are encoded based on type as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
-     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\ListValue[] $var
      * @return $this
      */
     public function setRows($var)

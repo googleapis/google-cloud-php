@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Failed to apply security policy to the managed resource(s) under a
@@ -71,5 +71,4 @@ class FailedSecurityPolicyApply extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

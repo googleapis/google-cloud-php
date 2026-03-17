@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1\CheckResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `ConsumerInfo` provides information about the consumer.
@@ -156,5 +156,4 @@ class ConsumerInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

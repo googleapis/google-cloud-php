@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request used by the DeleteClientTlsPolicy method.
@@ -17,7 +17,7 @@ class DeleteClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. A name of the ClientTlsPolicy to delete. Must be in
-     * the format `projects/&#42;&#47;locations/{location}/clientTlsPolicies/&#42;`.
+     * the format `projects/{@*}locations/{location}/clientTlsPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class DeleteClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A name of the ClientTlsPolicy to delete. Must be in
-     *           the format `projects/&#42;&#47;locations/{location}/clientTlsPolicies/&#42;`.
+     *           the format `projects/{@*}locations/{location}/clientTlsPolicies/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the ClientTlsPolicy to delete. Must be in
-     * the format `projects/&#42;&#47;locations/{location}/clientTlsPolicies/&#42;`.
+     * the format `projects/{@*}locations/{location}/clientTlsPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteClientTlsPolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. A name of the ClientTlsPolicy to delete. Must be in
-     * the format `projects/&#42;&#47;locations/{location}/clientTlsPolicies/&#42;`.
+     * the format `projects/{@*}locations/{location}/clientTlsPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

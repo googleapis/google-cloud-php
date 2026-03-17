@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1\ServicePerimeterConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how APIs are allowed to communicate within the Service
@@ -42,7 +42,7 @@ class VpcAccessibleServices extends \Google\Protobuf\Internal\Message
      *     @type bool $enable_restriction
      *           Whether to restrict API calls within the Service Perimeter to the list of
      *           APIs specified in 'allowed_services'.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_services
+     *     @type string[] $allowed_services
      *           The list of APIs usable within the Service Perimeter. Must be empty
      *           unless 'enable_restriction' is True. You can specify a list of individual
      *           services, as well as include the 'RESTRICTED-SERVICES' value, which
@@ -89,7 +89,7 @@ class VpcAccessibleServices extends \Google\Protobuf\Internal\Message
      * automatically includes all of the services protected by the perimeter.
      *
      * Generated from protobuf field <code>repeated string allowed_services = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedServices()
     {
@@ -103,7 +103,7 @@ class VpcAccessibleServices extends \Google\Protobuf\Internal\Message
      * automatically includes all of the services protected by the perimeter.
      *
      * Generated from protobuf field <code>repeated string allowed_services = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedServices($var)
@@ -115,5 +115,4 @@ class VpcAccessibleServices extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

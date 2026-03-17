@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The peered VPC owned by the consumer project.
@@ -64,5 +64,4 @@ class PeeredVpc extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

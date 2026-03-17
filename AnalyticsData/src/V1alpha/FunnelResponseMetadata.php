@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The funnel report's response metadata carries additional information about
@@ -35,7 +35,7 @@ class FunnelResponseMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $sampling_metadatas
+     *     @type \Google\Analytics\Data\V1alpha\SamplingMetadata[] $sampling_metadatas
      *           If funnel report results are
      *           [sampled](https://support.google.com/analytics/answer/13331292), this
      *           describes what percentage of events were used in this funnel report. One
@@ -60,7 +60,7 @@ class FunnelResponseMetadata extends \Google\Protobuf\Internal\Message
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\SamplingMetadata>
      */
     public function getSamplingMetadatas()
     {
@@ -77,7 +77,7 @@ class FunnelResponseMetadata extends \Google\Protobuf\Internal\Message
      * However if the results are not sampled, this field will not be defined.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.SamplingMetadata sampling_metadatas = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\SamplingMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\SamplingMetadata[] $var
      * @return $this
      */
     public function setSamplingMetadatas($var)

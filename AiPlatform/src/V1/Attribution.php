@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attribution that explains a particular prediction output.
@@ -180,7 +180,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      *           [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
      *           object, points to the schema file that describes the features and their
      *           attribution values (if it is populated).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $output_index
+     *     @type int[] $output_index
      *           Output only. The index that locates the explained prediction output.
      *           If the prediction output is a scalar value, output_index is not populated.
      *           If the prediction output has multiple dimensions, the length of the
@@ -402,7 +402,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * of the output vector. Indices start from 0.
      *
      * Generated from protobuf field <code>repeated int32 output_index = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOutputIndex()
     {
@@ -418,7 +418,7 @@ class Attribution extends \Google\Protobuf\Internal\Message
      * of the output vector. Indices start from 0.
      *
      * Generated from protobuf field <code>repeated int32 output_index = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOutputIndex($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A line with multiple line segments.
@@ -28,7 +28,7 @@ class Polyline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Vertex>|\Google\Protobuf\Internal\RepeatedField $vertices
+     *     @type \Google\Cloud\DataLabeling\V1beta1\Vertex[] $vertices
      *           The polyline vertices.
      * }
      */
@@ -41,7 +41,7 @@ class Polyline extends \Google\Protobuf\Internal\Message
      * The polyline vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Vertex vertices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\Vertex>
      */
     public function getVertices()
     {
@@ -52,7 +52,7 @@ class Polyline extends \Google\Protobuf\Internal\Message
      * The polyline vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Vertex vertices = 1;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\Vertex>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\Vertex[] $var
      * @return $this
      */
     public function setVertices($var)

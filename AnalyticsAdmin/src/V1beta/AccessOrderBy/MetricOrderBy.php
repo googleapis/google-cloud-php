@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta\AccessOrderBy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sorts by metric values.
@@ -64,5 +64,4 @@ class MetricOrderBy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

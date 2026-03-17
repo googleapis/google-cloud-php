@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListTasks` response that contains the set of Tasks that meet the filter
@@ -47,7 +47,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\Task>|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\Task[] $tasks
      *           The set of Tasks that meet the requested filtering criteria. When no filter
      *           is specified, the request returns all tasks. A successful response can also
      *           be empty. An empty response indicates that no Tasks were found meeting the
@@ -73,7 +73,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * requested filter criteria.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.Task tasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\Task>
      */
     public function getTasks()
     {
@@ -87,7 +87,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * requested filter criteria.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.Task tasks = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\Task>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\Task[] $var
      * @return $this
      */
     public function setTasks($var)

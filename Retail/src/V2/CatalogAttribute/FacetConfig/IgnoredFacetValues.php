@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\CatalogAttribute\FacetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Facet values][google.cloud.retail.v2.SearchResponse.Facet.values] to
@@ -54,7 +54,7 @@ class IgnoredFacetValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           List of facet values to ignore for the following time range. The facet
      *           values are the same as the attribute values. There is a limit of 10
      *           values per instance of IgnoredFacetValues. Each value can have at most
@@ -84,7 +84,7 @@ class IgnoredFacetValues extends \Google\Protobuf\Internal\Message
      * 128 characters.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -98,7 +98,7 @@ class IgnoredFacetValues extends \Google\Protobuf\Internal\Message
      * 128 characters.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)
@@ -196,5 +196,4 @@ class IgnoredFacetValues extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -45,9 +45,9 @@ class GenerateOptimizedManifestResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeRecommender\V1\KubernetesManifest>|\Google\Protobuf\Internal\RepeatedField $kubernetes_manifests
+     *     @type \Google\Cloud\GkeRecommender\V1\KubernetesManifest[] $kubernetes_manifests
      *           Output only. A list of generated Kubernetes manifests.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $comments
+     *     @type string[] $comments
      *           Output only. Comments related to deploying the generated manifests.
      *     @type string $manifest_version
      *           Output only. Additional information about the versioned dependencies used
@@ -66,7 +66,7 @@ class GenerateOptimizedManifestResponse extends \Google\Protobuf\Internal\Messag
      * Output only. A list of generated Kubernetes manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.KubernetesManifest kubernetes_manifests = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeRecommender\V1\KubernetesManifest>
      */
     public function getKubernetesManifests()
     {
@@ -77,7 +77,7 @@ class GenerateOptimizedManifestResponse extends \Google\Protobuf\Internal\Messag
      * Output only. A list of generated Kubernetes manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.KubernetesManifest kubernetes_manifests = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeRecommender\V1\KubernetesManifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeRecommender\V1\KubernetesManifest[] $var
      * @return $this
      */
     public function setKubernetesManifests($var)
@@ -92,7 +92,7 @@ class GenerateOptimizedManifestResponse extends \Google\Protobuf\Internal\Messag
      * Output only. Comments related to deploying the generated manifests.
      *
      * Generated from protobuf field <code>repeated string comments = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComments()
     {
@@ -103,7 +103,7 @@ class GenerateOptimizedManifestResponse extends \Google\Protobuf\Internal\Messag
      * Output only. Comments related to deploying the generated manifests.
      *
      * Generated from protobuf field <code>repeated string comments = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComments($var)

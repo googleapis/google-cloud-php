@@ -873,4 +873,3 @@ class Cause
     }
 }
 
-

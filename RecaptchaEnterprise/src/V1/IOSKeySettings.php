@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings specific to keys that can be used by iOS apps.
@@ -52,7 +52,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_bundle_ids
      *           Optional. If set to true, allowed_bundle_ids are not enforced.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_bundle_ids
+     *     @type string[] $allowed_bundle_ids
      *           Optional. iOS bundle IDs of apps allowed to use the key.
      *           Example: 'com.companyname.productname.appname'
      *           Each key supports a maximum of 250 bundle IDs. To use a key on more
@@ -109,7 +109,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      * against your list of allowed bundle IDs.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedBundleIds()
     {
@@ -126,7 +126,7 @@ class IOSKeySettings extends \Google\Protobuf\Internal\Message
      * against your list of allowed bundle IDs.
      *
      * Generated from protobuf field <code>repeated string allowed_bundle_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedBundleIds($var)

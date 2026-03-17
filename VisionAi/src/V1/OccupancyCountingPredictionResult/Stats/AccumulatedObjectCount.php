@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult\Stats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The object info and accumulated count for annotations from occupancy
@@ -119,5 +119,4 @@ class AccumulatedObjectCount extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
