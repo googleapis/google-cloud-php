@@ -307,7 +307,7 @@ trait PathTrait
                 // Swallow the exception to continue trying other path templates
             }
         }
-	throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException("Input did not match any known format. Input: $formattedName");
     }
 
     /**
