@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Authentication information for the operation.
@@ -37,7 +37,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * The third party identification (if any) of the authenticated user making
      * the request.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct third_party_principal = 4;</code>
      */
@@ -89,13 +89,13 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      *           The third party identification (if any) of the authenticated user making
      *           the request.
      *           When the JSON object represented here has a proto equivalent, the proto
-     *           name will be indicated in the `&#64;type` property.
+     *           name will be indicated in the `\@type` property.
      *     @type string $service_account_key_name
      *           The name of the service account key used to create or exchange
      *           credentials for authenticating the service account making the request.
      *           This is a scheme-less URI full resource name. For example:
      *           "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}"
-     *     @type array<\Google\Cloud\Audit\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $service_account_delegation_info
+     *     @type \Google\Cloud\Audit\ServiceAccountDelegationInfo[] $service_account_delegation_info
      *           Identity delegation history of an authenticated service account that makes
      *           the request. It contains information on the real authorities that try to
      *           access GCP resources by delegating on a service account. When multiple
@@ -179,7 +179,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * The third party identification (if any) of the authenticated user making
      * the request.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct third_party_principal = 4;</code>
      * @return \Google\Protobuf\Struct|null
@@ -203,7 +203,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * The third party identification (if any) of the authenticated user making
      * the request.
      * When the JSON object represented here has a proto equivalent, the proto
-     * name will be indicated in the `&#64;type` property.
+     * name will be indicated in the `\@type` property.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct third_party_principal = 4;</code>
      * @param \Google\Protobuf\Struct $var
@@ -257,7 +257,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * ordering of the identity delegation events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.ServiceAccountDelegationInfo service_account_delegation_info = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Audit\ServiceAccountDelegationInfo>
      */
     public function getServiceAccountDelegationInfo()
     {
@@ -272,7 +272,7 @@ class AuthenticationInfo extends \Google\Protobuf\Internal\Message
      * ordering of the identity delegation events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.audit.ServiceAccountDelegationInfo service_account_delegation_info = 6;</code>
-     * @param array<\Google\Cloud\Audit\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Audit\ServiceAccountDelegationInfo[] $var
      * @return $this
      */
     public function setServiceAccountDelegationInfo($var)

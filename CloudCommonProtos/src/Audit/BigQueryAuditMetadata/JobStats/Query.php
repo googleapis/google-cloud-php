@@ -5,8 +5,8 @@
 namespace Google\Cloud\Audit\BigQueryAuditMetadata\JobStats;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Query job statistics.
@@ -76,11 +76,11 @@ class Query extends \Google\Protobuf\Internal\Message
      *           Total bytes billed by the query job.
      *     @type int $billing_tier
      *           The tier assigned by the CPU-based billing.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_tables
+     *     @type string[] $referenced_tables
      *           Tables accessed by the query job.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_views
+     *     @type string[] $referenced_views
      *           Views accessed by the query job.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_routines
+     *     @type string[] $referenced_routines
      *           Routines accessed by the query job.
      *     @type int|string $output_row_count
      *           Number of output rows produced by the query job.
@@ -175,7 +175,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Tables accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_tables = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedTables()
     {
@@ -186,7 +186,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Tables accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_tables = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedTables($var)
@@ -201,7 +201,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Views accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_views = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedViews()
     {
@@ -212,7 +212,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Views accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_views = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedViews($var)
@@ -227,7 +227,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Routines accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_routines = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedRoutines()
     {
@@ -238,7 +238,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Routines accessed by the query job.
      *
      * Generated from protobuf field <code>repeated string referenced_routines = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedRoutines($var)
@@ -302,5 +302,4 @@ class Query extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
