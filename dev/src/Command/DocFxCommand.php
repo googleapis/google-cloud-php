@@ -30,6 +30,9 @@ use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use Google\Cloud\Dev\DocFx\XrefValidationTrait;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 /**
  * @internal
@@ -147,8 +150,21 @@ class DocFxCommand extends Command
             $output->write('Running phpdoc to generate structure.xml... ');
             // Run "phpdoc"
             $process = self::getPhpDocCommand($component->getPath(), $outDir);
-            $process->mustRun();
-            $output->writeln('Done.');
+            try {
+                $process->mustRun();
+                $output->writeln('Done.');
+            } catch (ProcessFailedException $ex) {
+                if (false !== strpos($process->getErrorOutput(), 'The arguments array must contain 3 items, 0 given')) {
+                    $output->writeln('<error>Process errored out, applying PHPDoc Tag Escape fix and trying again...</>');
+                    $this->applyPhpDocTagEscapeFix($component->getPath());
+                    $process->mustRun();
+                    $output->writeln('<info>IT WORKED!</> Reverting Fix... ');
+                    $this->applyPhpDocTagEscapeFix($component->getPath(), revert: true);
+                    $output->writeln('Done.');
+                } else {
+                    throw $ex;
+                }
+            }
             $xml = $outDir . '/structure.xml';
         }
         if (!file_exists($xml)) {
@@ -344,5 +360,31 @@ class DocFxCommand extends Command
             realpath($outDir) . '/docs.metadata'
         ]);
         $process->mustRun();
+    }
+
+    /**
+     * Applies a fix to solve an issue where {@*} is being parsed as a tag by
+     * phpDocumentor, which later causes an error when vprintf sees unescaped
+     * percent signs.
+     *
+     * Replaces "{@*}" with "&#42;&#47;" in the files were the errors occur.
+     *
+     * @see https://github.com/phpDocumentor/ReflectionDocBlock/pull/450
+     * @TODO: Remove this method once the fix is merged and released.
+     */
+    private function applyPhpDocTagEscapeFix(string $componentPath, $revert = false)
+    {
+        $from = $revert ? '&#42;&#47;' : '{@*}';
+        $to = $revert ? '{@*}' : '&#42;&#47;';
+        $dirIter = new RecursiveDirectoryIterator($componentPath . '/src', RecursiveDirectoryIterator::SKIP_DOTS);
+        foreach (new RecursiveIteratorIterator($dirIter) as $file) {
+            if ($file->isFile()) {
+                $content = file_get_contents($file->getPathname());
+                // The error only occurs when both "{@*}" and "%" are present
+                if (str_contains($content, $from) && str_contains($content, '%')) {
+                    file_put_contents($file->getPathname(), str_replace($from, $to, $content));
+                }
+            }
+        }
     }
 }
