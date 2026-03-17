@@ -28,7 +28,7 @@ class Links extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 dropped_links_count = 2;</code>
      */
-    private $dropped_links_count = 0;
+    protected $dropped_links_count = 0;
 
     /**
      * Constructor.

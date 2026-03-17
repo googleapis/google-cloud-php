@@ -21,14 +21,14 @@ class Annotation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.TruncatableString description = 1;</code>
      */
-    private $description = null;
+    protected $description = null;
     /**
      * A set of attributes on the annotation. You can have up to 4 attributes
      * per Annotation.
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.Attributes attributes = 2;</code>
      */
-    private $attributes = null;
+    protected $attributes = null;
 
     /**
      * Constructor.

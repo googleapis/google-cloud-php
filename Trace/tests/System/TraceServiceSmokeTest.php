@@ -15,15 +15,11 @@
  * limitations under the License.
  */
 
-/*
- * GENERATED CODE WARNING
- * This file was automatically generated - do not edit!
- */
-
 namespace Google\Cloud\Trace\Tests\System\V2;
 
-use Google\Cloud\Trace\V2\TraceServiceClient;
+use Google\Cloud\Trace\V2\Client\TraceServiceClient;
 use Google\ApiCore\Testing\GeneratedTest;
+use Google\Cloud\Trace\V2\BatchWriteSpansRequest;
 
 /**
  * @group trace
@@ -43,7 +39,8 @@ class TraceServiceSmokeTest extends GeneratedTest
 
         $traceServiceClient = new TraceServiceClient();
         $formattedName = $traceServiceClient->projectName($projectId);
-        $spans = [];
-        $traceServiceClient->batchWriteSpans($formattedName, $spans);
+        $request = new BatchWriteSpansRequest(['name' => $formattedName, 'spans' => []]);
+        $response = $traceServiceClient->batchWriteSpans($request);
+        $this->assertNull($response);
     }
 }

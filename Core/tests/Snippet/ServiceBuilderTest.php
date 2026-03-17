@@ -19,7 +19,6 @@ namespace Google\Cloud\Core\Tests\Snippet;
 
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\Core\ServiceBuilder;
-use Google\Cloud\Datastore\DatastoreClient;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Firestore\FirestoreClient;
 use Google\Cloud\Language\LanguageClient;
@@ -27,7 +26,6 @@ use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\PubSub\PubSubClient;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Storage\StorageClient;
-use Google\Cloud\Trace\TraceClient;
 
 /**
  * @group root
@@ -57,7 +55,6 @@ class ServiceBuilderTest extends SnippetTestCase
             ['pubsub', PubSubClient::class, 'pubsub'],
             ['spanner', SpannerClient::class, 'spanner', true],
             ['storage', StorageClient::class, 'storage'],
-            ['trace', TraceClient::class, 'trace'],
         ];
     }
 
