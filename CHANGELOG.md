@@ -1,5 +1,2117 @@
 # Changelog
 
+## 0.323.0
+
+<details><summary>google/cloud-access-approval 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/access-context-manager 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>googleads/ad-manager 0.6.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>googleads/data-manager 0.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>googleads/marketingplatform-admin 0.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-advisorynotifications 1.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.54.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] upgrade protobuf from v25.7 to v31.0 ([#8970](https://github.com/googleapis/google-cloud-php/issues/8970)) ([03faa61](https://github.com/googleapis/google-cloud-php/commit/03faa6162502e2d11a1c9d1d3ee073bd6364f4ee))
+* Add custom session id field to create session v1 ([03faa61](https://github.com/googleapis/google-cloud-php/commit/03faa6162502e2d11a1c9d1d3ee073bd6364f4ee))
+
+</details>
+
+<details><summary>google/cloud-alloydb 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/analytics-admin 0.31.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/analytics-data 0.23.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-apihub 0.4.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-api-keys 1.1.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-apiregistry 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-apphub 0.4.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/apps-chat 0.17.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/apps-events-subscriptions 0.4.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/apps-meet 0.5.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8972](https://github.com/googleapis/google-cloud-php/issues/8972)) ([a8c36c2](https://github.com/googleapis/google-cloud-php/commit/a8c36c2978015430726559b8e7451bc59893cdf0))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-asset 2.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-auditmanager 0.1.1</summary>
+
+
+
+### Bug Fixes
+
+* [AuditManager] Update existing packaging option `cloud.google.com/go/auditmanager/apiv1/auditmanagerpb;auditmanagerpb` for `go_package` ([#8953](https://github.com/googleapis/google-cloud-php/issues/8953)) ([6796b74](https://github.com/googleapis/google-cloud-php/commit/6796b749fb6575c09a94ce2314138d6d8e2b85d9))
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-automl 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.12.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-batch 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.35.2</summary>
+
+
+
+### Bug Fixes
+
+* **BigQuery:** Null value record not returning null and causing a type mismatch on function call ([#8963](https://github.com/googleapis/google-cloud-php/issues/8963)) ([2bb05ad](https://github.com/googleapis/google-cloud-php/commit/2bb05add059626b893e367d15e7c6865509373d5))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 1.5.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 2.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 2.6.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8973](https://github.com/googleapis/google-cloud-php/issues/8973)) ([0eb89f0](https://github.com/googleapis/google-cloud-php/commit/0eb89f0ba7cd9c3ec940562e3dfe83022332ae02))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.21.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing 2.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 2.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 1.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-build 1.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-capacityplanner 0.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 1.1.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-ces 0.1.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-channel 2.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-chronicle 0.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-common-protos 1.0.0</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/protobuf to v5 ([#8947](https://github.com/googleapis/google-cloud-php/issues/8947)) ([ecc7dc2](https://github.com/googleapis/google-cloud-php/commit/ecc7dc249c0596c4f8d79861a6dce5909e16b96b))
+
+</details>
+
+<details><summary>google/cloud-commerce-consumer-procurement 1.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/common-protos 4.12.5</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/protobuf to v5 ([#8947](https://github.com/googleapis/google-cloud-php/issues/8947)) ([ecc7dc2](https://github.com/googleapis/google-cloud-php/commit/ecc7dc249c0596c4f8d79861a6dce5909e16b96b))
+
+</details>
+
+<details><summary>google/cloud-compute 2.8.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine v1 API to revision 20260227 (googleapis[#1166](https://github.com/googleapis/google-cloud-php/issues/1166)) ([#8983](https://github.com/googleapis/google-cloud-php/issues/8983)) ([a6d2d57](https://github.com/googleapis/google-cloud-php/commit/a6d2d576582426e82d121789b86758efa6c96f36))
+
+</details>
+
+<details><summary>google/cloud-confidentialcomputing 1.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-config 1.7.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-configdelivery 0.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 2.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container 2.8.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-container-analysis 1.2.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-cloudcontrolspartner 0.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-core 1.71.2</summary>
+
+
+
+### Bug Fixes
+
+* **Core:** Phpdoc parsing for snippets tests ([#9012](https://github.com/googleapis/google-cloud-php/issues/9012)) ([5b33724](https://github.com/googleapis/google-cloud-php/commit/5b337240628ae05004cffaf24fb7d6fb5e11fe80))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 2.4.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 1.1.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.7.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.4.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.9.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.10.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dataplex 1.12.0</summary>
+
+
+
+### Features
+
+* [Dataplex] add DataProductService to manage data products and underlying data assets ([#9004](https://github.com/googleapis/google-cloud-php/issues/9004)) ([f24ca61](https://github.com/googleapis/google-cloud-php/commit/f24ca61db7923c9a99dc5f36babf729b9f60be90))
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dataproc 2.9.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 1.1.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-datastream 2.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-deploy 1.6.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-developerconnect 0.6.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-devicestreaming 0.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.10.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8975](https://github.com/googleapis/google-cloud-php/issues/8975)) ([1942db8](https://github.com/googleapis/google-cloud-php/commit/1942db85e213e872d8eb5f77e01c944823b33957))
+
+</details>
+
+<details><summary>google/cloud-discoveryengine 1.11.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.9.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dms 2.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.6.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-domains 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-edgenetwork 1.4.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.25.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc 2.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 1.2.2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-filestore 2.2.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-financialservices 0.2.4</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0-RC2</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-functions 2.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-geminidataanalytics 0.9.0</summary>
+
+
+
+### Features
+
+* [GeminiDataAnalytics] upgrade protobuf from v25.7 to v31.0 ([#8971](https://github.com/googleapis/google-cloud-php/issues/8971)) ([4cc7804](https://github.com/googleapis/google-cloud-php/commit/4cc78046f2e0b1fd20f6c8e3fb56343d60f5ea7c))
+* Add `ParameterizedSecureViewParameters` message and field for PSV support ([4cc7804](https://github.com/googleapis/google-cloud-php/commit/4cc78046f2e0b1fd20f6c8e3fb56343d60f5ea7c))
+
+</details>
+
+<details><summary>google/geo-common-protos 0.2.4</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/protobuf to v5 ([#8947](https://github.com/googleapis/google-cloud-php/issues/8947)) ([ecc7dc2](https://github.com/googleapis/google-cloud-php/commit/ecc7dc249c0596c4f8d79861a6dce5909e16b96b))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 1.3.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 1.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-hub 1.3.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 1.4.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-gkerecommender 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/grafeas 1.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-hypercomputecluster 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-iam 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-iap 2.3.0</summary>
+
+
+
+### Features
+
+* [Iap] add oauth fields for IapSettings ([#9005](https://github.com/googleapis/google-cloud-php/issues/9005)) ([ec34930](https://github.com/googleapis/google-cloud-php/commit/ec34930f60acdf7fcb2387fcfde279e02717882e))
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-ids 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-kms 2.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-kms-inventory 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-language 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-licensemanager 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.9.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-locationfinder 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-logging 2.0.0-RC1</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/longrunning 0.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-lustre 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-maintenance 0.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-managedkafka 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/cloud-managedkafka-schemaregistry 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8977](https://github.com/googleapis/google-cloud-php/issues/8977)) ([0e652c4](https://github.com/googleapis/google-cloud-php/commit/0e652c487aabc2acb4c332fc5b9e36b5509d8e68))
+
+</details>
+
+<details><summary>google/maps-fleetengine 0.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/maps-fleetengine-delivery 0.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/maps-routeoptimization 0.6.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.6.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-memcache 2.1.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.6.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-migrationcenter 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-modelarmor 0.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-monitoring 2.2.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.10.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 2.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-network-management 2.9.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-networkservices 0.8.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-notebooks 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-optimization 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-oracledatabase 0.8.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 2.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-org-policy 1.3.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-osconfig 2.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8978](https://github.com/googleapis/google-cloud-php/issues/8978)) ([35fb3b1](https://github.com/googleapis/google-cloud-php/commit/35fb3b1b51404cf9cc13c0243ba8ed6ba9c1ae6a))
+
+</details>
+
+<details><summary>google/cloud-oslogin 2.1.3</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-parallelstore 0.13.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-parametermanager 0.5.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-policysimulator 1.3.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-policytroubleshooter-iam 0.4.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.6.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-privilegedaccessmanager 0.4.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-profiler 2.1.2</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-quotas 1.5.5</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-rapidmigrationassessment 1.2.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 2.3.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.9.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-recommender 2.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-redis 2.2.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.6.4</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 1.1.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-retail 2.5.3</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-run 1.12.1</summary>
+
+
+
+### Bug Fixes
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8979](https://github.com/googleapis/google-cloud-php/issues/8979)) ([df5c0f9](https://github.com/googleapis/google-cloud-php/commit/df5c0f991204e5f25b62780e9f3b7761f717be0c))
+
+</details>
+
+<details><summary>google/cloud-scheduler 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-security-center 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+* [SecurityCenter] Support Chokepoint and external exposure in findings Proto ([#9010](https://github.com/googleapis/google-cloud-php/issues/9010)) ([7af25b3](https://github.com/googleapis/google-cloud-php/commit/7af25b3c092b0b227493df703841b03a2c87b6fe))
+
+</details>
+
+<details><summary>google/cloud-securitycentermanagement 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-securitycompliance 0.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-service-control 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-service-directory 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-servicehealth 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-service-management 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-service-usage 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/cloud-shell 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/shopping-common-protos 0.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+* [ShoppingCommonProtos] add more values in DestintionEnum ([#8984](https://github.com/googleapis/google-cloud-php/issues/8984)) ([aa8af3d](https://github.com/googleapis/google-cloud-php/commit/aa8af3d8733709eb2a5e97527a5d5e1c3ee9e3fd))
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/protobuf to v5 ([#8947](https://github.com/googleapis/google-cloud-php/issues/8947)) ([ecc7dc2](https://github.com/googleapis/google-cloud-php/commit/ecc7dc249c0596c4f8d79861a6dce5909e16b96b))
+
+</details>
+
+<details><summary>google/shopping-css 0.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+* [ShoppingMerchantAccounts] Add CreateTestAccount RPC to Accounts service for creating test-only Merchant Center accounts ([#9011](https://github.com/googleapis/google-cloud-php/issues/9011)) ([d4153a7](https://github.com/googleapis/google-cloud-php/commit/d4153a78fcda839d3ff34a109445901604f105b2))
+
+</details>
+
+<details><summary>google/shopping-merchant-conversions 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8980](https://github.com/googleapis/google-cloud-php/issues/8980)) ([4c5756c](https://github.com/googleapis/google-cloud-php/commit/4c5756cdc858af9a89d5de842ea84d334c28addf))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+* [ShoppingMerchantProducts] update products_common fields to include `handling_cutoff_timezone `, `shipping_handling_business_days`, `shipping_transit_business_days` ([#8985](https://github.com/googleapis/google-cloud-php/issues/8985)) ([f59d71e](https://github.com/googleapis/google-cloud-php/commit/f59d71eec8598e5bf7cbfaebc2c7578664e4c814))
+
+
+### Documentation
+
+* Comment for messages for products_common are changed ([f59d71e](https://github.com/googleapis/google-cloud-php/commit/f59d71eec8598e5bf7cbfaebc2c7578664e4c814))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-quota 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.6.0</summary>
+
+
+
+### Features
+
+* [Spanner] include cache updates and routing hint into BeginTransaction and Commit request/response respectively ([#8962](https://github.com/googleapis/google-cloud-php/issues/8962)) ([28d8a69](https://github.com/googleapis/google-cloud-php/commit/28d8a698b42cf0f44a9aa1742b17b9b392be03db))
+
+
+### Documentation
+
+* A comment in message `.google.spanner.v1.TransactionOptions.ReadWrite.ReadLockMode` is changed ([28d8a69](https://github.com/googleapis/google-cloud-php/commit/28d8a698b42cf0f44a9aa1742b17b9b392be03db))
+
+</details>
+
+<details><summary>google/cloud-speech 2.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 1.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-storagebatchoperations 0.6.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-storage-control 1.8.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-storageinsights 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 2.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-support 1.5.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-talent 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-tasks 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-telcoautomation 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.7.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8981](https://github.com/googleapis/google-cloud-php/issues/8981)) ([03cb5c3](https://github.com/googleapis/google-cloud-php/commit/03cb5c37027b286ffda320664511a45caa3c25f4))
+
+</details>
+
+<details><summary>google/cloud-tpu 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-trace 2.0.0-RC1</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+* Add Trace V1 ([#9013](https://github.com/googleapis/google-cloud-php/issues/9013)) ([4cbe5b7](https://github.com/googleapis/google-cloud-php/commit/4cbe5b7b9606d5c26b3bc6dfb8f9e7c1499e775a))
+
+</details>
+
+<details><summary>google/cloud-translate 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-vectorsearch 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [VectorSearch] Removed field DenseScannParams from SearchHint ([#8964](https://github.com/googleapis/google-cloud-php/issues/8964))
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+
+### Bug Fixes
+
+* [VectorSearch] Removed field DenseScannParams from SearchHint ([#8964](https://github.com/googleapis/google-cloud-php/issues/8964)) ([2fb78d2](https://github.com/googleapis/google-cloud-php/commit/2fb78d26a6597f526acfa1c4b0d2046409fb8ecf))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-vision 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-visionai 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 1.4.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-vmware-engine 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 2.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-web-risk 2.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 1.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-workflows 1.3.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
+<details><summary>google/cloud-workloadmanager 0.2.0</summary>
+
+
+
+### Features
+
+* [Many APIs] upgrade protobuf from v25.7 to v31.0 ([#8982](https://github.com/googleapis/google-cloud-php/issues/8982)) ([3e345f9](https://github.com/googleapis/google-cloud-php/commit/3e345f9b137696338a15af8543d5ab8385c3f8d9))
+
+</details>
+
 ## 0.322.0
 
 <details><summary>googleads/data-manager 0.3.0</summary>
