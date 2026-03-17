@@ -646,7 +646,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
 
     /**
      * Returns an array representation of a QueryRequest:
-     * [QueryRequest API documentation](https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#QueryRequest)
+     * [QueryRequest](https://docs.cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#QueryRequest)
      *
      * @return array
      */
