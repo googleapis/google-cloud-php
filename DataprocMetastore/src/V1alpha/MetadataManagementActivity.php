@@ -5,8 +5,8 @@
 namespace Google\Cloud\Metastore\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata management activities of the metastore service.
@@ -34,9 +34,9 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Metastore\V1alpha\MetadataExport>|\Google\Protobuf\Internal\RepeatedField $metadata_exports
+     *     @type \Google\Cloud\Metastore\V1alpha\MetadataExport[] $metadata_exports
      *           Output only. The latest metadata exports of the metastore service.
-     *     @type array<\Google\Cloud\Metastore\V1alpha\Restore>|\Google\Protobuf\Internal\RepeatedField $restores
+     *     @type \Google\Cloud\Metastore\V1alpha\Restore[] $restores
      *           Output only. The latest restores of the metastore service.
      * }
      */
@@ -49,7 +49,7 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * Output only. The latest metadata exports of the metastore service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.MetadataExport metadata_exports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Metastore\V1alpha\MetadataExport>
      */
     public function getMetadataExports()
     {
@@ -60,7 +60,7 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * Output only. The latest metadata exports of the metastore service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.MetadataExport metadata_exports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Metastore\V1alpha\MetadataExport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Metastore\V1alpha\MetadataExport[] $var
      * @return $this
      */
     public function setMetadataExports($var)
@@ -75,7 +75,7 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * Output only. The latest restores of the metastore service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.Restore restores = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Metastore\V1alpha\Restore>
      */
     public function getRestores()
     {
@@ -86,7 +86,7 @@ class MetadataManagementActivity extends \Google\Protobuf\Internal\Message
      * Output only. The latest restores of the metastore service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.Restore restores = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Metastore\V1alpha\Restore>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Metastore\V1alpha\Restore[] $var
      * @return $this
      */
     public function setRestores($var)

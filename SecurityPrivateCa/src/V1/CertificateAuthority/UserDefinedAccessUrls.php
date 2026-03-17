@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User-defined URLs for accessing content published by this
@@ -45,13 +45,13 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_issuing_certificate_urls
+     *     @type string[] $aia_issuing_certificate_urls
      *           Optional. A list of URLs where the issuer CA certificate may be
      *           downloaded, which appears in the "Authority Information Access" extension
      *           in the certificate. If specified, the default [Cloud Storage
      *           URLs][google.cloud.security.privateca.v1.CertificateAuthority.AccessUrls.ca_certificate_access_url]
      *           will be omitted.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $crl_access_urls
+     *     @type string[] $crl_access_urls
      *           Optional. A list of URLs where to obtain CRL information, i.e.
      *           the DistributionPoint.fullName described by
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.13.
@@ -74,7 +74,7 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
      * will be omitted.
      *
      * Generated from protobuf field <code>repeated string aia_issuing_certificate_urls = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAiaIssuingCertificateUrls()
     {
@@ -89,7 +89,7 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
      * will be omitted.
      *
      * Generated from protobuf field <code>repeated string aia_issuing_certificate_urls = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAiaIssuingCertificateUrls($var)
@@ -110,7 +110,7 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
      * will be omitted.
      *
      * Generated from protobuf field <code>repeated string crl_access_urls = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCrlAccessUrls()
     {
@@ -127,7 +127,7 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
      * will be omitted.
      *
      * Generated from protobuf field <code>repeated string crl_access_urls = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCrlAccessUrls($var)
@@ -139,5 +139,4 @@ class UserDefinedAccessUrls extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

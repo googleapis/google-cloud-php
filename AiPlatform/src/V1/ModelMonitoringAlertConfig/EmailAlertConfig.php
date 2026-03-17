@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ModelMonitoringAlertConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config for email alert.
@@ -28,7 +28,7 @@ class EmailAlertConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $user_emails
+     *     @type string[] $user_emails
      *           The email addresses to send the alert.
      * }
      */
@@ -41,7 +41,7 @@ class EmailAlertConfig extends \Google\Protobuf\Internal\Message
      * The email addresses to send the alert.
      *
      * Generated from protobuf field <code>repeated string user_emails = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUserEmails()
     {
@@ -52,7 +52,7 @@ class EmailAlertConfig extends \Google\Protobuf\Internal\Message
      * The email addresses to send the alert.
      *
      * Generated from protobuf field <code>repeated string user_emails = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUserEmails($var)
@@ -64,5 +64,4 @@ class EmailAlertConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

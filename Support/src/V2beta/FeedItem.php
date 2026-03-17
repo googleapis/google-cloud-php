@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A feed item associated with a support case.

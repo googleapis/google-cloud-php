@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Update encryption settings.
@@ -30,7 +30,7 @@ class UpdateEncryptionsTask extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\EncryptionUpdate>|\Google\Protobuf\Internal\RepeatedField $encryptions
+     *     @type \Google\Cloud\Video\LiveStream\V1\EncryptionUpdate[] $encryptions
      *           Required. A list of
      *           [EncryptionUpdate][google.cloud.video.livestream.v1.EncryptionUpdate]s
      *           that updates the existing encryption settings.
@@ -47,7 +47,7 @@ class UpdateEncryptionsTask extends \Google\Protobuf\Internal\Message
      * that updates the existing encryption settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.EncryptionUpdate encryptions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\EncryptionUpdate>
      */
     public function getEncryptions()
     {
@@ -60,7 +60,7 @@ class UpdateEncryptionsTask extends \Google\Protobuf\Internal\Message
      * that updates the existing encryption settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.EncryptionUpdate encryptions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\EncryptionUpdate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\EncryptionUpdate[] $var
      * @return $this
      */
     public function setEncryptions($var)
@@ -72,5 +72,4 @@ class UpdateEncryptionsTask extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

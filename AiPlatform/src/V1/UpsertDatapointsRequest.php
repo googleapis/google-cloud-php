@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -51,7 +51,7 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Index resource to be updated.
      *           Format:
      *           `projects/{project}/locations/{location}/indexes/{index}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\IndexDatapoint>|\Google\Protobuf\Internal\RepeatedField $datapoints
+     *     @type \Google\Cloud\AIPlatform\V1\IndexDatapoint[] $datapoints
      *           A list of datapoints to be created/updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Optional. Update mask is used to specify the fields to be overwritten in
@@ -100,7 +100,7 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      * A list of datapoints to be created/updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint datapoints = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\IndexDatapoint>
      */
     public function getDatapoints()
     {
@@ -111,7 +111,7 @@ class UpsertDatapointsRequest extends \Google\Protobuf\Internal\Message
      * A list of datapoints to be created/updated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexDatapoint datapoints = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\IndexDatapoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\IndexDatapoint[] $var
      * @return $this
      */
     public function setDatapoints($var)

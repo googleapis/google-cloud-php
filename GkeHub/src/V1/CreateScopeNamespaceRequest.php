@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to create a fleet namespace.
@@ -17,7 +17,7 @@ class CreateScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent (project and location) where the Namespace will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/{@*}scopes/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -76,7 +76,7 @@ class CreateScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent (project and location) where the Namespace will be
-     *           created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     *           created. Specified in the format `projects/{@*}locations/{@*}scopes/*`.
      *     @type string $scope_namespace_id
      *           Required. Client chosen ID for the Namespace. `namespace_id` must be a
      *           valid RFC 1123 compliant DNS label:
@@ -96,7 +96,7 @@ class CreateScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Namespace will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/{@*}scopes/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -108,7 +108,7 @@ class CreateScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent (project and location) where the Namespace will be
-     * created. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;`.
+     * created. Specified in the format `projects/{@*}locations/{@*}scopes/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1\CloudBigtableInstanceSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Spec that applies to clusters of an Instance of Cloud Bigtable.
@@ -166,5 +166,4 @@ class CloudBigtableClusterSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

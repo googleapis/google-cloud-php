@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the logging behavior for transfer operations.
@@ -49,9 +49,9 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_actions
+     *     @type int[] $log_actions
      *           Specifies the actions to be logged. If empty, no logs are generated.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $log_action_states
+     *     @type int[] $log_action_states
      *           States in which `log_actions` are logged. If empty, no logs are generated.
      *     @type bool $enable_onprem_gcs_transfer_logs
      *           For PosixFilesystem transfers, enables
@@ -71,7 +71,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * Specifies the actions to be logged. If empty, no logs are generated.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLogActions()
     {
@@ -82,7 +82,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * Specifies the actions to be logged. If empty, no logs are generated.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableAction log_actions = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLogActions($var)
@@ -97,7 +97,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * States in which `log_actions` are logged. If empty, no logs are generated.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLogActionStates()
     {
@@ -108,7 +108,7 @@ class LoggingConfig extends \Google\Protobuf\Internal\Message
      * States in which `log_actions` are logged. If empty, no logs are generated.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.LoggingConfig.LoggableActionState log_action_states = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLogActionStates($var)

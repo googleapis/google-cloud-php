@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `BackupPlan` specifies some common fields, such as `description` as well
@@ -153,7 +153,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           Output only. When the `BackupPlan` was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. When the `BackupPlan` was last updated.
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupRule>|\Google\Protobuf\Internal\RepeatedField $backup_rules
+     *     @type \Google\Cloud\BackupDR\V1\BackupRule[] $backup_rules
      *           Required. The backup rules for this `BackupPlan`. There must be at least
      *           one `BackupRule` message.
      *     @type int $state
@@ -180,7 +180,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      *           Configures how long logs will be stored. It is defined in “days”. This
      *           value should be greater than or equal to minimum enforced log retention
      *           duration of the backup vault.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_resource_types
+     *     @type string[] $supported_resource_types
      *           Output only. All resource types to which backupPlan can be applied.
      *     @type string $revision_id
      *           Output only. The user friendly revision ID of the `BackupPlanRevision`.
@@ -363,7 +363,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * one `BackupRule` message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupRule backup_rules = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupRule>
      */
     public function getBackupRules()
     {
@@ -375,7 +375,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * one `BackupRule` message.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupRule backup_rules = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupRule[] $var
      * @return $this
      */
     public function setBackupRules($var)
@@ -570,7 +570,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Output only. All resource types to which backupPlan can be applied.
      *
      * Generated from protobuf field <code>repeated string supported_resource_types = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedResourceTypes()
     {
@@ -581,7 +581,7 @@ class BackupPlan extends \Google\Protobuf\Internal\Message
      * Output only. All resource types to which backupPlan can be applied.
      *
      * Generated from protobuf field <code>repeated string supported_resource_types = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedResourceTypes($var)

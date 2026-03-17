@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The target details of the image resource that will be created by the import
@@ -94,7 +94,7 @@ class DiskImageTargetDetails extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the image family to which the new image belongs.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. A map of labels to associate with the image.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *     @type string[] $additional_licenses
      *           Optional. Additional licenses to assign to the image.
      *           Format:
      *           https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME
@@ -316,7 +316,7 @@ class DiskImageTargetDetails extends \Google\Protobuf\Internal\Message
      * https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdditionalLicenses()
     {
@@ -331,7 +331,7 @@ class DiskImageTargetDetails extends \Google\Protobuf\Internal\Message
      * https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      *
      * Generated from protobuf field <code>repeated string additional_licenses = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdditionalLicenses($var)

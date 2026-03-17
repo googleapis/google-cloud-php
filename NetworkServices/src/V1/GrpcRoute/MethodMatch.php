@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a match against a method.
@@ -196,5 +196,4 @@ class MethodMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Traffic density along a Vehicle's path.
@@ -38,7 +38,7 @@ class ConsumableTrafficPolyline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\V1\SpeedReadingInterval>|\Google\Protobuf\Internal\RepeatedField $speed_reading_interval
+     *     @type \Google\Maps\FleetEngine\V1\SpeedReadingInterval[] $speed_reading_interval
      *           Traffic speed along the path from the previous waypoint to the current
      *           waypoint.
      *     @type string $encoded_path_to_waypoint
@@ -58,7 +58,7 @@ class ConsumableTrafficPolyline extends \Google\Protobuf\Internal\Message
      * waypoint.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.SpeedReadingInterval speed_reading_interval = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\SpeedReadingInterval>
      */
     public function getSpeedReadingInterval()
     {
@@ -70,7 +70,7 @@ class ConsumableTrafficPolyline extends \Google\Protobuf\Internal\Message
      * waypoint.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.SpeedReadingInterval speed_reading_interval = 1;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\SpeedReadingInterval>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\SpeedReadingInterval[] $var
      * @return $this
      */
     public function setSpeedReadingInterval($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListServiceProjectAttachments.
@@ -40,11 +40,11 @@ class ListServiceProjectAttachmentsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppHub\V1\ServiceProjectAttachment>|\Google\Protobuf\Internal\RepeatedField $service_project_attachments
+     *     @type \Google\Cloud\AppHub\V1\ServiceProjectAttachment[] $service_project_attachments
      *           List of service project attachments.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListServiceProjectAttachmentsResponse extends \Google\Protobuf\Internal\Me
      * List of service project attachments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ServiceProjectAttachment service_project_attachments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppHub\V1\ServiceProjectAttachment>
      */
     public function getServiceProjectAttachments()
     {
@@ -68,7 +68,7 @@ class ListServiceProjectAttachmentsResponse extends \Google\Protobuf\Internal\Me
      * List of service project attachments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apphub.v1.ServiceProjectAttachment service_project_attachments = 1;</code>
-     * @param array<\Google\Cloud\AppHub\V1\ServiceProjectAttachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppHub\V1\ServiceProjectAttachment[] $var
      * @return $this
      */
     public function setServiceProjectAttachments($var)
@@ -109,7 +109,7 @@ class ListServiceProjectAttachmentsResponse extends \Google\Protobuf\Internal\Me
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListServiceProjectAttachmentsResponse extends \Google\Protobuf\Internal\Me
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

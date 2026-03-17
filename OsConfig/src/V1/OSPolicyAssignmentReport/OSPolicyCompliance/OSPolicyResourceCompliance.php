@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Compliance data for an OS policy resource.
@@ -61,7 +61,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      *
      *     @type string $os_policy_resource_id
      *           The ID of the OS policy resource.
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep>|\Google\Protobuf\Internal\RepeatedField $config_steps
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep[] $config_steps
      *           Ordered list of configuration completed by the agent for the OS policy
      *           resource.
      *     @type int $compliance_state
@@ -119,7 +119,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.OSPolicyResourceConfigStep config_steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep>
      */
     public function getConfigSteps()
     {
@@ -131,7 +131,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.OSPolicyResourceConfigStep config_steps = 2;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep[] $var
      * @return $this
      */
     public function setConfigSteps($var)
@@ -256,5 +256,4 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

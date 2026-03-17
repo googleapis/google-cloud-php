@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A certificate chain.
@@ -28,7 +28,7 @@ class CertChain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $certificates
+     *     @type string[] $certificates
      *           The certificates that form the CA chain in order of leaf to root.
      * }
      */
@@ -41,7 +41,7 @@ class CertChain extends \Google\Protobuf\Internal\Message
      * The certificates that form the CA chain in order of leaf to root.
      *
      * Generated from protobuf field <code>repeated string certificates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCertificates()
     {
@@ -52,7 +52,7 @@ class CertChain extends \Google\Protobuf\Internal\Message
      * The certificates that form the CA chain in order of leaf to root.
      *
      * Generated from protobuf field <code>repeated string certificates = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCertificates($var)
@@ -64,5 +64,4 @@ class CertChain extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

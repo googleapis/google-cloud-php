@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes node type.
@@ -116,15 +116,15 @@ class NodeType extends \Google\Protobuf\Internal\Message
      *           Output only. The amount of physical memory available, defined in GB.
      *     @type int $disk_size_gb
      *           Output only. The amount of storage available, defined in GB.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $available_custom_core_counts
+     *     @type int[] $available_custom_core_counts
      *           Output only. List of possible values of custom core count.
      *     @type int $kind
      *           Output only. The type of the resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $families
+     *     @type string[] $families
      *           Output only. Families of the node type.
      *           For node types to be in the same cluster
      *           they must share at least one element in the `families`.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $capabilities
+     *     @type int[] $capabilities
      *           Output only. Capabilities of this node type.
      * }
      */
@@ -331,7 +331,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Output only. List of possible values of custom core count.
      *
      * Generated from protobuf field <code>repeated int32 available_custom_core_counts = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAvailableCustomCoreCounts()
     {
@@ -342,7 +342,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Output only. List of possible values of custom core count.
      *
      * Generated from protobuf field <code>repeated int32 available_custom_core_counts = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAvailableCustomCoreCounts($var)
@@ -385,7 +385,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * they must share at least one element in the `families`.
      *
      * Generated from protobuf field <code>repeated string families = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFamilies()
     {
@@ -398,7 +398,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * they must share at least one element in the `families`.
      *
      * Generated from protobuf field <code>repeated string families = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFamilies($var)
@@ -413,7 +413,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Output only. Capabilities of this node type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.NodeType.Capability capabilities = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCapabilities()
     {
@@ -424,7 +424,7 @@ class NodeType extends \Google\Protobuf\Internal\Message
      * Output only. Capabilities of this node type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.NodeType.Capability capabilities = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCapabilities($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `CheckOnboardingStatus` method.
@@ -38,7 +38,7 @@ class CheckOnboardingStatusResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $service_account
      *           The service account that PAM uses to act on this resource.
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding>|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding[] $findings
      *           List of issues that are preventing PAM from functioning for this resource
      *           and need to be fixed to complete onboarding. Some issues might not be
      *           detected or reported.
@@ -81,7 +81,7 @@ class CheckOnboardingStatusResponse extends \Google\Protobuf\Internal\Message
      * detected or reported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding findings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding>
      */
     public function getFindings()
     {
@@ -94,7 +94,7 @@ class CheckOnboardingStatusResponse extends \Google\Protobuf\Internal\Message
      * detected or reported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.CheckOnboardingStatusResponse.Finding findings = 2;</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\CheckOnboardingStatusResponse\Finding[] $var
      * @return $this
      */
     public function setFindings($var)

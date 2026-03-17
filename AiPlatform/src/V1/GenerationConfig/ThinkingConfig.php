@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GenerationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for thinking features.
@@ -170,5 +170,4 @@ class ThinkingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

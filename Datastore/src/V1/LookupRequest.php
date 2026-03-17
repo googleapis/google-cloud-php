@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [Datastore.Lookup][google.datastore.v1.Datastore.Lookup].
@@ -82,7 +82,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *           database.
      *     @type \Google\Cloud\Datastore\V1\ReadOptions $read_options
      *           The options for this lookup request.
-     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type \Google\Cloud\Datastore\V1\Key[] $keys
      *           Required. Keys of entities to look up.
      *     @type \Google\Cloud\Datastore\V1\PropertyMask $property_mask
      *           The properties to return. Defaults to returning all properties.
@@ -192,7 +192,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * Required. Keys of entities to look up.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastore\V1\Key>
      */
     public function getKeys()
     {
@@ -203,7 +203,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * Required. Keys of entities to look up.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastore\V1\Key[] $var
      * @return $this
      */
     public function setKeys($var)

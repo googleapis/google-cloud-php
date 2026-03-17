@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\FacetBucket;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The range of values [start, end) for which faceting is applied.
@@ -118,5 +118,4 @@ class Range extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

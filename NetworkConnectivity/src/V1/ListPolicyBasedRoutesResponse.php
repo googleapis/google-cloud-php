@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for
@@ -43,12 +43,12 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute>|\Google\Protobuf\Internal\RepeatedField $policy_based_routes
+     *     @type \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute[] $policy_based_routes
      *           Policy-based routes to be returned.
      *     @type string $next_page_token
      *           The next pagination token in the List response. It should be used as
      *           page_token for the following request. An empty value means no more result.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -61,7 +61,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      * Policy-based routes to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_routes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute>
      */
     public function getPolicyBasedRoutes()
     {
@@ -72,7 +72,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      * Policy-based routes to be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.PolicyBasedRoute policy_based_routes = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute[] $var
      * @return $this
      */
     public function setPolicyBasedRoutes($var)
@@ -115,7 +115,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -126,7 +126,7 @@ class ListPolicyBasedRoutesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

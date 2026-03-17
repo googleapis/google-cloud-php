@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An analysis message to group the query and results.
@@ -52,7 +52,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $analysis_query
      *           The analysis query.
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult>|\Google\Protobuf\Internal\RepeatedField $analysis_results
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult[] $analysis_results
      *           A list of
      *           [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
      *           that matches the analysis query, or empty if no result is found.
@@ -60,7 +60,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      *           Represents whether all entries in the
      *           [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results]
      *           have been fully explored to answer the query.
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisState>|\Google\Protobuf\Internal\RepeatedField $non_critical_errors
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisState[] $non_critical_errors
      *           A list of non-critical errors happened during the query handling.
      * }
      */
@@ -111,7 +111,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      * that matches the analysis query, or empty if no result is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult analysis_results = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult>
      */
     public function getAnalysisResults()
     {
@@ -124,7 +124,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      * that matches the analysis query, or empty if no result is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult analysis_results = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult[] $var
      * @return $this
      */
     public function setAnalysisResults($var)
@@ -169,7 +169,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      * A list of non-critical errors happened during the query handling.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisState non_critical_errors = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicyAnalysisState>
      */
     public function getNonCriticalErrors()
     {
@@ -180,7 +180,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      * A list of non-critical errors happened during the query handling.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisState non_critical_errors = 5;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisState>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisState[] $var
      * @return $this
      */
     public function setNonCriticalErrors($var)
@@ -192,5 +192,4 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

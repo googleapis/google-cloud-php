@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RegionDiskTargetEnvironment represents the target environment for the disk.
@@ -44,7 +44,7 @@ class RegionDiskTargetEnvironment extends \Google\Protobuf\Internal\Message
      *           Required. Target project for the disk.
      *     @type string $region
      *           Required. Target region for the disk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           Required. Target URLs of the replica zones for the disk.
      * }
      */
@@ -109,7 +109,7 @@ class RegionDiskTargetEnvironment extends \Google\Protobuf\Internal\Message
      * Required. Target URLs of the replica zones for the disk.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -120,7 +120,7 @@ class RegionDiskTargetEnvironment extends \Google\Protobuf\Internal\Message
      * Required. Target URLs of the replica zones for the disk.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)

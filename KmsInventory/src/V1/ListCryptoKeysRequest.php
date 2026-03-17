@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\Inventory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -18,7 +18,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Google Cloud project for which to retrieve key metadata, in
-     * the format `projects/&#42;`
+     * the format `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -62,7 +62,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The Google Cloud project for which to retrieve key metadata, in
-     *           the format `projects/&#42;`
+     *           the format `projects/*`
      *     @type int $page_size
      *           Optional. The maximum number of keys to return. The service may return
      *           fewer than this value. If unspecified, at most 1000 keys will be returned.
@@ -79,7 +79,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Google Cloud project for which to retrieve key metadata, in
-     * the format `projects/&#42;`
+     * the format `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class ListCryptoKeysRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Google Cloud project for which to retrieve key metadata, in
-     * the format `projects/&#42;`
+     * the format `projects/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

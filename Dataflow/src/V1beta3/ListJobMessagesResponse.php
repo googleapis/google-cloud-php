@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to a request to list job messages.
@@ -40,11 +40,11 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\JobMessage>|\Google\Protobuf\Internal\RepeatedField $job_messages
+     *     @type \Google\Cloud\Dataflow\V1beta3\JobMessage[] $job_messages
      *           Messages in ascending timestamp order.
      *     @type string $next_page_token
      *           The token to obtain the next page of results if there are more.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\AutoscalingEvent>|\Google\Protobuf\Internal\RepeatedField $autoscaling_events
+     *     @type \Google\Cloud\Dataflow\V1beta3\AutoscalingEvent[] $autoscaling_events
      *           Autoscaling events in ascending timestamp order.
      * }
      */
@@ -57,7 +57,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Messages in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.JobMessage job_messages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\JobMessage>
      */
     public function getJobMessages()
     {
@@ -68,7 +68,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Messages in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.JobMessage job_messages = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\JobMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\JobMessage[] $var
      * @return $this
      */
     public function setJobMessages($var)
@@ -109,7 +109,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Autoscaling events in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.AutoscalingEvent autoscaling_events = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\AutoscalingEvent>
      */
     public function getAutoscalingEvents()
     {
@@ -120,7 +120,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Autoscaling events in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.AutoscalingEvent autoscaling_events = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\AutoscalingEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\AutoscalingEvent[] $var
      * @return $this
      */
     public function setAutoscalingEvents($var)

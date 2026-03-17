@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VPC Access settings. For more information on sending traffic to a VPC
@@ -56,7 +56,7 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *     @type int $egress
      *           Optional. Traffic VPC egress settings. If not provided, it defaults to
      *           PRIVATE_RANGES_ONLY.
-     *     @type array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\Run\V2\VpcAccess\NetworkInterface[] $network_interfaces
      *           Optional. Direct VPC egress settings. Currently only single network
      *           interface is supported.
      * }
@@ -133,7 +133,7 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      * interface is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -145,7 +145,7 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      * interface is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VpcAccess.NetworkInterface network_interfaces = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Run\V2\VpcAccess\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\VpcAccess\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)

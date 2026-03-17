@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1\ProductAttributes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Carrier-based shipping configuration. Allows for setting shipping speed or
@@ -891,5 +891,4 @@ class CarrierShipping extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

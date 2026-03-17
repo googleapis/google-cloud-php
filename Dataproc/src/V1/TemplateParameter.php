@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A configurable parameter that replaces one or more fields in the template.
@@ -104,7 +104,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      *           The name must contain only capital letters (A-Z), numbers (0-9), and
      *           underscores (_), and must not start with a number. The maximum length is
      *           40 characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type string[] $fields
      *           Required. Paths to all fields that the parameter replaces.
      *           A field is allowed to appear in at most one parameter's list of field
      *           paths.
@@ -230,7 +230,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * - jobs['step-id'].sparkJob.args
      *
      * Generated from protobuf field <code>repeated string fields = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFields()
     {
@@ -276,7 +276,7 @@ class TemplateParameter extends \Google\Protobuf\Internal\Message
      * - jobs['step-id'].sparkJob.args
      *
      * Generated from protobuf field <code>repeated string fields = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFields($var)

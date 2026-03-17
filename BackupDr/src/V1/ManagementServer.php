@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ManagementServer describes a single BackupDR ManagementServer instance.
@@ -156,7 +156,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      *           user i.e. 1p and 3p, used to connect AGM/RM UI.
      *     @type int $state
      *           Output only. The ManagementServer state.
-     *     @type array<\Google\Cloud\BackupDR\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type \Google\Cloud\BackupDR\V1\NetworkConfig[] $networks
      *           Optional. VPC networks to which the ManagementServer instance is connected.
      *           For this version, only a single network is supported. This field is
      *           optional if MS is created without PSA
@@ -171,7 +171,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      *           https://openid.net/specs/openid-connect-core-1_0.html#IDToken).
      *     @type \Google\Cloud\BackupDR\V1\WorkforceIdentityBasedOAuth2ClientID $workforce_identity_based_oauth2_client_id
      *           Output only. The OAuth client IDs for both types of user i.e. 1p and 3p.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ba_proxy_uri
+     *     @type string[] $ba_proxy_uri
      *           Output only. The hostname or ip address of the exposed AGM endpoints, used
      *           by BAs to connect to BA proxy.
      *     @type \Google\Protobuf\BoolValue $satisfies_pzs
@@ -477,7 +477,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      * optional if MS is created without PSA
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\NetworkConfig>
      */
     public function getNetworks()
     {
@@ -490,7 +490,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      * optional if MS is created without PSA
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.NetworkConfig networks = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\NetworkConfig[] $var
      * @return $this
      */
     public function setNetworks($var)
@@ -604,7 +604,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      * by BAs to connect to BA proxy.
      *
      * Generated from protobuf field <code>repeated string ba_proxy_uri = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBaProxyUri()
     {
@@ -616,7 +616,7 @@ class ManagementServer extends \Google\Protobuf\Internal\Message
      * by BAs to connect to BA proxy.
      *
      * Generated from protobuf field <code>repeated string ba_proxy_uri = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBaProxyUri($var)

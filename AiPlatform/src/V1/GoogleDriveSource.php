@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Google Drive location for the input content.
@@ -28,7 +28,7 @@ class GoogleDriveSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\GoogleDriveSource\ResourceId>|\Google\Protobuf\Internal\RepeatedField $resource_ids
+     *     @type \Google\Cloud\AIPlatform\V1\GoogleDriveSource\ResourceId[] $resource_ids
      *           Required. Google Drive resource IDs.
      * }
      */
@@ -41,7 +41,7 @@ class GoogleDriveSource extends \Google\Protobuf\Internal\Message
      * Required. Google Drive resource IDs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GoogleDriveSource.ResourceId resource_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\GoogleDriveSource\ResourceId>
      */
     public function getResourceIds()
     {
@@ -52,7 +52,7 @@ class GoogleDriveSource extends \Google\Protobuf\Internal\Message
      * Required. Google Drive resource IDs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GoogleDriveSource.ResourceId resource_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GoogleDriveSource\ResourceId>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\GoogleDriveSource\ResourceId[] $var
      * @return $this
      */
     public function setResourceIds($var)

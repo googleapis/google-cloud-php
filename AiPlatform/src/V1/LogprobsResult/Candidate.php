@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\LogprobsResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Candidate for the logprobs token and score.
@@ -162,5 +162,4 @@ class Candidate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

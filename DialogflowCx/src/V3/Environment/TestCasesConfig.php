@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for continuous tests.
@@ -46,7 +46,7 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $test_cases
+     *     @type string[] $test_cases
      *           A list of test case names to run. They should be under the same agent.
      *           Format of each test case name:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
@@ -71,7 +71,7 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *
      * Generated from protobuf field <code>repeated string test_cases = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTestCases()
     {
@@ -84,7 +84,7 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`
      *
      * Generated from protobuf field <code>repeated string test_cases = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTestCases($var)
@@ -156,5 +156,4 @@ class TestCasesConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

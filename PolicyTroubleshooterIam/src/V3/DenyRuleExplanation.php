@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how a deny rule in a deny policy affects a principal's ability

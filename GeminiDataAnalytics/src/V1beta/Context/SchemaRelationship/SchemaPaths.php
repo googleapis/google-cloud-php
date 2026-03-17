@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta\Context\SchemaRelationship;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an ordered set of paths within the table schema.
@@ -40,7 +40,7 @@ class SchemaPaths extends \Google\Protobuf\Internal\Message
      *           The service-qualified full resource name of the table
      *           Ex:
      *           bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $paths
+     *     @type string[] $paths
      *           The ordered list of paths within the table schema.
      * }
      */
@@ -83,7 +83,7 @@ class SchemaPaths extends \Google\Protobuf\Internal\Message
      * The ordered list of paths within the table schema.
      *
      * Generated from protobuf field <code>repeated string paths = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPaths()
     {
@@ -94,7 +94,7 @@ class SchemaPaths extends \Google\Protobuf\Internal\Message
      * The ordered list of paths within the table schema.
      *
      * Generated from protobuf field <code>repeated string paths = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPaths($var)
@@ -106,5 +106,4 @@ class SchemaPaths extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

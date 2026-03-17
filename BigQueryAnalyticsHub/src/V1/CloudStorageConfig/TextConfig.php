@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\CloudStorageConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for writing message data in text format.
@@ -32,5 +32,4 @@ class TextConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

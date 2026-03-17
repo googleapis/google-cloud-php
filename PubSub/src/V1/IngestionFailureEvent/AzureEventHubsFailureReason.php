@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\IngestionFailureEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Failure when ingesting from an Azure Event Hubs source.
@@ -284,5 +284,4 @@ class AzureEventHubsFailureReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

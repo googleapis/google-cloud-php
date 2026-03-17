@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Event payload for multiple updated memberships.
@@ -29,7 +29,7 @@ class MembershipBatchUpdatedEventData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\MembershipUpdatedEventData>|\Google\Protobuf\Internal\RepeatedField $memberships
+     *     @type \Google\Apps\Chat\V1\MembershipUpdatedEventData[] $memberships
      *           A list of updated memberships.
      * }
      */
@@ -42,7 +42,7 @@ class MembershipBatchUpdatedEventData extends \Google\Protobuf\Internal\Message
      * A list of updated memberships.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.MembershipUpdatedEventData memberships = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\MembershipUpdatedEventData>
      */
     public function getMemberships()
     {
@@ -53,7 +53,7 @@ class MembershipBatchUpdatedEventData extends \Google\Protobuf\Internal\Message
      * A list of updated memberships.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.MembershipUpdatedEventData memberships = 1;</code>
-     * @param array<\Google\Apps\Chat\V1\MembershipUpdatedEventData>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\MembershipUpdatedEventData[] $var
      * @return $this
      */
     public function setMemberships($var)

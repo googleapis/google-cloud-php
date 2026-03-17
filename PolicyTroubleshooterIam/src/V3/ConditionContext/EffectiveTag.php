@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A tag that applies to a resource during policy evaluation. Tags can be
@@ -286,5 +286,4 @@ class EffectiveTag extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

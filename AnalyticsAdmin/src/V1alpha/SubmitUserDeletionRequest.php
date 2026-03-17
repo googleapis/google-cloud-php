@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SubmitUserDeletion RPC.
@@ -58,7 +58,7 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
      *           either one email address or one phone number.
      *           Email addresses should be normalized as such:
      *           * lowercase
-     *           * remove periods before &#64; for gmail.com/googlemail.com addresses
+     *           * remove periods before \@ for gmail.com/googlemail.com addresses
      *           * remove all spaces
      *           Phone numbers should be normalized as such:
      *           * remove all non digit characters
@@ -177,7 +177,7 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
      * either one email address or one phone number.
      * Email addresses should be normalized as such:
      * * lowercase
-     * * remove periods before &#64; for gmail.com/googlemail.com addresses
+     * * remove periods before \@ for gmail.com/googlemail.com addresses
      * * remove all spaces
      * Phone numbers should be normalized as such:
      * * remove all non digit characters
@@ -202,7 +202,7 @@ class SubmitUserDeletionRequest extends \Google\Protobuf\Internal\Message
      * either one email address or one phone number.
      * Email addresses should be normalized as such:
      * * lowercase
-     * * remove periods before &#64; for gmail.com/googlemail.com addresses
+     * * remove periods before \@ for gmail.com/googlemail.com addresses
      * * remove all spaces
      * Phone numbers should be normalized as such:
      * * remove all non digit characters

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single application container.
@@ -145,23 +145,23 @@ class Container extends \Google\Protobuf\Internal\Message
      *           Dockerhub is assumed.
      *     @type \Google\Cloud\Run\V2\SourceCode $source_code
      *           Optional. Location of the source.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
+     *     @type string[] $command
      *           Entrypoint array. Not executed within a shell.
      *           The docker image's ENTRYPOINT is used if this is not provided.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Arguments to the entrypoint.
      *           The docker image's CMD is used if this is not provided.
-     *     @type array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\Run\V2\EnvVar[] $env
      *           List of environment variables to set in the container.
      *     @type \Google\Cloud\Run\V2\ResourceRequirements $resources
      *           Compute Resource requirements by this container.
-     *     @type array<\Google\Cloud\Run\V2\ContainerPort>|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type \Google\Cloud\Run\V2\ContainerPort[] $ports
      *           List of ports to expose from the container. Only a single port can be
      *           specified. The specified ports must be listening on all interfaces
      *           (0.0.0.0) within the container to be accessible.
      *           If omitted, a port number will be chosen and passed to the container
      *           through the PORT environment variable for the container to listen on.
-     *     @type array<\Google\Cloud\Run\V2\VolumeMount>|\Google\Protobuf\Internal\RepeatedField $volume_mounts
+     *     @type \Google\Cloud\Run\V2\VolumeMount[] $volume_mounts
      *           Volume to mount into the container's filesystem.
      *     @type string $working_dir
      *           Container's working directory.
@@ -177,7 +177,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *           fails.
      *     @type \Google\Cloud\Run\V2\Probe $readiness_probe
      *           Readiness probe to be used for health checks.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $depends_on
+     *     @type string[] $depends_on
      *           Names of the containers that must start before this container.
      *     @type string $base_image_uri
      *           Base image for this container. Only supported for services. If set, it
@@ -288,7 +288,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * The docker image's ENTRYPOINT is used if this is not provided.
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommand()
     {
@@ -300,7 +300,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * The docker image's ENTRYPOINT is used if this is not provided.
      *
      * Generated from protobuf field <code>repeated string command = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommand($var)
@@ -316,7 +316,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * The docker image's CMD is used if this is not provided.
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -328,7 +328,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * The docker image's CMD is used if this is not provided.
      *
      * Generated from protobuf field <code>repeated string args = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -343,7 +343,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * List of environment variables to set in the container.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.EnvVar env = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\EnvVar>
      */
     public function getEnv()
     {
@@ -354,7 +354,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * List of environment variables to set in the container.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.EnvVar env = 5;</code>
-     * @param array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)
@@ -409,7 +409,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * through the PORT environment variable for the container to listen on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.ContainerPort ports = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\ContainerPort>
      */
     public function getPorts()
     {
@@ -424,7 +424,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * through the PORT environment variable for the container to listen on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.ContainerPort ports = 7;</code>
-     * @param array<\Google\Cloud\Run\V2\ContainerPort>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\ContainerPort[] $var
      * @return $this
      */
     public function setPorts($var)
@@ -439,7 +439,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volume to mount into the container's filesystem.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VolumeMount volume_mounts = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\VolumeMount>
      */
     public function getVolumeMounts()
     {
@@ -450,7 +450,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Volume to mount into the container's filesystem.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VolumeMount volume_mounts = 8;</code>
-     * @param array<\Google\Cloud\Run\V2\VolumeMount>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\VolumeMount[] $var
      * @return $this
      */
     public function setVolumeMounts($var)
@@ -611,7 +611,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Names of the containers that must start before this container.
      *
      * Generated from protobuf field <code>repeated string depends_on = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDependsOn()
     {
@@ -622,7 +622,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Names of the containers that must start before this container.
      *
      * Generated from protobuf field <code>repeated string depends_on = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDependsOn($var)

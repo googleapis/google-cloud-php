@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Pool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the network configuration for the pool.
@@ -88,5 +88,4 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

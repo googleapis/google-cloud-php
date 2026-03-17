@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [ExecuteBatchDml][google.spanner.v1.Spanner.ExecuteBatchDml].
@@ -85,7 +85,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           To protect against replays, single-use transactions are not supported. The
      *           caller must either supply an existing transaction ID or begin a new
      *           transaction.
-     *     @type array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[] $statements
      *           Required. The list of statements to execute in this batch. Statements are
      *           executed serially, such that the effects of statement `i` are visible to
      *           statement `i+1`. Each statement must be a DML statement. Execution stops at
@@ -193,7 +193,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>
      */
     public function getStatements()
     {
@@ -208,7 +208,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[] $var
      * @return $this
      */
     public function setStatements($var)

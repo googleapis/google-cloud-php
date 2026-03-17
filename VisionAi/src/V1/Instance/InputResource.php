@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message of input resource used in one application instance.
@@ -298,5 +298,4 @@ class InputResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines an Analyzer.
@@ -72,7 +72,7 @@ class AnalyzerDefinition extends \Google\Protobuf\Internal\Message
      *     @type string $operator
      *           The name of the operator that this analyzer runs.
      *           Must match the name of a supported operator.
-     *     @type array<\Google\Cloud\VisionAI\V1\AnalyzerDefinition\StreamInput>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type \Google\Cloud\VisionAI\V1\AnalyzerDefinition\StreamInput[] $inputs
      *           Input streams.
      *     @type array|\Google\Protobuf\Internal\MapField $attrs
      *           The attribute values that this analyzer applies to the operator.
@@ -150,7 +150,7 @@ class AnalyzerDefinition extends \Google\Protobuf\Internal\Message
      * Input streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzerDefinition.StreamInput inputs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AnalyzerDefinition\StreamInput>
      */
     public function getInputs()
     {
@@ -161,7 +161,7 @@ class AnalyzerDefinition extends \Google\Protobuf\Internal\Message
      * Input streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AnalyzerDefinition.StreamInput inputs = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AnalyzerDefinition\StreamInput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AnalyzerDefinition\StreamInput[] $var
      * @return $this
      */
     public function setInputs($var)

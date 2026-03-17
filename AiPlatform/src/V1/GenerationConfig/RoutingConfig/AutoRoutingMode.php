@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GenerationConfig\RoutingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * When automated routing is specified, the routing will be determined by
@@ -76,5 +76,4 @@ class AutoRoutingMode extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Node;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing one edge pointing into a node.
@@ -140,5 +140,4 @@ class InputEdge extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

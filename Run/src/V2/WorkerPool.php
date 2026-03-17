@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * WorkerPool acts as a top-level container that manages a set of
@@ -353,7 +353,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           Optional. Settings for the Binary Authorization feature.
      *     @type \Google\Cloud\Run\V2\WorkerPoolRevisionTemplate $template
      *           Required. The template used to create revisions for this WorkerPool.
-     *     @type array<\Google\Cloud\Run\V2\InstanceSplit>|\Google\Protobuf\Internal\RepeatedField $instance_splits
+     *     @type \Google\Cloud\Run\V2\InstanceSplit[] $instance_splits
      *           Optional. Specifies how to distribute instances over a collection of
      *           Revisions belonging to the WorkerPool. If instance split is empty or not
      *           provided, defaults to 100% instances assigned to the latest `Ready`
@@ -371,7 +371,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           status, and detailed error information in case it did not reach a serving
      *           state. See comments in `reconciling` for additional information on
      *           reconciliation process in Cloud Run.
-     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Run\V2\Condition[] $conditions
      *           Output only. The Conditions of all other associated sub-resources. They
      *           contain additional diagnostics information in case the WorkerPool does not
      *           reach its Serving state. See comments in `reconciling` for additional
@@ -384,14 +384,14 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           Output only. Name of the last created revision. See comments in
      *           `reconciling` for additional information on reconciliation process in Cloud
      *           Run.
-     *     @type array<\Google\Cloud\Run\V2\InstanceSplitStatus>|\Google\Protobuf\Internal\RepeatedField $instance_split_statuses
+     *     @type \Google\Cloud\Run\V2\InstanceSplitStatus[] $instance_split_statuses
      *           Output only. Detailed status information for corresponding instance splits.
      *           See comments in `reconciling` for additional information on reconciliation
      *           process in Cloud Run.
      *     @type bool $threat_detection_enabled
      *           Output only. Indicates whether Cloud Run Threat Detection monitoring is
      *           enabled for the parent project of this worker pool.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_audiences
+     *     @type string[] $custom_audiences
      *           Not supported, and ignored by Cloud Run.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
@@ -1008,7 +1008,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.InstanceSplit instance_splits = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\InstanceSplit>
      */
     public function getInstanceSplits()
     {
@@ -1022,7 +1022,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.InstanceSplit instance_splits = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Run\V2\InstanceSplit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\InstanceSplit[] $var
      * @return $this
      */
     public function setInstanceSplits($var)
@@ -1152,7 +1152,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\Condition>
      */
     public function getConditions()
     {
@@ -1166,7 +1166,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\Condition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -1243,7 +1243,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.InstanceSplitStatus instance_split_statuses = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\InstanceSplitStatus>
      */
     public function getInstanceSplitStatuses()
     {
@@ -1256,7 +1256,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * process in Cloud Run.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.InstanceSplitStatus instance_split_statuses = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Run\V2\InstanceSplitStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\InstanceSplitStatus[] $var
      * @return $this
      */
     public function setInstanceSplitStatuses($var)
@@ -1299,7 +1299,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Not supported, and ignored by Cloud Run.
      *
      * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomAudiences()
     {
@@ -1310,7 +1310,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      * Not supported, and ignored by Cloud Run.
      *
      * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomAudiences($var)

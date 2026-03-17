@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionExplanation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Evaluated state of a condition expression.
@@ -57,7 +57,7 @@ class EvaluationState extends \Google\Protobuf\Internal\Message
      *           `a==b || c==d` would be 4.
      *     @type \Google\Protobuf\Value $value
      *           Value of this expression.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Any errors that prevented complete evaluation of the condition
      *           expression.
      * }
@@ -164,7 +164,7 @@ class EvaluationState extends \Google\Protobuf\Internal\Message
      * expression.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -176,7 +176,7 @@ class EvaluationState extends \Google\Protobuf\Internal\Message
      * expression.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 4;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -188,5 +188,4 @@ class EvaluationState extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

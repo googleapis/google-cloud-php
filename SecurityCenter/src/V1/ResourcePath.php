@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the path of resources leading up to the resource this finding is
@@ -30,7 +30,7 @@ class ResourcePath extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V1\ResourcePath\ResourcePathNode>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\SecurityCenter\V1\ResourcePath\ResourcePathNode[] $nodes
      *           The list of nodes that make the up resource path, ordered from lowest
      *           level to highest level.
      * }
@@ -45,7 +45,7 @@ class ResourcePath extends \Google\Protobuf\Internal\Message
      * level to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode nodes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\ResourcePath\ResourcePathNode>
      */
     public function getNodes()
     {
@@ -57,7 +57,7 @@ class ResourcePath extends \Google\Protobuf\Internal\Message
      * level to highest level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ResourcePath.ResourcePathNode nodes = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\ResourcePath\ResourcePathNode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\ResourcePath\ResourcePathNode[] $var
      * @return $this
      */
     public function setNodes($var)

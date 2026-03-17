@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for a given [Location][google.cloud.location.Location].
@@ -28,7 +28,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gcp_oracle_zones
+     *     @type string[] $gcp_oracle_zones
      *           Output only. Google Cloud Platform Oracle zones in a location.
      * }
      */
@@ -41,7 +41,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Google Cloud Platform Oracle zones in a location.
      *
      * Generated from protobuf field <code>repeated string gcp_oracle_zones = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGcpOracleZones()
     {
@@ -52,7 +52,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Google Cloud Platform Oracle zones in a location.
      *
      * Generated from protobuf field <code>repeated string gcp_oracle_zones = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGcpOracleZones($var)

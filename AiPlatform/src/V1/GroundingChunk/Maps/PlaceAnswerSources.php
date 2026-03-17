@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GroundingChunk\Maps;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources</code>
@@ -26,7 +26,7 @@ class PlaceAnswerSources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources\ReviewSnippet>|\Google\Protobuf\Internal\RepeatedField $review_snippets
+     *     @type \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources\ReviewSnippet[] $review_snippets
      *           Snippets of reviews that are used to generate the answer.
      * }
      */
@@ -39,7 +39,7 @@ class PlaceAnswerSources extends \Google\Protobuf\Internal\Message
      * Snippets of reviews that are used to generate the answer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet review_snippets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources\ReviewSnippet>
      */
     public function getReviewSnippets()
     {
@@ -50,7 +50,7 @@ class PlaceAnswerSources extends \Google\Protobuf\Internal\Message
      * Snippets of reviews that are used to generate the answer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.GroundingChunk.Maps.PlaceAnswerSources.ReviewSnippet review_snippets = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources\ReviewSnippet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\GroundingChunk\Maps\PlaceAnswerSources\ReviewSnippet[] $var
      * @return $this
      */
     public function setReviewSnippets($var)
@@ -62,5 +62,4 @@ class PlaceAnswerSources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

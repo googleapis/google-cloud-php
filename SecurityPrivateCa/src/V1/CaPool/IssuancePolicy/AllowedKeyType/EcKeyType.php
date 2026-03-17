@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes an Elliptic Curve key that may be used in a
@@ -70,5 +70,4 @@ class EcKeyType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\DatabaseInstance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This message wraps up the information written by out-of-disk detection job.
@@ -154,5 +154,4 @@ class SqlOutOfDiskReport extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

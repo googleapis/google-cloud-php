@@ -40,6 +40,8 @@
     @type ImageContext        $imageContext  Additional context that may accompany the image.
     @type string $exampleString
           Ensure special chars are decoded, such as alice&#64;example.com.
+    @type string $escapedType
+          Ensure @ is escaped, such as in \@type.
 }"
             variable="data"
             type="array"

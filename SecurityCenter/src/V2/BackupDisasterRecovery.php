@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information related to Google Cloud Backup and DR Service findings.
@@ -115,7 +115,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *           policies. See the [Backup and DR
      *           documentation](https://cloud.google.com/backup-disaster-recovery/docs/concepts/backup-plan#temp)
      *           for more information. For example, `snap-ov`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type string[] $policies
      *           The names of Backup and DR policies that are associated with a template
      *           and that define when to run a backup, how frequently to run a backup, and
      *           how long to retain the backup image. For example, `onvaults`.
@@ -127,7 +127,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *           documentation on
      *           hosts](https://cloud.google.com/backup-disaster-recovery/docs/configuration/manage-hosts-and-their-applications)
      *           for more information. For example, `centos7-01`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applications
+     *     @type string[] $applications
      *           The names of Backup and DR applications. An application is a VM, database,
      *           or file system on a managed host monitored by a backup and recovery
      *           appliance. For example, `centos7-01-vol00`, `centos7-01-vol01`,
@@ -139,7 +139,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      *           storage
      *           pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools).
      *           For example, `DiskPoolOne`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $policy_options
+     *     @type string[] $policy_options
      *           The names of Backup and DR advanced policy options of a policy applying to
      *           an application. See the [Backup and DR documentation on policy
      *           options](https://cloud.google.com/backup-disaster-recovery/docs/create-plan/policy-settings).
@@ -203,7 +203,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * how long to retain the backup image. For example, `onvaults`.
      *
      * Generated from protobuf field <code>repeated string policies = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPolicies()
     {
@@ -216,7 +216,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * how long to retain the backup image. For example, `onvaults`.
      *
      * Generated from protobuf field <code>repeated string policies = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPolicies($var)
@@ -272,7 +272,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * `centos7-01-vol02`.
      *
      * Generated from protobuf field <code>repeated string applications = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApplications()
     {
@@ -286,7 +286,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * `centos7-01-vol02`.
      *
      * Generated from protobuf field <code>repeated string applications = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApplications($var)
@@ -340,7 +340,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * For example, `skipofflineappsincongrp, nounmap`.
      *
      * Generated from protobuf field <code>repeated string policy_options = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPolicyOptions()
     {
@@ -354,7 +354,7 @@ class BackupDisasterRecovery extends \Google\Protobuf\Internal\Message
      * For example, `skipofflineappsincongrp, nounmap`.
      *
      * Generated from protobuf field <code>repeated string policy_options = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPolicyOptions($var)

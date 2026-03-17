@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Explanation of a prediction (provided in
@@ -62,7 +62,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $attributions
+     *     @type \Google\Cloud\AIPlatform\V1\Attribution[] $attributions
      *           Output only. Feature attributions grouped by predicted outputs.
      *           For Models that predict only one output, such as regression Models that
      *           predict only one score, there is only one attibution that explains the
@@ -87,7 +87,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      *           is specified, the attributions are stored by
      *           [Attribution.output_index][google.cloud.aiplatform.v1.Attribution.output_index]
      *           in the same order as they appear in the output_indices.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Neighbor>|\Google\Protobuf\Internal\RepeatedField $neighbors
+     *     @type \Google\Cloud\AIPlatform\V1\Neighbor[] $neighbors
      *           Output only. List of the nearest neighbors for example-based explanations.
      *           For models deployed with the examples explanations feature enabled, the
      *           attributions field is empty and instead the neighbors field is populated.
@@ -125,7 +125,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * in the same order as they appear in the output_indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Attribution>
      */
     public function getAttributions()
     {
@@ -159,7 +159,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * in the same order as they appear in the output_indices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Attribution attributions = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Attribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Attribution[] $var
      * @return $this
      */
     public function setAttributions($var)
@@ -176,7 +176,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * attributions field is empty and instead the neighbors field is populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Neighbor neighbors = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Neighbor>
      */
     public function getNeighbors()
     {
@@ -189,7 +189,7 @@ class Explanation extends \Google\Protobuf\Internal\Message
      * attributions field is empty and instead the neighbors field is populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Neighbor neighbors = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Neighbor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Neighbor[] $var
      * @return $this
      */
     public function setNeighbors($var)

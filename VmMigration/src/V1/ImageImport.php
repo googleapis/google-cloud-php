@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ImageImport describes the configuration of the image import to run.
@@ -63,7 +63,7 @@ class ImageImport extends \Google\Protobuf\Internal\Message
      *           Output only. The resource path of the ImageImport.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time the image import was created.
-     *     @type array<\Google\Cloud\VMMigration\V1\ImageImportJob>|\Google\Protobuf\Internal\RepeatedField $recent_image_import_jobs
+     *     @type \Google\Cloud\VMMigration\V1\ImageImportJob[] $recent_image_import_jobs
      *           Output only. The result of the most recent runs for this ImageImport. All
      *           jobs for this ImageImport can be listed via ListImageImportJobs.
      *     @type \Google\Cloud\VMMigration\V1\Encryption $encryption
@@ -242,7 +242,7 @@ class ImageImport extends \Google\Protobuf\Internal\Message
      * jobs for this ImageImport can be listed via ListImageImportJobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.ImageImportJob recent_image_import_jobs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\ImageImportJob>
      */
     public function getRecentImageImportJobs()
     {
@@ -254,7 +254,7 @@ class ImageImport extends \Google\Protobuf\Internal\Message
      * jobs for this ImageImport can be listed via ListImageImportJobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.ImageImportJob recent_image_import_jobs = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\ImageImportJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\ImageImportJob[] $var
      * @return $this
      */
     public function setRecentImageImportJobs($var)

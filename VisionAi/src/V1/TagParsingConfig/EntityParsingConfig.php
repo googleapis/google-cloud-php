@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\TagParsingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for parsing a tag entity class.
@@ -136,5 +136,4 @@ class EntityParsingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

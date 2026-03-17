@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the remote instance associated with this instance in a cross
@@ -103,5 +103,4 @@ class RemoteInstance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

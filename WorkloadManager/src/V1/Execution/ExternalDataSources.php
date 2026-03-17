@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1\Execution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * External data sources for an execution.
@@ -190,5 +190,4 @@ class ExternalDataSources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

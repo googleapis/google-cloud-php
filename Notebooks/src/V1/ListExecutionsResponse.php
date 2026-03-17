@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing scheduled notebook executions
@@ -43,12 +43,12 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Notebooks\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type \Google\Cloud\Notebooks\V1\Execution[] $executions
      *           A list of returned instances.
      *     @type string $next_page_token
      *           Page token that can be used to continue listing from the last result in the
      *           next list call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Executions IDs that could not be reached. For example:
      *               ['projects/{project_id}/location/{location}/executions/imagenet_test1',
      *                'projects/{project_id}/location/{location}/executions/classifier_train1']
@@ -63,7 +63,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * A list of returned instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Execution executions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Execution>
      */
     public function getExecutions()
     {
@@ -74,7 +74,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * A list of returned instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Execution executions = 1;</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Execution[] $var
      * @return $this
      */
     public function setExecutions($var)
@@ -119,7 +119,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      *      'projects/{project_id}/location/{location}/executions/classifier_train1']
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -132,7 +132,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      *      'projects/{project_id}/location/{location}/executions/classifier_train1']
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

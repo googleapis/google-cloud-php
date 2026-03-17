@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\ConfigManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * State information for an ACM's Operator
@@ -44,7 +44,7 @@ class OperatorState extends \Google\Protobuf\Internal\Message
      *           The semenatic version number of the operator
      *     @type int $deployment_state
      *           The state of the Operator's deployment
-     *     @type array<\Google\Cloud\GkeHub\ConfigManagement\V1\InstallError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\InstallError[] $errors
      *           Install errors.
      * }
      */
@@ -109,7 +109,7 @@ class OperatorState extends \Google\Protobuf\Internal\Message
      * Install errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.InstallError errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\ConfigManagement\V1\InstallError>
      */
     public function getErrors()
     {
@@ -120,7 +120,7 @@ class OperatorState extends \Google\Protobuf\Internal\Message
      * Install errors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.InstallError errors = 3;</code>
-     * @param array<\Google\Cloud\GkeHub\ConfigManagement\V1\InstallError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\ConfigManagement\V1\InstallError[] $var
      * @return $this
      */
     public function setErrors($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for CreateVersion.
@@ -130,7 +130,7 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      *           schema type will be AVRO.
      *     @type string $schema
      *           Required. The schema payload
-     *     @type array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $references
      *           Optional. The schema references used by the schema.
      *     @type bool $normalize
      *           Optional. If true, the schema will be normalized before being stored. The
@@ -324,7 +324,7 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>
      */
     public function getReferences()
     {
@@ -335,7 +335,7 @@ class CreateVersionRequest extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $var
      * @return $this
      */
     public function setReferences($var)

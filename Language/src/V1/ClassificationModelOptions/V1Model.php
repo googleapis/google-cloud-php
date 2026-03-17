@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V1\ClassificationModelOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for the V1 model.
@@ -30,5 +30,4 @@ class V1Model extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

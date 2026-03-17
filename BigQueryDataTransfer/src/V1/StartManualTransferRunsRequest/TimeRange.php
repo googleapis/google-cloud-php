@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1\StartManualTransferRunsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A specification for a time range, this will request transfer runs with
@@ -143,5 +143,4 @@ class TimeRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

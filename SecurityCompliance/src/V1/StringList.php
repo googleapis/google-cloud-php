@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of strings for the parameter value.
@@ -28,7 +28,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      *           Required. The strings in the list.
      * }
      */
@@ -41,7 +41,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * Required. The strings in the list.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -52,7 +52,7 @@ class StringList extends \Google\Protobuf\Internal\Message
      * Required. The strings in the list.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

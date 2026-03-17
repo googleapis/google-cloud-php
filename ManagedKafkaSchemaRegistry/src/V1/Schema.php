@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Schema for a Kafka message.
@@ -44,7 +44,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           Optional. The schema type of the schema.
      *     @type string $schema_payload
      *           The schema payload.
-     *     @type array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $references
      *           Optional. The schema references used by the schema.
      * }
      */
@@ -109,7 +109,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>
      */
     public function getReferences()
     {
@@ -120,7 +120,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. The schema references used by the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.Schema.SchemaReference references = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\SchemaRegistry\V1\Schema\SchemaReference[] $var
      * @return $this
      */
     public function setReferences($var)

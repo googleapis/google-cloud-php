@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\PageInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents form information.
@@ -32,7 +32,7 @@ class FormInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo\ParameterInfo>|\Google\Protobuf\Internal\RepeatedField $parameter_info
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo\ParameterInfo[] $parameter_info
      *           Optional for both
      *           [WebhookRequest][google.cloud.dialogflow.cx.v3.WebhookRequest] and
      *           [WebhookResponse][google.cloud.dialogflow.cx.v3.WebhookResponse]. The
@@ -53,7 +53,7 @@ class FormInfo extends \Google\Protobuf\Internal\Message
      * remove any form parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo parameter_info = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo\ParameterInfo>
      */
     public function getParameterInfo()
     {
@@ -68,7 +68,7 @@ class FormInfo extends \Google\Protobuf\Internal\Message
      * remove any form parameter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.PageInfo.FormInfo.ParameterInfo parameter_info = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo\ParameterInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo\ParameterInfo[] $var
      * @return $this
      */
     public function setParameterInfo($var)
@@ -80,5 +80,4 @@ class FormInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

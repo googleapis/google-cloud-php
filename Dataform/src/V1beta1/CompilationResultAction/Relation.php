@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CompilationResultAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a database relation.
@@ -141,11 +141,11 @@ class Relation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $dependency_targets
+     *     @type \Google\Cloud\Dataform\V1beta1\Target[] $dependency_targets
      *           A list of actions that this action depends on.
      *     @type bool $disabled
      *           Whether this action is disabled (i.e. should not be run).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Arbitrary, user-defined tags on this action.
      *     @type \Google\Cloud\Dataform\V1beta1\RelationDescriptor $relation_descriptor
      *           Descriptor for the relation and its columns.
@@ -153,16 +153,16 @@ class Relation extends \Google\Protobuf\Internal\Message
      *           The type of this relation.
      *     @type string $select_query
      *           The SELECT query which returns rows which this relation should contain.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pre_operations
+     *     @type string[] $pre_operations
      *           SQL statements to be executed before creating the relation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $post_operations
+     *     @type string[] $post_operations
      *           SQL statements to be executed after creating the relation.
      *     @type \Google\Cloud\Dataform\V1beta1\CompilationResultAction\Relation\IncrementalTableConfig $incremental_table_config
      *           Configures `INCREMENTAL_TABLE` settings for this relation. Only set if
      *           `relation_type` is `INCREMENTAL_TABLE`.
      *     @type string $partition_expression
      *           The SQL expression used to partition the relation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cluster_expressions
+     *     @type string[] $cluster_expressions
      *           A list of columns or SQL expressions used to cluster the table.
      *     @type int $partition_expiration_days
      *           Sets the partition expiration in days.
@@ -199,7 +199,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target dependency_targets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\Target>
      */
     public function getDependencyTargets()
     {
@@ -210,7 +210,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * A list of actions that this action depends on.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target dependency_targets = 1;</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\Target[] $var
      * @return $this
      */
     public function setDependencyTargets($var)
@@ -251,7 +251,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -262,7 +262,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * Arbitrary, user-defined tags on this action.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -365,7 +365,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * SQL statements to be executed before creating the relation.
      *
      * Generated from protobuf field <code>repeated string pre_operations = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPreOperations()
     {
@@ -376,7 +376,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * SQL statements to be executed before creating the relation.
      *
      * Generated from protobuf field <code>repeated string pre_operations = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPreOperations($var)
@@ -391,7 +391,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * SQL statements to be executed after creating the relation.
      *
      * Generated from protobuf field <code>repeated string post_operations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPostOperations()
     {
@@ -402,7 +402,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * SQL statements to be executed after creating the relation.
      *
      * Generated from protobuf field <code>repeated string post_operations = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPostOperations($var)
@@ -481,7 +481,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * A list of columns or SQL expressions used to cluster the table.
      *
      * Generated from protobuf field <code>repeated string cluster_expressions = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getClusterExpressions()
     {
@@ -492,7 +492,7 @@ class Relation extends \Google\Protobuf\Internal\Message
      * A list of columns or SQL expressions used to cluster the table.
      *
      * Generated from protobuf field <code>repeated string cluster_expressions = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setClusterExpressions($var)
@@ -706,5 +706,4 @@ class Relation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

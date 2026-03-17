@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\FetchFileGitStatusesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the Git state of a file with uncommitted changes.
@@ -98,5 +98,4 @@ class UncommittedFileChange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

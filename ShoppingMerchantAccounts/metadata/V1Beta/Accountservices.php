@@ -19,11 +19,7 @@ class Accountservices
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ö
->google/shopping/merchant/accounts/v1beta/accountservices.proto(google.shopping.merchant.accounts.v1betagoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto"
-AccountAggregationB–
-,com.google.shopping.merchant.accounts.v1betaBAccountServicesProtoPZNcloud.google.com/go/shopping/merchant/accounts/apiv1beta/accountspb;accountspbbproto3'
+            "\x0A\xF6\x02\x0A>google/shopping/merchant/accounts/v1beta/accountservices.proto\x12(google.shopping.merchant.accounts.v1beta\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\"\x14\x0A\x12AccountAggregationB\x96\x01\x0A,com.google.shopping.merchant.accounts.v1betaB\x14AccountServicesProtoP\x01ZNcloud.google.com/go/shopping/merchant/accounts/apiv1beta/accountspb;accountspbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

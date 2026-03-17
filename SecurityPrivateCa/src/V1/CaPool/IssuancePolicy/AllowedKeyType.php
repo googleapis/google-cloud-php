@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a "type" of key that may be used in a
@@ -110,5 +110,4 @@ class AllowedKeyType extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

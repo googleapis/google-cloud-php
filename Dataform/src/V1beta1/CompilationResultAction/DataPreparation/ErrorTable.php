@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1\CompilationResultAction\DataPreparation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Error table information, used to write error data into a BigQuery
@@ -113,5 +113,4 @@ class ErrorTable extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

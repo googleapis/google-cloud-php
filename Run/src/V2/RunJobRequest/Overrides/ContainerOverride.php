@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\RunJobRequest\Overrides;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Per-container override specification.
@@ -50,10 +50,10 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the container specified as a DNS_LABEL.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Optional. Arguments to the entrypoint. Will replace existing args for
      *           override.
-     *     @type array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type \Google\Cloud\Run\V2\EnvVar[] $env
      *           List of environment variables to set in the container. Will be merged
      *           with existing env for override.
      *     @type bool $clear_args
@@ -96,7 +96,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      * override.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -108,7 +108,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      * override.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -124,7 +124,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      * with existing env for override.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.EnvVar env = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Run\V2\EnvVar>
      */
     public function getEnv()
     {
@@ -136,7 +136,7 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
      * with existing env for override.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.EnvVar env = 3;</code>
-     * @param array<\Google\Cloud\Run\V2\EnvVar>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Run\V2\EnvVar[] $var
      * @return $this
      */
     public function setEnv($var)
@@ -174,5 +174,4 @@ class ContainerOverride extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

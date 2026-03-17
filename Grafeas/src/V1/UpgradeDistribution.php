@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Upgrade Distribution represents metadata about the Upgrade for each
@@ -62,7 +62,7 @@ class UpgradeDistribution extends \Google\Protobuf\Internal\Message
      *           https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ff357803(v=vs.85)
      *     @type string $severity
      *           The severity as specified by the upstream operating system.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cve
+     *     @type string[] $cve
      *           The cve tied to this Upgrade.
      * }
      */
@@ -161,7 +161,7 @@ class UpgradeDistribution extends \Google\Protobuf\Internal\Message
      * The cve tied to this Upgrade.
      *
      * Generated from protobuf field <code>repeated string cve = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCve()
     {
@@ -172,7 +172,7 @@ class UpgradeDistribution extends \Google\Protobuf\Internal\Message
      * The cve tied to this Upgrade.
      *
      * Generated from protobuf field <code>repeated string cve = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCve($var)

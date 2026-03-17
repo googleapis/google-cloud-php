@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Client connection configuration
@@ -112,5 +112,4 @@ class ClientConnectionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

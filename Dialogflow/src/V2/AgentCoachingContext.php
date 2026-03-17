@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Agent Coaching context that customer can configure.
@@ -51,7 +51,7 @@ class AgentCoachingContext extends \Google\Protobuf\Internal\Message
      *     @type string $overarching_guidance
      *           Optional. The overarching guidance for the agent coaching. This should be
      *           set only for v1.5 and later versions.
-     *     @type array<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>|\Google\Protobuf\Internal\RepeatedField $instructions
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingInstruction[] $instructions
      *           Optional. Customized instructions for agent coaching.
      *     @type string $version
      *           Optional. Version of the feature. If not set, default to latest version.
@@ -97,7 +97,7 @@ class AgentCoachingContext extends \Google\Protobuf\Internal\Message
      * Optional. Customized instructions for agent coaching.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingInstruction instructions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>
      */
     public function getInstructions()
     {
@@ -108,7 +108,7 @@ class AgentCoachingContext extends \Google\Protobuf\Internal\Message
      * Optional. Customized instructions for agent coaching.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingInstruction instructions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingInstruction[] $var
      * @return $this
      */
     public function setInstructions($var)

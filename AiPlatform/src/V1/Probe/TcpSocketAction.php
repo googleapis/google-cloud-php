@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Probe;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * TcpSocketAction probes the health of a container by opening a TCP socket
@@ -107,5 +107,4 @@ class TcpSocketAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The [ListAttributes][google.cloud.apihub.v1.ApiHub.ListAttributes] method's
@@ -36,7 +36,7 @@ class ListAttributesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\Attribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Cloud\ApiHub\V1\Attribute[] $attributes
      *           The list of all attributes.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListAttributesResponse extends \Google\Protobuf\Internal\Message
      * The list of all attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute attributes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Attribute>
      */
     public function getAttributes()
     {
@@ -63,7 +63,7 @@ class ListAttributesResponse extends \Google\Protobuf\Internal\Message
      * The list of all attributes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Attribute attributes = 1;</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Attribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Attribute[] $var
      * @return $this
      */
     public function setAttributes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represent the source Vmware VM details.
@@ -57,7 +57,7 @@ class VmwareSourceVmDetails extends \Google\Protobuf\Internal\Message
      *           Output only. The firmware type of the source VM.
      *     @type int|string $committed_storage_bytes
      *           Output only. The total size of the disks being migrated in bytes.
-     *     @type array<\Google\Cloud\VMMigration\V1\VmwareSourceVmDetails\VmwareDiskDetails>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails\VmwareDiskDetails[] $disks
      *           Output only. The disks attached to the source VM.
      *     @type \Google\Cloud\VMMigration\V1\VmCapabilities $vm_capabilities_info
      *           Output only. Information about VM capabilities needed for some Compute
@@ -127,7 +127,7 @@ class VmwareSourceVmDetails extends \Google\Protobuf\Internal\Message
      * Output only. The disks attached to the source VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmwareSourceVmDetails.VmwareDiskDetails disks = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\VmwareSourceVmDetails\VmwareDiskDetails>
      */
     public function getDisks()
     {
@@ -138,7 +138,7 @@ class VmwareSourceVmDetails extends \Google\Protobuf\Internal\Message
      * Output only. The disks attached to the source VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmwareSourceVmDetails.VmwareDiskDetails disks = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\VmwareSourceVmDetails\VmwareDiskDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\VmwareSourceVmDetails\VmwareDiskDetails[] $var
      * @return $this
      */
     public function setDisks($var)

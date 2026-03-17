@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1\ApiConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An OpenAPI Specification Document describing an API.
@@ -74,5 +74,4 @@ class OpenApiDocument extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

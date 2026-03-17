@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\Region;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of postal codes that defines the region area.
@@ -42,7 +42,7 @@ class PostalCodeArea extends \Google\Protobuf\Internal\Message
      *           Required. [CLDR territory
      *           code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)
      *           or the country the postal code group applies to.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\Region\PostalCodeArea\PostalCodeRange>|\Google\Protobuf\Internal\RepeatedField $postal_codes
+     *     @type \Google\Shopping\Merchant\Accounts\V1\Region\PostalCodeArea\PostalCodeRange[] $postal_codes
      *           Required. A range of postal codes.
      * }
      */
@@ -85,7 +85,7 @@ class PostalCodeArea extends \Google\Protobuf\Internal\Message
      * Required. A range of postal codes.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Region.PostalCodeArea.PostalCodeRange postal_codes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\Region\PostalCodeArea\PostalCodeRange>
      */
     public function getPostalCodes()
     {
@@ -96,7 +96,7 @@ class PostalCodeArea extends \Google\Protobuf\Internal\Message
      * Required. A range of postal codes.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.Region.PostalCodeArea.PostalCodeRange postal_codes = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\Region\PostalCodeArea\PostalCodeRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\Region\PostalCodeArea\PostalCodeRange[] $var
      * @return $this
      */
     public function setPostalCodes($var)
@@ -108,5 +108,4 @@ class PostalCodeArea extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

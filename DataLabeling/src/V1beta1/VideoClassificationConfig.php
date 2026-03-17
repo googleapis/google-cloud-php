@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for video classification human labeling task.
@@ -43,7 +43,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_set_configs
+     *     @type \Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig[] $annotation_spec_set_configs
      *           Required. The list of annotation spec set configs.
      *           Since watching a video clip takes much longer time than an image, we
      *           support label with multiple AnnotationSpecSet at the same time. Labels
@@ -68,7 +68,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      * label) from each group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoClassificationConfig.AnnotationSpecSetConfig annotation_spec_set_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig>
      */
     public function getAnnotationSpecSetConfigs()
     {
@@ -84,7 +84,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      * label) from each group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoClassificationConfig.AnnotationSpecSetConfig annotation_spec_set_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig[] $var
      * @return $this
      */
     public function setAnnotationSpecSetConfigs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `TranscoderService.ListJobTemplates`.
@@ -40,11 +40,11 @@ class ListJobTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\JobTemplate>|\Google\Protobuf\Internal\RepeatedField $job_templates
+     *     @type \Google\Cloud\Video\Transcoder\V1\JobTemplate[] $job_templates
      *           List of job templates in the specified region.
      *     @type string $next_page_token
      *           The pagination token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           List of regions that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListJobTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of job templates in the specified region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.JobTemplate job_templates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\JobTemplate>
      */
     public function getJobTemplates()
     {
@@ -68,7 +68,7 @@ class ListJobTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of job templates in the specified region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.JobTemplate job_templates = 1;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\JobTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\JobTemplate[] $var
      * @return $this
      */
     public function setJobTemplates($var)
@@ -109,7 +109,7 @@ class ListJobTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of regions that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListJobTemplatesResponse extends \Google\Protobuf\Internal\Message
      * List of regions that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

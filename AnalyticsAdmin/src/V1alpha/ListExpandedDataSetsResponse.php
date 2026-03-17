@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListExpandedDataSets RPC.
@@ -36,7 +36,7 @@ class ListExpandedDataSetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\ExpandedDataSet>|\Google\Protobuf\Internal\RepeatedField $expanded_data_sets
+     *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSet[] $expanded_data_sets
      *           List of ExpandedDataSet. These will be ordered stably, but in an arbitrary
      *           order.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListExpandedDataSetsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ExpandedDataSet>
      */
     public function getExpandedDataSets()
     {
@@ -66,7 +66,7 @@ class ListExpandedDataSetsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ExpandedDataSet expanded_data_sets = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ExpandedDataSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSet[] $var
      * @return $this
      */
     public function setExpandedDataSets($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DnsBindPermission resource that contains the accounts having the consumer DNS
@@ -50,7 +50,7 @@ class DnsBindPermission extends \Google\Protobuf\Internal\Message
      *           URIs that follow the conventions in
      *           https://cloud.google.com/apis/design/resource_names. For example:
      *           `projects/my-project/locations/global/dnsBindPermission`
-     *     @type array<\Google\Cloud\VmwareEngine\V1\Principal>|\Google\Protobuf\Internal\RepeatedField $principals
+     *     @type \Google\Cloud\VmwareEngine\V1\Principal[] $principals
      *           Output only. Users/Service accounts which have access for binding on the
      *           intranet VPC project corresponding to the consumer project.
      * }
@@ -103,7 +103,7 @@ class DnsBindPermission extends \Google\Protobuf\Internal\Message
      * intranet VPC project corresponding to the consumer project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.Principal principals = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\Principal>
      */
     public function getPrincipals()
     {
@@ -115,7 +115,7 @@ class DnsBindPermission extends \Google\Protobuf\Internal\Message
      * intranet VPC project corresponding to the consumer project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.Principal principals = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\Principal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\Principal[] $var
      * @return $this
      */
     public function setPrincipals($var)

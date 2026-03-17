@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event represents a message from either the user or agent.
@@ -71,6 +71,12 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EventMetadata event_metadata = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $event_metadata = null;
+    /**
+     * Optional. Weakly typed raw event data in proto struct format.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct raw_event = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $raw_event = null;
 
     /**
      * Constructor.
@@ -98,6 +104,8 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      *           Optional. Error message if the response is an error.
      *     @type \Google\Cloud\AIPlatform\V1\EventMetadata $event_metadata
      *           Optional. Metadata relating to this event.
+     *     @type \Google\Protobuf\Struct $raw_event
+     *           Optional. Weakly typed raw event data in proto struct format.
      * }
      */
     public function __construct($data = NULL) {
@@ -379,6 +387,42 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EventMetadata::class);
         $this->event_metadata = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Weakly typed raw event data in proto struct format.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct raw_event = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getRawEvent()
+    {
+        return $this->raw_event;
+    }
+
+    public function hasRawEvent()
+    {
+        return isset($this->raw_event);
+    }
+
+    public function clearRawEvent()
+    {
+        unset($this->raw_event);
+    }
+
+    /**
+     * Optional. Weakly typed raw event data in proto struct format.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct raw_event = 12 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setRawEvent($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->raw_event = $var;
 
         return $this;
     }

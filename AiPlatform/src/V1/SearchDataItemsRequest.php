@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -160,7 +160,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      *           An expression for filtering the Annotations that will be returned per
      *           DataItem.
      *             * `annotation_spec_id` - for = or !=.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_filters
+     *     @type string[] $annotation_filters
      *           An expression that specifies what Annotations will be returned per
      *           DataItem. Annotations satisfied either of the conditions will be returned.
      *             * `annotation_spec_id` - for = or !=.
@@ -445,7 +445,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      * belong to.
      *
      * Generated from protobuf field <code>repeated string annotation_filters = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAnnotationFilters()
     {
@@ -460,7 +460,7 @@ class SearchDataItemsRequest extends \Google\Protobuf\Internal\Message
      * belong to.
      *
      * Generated from protobuf field <code>repeated string annotation_filters = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAnnotationFilters($var)

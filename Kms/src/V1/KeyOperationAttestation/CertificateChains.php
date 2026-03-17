@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\KeyOperationAttestation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Certificate chains needed to verify the attestation.
@@ -42,11 +42,11 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cavium_certs
+     *     @type string[] $cavium_certs
      *           Cavium certificate chain corresponding to the attestation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $google_card_certs
+     *     @type string[] $google_card_certs
      *           Google card certificate chain corresponding to the attestation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $google_partition_certs
+     *     @type string[] $google_partition_certs
      *           Google partition certificate chain corresponding to the attestation.
      * }
      */
@@ -59,7 +59,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Cavium certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string cavium_certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCaviumCerts()
     {
@@ -70,7 +70,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Cavium certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string cavium_certs = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCaviumCerts($var)
@@ -85,7 +85,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Google card certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string google_card_certs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGoogleCardCerts()
     {
@@ -96,7 +96,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Google card certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string google_card_certs = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGoogleCardCerts($var)
@@ -111,7 +111,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Google partition certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string google_partition_certs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGooglePartitionCerts()
     {
@@ -122,7 +122,7 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
      * Google partition certificate chain corresponding to the attestation.
      *
      * Generated from protobuf field <code>repeated string google_partition_certs = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGooglePartitionCerts($var)
@@ -134,5 +134,4 @@ class CertificateChains extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

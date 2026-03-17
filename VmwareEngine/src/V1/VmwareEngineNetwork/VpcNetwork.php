@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\VmwareEngineNetwork;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a VMware Engine VPC network that is managed by a
@@ -111,5 +111,4 @@ class VpcNetwork extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Language\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The sentiment analysis response message.
@@ -56,7 +56,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      *           The language of the text, which will be the same as the language specified
      *           in the request or, if not specified, the automatically-detected language.
      *           See [Document.language][] field for more details.
-     *     @type array<\Google\Cloud\Language\V2\Sentence>|\Google\Protobuf\Internal\RepeatedField $sentences
+     *     @type \Google\Cloud\Language\V2\Sentence[] $sentences
      *           The sentiment for all the sentences in the document.
      *     @type bool $language_supported
      *           Whether the language is officially supported. The API may still return a
@@ -139,7 +139,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * The sentiment for all the sentences in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.Sentence sentences = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Language\V2\Sentence>
      */
     public function getSentences()
     {
@@ -150,7 +150,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      * The sentiment for all the sentences in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v2.Sentence sentences = 3;</code>
-     * @param array<\Google\Cloud\Language\V2\Sentence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Language\V2\Sentence[] $var
      * @return $this
      */
     public function setSentences($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDiscoverySpec\StorageConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes JSON data format.
@@ -106,5 +106,4 @@ class JsonOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

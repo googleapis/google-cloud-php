@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\FacetProperty;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If bucket type is DATE, specify how date values are bucketized.
@@ -64,5 +64,4 @@ class DateTimeBucketSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

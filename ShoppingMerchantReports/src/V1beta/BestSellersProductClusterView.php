@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fields available for query in `best_sellers_product_cluster_view` table.
@@ -227,7 +227,7 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
      *           Product category (5th level) of the product cluster, represented in
      *           [Google's product
      *           taxonomy](https://support.google.com/merchants/answer/6324436).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $variant_gtins
+     *     @type string[] $variant_gtins
      *           GTINs of example variants of the product cluster.
      *     @type int $inventory_status
      *           Whether the product cluster is `IN_STOCK` in your product data source in at
@@ -713,7 +713,7 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
      * GTINs of example variants of the product cluster.
      *
      * Generated from protobuf field <code>repeated string variant_gtins = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVariantGtins()
     {
@@ -724,7 +724,7 @@ class BestSellersProductClusterView extends \Google\Protobuf\Internal\Message
      * GTINs of example variants of the product cluster.
      *
      * Generated from protobuf field <code>repeated string variant_gtins = 13;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVariantGtins($var)

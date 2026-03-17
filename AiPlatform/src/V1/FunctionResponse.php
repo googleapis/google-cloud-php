@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result output from a [FunctionCall] that contains a string representing
@@ -56,7 +56,7 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      *           Use "output" key to specify function output and "error" key to specify
      *           error details (if any). If "output" and "error" keys are not specified,
      *           then whole "response" is treated as function output.
-     *     @type array<\Google\Cloud\AIPlatform\V1\FunctionResponsePart>|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type \Google\Cloud\AIPlatform\V1\FunctionResponsePart[] $parts
      *           Optional. Ordered `Parts` that constitute a function response. Parts may
      *           have different IANA MIME types.
      * }
@@ -141,7 +141,7 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      * have different IANA MIME types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionResponsePart parts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\FunctionResponsePart>
      */
     public function getParts()
     {
@@ -153,7 +153,7 @@ class FunctionResponse extends \Google\Protobuf\Internal\Message
      * have different IANA MIME types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FunctionResponsePart parts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\FunctionResponsePart>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\FunctionResponsePart[] $var
      * @return $this
      */
     public function setParts($var)

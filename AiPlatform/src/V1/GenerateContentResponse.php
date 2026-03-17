@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for [PredictionService.GenerateContent].
@@ -61,7 +61,7 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Candidate>|\Google\Protobuf\Internal\RepeatedField $candidates
+     *     @type \Google\Cloud\AIPlatform\V1\Candidate[] $candidates
      *           Output only. Generated candidates.
      *     @type string $model_version
      *           Output only. The model version used to generate the response.
@@ -87,7 +87,7 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      * Output only. Generated candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Candidate candidates = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Candidate>
      */
     public function getCandidates()
     {
@@ -98,7 +98,7 @@ class GenerateContentResponse extends \Google\Protobuf\Internal\Message
      * Output only. Generated candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Candidate candidates = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Candidate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Candidate[] $var
      * @return $this
      */
     public function setCandidates($var)

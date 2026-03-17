@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDiscoveryResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes result statistics of a data scan discovery job.
@@ -336,5 +336,4 @@ class ScanStatistics extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

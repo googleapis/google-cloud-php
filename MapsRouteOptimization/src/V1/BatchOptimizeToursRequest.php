@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to batch optimize tours as an asynchronous operation.
@@ -49,7 +49,7 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      *           * `projects/{project-id}`
      *           * `projects/{project-id}/locations/{location-id}`
      *           If no location is specified, a region will be chosen automatically.
-     *     @type array<\Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig>|\Google\Protobuf\Internal\RepeatedField $model_configs
+     *     @type \Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig[] $model_configs
      *           Required. Input/Output information each purchase model, such as file paths
      *           and data formats.
      * }
@@ -98,7 +98,7 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * and data formats.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BatchOptimizeToursRequest.AsyncModelConfig model_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig>
      */
     public function getModelConfigs()
     {
@@ -110,7 +110,7 @@ class BatchOptimizeToursRequest extends \Google\Protobuf\Internal\Message
      * and data formats.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.BatchOptimizeToursRequest.AsyncModelConfig model_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\BatchOptimizeToursRequest\AsyncModelConfig[] $var
      * @return $this
      */
     public function setModelConfigs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListGeneratorEvaluations.
@@ -35,7 +35,7 @@ class ListGeneratorEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\GeneratorEvaluation>|\Google\Protobuf\Internal\RepeatedField $generator_evaluations
+     *     @type \Google\Cloud\Dialogflow\V2\GeneratorEvaluation[] $generator_evaluations
      *           The list of evaluations to return.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListGeneratorEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * The list of evaluations to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorEvaluation generator_evaluations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\GeneratorEvaluation>
      */
     public function getGeneratorEvaluations()
     {
@@ -62,7 +62,7 @@ class ListGeneratorEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * The list of evaluations to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.GeneratorEvaluation generator_evaluations = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\GeneratorEvaluation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\GeneratorEvaluation[] $var
      * @return $this
      */
     public function setGeneratorEvaluations($var)

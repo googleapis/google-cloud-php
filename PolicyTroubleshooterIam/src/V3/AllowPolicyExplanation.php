@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about how the relevant IAM allow policies affect the final access
@@ -52,7 +52,7 @@ class AllowPolicyExplanation extends \Google\Protobuf\Internal\Message
      *     @type int $allow_access_state
      *           Indicates whether the principal has the specified permission for the
      *           specified resource, based on evaluating all applicable IAM allow policies.
-     *     @type array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedAllowPolicy>|\Google\Protobuf\Internal\RepeatedField $explained_policies
+     *     @type \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedAllowPolicy[] $explained_policies
      *           List of IAM allow policies that were evaluated to check the principal's
      *           permissions, with annotations to indicate how each policy contributed to
      *           the final result.
@@ -109,7 +109,7 @@ class AllowPolicyExplanation extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/help/resource-hierarchy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedAllowPolicy explained_policies = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedAllowPolicy>
      */
     public function getExplainedPolicies()
     {
@@ -127,7 +127,7 @@ class AllowPolicyExplanation extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/help/resource-hierarchy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.policytroubleshooter.iam.v3.ExplainedAllowPolicy explained_policies = 2;</code>
-     * @param array<\Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedAllowPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicyTroubleshooter\Iam\V3\ExplainedAllowPolicy[] $var
      * @return $this
      */
     public function setExplainedPolicies($var)

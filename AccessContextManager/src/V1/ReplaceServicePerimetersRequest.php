@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to replace all existing Service Perimeters in an Access Policy
@@ -60,7 +60,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *           [Service Perimeters]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter].
      *           Format: `accessPolicies/{policy_id}`
-     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $service_perimeters
+     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter[] $service_perimeters
      *           Required. The desired [Service Perimeters]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter] that should
      *           replace all existing [Service Perimeters]
@@ -123,7 +123,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\ServicePerimeter>
      */
     public function getServicePerimeters()
     {
@@ -139,7 +139,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter[] $var
      * @return $this
      */
     public function setServicePerimeters($var)

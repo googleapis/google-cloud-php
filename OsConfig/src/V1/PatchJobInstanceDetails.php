@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Patch details for a VM instance. For more information about reviewing VM
@@ -19,7 +19,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The instance name in the form `projects/&#42;&#47;zones/&#42;&#47;instances/&#42;`
+     * The instance name in the form `projects/{@*}zones/{@*}instances/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -57,7 +57,7 @@ class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The instance name in the form `projects/&#42;&#47;zones/&#42;&#47;instances/&#42;`
+     *           The instance name in the form `projects/{@*}zones/{@*}instances/*`
      *     @type string $instance_system_id
      *           The unique identifier for the instance. This identifier is
      *           defined by the server.
@@ -75,7 +75,7 @@ class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance name in the form `projects/&#42;&#47;zones/&#42;&#47;instances/&#42;`
+     * The instance name in the form `projects/{@*}zones/{@*}instances/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -86,7 +86,7 @@ class PatchJobInstanceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance name in the form `projects/&#42;&#47;zones/&#42;&#47;instances/&#42;`
+     * The instance name in the form `projects/{@*}zones/{@*}instances/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

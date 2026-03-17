@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ReceivePacketsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The message specifying the initial settings for the ReceivePackets session.
@@ -303,5 +303,4 @@ class SetupRequest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

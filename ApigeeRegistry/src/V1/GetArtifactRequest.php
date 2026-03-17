@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for GetArtifact.
@@ -17,7 +17,7 @@ class GetArtifactRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the artifact to retrieve.
-     * Format: `{parent}/artifacts/&#42;`
+     * Format: `{parent}/artifacts/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class GetArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the artifact to retrieve.
-     *           Format: `{parent}/artifacts/&#42;`
+     *           Format: `{parent}/artifacts/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class GetArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the artifact to retrieve.
-     * Format: `{parent}/artifacts/&#42;`
+     * Format: `{parent}/artifacts/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class GetArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the artifact to retrieve.
-     * Format: `{parent}/artifacts/&#42;`
+     * Format: `{parent}/artifacts/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

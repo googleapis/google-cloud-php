@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An entry describing an error that has occurred.
@@ -37,7 +37,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      *
      *     @type string $object_uri
      *           Required. Output only. Object URL. e.g. gs://my_bucket/object.txt
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $error_details
+     *     @type string[] $error_details
      *           Optional. Output only. At most 5 error log entries are recorded for a given
      *           error code for a job.
      * }
@@ -78,7 +78,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      * error code for a job.
      *
      * Generated from protobuf field <code>repeated string error_details = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getErrorDetails()
     {
@@ -90,7 +90,7 @@ class ErrorLogEntry extends \Google\Protobuf\Internal\Message
      * error code for a job.
      *
      * Generated from protobuf field <code>repeated string error_details = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setErrorDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User-provided package specification, containing pickled object and package
@@ -175,5 +175,4 @@ class PackageSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

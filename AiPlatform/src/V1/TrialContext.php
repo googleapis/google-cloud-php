@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.TrialContext</code>
@@ -44,7 +44,7 @@ class TrialContext extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           A human-readable field which can store a description of this context.
      *           This will become part of the resulting Trial's description field.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\AIPlatform\V1\Trial\Parameter[] $parameters
      *           If/when a Trial is generated or selected from this Context,
      *           its Parameters will match any parameters specified here.
      *           (I.e. if this context specifies parameter name:'a' int_value:3,
@@ -101,7 +101,7 @@ class TrialContext extends \Google\Protobuf\Internal\Message
      *   space.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial.Parameter parameters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Trial\Parameter>
      */
     public function getParameters()
     {
@@ -120,7 +120,7 @@ class TrialContext extends \Google\Protobuf\Internal\Message
      *   space.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial.Parameter parameters = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Trial\Parameter[] $var
      * @return $this
      */
     public function setParameters($var)

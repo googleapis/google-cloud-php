@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataExchange\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A listing is what gets published into a data exchange that a subscriber can
@@ -141,7 +141,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           increases the size of the data by 33-36%) when using JSON on the wire.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\DataProvider $data_provider
      *           Optional. Details of the data provider who owns the source data.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type int[] $categories
      *           Optional. Categories of the listing. Up to two categories are allowed.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Publisher $publisher
      *           Optional. Details of the publisher who owns the listing and who can share
@@ -438,7 +438,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Optional. Categories of the listing. Up to two categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCategories()
     {
@@ -449,7 +449,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Optional. Categories of the listing. Up to two categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCategories($var)

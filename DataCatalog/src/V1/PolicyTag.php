@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Denotes one policy tag in a taxonomy, for example, SSN.
@@ -90,7 +90,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      *           For example, for the "LatLong" policy tag in the example above, this field
      *           contains the resource name of the "Geolocation" policy tag, and, for
      *           "Geolocation", this field is empty.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
+     *     @type string[] $child_policy_tags
      *           Output only. Resource names of child policy tags of this policy tag.
      * }
      */
@@ -229,7 +229,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      * Output only. Resource names of child policy tags of this policy tag.
      *
      * Generated from protobuf field <code>repeated string child_policy_tags = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChildPolicyTags()
     {
@@ -240,7 +240,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      * Output only. Resource names of child policy tags of this policy tag.
      *
      * Generated from protobuf field <code>repeated string child_policy_tags = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChildPolicyTags($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -48,7 +48,7 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\CryptoKeyVersion>|\Google\Protobuf\Internal\RepeatedField $crypto_key_versions
+     *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion[] $crypto_key_versions
      *           The list of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -72,7 +72,7 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKeyVersion crypto_key_versions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\CryptoKeyVersion>
      */
     public function getCryptoKeyVersions()
     {
@@ -83,7 +83,7 @@ class ListCryptoKeyVersionsResponse extends \Google\Protobuf\Internal\Message
      * The list of [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKeyVersion crypto_key_versions = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\CryptoKeyVersion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\CryptoKeyVersion[] $var
      * @return $this
      */
     public function setCryptoKeyVersions($var)

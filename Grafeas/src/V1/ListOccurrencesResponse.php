@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing occurrences.
@@ -44,13 +44,13 @@ class ListOccurrencesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Grafeas\V1\Occurrence>|\Google\Protobuf\Internal\RepeatedField $occurrences
+     *     @type \Grafeas\V1\Occurrence[] $occurrences
      *           The occurrences requested.
      *     @type string $next_page_token
      *           The next pagination token in the list response. It should be used as
      *           `page_token` for the following request. An empty value means no more
      *           results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable regions. Populated for requests from the global region
      *           when `return_partial_success` is set.
      *           Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
@@ -65,7 +65,7 @@ class ListOccurrencesResponse extends \Google\Protobuf\Internal\Message
      * The occurrences requested.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Occurrence occurrences = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Occurrence>
      */
     public function getOccurrences()
     {
@@ -76,7 +76,7 @@ class ListOccurrencesResponse extends \Google\Protobuf\Internal\Message
      * The occurrences requested.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Occurrence occurrences = 1;</code>
-     * @param array<\Grafeas\V1\Occurrence>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Occurrence[] $var
      * @return $this
      */
     public function setOccurrences($var)
@@ -123,7 +123,7 @@ class ListOccurrencesResponse extends \Google\Protobuf\Internal\Message
      * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -136,7 +136,7 @@ class ListOccurrencesResponse extends \Google\Protobuf\Internal\Message
      * Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

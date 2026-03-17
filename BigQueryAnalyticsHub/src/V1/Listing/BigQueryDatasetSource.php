@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A reference to a shared dataset. It is an existing BigQuery dataset with a
@@ -68,16 +68,16 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      *     @type string $dataset
      *           Optional. Resource name of the dataset source for this listing.
      *           e.g. `projects/myproject/datasets/123`
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $selected_resources
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource[] $selected_resources
      *           Optional. Resource in this dataset that is selectively shared.
      *           This field is required for data clean room exchanges.
      *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\RestrictedExportPolicy $restricted_export_policy
      *           Optional. If set, restricted export policy will be propagated and
      *           enforced on the linked dataset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *     @type string[] $replica_locations
      *           Optional. A list of regions where the publisher has created shared
      *           dataset replicas.
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $effective_replicas
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica[] $effective_replicas
      *           Output only. Server-owned effective state of replicas.
      *           Contains both primary and secondary replicas.
      *           Each replica includes a system-computed (output-only) state and primary
@@ -122,7 +122,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>
      */
     public function getSelectedResources()
     {
@@ -134,7 +134,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * This field is required for data clean room exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.SelectedResource selected_resources = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\SelectedResource[] $var
      * @return $this
      */
     public function setSelectedResources($var)
@@ -188,7 +188,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * dataset replicas.
      *
      * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaLocations()
     {
@@ -200,7 +200,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * dataset replicas.
      *
      * Generated from protobuf field <code>repeated string replica_locations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaLocations($var)
@@ -218,7 +218,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * designation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>
      */
     public function getEffectiveReplicas()
     {
@@ -232,7 +232,7 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
      * designation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.Listing.BigQueryDatasetSource.Replica effective_replicas = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource\Replica[] $var
      * @return $this
      */
     public function setEffectiveReplicas($var)
@@ -244,5 +244,4 @@ class BigQueryDatasetSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

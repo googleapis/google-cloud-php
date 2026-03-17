@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Connect settings retrieval response.
@@ -129,7 +129,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           This is always `sql#connectSettings`.
      *     @type \Google\Cloud\Sql\V1\SslCert $server_ca_cert
      *           SSL configuration.
-     *     @type array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type \Google\Cloud\Sql\V1\IpMapping[] $ip_addresses
      *           The assigned IP addresses for the instance.
      *     @type string $region
      *           The cloud region for the instance. For example, `us-central1`,
@@ -157,16 +157,16 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           The dns name of the instance.
      *     @type int $server_ca_mode
      *           Specify what type of CA is used for the server certificate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_subject_alternative_names
+     *     @type string[] $custom_subject_alternative_names
      *           Custom subject alternative names for the server certificate.
-     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this instance.
      *     @type int $node_count
      *           The number of read pool nodes in a read pool.
-     *     @type array<\Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig[] $nodes
      *           Output only. Entries containing information about each read pool node of
      *           the read pool.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $mdx_protocol_support
+     *     @type int[] $mdx_protocol_support
      *           Optional. Output only. mdx_protocol_support controls how the client uses
      *           metadata exchange when connecting to the instance. The values in the list
      *           representing parts of the MDX protocol that are supported by this instance.
@@ -245,7 +245,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\IpMapping>
      */
     public function getIpAddresses()
     {
@@ -256,7 +256,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 3;</code>
-     * @param array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\IpMapping[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -455,7 +455,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Custom subject alternative names for the server certificate.
      *
      * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 37;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomSubjectAlternativeNames()
     {
@@ -466,7 +466,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Custom subject alternative names for the server certificate.
      *
      * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 37;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomSubjectAlternativeNames($var)
@@ -481,7 +481,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DnsNameMapping>
      */
     public function getDnsNames()
     {
@@ -492,7 +492,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DnsNameMapping[] $var
      * @return $this
      */
     public function setDnsNames($var)
@@ -544,7 +544,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * the read pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.ConnectPoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig>
      */
     public function getNodes()
     {
@@ -556,7 +556,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * the read pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.ConnectPoolNodeConfig nodes = 64 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ConnectSettings\ConnectPoolNodeConfig[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -575,7 +575,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * must not send an MDX request. The default is empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMdxProtocolSupport()
     {
@@ -590,7 +590,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * must not send an MDX request. The default is empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ConnectSettings.MdxProtocolSupport mdx_protocol_support = 39 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMdxProtocolSupport($var)

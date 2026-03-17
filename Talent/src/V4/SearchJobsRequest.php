@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Request body of the `SearchJobs` call.
@@ -356,7 +356,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *           Broadened queries append results to the end of the matching results
      *           list.
      *           Defaults to false.
-     *     @type array<\Google\Cloud\Talent\V4\HistogramQuery>|\Google\Protobuf\Internal\RepeatedField $histogram_queries
+     *     @type \Google\Cloud\Talent\V4\HistogramQuery[] $histogram_queries
      *           An expression specifies a histogram request against matching jobs.
      *           Expression syntax is an aggregation function call with histogram facets and
      *           other options.
@@ -863,7 +863,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\HistogramQuery>
      */
     public function getHistogramQueries()
     {
@@ -971,7 +971,7 @@ class SearchJobsRequest extends \Google\Protobuf\Internal\Message
      *   [bucket(MIN, 0, "negative"), bucket(0, MAX, "non-negative")])`
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.HistogramQuery histogram_queries = 7;</code>
-     * @param array<\Google\Cloud\Talent\V4\HistogramQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\HistogramQuery[] $var
      * @return $this
      */
     public function setHistogramQueries($var)

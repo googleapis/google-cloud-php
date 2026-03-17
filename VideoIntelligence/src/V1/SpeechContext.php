@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides "hints" to the speech recognizer to favor specific words and phrases
@@ -34,7 +34,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type string[] $phrases
      *           Optional. A list of strings containing words and phrases "hints" so that
      *           the speech recognition is more likely to recognize them. This can be used
      *           to improve the accuracy for specific words and phrases, for example, if
@@ -57,7 +57,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhrases()
     {
@@ -73,7 +73,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhrases($var)

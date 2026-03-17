@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class ListRetiredResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project-specific location holding the
      * [RetiredResources][google.cloud.kms.v1.RetiredResource], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -70,7 +70,7 @@ class ListRetiredResourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The project-specific location holding the
      *           [RetiredResources][google.cloud.kms.v1.RetiredResource], in the format
-     *           `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/{@*}locations/*`.
      *     @type int $page_size
      *           Optional. Optional limit on the number of
      *           [RetiredResources][google.cloud.kms.v1.RetiredResource] to be included in
@@ -93,7 +93,7 @@ class ListRetiredResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project-specific location holding the
      * [RetiredResources][google.cloud.kms.v1.RetiredResource], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -106,7 +106,7 @@ class ListRetiredResourcesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The project-specific location holding the
      * [RetiredResources][google.cloud.kms.v1.RetiredResource], in the format
-     * `projects/&#42;&#47;locations/&#42;`.
+     * `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

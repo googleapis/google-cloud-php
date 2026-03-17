@@ -5,8 +5,8 @@
 namespace Grafeas\V1\SlsaProvenanceZeroTwo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The collection of artifacts that influenced the build including sources,
@@ -85,5 +85,4 @@ class SlsaMaterial extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

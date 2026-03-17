@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for the SearchCases endpoint.
@@ -37,7 +37,7 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Support\V2\PBCase>|\Google\Protobuf\Internal\RepeatedField $cases
+     *     @type \Google\Cloud\Support\V2\PBCase[] $cases
      *           The list of cases associated with the parent after any
      *           filters have been applied.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
      * filters have been applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Case cases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Support\V2\PBCase>
      */
     public function getCases()
     {
@@ -68,7 +68,7 @@ class SearchCasesResponse extends \Google\Protobuf\Internal\Message
      * filters have been applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.support.v2.Case cases = 1;</code>
-     * @param array<\Google\Cloud\Support\V2\PBCase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Support\V2\PBCase[] $var
      * @return $this
      */
     public function setCases($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes how a storage resource should be initialized. Each storage resource

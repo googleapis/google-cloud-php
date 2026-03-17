@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Accelerator describes Compute Engine accelerators to be attached to the VM.
@@ -197,5 +197,4 @@ class Accelerator extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

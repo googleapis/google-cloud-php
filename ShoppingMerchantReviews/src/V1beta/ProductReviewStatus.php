@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Product review status.
@@ -48,9 +48,9 @@ class ProductReviewStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewDestinationStatus>|\Google\Protobuf\Internal\RepeatedField $destination_statuses
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewDestinationStatus[] $destination_statuses
      *           Output only. The intended destinations for the product review.
-     *     @type array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $item_level_issues
+     *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewItemLevelIssue[] $item_level_issues
      *           Output only. A list of all issues associated with the product review.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Date on which the item has been created, in [ISO
@@ -69,7 +69,7 @@ class ProductReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReviewStatus.ProductReviewDestinationStatus destination_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewDestinationStatus>
      */
     public function getDestinationStatuses()
     {
@@ -80,7 +80,7 @@ class ProductReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReviewStatus.ProductReviewDestinationStatus destination_statuses = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewDestinationStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewDestinationStatus[] $var
      * @return $this
      */
     public function setDestinationStatuses($var)
@@ -95,7 +95,7 @@ class ProductReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of all issues associated with the product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReviewStatus.ProductReviewItemLevelIssue item_level_issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewItemLevelIssue>
      */
     public function getItemLevelIssues()
     {
@@ -106,7 +106,7 @@ class ProductReviewStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of all issues associated with the product review.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reviews.v1beta.ProductReviewStatus.ProductReviewItemLevelIssue item_level_issues = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewStatus\ProductReviewItemLevelIssue[] $var
      * @return $this
      */
     public function setItemLevelIssues($var)

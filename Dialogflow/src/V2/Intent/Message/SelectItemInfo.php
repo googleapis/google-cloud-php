@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\Message;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional info about the select item for when it is triggered in a
@@ -40,7 +40,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           Required. A unique key that will be sent back to the agent if this
      *           response is given.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Optional. A list of synonyms that can also be used to trigger this
      *           item in dialog.
      * }
@@ -83,7 +83,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * item in dialog.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -95,7 +95,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * item in dialog.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -107,5 +107,4 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

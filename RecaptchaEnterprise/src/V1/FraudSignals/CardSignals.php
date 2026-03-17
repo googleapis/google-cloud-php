@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FraudSignals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Signals describing the payment card used in this transaction.
@@ -28,7 +28,7 @@ class CardSignals extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $card_labels
+     *     @type int[] $card_labels
      *           Output only. The labels for the payment card in this transaction.
      * }
      */
@@ -41,7 +41,7 @@ class CardSignals extends \Google\Protobuf\Internal\Message
      * Output only. The labels for the payment card in this transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudSignals.CardSignals.CardLabel card_labels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCardLabels()
     {
@@ -52,7 +52,7 @@ class CardSignals extends \Google\Protobuf\Internal\Message
      * Output only. The labels for the payment card in this transaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.FraudSignals.CardSignals.CardLabel card_labels = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCardLabels($var)
@@ -64,5 +64,4 @@ class CardSignals extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `ListPolicies`.
@@ -35,7 +35,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Iam\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type \Google\Cloud\Iam\V2\Policy[] $policies
      *           Metadata for the policies that are attached to the resource.
      *     @type string $next_page_token
      *           A page token that you can use in a [ListPoliciesRequest][google.iam.v2.ListPoliciesRequest] to retrieve the
@@ -51,7 +51,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Metadata for the policies that are attached to the resource.
      *
      * Generated from protobuf field <code>repeated .google.iam.v2.Policy policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Iam\V2\Policy>
      */
     public function getPolicies()
     {
@@ -62,7 +62,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Metadata for the policies that are attached to the resource.
      *
      * Generated from protobuf field <code>repeated .google.iam.v2.Policy policies = 1;</code>
-     * @param array<\Google\Cloud\Iam\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Iam\V2\Policy[] $var
      * @return $this
      */
     public function setPolicies($var)

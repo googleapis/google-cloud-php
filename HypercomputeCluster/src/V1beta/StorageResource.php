@@ -5,8 +5,8 @@
 namespace Google\Cloud\HypercomputeCluster\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource representing a form of persistent storage that is accessible to

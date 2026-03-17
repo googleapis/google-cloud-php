@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\HttpRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specifications for retries.
@@ -57,7 +57,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $retry_conditions
+     *     @type string[] $retry_conditions
      *           Specifies one or more conditions when this retry policy applies. Valid
      *           values are:
      *             5xx: Proxy will attempt a retry if the destination service responds
@@ -107,7 +107,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      *     is safe to retry.
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRetryConditions()
     {
@@ -134,7 +134,7 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
      *     is safe to retry.
      *
      * Generated from protobuf field <code>repeated string retry_conditions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRetryConditions($var)
@@ -210,5 +210,4 @@ class RetryPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

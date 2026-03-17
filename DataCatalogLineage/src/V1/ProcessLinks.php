@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataCatalog\Lineage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Links associated with a specific process.
@@ -42,7 +42,7 @@ class ProcessLinks extends \Google\Protobuf\Internal\Message
      *     @type string $process
      *           The process name in the format of
      *           `projects/{project}/locations/{location}/processes/{process}`.
-     *     @type array<\Google\Cloud\DataCatalog\Lineage\V1\ProcessLinkInfo>|\Google\Protobuf\Internal\RepeatedField $links
+     *     @type \Google\Cloud\DataCatalog\Lineage\V1\ProcessLinkInfo[] $links
      *           An array containing link details objects of the links provided in
      *           the original request.
      *           A single process can result in creating multiple links.
@@ -91,7 +91,7 @@ class ProcessLinks extends \Google\Protobuf\Internal\Message
      * the same process, they all are included in this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.ProcessLinkInfo links = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataCatalog\Lineage\V1\ProcessLinkInfo>
      */
     public function getLinks()
     {
@@ -106,7 +106,7 @@ class ProcessLinks extends \Google\Protobuf\Internal\Message
      * the same process, they all are included in this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.lineage.v1.ProcessLinkInfo links = 2;</code>
-     * @param array<\Google\Cloud\DataCatalog\Lineage\V1\ProcessLinkInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataCatalog\Lineage\V1\ProcessLinkInfo[] $var
      * @return $this
      */
     public function setLinks($var)

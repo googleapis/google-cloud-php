@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration properties for a Kafka Connect cluster deployed to Google Cloud
@@ -40,7 +40,7 @@ class ConnectGcpConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\ManagedKafka\V1\ConnectAccessConfig $access_config
      *           Required. Access configuration for the Kafka Connect cluster.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secret_paths
+     *     @type string[] $secret_paths
      *           Optional. Secrets to load into workers. Exact SecretVersions from Secret
      *           Manager must be provided -- aliases are not supported. Up to 32 secrets may
      *           be loaded into one cluster. Format:
@@ -95,7 +95,7 @@ class ConnectGcpConfig extends \Google\Protobuf\Internal\Message
      * projects/<project-id>/secrets/<secret-name>/versions/<version-id>
      *
      * Generated from protobuf field <code>repeated string secret_paths = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSecretPaths()
     {
@@ -109,7 +109,7 @@ class ConnectGcpConfig extends \Google\Protobuf\Internal\Message
      * projects/<project-id>/secrets/<secret-name>/versions/<version-id>
      *
      * Generated from protobuf field <code>repeated string secret_paths = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSecretPaths($var)

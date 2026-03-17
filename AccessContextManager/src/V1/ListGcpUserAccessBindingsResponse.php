@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of [ListGcpUserAccessBindings]
@@ -36,7 +36,7 @@ class ListGcpUserAccessBindingsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding>|\Google\Protobuf\Internal\RepeatedField $gcp_user_access_bindings
+     *     @type \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding[] $gcp_user_access_bindings
      *           [GcpUserAccessBinding]
      *           [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *     @type string $next_page_token
@@ -53,7 +53,7 @@ class ListGcpUserAccessBindingsResponse extends \Google\Protobuf\Internal\Messag
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.GcpUserAccessBinding gcp_user_access_bindings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding>
      */
     public function getGcpUserAccessBindings()
     {
@@ -65,7 +65,7 @@ class ListGcpUserAccessBindingsResponse extends \Google\Protobuf\Internal\Messag
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.GcpUserAccessBinding gcp_user_access_bindings = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding[] $var
      * @return $this
      */
     public function setGcpUserAccessBindings($var)

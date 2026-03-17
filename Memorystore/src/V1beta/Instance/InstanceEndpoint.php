@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * InstanceEndpoint consists of PSC connections that are created
@@ -31,7 +31,7 @@ class InstanceEndpoint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Memorystore\V1beta\Instance\ConnectionDetail>|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type \Google\Cloud\Memorystore\V1beta\Instance\ConnectionDetail[] $connections
      *           Optional. A group of PSC connections. They are created in the same VPC
      *           network, one for each service attachment in the cluster.
      * }
@@ -46,7 +46,7 @@ class InstanceEndpoint extends \Google\Protobuf\Internal\Message
      * network, one for each service attachment in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance.ConnectionDetail connections = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1beta\Instance\ConnectionDetail>
      */
     public function getConnections()
     {
@@ -58,7 +58,7 @@ class InstanceEndpoint extends \Google\Protobuf\Internal\Message
      * network, one for each service attachment in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1beta.Instance.ConnectionDetail connections = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Memorystore\V1beta\Instance\ConnectionDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1beta\Instance\ConnectionDetail[] $var
      * @return $this
      */
     public function setConnections($var)
@@ -70,5 +70,4 @@ class InstanceEndpoint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

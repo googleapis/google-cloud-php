@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Maps a set of terms to a set of synonyms.
@@ -49,16 +49,16 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_terms
+     *     @type string[] $query_terms
      *           Terms from the search query.
      *           Will treat synonyms as their synonyms.
      *           Not themselves synonyms of the synonyms.
      *           Can specify up to 100 terms.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type string[] $synonyms
      *           Defines a set of synonyms.
      *           Cannot contain duplicates.
      *           Can specify up to 100 synonyms.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oneway_terms
+     *     @type string[] $oneway_terms
      *           Will be [deprecated = true] post migration;
      * }
      */
@@ -74,7 +74,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getQueryTerms()
     {
@@ -88,7 +88,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 terms.
      *
      * Generated from protobuf field <code>repeated string query_terms = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setQueryTerms($var)
@@ -105,7 +105,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 synonyms.
      *
      * Generated from protobuf field <code>repeated string synonyms = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonyms()
     {
@@ -118,7 +118,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Can specify up to 100 synonyms.
      *
      * Generated from protobuf field <code>repeated string synonyms = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonyms($var)
@@ -133,7 +133,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Will be [deprecated = true] post migration;
      *
      * Generated from protobuf field <code>repeated string oneway_terms = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOnewayTerms()
     {
@@ -144,7 +144,7 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
      * Will be [deprecated = true] post migration;
      *
      * Generated from protobuf field <code>repeated string oneway_terms = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOnewayTerms($var)
@@ -156,5 +156,4 @@ class OnewaySynonymsAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

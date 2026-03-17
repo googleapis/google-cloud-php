@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the final state "abort" and associated resource.
@@ -53,7 +53,7 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      *           URI of the resource that caused the abort.
      *     @type string $ip_address
      *           IP address that caused the abort.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects_missing_permission
+     *     @type string[] $projects_missing_permission
      *           List of project IDs the user specified in the request but lacks access to.
      *           In this case, analysis is aborted with the PERMISSION_DENIED cause.
      * }
@@ -146,7 +146,7 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      * In this case, analysis is aborted with the PERMISSION_DENIED cause.
      *
      * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjectsMissingPermission()
     {
@@ -158,7 +158,7 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      * In this case, analysis is aborted with the PERMISSION_DENIED cause.
      *
      * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjectsMissingPermission($var)

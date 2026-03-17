@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents how many items are in the shipment for the given shipment_id
@@ -137,5 +137,4 @@ class ShipmentLineItemMapping extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for removing stream input from an Application.
@@ -56,7 +56,7 @@ class DeleteApplicationInstancesRequest extends \Google\Protobuf\Internal\Messag
      *           Required. the name of the application to retrieve.
      *           Format:
      *           "projects/{project}/locations/{location}/applications/{application}"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_ids
+     *     @type string[] $instance_ids
      *           Required. Id of the requesting object.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
@@ -111,7 +111,7 @@ class DeleteApplicationInstancesRequest extends \Google\Protobuf\Internal\Messag
      * Required. Id of the requesting object.
      *
      * Generated from protobuf field <code>repeated string instance_ids = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInstanceIds()
     {
@@ -122,7 +122,7 @@ class DeleteApplicationInstancesRequest extends \Google\Protobuf\Internal\Messag
      * Required. Id of the requesting object.
      *
      * Generated from protobuf field <code>repeated string instance_ids = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInstanceIds($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetApp\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Host group is a collection of hosts that can be used for accessing a Block
@@ -86,7 +86,7 @@ class HostGroup extends \Google\Protobuf\Internal\Message
      *           Output only. State of the host group.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Create time of the host group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hosts
+     *     @type string[] $hosts
      *           Required. The list of hosts associated with the host group.
      *     @type int $os_type
      *           Required. The OS type of the host group. It indicates the type of operating
@@ -226,7 +226,7 @@ class HostGroup extends \Google\Protobuf\Internal\Message
      * Required. The list of hosts associated with the host group.
      *
      * Generated from protobuf field <code>repeated string hosts = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHosts()
     {
@@ -237,7 +237,7 @@ class HostGroup extends \Google\Protobuf\Internal\Message
      * Required. The list of hosts associated with the host group.
      *
      * Generated from protobuf field <code>repeated string hosts = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHosts($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDiscoveryResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes BigQuery publishing configurations.
@@ -98,5 +98,4 @@ class BigQueryPublishing extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies details of unperformed shipments in a solution. For trivial cases
@@ -82,7 +82,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      *           one of the reasons below.
      *           Note: this is only filled when reasons involve a vehicle.
      *           Experimental: This field's behavior or existence may change in future.
-     *     @type array<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type \Google\Maps\RouteOptimization\V1\SkippedShipment\Reason[] $reasons
      *           A list of reasons that explain why the shipment was skipped. See comment
      *           above `Reason`. If we are unable to understand why a shipment was skipped,
      *           reasons will not be set.
@@ -241,7 +241,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      * reasons will not be set.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.SkippedShipment.Reason reasons = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>
      */
     public function getReasons()
     {
@@ -254,7 +254,7 @@ class SkippedShipment extends \Google\Protobuf\Internal\Message
      * reasons will not be set.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.SkippedShipment.Reason reasons = 3;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\SkippedShipment\Reason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\SkippedShipment\Reason[] $var
      * @return $this
      */
     public function setReasons($var)

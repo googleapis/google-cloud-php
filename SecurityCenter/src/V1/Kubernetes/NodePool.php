@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Kubernetes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides GKE node pool information.
@@ -36,7 +36,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Kubernetes node pool name.
-     *     @type array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[] $nodes
      *           Nodes associated with the finding.
      * }
      */
@@ -75,7 +75,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Nodes associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>
      */
     public function getNodes()
     {
@@ -86,7 +86,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Nodes associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Kubernetes.Node nodes = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V1\Kubernetes\Node>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes\Node[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -98,5 +98,4 @@ class NodePool extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

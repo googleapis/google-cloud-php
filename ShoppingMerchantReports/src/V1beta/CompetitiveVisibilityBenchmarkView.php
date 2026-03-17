@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Fields available for query in `competitive_visibility_benchmark_view` table.

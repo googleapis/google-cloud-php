@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Network.
@@ -136,7 +136,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           The type of this network.
      *     @type string $ip_address
      *           IP address configured.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mac_address
+     *     @type string[] $mac_address
      *           List of physical interfaces.
      *     @type int $state
      *           The Network state.
@@ -150,13 +150,13 @@ class Network extends \Google\Protobuf\Internal\Message
      *           Labels as key value pairs.
      *     @type string $services_cidr
      *           IP range for reserved for services (e.g. NFS).
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation>|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation[] $reservations
      *           List of IP address reservations in this network.
      *           When updating this field, an error will be generated if a reservation
      *           conflicts with an IP address already allocated to a physical server.
      *     @type string $pod
      *           Output only. Pod name.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkMountPoint>|\Google\Protobuf\Internal\RepeatedField $mount_points
+     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkMountPoint[] $mount_points
      *           Input only. List of mount points to attach the network to.
      *     @type bool $jumbo_frames_enabled
      *           Whether network uses standard frames or jumbo ones.
@@ -285,7 +285,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * List of physical interfaces.
      *
      * Generated from protobuf field <code>repeated string mac_address = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMacAddress()
     {
@@ -296,7 +296,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * List of physical interfaces.
      *
      * Generated from protobuf field <code>repeated string mac_address = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMacAddress($var)
@@ -479,7 +479,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * conflicts with an IP address already allocated to a physical server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkAddressReservation reservations = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation>
      */
     public function getReservations()
     {
@@ -492,7 +492,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * conflicts with an IP address already allocated to a physical server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkAddressReservation reservations = 13;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NetworkAddressReservation[] $var
      * @return $this
      */
     public function setReservations($var)
@@ -533,7 +533,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * Input only. List of mount points to attach the network to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkMountPoint mount_points = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NetworkMountPoint>
      */
     public function getMountPoints()
     {
@@ -544,7 +544,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * Input only. List of mount points to attach the network to.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkMountPoint mount_points = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkMountPoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NetworkMountPoint[] $var
      * @return $this
      */
     public function setMountPoints($var)

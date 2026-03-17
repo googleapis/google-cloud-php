@@ -5,8 +5,8 @@
 namespace Google\Shopping\Css\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the ListMethodGroups method.
@@ -38,7 +38,7 @@ class ListQuotaGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Css\V1\QuotaGroup>|\Google\Protobuf\Internal\RepeatedField $quota_groups
+     *     @type \Google\Shopping\Css\V1\QuotaGroup[] $quota_groups
      *           The methods, current quota usage and limits per each group. The quota is
      *           shared between all methods in the group. The groups are sorted in
      *           descending order based on
@@ -60,7 +60,7 @@ class ListQuotaGroupsResponse extends \Google\Protobuf\Internal\Message
      * [quota_usage][google.shopping.css.v1.QuotaGroup.quota_usage].
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.QuotaGroup quota_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Css\V1\QuotaGroup>
      */
     public function getQuotaGroups()
     {
@@ -74,7 +74,7 @@ class ListQuotaGroupsResponse extends \Google\Protobuf\Internal\Message
      * [quota_usage][google.shopping.css.v1.QuotaGroup.quota_usage].
      *
      * Generated from protobuf field <code>repeated .google.shopping.css.v1.QuotaGroup quota_groups = 1;</code>
-     * @param array<\Google\Shopping\Css\V1\QuotaGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Css\V1\QuotaGroup[] $var
      * @return $this
      */
     public function setQuotaGroups($var)

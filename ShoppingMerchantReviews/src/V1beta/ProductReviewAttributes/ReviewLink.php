@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The URI of the review landing page.
@@ -102,5 +102,4 @@ class ReviewLink extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

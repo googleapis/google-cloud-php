@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\NotificationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The config for streaming-based notifications, which send each event as soon
@@ -125,5 +125,4 @@ class StreamingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

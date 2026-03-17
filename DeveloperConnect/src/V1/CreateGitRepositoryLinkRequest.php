@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for creating a GitRepositoryLink
@@ -31,7 +31,7 @@ class CreateGitRepositoryLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string git_repository_link_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -94,7 +94,7 @@ class CreateGitRepositoryLinkRequest extends \Google\Protobuf\Internal\Message
      *           Required. The ID to use for the repository, which will become the final
      *           component of the repository's resource name. This ID should be unique in
      *           the connection. Allows alphanumeric characters and any of
-     *           -._~%!$&'()*+,;=&#64;.
+     *           -._~%!$&'()*+,;=\@.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
      *           request ID so that if you must retry your request, the server will know to
@@ -182,7 +182,7 @@ class CreateGitRepositoryLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string git_repository_link_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -196,7 +196,7 @@ class CreateGitRepositoryLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The ID to use for the repository, which will become the final
      * component of the repository's resource name. This ID should be unique in
      * the connection. Allows alphanumeric characters and any of
-     * -._~%!$&'()*+,;=&#64;.
+     * -._~%!$&'()*+,;=\@.
      *
      * Generated from protobuf field <code>string git_repository_link_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

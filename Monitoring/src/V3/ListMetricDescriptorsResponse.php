@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListMetricDescriptors` response.
@@ -37,7 +37,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $metric_descriptors
+     *     @type \Google\Api\MetricDescriptor[] $metric_descriptors
      *           The metric descriptors that are available to the project
      *           and that match the value of `filter`, if present.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * and that match the value of `filter`, if present.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MetricDescriptor>
      */
     public function getMetricDescriptors()
     {
@@ -68,7 +68,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * and that match the value of `filter`, if present.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
-     * @param array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MetricDescriptor[] $var
      * @return $this
      */
     public function setMetricDescriptors($var)

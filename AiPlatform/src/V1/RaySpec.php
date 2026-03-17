@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration information for the Ray cluster.
@@ -24,7 +24,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      * images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers).
      * Either this or the resource_pool_images is required. Use this field if
      * you need all the resource pools to have the same Ray image. Otherwise, use
-     * the {&#64;code resource_pool_images} field.
+     * the {\@code resource_pool_images} field.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,7 +77,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      *           images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers).
      *           Either this or the resource_pool_images is required. Use this field if
      *           you need all the resource pools to have the same Ray image. Otherwise, use
-     *           the {&#64;code resource_pool_images} field.
+     *           the {\@code resource_pool_images} field.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_pool_images
      *           Optional. Required if image_uri isn't set. A map of resource_pool_id to
      *           prebuild Ray image if user need to use different images for different
@@ -110,7 +110,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      * images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers).
      * Either this or the resource_pool_images is required. Use this field if
      * you need all the resource pools to have the same Ray image. Otherwise, use
-     * the {&#64;code resource_pool_images} field.
+     * the {\@code resource_pool_images} field.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -126,7 +126,7 @@ class RaySpec extends \Google\Protobuf\Internal\Message
      * images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers).
      * Either this or the resource_pool_images is required. Use this field if
      * you need all the resource pools to have the same Ray image. Otherwise, use
-     * the {&#64;code resource_pool_images} field.
+     * the {\@code resource_pool_images} field.
      *
      * Generated from protobuf field <code>string image_uri = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

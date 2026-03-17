@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response message for listing OS Policy assignment reports including the
@@ -36,7 +36,7 @@ class ListOSPolicyAssignmentReportsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport>|\Google\Protobuf\Internal\RepeatedField $os_policy_assignment_reports
+     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport[] $os_policy_assignment_reports
      *           List of OS policy assignment reports.
      *     @type string $next_page_token
      *           The pagination token to retrieve the next page of OS policy assignment
@@ -52,7 +52,7 @@ class ListOSPolicyAssignmentReportsResponse extends \Google\Protobuf\Internal\Me
      * List of OS policy assignment reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport os_policy_assignment_reports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport>
      */
     public function getOsPolicyAssignmentReports()
     {
@@ -63,7 +63,7 @@ class ListOSPolicyAssignmentReportsResponse extends \Google\Protobuf\Internal\Me
      * List of OS policy assignment reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport os_policy_assignment_reports = 1;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport[] $var
      * @return $this
      */
     public function setOsPolicyAssignmentReports($var)

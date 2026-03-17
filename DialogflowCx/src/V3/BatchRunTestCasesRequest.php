@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message for
@@ -50,7 +50,7 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $environment
      *           Optional. If not set, draft environment is assumed. Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/environments/<EnvironmentID>`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $test_cases
+     *     @type string[] $test_cases
      *           Required. Format:
      *           `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      * }
@@ -121,7 +121,7 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string test_cases = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTestCases()
     {
@@ -133,7 +133,7 @@ class BatchRunTestCasesRequest extends \Google\Protobuf\Internal\Message
      * `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/testCases/<TestCaseID>`.
      *
      * Generated from protobuf field <code>repeated string test_cases = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTestCases($var)

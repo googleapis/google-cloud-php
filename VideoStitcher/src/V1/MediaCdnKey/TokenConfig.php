@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1\MediaCdnKey;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a Media CDN token.
@@ -84,5 +84,4 @@ class TokenConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

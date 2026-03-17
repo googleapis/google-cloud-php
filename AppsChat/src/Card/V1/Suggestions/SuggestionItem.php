@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\Suggestions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * One suggested value that users can enter in a text input field.
@@ -77,5 +77,4 @@ class SuggestionItem extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

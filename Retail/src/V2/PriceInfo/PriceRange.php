@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\PriceInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The price range of all
@@ -153,5 +153,4 @@ class PriceRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

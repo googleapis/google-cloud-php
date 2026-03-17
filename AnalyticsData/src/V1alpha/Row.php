@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Report data for each row.
@@ -68,10 +68,10 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\DimensionValue>|\Google\Protobuf\Internal\RepeatedField $dimension_values
+     *     @type \Google\Analytics\Data\V1alpha\DimensionValue[] $dimension_values
      *           List of requested dimension values. In a PivotReport, dimension_values
      *           are only listed for dimensions included in a pivot.
-     *     @type array<\Google\Analytics\Data\V1alpha\MetricValue>|\Google\Protobuf\Internal\RepeatedField $metric_values
+     *     @type \Google\Analytics\Data\V1alpha\MetricValue[] $metric_values
      *           List of requested visible metric values.
      * }
      */
@@ -85,7 +85,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * are only listed for dimensions included in a pivot.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionValue dimension_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\DimensionValue>
      */
     public function getDimensionValues()
     {
@@ -97,7 +97,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * are only listed for dimensions included in a pivot.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DimensionValue dimension_values = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\DimensionValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\DimensionValue[] $var
      * @return $this
      */
     public function setDimensionValues($var)
@@ -112,7 +112,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * List of requested visible metric values.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricValue metric_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\MetricValue>
      */
     public function getMetricValues()
     {
@@ -123,7 +123,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * List of requested visible metric values.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.MetricValue metric_values = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\MetricValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\MetricValue[] $var
      * @return $this
      */
     public function setMetricValues($var)

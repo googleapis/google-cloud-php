@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reports\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ReportService.Search` method.
@@ -35,7 +35,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Reports\V1beta\ReportRow>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Shopping\Merchant\Reports\V1beta\ReportRow[] $results
      *           Rows that matched the search query.
      *     @type string $next_page_token
      *           Token which can be sent as `page_token` to retrieve the next page. If
@@ -51,7 +51,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Rows that matched the search query.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ReportRow results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Reports\V1beta\ReportRow>
      */
     public function getResults()
     {
@@ -62,7 +62,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Rows that matched the search query.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1beta.ReportRow results = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Reports\V1beta\ReportRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Reports\V1beta\ReportRow[] $var
      * @return $this
      */
     public function setResults($var)

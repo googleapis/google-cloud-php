@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1\PluggableDatabaseProperties;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Wrapper message for the value of a defined tag.
@@ -64,5 +64,4 @@ class DefinedTagValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class FetchNetworkPolicyExternalAddressesResponse extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VmwareEngine\V1\ExternalAddress>|\Google\Protobuf\Internal\RepeatedField $external_addresses
+     *     @type \Google\Cloud\VmwareEngine\V1\ExternalAddress[] $external_addresses
      *           A list of external IP addresses assigned to VMware workload VMs within the
      *           scope of the given network policy.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class FetchNetworkPolicyExternalAddressesResponse extends \Google\Protobuf\Inter
      * scope of the given network policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAddress external_addresses = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\ExternalAddress>
      */
     public function getExternalAddresses()
     {
@@ -67,7 +67,7 @@ class FetchNetworkPolicyExternalAddressesResponse extends \Google\Protobuf\Inter
      * scope of the given network policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.ExternalAddress external_addresses = 1;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\ExternalAddress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\ExternalAddress[] $var
      * @return $this
      */
     public function setExternalAddresses($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Products\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The SubscriptionCost of the product.
@@ -20,6 +20,7 @@ class SubscriptionCost extends \Google\Protobuf\Internal\Message
      * Supported values are:
      *   * "`month`"
      *   * "`year`"
+     *   * "`week`"
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionPeriod period = 1;</code>
      */
@@ -48,6 +49,7 @@ class SubscriptionCost extends \Google\Protobuf\Internal\Message
      *           Supported values are:
      *             * "`month`"
      *             * "`year`"
+     *             * "`week`"
      *     @type int|string $period_length
      *           The number of subscription periods the buyer has to pay.
      *     @type \Google\Shopping\Type\Price $amount
@@ -64,6 +66,7 @@ class SubscriptionCost extends \Google\Protobuf\Internal\Message
      * Supported values are:
      *   * "`month`"
      *   * "`year`"
+     *   * "`week`"
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionPeriod period = 1;</code>
      * @return int
@@ -78,6 +81,7 @@ class SubscriptionCost extends \Google\Protobuf\Internal\Message
      * Supported values are:
      *   * "`month`"
      *   * "`year`"
+     *   * "`week`"
      *
      * Generated from protobuf field <code>.google.shopping.merchant.products.v1.SubscriptionPeriod period = 1;</code>
      * @param int $var

@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1\SelectionInput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For a
@@ -79,5 +79,4 @@ class PlatformDataSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

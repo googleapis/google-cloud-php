@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Promotions\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of the promotion.
@@ -52,9 +52,9 @@ class PromotionStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\DestinationStatus>|\Google\Protobuf\Internal\RepeatedField $destination_statuses
+     *     @type \Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\DestinationStatus[] $destination_statuses
      *           Output only. The intended destinations for the promotion.
-     *     @type array<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $item_level_issues
+     *     @type \Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\ItemLevelIssue[] $item_level_issues
      *           Output only. A list of issues associated with the promotion.
      *     @type \Google\Protobuf\Timestamp $creation_date
      *           Output only. Date on which the promotion has been created
@@ -77,7 +77,7 @@ class PromotionStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the promotion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1beta.PromotionStatus.DestinationStatus destination_statuses = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\DestinationStatus>
      */
     public function getDestinationStatuses()
     {
@@ -88,7 +88,7 @@ class PromotionStatus extends \Google\Protobuf\Internal\Message
      * Output only. The intended destinations for the promotion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1beta.PromotionStatus.DestinationStatus destination_statuses = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\DestinationStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\DestinationStatus[] $var
      * @return $this
      */
     public function setDestinationStatuses($var)
@@ -103,7 +103,7 @@ class PromotionStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of issues associated with the promotion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1beta.PromotionStatus.ItemLevelIssue item_level_issues = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\ItemLevelIssue>
      */
     public function getItemLevelIssues()
     {
@@ -114,7 +114,7 @@ class PromotionStatus extends \Google\Protobuf\Internal\Message
      * Output only. A list of issues associated with the promotion.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.promotions.v1beta.PromotionStatus.ItemLevelIssue item_level_issues = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\ItemLevelIssue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Promotions\V1beta\PromotionStatus\ItemLevelIssue[] $var
      * @return $this
      */
     public function setItemLevelIssues($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Processors.
@@ -40,11 +40,11 @@ class ListProcessorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\Processor>|\Google\Protobuf\Internal\RepeatedField $processors
+     *     @type \Google\Cloud\VisionAI\V1\Processor[] $processors
      *           The list of Processor.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListProcessorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Processor processors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Processor>
      */
     public function getProcessors()
     {
@@ -68,7 +68,7 @@ class ListProcessorsResponse extends \Google\Protobuf\Internal\Message
      * The list of Processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Processor processors = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Processor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Processor[] $var
      * @return $this
      */
     public function setProcessors($var)
@@ -109,7 +109,7 @@ class ListProcessorsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListProcessorsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

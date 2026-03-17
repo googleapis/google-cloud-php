@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Feature Metadata information.
@@ -161,7 +161,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           STRING, DOUBLE or INT64 can enable monitoring.
      *           If set to true, all types of data monitoring are disabled despite the
      *           config on EntityType.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $monitoring_stats_anomalies
+     *     @type \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[] $monitoring_stats_anomalies
      *           Output only. Only applicable for Vertex AI Feature Store (Legacy).
      *           The list of historical stats and anomalies with specified objectives.
      *     @type string $version_column_name
@@ -463,7 +463,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>
      */
     public function getMonitoringStatsAnomalies()
     {
@@ -475,7 +475,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[] $var
      * @return $this
      */
     public function setMonitoringStatsAnomalies($var)

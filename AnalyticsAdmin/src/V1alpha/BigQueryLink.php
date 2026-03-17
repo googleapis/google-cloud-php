@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A link between a Google Analytics property and BigQuery project.
@@ -117,12 +117,12 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      *     @type bool $include_advertising_id
      *           If set true, exported data will include advertising identifiers for mobile
      *           app streams.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $export_streams
+     *     @type string[] $export_streams
      *           The list of streams under the parent property for which data will be
      *           exported.
      *           Format: properties/{property_id}/dataStreams/{stream_id}
      *           Example: ['properties/1000/dataStreams/2000']
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_events
+     *     @type string[] $excluded_events
      *           The list of event names that will be excluded from exports.
      *     @type string $dataset_location
      *           Required. Immutable. The geographic location where the created BigQuery
@@ -350,7 +350,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * Example: ['properties/1000/dataStreams/2000']
      *
      * Generated from protobuf field <code>repeated string export_streams = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExportStreams()
     {
@@ -364,7 +364,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * Example: ['properties/1000/dataStreams/2000']
      *
      * Generated from protobuf field <code>repeated string export_streams = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExportStreams($var)
@@ -379,7 +379,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * The list of event names that will be excluded from exports.
      *
      * Generated from protobuf field <code>repeated string excluded_events = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedEvents()
     {
@@ -390,7 +390,7 @@ class BigQueryLink extends \Google\Protobuf\Internal\Message
      * The list of event names that will be excluded from exports.
      *
      * Generated from protobuf field <code>repeated string excluded_events = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedEvents($var)

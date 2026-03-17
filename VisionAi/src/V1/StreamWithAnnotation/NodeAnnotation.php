@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\StreamWithAnnotation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing annotations specific to application node.
@@ -36,7 +36,7 @@ class NodeAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $node
      *           The node name of the application graph.
-     *     @type array<\Google\Cloud\VisionAI\V1\StreamAnnotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\VisionAI\V1\StreamAnnotation[] $annotations
      *           The node specific stream annotations.
      * }
      */
@@ -75,7 +75,7 @@ class NodeAnnotation extends \Google\Protobuf\Internal\Message
      * The node specific stream annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotation annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\StreamAnnotation>
      */
     public function getAnnotations()
     {
@@ -86,7 +86,7 @@ class NodeAnnotation extends \Google\Protobuf\Internal\Message
      * The node specific stream annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotation annotations = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\StreamAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\StreamAnnotation[] $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -98,5 +98,4 @@ class NodeAnnotation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

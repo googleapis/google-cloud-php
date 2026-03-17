@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenterManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListEventThreatDetectionCustomModulesResponse extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $event_threat_detection_custom_modules
+     *     @type \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule[] $event_threat_detection_custom_modules
      *           The list of custom modules.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
@@ -52,7 +52,7 @@ class ListEventThreatDetectionCustomModulesResponse extends \Google\Protobuf\Int
      * The list of custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_modules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule>
      */
     public function getEventThreatDetectionCustomModules()
     {
@@ -63,7 +63,7 @@ class ListEventThreatDetectionCustomModulesResponse extends \Google\Protobuf\Int
      * The list of custom modules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule event_threat_detection_custom_modules = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenterManagement\V1\EventThreatDetectionCustomModule[] $var
      * @return $this
      */
     public function setEventThreatDetectionCustomModules($var)

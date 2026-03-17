@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for [Commit][google.spanner.v1.Spanner.Commit].
@@ -38,6 +38,17 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp snapshot_timestamp = 5;</code>
      */
     protected $snapshot_timestamp = null;
+    /**
+     * Optional. A cache update expresses a set of changes the client should
+     * incorporate into its location cache. The client should discard the changes
+     * if they are older than the data it already has. This data can be obtained
+     * in response to requests that included a `RoutingHint` field, but may also
+     * be obtained by explicit location-fetching RPCs which may be added in the
+     * future.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CacheUpdate cache_update = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $cache_update = null;
     protected $MultiplexedSessionRetry;
 
     /**
@@ -60,6 +71,13 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      *           `IsolationLevel.REPEATABLE_READ`, then the snapshot timestamp is the
      *           timestamp at which all reads in the transaction ran. This timestamp is
      *           never returned.
+     *     @type \Google\Cloud\Spanner\V1\CacheUpdate $cache_update
+     *           Optional. A cache update expresses a set of changes the client should
+     *           incorporate into its location cache. The client should discard the changes
+     *           if they are older than the data it already has. This data can be obtained
+     *           in response to requests that included a `RoutingHint` field, but may also
+     *           be obtained by explicit location-fetching RPCs which may be added in the
+     *           future.
      * }
      */
     public function __construct($data = NULL) {
@@ -214,6 +232,52 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->snapshot_timestamp = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A cache update expresses a set of changes the client should
+     * incorporate into its location cache. The client should discard the changes
+     * if they are older than the data it already has. This data can be obtained
+     * in response to requests that included a `RoutingHint` field, but may also
+     * be obtained by explicit location-fetching RPCs which may be added in the
+     * future.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CacheUpdate cache_update = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Spanner\V1\CacheUpdate|null
+     */
+    public function getCacheUpdate()
+    {
+        return $this->cache_update;
+    }
+
+    public function hasCacheUpdate()
+    {
+        return isset($this->cache_update);
+    }
+
+    public function clearCacheUpdate()
+    {
+        unset($this->cache_update);
+    }
+
+    /**
+     * Optional. A cache update expresses a set of changes the client should
+     * incorporate into its location cache. The client should discard the changes
+     * if they are older than the data it already has. This data can be obtained
+     * in response to requests that included a `RoutingHint` field, but may also
+     * be obtained by explicit location-fetching RPCs which may be added in the
+     * future.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.CacheUpdate cache_update = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Spanner\V1\CacheUpdate $var
+     * @return $this
+     */
+    public function setCacheUpdate($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\CacheUpdate::class);
+        $this->cache_update = $var;
 
         return $this;
     }

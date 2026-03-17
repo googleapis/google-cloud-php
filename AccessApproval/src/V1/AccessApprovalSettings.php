@@ -5,8 +5,8 @@
 namespace Google\Cloud\AccessApproval\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings on a Project/Folder/Organization related to Access Approval.
@@ -100,12 +100,12 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      *             * "projects/{project}/accessApprovalSettings"
      *             * "folders/{folder}/accessApprovalSettings"
      *             * "organizations/{organization}/accessApprovalSettings"
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_emails
+     *     @type string[] $notification_emails
      *           A list of email addresses to which notifications relating to approval
      *           requests should be sent. Notifications relating to a resource will be sent
      *           to all emails in the settings of ancestor resources of that resource. A
      *           maximum of 50 email addresses are allowed.
-     *     @type array<\Google\Cloud\AccessApproval\V1\EnrolledService>|\Google\Protobuf\Internal\RepeatedField $enrolled_services
+     *     @type \Google\Cloud\AccessApproval\V1\EnrolledService[] $enrolled_services
      *           A list of Google Cloud Services for which the given resource has Access
      *           Approval enrolled. Access requests for the resource given by name against
      *           any of these services contained here will be required to have explicit
@@ -186,7 +186,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      * maximum of 50 email addresses are allowed.
      *
      * Generated from protobuf field <code>repeated string notification_emails = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNotificationEmails()
     {
@@ -200,7 +200,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      * maximum of 50 email addresses are allowed.
      *
      * Generated from protobuf field <code>repeated string notification_emails = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNotificationEmails($var)
@@ -224,7 +224,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      * services is expanded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.accessapproval.v1.EnrolledService enrolled_services = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AccessApproval\V1\EnrolledService>
      */
     public function getEnrolledServices()
     {
@@ -244,7 +244,7 @@ class AccessApprovalSettings extends \Google\Protobuf\Internal\Message
      * services is expanded.
      *
      * Generated from protobuf field <code>repeated .google.cloud.accessapproval.v1.EnrolledService enrolled_services = 3;</code>
-     * @param array<\Google\Cloud\AccessApproval\V1\EnrolledService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AccessApproval\V1\EnrolledService[] $var
      * @return $this
      */
     public function setEnrolledServices($var)

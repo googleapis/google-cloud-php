@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing SupportedDatabaseFlags.
@@ -34,7 +34,7 @@ class ListSupportedDatabaseFlagsResponse extends \Google\Protobuf\Internal\Messa
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag>|\Google\Protobuf\Internal\RepeatedField $supported_database_flags
+     *     @type \Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag[] $supported_database_flags
      *           The list of SupportedDatabaseFlags.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListSupportedDatabaseFlagsResponse extends \Google\Protobuf\Internal\Messa
      * The list of SupportedDatabaseFlags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SupportedDatabaseFlag supported_database_flags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag>
      */
     public function getSupportedDatabaseFlags()
     {
@@ -60,7 +60,7 @@ class ListSupportedDatabaseFlagsResponse extends \Google\Protobuf\Internal\Messa
      * The list of SupportedDatabaseFlags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.alloydb.v1.SupportedDatabaseFlag supported_database_flags = 1;</code>
-     * @param array<\Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AlloyDb\V1\SupportedDatabaseFlag[] $var
      * @return $this
      */
     public function setSupportedDatabaseFlags($var)

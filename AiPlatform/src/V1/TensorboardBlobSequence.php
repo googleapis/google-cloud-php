@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * One point viewable on a blob metric plot, but mostly just a wrapper message
@@ -29,7 +29,7 @@ class TensorboardBlobSequence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type \Google\Cloud\AIPlatform\V1\TensorboardBlob[] $values
      *           List of blobs contained within the sequence.
      * }
      */
@@ -42,7 +42,7 @@ class TensorboardBlobSequence extends \Google\Protobuf\Internal\Message
      * List of blobs contained within the sequence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TensorboardBlob>
      */
     public function getValues()
     {
@@ -53,7 +53,7 @@ class TensorboardBlobSequence extends \Google\Protobuf\Internal\Message
      * List of blobs contained within the sequence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob values = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TensorboardBlob[] $var
      * @return $this
      */
     public function setValues($var)

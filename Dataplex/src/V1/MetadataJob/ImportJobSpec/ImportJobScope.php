@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\MetadataJob\ImportJobSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A boundary on the scope of impact that the metadata import job can have.
@@ -103,14 +103,14 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_groups
+     *     @type string[] $entry_groups
      *           Required. The entry groups that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}`.
      *           Only entries and aspects that belong to the specified entry groups are
      *           affected by the job.
      *           The entry groups and the job must be in the same location.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_types
+     *     @type string[] $entry_types
      *           Required. The entry types that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}`.
@@ -121,7 +121,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           any entries or aspects.
      *           The location of an entry type must either match the location of the
      *           job, or the entry type must be global.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_types
+     *     @type string[] $aspect_types
      *           Optional. The aspect types that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/aspectTypes/{aspect_type_id}`.
@@ -132,7 +132,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           any entries or aspects.
      *           The location of an aspect type must either match the location of the
      *           job, or the aspect type must be global.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $glossaries
+     *     @type string[] $glossaries
      *           Optional. The glossaries that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}`.
@@ -143,7 +143,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           the import job will skip those entries.
      *           The location of a glossary must either match the location of the
      *           job, or the glossary must be global.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_link_types
+     *     @type string[] $entry_link_types
      *           Optional. The entry link types that are in scope for the import job,
      *           specified as relative resource names in the format
      *           `projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}`.
@@ -152,7 +152,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      *           If the metadata import file attempts to create or delete an entry link
      *           whose entry link type isn't included in this list, the import job will
      *           skip those entry links.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referenced_entry_scopes
+     *     @type string[] $referenced_entry_scopes
      *           Optional. Defines the scope of entries that can be referenced in the
      *           entry links.
      *           Currently, projects are supported as valid scopes.
@@ -176,7 +176,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * The entry groups and the job must be in the same location.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntryGroups()
     {
@@ -192,7 +192,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * The entry groups and the job must be in the same location.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntryGroups($var)
@@ -216,7 +216,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the entry type must be global.
      *
      * Generated from protobuf field <code>repeated string entry_types = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntryTypes()
     {
@@ -236,7 +236,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the entry type must be global.
      *
      * Generated from protobuf field <code>repeated string entry_types = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntryTypes($var)
@@ -260,7 +260,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the aspect type must be global.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAspectTypes()
     {
@@ -280,7 +280,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the aspect type must be global.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAspectTypes($var)
@@ -304,7 +304,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the glossary must be global.
      *
      * Generated from protobuf field <code>repeated string glossaries = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGlossaries()
     {
@@ -324,7 +324,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * job, or the glossary must be global.
      *
      * Generated from protobuf field <code>repeated string glossaries = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGlossaries($var)
@@ -346,7 +346,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * skip those entry links.
      *
      * Generated from protobuf field <code>repeated string entry_link_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntryLinkTypes()
     {
@@ -364,7 +364,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * skip those entry links.
      *
      * Generated from protobuf field <code>repeated string entry_link_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntryLinkTypes($var)
@@ -385,7 +385,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * skip that entry link.
      *
      * Generated from protobuf field <code>repeated string referenced_entry_scopes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReferencedEntryScopes()
     {
@@ -402,7 +402,7 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
      * skip that entry link.
      *
      * Generated from protobuf field <code>repeated string referenced_entry_scopes = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReferencedEntryScopes($var)
@@ -414,5 +414,4 @@ class ImportJobScope extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

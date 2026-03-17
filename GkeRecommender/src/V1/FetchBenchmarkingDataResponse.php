@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -30,7 +30,7 @@ class FetchBenchmarkingDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeRecommender\V1\Profile>|\Google\Protobuf\Internal\RepeatedField $profile
+     *     @type \Google\Cloud\GkeRecommender\V1\Profile[] $profile
      *           Output only. List of profiles containing their respective benchmarking
      *           data.
      * }
@@ -45,7 +45,7 @@ class FetchBenchmarkingDataResponse extends \Google\Protobuf\Internal\Message
      * data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.Profile profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeRecommender\V1\Profile>
      */
     public function getProfile()
     {
@@ -57,7 +57,7 @@ class FetchBenchmarkingDataResponse extends \Google\Protobuf\Internal\Message
      * data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkerecommender.v1.Profile profile = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\GkeRecommender\V1\Profile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeRecommender\V1\Profile[] $var
      * @return $this
      */
     public function setProfile($var)

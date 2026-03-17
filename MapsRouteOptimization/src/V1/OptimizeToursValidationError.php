@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes an error or warning encountered when validating an
@@ -99,7 +99,7 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      *           error hid the old one. For example, see "MULTIPLE ERRORS".
      *     @type string $display_name
      *           The error display name.
-     *     @type array<\Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference[] $fields
      *           An error context may involve 0, 1 (most of the time) or more fields. For
      *           example, referring to vehicle #4 and shipment #2's first pickup can be
      *           done as follows:
@@ -218,7 +218,7 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      * given error code.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.OptimizeToursValidationError.FieldReference fields = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference>
      */
     public function getFields()
     {
@@ -237,7 +237,7 @@ class OptimizeToursValidationError extends \Google\Protobuf\Internal\Message
      * given error code.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.OptimizeToursValidationError.FieldReference fields = 3;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\OptimizeToursValidationError\FieldReference[] $var
      * @return $this
      */
     public function setFields($var)

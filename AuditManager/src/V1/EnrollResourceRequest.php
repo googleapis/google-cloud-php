@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message to subscribe the Audit Manager service for given resource.
@@ -75,7 +75,7 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location},
      *           folders/{folder}/locations/{location}
      *           organizations/{organization}/locations/{location}
-     *     @type array<\Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $destinations
      *           Required. List of destination among which customer can choose to upload
      *           their reports during the audit process. While enrolling at a
      *           organization/folder level, customer can choose Cloud storage bucket in any
@@ -134,7 +134,7 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      * auditing projects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination>
      */
     public function getDestinations()
     {
@@ -151,7 +151,7 @@ class EnrollResourceRequest extends \Google\Protobuf\Internal\Message
      * auditing projects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.EnrollResourceRequest.EligibleDestination destinations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AuditManager\V1\EnrollResourceRequest\EligibleDestination[] $var
      * @return $this
      */
     public function setDestinations($var)

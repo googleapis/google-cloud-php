@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `ListContentLabelsRequest` containing matching
@@ -50,7 +50,7 @@ class ListContentLabelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ContentLabel>|\Google\Protobuf\Internal\RepeatedField $content_labels
+     *     @type \Google\Ads\AdManager\V1\ContentLabel[] $content_labels
      *           The `ContentLabel` objects from the specified network.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -76,7 +76,7 @@ class ListContentLabelsResponse extends \Google\Protobuf\Internal\Message
      * The `ContentLabel` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ContentLabel content_labels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ContentLabel>
      */
     public function getContentLabels()
     {
@@ -87,7 +87,7 @@ class ListContentLabelsResponse extends \Google\Protobuf\Internal\Message
      * The `ContentLabel` objects from the specified network.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ContentLabel content_labels = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\ContentLabel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ContentLabel[] $var
      * @return $this
      */
     public function setContentLabels($var)

@@ -52,6 +52,3 @@ class ApiVersion
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ApiVersion::class, \Google\Cloud\Logging\V2\LogMetric_ApiVersion::class);
-

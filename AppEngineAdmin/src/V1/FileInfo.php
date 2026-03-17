@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Single source file that is part of the version to be deployed. Each source

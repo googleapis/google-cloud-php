@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AssetSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The asset source is from Cloud Storage.
@@ -64,5 +64,4 @@ class AssetGcsSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

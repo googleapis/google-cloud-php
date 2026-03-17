@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\PullRequestComment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The review summary comment.
@@ -132,5 +132,4 @@ class Review extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

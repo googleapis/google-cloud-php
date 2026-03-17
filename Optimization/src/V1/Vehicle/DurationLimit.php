@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\Vehicle;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A limit defining a maximum duration of the route of a vehicle. It can be
@@ -353,5 +353,4 @@ class DurationLimit extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

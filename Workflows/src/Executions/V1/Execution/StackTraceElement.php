@@ -5,8 +5,8 @@
 namespace Google\Cloud\Workflows\Executions\V1\Execution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single stack element (frame) where an error occurred.
@@ -142,7 +142,4 @@ class StackTraceElement extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StackTraceElement::class, \Google\Cloud\Workflows\Executions\V1\Execution_StackTraceElement::class);
 

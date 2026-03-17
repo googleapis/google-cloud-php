@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a BI Reservation.
@@ -56,7 +56,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      *           Output only. The last update timestamp of a reservation.
      *     @type int|string $size
      *           Optional. Size of a reservation, in bytes.
-     *     @type array<\Google\Cloud\BigQuery\Reservation\V1\TableReference>|\Google\Protobuf\Internal\RepeatedField $preferred_tables
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\TableReference[] $preferred_tables
      *           Optional. Preferred tables to use BI capacity for.
      * }
      */
@@ -161,7 +161,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      * Optional. Preferred tables to use BI capacity for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Reservation\V1\TableReference>
      */
     public function getPreferredTables()
     {
@@ -172,7 +172,7 @@ class BiReservation extends \Google\Protobuf\Internal\Message
      * Optional. Preferred tables to use BI capacity for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.TableReference preferred_tables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BigQuery\Reservation\V1\TableReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\TableReference[] $var
      * @return $this
      */
     public function setPreferredTables($var)

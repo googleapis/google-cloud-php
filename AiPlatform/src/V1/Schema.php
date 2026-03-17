@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Schema is used to define the format of input/output data. Represents a select
@@ -235,7 +235,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           Optional. Minimum number of the elements for Type.ARRAY.
      *     @type int|string $max_items
      *           Optional. Maximum number of the elements for Type.ARRAY.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enum
+     *     @type string[] $enum
      *           Optional. Possible values of the element of primitive type with enum
      *           format. Examples:
      *           1. We can define direction as :
@@ -245,11 +245,11 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. SCHEMA FIELDS FOR TYPE OBJECT
      *           Properties of Type.OBJECT.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $property_ordering
+     *     @type string[] $property_ordering
      *           Optional. The order of the properties.
      *           Not a standard field in open api spec. Only used to support the order of
      *           the properties.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required
+     *     @type string[] $required
      *           Optional. Required properties of Type.OBJECT.
      *     @type int|string $min_properties
      *           Optional. Minimum number of the properties for Type.OBJECT.
@@ -271,7 +271,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $example
      *           Optional. Example of the object. Will only populated when the object is the
      *           root.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $any_of
+     *     @type \Google\Cloud\AIPlatform\V1\Schema[] $any_of
      *           Optional. The value should be validated against any (one or more) of the
      *           subschemas in the list.
      *     @type \Google\Protobuf\Value $additional_properties
@@ -579,7 +579,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEnum()
     {
@@ -595,7 +595,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * {type:INTEGER, format:enum, enum:["101", "201", "301"]}
      *
      * Generated from protobuf field <code>repeated string enum = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEnum($var)
@@ -640,7 +640,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * the properties.
      *
      * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPropertyOrdering()
     {
@@ -653,7 +653,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * the properties.
      *
      * Generated from protobuf field <code>repeated string property_ordering = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPropertyOrdering($var)
@@ -668,7 +668,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Required properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>repeated string required = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRequired()
     {
@@ -679,7 +679,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * Optional. Required properties of Type.OBJECT.
      *
      * Generated from protobuf field <code>repeated string required = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRequired($var)
@@ -921,7 +921,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * subschemas in the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Schema>
      */
     public function getAnyOf()
     {
@@ -933,7 +933,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * subschemas in the list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Schema any_of = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Schema[] $var
      * @return $this
      */
     public function setAnyOf($var)

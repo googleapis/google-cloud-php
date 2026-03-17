@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An SLI measuring performance on a well-known service type. Performance will
@@ -58,19 +58,19 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $method
+     *     @type string[] $method
      *           OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from
      *           other methods will not be used to calculate performance for this SLI. If
      *           omitted, this SLI applies to all the Service's methods. For service types
      *           that don't support breaking down by method, setting this field will result
      *           in an error.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $location
+     *     @type string[] $location
      *           OPTIONAL: The set of locations to which this SLI is relevant. Telemetry
      *           from other locations will not be used to calculate performance for this
      *           SLI. If omitted, this SLI applies to all locations in which the Service has
      *           activity. For service types that don't support breaking down by location,
      *           setting this field will result in an error.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version
+     *     @type string[] $version
      *           OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry
      *           from other API versions will not be used to calculate performance for this
      *           SLI. If omitted, this SLI applies to all API versions. For service types
@@ -97,7 +97,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string method = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMethod()
     {
@@ -112,7 +112,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string method = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMethod($var)
@@ -131,7 +131,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * setting this field will result in an error.
      *
      * Generated from protobuf field <code>repeated string location = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocation()
     {
@@ -146,7 +146,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * setting this field will result in an error.
      *
      * Generated from protobuf field <code>repeated string location = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocation($var)
@@ -165,7 +165,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string version = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVersion()
     {
@@ -180,7 +180,7 @@ class BasicSli extends \Google\Protobuf\Internal\Message
      * in an error.
      *
      * Generated from protobuf field <code>repeated string version = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVersion($var)

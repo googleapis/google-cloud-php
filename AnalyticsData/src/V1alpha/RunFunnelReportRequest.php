@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for a funnel report.
@@ -126,7 +126,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *           Within a batch request, this property should either be unspecified or
      *           consistent with the batch-level property.
      *           Example: properties/1234
-     *     @type array<\Google\Analytics\Data\V1alpha\DateRange>|\Google\Protobuf\Internal\RepeatedField $date_ranges
+     *     @type \Google\Analytics\Data\V1alpha\DateRange[] $date_ranges
      *           Optional. Date ranges of data to read. If multiple date ranges are
      *           requested, each response row will contain a zero based date range index. If
      *           two date ranges overlap, the event data for the overlapping days is
@@ -152,7 +152,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The funnel visualization type controls the dimensions present in
      *           the funnel visualization sub report response. If not specified,
      *           `STANDARD_FUNNEL` is used.
-     *     @type array<\Google\Analytics\Data\V1alpha\Segment>|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type \Google\Analytics\Data\V1alpha\Segment[] $segments
      *           Optional. The configurations of segments. Segments are subsets of a
      *           property's data. In a funnel report with segments, the funnel is evaluated
      *           in each segment.
@@ -226,7 +226,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      * included in the response rows for both date ranges.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DateRange date_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\DateRange>
      */
     public function getDateRanges()
     {
@@ -240,7 +240,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      * included in the response rows for both date ranges.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.DateRange date_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Analytics\Data\V1alpha\DateRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\DateRange[] $var
      * @return $this
      */
     public function setDateRanges($var)
@@ -421,7 +421,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      * The segments parameter is optional. Requests are limited to 4 segments.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Segment segments = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\Segment>
      */
     public function getSegments()
     {
@@ -438,7 +438,7 @@ class RunFunnelReportRequest extends \Google\Protobuf\Internal\Message
      * The segments parameter is optional. Requests are limited to 4 segments.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.Segment segments = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Analytics\Data\V1alpha\Segment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\Segment[] $var
      * @return $this
      */
     public function setSegments($var)

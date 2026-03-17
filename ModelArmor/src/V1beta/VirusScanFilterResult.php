@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Virus scan results.
@@ -65,7 +65,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      *
      *     @type int $execution_state
      *           Output only. Reports whether Virus Scan was successfully executed or not.
-     *     @type array<\Google\Cloud\ModelArmor\V1beta\MessageItem>|\Google\Protobuf\Internal\RepeatedField $message_items
+     *     @type \Google\Cloud\ModelArmor\V1beta\MessageItem[] $message_items
      *           Optional messages corresponding to the result.
      *           A message can provide warnings or error details.
      *           For example, if execution status is skipped then this field provides
@@ -77,7 +77,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      *           Type of content scanned.
      *     @type int|string $scanned_size
      *           Size of scanned content in bytes.
-     *     @type array<\Google\Cloud\ModelArmor\V1beta\VirusDetail>|\Google\Protobuf\Internal\RepeatedField $virus_details
+     *     @type \Google\Cloud\ModelArmor\V1beta\VirusDetail[] $virus_details
      *           List of Viruses identified.
      *           This field will be empty if no virus was detected.
      * }
@@ -120,7 +120,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.MessageItem message_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1beta\MessageItem>
      */
     public function getMessageItems()
     {
@@ -134,7 +134,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      * related reason/explanation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.MessageItem message_items = 2;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1beta\MessageItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1beta\MessageItem[] $var
      * @return $this
      */
     public function setMessageItems($var)
@@ -240,7 +240,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      * This field will be empty if no virus was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.VirusDetail virus_details = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1beta\VirusDetail>
      */
     public function getVirusDetails()
     {
@@ -252,7 +252,7 @@ class VirusScanFilterResult extends \Google\Protobuf\Internal\Message
      * This field will be empty if no virus was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1beta.VirusDetail virus_details = 6;</code>
-     * @param array<\Google\Cloud\ModelArmor\V1beta\VirusDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1beta\VirusDetail[] $var
      * @return $this
      */
     public function setVirusDetails($var)

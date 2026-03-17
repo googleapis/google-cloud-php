@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataScan scheduling and trigger settings.
@@ -27,6 +27,9 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *           The scan runs once via `RunDataScan` API.
      *     @type \Google\Cloud\Dataplex\V1\Trigger\Schedule $schedule
      *           The scan is scheduled to run periodically.
+     *     @type \Google\Cloud\Dataplex\V1\Trigger\OneTime $one_time
+     *           The scan runs once, and does not create an associated ScanJob child
+     *           resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +95,39 @@ class Trigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Trigger\Schedule::class);
         $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * The scan runs once, and does not create an associated ScanJob child
+     * resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger.OneTime one_time = 102;</code>
+     * @return \Google\Cloud\Dataplex\V1\Trigger\OneTime|null
+     */
+    public function getOneTime()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasOneTime()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * The scan runs once, and does not create an associated ScanJob child
+     * resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Trigger.OneTime one_time = 102;</code>
+     * @param \Google\Cloud\Dataplex\V1\Trigger\OneTime $var
+     * @return $this
+     */
+    public function setOneTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Trigger\OneTime::class);
+        $this->writeOneof(102, $var);
 
         return $this;
     }

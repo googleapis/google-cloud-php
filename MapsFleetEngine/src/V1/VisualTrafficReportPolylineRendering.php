@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes how clients should color one portion of the polyline along the
@@ -33,7 +33,7 @@ class VisualTrafficReportPolylineRendering extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering\RoadStretch>|\Google\Protobuf\Internal\RepeatedField $road_stretch
+     *     @type \Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering\RoadStretch[] $road_stretch
      *           Optional. Road stretches that should be rendered along the polyline.
      *           Stretches are guaranteed to not overlap, and do not necessarily span the
      *           full route.
@@ -54,7 +54,7 @@ class VisualTrafficReportPolylineRendering extends \Google\Protobuf\Internal\Mes
      * default for the route.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VisualTrafficReportPolylineRendering.RoadStretch road_stretch = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering\RoadStretch>
      */
     public function getRoadStretch()
     {
@@ -69,7 +69,7 @@ class VisualTrafficReportPolylineRendering extends \Google\Protobuf\Internal\Mes
      * default for the route.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.VisualTrafficReportPolylineRendering.RoadStretch road_stretch = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering\RoadStretch>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering\RoadStretch[] $var
      * @return $this
      */
     public function setRoadStretch($var)

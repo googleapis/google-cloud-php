@@ -17,11 +17,7 @@ class CloudSqlIamPolicies
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-ÿ
-0google/cloud/sql/v1/cloud_sql_iam_policies.protogoogle.cloud.sql.v1google/api/client.proto23
-SqlIamPoliciesServiceÊAsqladmin.googleapis.comB`
-com.google.cloud.sql.v1BCloudSqlIamPoliciesProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
+            "\x0A\xFF\x01\x0A0google/cloud/sql/v1/cloud_sql_iam_policies.proto\x12\x13google.cloud.sql.v1\x1A\x17google/api/client.proto23\x0A\x15SqlIamPoliciesService\x1A\x1A\xCAA\x17sqladmin.googleapis.comB`\x0A\x17com.google.cloud.sql.v1B\x18CloudSqlIamPoliciesProtoP\x01Z)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

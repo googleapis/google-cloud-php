@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\SkippedShipment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If we can explain why the shipment was skipped, reasons will be listed
@@ -83,7 +83,7 @@ class Reason extends \Google\Protobuf\Internal\Message
      *     @type int $example_vehicle_index
      *           If the reason is related to a shipment-vehicle incompatibility, this
      *           field provides the index of one relevant vehicle.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $example_vehicle_indices
+     *     @type int[] $example_vehicle_indices
      *           Same as
      *           [example_vehicle_index][google.maps.routeoptimization.v1.SkippedShipment.Reason.example_vehicle_index]
      *           except that we provide the list of multiple identified vehicles. This
@@ -173,7 +173,7 @@ class Reason extends \Google\Protobuf\Internal\Message
      * Experimental: This field's behavior or existence may change in future.
      *
      * Generated from protobuf field <code>repeated int32 example_vehicle_indices = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getExampleVehicleIndices()
     {
@@ -189,7 +189,7 @@ class Reason extends \Google\Protobuf\Internal\Message
      * Experimental: This field's behavior or existence may change in future.
      *
      * Generated from protobuf field <code>repeated int32 example_vehicle_indices = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setExampleVehicleIndices($var)
@@ -229,5 +229,4 @@ class Reason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

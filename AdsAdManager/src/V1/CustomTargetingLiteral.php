@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents targeting for custom key/values. The values are ORed together.
@@ -46,7 +46,7 @@ class CustomTargetingLiteral extends \Google\Protobuf\Internal\Message
      *           ad requests that exclude the below values.
      *     @type string $custom_targeting_key
      *           Optional. The resource name of the targeted CustomKey.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_values
+     *     @type string[] $custom_targeting_values
      *           Optional. The resource names of the targeted CustomValues.
      * }
      */
@@ -133,7 +133,7 @@ class CustomTargetingLiteral extends \Google\Protobuf\Internal\Message
      * Optional. The resource names of the targeted CustomValues.
      *
      * Generated from protobuf field <code>repeated string custom_targeting_values = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomTargetingValues()
     {
@@ -144,7 +144,7 @@ class CustomTargetingLiteral extends \Google\Protobuf\Internal\Message
      * Optional. The resource names of the targeted CustomValues.
      *
      * Generated from protobuf field <code>repeated string custom_targeting_values = 5 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomTargetingValues($var)

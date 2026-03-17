@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1\VisualTrafficReportPolylineRendering;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * One road stretch that should be rendered.
@@ -136,5 +136,4 @@ class RoadStretch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

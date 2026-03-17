@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Image represents an image. The supported formats are JPEG, PNG.
@@ -64,5 +64,4 @@ class ImageAsset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

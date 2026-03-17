@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An email associated with a support case.
@@ -75,9 +75,9 @@ class EmailMessage extends \Google\Protobuf\Internal\Message
      *           message. This is inferred from the headers on the email message.
      *     @type string $subject
      *           Output only. Subject of the email.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $recipient_email_addresses
+     *     @type string[] $recipient_email_addresses
      *           Output only. Email addresses the email was sent to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cc_email_addresses
+     *     @type string[] $cc_email_addresses
      *           Output only. Email addresses CCed on the email.
      *     @type \Google\Cloud\Support\V2beta\TextContent $body_content
      *           Output only. The full email message body. A best-effort attempt is made to
@@ -219,7 +219,7 @@ class EmailMessage extends \Google\Protobuf\Internal\Message
      * Output only. Email addresses the email was sent to.
      *
      * Generated from protobuf field <code>repeated string recipient_email_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRecipientEmailAddresses()
     {
@@ -230,7 +230,7 @@ class EmailMessage extends \Google\Protobuf\Internal\Message
      * Output only. Email addresses the email was sent to.
      *
      * Generated from protobuf field <code>repeated string recipient_email_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRecipientEmailAddresses($var)
@@ -245,7 +245,7 @@ class EmailMessage extends \Google\Protobuf\Internal\Message
      * Output only. Email addresses CCed on the email.
      *
      * Generated from protobuf field <code>repeated string cc_email_addresses = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCcEmailAddresses()
     {
@@ -256,7 +256,7 @@ class EmailMessage extends \Google\Protobuf\Internal\Message
      * Output only. Email addresses CCed on the email.
      *
      * Generated from protobuf field <code>repeated string cc_email_addresses = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCcEmailAddresses($var)

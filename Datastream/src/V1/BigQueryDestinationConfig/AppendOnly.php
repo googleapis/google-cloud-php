@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\BigQueryDestinationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AppendOnly mode defines that all changes to a table will be written to the
@@ -31,5 +31,4 @@ class AppendOnly extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results for exact match metric.
@@ -28,7 +28,7 @@ class ExactMatchResults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\ExactMatchMetricValue>|\Google\Protobuf\Internal\RepeatedField $exact_match_metric_values
+     *     @type \Google\Cloud\AIPlatform\V1\ExactMatchMetricValue[] $exact_match_metric_values
      *           Output only. Exact match metric values.
      * }
      */
@@ -41,7 +41,7 @@ class ExactMatchResults extends \Google\Protobuf\Internal\Message
      * Output only. Exact match metric values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ExactMatchMetricValue exact_match_metric_values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ExactMatchMetricValue>
      */
     public function getExactMatchMetricValues()
     {
@@ -52,7 +52,7 @@ class ExactMatchResults extends \Google\Protobuf\Internal\Message
      * Output only. Exact match metric values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ExactMatchMetricValue exact_match_metric_values = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ExactMatchMetricValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ExactMatchMetricValue[] $var
      * @return $this
      */
     public function setExactMatchMetricValues($var)

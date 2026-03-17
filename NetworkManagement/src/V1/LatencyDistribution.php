@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes measured latency distribution.
@@ -28,7 +28,7 @@ class LatencyDistribution extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkManagement\V1\LatencyPercentile>|\Google\Protobuf\Internal\RepeatedField $latency_percentiles
+     *     @type \Google\Cloud\NetworkManagement\V1\LatencyPercentile[] $latency_percentiles
      *           Representative latency percentiles.
      * }
      */
@@ -41,7 +41,7 @@ class LatencyDistribution extends \Google\Protobuf\Internal\Message
      * Representative latency percentiles.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.LatencyPercentile latency_percentiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\LatencyPercentile>
      */
     public function getLatencyPercentiles()
     {
@@ -52,7 +52,7 @@ class LatencyDistribution extends \Google\Protobuf\Internal\Message
      * Representative latency percentiles.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.LatencyPercentile latency_percentiles = 1;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\LatencyPercentile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\LatencyPercentile[] $var
      * @return $this
      */
     public function setLatencyPercentiles($var)

@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1\Baseline;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The baseline location of the request. Baseline location is on OR-list of
@@ -29,7 +29,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region_codes
+     *     @type string[] $region_codes
      *           List of ISO 3166-1 alpha-2 region codes.
      * }
      */
@@ -42,7 +42,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * List of ISO 3166-1 alpha-2 region codes.
      *
      * Generated from protobuf field <code>repeated string region_codes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegionCodes()
     {
@@ -53,7 +53,7 @@ class Location extends \Google\Protobuf\Internal\Message
      * List of ISO 3166-1 alpha-2 region codes.
      *
      * Generated from protobuf field <code>repeated string region_codes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegionCodes($var)
@@ -65,5 +65,4 @@ class Location extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

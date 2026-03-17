@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for the ModifyAckDeadline method.
@@ -79,7 +79,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      *     @type string $subscription
      *           Required. The name of the subscription.
      *           Format is `projects/{project}/subscriptions/{sub}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *     @type string[] $ack_ids
      *           Required. List of acknowledgment IDs.
      *     @type int $ack_deadline_seconds
      *           Required. The new ack deadline with respect to the time this request was
@@ -130,7 +130,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * Required. List of acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAckIds()
     {
@@ -141,7 +141,7 @@ class ModifyAckDeadlineRequest extends \Google\Protobuf\Internal\Message
      * Required. List of acknowledgment IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAckIds($var)

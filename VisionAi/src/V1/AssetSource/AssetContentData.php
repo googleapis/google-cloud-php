@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AssetSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The content of the asset.
@@ -57,5 +57,4 @@ class AssetContentData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

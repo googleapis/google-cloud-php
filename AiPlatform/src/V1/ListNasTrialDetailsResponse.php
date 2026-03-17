@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class ListNasTrialDetailsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NasTrialDetail>|\Google\Protobuf\Internal\RepeatedField $nas_trial_details
+     *     @type \Google\Cloud\AIPlatform\V1\NasTrialDetail[] $nas_trial_details
      *           List of top NasTrials in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -56,7 +56,7 @@ class ListNasTrialDetailsResponse extends \Google\Protobuf\Internal\Message
      * List of top NasTrials in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrialDetail nas_trial_details = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NasTrialDetail>
      */
     public function getNasTrialDetails()
     {
@@ -67,7 +67,7 @@ class ListNasTrialDetailsResponse extends \Google\Protobuf\Internal\Message
      * List of top NasTrials in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasTrialDetail nas_trial_details = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NasTrialDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NasTrialDetail[] $var
      * @return $this
      */
     public function setNasTrialDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -132,9 +132,9 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\SearchResult[] $results
      *           A list of matched items. The order represents the ranking.
-     *     @type array<\Google\Cloud\Retail\V2\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $facets
+     *     @type \Google\Cloud\Retail\V2\SearchResponse\Facet[] $facets
      *           Results of facets requested by user.
      *     @type int $total_size
      *           The estimated total count of matched items irrespective of pagination. The
@@ -163,7 +163,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           [redirect_uri][google.cloud.retail.v2.SearchResponse.redirect_uri] and
      *           [attribution_token][google.cloud.retail.v2.SearchResponse.attribution_token]
      *           are set in the response.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $applied_controls
+     *     @type string[] $applied_controls
      *           The fully qualified resource name of applied
      *           [controls](https://cloud.google.com/retail/docs/serving-control-rules).
      *     @type \Google\Cloud\Retail\V2\PinControlMetadata $pin_control_metadata
@@ -172,11 +172,11 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      *           which were matched but not applied.
      *           The two maps are keyed by pin position, and the values are the product ids
      *           which were matched to that pin.
-     *     @type array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $invalid_condition_boost_specs
+     *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[] $invalid_condition_boost_specs
      *           The invalid
      *           [SearchRequest.BoostSpec.condition_boost_specs][google.cloud.retail.v2.SearchRequest.BoostSpec.condition_boost_specs]
      *           that are not applied during serving.
-     *     @type array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $experiment_info
+     *     @type \Google\Cloud\Retail\V2\ExperimentInfo[] $experiment_info
      *           Metadata related to A/B testing experiment associated with this
      *           response. Only exists when an experiment is triggered.
      *     @type \Google\Cloud\Retail\V2\SearchResponse\ConversationalSearchResult $conversational_search_result
@@ -196,7 +196,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A list of matched items. The order represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.SearchResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchResponse\SearchResult>
      */
     public function getResults()
     {
@@ -207,7 +207,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * A list of matched items. The order represents the ranking.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.SearchResult results = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchResponse\SearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchResponse\SearchResult[] $var
      * @return $this
      */
     public function setResults($var)
@@ -222,7 +222,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Results of facets requested by user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.Facet facets = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchResponse\Facet>
      */
     public function getFacets()
     {
@@ -233,7 +233,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * Results of facets requested by user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchResponse.Facet facets = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchResponse\Facet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchResponse\Facet[] $var
      * @return $this
      */
     public function setFacets($var)
@@ -445,7 +445,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
      *
      * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAppliedControls()
     {
@@ -457,7 +457,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * [controls](https://cloud.google.com/retail/docs/serving-control-rules).
      *
      * Generated from protobuf field <code>repeated string applied_controls = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAppliedControls($var)
@@ -518,7 +518,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * that are not applied during serving.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>
      */
     public function getInvalidConditionBoostSpecs()
     {
@@ -531,7 +531,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * that are not applied during serving.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec invalid_condition_boost_specs = 14;</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[] $var
      * @return $this
      */
     public function setInvalidConditionBoostSpecs($var)
@@ -547,7 +547,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * response. Only exists when an experiment is triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\ExperimentInfo>
      */
     public function getExperimentInfo()
     {
@@ -559,7 +559,7 @@ class SearchResponse extends \Google\Protobuf\Internal\Message
      * response. Only exists when an experiment is triggered.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ExperimentInfo experiment_info = 17;</code>
-     * @param array<\Google\Cloud\Retail\V2\ExperimentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\ExperimentInfo[] $var
      * @return $this
      */
     public function setExperimentInfo($var)

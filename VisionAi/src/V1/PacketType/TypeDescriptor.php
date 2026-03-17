@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\PacketType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The message that fully specifies the type of the packet.
@@ -163,5 +163,4 @@ class TypeDescriptor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

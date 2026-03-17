@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\StackTrace;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of stack frames, which can be truncated.
@@ -36,7 +36,7 @@ class StackFrames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Trace\V2\StackTrace\StackFrame>|\Google\Protobuf\Internal\RepeatedField $frame
+     *     @type \Google\Cloud\Trace\V2\StackTrace\StackFrame[] $frame
      *           Stack frames in this call stack.
      *     @type int $dropped_frames_count
      *           The number of stack frames that were dropped because there
@@ -53,7 +53,7 @@ class StackFrames extends \Google\Protobuf\Internal\Message
      * Stack frames in this call stack.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.StackTrace.StackFrame frame = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Trace\V2\StackTrace\StackFrame>
      */
     public function getFrame()
     {
@@ -64,7 +64,7 @@ class StackFrames extends \Google\Protobuf\Internal\Message
      * Stack frames in this call stack.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.StackTrace.StackFrame frame = 1;</code>
-     * @param array<\Google\Cloud\Trace\V2\StackTrace\StackFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Trace\V2\StackTrace\StackFrame[] $var
      * @return $this
      */
     public function setFrame($var)
@@ -106,7 +106,4 @@ class StackFrames extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(StackFrames::class, \Google\Cloud\Trace\V2\StackTrace_StackFrames::class);
 

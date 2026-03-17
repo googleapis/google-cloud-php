@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\SubpropertyEventFilterCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter for a string-type dimension that matches a particular pattern.
@@ -136,5 +136,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

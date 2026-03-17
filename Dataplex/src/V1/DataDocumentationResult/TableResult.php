@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\DataDocumentationResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated metadata about the table.
@@ -58,7 +58,7 @@ class TableResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\Schema $schema
      *           Output only. Schema of the table with generated metadata of the columns
      *           in the schema.
-     *     @type array<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Query>|\Google\Protobuf\Internal\RepeatedField $queries
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\Query[] $queries
      *           Output only. Sample SQL queries for the table.
      * }
      */
@@ -165,7 +165,7 @@ class TableResult extends \Google\Protobuf\Internal\Message
      * Output only. Sample SQL queries for the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationResult.Query queries = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Query>
      */
     public function getQueries()
     {
@@ -176,7 +176,7 @@ class TableResult extends \Google\Protobuf\Internal\Message
      * Output only. Sample SQL queries for the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataDocumentationResult.Query queries = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataDocumentationResult\Query>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult\Query[] $var
      * @return $this
      */
     public function setQueries($var)
@@ -188,5 +188,4 @@ class TableResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

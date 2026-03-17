@@ -5,8 +5,8 @@
 namespace Google\Cloud\Lustre\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Managed Lustre instance.
@@ -52,7 +52,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $state = 0;
     /**
      * Output only. Mount point of the instance in the format
-     * `IP_ADDRESS&#64;tcp:/FILESYSTEM`.
+     * `IP_ADDRESS\@tcp:/FILESYSTEM`.
      *
      * Generated from protobuf field <code>string mount_point = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -121,7 +121,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. The state of the instance.
      *     @type string $mount_point
      *           Output only. Mount point of the instance in the format
-     *           `IP_ADDRESS&#64;tcp:/FILESYSTEM`.
+     *           `IP_ADDRESS\@tcp:/FILESYSTEM`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when the instance was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -286,7 +286,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Mount point of the instance in the format
-     * `IP_ADDRESS&#64;tcp:/FILESYSTEM`.
+     * `IP_ADDRESS\@tcp:/FILESYSTEM`.
      *
      * Generated from protobuf field <code>string mount_point = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -298,7 +298,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Mount point of the instance in the format
-     * `IP_ADDRESS&#64;tcp:/FILESYSTEM`.
+     * `IP_ADDRESS\@tcp:/FILESYSTEM`.
      *
      * Generated from protobuf field <code>string mount_point = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

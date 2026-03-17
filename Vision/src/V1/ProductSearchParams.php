@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for a product search request.
@@ -70,7 +70,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      *           be searched for similar images.
      *           Format is:
      *           `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_categories
+     *     @type string[] $product_categories
      *           The list of product categories to search in. Currently, we only consider
      *           the first category, and either "homegoods-v2", "apparel-v2", "toys-v2",
      *           "packagedgoods-v1", or "general-v1" should be specified. The legacy
@@ -173,7 +173,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      * migrate existing products to these categories as well.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductCategories()
     {
@@ -190,7 +190,7 @@ class ProductSearchParams extends \Google\Protobuf\Internal\Message
      * migrate existing products to these categories as well.
      *
      * Generated from protobuf field <code>repeated string product_categories = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductCategories($var)

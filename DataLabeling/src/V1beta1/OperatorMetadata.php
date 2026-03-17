@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * General information useful for labels coming from contributors.
@@ -56,7 +56,7 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      *           The total number of contributors that answer this question.
      *     @type int $label_votes
      *           The total number of contributors that choose this label.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $comments
+     *     @type string[] $comments
      *           Comments from contributors.
      * }
      */
@@ -151,7 +151,7 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      * Comments from contributors.
      *
      * Generated from protobuf field <code>repeated string comments = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComments()
     {
@@ -162,7 +162,7 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      * Comments from contributors.
      *
      * Generated from protobuf field <code>repeated string comments = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComments($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of a task.
@@ -36,7 +36,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type int $state
      *           Task state.
-     *     @type array<\Google\Cloud\Batch\V1\StatusEvent>|\Google\Protobuf\Internal\RepeatedField $status_events
+     *     @type \Google\Cloud\Batch\V1\StatusEvent[] $status_events
      *           Detailed info about why the state is reached.
      * }
      */
@@ -75,7 +75,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      * Detailed info about why the state is reached.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.StatusEvent status_events = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\StatusEvent>
      */
     public function getStatusEvents()
     {
@@ -86,7 +86,7 @@ class TaskStatus extends \Google\Protobuf\Internal\Message
      * Detailed info about why the state is reached.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.StatusEvent status_events = 2;</code>
-     * @param array<\Google\Cloud\Batch\V1\StatusEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\StatusEvent[] $var
      * @return $this
      */
     public function setStatusEvents($var)

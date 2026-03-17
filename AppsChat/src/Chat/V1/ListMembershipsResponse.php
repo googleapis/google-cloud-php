@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to list memberships of the space.
@@ -35,7 +35,7 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Chat\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $memberships
+     *     @type \Google\Apps\Chat\V1\Membership[] $memberships
      *           Unordered list. List of memberships in the requested (or first) page.
      *     @type string $next_page_token
      *           A token that you can send as `pageToken` to retrieve the next page of
@@ -51,7 +51,7 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. List of memberships in the requested (or first) page.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Membership memberships = 1 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Membership>
      */
     public function getMemberships()
     {
@@ -62,7 +62,7 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * Unordered list. List of memberships in the requested (or first) page.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Membership memberships = 1 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<\Google\Apps\Chat\V1\Membership>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Membership[] $var
      * @return $this
      */
     public function setMemberships($var)

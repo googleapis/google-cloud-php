@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `SearchAdReviewCenterAds` method.
@@ -138,20 +138,20 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      *           is the value returned from a previous Search request, or empty.
      *     @type int $status
      *           Optional. Only return ads with the given status.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ad_review_center_ad_id
+     *     @type string[] $ad_review_center_ad_id
      *           Optional. Only return ads with the given AdReviewCenterAd IDs. If provided,
      *           no other filter can be set (other than page size and page token).
      *     @type \Google\Type\Interval $date_time_range
      *           Optional. If provided, only return ads that served within the given date
      *           range (inclusive). The  date range must be within the last 30 days. If not
      *           provided, the date range will be the last 30 days.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $search_text
+     *     @type string[] $search_text
      *           Optional. If provided, restrict the search to AdReviewCenterAds associated
      *           with the text (including any text on the ad or in the destination URL). If
      *           more than one value is provided, the search will combine them in a logical
      *           AND. For example, ['car', 'blue'] will match ads that contain both "car"
      *           and "blue", but not an ad that only contains "car".
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $buyer_account_id
+     *     @type int[]|string[] $buyer_account_id
      *           Optional. If provided, restrict the search to creatives belonging to one of
      *           the given Adx buyer account IDs. Only applicable to RTB creatives. Adx
      *           buyer account IDs can be found via the ProgrammaticBuyerService.
@@ -295,7 +295,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * no other filter can be set (other than page size and page token).
      *
      * Generated from protobuf field <code>repeated string ad_review_center_ad_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdReviewCenterAdId()
     {
@@ -307,7 +307,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * no other filter can be set (other than page size and page token).
      *
      * Generated from protobuf field <code>repeated string ad_review_center_ad_id = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdReviewCenterAdId($var)
@@ -366,7 +366,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * and "blue", but not an ad that only contains "car".
      *
      * Generated from protobuf field <code>repeated string search_text = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSearchText()
     {
@@ -381,7 +381,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * and "blue", but not an ad that only contains "car".
      *
      * Generated from protobuf field <code>repeated string search_text = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSearchText($var)
@@ -398,7 +398,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * buyer account IDs can be found via the ProgrammaticBuyerService.
      *
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getBuyerAccountId()
     {
@@ -411,7 +411,7 @@ class SearchAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Message
      * buyer account IDs can be found via the ProgrammaticBuyerService.
      *
      * Generated from protobuf field <code>repeated int64 buyer_account_id = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setBuyerAccountId($var)

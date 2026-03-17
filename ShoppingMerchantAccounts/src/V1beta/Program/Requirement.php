@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta\Program;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines a requirement specified for participation in the program.
@@ -48,7 +48,7 @@ class Requirement extends \Google\Protobuf\Internal\Message
      *           Output only. Name of the requirement.
      *     @type string $documentation_uri
      *           Output only. The URL of a help page describing the requirement.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $affected_region_codes
+     *     @type string[] $affected_region_codes
      *           Output only. The regions that are currently affected by this requirement
      *           not being met.
      *           Region codes are defined by [CLDR](https://cldr.unicode.org/). This is
@@ -121,7 +121,7 @@ class Requirement extends \Google\Protobuf\Internal\Message
      * or `001` when the program applies globally.
      *
      * Generated from protobuf field <code>repeated string affected_region_codes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAffectedRegionCodes()
     {
@@ -136,7 +136,7 @@ class Requirement extends \Google\Protobuf\Internal\Message
      * or `001` when the program applies globally.
      *
      * Generated from protobuf field <code>repeated string affected_region_codes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAffectedRegionCodes($var)
@@ -148,5 +148,4 @@ class Requirement extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

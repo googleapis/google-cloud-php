@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\BigQueryDatasetSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resource in this dataset that is selectively shared.
@@ -123,5 +123,4 @@ class SelectedResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

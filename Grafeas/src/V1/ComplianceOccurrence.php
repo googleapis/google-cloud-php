@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An indication that the compliance checks in the associated ComplianceNote
@@ -37,7 +37,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Grafeas\V1\NonCompliantFile>|\Google\Protobuf\Internal\RepeatedField $non_compliant_files
+     *     @type \Grafeas\V1\NonCompliantFile[] $non_compliant_files
      *     @type string $non_compliance_reason
      *     @type \Grafeas\V1\ComplianceVersion $version
      *           The OS and config version the benchmark was run on.
@@ -50,7 +50,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.NonCompliantFile non_compliant_files = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\NonCompliantFile>
      */
     public function getNonCompliantFiles()
     {
@@ -59,7 +59,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.NonCompliantFile non_compliant_files = 2;</code>
-     * @param array<\Grafeas\V1\NonCompliantFile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\NonCompliantFile[] $var
      * @return $this
      */
     public function setNonCompliantFiles($var)

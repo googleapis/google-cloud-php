@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Enable the
@@ -35,5 +35,4 @@ class EnableSingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

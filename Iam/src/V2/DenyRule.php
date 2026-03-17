@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iam\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A deny rule in an IAM deny policy.
@@ -23,25 +23,25 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *   Account or are not logged in.
      * * `principal://goog/subject/{email_id}`: A specific Google Account.
      *   Includes Gmail, Cloud Identity, and Google Workspace user accounts. For
-     *   example, `principal://goog/subject/alice&#64;example.com`.
+     *   example, `principal://goog/subject/alice\@example.com`.
      * * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific
      *   Google Account that was deleted recently. For example,
-     *   `deleted:principal://goog/subject/alice&#64;example.com?uid=1234567890`. If
+     *   `deleted:principal://goog/subject/alice\@example.com?uid=1234567890`. If
      *   the Google Account is recovered, this identifier reverts to the standard
      *   identifier for a Google Account.
      * * `principalSet://goog/group/{group_id}`: A Google group. For example,
-     *   `principalSet://goog/group/admins&#64;example.com`.
+     *   `principalSet://goog/group/admins\@example.com`.
      * * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group
      *   that was deleted recently. For example,
-     *   `deleted:principalSet://goog/group/admins&#64;example.com?uid=1234567890`. If
+     *   `deleted:principalSet://goog/group/admins\@example.com?uid=1234567890`. If
      *   the Google group is restored, this identifier reverts to the standard
      *   identifier for a Google group.
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`:
      *   A Google Cloud service account. For example,
-     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com`.
+     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com`.
      * * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`:
      *   A Google Cloud service account that was deleted recently. For example,
-     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com?uid=1234567890`.
+     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com?uid=1234567890`.
      *   If the service account is undeleted, this identifier reverts to the
      *   standard identifier for a service account.
      * * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the
@@ -105,7 +105,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $denied_principals
+     *     @type string[] $denied_principals
      *           The identities that are prevented from using one or more permissions on
      *           Google Cloud resources. This field can contain the following values:
      *           * `principalSet://goog/public:all`: A special identifier that represents
@@ -113,32 +113,32 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *             Account or are not logged in.
      *           * `principal://goog/subject/{email_id}`: A specific Google Account.
      *             Includes Gmail, Cloud Identity, and Google Workspace user accounts. For
-     *             example, `principal://goog/subject/alice&#64;example.com`.
+     *             example, `principal://goog/subject/alice\@example.com`.
      *           * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific
      *             Google Account that was deleted recently. For example,
-     *             `deleted:principal://goog/subject/alice&#64;example.com?uid=1234567890`. If
+     *             `deleted:principal://goog/subject/alice\@example.com?uid=1234567890`. If
      *             the Google Account is recovered, this identifier reverts to the standard
      *             identifier for a Google Account.
      *           * `principalSet://goog/group/{group_id}`: A Google group. For example,
-     *             `principalSet://goog/group/admins&#64;example.com`.
+     *             `principalSet://goog/group/admins\@example.com`.
      *           * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group
      *             that was deleted recently. For example,
-     *             `deleted:principalSet://goog/group/admins&#64;example.com?uid=1234567890`. If
+     *             `deleted:principalSet://goog/group/admins\@example.com?uid=1234567890`. If
      *             the Google group is restored, this identifier reverts to the standard
      *             identifier for a Google group.
      *           * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`:
      *             A Google Cloud service account. For example,
-     *             `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com`.
+     *             `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com`.
      *           * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`:
      *             A Google Cloud service account that was deleted recently. For example,
-     *             `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com?uid=1234567890`.
+     *             `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com?uid=1234567890`.
      *             If the service account is undeleted, this identifier reverts to the
      *             standard identifier for a service account.
      *           * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the
      *             principals associated with the specified Google Workspace or Cloud
      *             Identity customer ID. For example,
      *             `principalSet://goog/cloudIdentityCustomerId/C01Abc35`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exception_principals
+     *     @type string[] $exception_principals
      *           The identities that are excluded from the deny rule, even if they are
      *           listed in the `denied_principals`. For example, you could add a Google
      *           group to the `denied_principals`, then exclude specific users who belong to
@@ -146,12 +146,12 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *           This field can contain the same values as the `denied_principals` field,
      *           excluding `principalSet://goog/public:all`, which represents all users on
      *           the internet.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $denied_permissions
+     *     @type string[] $denied_permissions
      *           The permissions that are explicitly denied by this rule. Each permission
      *           uses the format `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}`
      *           is the fully qualified domain name for the service. For example,
      *           `iam.googleapis.com/roles.list`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exception_permissions
+     *     @type string[] $exception_permissions
      *           Specifies the permissions that this rule excludes from the set of denied
      *           permissions given by `denied_permissions`. If a permission appears in
      *           `denied_permissions` _and_ in `exception_permissions` then it will _not_ be
@@ -183,25 +183,25 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *   Account or are not logged in.
      * * `principal://goog/subject/{email_id}`: A specific Google Account.
      *   Includes Gmail, Cloud Identity, and Google Workspace user accounts. For
-     *   example, `principal://goog/subject/alice&#64;example.com`.
+     *   example, `principal://goog/subject/alice\@example.com`.
      * * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific
      *   Google Account that was deleted recently. For example,
-     *   `deleted:principal://goog/subject/alice&#64;example.com?uid=1234567890`. If
+     *   `deleted:principal://goog/subject/alice\@example.com?uid=1234567890`. If
      *   the Google Account is recovered, this identifier reverts to the standard
      *   identifier for a Google Account.
      * * `principalSet://goog/group/{group_id}`: A Google group. For example,
-     *   `principalSet://goog/group/admins&#64;example.com`.
+     *   `principalSet://goog/group/admins\@example.com`.
      * * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group
      *   that was deleted recently. For example,
-     *   `deleted:principalSet://goog/group/admins&#64;example.com?uid=1234567890`. If
+     *   `deleted:principalSet://goog/group/admins\@example.com?uid=1234567890`. If
      *   the Google group is restored, this identifier reverts to the standard
      *   identifier for a Google group.
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`:
      *   A Google Cloud service account. For example,
-     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com`.
+     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com`.
      * * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`:
      *   A Google Cloud service account that was deleted recently. For example,
-     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com?uid=1234567890`.
+     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com?uid=1234567890`.
      *   If the service account is undeleted, this identifier reverts to the
      *   standard identifier for a service account.
      * * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the
@@ -210,7 +210,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *   `principalSet://goog/cloudIdentityCustomerId/C01Abc35`.
      *
      * Generated from protobuf field <code>repeated string denied_principals = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeniedPrincipals()
     {
@@ -225,25 +225,25 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *   Account or are not logged in.
      * * `principal://goog/subject/{email_id}`: A specific Google Account.
      *   Includes Gmail, Cloud Identity, and Google Workspace user accounts. For
-     *   example, `principal://goog/subject/alice&#64;example.com`.
+     *   example, `principal://goog/subject/alice\@example.com`.
      * * `deleted:principal://goog/subject/{email_id}?uid={uid}`: A specific
      *   Google Account that was deleted recently. For example,
-     *   `deleted:principal://goog/subject/alice&#64;example.com?uid=1234567890`. If
+     *   `deleted:principal://goog/subject/alice\@example.com?uid=1234567890`. If
      *   the Google Account is recovered, this identifier reverts to the standard
      *   identifier for a Google Account.
      * * `principalSet://goog/group/{group_id}`: A Google group. For example,
-     *   `principalSet://goog/group/admins&#64;example.com`.
+     *   `principalSet://goog/group/admins\@example.com`.
      * * `deleted:principalSet://goog/group/{group_id}?uid={uid}`: A Google group
      *   that was deleted recently. For example,
-     *   `deleted:principalSet://goog/group/admins&#64;example.com?uid=1234567890`. If
+     *   `deleted:principalSet://goog/group/admins\@example.com?uid=1234567890`. If
      *   the Google group is restored, this identifier reverts to the standard
      *   identifier for a Google group.
      * * `principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}`:
      *   A Google Cloud service account. For example,
-     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com`.
+     *   `principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com`.
      * * `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/{service_account_id}?uid={uid}`:
      *   A Google Cloud service account that was deleted recently. For example,
-     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account&#64;iam.gserviceaccount.com?uid=1234567890`.
+     *   `deleted:principal://iam.googleapis.com/projects/-/serviceAccounts/my-service-account\@iam.gserviceaccount.com?uid=1234567890`.
      *   If the service account is undeleted, this identifier reverts to the
      *   standard identifier for a service account.
      * * `principalSet://goog/cloudIdentityCustomerId/{customer_id}`: All of the
@@ -252,7 +252,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      *   `principalSet://goog/cloudIdentityCustomerId/C01Abc35`.
      *
      * Generated from protobuf field <code>repeated string denied_principals = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeniedPrincipals($var)
@@ -273,7 +273,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * the internet.
      *
      * Generated from protobuf field <code>repeated string exception_principals = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExceptionPrincipals()
     {
@@ -290,7 +290,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * the internet.
      *
      * Generated from protobuf field <code>repeated string exception_principals = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExceptionPrincipals($var)
@@ -308,7 +308,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * `iam.googleapis.com/roles.list`.
      *
      * Generated from protobuf field <code>repeated string denied_permissions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDeniedPermissions()
     {
@@ -322,7 +322,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * `iam.googleapis.com/roles.list`.
      *
      * Generated from protobuf field <code>repeated string denied_permissions = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDeniedPermissions($var)
@@ -342,7 +342,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * `denied_permissions`.
      *
      * Generated from protobuf field <code>repeated string exception_permissions = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExceptionPermissions()
     {
@@ -358,7 +358,7 @@ class DenyRule extends \Google\Protobuf\Internal\Message
      * `denied_permissions`.
      *
      * Generated from protobuf field <code>repeated string exception_permissions = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExceptionPermissions($var)

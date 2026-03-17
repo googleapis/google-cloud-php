@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IP rule information.
@@ -42,7 +42,7 @@ class IpRule extends \Google\Protobuf\Internal\Message
      *           The IP protocol this rule applies to. This value can either be one of the
      *           following well known protocol strings (TCP, UDP, ICMP, ESP, AH, IPIP,
      *           SCTP) or a string representation of the integer value.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\IpRule\PortRange>|\Google\Protobuf\Internal\RepeatedField $port_ranges
+     *     @type \Google\Cloud\SecurityCenter\V2\IpRule\PortRange[] $port_ranges
      *           Optional. An optional list of ports to which this rule applies. This field
      *           is only applicable for the UDP or (S)TCP protocols. Each entry must be
      *           either an integer or a range including a min and max port number.
@@ -89,7 +89,7 @@ class IpRule extends \Google\Protobuf\Internal\Message
      * either an integer or a range including a min and max port number.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IpRule.PortRange port_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\IpRule\PortRange>
      */
     public function getPortRanges()
     {
@@ -102,7 +102,7 @@ class IpRule extends \Google\Protobuf\Internal\Message
      * either an integer or a range including a min and max port number.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.IpRule.PortRange port_ranges = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\IpRule\PortRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\IpRule\PortRange[] $var
      * @return $this
      */
     public function setPortRanges($var)

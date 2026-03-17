@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A rule in the cloud control.
@@ -39,7 +39,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      *           The rule's logic expression in Common Expression Language (CEL).
      *     @type string $description
      *           Optional. The rule description. The maximum length is 2000 characters.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $rule_action_types
+     *     @type int[] $rule_action_types
      *           Required. The functionality that's enabled by the rule.
      * }
      */
@@ -109,7 +109,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Required. The functionality that's enabled by the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.RuleActionType rule_action_types = 16 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRuleActionTypes()
     {
@@ -120,7 +120,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * Required. The functionality that's enabled by the rule.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.RuleActionType rule_action_types = 16 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRuleActionTypes($var)

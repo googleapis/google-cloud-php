@@ -73,4 +73,3 @@ class InstancePrivateIpv6GoogleAccess
     }
 }
 
-

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to list details for all instances that are part of a patch job.
@@ -17,7 +17,7 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * Required. The parent for the instances are in the form of
-     * `projects/&#42;&#47;patchJobs/&#42;`.
+     * `projects/{@*}patchJobs/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -67,7 +67,7 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $parent
      *           Required. The parent for the instances are in the form of
-     *           `projects/&#42;&#47;patchJobs/&#42;`.
+     *           `projects/{@*}patchJobs/*`.
      *     @type int $page_size
      *           The maximum number of instance details records to return.  Default is 100.
      *     @type string $page_token
@@ -86,7 +86,7 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The parent for the instances are in the form of
-     * `projects/&#42;&#47;patchJobs/&#42;`.
+     * `projects/{@*}patchJobs/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,7 +98,7 @@ class ListPatchJobInstanceDetailsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The parent for the instances are in the form of
-     * `projects/&#42;&#47;patchJobs/&#42;`.
+     * `projects/{@*}patchJobs/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

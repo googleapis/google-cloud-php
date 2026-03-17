@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.SlsaProvenance</code>
@@ -56,7 +56,7 @@ class SlsaProvenance extends \Google\Protobuf\Internal\Message
      *           such that re-running this recipe results in bit-for-bit identical output
      *           (if the build is reproducible).
      *     @type \Grafeas\V1\SlsaProvenance\SlsaMetadata $metadata
-     *     @type array<\Grafeas\V1\SlsaProvenance\Material>|\Google\Protobuf\Internal\RepeatedField $materials
+     *     @type \Grafeas\V1\SlsaProvenance\Material[] $materials
      *           The collection of artifacts that influenced the build including sources,
      *           dependencies, build tools, base images, and so on. This is considered to be
      *           incomplete unless metadata.completeness.materials is true. Unset or null is
@@ -185,7 +185,7 @@ class SlsaProvenance extends \Google\Protobuf\Internal\Message
      * equivalent to empty.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenance.Material materials = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\SlsaProvenance\Material>
      */
     public function getMaterials()
     {
@@ -199,7 +199,7 @@ class SlsaProvenance extends \Google\Protobuf\Internal\Message
      * equivalent to empty.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenance.Material materials = 4;</code>
-     * @param array<\Grafeas\V1\SlsaProvenance\Material>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\SlsaProvenance\Material[] $var
      * @return $this
      */
     public function setMaterials($var)

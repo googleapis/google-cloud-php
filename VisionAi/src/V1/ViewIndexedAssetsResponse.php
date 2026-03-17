@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ViewIndexedAssets.
@@ -35,7 +35,7 @@ class ViewIndexedAssetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\IndexedAsset>|\Google\Protobuf\Internal\RepeatedField $indexed_assets
+     *     @type \Google\Cloud\VisionAI\V1\IndexedAsset[] $indexed_assets
      *           The assets from the specified index.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ViewIndexedAssetsResponse extends \Google\Protobuf\Internal\Message
      * The assets from the specified index.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.IndexedAsset indexed_assets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\IndexedAsset>
      */
     public function getIndexedAssets()
     {
@@ -62,7 +62,7 @@ class ViewIndexedAssetsResponse extends \Google\Protobuf\Internal\Message
      * The assets from the specified index.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.IndexedAsset indexed_assets = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\IndexedAsset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\IndexedAsset[] $var
      * @return $this
      */
     public function setIndexedAssets($var)

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListBigQueryLinks RPC
@@ -35,7 +35,7 @@ class ListBigQueryLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\BigQueryLink>|\Google\Protobuf\Internal\RepeatedField $bigquery_links
+     *     @type \Google\Analytics\Admin\V1alpha\BigQueryLink[] $bigquery_links
      *           List of BigQueryLinks.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListBigQueryLinksResponse extends \Google\Protobuf\Internal\Message
      * List of BigQueryLinks.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.BigQueryLink bigquery_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\BigQueryLink>
      */
     public function getBigqueryLinks()
     {
@@ -62,7 +62,7 @@ class ListBigQueryLinksResponse extends \Google\Protobuf\Internal\Message
      * List of BigQueryLinks.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.BigQueryLink bigquery_links = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\BigQueryLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\BigQueryLink[] $var
      * @return $this
      */
     public function setBigqueryLinks($var)

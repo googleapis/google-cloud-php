@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Context of the conversation, including transcripts.
@@ -28,7 +28,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\MessageEntry>|\Google\Protobuf\Internal\RepeatedField $message_entries
+     *     @type \Google\Cloud\Dialogflow\V2\MessageEntry[] $message_entries
      *           Optional. List of message transcripts in the conversation.
      * }
      */
@@ -41,7 +41,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * Optional. List of message transcripts in the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.MessageEntry message_entries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\MessageEntry>
      */
     public function getMessageEntries()
     {
@@ -52,7 +52,7 @@ class ConversationContext extends \Google\Protobuf\Internal\Message
      * Optional. List of message transcripts in the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.MessageEntry message_entries = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\MessageEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\MessageEntry[] $var
      * @return $this
      */
     public function setMessageEntries($var)

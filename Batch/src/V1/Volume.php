@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Volume describes a volume and parameters for it to be mounted to a VM.
@@ -59,7 +59,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           job.allocation_policy.instances[0].instance_template.
      *     @type string $mount_path
      *           The mount path for the volume, e.g. /mnt/disks/share.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mount_options
+     *     @type string[] $mount_options
      *           Mount options vary based on the type of storage volume:
      *           * For a Cloud Storage bucket, all the mount options provided
      *           by
@@ -223,7 +223,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *   mount options provided by the `mount` command are supported.
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMountOptions()
     {
@@ -245,7 +245,7 @@ class Volume extends \Google\Protobuf\Internal\Message
      *   mount options provided by the `mount` command are supported.
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMountOptions($var)

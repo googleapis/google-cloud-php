@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\Subscription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about an associated [Analytics Hub
@@ -115,5 +115,4 @@ class AnalyticsHubSubscriptionInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

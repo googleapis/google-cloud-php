@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Experiment\Result;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A confidence interval is a range of possible values for the experiment
@@ -175,5 +175,4 @@ class ConfidenceInterval extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

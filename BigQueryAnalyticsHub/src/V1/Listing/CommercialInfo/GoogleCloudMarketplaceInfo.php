@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing\CommercialInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the details of the Marketplace Data Product associated with the
@@ -123,5 +123,4 @@ class GoogleCloudMarketplaceInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

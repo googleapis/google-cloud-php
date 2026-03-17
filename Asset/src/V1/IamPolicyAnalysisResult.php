@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IAM Policy analysis result, consisting of one IAM policy binding and derived
@@ -72,7 +72,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *           policy attaches.
      *     @type \Google\Cloud\Iam\V1\Binding $iam_binding
      *           The IAM policy binding under analysis.
-     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $access_control_lists
+     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList[] $access_control_lists
      *           The access control lists derived from the
      *           [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
      *           that match or potentially match resource and access selectors specified in
@@ -169,7 +169,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      * the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>
      */
     public function getAccessControlLists()
     {
@@ -183,7 +183,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      * the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
-     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList[] $var
      * @return $this
      */
     public function setAccessControlLists($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Job's resource allocation policy describes when, where, and how compute
@@ -92,7 +92,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\LocationPolicy $location
      *           Location where compute resources should be allocated for the Job.
-     *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate[] $instances
      *           Describe instances that can be created by this AllocationPolicy.
      *           Only instances[0] is supported now.
      *     @type \Google\Cloud\Batch\V1\ServiceAccount $service_account
@@ -124,7 +124,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *           this field.
      *     @type \Google\Cloud\Batch\V1\AllocationPolicy\PlacementPolicy $placement
      *           The placement policy.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           Optional. Tags applied to the VM instances.
      *           The tags identify valid sources or targets for network firewalls.
      *           Each tag must be 1-63 characters long, and comply with
@@ -177,7 +177,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * Only instances[0] is supported now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.InstancePolicyOrTemplate instances = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate>
      */
     public function getInstances()
     {
@@ -189,7 +189,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * Only instances[0] is supported now.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.InstancePolicyOrTemplate instances = 8;</code>
-     * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate[] $var
      * @return $this
      */
     public function setInstances($var)
@@ -383,7 +383,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -397,7 +397,7 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      * [RFC1035](https://www.ietf.org/rfc/rfc1035.txt).
      *
      * Generated from protobuf field <code>repeated string tags = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

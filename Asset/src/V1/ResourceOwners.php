@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The resource owners information.
@@ -28,7 +28,7 @@ class ResourceOwners extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_owners
+     *     @type string[] $resource_owners
      *           List of resource owners.
      * }
      */
@@ -41,7 +41,7 @@ class ResourceOwners extends \Google\Protobuf\Internal\Message
      * List of resource owners.
      *
      * Generated from protobuf field <code>repeated string resource_owners = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceOwners()
     {
@@ -52,7 +52,7 @@ class ResourceOwners extends \Google\Protobuf\Internal\Message
      * List of resource owners.
      *
      * Generated from protobuf field <code>repeated string resource_owners = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceOwners($var)

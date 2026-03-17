@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Catalog level autocomplete config for customers to customize autocomplete
@@ -18,7 +18,7 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;completionConfig`
+     * `projects/{@*}locations/{@*}catalogs/{@*}completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -118,7 +118,7 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Immutable. Fully qualified name
-     *           `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;completionConfig`
+     *           `projects/{@*}locations/{@*}catalogs/{@*}completionConfig`
      *     @type string $matching_order
      *           Specifies the matching order for autocomplete suggestions, e.g., a query
      *           consisting of 'sh' with 'out-of-order' specified would suggest "women's
@@ -174,7 +174,7 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;completionConfig`
+     * `projects/{@*}locations/{@*}catalogs/{@*}completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -186,7 +186,7 @@ class CompletionConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Immutable. Fully qualified name
-     * `projects/&#42;&#47;locations/&#42;&#47;catalogs/&#42;&#47;completionConfig`
+     * `projects/{@*}locations/{@*}catalogs/{@*}completionConfig`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var

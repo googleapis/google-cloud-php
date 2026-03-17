@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta\OrderBy\PivotOrderBy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pair of dimension names and values. Rows with this dimension pivot pair
@@ -111,5 +111,4 @@ class PivotSelection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

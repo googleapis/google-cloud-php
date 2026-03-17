@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of location ID sets. Must be non-empty. Can only be set if all
@@ -33,7 +33,7 @@ class LocationIdSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $location_ids
+     *     @type string[] $location_ids
      *           Required. A non-empty list of
      *           [location
      *           IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
@@ -54,7 +54,7 @@ class LocationIdSet extends \Google\Protobuf\Internal\Message
      * example, state).
      *
      * Generated from protobuf field <code>repeated string location_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocationIds()
     {
@@ -69,7 +69,7 @@ class LocationIdSet extends \Google\Protobuf\Internal\Message
      * example, state).
      *
      * Generated from protobuf field <code>repeated string location_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocationIds($var)

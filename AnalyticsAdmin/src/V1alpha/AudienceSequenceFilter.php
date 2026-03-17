@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines filters that must occur in a specific order for the user to be a
@@ -46,7 +46,7 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      *           Required. Immutable. Specifies the scope for this filter.
      *     @type \Google\Protobuf\Duration $sequence_maximum_duration
      *           Optional. Defines the time period in which the whole sequence must occur.
-     *     @type array<\Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep>|\Google\Protobuf\Internal\RepeatedField $sequence_steps
+     *     @type \Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep[] $sequence_steps
      *           Required. An ordered sequence of steps. A user must complete each step in
      *           order to join the sequence filter.
      * }
@@ -123,7 +123,7 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      * order to join the sequence filter.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceSequenceFilter.AudienceSequenceStep sequence_steps = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep>
      */
     public function getSequenceSteps()
     {
@@ -135,7 +135,7 @@ class AudienceSequenceFilter extends \Google\Protobuf\Internal\Message
      * order to join the sequence filter.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AudienceSequenceFilter.AudienceSequenceStep sequence_steps = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\AudienceSequenceFilter\AudienceSequenceStep[] $var
      * @return $this
      */
     public function setSequenceSteps($var)

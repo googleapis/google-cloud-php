@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The input config source for completion data.
@@ -26,7 +26,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Retail\V2\BigQuerySource $big_query_source
      *           Required. BigQuery input source.
      *           Add the IAM permission "BigQuery Data Viewer" for
-     *           cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
+     *           cloud-retail-customer-data-access\@system.gserviceaccount.com before
      *           using this feature otherwise an error is thrown.
      * }
      */
@@ -38,7 +38,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. BigQuery input source.
      * Add the IAM permission "BigQuery Data Viewer" for
-     * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
+     * cloud-retail-customer-data-access\@system.gserviceaccount.com before
      * using this feature otherwise an error is thrown.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.BigQuerySource big_query_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -57,7 +57,7 @@ class CompletionDataInputConfig extends \Google\Protobuf\Internal\Message
     /**
      * Required. BigQuery input source.
      * Add the IAM permission "BigQuery Data Viewer" for
-     * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
+     * cloud-retail-customer-data-access\@system.gserviceaccount.com before
      * using this feature otherwise an error is thrown.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.BigQuerySource big_query_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>

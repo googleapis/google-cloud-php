@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cross instance replication config.
@@ -71,7 +71,7 @@ class CrossInstanceReplicationConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Details of the primary instance that is used as the replication
      *           source for this secondary instance.
      *           This field is only set for a secondary instance.
-     *     @type array<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>|\Google\Protobuf\Internal\RepeatedField $secondary_instances
+     *     @type \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance[] $secondary_instances
      *           Optional. List of secondary instances that are replicating from this
      *           primary instance.
      *           This field is only set for a primary instance.
@@ -167,7 +167,7 @@ class CrossInstanceReplicationConfig extends \Google\Protobuf\Internal\Message
      * This field is only set for a primary instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance secondary_instances = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>
      */
     public function getSecondaryInstances()
     {
@@ -180,7 +180,7 @@ class CrossInstanceReplicationConfig extends \Google\Protobuf\Internal\Message
      * This field is only set for a primary instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CrossInstanceReplicationConfig.RemoteInstance secondary_instances = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\CrossInstanceReplicationConfig\RemoteInstance[] $var
      * @return $this
      */
     public function setSecondaryInstances($var)

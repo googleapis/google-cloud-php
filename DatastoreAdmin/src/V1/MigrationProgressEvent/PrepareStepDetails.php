@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\Admin\V1\MigrationProgressEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details for the `PREPARE` step.
@@ -68,5 +68,4 @@ class PrepareStepDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

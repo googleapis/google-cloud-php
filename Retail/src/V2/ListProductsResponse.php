@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type \Google\Cloud\Retail\V2\Product[] $products
      *           The [Product][google.cloud.retail.v2.Product]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -57,7 +57,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * The [Product][google.cloud.retail.v2.Product]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Product>
      */
     public function getProducts()
     {
@@ -68,7 +68,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * The [Product][google.cloud.retail.v2.Product]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Product[] $var
      * @return $this
      */
     public function setProducts($var)

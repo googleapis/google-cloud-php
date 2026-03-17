@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encoding of a text stream. For example, closed captions or subtitles.
@@ -72,7 +72,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           information, see
      *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. Not
      *           supported in MP4 files.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
+     *     @type \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping[] $mapping
      *           The mapping for the
      *           [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
      *           atoms with text
@@ -164,7 +164,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>
      */
     public function getMapping()
     {
@@ -178,7 +178,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TextStream.TextMapping mapping = 3;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\TextStream\TextMapping[] $var
      * @return $this
      */
     public function setMapping($var)

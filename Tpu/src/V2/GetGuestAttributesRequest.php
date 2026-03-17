@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for [GetGuestAttributes][google.cloud.tpu.v2.Tpu.GetGuestAttributes].
@@ -45,7 +45,7 @@ class GetGuestAttributesRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name.
      *     @type string $query_path
      *           The guest attributes path to be queried.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $worker_ids
+     *     @type string[] $worker_ids
      *           The 0-based worker ID. If it is empty, all workers' GuestAttributes will be
      *           returned.
      * }
@@ -112,7 +112,7 @@ class GetGuestAttributesRequest extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string worker_ids = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWorkerIds()
     {
@@ -124,7 +124,7 @@ class GetGuestAttributesRequest extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string worker_ids = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWorkerIds($var)

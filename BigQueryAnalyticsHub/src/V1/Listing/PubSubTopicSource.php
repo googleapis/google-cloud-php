@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Pub/Sub topic source.
@@ -40,7 +40,7 @@ class PubSubTopicSource extends \Google\Protobuf\Internal\Message
      *     @type string $topic
      *           Required. Resource name of the Pub/Sub topic source for this listing.
      *           e.g. projects/myproject/topics/topicId
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_affinity_regions
+     *     @type string[] $data_affinity_regions
      *           Optional. Region hint on where the data might be published. Data affinity
      *           regions are modifiable. See https://cloud.google.com/about/locations for
      *           full listing of possible Cloud regions.
@@ -85,7 +85,7 @@ class PubSubTopicSource extends \Google\Protobuf\Internal\Message
      * full listing of possible Cloud regions.
      *
      * Generated from protobuf field <code>repeated string data_affinity_regions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDataAffinityRegions()
     {
@@ -98,7 +98,7 @@ class PubSubTopicSource extends \Google\Protobuf\Internal\Message
      * full listing of possible Cloud regions.
      *
      * Generated from protobuf field <code>repeated string data_affinity_regions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDataAffinityRegions($var)
@@ -110,5 +110,4 @@ class PubSubTopicSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

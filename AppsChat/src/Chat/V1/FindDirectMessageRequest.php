@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to get direct message space based on the user resource.
@@ -26,7 +26,7 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * `users/123456789` as the `name`. When [authenticated as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can use the email as an alias for `{user}`. For example,
-     * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
+     * `users/example\@gmail.com` where `example\@gmail.com` is the email of the
      * Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -50,7 +50,7 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      *           `users/123456789` as the `name`. When [authenticated as a
      *           user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      *           you can use the email as an alias for `{user}`. For example,
-     *           `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
+     *           `users/example\@gmail.com` where `example\@gmail.com` is the email of the
      *           Google Chat user.
      * }
      */
@@ -70,7 +70,7 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * `users/123456789` as the `name`. When [authenticated as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can use the email as an alias for `{user}`. For example,
-     * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
+     * `users/example\@gmail.com` where `example\@gmail.com` is the email of the
      * Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -92,7 +92,7 @@ class FindDirectMessageRequest extends \Google\Protobuf\Internal\Message
      * `users/123456789` as the `name`. When [authenticated as a
      * user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user),
      * you can use the email as an alias for `{user}`. For example,
-     * `users/example&#64;gmail.com` where `example&#64;gmail.com` is the email of the
+     * `users/example\@gmail.com` where `example\@gmail.com` is the email of the
      * Google Chat user.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>

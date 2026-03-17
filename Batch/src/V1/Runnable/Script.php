@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\Runnable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Script runnable.
@@ -147,5 +147,4 @@ class Script extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

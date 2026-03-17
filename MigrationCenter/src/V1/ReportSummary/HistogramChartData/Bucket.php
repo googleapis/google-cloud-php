@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary\HistogramChartData;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A histogram bucket with a lower and upper bound, and a count of items
@@ -135,5 +135,4 @@ class Bucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

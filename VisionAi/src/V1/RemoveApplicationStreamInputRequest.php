@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for removing stream input from an Application.
@@ -56,7 +56,7 @@ class RemoveApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      *           Required. the name of the application to retrieve.
      *           Format:
      *           "projects/{project}/locations/{location}/applications/{application}"
-     *     @type array<\Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest\TargetStreamInput>|\Google\Protobuf\Internal\RepeatedField $target_stream_inputs
+     *     @type \Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest\TargetStreamInput[] $target_stream_inputs
      *           The target stream to remove.
      *     @type string $request_id
      *           Optional. An optional request ID to identify requests. Specify a unique
@@ -111,7 +111,7 @@ class RemoveApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      * The target stream to remove.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.RemoveApplicationStreamInputRequest.TargetStreamInput target_stream_inputs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest\TargetStreamInput>
      */
     public function getTargetStreamInputs()
     {
@@ -122,7 +122,7 @@ class RemoveApplicationStreamInputRequest extends \Google\Protobuf\Internal\Mess
      * The target stream to remove.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.RemoveApplicationStreamInputRequest.TargetStreamInput target_stream_inputs = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest\TargetStreamInput>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest\TargetStreamInput[] $var
      * @return $this
      */
     public function setTargetStreamInputs($var)

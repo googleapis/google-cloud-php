@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceControl\V1\CheckResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains additional information about the check operation.
@@ -44,7 +44,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unused_arguments
+     *     @type string[] $unused_arguments
      *           A list of fields and label keys that are ignored by the server.
      *           The client doesn't need to send them for following requests to improve
      *           performance and allow better aggregation.
@@ -67,7 +67,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * performance and allow better aggregation.
      *
      * Generated from protobuf field <code>repeated string unused_arguments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnusedArguments()
     {
@@ -80,7 +80,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * performance and allow better aggregation.
      *
      * Generated from protobuf field <code>repeated string unused_arguments = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnusedArguments($var)
@@ -158,5 +158,4 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

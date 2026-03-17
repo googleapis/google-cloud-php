@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the configuration for fetching source code from a Git
@@ -19,7 +19,7 @@ class DeveloperConnectConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Developer Connect Git repository link, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLink/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLink/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class DeveloperConnectConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $git_repository_link
      *           Required. The Developer Connect Git repository link, formatted as
-     *           `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLink/&#42;`.
+     *           `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLink/*`.
      *     @type string $dir
      *           Required. Directory, relative to the source root, in which to run the
      *           build.
@@ -63,7 +63,7 @@ class DeveloperConnectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Developer Connect Git repository link, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLink/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLink/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,7 +75,7 @@ class DeveloperConnectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Developer Connect Git repository link, formatted as
-     * `projects/&#42;&#47;locations/&#42;&#47;connections/&#42;&#47;gitRepositoryLink/&#42;`.
+     * `projects/{@*}locations/{@*}connections/{@*}gitRepositoryLink/*`.
      *
      * Generated from protobuf field <code>string git_repository_link = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -146,5 +146,4 @@ class DeveloperConnectConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

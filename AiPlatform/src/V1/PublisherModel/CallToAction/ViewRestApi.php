@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Rest API docs.
@@ -34,7 +34,7 @@ class ViewRestApi extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\PublisherModel\Documentation>|\Google\Protobuf\Internal\RepeatedField $documentations
+     *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\Documentation[] $documentations
      *           Required.
      *     @type string $title
      *           Required. The title of the view rest API.
@@ -49,7 +49,7 @@ class ViewRestApi extends \Google\Protobuf\Internal\Message
      * Required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.Documentation documentations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PublisherModel\Documentation>
      */
     public function getDocumentations()
     {
@@ -60,7 +60,7 @@ class ViewRestApi extends \Google\Protobuf\Internal\Message
      * Required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.Documentation documentations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PublisherModel\Documentation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PublisherModel\Documentation[] $var
      * @return $this
      */
     public function setDocumentations($var)
@@ -98,5 +98,4 @@ class ViewRestApi extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

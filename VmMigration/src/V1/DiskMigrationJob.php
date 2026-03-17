@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the disk which will be migrated from the source environment.
@@ -79,10 +79,10 @@ class DiskMigrationJob extends \Google\Protobuf\Internal\Message
      *           Output only. The last time the DiskMigrationJob resource was updated.
      *     @type int $state
      *           Output only. State of the DiskMigrationJob.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Rpc\Status[] $errors
      *           Output only. Provides details on the errors that led to the disk migration
      *           job's state in case of an error.
-     *     @type array<\Google\Cloud\VMMigration\V1\DiskMigrationStep>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\VMMigration\V1\DiskMigrationStep[] $steps
      *           Output only. The disk migration steps list representing its progress.
      * }
      */
@@ -287,7 +287,7 @@ class DiskMigrationJob extends \Google\Protobuf\Internal\Message
      * job's state in case of an error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrors()
     {
@@ -299,7 +299,7 @@ class DiskMigrationJob extends \Google\Protobuf\Internal\Message
      * job's state in case of an error.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status errors = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrors($var)
@@ -314,7 +314,7 @@ class DiskMigrationJob extends \Google\Protobuf\Internal\Message
      * Output only. The disk migration steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.DiskMigrationStep steps = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\DiskMigrationStep>
      */
     public function getSteps()
     {
@@ -325,7 +325,7 @@ class DiskMigrationJob extends \Google\Protobuf\Internal\Message
      * Output only. The disk migration steps list representing its progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.DiskMigrationStep steps = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\DiskMigrationStep>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\DiskMigrationStep[] $var
      * @return $this
      */
     public function setSteps($var)

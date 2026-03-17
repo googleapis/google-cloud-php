@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for OAuth login&consent flow behavior as well as for OAuth
@@ -27,6 +27,27 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      */
     protected $login_hint = null;
     /**
+     * Optional. OAuth 2.0 client ID used in the OAuth flow.
+     * This allows for client sharing. The risks of client sharing
+     * are outlined here:
+     * https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_id = null;
+    /**
+     * Optional. Input only. OAuth secret paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $client_secret = null;
+    /**
+     * Output only. OAuth secret SHA256 paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret_sha256 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $client_secret_sha256 = null;
+    /**
      * Optional. List of client ids allowed to use IAP programmatically.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -45,7 +66,16 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      *           https://developers.google.com/identity/protocols/OpenIDConnect#hd-param
      *           Note: IAP does not verify that the id token's hd claim matches this value
      *           since access behavior is managed by IAM policies.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $programmatic_clients
+     *     @type \Google\Protobuf\StringValue $client_id
+     *           Optional. OAuth 2.0 client ID used in the OAuth flow.
+     *           This allows for client sharing. The risks of client sharing
+     *           are outlined here:
+     *           https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *     @type \Google\Protobuf\StringValue $client_secret
+     *           Optional. Input only. OAuth secret paired with client ID.
+     *     @type \Google\Protobuf\StringValue $client_secret_sha256
+     *           Output only. OAuth secret SHA256 paired with client ID.
+     *     @type string[] $programmatic_clients
      *           Optional. List of client ids allowed to use IAP programmatically.
      * }
      */
@@ -134,10 +164,211 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
+     * Optional. OAuth 2.0 client ID used in the OAuth flow.
+     * This allows for client sharing. The risks of client sharing
+     * are outlined here:
+     * https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\StringValue|null
+     */
+    public function getClientId()
+    {
+        return $this->client_id;
+    }
+
+    public function hasClientId()
+    {
+        return isset($this->client_id);
+    }
+
+    public function clearClientId()
+    {
+        unset($this->client_id);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getClientId()</code>
+
+     * Optional. OAuth 2.0 client ID used in the OAuth flow.
+     * This allows for client sharing. The risks of client sharing
+     * are outlined here:
+     * https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string|null
+     */
+    public function getClientIdUnwrapped()
+    {
+        return $this->readWrapperValue("client_id");
+    }
+
+    /**
+     * Optional. OAuth 2.0 client ID used in the OAuth flow.
+     * This allows for client sharing. The risks of client sharing
+     * are outlined here:
+     * https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\StringValue $var
+     * @return $this
+     */
+    public function setClientId($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\StringValue::class);
+        $this->client_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\StringValue object.
+
+     * Optional. OAuth 2.0 client ID used in the OAuth flow.
+     * This allows for client sharing. The risks of client sharing
+     * are outlined here:
+     * https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_id = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string|null $var
+     * @return $this
+     */
+    public function setClientIdUnwrapped($var)
+    {
+        $this->writeWrapperValue("client_id", $var);
+        return $this;}
+
+    /**
+     * Optional. Input only. OAuth secret paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\StringValue|null
+     */
+    public function getClientSecret()
+    {
+        return $this->client_secret;
+    }
+
+    public function hasClientSecret()
+    {
+        return isset($this->client_secret);
+    }
+
+    public function clearClientSecret()
+    {
+        unset($this->client_secret);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getClientSecret()</code>
+
+     * Optional. Input only. OAuth secret paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string|null
+     */
+    public function getClientSecretUnwrapped()
+    {
+        return $this->readWrapperValue("client_secret");
+    }
+
+    /**
+     * Optional. Input only. OAuth secret paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\StringValue $var
+     * @return $this
+     */
+    public function setClientSecret($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\StringValue::class);
+        $this->client_secret = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\StringValue object.
+
+     * Optional. Input only. OAuth secret paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret = 4 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string|null $var
+     * @return $this
+     */
+    public function setClientSecretUnwrapped($var)
+    {
+        $this->writeWrapperValue("client_secret", $var);
+        return $this;}
+
+    /**
+     * Output only. OAuth secret SHA256 paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret_sha256 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\StringValue|null
+     */
+    public function getClientSecretSha256()
+    {
+        return $this->client_secret_sha256;
+    }
+
+    public function hasClientSecretSha256()
+    {
+        return isset($this->client_secret_sha256);
+    }
+
+    public function clearClientSecretSha256()
+    {
+        unset($this->client_secret_sha256);
+    }
+
+    /**
+     * Returns the unboxed value from <code>getClientSecretSha256()</code>
+
+     * Output only. OAuth secret SHA256 paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret_sha256 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string|null
+     */
+    public function getClientSecretSha256Unwrapped()
+    {
+        return $this->readWrapperValue("client_secret_sha256");
+    }
+
+    /**
+     * Output only. OAuth secret SHA256 paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret_sha256 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\StringValue $var
+     * @return $this
+     */
+    public function setClientSecretSha256($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\StringValue::class);
+        $this->client_secret_sha256 = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sets the field by wrapping a primitive type in a Google\Protobuf\StringValue object.
+
+     * Output only. OAuth secret SHA256 paired with client ID.
+     *
+     * Generated from protobuf field <code>.google.protobuf.StringValue client_secret_sha256 = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string|null $var
+     * @return $this
+     */
+    public function setClientSecretSha256Unwrapped($var)
+    {
+        $this->writeWrapperValue("client_secret_sha256", $var);
+        return $this;}
+
+    /**
      * Optional. List of client ids allowed to use IAP programmatically.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProgrammaticClients()
     {
@@ -148,7 +379,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of client ids allowed to use IAP programmatically.
      *
      * Generated from protobuf field <code>repeated string programmatic_clients = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProgrammaticClients($var)

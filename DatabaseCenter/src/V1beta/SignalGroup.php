@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A group of signals and their counts.
@@ -49,7 +49,7 @@ class SignalGroup extends \Google\Protobuf\Internal\Message
      *           When applied to a DatabaseResource represents count of issues associated
      *           with the resource. A signal is an issue when its SignalStatus field is
      *           set to SIGNAL_STATUS_ISSUE.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Signal>|\Google\Protobuf\Internal\RepeatedField $signals
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Signal[] $signals
      *           List of signals present in the group and associated with the resource.
      *           Only applies to a DatabaseResource.
      * }
@@ -120,7 +120,7 @@ class SignalGroup extends \Google\Protobuf\Internal\Message
      * Only applies to a DatabaseResource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Signal signals = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Signal>
      */
     public function getSignals()
     {
@@ -132,7 +132,7 @@ class SignalGroup extends \Google\Protobuf\Internal\Message
      * Only applies to a DatabaseResource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Signal signals = 3;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Signal>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Signal[] $var
      * @return $this
      */
     public function setSignals($var)

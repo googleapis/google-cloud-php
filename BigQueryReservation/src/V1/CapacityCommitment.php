@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Capacity commitment is a way to purchase compute capacity for BigQuery jobs

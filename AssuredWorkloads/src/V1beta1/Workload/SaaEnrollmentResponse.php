@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Signed Access Approvals (SAA) enrollment response.
@@ -36,7 +36,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type int $setup_status
      *           Indicates SAA enrollment status of a given workload.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $setup_errors
+     *     @type int[] $setup_errors
      *           Indicates SAA enrollment setup error if any.
      * }
      */
@@ -85,7 +85,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      * Indicates SAA enrollment setup error if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.SaaEnrollmentResponse.SetupError setup_errors = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSetupErrors()
     {
@@ -96,7 +96,7 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
      * Indicates SAA enrollment setup error if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.SaaEnrollmentResponse.SetupError setup_errors = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSetupErrors($var)
@@ -108,5 +108,4 @@ class SaaEnrollmentResponse extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

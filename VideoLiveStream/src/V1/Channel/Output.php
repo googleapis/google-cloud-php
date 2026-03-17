@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Channel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Location of output file(s) in a Google Cloud Storage bucket.
@@ -64,5 +64,4 @@ class Output extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

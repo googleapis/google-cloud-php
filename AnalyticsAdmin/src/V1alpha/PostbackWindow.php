@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for a SKAdNetwork conversion postback window.
@@ -43,7 +43,7 @@ class PostbackWindow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\ConversionValues>|\Google\Protobuf\Internal\RepeatedField $conversion_values
+     *     @type \Google\Analytics\Admin\V1alpha\ConversionValues[] $conversion_values
      *           Ordering of the repeated field will be used to prioritize the conversion
      *           value settings. Lower indexed entries are prioritized higher. The first
      *           conversion value setting that evaluates to true will be selected. It must
@@ -71,7 +71,7 @@ class PostbackWindow extends \Google\Protobuf\Internal\Message
      * true. It can have maximum of 128 entries.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ConversionValues conversion_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ConversionValues>
      */
     public function getConversionValues()
     {
@@ -86,7 +86,7 @@ class PostbackWindow extends \Google\Protobuf\Internal\Message
      * true. It can have maximum of 128 entries.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ConversionValues conversion_values = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ConversionValues>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ConversionValues[] $var
      * @return $this
      */
     public function setConversionValues($var)

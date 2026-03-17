@@ -59,6 +59,3 @@ class VersionFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VersionFormat::class, \Google\Cloud\Logging\V2\LogSink_VersionFormat::class);
-

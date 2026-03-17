@@ -5,8 +5,8 @@
 namespace Google\Cloud\Trace\V2\Span;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of links, which are references from this span to a span
@@ -36,7 +36,7 @@ class Links extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Trace\V2\Span\Link>|\Google\Protobuf\Internal\RepeatedField $link
+     *     @type \Google\Cloud\Trace\V2\Span\Link[] $link
      *           A collection of links.
      *     @type int $dropped_links_count
      *           The number of dropped links after the maximum size was enforced. If
@@ -52,7 +52,7 @@ class Links extends \Google\Protobuf\Internal\Message
      * A collection of links.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.Link link = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Trace\V2\Span\Link>
      */
     public function getLink()
     {
@@ -63,7 +63,7 @@ class Links extends \Google\Protobuf\Internal\Message
      * A collection of links.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.Link link = 1;</code>
-     * @param array<\Google\Cloud\Trace\V2\Span\Link>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Trace\V2\Span\Link[] $var
      * @return $this
      */
     public function setLink($var)
@@ -103,7 +103,4 @@ class Links extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Links::class, \Google\Cloud\Trace\V2\Span_Links::class);
 

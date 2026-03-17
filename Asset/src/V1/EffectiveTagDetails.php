@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The effective tags and the ancestor resources from which they were inherited.
@@ -53,7 +53,7 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
      *           [effective_tags][google.cloud.asset.v1.EffectiveTagDetails.effective_tags]
      *           are inherited, according to [tag
      *           inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
-     *     @type array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *     @type \Google\Cloud\Asset\V1\Tag[] $effective_tags
      *           The effective tags inherited from the
      *           [attached_resource][google.cloud.asset.v1.EffectiveTagDetails.attached_resource].
      *           Note that tags with the same key but different values may attach to
@@ -126,7 +126,7 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
      * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag effective_tags = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\Tag>
      */
     public function getEffectiveTags()
     {
@@ -144,7 +144,7 @@ class EffectiveTagDetails extends \Google\Protobuf\Internal\Message
      * inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Tag effective_tags = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\Tag[] $var
      * @return $this
      */
     public function setEffectiveTags($var)

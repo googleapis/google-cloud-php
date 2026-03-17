@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing Indexes
@@ -34,7 +34,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VectorSearch\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type \Google\Cloud\VectorSearch\V1\Index[] $indexes
      *           The list of Index
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * The list of Index
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.Index indexes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\Index>
      */
     public function getIndexes()
     {
@@ -60,7 +60,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * The list of Index
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.Index indexes = 1;</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\Index[] $var
      * @return $this
      */
     public function setIndexes($var)

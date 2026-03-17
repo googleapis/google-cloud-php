@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An artifact that can be deployed in some runtime.
@@ -28,7 +28,7 @@ class DeploymentNote extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_uri
+     *     @type string[] $resource_uri
      *           Required. Resource URI for the artifact being deployed.
      * }
      */
@@ -41,7 +41,7 @@ class DeploymentNote extends \Google\Protobuf\Internal\Message
      * Required. Resource URI for the artifact being deployed.
      *
      * Generated from protobuf field <code>repeated string resource_uri = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceUri()
     {
@@ -52,7 +52,7 @@ class DeploymentNote extends \Google\Protobuf\Internal\Message
      * Required. Resource URI for the artifact being deployed.
      *
      * Generated from protobuf field <code>repeated string resource_uri = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceUri($var)

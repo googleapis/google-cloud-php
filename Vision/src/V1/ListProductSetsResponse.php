@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListProductSets` method.
@@ -35,7 +35,7 @@ class ListProductSetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Vision\V1\ProductSet>|\Google\Protobuf\Internal\RepeatedField $product_sets
+     *     @type \Google\Cloud\Vision\V1\ProductSet[] $product_sets
      *           List of ProductSets.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListProductSetsResponse extends \Google\Protobuf\Internal\Message
      * List of ProductSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSet product_sets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\ProductSet>
      */
     public function getProductSets()
     {
@@ -62,7 +62,7 @@ class ListProductSetsResponse extends \Google\Protobuf\Internal\Message
      * List of ProductSets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSet product_sets = 1;</code>
-     * @param array<\Google\Cloud\Vision\V1\ProductSet>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\ProductSet[] $var
      * @return $this
      */
     public function setProductSets($var)

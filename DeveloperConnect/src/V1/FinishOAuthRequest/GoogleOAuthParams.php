@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1\FinishOAuthRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The params returned by Google OAuth flow redirects.
@@ -41,7 +41,7 @@ class GoogleOAuthParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Required. The scopes returned by Google OAuth flow.
      *     @type string $version_info
      *           Optional. The version info returned by Google OAuth flow.
@@ -59,7 +59,7 @@ class GoogleOAuthParams extends \Google\Protobuf\Internal\Message
      * Required. The scopes returned by Google OAuth flow.
      *
      * Generated from protobuf field <code>repeated string scopes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -70,7 +70,7 @@ class GoogleOAuthParams extends \Google\Protobuf\Internal\Message
      * Required. The scopes returned by Google OAuth flow.
      *
      * Generated from protobuf field <code>repeated string scopes = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)
@@ -136,5 +136,4 @@ class GoogleOAuthParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

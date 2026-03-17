@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\RelationDescriptor;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes a column.
@@ -41,12 +41,12 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $path
+     *     @type string[] $path
      *           The identifier for the column. Each entry in `path` represents one level
      *           of nesting.
      *     @type string $description
      *           A textual description of the column.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $bigquery_policy_tags
+     *     @type string[] $bigquery_policy_tags
      *           A list of BigQuery policy tags that will be applied to the column.
      * }
      */
@@ -60,7 +60,7 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      * of nesting.
      *
      * Generated from protobuf field <code>repeated string path = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPath()
     {
@@ -72,7 +72,7 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      * of nesting.
      *
      * Generated from protobuf field <code>repeated string path = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPath($var)
@@ -113,7 +113,7 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      * A list of BigQuery policy tags that will be applied to the column.
      *
      * Generated from protobuf field <code>repeated string bigquery_policy_tags = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBigqueryPolicyTags()
     {
@@ -124,7 +124,7 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
      * A list of BigQuery policy tags that will be applied to the column.
      *
      * Generated from protobuf field <code>repeated string bigquery_policy_tags = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBigqueryPolicyTags($var)
@@ -136,5 +136,4 @@ class ColumnDescriptor extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

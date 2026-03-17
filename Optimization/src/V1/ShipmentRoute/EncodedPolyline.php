@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The encoded representation of a polyline. More information on polyline
@@ -67,5 +67,4 @@ class EncodedPolyline extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2\IntelligenceConfig\Filter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of bucket locations.
@@ -30,7 +30,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           Optional. Bucket locations. Location can be any of the Cloud Storage
      *           regions specified in lower case format. For example, `us-east1`,
      *           `us-west1`.
@@ -47,7 +47,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
      * `us-west1`.
      *
      * Generated from protobuf field <code>repeated string locations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -60,7 +60,7 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
      * `us-west1`.
      *
      * Generated from protobuf field <code>repeated string locations = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -72,5 +72,4 @@ class CloudStorageLocations extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of DataItems and Annotations on them.
@@ -191,7 +191,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *             value is the
      *             [metadata_schema's][google.cloud.aiplatform.v1.Dataset.metadata_schema_uri]
      *             title.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
+     *     @type \Google\Cloud\AIPlatform\V1\SavedQuery[] $saved_queries
      *           All SavedQueries belong to the Dataset will be returned in List/Get
      *           Dataset response. The annotation_specs field
      *           will not be populated except for UI cases which will only use
@@ -563,7 +563,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * The SavedQuery should not contain any AnnotationSpec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SavedQuery>
      */
     public function getSavedQueries()
     {
@@ -580,7 +580,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * The SavedQuery should not contain any AnnotationSpec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 9;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SavedQuery[] $var
      * @return $this
      */
     public function setSavedQueries($var)

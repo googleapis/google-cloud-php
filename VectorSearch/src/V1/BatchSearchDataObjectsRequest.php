@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to perform a batch of search operations.
@@ -44,7 +44,7 @@ class BatchSearchDataObjectsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the Collection for which to search.
      *           Format: `projects/{project}/locations/{location}/collections/{collection}`
-     *     @type array<\Google\Cloud\VectorSearch\V1\Search>|\Google\Protobuf\Internal\RepeatedField $searches
+     *     @type \Google\Cloud\VectorSearch\V1\Search[] $searches
      *           Required. A list of search requests to execute in parallel.
      *     @type \Google\Cloud\VectorSearch\V1\BatchSearchDataObjectsRequest\CombineResultsOptions $combine
      *           Optional. Options for combining the results of the batch search operations.
@@ -87,7 +87,7 @@ class BatchSearchDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * Required. A list of search requests to execute in parallel.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.Search searches = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\Search>
      */
     public function getSearches()
     {
@@ -98,7 +98,7 @@ class BatchSearchDataObjectsRequest extends \Google\Protobuf\Internal\Message
      * Required. A list of search requests to execute in parallel.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.Search searches = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\Search>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\Search[] $var
      * @return $this
      */
     public function setSearches($var)

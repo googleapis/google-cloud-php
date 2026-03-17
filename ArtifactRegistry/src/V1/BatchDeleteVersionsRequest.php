@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to delete multiple versions across a repository.
@@ -62,7 +62,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           The name of the repository holding all requested versions.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The names of the versions to delete.
      *           The maximum number of versions deleted per batch is determined by the
      *           service and is dependent on the available resources in the region.
@@ -107,7 +107,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      * service and is dependent on the available resources in the region.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -120,7 +120,7 @@ class BatchDeleteVersionsRequest extends \Google\Protobuf\Internal\Message
      * service and is dependent on the available resources in the region.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

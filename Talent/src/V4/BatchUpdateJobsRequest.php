@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to update a batch of jobs.
@@ -79,7 +79,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the tenant under which the job is created.
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenants/bar".
-     *     @type array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Talent\V4\Job[] $jobs
      *           Required. The jobs to be updated.
      *           A maximum of 200 jobs can be updated in a batch.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -138,7 +138,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 200 jobs can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\Job>
      */
     public function getJobs()
     {
@@ -150,7 +150,7 @@ class BatchUpdateJobsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 200 jobs can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\Job[] $var
      * @return $this
      */
     public function setJobs($var)

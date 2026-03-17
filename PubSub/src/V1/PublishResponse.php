@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `Publish` method.
@@ -30,7 +30,7 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $message_ids
+     *     @type string[] $message_ids
      *           Optional. The server-assigned ID of each published message, in the same
      *           order as the messages in the request. IDs are guaranteed to be unique
      *           within the topic.
@@ -47,7 +47,7 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      * within the topic.
      *
      * Generated from protobuf field <code>repeated string message_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMessageIds()
     {
@@ -60,7 +60,7 @@ class PublishResponse extends \Google\Protobuf\Internal\Message
      * within the topic.
      *
      * Generated from protobuf field <code>repeated string message_ids = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMessageIds($var)

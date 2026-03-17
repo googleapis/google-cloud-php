@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A tensor value type.
@@ -116,35 +116,35 @@ class Tensor extends \Google\Protobuf\Internal\Message
      *
      *     @type int $dtype
      *           The data type of tensor.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $shape
+     *     @type int[]|string[] $shape
      *           Shape of the tensor.
-     *     @type array<bool>|\Google\Protobuf\Internal\RepeatedField $bool_val
+     *     @type bool[] $bool_val
      *           Type specific representations that make it easy to create tensor protos in
      *           all languages.  Only the representation corresponding to "dtype" can
      *           be set.  The values hold the flattened representation of the tensor in
      *           row major order.
      *           [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $string_val
+     *     @type string[] $string_val
      *           [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $bytes_val
+     *     @type string[] $bytes_val
      *           [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $float_val
+     *     @type float[] $float_val
      *           [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $double_val
+     *     @type float[] $double_val
      *           [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $int_val
+     *     @type int[] $int_val
      *           [INT_8][google.cloud.aiplatform.v1.Tensor.DataType.INT8]
      *           [INT_16][google.cloud.aiplatform.v1.Tensor.DataType.INT16]
      *           [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $int64_val
+     *     @type int[]|string[] $int64_val
      *           [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $uint_val
+     *     @type int[] $uint_val
      *           [UINT8][google.cloud.aiplatform.v1.Tensor.DataType.UINT8]
      *           [UINT16][google.cloud.aiplatform.v1.Tensor.DataType.UINT16]
      *           [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $uint64_val
+     *     @type int[]|string[] $uint64_val
      *           [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $list_val
+     *     @type \Google\Cloud\AIPlatform\V1\Tensor[] $list_val
      *           A list of tensor values.
      *     @type array|\Google\Protobuf\Internal\MapField $struct_val
      *           A map of string to tensor.
@@ -187,7 +187,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * Shape of the tensor.
      *
      * Generated from protobuf field <code>repeated int64 shape = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getShape()
     {
@@ -198,7 +198,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * Shape of the tensor.
      *
      * Generated from protobuf field <code>repeated int64 shape = 2;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setShape($var)
@@ -217,7 +217,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *
      * Generated from protobuf field <code>repeated bool bool_val = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<bool>
      */
     public function getBoolVal()
     {
@@ -232,7 +232,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [BOOL][google.cloud.aiplatform.v1.Tensor.DataType.BOOL]
      *
      * Generated from protobuf field <code>repeated bool bool_val = 3;</code>
-     * @param array<bool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param bool[] $var
      * @return $this
      */
     public function setBoolVal($var)
@@ -247,7 +247,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated string string_val = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getStringVal()
     {
@@ -258,7 +258,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated string string_val = 14;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setStringVal($var)
@@ -273,7 +273,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated bytes bytes_val = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBytesVal()
     {
@@ -284,7 +284,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [STRING][google.cloud.aiplatform.v1.Tensor.DataType.STRING]
      *
      * Generated from protobuf field <code>repeated bytes bytes_val = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBytesVal($var)
@@ -299,7 +299,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *
      * Generated from protobuf field <code>repeated float float_val = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getFloatVal()
     {
@@ -310,7 +310,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [FLOAT][google.cloud.aiplatform.v1.Tensor.DataType.FLOAT]
      *
      * Generated from protobuf field <code>repeated float float_val = 5;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setFloatVal($var)
@@ -325,7 +325,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *
      * Generated from protobuf field <code>repeated double double_val = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getDoubleVal()
     {
@@ -336,7 +336,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [DOUBLE][google.cloud.aiplatform.v1.Tensor.DataType.DOUBLE]
      *
      * Generated from protobuf field <code>repeated double double_val = 6;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setDoubleVal($var)
@@ -353,7 +353,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *
      * Generated from protobuf field <code>repeated int32 int_val = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getIntVal()
     {
@@ -366,7 +366,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [INT_32][google.cloud.aiplatform.v1.Tensor.DataType.INT32]
      *
      * Generated from protobuf field <code>repeated int32 int_val = 7;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setIntVal($var)
@@ -381,7 +381,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *
      * Generated from protobuf field <code>repeated int64 int64_val = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getInt64Val()
     {
@@ -392,7 +392,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [INT64][google.cloud.aiplatform.v1.Tensor.DataType.INT64]
      *
      * Generated from protobuf field <code>repeated int64 int64_val = 8;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setInt64Val($var)
@@ -409,7 +409,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *
      * Generated from protobuf field <code>repeated uint32 uint_val = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getUintVal()
     {
@@ -422,7 +422,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [UINT32][google.cloud.aiplatform.v1.Tensor.DataType.UINT32]
      *
      * Generated from protobuf field <code>repeated uint32 uint_val = 9;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setUintVal($var)
@@ -437,7 +437,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *
      * Generated from protobuf field <code>repeated uint64 uint64_val = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getUint64Val()
     {
@@ -448,7 +448,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * [UINT64][google.cloud.aiplatform.v1.Tensor.DataType.UINT64]
      *
      * Generated from protobuf field <code>repeated uint64 uint64_val = 10;</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setUint64Val($var)
@@ -463,7 +463,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * A list of tensor values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor list_val = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tensor>
      */
     public function getListVal()
     {
@@ -474,7 +474,7 @@ class Tensor extends \Google\Protobuf\Internal\Message
      * A list of tensor values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tensor list_val = 11;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tensor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tensor[] $var
      * @return $this
      */
     public function setListVal($var)

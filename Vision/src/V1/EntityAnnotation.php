@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Set of detected entity features.
@@ -120,13 +120,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
      *           Image region to which this entity belongs. Not produced
      *           for `LABEL_DETECTION` features.
-     *     @type array<\Google\Cloud\Vision\V1\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type \Google\Cloud\Vision\V1\LocationInfo[] $locations
      *           The location information for the detected entity. Multiple
      *           `LocationInfo` elements can be present because one location may
      *           indicate the location of the scene in the image, and another location
      *           may indicate the location of the place where the image was taken.
      *           Location information is usually present for landmarks.
-     *     @type array<\Google\Cloud\Vision\V1\Property>|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type \Google\Cloud\Vision\V1\Property[] $properties
      *           Some entities may have optional user-supplied `Property` (name/value)
      *           fields, such a score or string that qualifies the entity.
      * }
@@ -366,7 +366,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * Location information is usually present for landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\LocationInfo>
      */
     public function getLocations()
     {
@@ -381,7 +381,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * Location information is usually present for landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
-     * @param array<\Google\Cloud\Vision\V1\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\LocationInfo[] $var
      * @return $this
      */
     public function setLocations($var)
@@ -397,7 +397,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * fields, such a score or string that qualifies the entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Property>
      */
     public function getProperties()
     {
@@ -409,7 +409,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * fields, such a score or string that qualifies the entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
-     * @param array<\Google\Cloud\Vision\V1\Property>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Property[] $var
      * @return $this
      */
     public function setProperties($var)

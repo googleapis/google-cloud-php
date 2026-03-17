@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * OS policy assignment operation metadata provided by OS policy assignment API
@@ -19,7 +19,7 @@ class OSPolicyAssignmentOperationMetadata extends \Google\Protobuf\Internal\Mess
     /**
      * Reference to the `OSPolicyAssignment` API resource.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -58,7 +58,7 @@ class OSPolicyAssignmentOperationMetadata extends \Google\Protobuf\Internal\Mess
      *     @type string $os_policy_assignment
      *           Reference to the `OSPolicyAssignment` API resource.
      *           Format:
-     *           `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     *           `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *     @type int $api_method
      *           The OS policy assignment API method.
      *     @type int $rollout_state
@@ -77,7 +77,7 @@ class OSPolicyAssignmentOperationMetadata extends \Google\Protobuf\Internal\Mess
     /**
      * Reference to the `OSPolicyAssignment` API resource.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -90,7 +90,7 @@ class OSPolicyAssignmentOperationMetadata extends \Google\Protobuf\Internal\Mess
     /**
      * Reference to the `OSPolicyAssignment` API resource.
      * Format:
-     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id&#64;revision_id}`
+     * `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id\@revision_id}`
      *
      * Generated from protobuf field <code>string os_policy_assignment = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

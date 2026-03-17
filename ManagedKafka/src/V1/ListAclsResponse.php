@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListAcls.
@@ -36,7 +36,7 @@ class ListAclsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\V1\Acl>|\Google\Protobuf\Internal\RepeatedField $acls
+     *     @type \Google\Cloud\ManagedKafka\V1\Acl[] $acls
      *           The list of acls in the requested parent. The order of the acls is
      *           unspecified.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListAclsResponse extends \Google\Protobuf\Internal\Message
      * unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.Acl acls = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\Acl>
      */
     public function getAcls()
     {
@@ -66,7 +66,7 @@ class ListAclsResponse extends \Google\Protobuf\Internal\Message
      * unspecified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.Acl acls = 1;</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\Acl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\Acl[] $var
      * @return $this
      */
     public function setAcls($var)

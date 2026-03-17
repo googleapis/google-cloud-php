@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Instance represents the instance resources of the Registry.
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
+     * Format: `projects/{@*}locations/{@*}instance`.
      * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -61,7 +61,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
+     *           Format: `projects/{@*}locations/{@*}instance`.
      *           Currently only `locations/global` is supported.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation timestamp.
@@ -81,7 +81,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
+     * Format: `projects/{@*}locations/{@*}instance`.
      * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>
@@ -93,7 +93,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
+     * Format: `projects/{@*}locations/{@*}instance`.
      * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>

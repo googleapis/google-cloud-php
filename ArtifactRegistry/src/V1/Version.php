@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The body of a version resource. A version resource represents a
@@ -93,7 +93,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The time when the version was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The time when the version was last updated.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $related_tags
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Tag[] $related_tags
      *           Output only. A list of related tags. Will contain up to 100 tags that
      *           reference this version.
      *     @type \Google\Protobuf\Struct $metadata
@@ -104,7 +104,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           [MavenArtifact][google.devtools.artifactregistry.v1.MavenArtifact]
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Optional. Client specified annotations.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $fingerprints
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Hash[] $fingerprints
      *           Output only. Immutable reference for the version, calculated based on the
      *           version's content. Currently we only support dirsum_sha256 hash algorithm.
      *           Additional hash algorithms may be added in the future.
@@ -250,7 +250,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * reference this version.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Tag related_tags = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Tag>
      */
     public function getRelatedTags()
     {
@@ -262,7 +262,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * reference this version.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Tag related_tags = 7;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Tag[] $var
      * @return $this
      */
     public function setRelatedTags($var)
@@ -349,7 +349,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Additional hash algorithms may be added in the future.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash fingerprints = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Hash>
      */
     public function getFingerprints()
     {
@@ -362,7 +362,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Additional hash algorithms may be added in the future.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Hash fingerprints = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Hash[] $var
      * @return $this
      */
     public function setFingerprints($var)

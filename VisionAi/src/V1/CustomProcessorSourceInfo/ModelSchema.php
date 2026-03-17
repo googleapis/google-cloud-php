@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\CustomProcessorSourceInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The schema is defined as an OpenAPI 3.0.2 [Schema
@@ -175,5 +175,4 @@ class ModelSchema extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

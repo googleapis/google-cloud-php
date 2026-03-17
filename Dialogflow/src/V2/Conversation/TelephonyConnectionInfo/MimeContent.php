@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The mime content from the initial SIP INVITE.
@@ -98,5 +98,4 @@ class MimeContent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

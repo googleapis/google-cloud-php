@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\OccupancyCountingPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The entity info for annotations from occupancy counting operator.
@@ -98,5 +98,4 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

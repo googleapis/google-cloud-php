@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDataTable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains all metric values requested for a single date range and set of
@@ -70,19 +70,19 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $primary_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $primary_values
      *           Data for the PRIMARY MetricValueType.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $primary_percent_of_total_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $primary_percent_of_total_values
      *           Data for the PRIMARY_PERCENT_OF_TOTAL MetricValueType.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $comparison_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $comparison_values
      *           Data for the COMPARISON MetricValueType.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $comparison_percent_of_total_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $comparison_percent_of_total_values
      *           Data for the COMPARISON_PERCENT_OF_TOTAL MetricValueType.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $absolute_change_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $absolute_change_values
      *           Data for the ABSOLUTE_CHANGE MetricValueType.
-     *     @type array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $relative_change_values
+     *     @type \Google\Ads\AdManager\V1\ReportValue[] $relative_change_values
      *           Data for the RELATIVE_CHANGE MetricValueType.
-     *     @type array<bool>|\Google\Protobuf\Internal\RepeatedField $flag_values
+     *     @type bool[] $flag_values
      *           If true, the flag's conditions are met. If false, the flag's
      *           conditions are not met. flag_values has the same length as
      *           flags and index i of flag_values represents the flag at index i
@@ -98,7 +98,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the PRIMARY MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue primary_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getPrimaryValues()
     {
@@ -109,7 +109,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the PRIMARY MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue primary_values = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setPrimaryValues($var)
@@ -124,7 +124,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the PRIMARY_PERCENT_OF_TOTAL MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue primary_percent_of_total_values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getPrimaryPercentOfTotalValues()
     {
@@ -135,7 +135,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the PRIMARY_PERCENT_OF_TOTAL MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue primary_percent_of_total_values = 2;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setPrimaryPercentOfTotalValues($var)
@@ -150,7 +150,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the COMPARISON MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue comparison_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getComparisonValues()
     {
@@ -161,7 +161,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the COMPARISON MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue comparison_values = 3;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setComparisonValues($var)
@@ -176,7 +176,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the COMPARISON_PERCENT_OF_TOTAL MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue comparison_percent_of_total_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getComparisonPercentOfTotalValues()
     {
@@ -187,7 +187,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the COMPARISON_PERCENT_OF_TOTAL MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue comparison_percent_of_total_values = 4;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setComparisonPercentOfTotalValues($var)
@@ -202,7 +202,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the ABSOLUTE_CHANGE MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue absolute_change_values = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getAbsoluteChangeValues()
     {
@@ -213,7 +213,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the ABSOLUTE_CHANGE MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue absolute_change_values = 5;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setAbsoluteChangeValues($var)
@@ -228,7 +228,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the RELATIVE_CHANGE MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue relative_change_values = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\ReportValue>
      */
     public function getRelativeChangeValues()
     {
@@ -239,7 +239,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * Data for the RELATIVE_CHANGE MetricValueType.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.ReportValue relative_change_values = 6;</code>
-     * @param array<\Google\Ads\AdManager\V1\ReportValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\ReportValue[] $var
      * @return $this
      */
     public function setRelativeChangeValues($var)
@@ -257,7 +257,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * of flags.
      *
      * Generated from protobuf field <code>repeated bool flag_values = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<bool>
      */
     public function getFlagValues()
     {
@@ -271,7 +271,7 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
      * of flags.
      *
      * Generated from protobuf field <code>repeated bool flag_values = 7;</code>
-     * @param array<bool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param bool[] $var
      * @return $this
      */
     public function setFlagValues($var)
@@ -283,5 +283,4 @@ class MetricValueGroup extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

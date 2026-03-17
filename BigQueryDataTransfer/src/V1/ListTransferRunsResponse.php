@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The returned list of pipelines in the project.
@@ -37,7 +37,7 @@ class ListTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $transfer_runs
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[] $transfer_runs
      *           Output only. The stored pipeline transfer runs.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -55,7 +55,7 @@ class ListTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer runs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun transfer_runs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>
      */
     public function getTransferRuns()
     {
@@ -66,7 +66,7 @@ class ListTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer runs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun transfer_runs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[] $var
      * @return $this
      */
     public function setTransferRuns($var)

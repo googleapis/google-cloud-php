@@ -5,8 +5,8 @@
 namespace Google\Identity\AccessContextManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to `ListAccessPoliciesRequest`.
@@ -35,7 +35,7 @@ class ListAccessPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Identity\AccessContextManager\V1\AccessPolicy>|\Google\Protobuf\Internal\RepeatedField $access_policies
+     *     @type \Google\Identity\AccessContextManager\V1\AccessPolicy[] $access_policies
      *           List of the AccessPolicy instances.
      *     @type string $next_page_token
      *           The pagination token to retrieve the next page of results. If the value is
@@ -51,7 +51,7 @@ class ListAccessPoliciesResponse extends \Google\Protobuf\Internal\Message
      * List of the AccessPolicy instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessPolicy access_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Identity\AccessContextManager\V1\AccessPolicy>
      */
     public function getAccessPolicies()
     {
@@ -62,7 +62,7 @@ class ListAccessPoliciesResponse extends \Google\Protobuf\Internal\Message
      * List of the AccessPolicy instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessPolicy access_policies = 1;</code>
-     * @param array<\Google\Identity\AccessContextManager\V1\AccessPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Identity\AccessContextManager\V1\AccessPolicy[] $var
      * @return $this
      */
     public function setAccessPolicies($var)

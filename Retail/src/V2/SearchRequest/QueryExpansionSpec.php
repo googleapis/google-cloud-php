@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification to determine under which conditions query expansion should
@@ -115,5 +115,4 @@ class QueryExpansionSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

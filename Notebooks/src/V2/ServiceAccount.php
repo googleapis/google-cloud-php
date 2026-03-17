@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A service account that acts as an identity.
@@ -37,7 +37,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      *     @type string $email
      *           Optional. Email address of the service account.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type string[] $scopes
      *           Output only. The list of scopes to be made available for this service
      *           account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform
      * }
@@ -78,7 +78,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getScopes()
     {
@@ -90,7 +90,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform
      *
      * Generated from protobuf field <code>repeated string scopes = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setScopes($var)

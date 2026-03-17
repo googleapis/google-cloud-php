@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud SQL user resource.
@@ -150,7 +150,7 @@ class User extends \Google\Protobuf\Internal\Message
      *           Dual password status for the user.
      *     @type int $iam_status
      *           Indicates if a group is active or inactive for IAM database authentication.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *     @type string[] $database_roles
      *           Optional. Role memberships of the user
      * }
      */
@@ -556,7 +556,7 @@ class User extends \Google\Protobuf\Internal\Message
      * Optional. Role memberships of the user
      *
      * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatabaseRoles()
     {
@@ -567,7 +567,7 @@ class User extends \Google\Protobuf\Internal\Message
      * Optional. Role memberships of the user
      *
      * Generated from protobuf field <code>repeated string database_roles = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatabaseRoles($var)

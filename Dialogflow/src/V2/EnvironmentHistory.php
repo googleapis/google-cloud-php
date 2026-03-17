@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -55,7 +55,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/locations/<Location
      *              ID>/agent/environments/<Environment ID>`
      *           The environment ID for the default environment is `-`.
-     *     @type array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry[] $entries
      *           Output only. The list of agent environments. There will be a maximum number
      *           of items returned based on the page_size field in the request.
      *     @type string $next_page_token
@@ -109,7 +109,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * of items returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>
      */
     public function getEntries()
     {
@@ -121,7 +121,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * of items returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry[] $var
      * @return $this
      */
     public function setEntries($var)

@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The shipment of a single item, from one of its pickups to one of its
@@ -185,10 +185,10 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           The user-defined display name of the shipment.
      *           It can be up to 63 characters long and may use UTF-8 characters.
-     *     @type array<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $pickups
+     *     @type \Google\Maps\RouteOptimization\V1\Shipment\VisitRequest[] $pickups
      *           Set of pickup alternatives associated to the shipment. If not specified,
      *           the vehicle only needs to visit a location corresponding to the deliveries.
-     *     @type array<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $deliveries
+     *     @type \Google\Maps\RouteOptimization\V1\Shipment\VisitRequest[] $deliveries
      *           Set of delivery alternatives associated to the shipment. If not specified,
      *           the vehicle only needs to visit a location corresponding to the pickups.
      *     @type array|\Google\Protobuf\Internal\MapField $load_demands
@@ -206,11 +206,11 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *           positive.
      *           *IMPORTANT*: If this penalty is not specified, it is considered infinite,
      *           i.e. the shipment must be completed.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_vehicle_indices
+     *     @type int[] $allowed_vehicle_indices
      *           The set of vehicles that may perform this shipment. If empty, all vehicles
      *           may perform it. Vehicles are given by their index in the `ShipmentModel`'s
      *           `vehicles` list.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle
+     *     @type float[] $costs_per_vehicle
      *           Specifies the cost that is incurred when this shipment is delivered by each
      *           vehicle. If specified, it must have EITHER:
      *             * the same number of elements as `costs_per_vehicle_indices`.
@@ -220,7 +220,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      *               i-th element corresponds to vehicle #i of the model.
      *           These costs must be in the same unit as `penalty_cost` and must not be
      *           negative. Leave this field empty, if there are no such costs.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $costs_per_vehicle_indices
+     *     @type int[] $costs_per_vehicle_indices
      *           Indices of the vehicles to which `costs_per_vehicle` applies. If non-empty,
      *           it must have the same number of elements as `costs_per_vehicle`. A vehicle
      *           index may not be specified more than once. If a vehicle is excluded from
@@ -322,7 +322,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the deliveries.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment.VisitRequest pickups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>
      */
     public function getPickups()
     {
@@ -334,7 +334,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the deliveries.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment.VisitRequest pickups = 1;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\Shipment\VisitRequest[] $var
      * @return $this
      */
     public function setPickups($var)
@@ -350,7 +350,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the pickups.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment.VisitRequest deliveries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>
      */
     public function getDeliveries()
     {
@@ -362,7 +362,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * the vehicle only needs to visit a location corresponding to the pickups.
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.Shipment.VisitRequest deliveries = 2;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\Shipment\VisitRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\Shipment\VisitRequest[] $var
      * @return $this
      */
     public function setDeliveries($var)
@@ -463,7 +463,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `vehicles` list.
      *
      * Generated from protobuf field <code>repeated int32 allowed_vehicle_indices = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedVehicleIndices()
     {
@@ -476,7 +476,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `vehicles` list.
      *
      * Generated from protobuf field <code>repeated int32 allowed_vehicle_indices = 5;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedVehicleIndices($var)
@@ -499,7 +499,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * negative. Leave this field empty, if there are no such costs.
      *
      * Generated from protobuf field <code>repeated double costs_per_vehicle = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getCostsPerVehicle()
     {
@@ -518,7 +518,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * negative. Leave this field empty, if there are no such costs.
      *
      * Generated from protobuf field <code>repeated double costs_per_vehicle = 6;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setCostsPerVehicle($var)
@@ -536,7 +536,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `costs_per_vehicle_indices`, its cost is zero.
      *
      * Generated from protobuf field <code>repeated int32 costs_per_vehicle_indices = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getCostsPerVehicleIndices()
     {
@@ -550,7 +550,7 @@ class Shipment extends \Google\Protobuf\Internal\Message
      * `costs_per_vehicle_indices`, its cost is zero.
      *
      * Generated from protobuf field <code>repeated int32 costs_per_vehicle_indices = 7;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setCostsPerVehicleIndices($var)

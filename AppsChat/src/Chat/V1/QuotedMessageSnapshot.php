@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides a snapshot of the content of the quoted message at the time of
@@ -68,10 +68,10 @@ class QuotedMessageSnapshot extends \Google\Protobuf\Internal\Message
      *           Output only. Contains the quoted message `text` with markups added to
      *           support rich formatting like hyperlinks,custom emojis, markup, etc.
      *           Populated only for FORWARD quote type.
-     *     @type array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Apps\Chat\V1\Annotation[] $annotations
      *           Output only. Annotations parsed from the text body of the quoted message.
      *           Populated only for FORWARD quote type.
-     *     @type array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $attachments
+     *     @type \Google\Apps\Chat\V1\Attachment[] $attachments
      *           Output only. Attachments that were part of the quoted message. These are
      *           copies of the quoted message's attachment metadata. Populated only for
      *           FORWARD quote type.
@@ -171,7 +171,7 @@ class QuotedMessageSnapshot extends \Google\Protobuf\Internal\Message
      * Populated only for FORWARD quote type.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Annotation>
      */
     public function getAnnotations()
     {
@@ -183,7 +183,7 @@ class QuotedMessageSnapshot extends \Google\Protobuf\Internal\Message
      * Populated only for FORWARD quote type.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Annotation annotations = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Apps\Chat\V1\Annotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Annotation[] $var
      * @return $this
      */
     public function setAnnotations($var)
@@ -200,7 +200,7 @@ class QuotedMessageSnapshot extends \Google\Protobuf\Internal\Message
      * FORWARD quote type.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachments = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\Attachment>
      */
     public function getAttachments()
     {
@@ -213,7 +213,7 @@ class QuotedMessageSnapshot extends \Google\Protobuf\Internal\Message
      * FORWARD quote type.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.Attachment attachments = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Apps\Chat\V1\Attachment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\Attachment[] $var
      * @return $this
      */
     public function setAttachments($var)

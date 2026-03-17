@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PipelineTaskDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of artifact metadata.
@@ -28,7 +28,7 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $artifacts
+     *     @type \Google\Cloud\AIPlatform\V1\Artifact[] $artifacts
      *           Output only. A list of artifact metadata.
      * }
      */
@@ -41,7 +41,7 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
      * Output only. A list of artifact metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Artifact artifacts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Artifact>
      */
     public function getArtifacts()
     {
@@ -52,7 +52,7 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
      * Output only. A list of artifact metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Artifact artifacts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Artifact[] $var
      * @return $this
      */
     public function setArtifacts($var)
@@ -64,5 +64,4 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

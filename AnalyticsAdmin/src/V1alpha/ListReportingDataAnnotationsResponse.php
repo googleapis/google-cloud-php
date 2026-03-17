@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListReportingDataAnnotation RPC.
@@ -35,7 +35,7 @@ class ListReportingDataAnnotationsResponse extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\ReportingDataAnnotation>|\Google\Protobuf\Internal\RepeatedField $reporting_data_annotations
+     *     @type \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation[] $reporting_data_annotations
      *           List of Reporting Data Annotations.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page. If
@@ -51,7 +51,7 @@ class ListReportingDataAnnotationsResponse extends \Google\Protobuf\Internal\Mes
      * List of Reporting Data Annotations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ReportingDataAnnotation>
      */
     public function getReportingDataAnnotations()
     {
@@ -62,7 +62,7 @@ class ListReportingDataAnnotationsResponse extends \Google\Protobuf\Internal\Mes
      * List of Reporting Data Annotations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ReportingDataAnnotation reporting_data_annotations = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ReportingDataAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ReportingDataAnnotation[] $var
      * @return $this
      */
     public function setReportingDataAnnotations($var)

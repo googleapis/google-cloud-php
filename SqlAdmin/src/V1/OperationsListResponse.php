@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operations list response.
@@ -43,7 +43,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#operationsList`.
-     *     @type array<\Google\Cloud\Sql\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\Operation[] $items
      *           List of operation resources.
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -85,7 +85,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      * List of operation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Operation items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\Operation>
      */
     public function getItems()
     {
@@ -96,7 +96,7 @@ class OperationsListResponse extends \Google\Protobuf\Internal\Message
      * List of operation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.Operation items = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\Operation[] $var
      * @return $this
      */
     public function setItems($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `Firewall.UpdateAllIngressRules`.
@@ -28,7 +28,7 @@ class BatchUpdateIngressRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $ingress_rules
+     *     @type \Google\Cloud\AppEngine\V1\FirewallRule[] $ingress_rules
      *           The full list of ingress FirewallRules for this application.
      * }
      */
@@ -41,7 +41,7 @@ class BatchUpdateIngressRulesResponse extends \Google\Protobuf\Internal\Message
      * The full list of ingress FirewallRules for this application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.FirewallRule ingress_rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\FirewallRule>
      */
     public function getIngressRules()
     {
@@ -52,7 +52,7 @@ class BatchUpdateIngressRulesResponse extends \Google\Protobuf\Internal\Message
      * The full list of ingress FirewallRules for this application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.FirewallRule ingress_rules = 1;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\FirewallRule[] $var
      * @return $this
      */
     public function setIngressRules($var)

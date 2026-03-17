@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to delete a fleet namespace.
@@ -17,7 +17,7 @@ class DeleteScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Namespace resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}scopes/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class DeleteScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The Namespace resource name in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;&#47;namespaces/&#42;`.
+     *           `projects/{@*}locations/{@*}scopes/{@*}namespaces/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class DeleteScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Namespace resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}scopes/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class DeleteScopeNamespaceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Namespace resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;scopes/&#42;&#47;namespaces/&#42;`.
+     * `projects/{@*}locations/{@*}scopes/{@*}namespaces/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

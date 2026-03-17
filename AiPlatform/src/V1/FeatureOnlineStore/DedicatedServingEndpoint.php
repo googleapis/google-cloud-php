@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureOnlineStore;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The dedicated serving endpoint for this FeatureOnlineStore. Only need to
@@ -172,5 +172,4 @@ class DedicatedServingEndpoint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

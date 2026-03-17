@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dimension value attributes for the audience user row.
@@ -29,7 +29,7 @@ class AudienceRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\AudienceDimensionValue>|\Google\Protobuf\Internal\RepeatedField $dimension_values
+     *     @type \Google\Analytics\Data\V1alpha\AudienceDimensionValue[] $dimension_values
      *           Each dimension value attribute for an audience user. One dimension value
      *           will be added for each dimension column requested.
      * }
@@ -44,7 +44,7 @@ class AudienceRow extends \Google\Protobuf\Internal\Message
      * will be added for each dimension column requested.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceDimensionValue dimension_values = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\AudienceDimensionValue>
      */
     public function getDimensionValues()
     {
@@ -56,7 +56,7 @@ class AudienceRow extends \Google\Protobuf\Internal\Message
      * will be added for each dimension column requested.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceDimensionValue dimension_values = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\AudienceDimensionValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\AudienceDimensionValue[] $var
      * @return $this
      */
     public function setDimensionValues($var)

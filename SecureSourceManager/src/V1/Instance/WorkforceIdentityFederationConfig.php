@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * WorkforceIdentityFederationConfig allows this instance to support users
@@ -65,5 +65,4 @@ class WorkforceIdentityFederationConfig extends \Google\Protobuf\Internal\Messag
     }
 
 }
-
 

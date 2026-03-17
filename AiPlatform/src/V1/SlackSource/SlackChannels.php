@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\SlackSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SlackChannels contains the Slack channels and corresponding access token.
@@ -37,7 +37,7 @@ class SlackChannels extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels\SlackChannel>|\Google\Protobuf\Internal\RepeatedField $channels
+     *     @type \Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels\SlackChannel[] $channels
      *           Required. The Slack channel IDs.
      *     @type \Google\Cloud\AIPlatform\V1\ApiAuth\ApiKeyConfig $api_key_config
      *           Required. The SecretManager secret version resource name (e.g.
@@ -55,7 +55,7 @@ class SlackChannels extends \Google\Protobuf\Internal\Message
      * Required. The Slack channel IDs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SlackSource.SlackChannels.SlackChannel channels = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels\SlackChannel>
      */
     public function getChannels()
     {
@@ -66,7 +66,7 @@ class SlackChannels extends \Google\Protobuf\Internal\Message
      * Required. The Slack channel IDs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SlackSource.SlackChannels.SlackChannel channels = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels\SlackChannel>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SlackSource\SlackChannels\SlackChannel[] $var
      * @return $this
      */
     public function setChannels($var)
@@ -120,5 +120,4 @@ class SlackChannels extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

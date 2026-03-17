@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebSecurityScanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A CrawledUrl resource represents a URL that was crawled during a ScanRun. Web

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListChannelGroups RPC.
@@ -36,7 +36,7 @@ class ListChannelGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\ChannelGroup>|\Google\Protobuf\Internal\RepeatedField $channel_groups
+     *     @type \Google\Analytics\Admin\V1alpha\ChannelGroup[] $channel_groups
      *           List of ChannelGroup. These will be ordered stably, but in an arbitrary
      *           order.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListChannelGroupsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChannelGroup channel_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ChannelGroup>
      */
     public function getChannelGroups()
     {
@@ -66,7 +66,7 @@ class ListChannelGroupsResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChannelGroup channel_groups = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ChannelGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ChannelGroup[] $var
      * @return $this
      */
     public function setChannelGroups($var)

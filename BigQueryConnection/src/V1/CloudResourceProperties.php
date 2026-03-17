@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Connection\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container for connection properties for delegation of access to GCP
@@ -25,7 +25,7 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      * operation in BigQuery, the service account will be used to connect to the
      * desired resources in GCP.
      * The account ID is in the form of:
-     *   <service-1234>&#64;gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
+     *   <service-1234>\@gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -46,7 +46,7 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      *           operation in BigQuery, the service account will be used to connect to the
      *           desired resources in GCP.
      *           The account ID is in the form of:
-     *             <service-1234>&#64;gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
+     *             <service-1234>\@gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +63,7 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      * operation in BigQuery, the service account will be used to connect to the
      * desired resources in GCP.
      * The account ID is in the form of:
-     *   <service-1234>&#64;gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
+     *   <service-1234>\@gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -82,7 +82,7 @@ class CloudResourceProperties extends \Google\Protobuf\Internal\Message
      * operation in BigQuery, the service account will be used to connect to the
      * desired resources in GCP.
      * The account ID is in the form of:
-     *   <service-1234>&#64;gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
+     *   <service-1234>\@gcp-sa-bigquery-cloudresource.iam.gserviceaccount.com
      *
      * Generated from protobuf field <code>string service_account_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

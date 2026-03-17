@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FindNeighborsRequest\Query;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for RRF algorithm that combines search results.
@@ -72,5 +72,4 @@ class RRF extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

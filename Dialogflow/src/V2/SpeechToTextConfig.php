@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures speech transcription for
@@ -147,7 +147,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *           [Agent Speech
      *           settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech)
      *           for model selection.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type string[] $phrase_sets
      *           List of names of Cloud Speech phrase sets that are used for transcription.
      *           For phrase set limitations, please refer to [Cloud Speech API quotas and
      *           limits](https://cloud.google.com/speech-to-text/quotas#content).
@@ -296,7 +296,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPhraseSets()
     {
@@ -309,7 +309,7 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      * limits](https://cloud.google.com/speech-to-text/quotas#content).
      *
      * Generated from protobuf field <code>repeated string phrase_sets = 4 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPhraseSets($var)

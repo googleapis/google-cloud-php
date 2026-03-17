@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the ListDataSourceReferences method.
@@ -41,12 +41,12 @@ class ListDataSourceReferencesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $data_source_references
+     *     @type \Google\Cloud\BackupDR\V1\DataSourceReference[] $data_source_references
      *           The DataSourceReferences from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListDataSourceReferencesResponse extends \Google\Protobuf\Internal\Message
      * The DataSourceReferences from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.DataSourceReference data_source_references = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\DataSourceReference>
      */
     public function getDataSourceReferences()
     {
@@ -70,7 +70,7 @@ class ListDataSourceReferencesResponse extends \Google\Protobuf\Internal\Message
      * The DataSourceReferences from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.DataSourceReference data_source_references = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\DataSourceReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\DataSourceReference[] $var
      * @return $this
      */
     public function setDataSourceReferences($var)
@@ -113,7 +113,7 @@ class ListDataSourceReferencesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListDataSourceReferencesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

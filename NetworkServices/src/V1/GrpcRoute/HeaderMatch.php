@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\GrpcRoute;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A match against a collection of headers.
@@ -136,5 +136,4 @@ class HeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

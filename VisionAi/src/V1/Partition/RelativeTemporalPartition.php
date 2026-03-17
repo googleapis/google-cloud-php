@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\Partition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Partition of asset in relative time. Supported by VIDEO_ON_DEMAND corpus
@@ -119,5 +119,4 @@ class RelativeTemporalPartition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

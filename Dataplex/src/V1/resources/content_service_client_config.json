@@ -50,30 +50,20 @@
                 }
             },
             "methods": {
-                "CreateContent": {
+                "GetLocation": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
-                "DeleteContent": {
+                "ListLocations": {
                     "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
-                },
-                "GetContent": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_5_codes",
-                    "retry_params_name": "retry_policy_5_params"
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
                 },
                 "GetIamPolicy": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_5_codes",
                     "retry_params_name": "retry_policy_5_params"
-                },
-                "ListContent": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "retry_policy_6_codes",
-                    "retry_params_name": "retry_policy_6_params"
                 },
                 "SetIamPolicy": {
                     "timeout_millis": 60000,
@@ -84,21 +74,6 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_5_codes",
                     "retry_params_name": "retry_policy_5_params"
-                },
-                "UpdateContent": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_3_codes",
-                    "retry_params_name": "no_retry_3_params"
-                },
-                "GetLocation": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
-                },
-                "ListLocations": {
-                    "timeout_millis": 60000,
-                    "retry_codes_name": "no_retry_codes",
-                    "retry_params_name": "no_retry_params"
                 }
             }
         }

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Listing;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Restricted export config, used to configure restricted export on linked
@@ -141,5 +141,4 @@ class RestrictedExportConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

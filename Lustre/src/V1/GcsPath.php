@@ -5,8 +5,8 @@
 namespace Google\Cloud\Lustre\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a Cloud Storage bucket and, optionally, a path inside the bucket.

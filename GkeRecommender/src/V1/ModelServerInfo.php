@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeRecommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Model server information gives. Valid model server info combinations can

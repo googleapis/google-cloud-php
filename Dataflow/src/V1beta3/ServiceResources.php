@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Resources used by the Dataflow Service to run the job.
@@ -29,7 +29,7 @@ class ServiceResources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type string[] $zones
      *           Output only. List of Cloud Zones being used by the Dataflow Service for
      *           this job. Example: us-central1-c
      * }
@@ -44,7 +44,7 @@ class ServiceResources extends \Google\Protobuf\Internal\Message
      * this job. Example: us-central1-c
      *
      * Generated from protobuf field <code>repeated string zones = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getZones()
     {
@@ -56,7 +56,7 @@ class ServiceResources extends \Google\Protobuf\Internal\Message
      * this job. Example: us-central1-c
      *
      * Generated from protobuf field <code>repeated string zones = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setZones($var)

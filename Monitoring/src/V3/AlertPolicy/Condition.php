@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A condition is a true/false test that determines when an alerting policy
@@ -400,5 +400,4 @@ class Condition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

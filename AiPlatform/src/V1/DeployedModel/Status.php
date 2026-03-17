@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\DeployedModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Runtime status of the deployed model.
@@ -142,5 +142,4 @@ class Status extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

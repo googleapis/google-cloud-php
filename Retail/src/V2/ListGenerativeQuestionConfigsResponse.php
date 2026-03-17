@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListQuestions method.
@@ -28,7 +28,7 @@ class ListGenerativeQuestionConfigsResponse extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\GenerativeQuestionConfig>|\Google\Protobuf\Internal\RepeatedField $generative_question_configs
+     *     @type \Google\Cloud\Retail\V2\GenerativeQuestionConfig[] $generative_question_configs
      *           All the questions for a given catalog.
      * }
      */
@@ -41,7 +41,7 @@ class ListGenerativeQuestionConfigsResponse extends \Google\Protobuf\Internal\Me
      * All the questions for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.GenerativeQuestionConfig generative_question_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\GenerativeQuestionConfig>
      */
     public function getGenerativeQuestionConfigs()
     {
@@ -52,7 +52,7 @@ class ListGenerativeQuestionConfigsResponse extends \Google\Protobuf\Internal\Me
      * All the questions for a given catalog.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.GenerativeQuestionConfig generative_question_configs = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\GenerativeQuestionConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\GenerativeQuestionConfig[] $var
      * @return $this
      */
     public function setGenerativeQuestionConfigs($var)

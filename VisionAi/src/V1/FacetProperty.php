@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Central configuration for a facet.
@@ -66,7 +66,7 @@ class FacetProperty extends \Google\Protobuf\Internal\Message
      *           Custom range facet bucket config.
      *     @type \Google\Cloud\VisionAI\V1\FacetProperty\DateTimeBucketSpec $datetime_bucket_spec
      *           Datetime range facet bucket config.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mapped_fields
+     *     @type string[] $mapped_fields
      *           Name of the facets, which are the dimensions users want to use to refine
      *           search results. `mapped_fields` will match UserSpecifiedDataSchema keys.
      *           For example, user can add a bunch of UGAs with the same key, such as
@@ -201,7 +201,7 @@ class FacetProperty extends \Google\Protobuf\Internal\Message
      * mapped_fields must not be empty.
      *
      * Generated from protobuf field <code>repeated string mapped_fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMappedFields()
     {
@@ -222,7 +222,7 @@ class FacetProperty extends \Google\Protobuf\Internal\Message
      * mapped_fields must not be empty.
      *
      * Generated from protobuf field <code>repeated string mapped_fields = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMappedFields($var)

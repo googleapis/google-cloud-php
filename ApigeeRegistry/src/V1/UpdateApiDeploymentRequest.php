@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for UpdateApiDeployment.
@@ -18,7 +18,7 @@ class UpdateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The deployment to update.
      * The `name` field is used to identify the deployment to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;deployments/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}deployments/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiDeployment api_deployment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -70,7 +70,7 @@ class UpdateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $api_deployment
      *           Required. The deployment to update.
      *           The `name` field is used to identify the deployment to update.
-     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;deployments/&#42;`
+     *           Format: `projects/{@*}locations/{@*}apis/{@*}deployments/*`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
@@ -89,7 +89,7 @@ class UpdateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The deployment to update.
      * The `name` field is used to identify the deployment to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;deployments/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}deployments/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiDeployment api_deployment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ApigeeRegistry\V1\ApiDeployment|null
@@ -112,7 +112,7 @@ class UpdateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The deployment to update.
      * The `name` field is used to identify the deployment to update.
-     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;deployments/&#42;`
+     * Format: `projects/{@*}locations/{@*}apis/{@*}deployments/*`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.ApiDeployment api_deployment = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $var

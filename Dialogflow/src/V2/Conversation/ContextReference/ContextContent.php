@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Conversation\ContextReference;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contents ingested.
@@ -192,5 +192,4 @@ class ContextContent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

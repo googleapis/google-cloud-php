@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,9 +19,9 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the search engine placement, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`
+     * `projects/{@*}locations/global/catalogs/default_catalog/placements/default_search`
      * or
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     * `projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
@@ -30,7 +30,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
     protected $placement = '';
     /**
      * Required. The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`.
      * Use "default_branch" as the branch ID or leave this field empty, to search
      * products under the default branch.
      *
@@ -138,21 +138,21 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $placement
      *           Required. The resource name of the search engine placement, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`
+     *           `projects/{@*}locations/global/catalogs/default_catalog/placements/default_search`
      *           or
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     *           `projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      *           This field is used to identify the serving config name and the set
      *           of models that will be used to make the search.
      *     @type string $branch
      *           Required. The branch resource name, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/0`.
      *           Use "default_branch" as the branch ID or leave this field empty, to search
      *           products under the default branch.
      *     @type string $query
      *           Optional. Raw search query to be searched for.
      *           If this field is empty, the request is considered a category browsing
      *           request.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type string[] $page_categories
      *           Optional. The categories associated with a category page. Must be set for
      *           category navigation queries to achieve good search quality. The format
      *           should be the same as
@@ -202,7 +202,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      *           See [Google Cloud
      *           Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements)
      *           for more details.
-     *     @type array<\Google\Cloud\Retail\V2\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
+     *     @type \Google\Cloud\Retail\V2\SafetySetting[] $safety_settings
      *           Optional. The safety settings to be applied to the generated content.
      * }
      */
@@ -213,9 +213,9 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the search engine placement, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`
+     * `projects/{@*}locations/global/catalogs/default_catalog/placements/default_search`
      * or
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     * `projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
@@ -229,9 +229,9 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the search engine placement, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/placements/default_search`
+     * `projects/{@*}locations/global/catalogs/default_catalog/placements/default_search`
      * or
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     * `projects/{@*}locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
      * This field is used to identify the serving config name and the set
      * of models that will be used to make the search.
      *
@@ -249,7 +249,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`.
      * Use "default_branch" as the branch ID or leave this field empty, to search
      * products under the default branch.
      *
@@ -263,7 +263,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The branch resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/0`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/0`.
      * Use "default_branch" as the branch ID or leave this field empty, to search
      * products under the default branch.
      *
@@ -322,7 +322,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
      *
      * Generated from protobuf field <code>repeated string page_categories = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPageCategories()
     {
@@ -342,7 +342,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      * "pageCategories" : ["Sales > 2017 Black Friday Deals"].
      *
      * Generated from protobuf field <code>repeated string page_categories = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPageCategories($var)
@@ -597,7 +597,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      * Optional. The safety settings to be applied to the generated content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SafetySetting safety_settings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SafetySetting>
      */
     public function getSafetySettings()
     {
@@ -608,7 +608,7 @@ class ConversationalSearchRequest extends \Google\Protobuf\Internal\Message
      * Optional. The safety settings to be applied to the generated content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SafetySetting safety_settings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Retail\V2\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SafetySetting[] $var
      * @return $this
      */
     public function setSafetySettings($var)

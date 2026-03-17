@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Risk analysis result for an event.
@@ -61,15 +61,15 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      *           Output only. Legitimate event score from 0.0 to 1.0.
      *           (1.0 means very likely legitimate traffic while 0.0 means very likely
      *           non-legitimate traffic).
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type int[] $reasons
      *           Output only. Reasons contributing to the risk analysis verdict.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extended_verdict_reasons
+     *     @type string[] $extended_verdict_reasons
      *           Output only. Extended verdict reasons to be used for experimentation only.
      *           The set of possible reasons is subject to change.
      *     @type int $challenge
      *           Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE
      *           keys.
-     *     @type array<\Google\Cloud\RecaptchaEnterprise\V1\Bot>|\Google\Protobuf\Internal\RepeatedField $verified_bots
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\Bot[] $verified_bots
      *           Output only. Bots with identities that have been verified by reCAPTCHA and
      *           detected in the event.
      * }
@@ -113,7 +113,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * Output only. Reasons contributing to the risk analysis verdict.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getReasons()
     {
@@ -124,7 +124,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * Output only. Reasons contributing to the risk analysis verdict.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.RiskAnalysis.ClassificationReason reasons = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setReasons($var)
@@ -140,7 +140,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * The set of possible reasons is subject to change.
      *
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExtendedVerdictReasons()
     {
@@ -152,7 +152,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * The set of possible reasons is subject to change.
      *
      * Generated from protobuf field <code>repeated string extended_verdict_reasons = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExtendedVerdictReasons($var)
@@ -196,7 +196,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * detected in the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.Bot verified_bots = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\RecaptchaEnterprise\V1\Bot>
      */
     public function getVerifiedBots()
     {
@@ -208,7 +208,7 @@ class RiskAnalysis extends \Google\Protobuf\Internal\Message
      * detected in the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.Bot verified_bots = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\RecaptchaEnterprise\V1\Bot>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\Bot[] $var
      * @return $this
      */
     public function setVerifiedBots($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The http headers.
@@ -31,7 +31,7 @@ class Header extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $key
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type string[] $values
      * }
      */
     public function __construct($data = NULL) {
@@ -63,7 +63,7 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string values = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getValues()
     {
@@ -72,7 +72,7 @@ class Header extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated string values = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setValues($var)

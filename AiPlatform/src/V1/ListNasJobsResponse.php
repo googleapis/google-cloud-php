@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class ListNasJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NasJob>|\Google\Protobuf\Internal\RepeatedField $nas_jobs
+     *     @type \Google\Cloud\AIPlatform\V1\NasJob[] $nas_jobs
      *           List of NasJobs in the requested page.
      *           [NasJob.nas_job_output][google.cloud.aiplatform.v1.NasJob.nas_job_output]
      *           of the jobs will not be returned.
@@ -62,7 +62,7 @@ class ListNasJobsResponse extends \Google\Protobuf\Internal\Message
      * of the jobs will not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasJob nas_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NasJob>
      */
     public function getNasJobs()
     {
@@ -75,7 +75,7 @@ class ListNasJobsResponse extends \Google\Protobuf\Internal\Message
      * of the jobs will not be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NasJob nas_jobs = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NasJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NasJob[] $var
      * @return $this
      */
     public function setNasJobs($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes full or partial data disk assignment information of the computation
@@ -37,7 +37,7 @@ class StreamingComputationRanges extends \Google\Protobuf\Internal\Message
      *
      *     @type string $computation_id
      *           The ID of the computation.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\KeyRangeDataDiskAssignment>|\Google\Protobuf\Internal\RepeatedField $range_assignments
+     *     @type \Google\Cloud\Dataflow\V1beta3\KeyRangeDataDiskAssignment[] $range_assignments
      *           Data disk assignments for ranges from this computation.
      * }
      */
@@ -76,7 +76,7 @@ class StreamingComputationRanges extends \Google\Protobuf\Internal\Message
      * Data disk assignments for ranges from this computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.KeyRangeDataDiskAssignment range_assignments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\KeyRangeDataDiskAssignment>
      */
     public function getRangeAssignments()
     {
@@ -87,7 +87,7 @@ class StreamingComputationRanges extends \Google\Protobuf\Internal\Message
      * Data disk assignments for ranges from this computation.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.KeyRangeDataDiskAssignment range_assignments = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\KeyRangeDataDiskAssignment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\KeyRangeDataDiskAssignment[] $var
      * @return $this
      */
     public function setRangeAssignments($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListDeploymentResourcePools method.
@@ -35,7 +35,7 @@ class ListDeploymentResourcePoolsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\DeploymentResourcePool>|\Google\Protobuf\Internal\RepeatedField $deployment_resource_pools
+     *     @type \Google\Cloud\AIPlatform\V1\DeploymentResourcePool[] $deployment_resource_pools
      *           The DeploymentResourcePools from the specified location.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListDeploymentResourcePoolsResponse extends \Google\Protobuf\Internal\Mess
      * The DeploymentResourcePools from the specified location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeploymentResourcePool deployment_resource_pools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\DeploymentResourcePool>
      */
     public function getDeploymentResourcePools()
     {
@@ -62,7 +62,7 @@ class ListDeploymentResourcePoolsResponse extends \Google\Protobuf\Internal\Mess
      * The DeploymentResourcePools from the specified location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeploymentResourcePool deployment_resource_pools = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\DeploymentResourcePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\DeploymentResourcePool[] $var
      * @return $this
      */
     public function setDeploymentResourcePools($var)

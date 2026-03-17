@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List GlossaryTerms Response
@@ -41,12 +41,12 @@ class ListGlossaryTermsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $terms
+     *     @type \Google\Cloud\Dataplex\V1\GlossaryTerm[] $terms
      *           Lists the GlossaryTerms in the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable_locations
+     *     @type string[] $unreachable_locations
      *           Locations that the service couldn't reach.
      * }
      */
@@ -59,7 +59,7 @@ class ListGlossaryTermsResponse extends \Google\Protobuf\Internal\Message
      * Lists the GlossaryTerms in the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.GlossaryTerm terms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\GlossaryTerm>
      */
     public function getTerms()
     {
@@ -70,7 +70,7 @@ class ListGlossaryTermsResponse extends \Google\Protobuf\Internal\Message
      * Lists the GlossaryTerms in the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.GlossaryTerm terms = 1;</code>
-     * @param array<\Google\Cloud\Dataplex\V1\GlossaryTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\GlossaryTerm[] $var
      * @return $this
      */
     public function setTerms($var)
@@ -113,7 +113,7 @@ class ListGlossaryTermsResponse extends \Google\Protobuf\Internal\Message
      * Locations that the service couldn't reach.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachableLocations()
     {
@@ -124,7 +124,7 @@ class ListGlossaryTermsResponse extends \Google\Protobuf\Internal\Message
      * Locations that the service couldn't reach.
      *
      * Generated from protobuf field <code>repeated string unreachable_locations = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachableLocations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApigeeRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for CreateInstance.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Parent resource of the Instance, of the form: `projects/&#42;&#47;locations/&#42;`
+     * Required. Parent resource of the Instance, of the form: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -61,7 +61,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Parent resource of the Instance, of the form: `projects/&#42;&#47;locations/&#42;`
+     *           Required. Parent resource of the Instance, of the form: `projects/{@*}locations/*`
      *     @type string $instance_id
      *           Required. Identifier to assign to the Instance. Must be unique within scope of the
      *           parent resource.
@@ -75,7 +75,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent resource of the Instance, of the form: `projects/&#42;&#47;locations/&#42;`
+     * Required. Parent resource of the Instance, of the form: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -86,7 +86,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Parent resource of the Instance, of the form: `projects/&#42;&#47;locations/&#42;`
+     * Required. Parent resource of the Instance, of the form: `projects/{@*}locations/*`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

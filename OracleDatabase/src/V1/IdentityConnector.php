@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The identity connector details which will allow OCI to securely access
@@ -19,7 +19,7 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A google managed service account on which customers can grant
      * roles to access resources in the customer project. Example:
-     * `p176944527254-55-75119d87fd8f&#64;gcp-sa-oci.iam.gserviceaccount.com`
+     * `p176944527254-55-75119d87fd8f\@gcp-sa-oci.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_agent_email = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,7 +40,7 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
      *     @type string $service_agent_email
      *           Output only. A google managed service account on which customers can grant
      *           roles to access resources in the customer project. Example:
-     *           `p176944527254-55-75119d87fd8f&#64;gcp-sa-oci.iam.gserviceaccount.com`
+     *           `p176944527254-55-75119d87fd8f\@gcp-sa-oci.iam.gserviceaccount.com`
      *     @type int $connection_state
      *           Output only. The connection state of the identity connector.
      * }
@@ -53,7 +53,7 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A google managed service account on which customers can grant
      * roles to access resources in the customer project. Example:
-     * `p176944527254-55-75119d87fd8f&#64;gcp-sa-oci.iam.gserviceaccount.com`
+     * `p176944527254-55-75119d87fd8f\@gcp-sa-oci.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_agent_email = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -66,7 +66,7 @@ class IdentityConnector extends \Google\Protobuf\Internal\Message
     /**
      * Output only. A google managed service account on which customers can grant
      * roles to access resources in the customer project. Example:
-     * `p176944527254-55-75119d87fd8f&#64;gcp-sa-oci.iam.gserviceaccount.com`
+     * `p176944527254-55-75119d87fd8f\@gcp-sa-oci.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>string service_agent_email = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for ListResourceBackupConfigs.
@@ -34,7 +34,7 @@ class ListResourceBackupConfigsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BackupDR\V1\ResourceBackupConfig>|\Google\Protobuf\Internal\RepeatedField $resource_backup_configs
+     *     @type \Google\Cloud\BackupDR\V1\ResourceBackupConfig[] $resource_backup_configs
      *           The list of ResourceBackupConfigs for the specified scope.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListResourceBackupConfigsResponse extends \Google\Protobuf\Internal\Messag
      * The list of ResourceBackupConfigs for the specified scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ResourceBackupConfig resource_backup_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\ResourceBackupConfig>
      */
     public function getResourceBackupConfigs()
     {
@@ -60,7 +60,7 @@ class ListResourceBackupConfigsResponse extends \Google\Protobuf\Internal\Messag
      * The list of ResourceBackupConfigs for the specified scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.ResourceBackupConfig resource_backup_configs = 1;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\ResourceBackupConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\ResourceBackupConfig[] $var
      * @return $this
      */
     public function setResourceBackupConfigs($var)

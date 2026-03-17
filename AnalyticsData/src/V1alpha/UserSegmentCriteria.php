@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A user matches a criteria if the user's events meet the conditions in the
@@ -39,11 +39,11 @@ class UserSegmentCriteria extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1alpha\UserSegmentConditionGroup>|\Google\Protobuf\Internal\RepeatedField $and_condition_groups
+     *     @type \Google\Analytics\Data\V1alpha\UserSegmentConditionGroup[] $and_condition_groups
      *           A user matches this criteria if the user matches each of these
      *           `andConditionGroups` and each of the `andSequenceGroups`.
      *           `andConditionGroups` may be empty if `andSequenceGroups` are specified.
-     *     @type array<\Google\Analytics\Data\V1alpha\UserSegmentSequenceGroup>|\Google\Protobuf\Internal\RepeatedField $and_sequence_groups
+     *     @type \Google\Analytics\Data\V1alpha\UserSegmentSequenceGroup[] $and_sequence_groups
      *           A user matches this criteria if the user matches each of these
      *           `andSequenceGroups` and each of the `andConditionGroups`.
      *           `andSequenceGroups` may be empty if `andConditionGroups` are specified.
@@ -60,7 +60,7 @@ class UserSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andConditionGroups` may be empty if `andSequenceGroups` are specified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSegmentConditionGroup and_condition_groups = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\UserSegmentConditionGroup>
      */
     public function getAndConditionGroups()
     {
@@ -73,7 +73,7 @@ class UserSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andConditionGroups` may be empty if `andSequenceGroups` are specified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSegmentConditionGroup and_condition_groups = 1;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\UserSegmentConditionGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\UserSegmentConditionGroup[] $var
      * @return $this
      */
     public function setAndConditionGroups($var)
@@ -90,7 +90,7 @@ class UserSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andSequenceGroups` may be empty if `andConditionGroups` are specified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSegmentSequenceGroup and_sequence_groups = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\UserSegmentSequenceGroup>
      */
     public function getAndSequenceGroups()
     {
@@ -103,7 +103,7 @@ class UserSegmentCriteria extends \Google\Protobuf\Internal\Message
      * `andSequenceGroups` may be empty if `andConditionGroups` are specified.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.UserSegmentSequenceGroup and_sequence_groups = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\UserSegmentSequenceGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\UserSegmentSequenceGroup[] $var
      * @return $this
      */
     public function setAndSequenceGroups($var)

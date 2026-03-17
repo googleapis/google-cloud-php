@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a list of targeted request platforms.
@@ -28,7 +28,7 @@ class RequestPlatformTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $request_platforms
+     *     @type int[] $request_platforms
      *           Optional. The list of request platforms that should be targeted.
      * }
      */
@@ -41,7 +41,7 @@ class RequestPlatformTargeting extends \Google\Protobuf\Internal\Message
      * Optional. The list of request platforms that should be targeted.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.RequestPlatformEnum.RequestPlatform request_platforms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRequestPlatforms()
     {
@@ -52,7 +52,7 @@ class RequestPlatformTargeting extends \Google\Protobuf\Internal\Message
      * Optional. The list of request platforms that should be targeted.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.RequestPlatformEnum.RequestPlatform request_platforms = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRequestPlatforms($var)

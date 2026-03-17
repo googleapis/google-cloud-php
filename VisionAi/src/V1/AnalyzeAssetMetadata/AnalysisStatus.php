@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\AnalyzeAssetMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The status of analysis on each search capability.
@@ -128,5 +128,4 @@ class AnalysisStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

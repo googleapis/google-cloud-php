@@ -5,8 +5,8 @@
 namespace Google\Cloud\AssuredWorkloads\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Operation metadata to give request details of CreateWorkload.
@@ -63,7 +63,7 @@ class CreateWorkloadOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $compliance_regime
      *           Optional. Compliance controls that should be applied to the resources managed by
      *           the workload.
-     *     @type array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $resource_settings
+     *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[] $resource_settings
      *           Optional. Resource properties in the input that are used for creating/customizing
      *           workload resources.
      * }
@@ -194,7 +194,7 @@ class CreateWorkloadOperationMetadata extends \Google\Protobuf\Internal\Message
      * workload resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings>
      */
     public function getResourceSettings()
     {
@@ -206,7 +206,7 @@ class CreateWorkloadOperationMetadata extends \Google\Protobuf\Internal\Message
      * workload resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[] $var
      * @return $this
      */
     public function setResourceSettings($var)

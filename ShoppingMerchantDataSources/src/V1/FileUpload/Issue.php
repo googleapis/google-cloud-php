@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1\FileUpload;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An error occurring in the data source, like "invalid price".
@@ -254,5 +254,4 @@ class Issue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

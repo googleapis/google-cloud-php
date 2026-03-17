@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Model;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information about the original Model if this Model is a copy.
@@ -18,7 +18,7 @@ class OriginalModelInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Model this Model is a copy of,
      * including the revision. Format:
-     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model_id}\@{version_id}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -33,7 +33,7 @@ class OriginalModelInfo extends \Google\Protobuf\Internal\Message
      *     @type string $model
      *           Output only. The resource name of the Model this Model is a copy of,
      *           including the revision. Format:
-     *           `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}`
+     *           `projects/{project}/locations/{location}/models/{model_id}\@{version_id}`
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class OriginalModelInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Model this Model is a copy of,
      * including the revision. Format:
-     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model_id}\@{version_id}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -57,7 +57,7 @@ class OriginalModelInfo extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the Model this Model is a copy of,
      * including the revision. Format:
-     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}`
+     * `projects/{project}/locations/{location}/models/{model_id}\@{version_id}`
      *
      * Generated from protobuf field <code>string model = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -72,5 +72,4 @@ class OriginalModelInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

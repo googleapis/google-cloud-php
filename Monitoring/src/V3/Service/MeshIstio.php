@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8
@@ -145,5 +145,4 @@ class MeshIstio extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

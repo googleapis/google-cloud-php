@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A predicted [FunctionCall] returned from the model that contains a string
@@ -60,7 +60,7 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $args
      *           Optional. The function parameters and values in JSON object format.
      *           See [FunctionDeclaration.parameters] for parameter details.
-     *     @type array<\Google\Cloud\AIPlatform\V1\PartialArg>|\Google\Protobuf\Internal\RepeatedField $partial_args
+     *     @type \Google\Cloud\AIPlatform\V1\PartialArg[] $partial_args
      *           Optional. The partial argument value of the function call.
      *           If provided, represents the arguments/fields that are streamed
      *           incrementally.
@@ -147,7 +147,7 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
      * incrementally.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PartialArg partial_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PartialArg>
      */
     public function getPartialArgs()
     {
@@ -160,7 +160,7 @@ class FunctionCall extends \Google\Protobuf\Internal\Message
      * incrementally.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PartialArg partial_args = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PartialArg>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PartialArg[] $var
      * @return $this
      */
     public function setPartialArgs($var)

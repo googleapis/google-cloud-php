@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata about a [ResultSet][google.spanner.v1.ResultSet] or
@@ -39,7 +39,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * A SQL query can be parameterized. In PLAN mode, these parameters can be
      * undeclared. This indicates the field names and types for those undeclared
      * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
-     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * Users where UserId = \@userId and UserName = \@userName "` could return a
      * `undeclared_parameters` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },
@@ -71,7 +71,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      *           A SQL query can be parameterized. In PLAN mode, these parameters can be
      *           undeclared. This indicates the field names and types for those undeclared
      *           parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
-     *           Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     *           Users where UserId = \@userId and UserName = \@userName "` could return a
      *           `undeclared_parameters` value like:
      *               "fields": [
      *                 { "name": "UserId", "type": { "code": "INT64" } },
@@ -174,7 +174,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * A SQL query can be parameterized. In PLAN mode, these parameters can be
      * undeclared. This indicates the field names and types for those undeclared
      * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
-     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * Users where UserId = \@userId and UserName = \@userName "` could return a
      * `undeclared_parameters` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },
@@ -203,7 +203,7 @@ class ResultSetMetadata extends \Google\Protobuf\Internal\Message
      * A SQL query can be parameterized. In PLAN mode, these parameters can be
      * undeclared. This indicates the field names and types for those undeclared
      * parameters in the SQL query. For example, a SQL query like `"SELECT * FROM
-     * Users where UserId = &#64;userId and UserName = &#64;userName "` could return a
+     * Users where UserId = \@userId and UserName = \@userName "` could return a
      * `undeclared_parameters` value like:
      *     "fields": [
      *       { "name": "UserId", "type": { "code": "INT64" } },

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\KnowledgeAssistAnswer\KnowledgeAnswer\GenerativeSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Snippet Source for a Generative Prediction.
@@ -176,5 +176,4 @@ class Snippet extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The actual payload that contains the SBOM Reference data.
@@ -55,7 +55,7 @@ class SbomReferenceIntotoPayload extends \Google\Protobuf\Internal\Message
      *           Identifier for the schema of the Statement.
      *     @type string $predicate_type
      *           URI identifying the type of the Predicate.
-     *     @type array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $subject
+     *     @type \Grafeas\V1\Subject[] $subject
      *           Set of software artifacts that the attestation applies to. Each element
      *           represents a single software artifact.
      *     @type \Grafeas\V1\SbomReferenceIntotoPredicate $predicate
@@ -125,7 +125,7 @@ class SbomReferenceIntotoPayload extends \Google\Protobuf\Internal\Message
      * represents a single software artifact.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Subject>
      */
     public function getSubject()
     {
@@ -137,7 +137,7 @@ class SbomReferenceIntotoPayload extends \Google\Protobuf\Internal\Message
      * represents a single software artifact.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 3;</code>
-     * @param array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Subject[] $var
      * @return $this
      */
     public function setSubject($var)

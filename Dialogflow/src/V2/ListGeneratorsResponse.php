@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response of ListGenerators.
@@ -35,7 +35,7 @@ class ListGeneratorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Generator>|\Google\Protobuf\Internal\RepeatedField $generators
+     *     @type \Google\Cloud\Dialogflow\V2\Generator[] $generators
      *           List of generators retrieved.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -51,7 +51,7 @@ class ListGeneratorsResponse extends \Google\Protobuf\Internal\Message
      * List of generators retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Generator generators = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Generator>
      */
     public function getGenerators()
     {
@@ -62,7 +62,7 @@ class ListGeneratorsResponse extends \Google\Protobuf\Internal\Message
      * List of generators retrieved.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Generator generators = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Generator>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Generator[] $var
      * @return $this
      */
     public function setGenerators($var)

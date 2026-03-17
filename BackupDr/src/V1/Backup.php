@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing a Backup object.
@@ -173,10 +173,10 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           other.
      *     @type int $state
      *           Output only. The Backup resource instance state.
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupLock>|\Google\Protobuf\Internal\RepeatedField $service_locks
+     *     @type \Google\Cloud\BackupDR\V1\BackupLock[] $service_locks
      *           Output only. The list of BackupLocks taken by the service to prevent the
      *           deletion of the backup.
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupLock>|\Google\Protobuf\Internal\RepeatedField $backup_appliance_locks
+     *     @type \Google\Cloud\BackupDR\V1\BackupLock[] $backup_appliance_locks
      *           Optional. The list of BackupLocks taken by the accessor Backup Appliance.
      *     @type \Google\Cloud\BackupDR\V1\ComputeInstanceBackupProperties $compute_instance_backup_properties
      *           Output only. Compute Engine specific backup properties.
@@ -201,7 +201,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BackupDR\V1\BackupGcpResource $gcp_resource
      *           Output only. Unique identifier of the GCP resource that is being backed
      *           up.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kms_key_versions
+     *     @type string[] $kms_key_versions
      *           Optional. Output only. The list of KMS key versions used to encrypt the
      *           backup.
      * }
@@ -598,7 +598,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * deletion of the backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLock service_locks = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupLock>
      */
     public function getServiceLocks()
     {
@@ -610,7 +610,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * deletion of the backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLock service_locks = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupLock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupLock[] $var
      * @return $this
      */
     public function setServiceLocks($var)
@@ -625,7 +625,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Optional. The list of BackupLocks taken by the accessor Backup Appliance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLock backup_appliance_locks = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupLock>
      */
     public function getBackupApplianceLocks()
     {
@@ -636,7 +636,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Optional. The list of BackupLocks taken by the accessor Backup Appliance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupLock backup_appliance_locks = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupLock>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupLock[] $var
      * @return $this
      */
     public function setBackupApplianceLocks($var)
@@ -995,7 +995,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * backup.
      *
      * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getKmsKeyVersions()
     {
@@ -1007,7 +1007,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * backup.
      *
      * Generated from protobuf field <code>repeated string kms_key_versions = 33 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setKmsKeyVersions($var)

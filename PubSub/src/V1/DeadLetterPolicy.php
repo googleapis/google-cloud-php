@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dead lettering is done on a best effort basis. The same message might be
@@ -22,7 +22,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The name of the topic to which dead letter messages should be
      * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
      * service account associated with the enclosing subscription's parent project
-     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * (i.e., service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must
      * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic
@@ -56,7 +56,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the topic to which dead letter messages should be
      *           published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
      *           service account associated with the enclosing subscription's parent project
-     *           (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     *           (i.e., service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must
      *           have permission to Publish() to this topic.
      *           The operation will fail if the topic does not exist.
      *           Users should ensure that there is a subscription attached to this topic
@@ -82,7 +82,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The name of the topic to which dead letter messages should be
      * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
      * service account associated with the enclosing subscription's parent project
-     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * (i.e., service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must
      * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic
@@ -100,7 +100,7 @@ class DeadLetterPolicy extends \Google\Protobuf\Internal\Message
      * Optional. The name of the topic to which dead letter messages should be
      * published. Format is `projects/{project}/topics/{topic}`.The Pub/Sub
      * service account associated with the enclosing subscription's parent project
-     * (i.e., service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com) must
+     * (i.e., service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com) must
      * have permission to Publish() to this topic.
      * The operation will fail if the topic does not exist.
      * Users should ensure that there is a subscription attached to this topic

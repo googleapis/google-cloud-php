@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SummarizeMaintenances custom method.
@@ -17,7 +17,7 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent of the resource maintenance.
-     * eg. `projects/123/locations/&#42;`
+     * eg. `projects/123/locations/*`
      *
      * Generated from protobuf field <code>string parent = 10006 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -76,7 +76,7 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent of the resource maintenance.
-     *           eg. `projects/123/locations/&#42;`
+     *           eg. `projects/123/locations/*`
      *     @type int $page_size
      *           The maximum number of resource maintenances to send per page. The default
      *           page size is 20 and the maximum is 1000.
@@ -100,7 +100,7 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent of the resource maintenance.
-     * eg. `projects/123/locations/&#42;`
+     * eg. `projects/123/locations/*`
      *
      * Generated from protobuf field <code>string parent = 10006 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -112,7 +112,7 @@ class SummarizeMaintenancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent of the resource maintenance.
-     * eg. `projects/123/locations/&#42;`
+     * eg. `projects/123/locations/*`
      *
      * Generated from protobuf field <code>string parent = 10006 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

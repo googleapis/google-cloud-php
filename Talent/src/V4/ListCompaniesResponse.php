@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The List companies response object.
@@ -41,7 +41,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Talent\V4\Company>|\Google\Protobuf\Internal\RepeatedField $companies
+     *     @type \Google\Cloud\Talent\V4\Company[] $companies
      *           Companies for the current client.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -59,7 +59,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      * Companies for the current client.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Company companies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\Company>
      */
     public function getCompanies()
     {
@@ -70,7 +70,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      * Companies for the current client.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Company companies = 1;</code>
-     * @param array<\Google\Cloud\Talent\V4\Company>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\Company[] $var
      * @return $this
      */
     public function setCompanies($var)

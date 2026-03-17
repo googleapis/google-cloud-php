@@ -5,8 +5,8 @@
 namespace Google\Maps\RouteOptimization\V1\ShipmentModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a duration and distance matrix from visit and vehicle start
@@ -43,7 +43,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type \Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix\Row[] $rows
      *           Specifies the rows of the duration and distance matrix. It must have as
      *           many elements as
      *           [ShipmentModel.duration_distance_matrix_src_tags][google.maps.routeoptimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
@@ -68,7 +68,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      * [ShipmentModel.duration_distance_matrix_src_tags][google.maps.routeoptimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix\Row>
      */
     public function getRows()
     {
@@ -81,7 +81,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      * [ShipmentModel.duration_distance_matrix_src_tags][google.maps.routeoptimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.maps.routeoptimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
-     * @param array<\Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\RouteOptimization\V1\ShipmentModel\DurationDistanceMatrix\Row[] $var
      * @return $this
      */
     public function setRows($var)
@@ -131,5 +131,4 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

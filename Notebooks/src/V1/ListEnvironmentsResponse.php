@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for listing environments.
@@ -41,12 +41,12 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Notebooks\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type \Google\Cloud\Notebooks\V1\Environment[] $environments
      *           A list of returned environments.
      *     @type string $next_page_token
      *           A page token that can be used to continue listing from the last result
      *           in the next list call.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -59,7 +59,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * A list of returned environments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Environment environments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\Environment>
      */
     public function getEnvironments()
     {
@@ -70,7 +70,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * A list of returned environments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.Environment environments = 1;</code>
-     * @param array<\Google\Cloud\Notebooks\V1\Environment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\Environment[] $var
      * @return $this
      */
     public function setEnvironments($var)
@@ -113,7 +113,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -124,7 +124,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

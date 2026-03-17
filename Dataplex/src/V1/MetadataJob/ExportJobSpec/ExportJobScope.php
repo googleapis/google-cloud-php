@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\MetadataJob\ExportJobSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The scope of the export job.
@@ -92,7 +92,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      *           - If `false`, you must specify a list of projects or a list of entry
      *           groups whose entries you want to export.
      *           The default is `false`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type string[] $projects
      *           The projects whose metadata you want to export, in the format
      *           `projects/{project_id_or_number}`. Only the entries from
      *           the specified projects are exported.
@@ -101,7 +101,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      *           If you set the job scope to be a list of projects, then set the
      *           organization-level export flag to false and don't provide a list of
      *           entry groups.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_groups
+     *     @type string[] $entry_groups
      *           The entry groups whose metadata you want to export, in the format
      *           `projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}`.
      *           Only the entries in the specified entry groups are exported.
@@ -110,13 +110,13 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      *           If you set the job scope to be a list of entry groups, then set the
      *           organization-level export flag to false and don't provide a list of
      *           projects.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entry_types
+     *     @type string[] $entry_types
      *           The entry types that are in scope for the export job, specified as
      *           relative resource names in the format
      *           `projects/{project_id_or_number}/locations/{location}/entryTypes/{entry_type_id}`.
      *           Only entries that belong to the specified entry types are affected by
      *           the job.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aspect_types
+     *     @type string[] $aspect_types
      *           The aspect types that are in scope for the export job, specified as
      *           relative resource names in the format
      *           `projects/{project_id_or_number}/locations/{location}/aspectTypes/{aspect_type_id}`.
@@ -182,7 +182,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * entry groups.
      *
      * Generated from protobuf field <code>repeated string projects = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProjects()
     {
@@ -200,7 +200,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * entry groups.
      *
      * Generated from protobuf field <code>repeated string projects = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProjects($var)
@@ -222,7 +222,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * projects.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntryGroups()
     {
@@ -240,7 +240,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * projects.
      *
      * Generated from protobuf field <code>repeated string entry_groups = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntryGroups($var)
@@ -259,7 +259,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * the job.
      *
      * Generated from protobuf field <code>repeated string entry_types = 4 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEntryTypes()
     {
@@ -274,7 +274,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * the job.
      *
      * Generated from protobuf field <code>repeated string entry_types = 4 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEntryTypes($var)
@@ -293,7 +293,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * the job.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 5 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAspectTypes()
     {
@@ -308,7 +308,7 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
      * the job.
      *
      * Generated from protobuf field <code>repeated string aspect_types = 5 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAspectTypes($var)
@@ -320,5 +320,4 @@ class ExportJobScope extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

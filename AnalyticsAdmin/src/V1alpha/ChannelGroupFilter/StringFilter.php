@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\ChannelGroupFilter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter where the field value is a String. The match is case insensitive.
@@ -98,5 +98,4 @@ class StringFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

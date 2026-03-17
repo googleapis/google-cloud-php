@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A widget that creates one or more UI items that users can select.
@@ -117,7 +117,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      *           Selection types support different types of interactions. For example, users
      *           can select one or more checkboxes, but they can only select one value from
      *           a dropdown menu.
-     *     @type array<\Google\Apps\Card\V1\SelectionInput\SelectionItem>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Apps\Card\V1\SelectionInput\SelectionItem[] $items
      *           An array of selectable items. For example, an array of radio buttons or
      *           checkboxes. Supports up to 100 items.
      *     @type \Google\Apps\Card\V1\Action $on_change_action
@@ -251,7 +251,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * checkboxes. Supports up to 100 items.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.SelectionInput.SelectionItem items = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\SelectionInput\SelectionItem>
      */
     public function getItems()
     {
@@ -263,7 +263,7 @@ class SelectionInput extends \Google\Protobuf\Internal\Message
      * checkboxes. Supports up to 100 items.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.SelectionInput.SelectionItem items = 4;</code>
-     * @param array<\Google\Apps\Card\V1\SelectionInput\SelectionItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\SelectionInput\SelectionItem[] $var
      * @return $this
      */
     public function setItems($var)

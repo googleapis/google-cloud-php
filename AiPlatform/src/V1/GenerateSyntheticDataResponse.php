@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response containing the generated data.
@@ -28,7 +28,7 @@ class GenerateSyntheticDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\SyntheticExample>|\Google\Protobuf\Internal\RepeatedField $synthetic_examples
+     *     @type \Google\Cloud\AIPlatform\V1\SyntheticExample[] $synthetic_examples
      *           A list of generated synthetic examples.
      * }
      */
@@ -41,7 +41,7 @@ class GenerateSyntheticDataResponse extends \Google\Protobuf\Internal\Message
      * A list of generated synthetic examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticExample synthetic_examples = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SyntheticExample>
      */
     public function getSyntheticExamples()
     {
@@ -52,7 +52,7 @@ class GenerateSyntheticDataResponse extends \Google\Protobuf\Internal\Message
      * A list of generated synthetic examples.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticExample synthetic_examples = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SyntheticExample>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SyntheticExample[] $var
      * @return $this
      */
     public function setSyntheticExamples($var)

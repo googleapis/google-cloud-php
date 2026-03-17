@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the login configuration for Runtime
@@ -22,7 +22,7 @@ class RuntimeAccessConfig extends \Google\Protobuf\Internal\Message
      */
     protected $access_type = 0;
     /**
-     * The owner of this runtime after creation. Format: `alias&#64;example.com`
+     * The owner of this runtime after creation. Format: `alias\@example.com`
      * Currently supports one owner only.
      *
      * Generated from protobuf field <code>string runtime_owner = 2;</code>
@@ -44,7 +44,7 @@ class RuntimeAccessConfig extends \Google\Protobuf\Internal\Message
      *     @type int $access_type
      *           The type of access mode this instance.
      *     @type string $runtime_owner
-     *           The owner of this runtime after creation. Format: `alias&#64;example.com`
+     *           The owner of this runtime after creation. Format: `alias\@example.com`
      *           Currently supports one owner only.
      *     @type string $proxy_uri
      *           Output only. The proxy endpoint that is used to access the runtime.
@@ -82,7 +82,7 @@ class RuntimeAccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The owner of this runtime after creation. Format: `alias&#64;example.com`
+     * The owner of this runtime after creation. Format: `alias\@example.com`
      * Currently supports one owner only.
      *
      * Generated from protobuf field <code>string runtime_owner = 2;</code>
@@ -94,7 +94,7 @@ class RuntimeAccessConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The owner of this runtime after creation. Format: `alias&#64;example.com`
+     * The owner of this runtime after creation. Format: `alias\@example.com`
      * Currently supports one owner only.
      *
      * Generated from protobuf field <code>string runtime_owner = 2;</code>

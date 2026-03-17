@@ -5,8 +5,8 @@
 namespace Google\Cloud\ParameterManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for getting a ParameterVersion
@@ -17,7 +17,7 @@ class GetParameterVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -54,7 +54,7 @@ class GetParameterVersionRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the resource in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *     @type int $view
      *           Optional. View of the ParameterVersion.
      *           In the default FULL view, all metadata & payload associated with the
@@ -68,7 +68,7 @@ class GetParameterVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -80,7 +80,7 @@ class GetParameterVersionRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the resource in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;parameters/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}locations/{@*}parameters/{@*}versions/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

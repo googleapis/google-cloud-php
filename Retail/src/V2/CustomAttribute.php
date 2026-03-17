@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A custom attribute that is not explicitly modeled in
@@ -83,7 +83,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text
+     *     @type string[] $text
      *           The textual values of this custom attribute. For example, `["yellow",
      *           "green"]` when the key is "color".
      *           Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
@@ -91,7 +91,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $numbers
+     *     @type float[] $numbers
      *           The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      *           when the key is "lengths_cm".
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
@@ -142,7 +142,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string text = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getText()
     {
@@ -159,7 +159,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string text = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setText($var)
@@ -178,7 +178,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated double numbers = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<float>
      */
     public function getNumbers()
     {
@@ -193,7 +193,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated double numbers = 2;</code>
-     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param float[] $var
      * @return $this
      */
     public function setNumbers($var)

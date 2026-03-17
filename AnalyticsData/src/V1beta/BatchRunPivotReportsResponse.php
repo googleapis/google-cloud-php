@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The batch response containing multiple pivot reports.
@@ -36,7 +36,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Data\V1beta\RunPivotReportResponse>|\Google\Protobuf\Internal\RepeatedField $pivot_reports
+     *     @type \Google\Analytics\Data\V1beta\RunPivotReportResponse[] $pivot_reports
      *           Individual responses. Each response has a separate pivot report request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
@@ -53,7 +53,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate pivot report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportResponse pivot_reports = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\RunPivotReportResponse>
      */
     public function getPivotReports()
     {
@@ -64,7 +64,7 @@ class BatchRunPivotReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate pivot report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunPivotReportResponse pivot_reports = 1;</code>
-     * @param array<\Google\Analytics\Data\V1beta\RunPivotReportResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\RunPivotReportResponse[] $var
      * @return $this
      */
     public function setPivotReports($var)

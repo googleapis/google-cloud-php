@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Salesforce organization structure.
@@ -28,7 +28,7 @@ class SalesforceOrg extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Datastream\V1\SalesforceObject>|\Google\Protobuf\Internal\RepeatedField $objects
+     *     @type \Google\Cloud\Datastream\V1\SalesforceObject[] $objects
      *           Salesforce objects in the database server.
      * }
      */
@@ -41,7 +41,7 @@ class SalesforceOrg extends \Google\Protobuf\Internal\Message
      * Salesforce objects in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SalesforceObject objects = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\SalesforceObject>
      */
     public function getObjects()
     {
@@ -52,7 +52,7 @@ class SalesforceOrg extends \Google\Protobuf\Internal\Message
      * Salesforce objects in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.SalesforceObject objects = 1;</code>
-     * @param array<\Google\Cloud\Datastream\V1\SalesforceObject>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\SalesforceObject[] $var
      * @return $this
      */
     public function setObjects($var)

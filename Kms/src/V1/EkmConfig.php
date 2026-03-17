@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An [EkmConfig][google.cloud.kms.v1.EkmConfig] is a singleton resource that
@@ -24,7 +24,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConfig][google.cloud.kms.v1.EkmConfig] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConfig`.
+     * `projects/{@*}locations/{@*}ekmConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -47,7 +47,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for the
      *           [EkmConfig][google.cloud.kms.v1.EkmConfig] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;ekmConfig`.
+     *           `projects/{@*}locations/{@*}ekmConfig`.
      *     @type string $default_ekm_connection
      *           Optional. Resource name of the default
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection]. Setting this field to
@@ -62,7 +62,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConfig][google.cloud.kms.v1.EkmConfig] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConfig`.
+     * `projects/{@*}locations/{@*}ekmConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -75,7 +75,7 @@ class EkmConfig extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for the
      * [EkmConfig][google.cloud.kms.v1.EkmConfig] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;ekmConfig`.
+     * `projects/{@*}locations/{@*}ekmConfig`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

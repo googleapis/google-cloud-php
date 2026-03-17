@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\AspectType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MetadataTemplate definition for an AspectType.
@@ -143,10 +143,10 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      *           * array
      *           * map
      *           * record
-     *     @type array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate>|\Google\Protobuf\Internal\RepeatedField $record_fields
+     *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate[] $record_fields
      *           Optional. Field definition. You must specify it if the type is record. It
      *           defines the nested fields.
-     *     @type array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue>|\Google\Protobuf\Internal\RepeatedField $enum_values
+     *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue[] $enum_values
      *           Optional. The list of values for an enum type. You must define it if the
      *           type is enum.
      *     @type \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate $map_items
@@ -298,7 +298,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      * defines the nested fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate record_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate>
      */
     public function getRecordFields()
     {
@@ -310,7 +310,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      * defines the nested fields.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate record_fields = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate[] $var
      * @return $this
      */
     public function setRecordFields($var)
@@ -326,7 +326,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      * type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue enum_values = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue>
      */
     public function getEnumValues()
     {
@@ -338,7 +338,7 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
      * type is enum.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.AspectType.MetadataTemplate.EnumValue enum_values = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\AspectType\MetadataTemplate\EnumValue[] $var
      * @return $this
      */
     public function setEnumValues($var)
@@ -572,5 +572,4 @@ class MetadataTemplate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

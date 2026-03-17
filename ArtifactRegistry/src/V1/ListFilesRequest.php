@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to list files.
@@ -36,8 +36,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file.txt"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file.txt"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file*"`
      *  To filter the results of your request to files owned by the version `1.0`
      *  in package `pkg1`, append the following filter expression to your request:
      *   * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
@@ -118,8 +118,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
      *            You can also use wildcards to match any number of characters before or
      *            after the value:
      *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file.txt"`
-     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file*"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file.txt"`
+     *             * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file*"`
      *            To filter the results of your request to files owned by the version `1.0`
      *            in package `pkg1`, append the following filter expression to your request:
      *             * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
@@ -194,8 +194,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file.txt"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file.txt"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file*"`
      *  To filter the results of your request to files owned by the version `1.0`
      *  in package `pkg1`, append the following filter expression to your request:
      *   * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
@@ -238,8 +238,8 @@ class ListFilesRequest extends \Google\Protobuf\Internal\Message
      *  You can also use wildcards to match any number of characters before or
      *  after the value:
      *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file.txt"`
-     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/&#42;file*"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file.txt"`
+     *   * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/*file*"`
      *  To filter the results of your request to files owned by the version `1.0`
      *  in package `pkg1`, append the following filter expression to your request:
      *   * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`

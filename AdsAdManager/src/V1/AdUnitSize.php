@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the size, environment, and companions of an ad in an ad unit.
@@ -46,7 +46,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
      *           Required. The Size of the AdUnit.
      *     @type int $environment_type
      *           Required. The EnvironmentType of the AdUnit
-     *     @type array<\Google\Ads\AdManager\V1\Size>|\Google\Protobuf\Internal\RepeatedField $companions
+     *     @type \Google\Ads\AdManager\V1\Size[] $companions
      *           The companions for this ad unit size. Companions are only valid if the
      *           environment is
      *           [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
@@ -135,7 +135,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
      * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size companions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\Size>
      */
     public function getCompanions()
     {
@@ -148,7 +148,7 @@ class AdUnitSize extends \Google\Protobuf\Internal\Message
      * [VIDEO_PLAYER][google.ads.admanager.v1.EnvironmentTypeEnum.EnvironmentType].
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.Size companions = 3;</code>
-     * @param array<\Google\Ads\AdManager\V1\Size>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\Size[] $var
      * @return $this
      */
     public function setCompanions($var)

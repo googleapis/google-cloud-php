@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -56,7 +56,7 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `notebookRuntimeTemplate="notebookRuntimeTemplate321"`
      *   * `healthState=HEALTHY`
      *   * `runtimeState=RUNNING`
-     *   * `runtimeUser="test&#64;google.com"`
+     *   * `runtimeUser="test\@google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
      *   * `machineType=e2-standard-4`
@@ -158,7 +158,7 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *             * `notebookRuntimeTemplate="notebookRuntimeTemplate321"`
      *             * `healthState=HEALTHY`
      *             * `runtimeState=RUNNING`
-     *             * `runtimeUser="test&#64;google.com"`
+     *             * `runtimeUser="test\@google.com"`
      *             * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *             * `notebookRuntimeType=USER_DEFINED`
      *             * `machineType=e2-standard-4`
@@ -250,7 +250,7 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `notebookRuntimeTemplate="notebookRuntimeTemplate321"`
      *   * `healthState=HEALTHY`
      *   * `runtimeState=RUNNING`
-     *   * `runtimeUser="test&#64;google.com"`
+     *   * `runtimeUser="test\@google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
      *   * `machineType=e2-standard-4`
@@ -296,7 +296,7 @@ class ListNotebookRuntimesRequest extends \Google\Protobuf\Internal\Message
      *   * `notebookRuntimeTemplate="notebookRuntimeTemplate321"`
      *   * `healthState=HEALTHY`
      *   * `runtimeState=RUNNING`
-     *   * `runtimeUser="test&#64;google.com"`
+     *   * `runtimeUser="test\@google.com"`
      *   * `uiState=UI_RESOURCE_STATE_BEING_DELETED`
      *   * `notebookRuntimeType=USER_DEFINED`
      *   * `machineType=e2-standard-4`

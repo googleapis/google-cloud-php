@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1\PrimaryProductDataSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Destinations also known as [Marketing
@@ -103,5 +103,4 @@ class Destination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

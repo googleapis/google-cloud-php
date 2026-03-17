@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1\Overlay;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * 2D normalized coordinates. Default: `{0.0, 0.0}`
@@ -98,5 +98,4 @@ class NormalizedCoordinate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

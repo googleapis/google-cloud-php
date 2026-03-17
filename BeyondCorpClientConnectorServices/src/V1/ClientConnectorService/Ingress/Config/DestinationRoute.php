@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress\Config;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The setting used to configure ClientGateways.
@@ -108,5 +108,4 @@ class DestinationRoute extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

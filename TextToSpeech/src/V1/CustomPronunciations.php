@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A collection of pronunciation customizations.
@@ -28,7 +28,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TextToSpeech\V1\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $pronunciations
+     *     @type \Google\Cloud\TextToSpeech\V1\CustomPronunciationParams[] $pronunciations
      *           The pronunciation customizations are applied.
      * }
      */
@@ -41,7 +41,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
      * The pronunciation customizations are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.CustomPronunciationParams pronunciations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TextToSpeech\V1\CustomPronunciationParams>
      */
     public function getPronunciations()
     {
@@ -52,7 +52,7 @@ class CustomPronunciations extends \Google\Protobuf\Internal\Message
      * The pronunciation customizations are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.CustomPronunciationParams pronunciations = 1;</code>
-     * @param array<\Google\Cloud\TextToSpeech\V1\CustomPronunciationParams>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TextToSpeech\V1\CustomPronunciationParams[] $var
      * @return $this
      */
     public function setPronunciations($var)

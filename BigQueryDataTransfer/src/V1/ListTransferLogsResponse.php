@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\DataTransfer\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The returned list transfer run messages.
@@ -37,7 +37,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage>|\Google\Protobuf\Internal\RepeatedField $transfer_messages
+     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage[] $transfer_messages
      *           Output only. The stored pipeline transfer messages.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -55,7 +55,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage>
      */
     public function getTransferMessages()
     {
@@ -66,7 +66,7 @@ class ListTransferLogsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage transfer_messages = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferMessage[] $var
      * @return $this
      */
     public function setTransferMessages($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for performing Google Cloud Vision API tasks over a user-provided
@@ -43,7 +43,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\Image $image
      *           The image to be processed.
-     *     @type array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type \Google\Cloud\Vision\V1\Feature[] $features
      *           Requested features.
      *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
      *           Additional context that may accompany the image.
@@ -94,7 +94,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Vision\V1\Feature>
      */
     public function getFeatures()
     {
@@ -105,7 +105,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @param array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Vision\V1\Feature[] $var
      * @return $this
      */
     public function setFeatures($var)

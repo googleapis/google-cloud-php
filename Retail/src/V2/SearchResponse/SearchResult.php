@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the search results.
@@ -183,7 +183,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      *           [google.protobuf.Value][google.protobuf.Value]. For example,
      *           `{key: "pickupInStore.store1" value { number_value: 10 }}` means a there
      *           are 10 variants in this product are available in the store "store1".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $personal_labels
+     *     @type string[] $personal_labels
      *           Specifies previous events related to this product for this user based on
      *           [UserEvent][google.cloud.retail.v2.UserEvent] with same
      *           [SearchRequest.visitor_id][google.cloud.retail.v2.SearchRequest.visitor_id]
@@ -456,7 +456,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * * `purchased`: Indicates that this product has been purchased before.
      *
      * Generated from protobuf field <code>repeated string personal_labels = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPersonalLabels()
     {
@@ -476,7 +476,7 @@ class SearchResult extends \Google\Protobuf\Internal\Message
      * * `purchased`: Indicates that this product has been purchased before.
      *
      * Generated from protobuf field <code>repeated string personal_labels = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPersonalLabels($var)
@@ -514,5 +514,4 @@ class SearchResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

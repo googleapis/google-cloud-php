@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents intent parameters.
@@ -48,7 +48,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      */
     protected $default_value = '';
     /**
-     * Optional. The name of the entity type, prefixed with `&#64;`, that
+     * Optional. The name of the entity type, prefixed with `\@`, that
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
@@ -100,14 +100,14 @@ class Parameter extends \Google\Protobuf\Internal\Message
      *           Default values can be extracted from contexts by using the following
      *           syntax: `#context_name.parameter_name`.
      *     @type string $entity_type_display_name
-     *           Optional. The name of the entity type, prefixed with `&#64;`, that
+     *           Optional. The name of the entity type, prefixed with `\@`, that
      *           describes values of the parameter. If the parameter is
      *           required, this must be provided.
      *     @type bool $mandatory
      *           Optional. Indicates whether the parameter is required. That is,
      *           whether the intent cannot be completed without collecting the parameter
      *           value.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prompts
+     *     @type string[] $prompts
      *           Optional. The collection of prompts that the agent can present to the
      *           user in order to collect a value for the parameter.
      *     @type bool $is_list
@@ -240,7 +240,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the entity type, prefixed with `&#64;`, that
+     * Optional. The name of the entity type, prefixed with `\@`, that
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
@@ -253,7 +253,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The name of the entity type, prefixed with `&#64;`, that
+     * Optional. The name of the entity type, prefixed with `\@`, that
      * describes values of the parameter. If the parameter is
      * required, this must be provided.
      *
@@ -304,7 +304,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrompts()
     {
@@ -316,7 +316,7 @@ class Parameter extends \Google\Protobuf\Internal\Message
      * user in order to collect a value for the parameter.
      *
      * Generated from protobuf field <code>repeated string prompts = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrompts($var)
@@ -354,5 +354,4 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

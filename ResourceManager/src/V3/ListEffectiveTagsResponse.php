@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response of ListEffectiveTags.
@@ -41,7 +41,7 @@ class ListEffectiveTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ResourceManager\V3\EffectiveTag>|\Google\Protobuf\Internal\RepeatedField $effective_tags
+     *     @type \Google\Cloud\ResourceManager\V3\EffectiveTag[] $effective_tags
      *           A possibly paginated list of effective tags for the specified resource.
      *     @type string $next_page_token
      *           Pagination token.
@@ -63,7 +63,7 @@ class ListEffectiveTagsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of effective tags for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.EffectiveTag effective_tags = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ResourceManager\V3\EffectiveTag>
      */
     public function getEffectiveTags()
     {
@@ -74,7 +74,7 @@ class ListEffectiveTagsResponse extends \Google\Protobuf\Internal\Message
      * A possibly paginated list of effective tags for the specified resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.EffectiveTag effective_tags = 1;</code>
-     * @param array<\Google\Cloud\ResourceManager\V3\EffectiveTag>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ResourceManager\V3\EffectiveTag[] $var
      * @return $this
      */
     public function setEffectiveTags($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Edit atom.
@@ -55,7 +55,7 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           A unique key for this atom. Must be specified when using advanced
      *           mapping.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inputs
+     *     @type string[] $inputs
      *           List of [Input.key][google.cloud.video.transcoder.v1.Input.key] values
      *           identifying files that should be used in this atom. The listed `inputs`
      *           must have the same timeline.
@@ -107,7 +107,7 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      * must have the same timeline.
      *
      * Generated from protobuf field <code>repeated string inputs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInputs()
     {
@@ -120,7 +120,7 @@ class EditAtom extends \Google\Protobuf\Internal\Message
      * must have the same timeline.
      *
      * Generated from protobuf field <code>repeated string inputs = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInputs($var)

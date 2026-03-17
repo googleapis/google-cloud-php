@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceDirectory\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Cloud\ServiceDirectory\V1\Endpoint[] $endpoints
      *           The list of endpoints.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -52,7 +52,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceDirectory\V1\Endpoint>
      */
     public function getEndpoints()
     {
@@ -63,7 +63,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 1;</code>
-     * @param array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceDirectory\V1\Endpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)

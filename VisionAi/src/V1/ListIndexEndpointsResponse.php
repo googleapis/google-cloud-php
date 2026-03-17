@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListIndexEndpoints.
@@ -34,7 +34,7 @@ class ListIndexEndpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\IndexEndpoint>|\Google\Protobuf\Internal\RepeatedField $index_endpoints
+     *     @type \Google\Cloud\VisionAI\V1\IndexEndpoint[] $index_endpoints
      *           The list of IndexEndpoints.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListIndexEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of IndexEndpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.IndexEndpoint index_endpoints = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\IndexEndpoint>
      */
     public function getIndexEndpoints()
     {
@@ -60,7 +60,7 @@ class ListIndexEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of IndexEndpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.IndexEndpoint index_endpoints = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\IndexEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\IndexEndpoint[] $var
      * @return $this
      */
     public function setIndexEndpoints($var)

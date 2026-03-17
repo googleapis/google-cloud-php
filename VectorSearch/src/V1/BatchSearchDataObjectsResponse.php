@@ -5,8 +5,8 @@
 namespace Google\Cloud\VectorSearch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response from a batch search operation.
@@ -29,7 +29,7 @@ class BatchSearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VectorSearch\V1\SearchDataObjectsResponse>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\VectorSearch\V1\SearchDataObjectsResponse[] $results
      *           Output only. A list of search responses, one for each request in the batch.
      *           If a ranker is used, a single ranked list of results is returned.
      * }
@@ -44,7 +44,7 @@ class BatchSearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * If a ranker is used, a single ranked list of results is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.SearchDataObjectsResponse results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VectorSearch\V1\SearchDataObjectsResponse>
      */
     public function getResults()
     {
@@ -56,7 +56,7 @@ class BatchSearchDataObjectsResponse extends \Google\Protobuf\Internal\Message
      * If a ranker is used, a single ranked list of results is returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vectorsearch.v1.SearchDataObjectsResponse results = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VectorSearch\V1\SearchDataObjectsResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VectorSearch\V1\SearchDataObjectsResponse[] $var
      * @return $this
      */
     public function setResults($var)

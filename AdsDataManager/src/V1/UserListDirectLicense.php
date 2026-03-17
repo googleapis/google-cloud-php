@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A user list direct license.
@@ -110,7 +110,7 @@ class UserListDirectLicense extends \Google\Protobuf\Internal\Message
      *           Optional. Status of UserListDirectLicense - ENABLED or DISABLED.
      *     @type \Google\Ads\DataManager\V1\UserListLicensePricing $pricing
      *           Optional. UserListDirectLicense pricing.
-     *     @type array<\Google\Ads\DataManager\V1\UserListLicensePricing>|\Google\Protobuf\Internal\RepeatedField $historical_pricings
+     *     @type \Google\Ads\DataManager\V1\UserListLicensePricing[] $historical_pricings
      *           Output only. Pricing history of this user list license.
      *           This field is read-only.
      *     @type \Google\Ads\DataManager\V1\UserListLicenseMetrics $metrics
@@ -395,7 +395,7 @@ class UserListDirectLicense extends \Google\Protobuf\Internal\Message
      * This field is read-only.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListLicensePricing historical_pricings = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\DataManager\V1\UserListLicensePricing>
      */
     public function getHistoricalPricings()
     {
@@ -407,7 +407,7 @@ class UserListDirectLicense extends \Google\Protobuf\Internal\Message
      * This field is read-only.
      *
      * Generated from protobuf field <code>repeated .google.ads.datamanager.v1.UserListLicensePricing historical_pricings = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Ads\DataManager\V1\UserListLicensePricing>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\DataManager\V1\UserListLicensePricing[] $var
      * @return $this
      */
     public function setHistoricalPricings($var)

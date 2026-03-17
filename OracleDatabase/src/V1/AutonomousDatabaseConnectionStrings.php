@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The connection string used to connect to the Autonomous Database.
@@ -82,7 +82,7 @@ class AutonomousDatabaseConnectionStrings extends \Google\Protobuf\Internal\Mess
      *     @type string $medium
      *           Output only. The database service provides a lower level of resources to
      *           each SQL statement.
-     *     @type array<\Google\Cloud\OracleDatabase\V1\DatabaseConnectionStringProfile>|\Google\Protobuf\Internal\RepeatedField $profiles
+     *     @type \Google\Cloud\OracleDatabase\V1\DatabaseConnectionStringProfile[] $profiles
      *           Output only. A list of connection string profiles to allow clients to
      *           group, filter, and select values based on the structured metadata.
      * }
@@ -249,7 +249,7 @@ class AutonomousDatabaseConnectionStrings extends \Google\Protobuf\Internal\Mess
      * group, filter, and select values based on the structured metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DatabaseConnectionStringProfile profiles = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\DatabaseConnectionStringProfile>
      */
     public function getProfiles()
     {
@@ -261,7 +261,7 @@ class AutonomousDatabaseConnectionStrings extends \Google\Protobuf\Internal\Mess
      * group, filter, and select values based on the structured metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DatabaseConnectionStringProfile profiles = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\DatabaseConnectionStringProfile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\DatabaseConnectionStringProfile[] $var
      * @return $this
      */
     public function setProfiles($var)

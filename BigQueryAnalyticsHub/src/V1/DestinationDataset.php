@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines the destination bigquery dataset.
@@ -82,7 +82,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      *           Required. The geographic location where the dataset should reside. See
      *           https://cloud.google.com/bigquery/docs/locations for supported
      *           locations.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_locations
+     *     @type string[] $replica_locations
      *           Optional. The geographic locations where the dataset should be replicated.
      *           See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations)
      *           for supported locations.
@@ -325,7 +325,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * for supported locations.
      *
      * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaLocations()
     {
@@ -338,7 +338,7 @@ class DestinationDataset extends \Google\Protobuf\Internal\Message
      * for supported locations.
      *
      * Generated from protobuf field <code>repeated string replica_locations = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaLocations($var)

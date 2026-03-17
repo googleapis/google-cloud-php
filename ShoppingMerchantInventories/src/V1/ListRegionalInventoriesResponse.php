@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Inventories\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListRegionalInventories` method.
@@ -36,7 +36,7 @@ class ListRegionalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Inventories\V1\RegionalInventory>|\Google\Protobuf\Internal\RepeatedField $regional_inventories
+     *     @type \Google\Shopping\Merchant\Inventories\V1\RegionalInventory[] $regional_inventories
      *           The `RegionalInventory` resources for the given product from the specified
      *           account.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListRegionalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.RegionalInventory regional_inventories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Inventories\V1\RegionalInventory>
      */
     public function getRegionalInventories()
     {
@@ -66,7 +66,7 @@ class ListRegionalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.RegionalInventory regional_inventories = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Inventories\V1\RegionalInventory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Inventories\V1\RegionalInventory[] $var
      * @return $this
      */
     public function setRegionalInventories($var)

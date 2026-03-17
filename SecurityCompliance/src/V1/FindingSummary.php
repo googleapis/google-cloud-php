@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The details for a finding.
@@ -74,7 +74,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
      *           The count of the finding.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last updated time of the finding.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_frameworks
+     *     @type string[] $related_frameworks
      *           Optional. The list of compliance frameworks that the finding belongs to.
      *     @type string $name
      *           Identifier. The name of the finding summary.
@@ -229,7 +229,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
      * Optional. The list of compliance frameworks that the finding belongs to.
      *
      * Generated from protobuf field <code>repeated string related_frameworks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedFrameworks()
     {
@@ -240,7 +240,7 @@ class FindingSummary extends \Google\Protobuf\Internal\Message
      * Optional. The list of compliance frameworks that the finding belongs to.
      *
      * Generated from protobuf field <code>repeated string related_frameworks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedFrameworks($var)

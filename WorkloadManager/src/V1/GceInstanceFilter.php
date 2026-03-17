@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter for matching Compute Engine instances.
@@ -29,7 +29,7 @@ class GceInstanceFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type string[] $service_accounts
      *           If non-empty, only Compute Engine instances associated with at least one of
      *           the provided service accounts will be included in the evaluation.
      * }
@@ -44,7 +44,7 @@ class GceInstanceFilter extends \Google\Protobuf\Internal\Message
      * the provided service accounts will be included in the evaluation.
      *
      * Generated from protobuf field <code>repeated string service_accounts = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccounts()
     {
@@ -56,7 +56,7 @@ class GceInstanceFilter extends \Google\Protobuf\Internal\Message
      * the provided service accounts will be included in the evaluation.
      *
      * Generated from protobuf field <code>repeated string service_accounts = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccounts($var)

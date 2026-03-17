@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A domain that a user has been authorized to administer. To authorize use
@@ -20,7 +20,7 @@ class AuthorizedDomain extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `AuthorizedDomain` resource in the API. Example:
      * `apps/myapp/authorizedDomains/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -42,7 +42,7 @@ class AuthorizedDomain extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Full path to the `AuthorizedDomain` resource in the API. Example:
      *           `apps/myapp/authorizedDomains/example.com`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $id
      *           Fully qualified domain name of the domain authorized for use. Example:
      *           `example.com`.
@@ -56,7 +56,7 @@ class AuthorizedDomain extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `AuthorizedDomain` resource in the API. Example:
      * `apps/myapp/authorizedDomains/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -69,7 +69,7 @@ class AuthorizedDomain extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the `AuthorizedDomain` resource in the API. Example:
      * `apps/myapp/authorizedDomains/example.com`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

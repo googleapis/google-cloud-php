@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `CloudExadataInfrastructures.list`.
@@ -34,7 +34,7 @@ class ListCloudExadataInfrastructuresResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure>|\Google\Protobuf\Internal\RepeatedField $cloud_exadata_infrastructures
+     *     @type \Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure[] $cloud_exadata_infrastructures
      *           The list of Exadata Infrastructures.
      *     @type string $next_page_token
      *           A token for fetching next page of response.
@@ -49,7 +49,7 @@ class ListCloudExadataInfrastructuresResponse extends \Google\Protobuf\Internal\
      * The list of Exadata Infrastructures.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CloudExadataInfrastructure cloud_exadata_infrastructures = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure>
      */
     public function getCloudExadataInfrastructures()
     {
@@ -60,7 +60,7 @@ class ListCloudExadataInfrastructuresResponse extends \Google\Protobuf\Internal\
      * The list of Exadata Infrastructures.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.CloudExadataInfrastructure cloud_exadata_infrastructures = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\CloudExadataInfrastructure[] $var
      * @return $this
      */
     public function setCloudExadataInfrastructures($var)

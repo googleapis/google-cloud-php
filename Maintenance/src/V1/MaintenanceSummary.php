@@ -5,8 +5,8 @@
 namespace Google\Cloud\Maintenance\Api\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MaintenanceSummary contains maintenance statistics calculated based on
@@ -125,10 +125,10 @@ class MaintenanceSummary extends \Google\Protobuf\Internal\Message
      *           maintenance, either proactively before maintenance was scheduled with
      *           maintenance policy or with reactive controls after it was scheduled (see
      *           controls field).
-     *     @type array<\Google\Cloud\Maintenance\Api\V1\MaintenanceControl>|\Google\Protobuf\Internal\RepeatedField $controls
+     *     @type \Google\Cloud\Maintenance\Api\V1\MaintenanceControl[] $controls
      *           Output only. Control available for that Maintenance (might not be available
      *           for every resource that maintenance is applied to).
-     *     @type array<\Google\Cloud\Maintenance\Api\V1\MaintenanceSummary\Stats>|\Google\Protobuf\Internal\RepeatedField $stats
+     *     @type \Google\Cloud\Maintenance\Api\V1\MaintenanceSummary\Stats[] $stats
      *           Output only. Stats is a field of ResourceMaintenance used to aggregate the
      *           stats.
      * }
@@ -433,7 +433,7 @@ class MaintenanceSummary extends \Google\Protobuf\Internal\Message
      * for every resource that maintenance is applied to).
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1.MaintenanceControl controls = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Maintenance\Api\V1\MaintenanceControl>
      */
     public function getControls()
     {
@@ -445,7 +445,7 @@ class MaintenanceSummary extends \Google\Protobuf\Internal\Message
      * for every resource that maintenance is applied to).
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1.MaintenanceControl controls = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Maintenance\Api\V1\MaintenanceControl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Maintenance\Api\V1\MaintenanceControl[] $var
      * @return $this
      */
     public function setControls($var)
@@ -461,7 +461,7 @@ class MaintenanceSummary extends \Google\Protobuf\Internal\Message
      * stats.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1.MaintenanceSummary.Stats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Maintenance\Api\V1\MaintenanceSummary\Stats>
      */
     public function getStats()
     {
@@ -473,7 +473,7 @@ class MaintenanceSummary extends \Google\Protobuf\Internal\Message
      * stats.
      *
      * Generated from protobuf field <code>repeated .google.cloud.maintenance.api.v1.MaintenanceSummary.Stats stats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Maintenance\Api\V1\MaintenanceSummary\Stats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Maintenance\Api\V1\MaintenanceSummary\Stats[] $var
      * @return $this
      */
     public function setStats($var)

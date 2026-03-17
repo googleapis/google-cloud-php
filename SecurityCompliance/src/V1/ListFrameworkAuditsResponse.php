@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [ListFrameworkAudits][].
@@ -35,7 +35,7 @@ class ListFrameworkAuditsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkAudit>|\Google\Protobuf\Internal\RepeatedField $framework_audits
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkAudit[] $framework_audits
      *           The framework audits.
      *     @type string $next_page_token
      *           A token, which you can send as the `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListFrameworkAuditsResponse extends \Google\Protobuf\Internal\Message
      * The framework audits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkAudit framework_audits = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkAudit>
      */
     public function getFrameworkAudits()
     {
@@ -62,7 +62,7 @@ class ListFrameworkAuditsResponse extends \Google\Protobuf\Internal\Message
      * The framework audits.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.FrameworkAudit framework_audits = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\FrameworkAudit>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkAudit[] $var
      * @return $this
      */
     public function setFrameworkAudits($var)

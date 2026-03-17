@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\DataSchemaDetails\SearchStrategy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter on the confidence score. Only adds to index if the confidence
@@ -255,5 +255,4 @@ class ConfidenceScoreIndexConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

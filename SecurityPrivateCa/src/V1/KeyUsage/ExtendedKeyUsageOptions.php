@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\KeyUsage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [KeyUsage.ExtendedKeyUsageOptions][google.cloud.security.privateca.v1.KeyUsage.ExtendedKeyUsageOptions]
@@ -260,5 +260,4 @@ class ExtendedKeyUsageOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

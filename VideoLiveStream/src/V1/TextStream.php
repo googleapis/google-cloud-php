@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Encoding of a text stream. For example, closed captions or subtitles.
@@ -86,7 +86,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      *           [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea608`;
      *           Must be one between `SERVICE1` and `SERVICE63`, if the
      *           [codec][google.cloud.video.livestream.v1.TextStream.codec] is `cea708`.
-     *     @type array<\Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
+     *     @type \Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping[] $mapping
      *           Optional. The mapping for the input streams and text tracks.
      * }
      */
@@ -229,7 +229,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * Optional. The mapping for the input streams and text tracks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.TextStream.TextMapping mapping = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping>
      */
     public function getMapping()
     {
@@ -240,7 +240,7 @@ class TextStream extends \Google\Protobuf\Internal\Message
      * Optional. The mapping for the input streams and text tracks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.TextStream.TextMapping mapping = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\LiveStream\V1\TextStream\TextMapping[] $var
      * @return $this
      */
     public function setMapping($var)

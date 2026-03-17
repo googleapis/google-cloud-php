@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Network Connectivity Center hub is a global management resource to which
@@ -150,11 +150,11 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           name is created, the new hub is assigned a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this hub.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
+     *     @type \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[] $routing_vpcs
      *           The VPC networks associated with this hub's spokes.
      *           This field is read-only. Network Connectivity Center automatically
      *           populates it based on the set of spokes attached to the hub.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $route_tables
+     *     @type string[] $route_tables
      *           Output only. The route tables that belong to this hub. They use the
      *           following form:
      *              `projects/{project_number}/locations/global/hubs/{hub_id}/routeTables/{route_table_id}`
@@ -408,7 +408,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      * populates it based on the set of spokes attached to the hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RoutingVPC routing_vpcs = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>
      */
     public function getRoutingVpcs()
     {
@@ -421,7 +421,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      * populates it based on the set of spokes attached to the hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RoutingVPC routing_vpcs = 10;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[] $var
      * @return $this
      */
     public function setRoutingVpcs($var)
@@ -440,7 +440,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      * populates it based on the route tables nested under the hub.
      *
      * Generated from protobuf field <code>repeated string route_tables = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRouteTables()
     {
@@ -455,7 +455,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      * populates it based on the route tables nested under the hub.
      *
      * Generated from protobuf field <code>repeated string route_tables = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRouteTables($var)

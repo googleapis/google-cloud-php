@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ScheduleOptions\Schedule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Days of Month to schedule report run.
@@ -29,7 +29,7 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $monthly_scheduled_days
+     *     @type int[] $monthly_scheduled_days
      *           Specifies days of the month to run report. Range is from 1-31.
      *           Will ignore days that are not valid for the given month.
      * }
@@ -44,7 +44,7 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
      * Will ignore days that are not valid for the given month.
      *
      * Generated from protobuf field <code>repeated int32 monthly_scheduled_days = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getMonthlyScheduledDays()
     {
@@ -56,7 +56,7 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
      * Will ignore days that are not valid for the given month.
      *
      * Generated from protobuf field <code>repeated int32 monthly_scheduled_days = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setMonthlyScheduledDays($var)
@@ -68,5 +68,4 @@ class MonthlySchedule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

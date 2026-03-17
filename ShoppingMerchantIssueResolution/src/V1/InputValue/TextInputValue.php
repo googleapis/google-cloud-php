@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\InputValue;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Value for [text
@@ -66,5 +66,4 @@ class TextInputValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

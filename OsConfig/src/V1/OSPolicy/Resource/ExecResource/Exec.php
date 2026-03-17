@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1\OSPolicy\Resource\ExecResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A file or script to execute.
@@ -51,7 +51,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      *     @type string $script
      *           An inline script.
      *           The size of the script is limited to 1024 characters.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type string[] $args
      *           Optional arguments to pass to the source during execution.
      *     @type int $interpreter
      *           Required. The script interpreter to use.
@@ -137,7 +137,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      * Optional arguments to pass to the source during execution.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getArgs()
     {
@@ -148,7 +148,7 @@ class Exec extends \Google\Protobuf\Internal\Message
      * Optional arguments to pass to the source during execution.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setArgs($var)
@@ -230,5 +230,4 @@ class Exec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for [ListCloudControls][].
@@ -35,7 +35,7 @@ class ListCloudControlsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControl>|\Google\Protobuf\Internal\RepeatedField $cloud_controls
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControl[] $cloud_controls
      *           The list of CloudControl resources.
      *     @type string $next_page_token
      *           A pagination token. To retrieve the next page of results, call the method
@@ -51,7 +51,7 @@ class ListCloudControlsResponse extends \Google\Protobuf\Internal\Message
      * The list of CloudControl resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_controls = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControl>
      */
     public function getCloudControls()
     {
@@ -62,7 +62,7 @@ class ListCloudControlsResponse extends \Google\Protobuf\Internal\Message
      * The list of CloudControl resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControl cloud_controls = 1;</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControl>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControl[] $var
      * @return $this
      */
     public function setCloudControls($var)

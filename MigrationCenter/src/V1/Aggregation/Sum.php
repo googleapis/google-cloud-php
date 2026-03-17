@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\Aggregation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sum of field values.
@@ -30,5 +30,4 @@ class Sum extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

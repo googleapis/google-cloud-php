@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListPullRequestsResponse is the response to list pull requests.
@@ -34,7 +34,7 @@ class ListPullRequestsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\PullRequest>|\Google\Protobuf\Internal\RepeatedField $pull_requests
+     *     @type \Google\Cloud\SecureSourceManager\V1\PullRequest[] $pull_requests
      *           The list of pull requests.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListPullRequestsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.PullRequest pull_requests = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\PullRequest>
      */
     public function getPullRequests()
     {
@@ -60,7 +60,7 @@ class ListPullRequestsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.PullRequest pull_requests = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\PullRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\PullRequest[] $var
      * @return $this
      */
     public function setPullRequests($var)

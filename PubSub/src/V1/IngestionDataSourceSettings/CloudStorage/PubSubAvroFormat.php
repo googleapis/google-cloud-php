@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1\IngestionDataSourceSettings\CloudStorage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for reading Cloud Storage data written via [Cloud Storage
@@ -33,5 +33,4 @@ class PubSubAvroFormat extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

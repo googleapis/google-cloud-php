@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3\StructuredMessage;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structured data associated with this message.
@@ -108,5 +108,4 @@ class Parameter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

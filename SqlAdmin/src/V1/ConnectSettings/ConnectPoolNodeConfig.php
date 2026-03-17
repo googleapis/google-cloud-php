@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\ConnectSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of a single read pool node of a read pool.
@@ -51,12 +51,12 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The name of the read pool node. Doesn't include the project
      *           ID.
-     *     @type array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type \Google\Cloud\Sql\V1\IpMapping[] $ip_addresses
      *           Output only. Mappings containing IP addresses that can be used to connect
      *           to the read pool node.
      *     @type string $dns_name
      *           Output only. The DNS name of the read pool node.
-     *     @type array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *     @type \Google\Cloud\Sql\V1\DnsNameMapping[] $dns_names
      *           Output only. The list of DNS names used by this read pool node.
      * }
      */
@@ -108,7 +108,7 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
      * to the read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\IpMapping>
      */
     public function getIpAddresses()
     {
@@ -120,7 +120,7 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
      * to the read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.IpMapping ip_addresses = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\IpMapping[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -171,7 +171,7 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\DnsNameMapping>
      */
     public function getDnsNames()
     {
@@ -182,7 +182,7 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
      * Output only. The list of DNS names used by this read pool node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.DnsNameMapping dns_names = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Sql\V1\DnsNameMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\DnsNameMapping[] $var
      * @return $this
      */
     public function setDnsNames($var)
@@ -194,5 +194,4 @@ class ConnectPoolNodeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

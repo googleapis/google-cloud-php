@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A pair of section name and input token count of the input summary section.
@@ -108,5 +108,4 @@ class SectionToken extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

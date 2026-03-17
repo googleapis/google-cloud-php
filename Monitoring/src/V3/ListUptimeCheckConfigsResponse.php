@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The protocol for the `ListUptimeCheckConfigs` response.
@@ -45,7 +45,7 @@ class ListUptimeCheckConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig>|\Google\Protobuf\Internal\RepeatedField $uptime_check_configs
+     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig[] $uptime_check_configs
      *           The returned Uptime check configurations.
      *     @type string $next_page_token
      *           This field represents the pagination token to retrieve the next page of
@@ -67,7 +67,7 @@ class ListUptimeCheckConfigsResponse extends \Google\Protobuf\Internal\Message
      * The returned Uptime check configurations.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig uptime_check_configs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\UptimeCheckConfig>
      */
     public function getUptimeCheckConfigs()
     {
@@ -78,7 +78,7 @@ class ListUptimeCheckConfigsResponse extends \Google\Protobuf\Internal\Message
      * The returned Uptime check configurations.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig uptime_check_configs = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig[] $var
      * @return $this
      */
     public function setUptimeCheckConfigs($var)

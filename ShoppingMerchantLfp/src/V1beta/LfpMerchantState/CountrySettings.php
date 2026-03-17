@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Lfp\V1beta\LfpMerchantState;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Country-specific settings for the merchant.
@@ -284,5 +284,4 @@ class CountrySettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

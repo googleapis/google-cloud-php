@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class SearchMigratableResourcesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\MigratableResource>|\Google\Protobuf\Internal\RepeatedField $migratable_resources
+     *     @type \Google\Cloud\AIPlatform\V1\MigratableResource[] $migratable_resources
      *           All migratable resources that can be migrated to the
      *           location specified in the request.
      *     @type string $next_page_token
@@ -57,7 +57,7 @@ class SearchMigratableResourcesResponse extends \Google\Protobuf\Internal\Messag
      * location specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigratableResource migratable_resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\MigratableResource>
      */
     public function getMigratableResources()
     {
@@ -69,7 +69,7 @@ class SearchMigratableResourcesResponse extends \Google\Protobuf\Internal\Messag
      * location specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigratableResource migratable_resources = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\MigratableResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\MigratableResource[] $var
      * @return $this
      */
     public function setMigratableResources($var)

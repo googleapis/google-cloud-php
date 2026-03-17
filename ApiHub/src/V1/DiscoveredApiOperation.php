@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DiscoveredApiOperation represents an API Operation observed in one of the
@@ -98,7 +98,7 @@ class DiscoveredApiOperation extends \Google\Protobuf\Internal\Message
      *           Optional. The number of occurrences of this API Operation.
      *     @type int $classification
      *           Output only. The classification of the discovered API operation.
-     *     @type array<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation\MatchResult>|\Google\Protobuf\Internal\RepeatedField $match_results
+     *     @type \Google\Cloud\ApiHub\V1\DiscoveredApiOperation\MatchResult[] $match_results
      *           Output only. The list of matched results for the discovered API operation.
      *           This will be populated only if the classification is known. The current
      *           usecase is for a single match. Keeping it repeated to support multiple
@@ -309,7 +309,7 @@ class DiscoveredApiOperation extends \Google\Protobuf\Internal\Message
      * matches in future.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiOperation.MatchResult match_results = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation\MatchResult>
      */
     public function getMatchResults()
     {
@@ -323,7 +323,7 @@ class DiscoveredApiOperation extends \Google\Protobuf\Internal\Message
      * matches in future.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.DiscoveredApiOperation.MatchResult match_results = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\DiscoveredApiOperation\MatchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\DiscoveredApiOperation\MatchResult[] $var
      * @return $this
      */
     public function setMatchResults($var)

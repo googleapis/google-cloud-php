@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A subgraph of the overall lineage graph. Event edges connect Artifact and
@@ -41,11 +41,11 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $artifacts
+     *     @type \Google\Cloud\AIPlatform\V1\Artifact[] $artifacts
      *           The Artifact nodes in the subgraph.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type \Google\Cloud\AIPlatform\V1\Execution[] $executions
      *           The Execution nodes in the subgraph.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Cloud\AIPlatform\V1\Event[] $events
      *           The Event edges between Artifacts and Executions in the subgraph.
      * }
      */
@@ -58,7 +58,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Artifact nodes in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Artifact artifacts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Artifact>
      */
     public function getArtifacts()
     {
@@ -69,7 +69,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Artifact nodes in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Artifact artifacts = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Artifact[] $var
      * @return $this
      */
     public function setArtifacts($var)
@@ -84,7 +84,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Execution nodes in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Execution executions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Execution>
      */
     public function getExecutions()
     {
@@ -95,7 +95,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Execution nodes in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Execution executions = 2;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Execution[] $var
      * @return $this
      */
     public function setExecutions($var)
@@ -110,7 +110,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Event edges between Artifacts and Executions in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Event events = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Event>
      */
     public function getEvents()
     {
@@ -121,7 +121,7 @@ class LineageSubgraph extends \Google\Protobuf\Internal\Message
      * The Event edges between Artifacts and Executions in the subgraph.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Event events = 3;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Event[] $var
      * @return $this
      */
     public function setEvents($var)

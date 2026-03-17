@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -43,7 +43,7 @@ class FetchStorageInventoryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VMMigration\V1\SourceStorageResource>|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type \Google\Cloud\VMMigration\V1\SourceStorageResource[] $resources
      *           The list of storage resources in the source.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the source was last queried (if the result
@@ -62,7 +62,7 @@ class FetchStorageInventoryResponse extends \Google\Protobuf\Internal\Message
      * The list of storage resources in the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.SourceStorageResource resources = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\SourceStorageResource>
      */
     public function getResources()
     {
@@ -73,7 +73,7 @@ class FetchStorageInventoryResponse extends \Google\Protobuf\Internal\Message
      * The list of storage resources in the source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.SourceStorageResource resources = 1;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\SourceStorageResource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\SourceStorageResource[] $var
      * @return $this
      */
     public function setResources($var)

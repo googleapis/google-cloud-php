@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A filter over one or more fields.
@@ -171,5 +171,4 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

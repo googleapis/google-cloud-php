@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CaPool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines controls over all certificate issuance within a
@@ -111,7 +111,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $allowed_key_types
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType[] $allowed_key_types
      *           Optional. If any
      *           [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType]
      *           is specified, then the certificate request's public key must match one of
@@ -185,7 +185,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * the key types listed here. Otherwise, any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>
      */
     public function getAllowedKeyTypes()
     {
@@ -199,7 +199,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * the key types listed here. Otherwise, any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType[] $var
      * @return $this
      */
     public function setAllowedKeyTypes($var)
@@ -513,5 +513,4 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

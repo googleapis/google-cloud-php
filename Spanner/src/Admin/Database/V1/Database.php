@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud Spanner database.
@@ -143,7 +143,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *           field contains the encryption configuration for the database.
      *           For databases that are using Google default or other types of encryption,
      *           this field is empty.
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $encryption_info
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo[] $encryption_info
      *           Output only. For databases that are using customer managed encryption, this
      *           field contains the encryption information for the database, such as
      *           all Cloud KMS key versions that are in use. The `encryption_status' field
@@ -374,7 +374,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * from when a key version is being used and when it appears in this field.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>
      */
     public function getEncryptionInfo()
     {
@@ -392,7 +392,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * from when a key version is being used and when it appears in this field.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.EncryptionInfo encryption_info = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\EncryptionInfo[] $var
      * @return $this
      */
     public function setEncryptionInfo($var)

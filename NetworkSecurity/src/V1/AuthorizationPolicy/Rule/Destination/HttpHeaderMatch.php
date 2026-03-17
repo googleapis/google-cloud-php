@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy\Rule\Destination;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specification of HTTP header match attributes.
@@ -136,5 +136,4 @@ class HttpHeaderMatch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

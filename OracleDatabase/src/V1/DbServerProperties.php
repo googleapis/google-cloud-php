@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Various properties and settings associated with Exadata database server.
@@ -100,7 +100,7 @@ class DbServerProperties extends \Google\Protobuf\Internal\Message
      *           Optional. Vm count per database.
      *     @type int $state
      *           Output only. State of the database server.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $db_node_ids
+     *     @type string[] $db_node_ids
      *           Output only. OCID of database nodes associated with the database server.
      * }
      */
@@ -347,7 +347,7 @@ class DbServerProperties extends \Google\Protobuf\Internal\Message
      * Output only. OCID of database nodes associated with the database server.
      *
      * Generated from protobuf field <code>repeated string db_node_ids = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDbNodeIds()
     {
@@ -358,7 +358,7 @@ class DbServerProperties extends \Google\Protobuf\Internal\Message
      * Output only. OCID of database nodes associated with the database server.
      *
      * Generated from protobuf field <code>repeated string db_node_ids = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDbNodeIds($var)

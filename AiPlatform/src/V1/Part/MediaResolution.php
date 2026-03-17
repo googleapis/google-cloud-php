@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Part;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * per part media resolution.
@@ -73,5 +73,4 @@ class MediaResolution extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

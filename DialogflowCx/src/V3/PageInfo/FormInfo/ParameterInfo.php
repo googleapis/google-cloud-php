@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\PageInfo\FormInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents parameter information.
@@ -310,5 +310,4 @@ class ParameterInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

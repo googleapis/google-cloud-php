@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User event details shared by all recommendation types.
@@ -101,7 +101,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *           The `pageViewId` property should be kept the same for all these events so
      *           that they can be grouped together properly. This `pageViewId` will be
      *           automatically generated if using the JavaScript pixel.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $experiment_ids
+     *     @type string[] $experiment_ids
      *           Optional. A list of identifiers for the independent experiment groups
      *           this user event belongs to. This is used to distinguish between user events
      *           associated with different experiment setups (e.g. using Recommendation
@@ -236,7 +236,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      * Engine system, using different recommendation models).
      *
      * Generated from protobuf field <code>repeated string experiment_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExperimentIds()
     {
@@ -250,7 +250,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      * Engine system, using different recommendation models).
      *
      * Generated from protobuf field <code>repeated string experiment_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExperimentIds($var)

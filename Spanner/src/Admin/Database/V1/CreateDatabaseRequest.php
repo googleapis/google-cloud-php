@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -113,7 +113,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      *           `[a-z][a-z0-9_\-]*[a-z0-9]` and be between 2 and 30 characters in length.
      *           If the database ID is a reserved word or if it contains a hyphen, the
      *           database ID must be enclosed in backticks (`` ` ``).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $extra_statements
+     *     @type string[] $extra_statements
      *           Optional. A list of DDL statements to run inside the newly created
      *           database. Statements can create tables, indexes, etc. These
      *           statements execute atomically with the creation of the database:
@@ -216,7 +216,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * if there is an error in any statement, the database is not created.
      *
      * Generated from protobuf field <code>repeated string extra_statements = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExtraStatements()
     {
@@ -230,7 +230,7 @@ class CreateDatabaseRequest extends \Google\Protobuf\Internal\Message
      * if there is an error in any statement, the database is not created.
      *
      * Generated from protobuf field <code>repeated string extra_statements = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExtraStatements($var)

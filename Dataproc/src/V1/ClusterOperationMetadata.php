@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata describing the operation.
@@ -82,7 +82,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Cluster UUID for the operation.
      *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus $status
      *           Output only. Current operation status.
-     *     @type array<\Google\Cloud\Dataproc\V1\ClusterOperationStatus>|\Google\Protobuf\Internal\RepeatedField $status_history
+     *     @type \Google\Cloud\Dataproc\V1\ClusterOperationStatus[] $status_history
      *           Output only. The previous operation status.
      *     @type string $operation_type
      *           Output only. The operation type.
@@ -90,9 +90,9 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Short description of operation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Output only. Labels associated with the operation
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type string[] $warnings
      *           Output only. Errors encountered during operation execution.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_operation_ids
+     *     @type string[] $child_operation_ids
      *           Output only. Child operation ids
      * }
      */
@@ -193,7 +193,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The previous operation status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterOperationStatus status_history = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\ClusterOperationStatus>
      */
     public function getStatusHistory()
     {
@@ -204,7 +204,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The previous operation status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.ClusterOperationStatus status_history = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\ClusterOperationStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\ClusterOperationStatus[] $var
      * @return $this
      */
     public function setStatusHistory($var)
@@ -297,7 +297,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Errors encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWarnings()
     {
@@ -308,7 +308,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Errors encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWarnings($var)
@@ -323,7 +323,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Child operation ids
      *
      * Generated from protobuf field <code>repeated string child_operation_ids = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChildOperationIds()
     {
@@ -334,7 +334,7 @@ class ClusterOperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Child operation ids
      *
      * Generated from protobuf field <code>repeated string child_operation_ids = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChildOperationIds($var)

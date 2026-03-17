@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DiskBackupProperties represents the properties of a Disk backup.
@@ -88,11 +88,11 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      *
      *     @type string $description
      *           A description of the source disk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type string[] $licenses
      *           A list of publicly available licenses that are applicable to this backup.
      *           This is applicable if the original image had licenses attached, e.g.
      *           Windows image.
-     *     @type array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_feature
+     *     @type \Google\Cloud\BackupDR\V1\GuestOsFeature[] $guest_os_feature
      *           A list of guest OS features that are applicable to this backup.
      *     @type int $architecture
      *           The architecture of the source disk. Valid values are
@@ -106,7 +106,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      *           The URL of the region of the source disk.
      *     @type string $zone
      *           The URL of the Zone where the source disk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           The URL of the Zones where the source disk should be replicated.
      *     @type string $source_disk
      *           The source disk used to create this backup.
@@ -159,7 +159,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * Windows image.
      *
      * Generated from protobuf field <code>repeated string licenses = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLicenses()
     {
@@ -172,7 +172,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * Windows image.
      *
      * Generated from protobuf field <code>repeated string licenses = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLicenses($var)
@@ -187,7 +187,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * A list of guest OS features that are applicable to this backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\GuestOsFeature>
      */
     public function getGuestOsFeature()
     {
@@ -198,7 +198,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * A list of guest OS features that are applicable to this backup.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.GuestOsFeature guest_os_feature = 3;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\GuestOsFeature[] $var
      * @return $this
      */
     public function setGuestOsFeature($var)
@@ -397,7 +397,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * The URL of the Zones where the source disk should be replicated.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -408,7 +408,7 @@ class DiskBackupProperties extends \Google\Protobuf\Internal\Message
      * The URL of the Zones where the source disk should be replicated.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)

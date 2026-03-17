@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\Service\StoreConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configs related to local delivery ends for the day.
@@ -194,5 +194,4 @@ class CutoffConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

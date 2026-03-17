@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta\Filter;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * To express that the result needs to be between two numbers (inclusive).
@@ -118,5 +118,4 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

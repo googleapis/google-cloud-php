@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents database access information, such as queries. A database may be a
@@ -91,7 +91,7 @@ class Database extends \Google\Protobuf\Internal\Message
      *           IAM principal and does not have a set format.
      *     @type string $query
      *           The SQL statement that is associated with the database access.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $grantees
+     *     @type string[] $grantees
      *           The target usernames, roles, or groups of an SQL privilege grant, which is
      *           not an IAM policy change.
      *     @type string $version
@@ -230,7 +230,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * not an IAM policy change.
      *
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGrantees()
     {
@@ -242,7 +242,7 @@ class Database extends \Google\Protobuf\Internal\Message
      * not an IAM policy change.
      *
      * Generated from protobuf field <code>repeated string grantees = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGrantees($var)

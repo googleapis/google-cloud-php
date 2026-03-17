@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A boost action to apply to results matching condition specified above.
@@ -194,5 +194,4 @@ class BoostAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

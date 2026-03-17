@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instances ListEntraIdCertificates response.
@@ -40,7 +40,7 @@ class InstancesListEntraIdCertificatesResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $certs
+     *     @type \Google\Cloud\Sql\V1\SslCert[] $certs
      *           List of Entra ID certificates for the instance.
      *     @type string $active_version
      *           The `sha1_fingerprint` of the active certificate from `certs`.
@@ -57,7 +57,7 @@ class InstancesListEntraIdCertificatesResponse extends \Google\Protobuf\Internal
      * List of Entra ID certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\SslCert>
      */
     public function getCerts()
     {
@@ -68,7 +68,7 @@ class InstancesListEntraIdCertificatesResponse extends \Google\Protobuf\Internal
      * List of Entra ID certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.SslCert certs = 1;</code>
-     * @param array<\Google\Cloud\Sql\V1\SslCert>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\SslCert[] $var
      * @return $this
      */
     public function setCerts($var)

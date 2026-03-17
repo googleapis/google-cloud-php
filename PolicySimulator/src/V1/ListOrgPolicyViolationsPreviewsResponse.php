@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListOrgPolicyViolationsPreviewsResponse is the response message for
@@ -36,7 +36,7 @@ class ListOrgPolicyViolationsPreviewsResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview>|\Google\Protobuf\Internal\RepeatedField $org_policy_violations_previews
+     *     @type \Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview[] $org_policy_violations_previews
      *           The list of OrgPolicyViolationsPreview
      *     @type string $next_page_token
      *           A token that you can use to retrieve the next page of results.
@@ -52,7 +52,7 @@ class ListOrgPolicyViolationsPreviewsResponse extends \Google\Protobuf\Internal\
      * The list of OrgPolicyViolationsPreview
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyViolationsPreview org_policy_violations_previews = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview>
      */
     public function getOrgPolicyViolationsPreviews()
     {
@@ -63,7 +63,7 @@ class ListOrgPolicyViolationsPreviewsResponse extends \Google\Protobuf\Internal\
      * The list of OrgPolicyViolationsPreview
      *
      * Generated from protobuf field <code>repeated .google.cloud.policysimulator.v1.OrgPolicyViolationsPreview org_policy_violations_previews = 1;</code>
-     * @param array<\Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview[] $var
      * @return $this
      */
     public function setOrgPolicyViolationsPreviews($var)

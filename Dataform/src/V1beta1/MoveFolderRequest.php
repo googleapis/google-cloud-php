@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `MoveFolder` request message.
@@ -24,7 +24,7 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Folder, TeamFolder, or root location to move the
      * Folder to. Can be in the format of: "" to move into the root User folder,
-     * `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`, `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`
+     * `projects/{@*}locations/{@*}folders/*`, `projects/{@*}locations/{@*}teamFolders/*`
      *
      * Generated from protobuf field <code>optional string destination_containing_folder = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -59,7 +59,7 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
      *     @type string $destination_containing_folder
      *           Optional. The name of the Folder, TeamFolder, or root location to move the
      *           Folder to. Can be in the format of: "" to move into the root User folder,
-     *           `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`, `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`
+     *           `projects/{@*}locations/{@*}folders/*`, `projects/{@*}locations/{@*}teamFolders/*`
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +96,7 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Folder, TeamFolder, or root location to move the
      * Folder to. Can be in the format of: "" to move into the root User folder,
-     * `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`, `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`
+     * `projects/{@*}locations/{@*}folders/*`, `projects/{@*}locations/{@*}teamFolders/*`
      *
      * Generated from protobuf field <code>optional string destination_containing_folder = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -119,7 +119,7 @@ class MoveFolderRequest extends \Google\Protobuf\Internal\Message
     /**
      * Optional. The name of the Folder, TeamFolder, or root location to move the
      * Folder to. Can be in the format of: "" to move into the root User folder,
-     * `projects/&#42;&#47;locations/&#42;&#47;folders/&#42;`, `projects/&#42;&#47;locations/&#42;&#47;teamFolders/&#42;`
+     * `projects/{@*}locations/{@*}folders/*`, `projects/{@*}locations/{@*}teamFolders/*`
      *
      * Generated from protobuf field <code>optional string destination_containing_folder = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

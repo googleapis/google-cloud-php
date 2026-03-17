@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\MigratableResource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents one model Version in ml.googleapis.com.
@@ -126,5 +126,4 @@ class MlEngineModelVersion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

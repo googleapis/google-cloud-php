@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An icon displayed in a widget on a card. For an example in Google Chat apps,

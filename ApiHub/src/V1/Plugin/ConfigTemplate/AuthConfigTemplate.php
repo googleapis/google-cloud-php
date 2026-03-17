@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1\Plugin\ConfigTemplate;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AuthConfigTemplate represents the authentication template for a plugin.
@@ -44,7 +44,7 @@ class AuthConfigTemplate extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_auth_types
+     *     @type int[] $supported_auth_types
      *           Required. The list of authentication types supported by the plugin.
      *     @type \Google\Cloud\ApiHub\V1\GoogleServiceAccountConfig $service_account
      *           Optional. The service account of the plugin hosting service.
@@ -69,7 +69,7 @@ class AuthConfigTemplate extends \Google\Protobuf\Internal\Message
      * Required. The list of authentication types supported by the plugin.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.AuthType supported_auth_types = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSupportedAuthTypes()
     {
@@ -80,7 +80,7 @@ class AuthConfigTemplate extends \Google\Protobuf\Internal\Message
      * Required. The list of authentication types supported by the plugin.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.AuthType supported_auth_types = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSupportedAuthTypes($var)
@@ -148,5 +148,4 @@ class AuthConfigTemplate extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Node information for nodes appearing in a
@@ -91,7 +91,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *           of the node in its parent.
      *     @type string $display_name
      *           The display name for the node.
-     *     @type array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $child_links
+     *     @type \Google\Cloud\Spanner\V1\PlanNode\ChildLink[] $child_links
      *           List of child node `index`es and their relationship to this parent.
      *     @type \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $short_representation
      *           Condensed representation for
@@ -208,7 +208,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * List of child node `index`es and their relationship to this parent.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>
      */
     public function getChildLinks()
     {
@@ -219,7 +219,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * List of child node `index`es and their relationship to this parent.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
-     * @param array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\PlanNode\ChildLink[] $var
      * @return $this
      */
     public function setChildLinks($var)

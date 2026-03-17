@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\Service;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Endpoints service. Learn more at https://cloud.google.com/endpoints.
@@ -72,5 +72,4 @@ class CloudEndpoints extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

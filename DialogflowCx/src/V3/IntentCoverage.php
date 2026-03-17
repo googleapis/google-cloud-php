@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Intent coverage represents the percentage of all possible intents in the
@@ -35,7 +35,7 @@ class IntentCoverage extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\IntentCoverage\Intent>|\Google\Protobuf\Internal\RepeatedField $intents
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\IntentCoverage\Intent[] $intents
      *           The list of Intents present in the agent
      *     @type float $coverage_score
      *           The percent of intents in the agent that are covered.
@@ -50,7 +50,7 @@ class IntentCoverage extends \Google\Protobuf\Internal\Message
      * The list of Intents present in the agent
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.IntentCoverage.Intent intents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\IntentCoverage\Intent>
      */
     public function getIntents()
     {
@@ -61,7 +61,7 @@ class IntentCoverage extends \Google\Protobuf\Internal\Message
      * The list of Intents present in the agent
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.IntentCoverage.Intent intents = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\IntentCoverage\Intent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\IntentCoverage\Intent[] $var
      * @return $this
      */
     public function setIntents($var)

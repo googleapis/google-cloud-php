@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\EntryType;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.dataplex.v1.EntryType.AspectInfo</code>
@@ -62,5 +62,4 @@ class AspectInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

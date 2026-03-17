@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the metadata of the
@@ -21,7 +21,7 @@ class DeleteCryptoKeyMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The resource name of the
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] created as a result
      * of this operation, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string retired_resource = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -37,7 +37,7 @@ class DeleteCryptoKeyMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the
      *           [RetiredResource][google.cloud.kms.v1.RetiredResource] created as a result
      *           of this operation, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     *           `projects/{@*}locations/{@*}retiredResources/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -49,7 +49,7 @@ class DeleteCryptoKeyMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The resource name of the
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] created as a result
      * of this operation, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string retired_resource = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +63,7 @@ class DeleteCryptoKeyMetadata extends \Google\Protobuf\Internal\Message
      * Output only. The resource name of the
      * [RetiredResource][google.cloud.kms.v1.RetiredResource] created as a result
      * of this operation, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;retiredResources/&#42;`.
+     * `projects/{@*}locations/{@*}retiredResources/*`.
      *
      * Generated from protobuf field <code>string retired_resource = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

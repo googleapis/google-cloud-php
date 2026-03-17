@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to account tax list request
@@ -36,7 +36,7 @@ class ListAccountTaxResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\AccountTax>|\Google\Protobuf\Internal\RepeatedField $account_taxes
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\AccountTax[] $account_taxes
      *           Page of accounttax settings
      *     @type string $next_page_token
      *           The token for the retrieval of the next page of account tax settings.
@@ -51,7 +51,7 @@ class ListAccountTaxResponse extends \Google\Protobuf\Internal\Message
      * Page of accounttax settings
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountTax account_taxes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\AccountTax>
      */
     public function getAccountTaxes()
     {
@@ -62,7 +62,7 @@ class ListAccountTaxResponse extends \Google\Protobuf\Internal\Message
      * Page of accounttax settings
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.AccountTax account_taxes = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\AccountTax>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\AccountTax[] $var
      * @return $this
      */
     public function setAccountTaxes($var)

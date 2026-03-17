@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Includes various configuration options for a workflow invocation.
@@ -70,9 +70,9 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $included_targets
+     *     @type \Google\Cloud\Dataform\V1beta1\Target[] $included_targets
      *           Optional. The set of action identifiers to include.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $included_tags
+     *     @type string[] $included_tags
      *           Optional. The set of tags to include.
      *     @type bool $transitive_dependencies_included
      *           Optional. When set to true, transitive dependencies of included actions
@@ -99,7 +99,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of action identifiers to include.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target included_targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataform\V1beta1\Target>
      */
     public function getIncludedTargets()
     {
@@ -110,7 +110,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of action identifiers to include.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataform.v1beta1.Target included_targets = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataform\V1beta1\Target>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataform\V1beta1\Target[] $var
      * @return $this
      */
     public function setIncludedTargets($var)
@@ -125,7 +125,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of tags to include.
      *
      * Generated from protobuf field <code>repeated string included_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIncludedTags()
     {
@@ -136,7 +136,7 @@ class InvocationConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of tags to include.
      *
      * Generated from protobuf field <code>repeated string included_tags = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIncludedTags($var)

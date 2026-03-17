@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing the input / output specifications of a processor.
@@ -50,14 +50,14 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphInputChannelSpec>|\Google\Protobuf\Internal\RepeatedField $graph_input_channel_specs
+     *     @type \Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphInputChannelSpec[] $graph_input_channel_specs
      *           For processors with input_channel_specs, the processor must be explicitly
      *           connected to another processor.
-     *     @type array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphOutputChannelSpec>|\Google\Protobuf\Internal\RepeatedField $graph_output_channel_specs
+     *     @type \Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphOutputChannelSpec[] $graph_output_channel_specs
      *           The output artifact specifications for the current processor.
-     *     @type array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceInputBindingSpec>|\Google\Protobuf\Internal\RepeatedField $instance_resource_input_binding_specs
+     *     @type \Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceInputBindingSpec[] $instance_resource_input_binding_specs
      *           The input resource that needs to be fed from the application instance.
-     *     @type array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceOutputBindingSpec>|\Google\Protobuf\Internal\RepeatedField $instance_resource_output_binding_specs
+     *     @type \Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceOutputBindingSpec[] $instance_resource_output_binding_specs
      *           The output resource that the processor will generate per instance.
      *           Other than the explicitly listed output bindings here, all the processors'
      *           GraphOutputChannels can be binded to stream resource. The bind name then is
@@ -74,7 +74,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * connected to another processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.GraphInputChannelSpec graph_input_channel_specs = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphInputChannelSpec>
      */
     public function getGraphInputChannelSpecs()
     {
@@ -86,7 +86,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * connected to another processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.GraphInputChannelSpec graph_input_channel_specs = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphInputChannelSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphInputChannelSpec[] $var
      * @return $this
      */
     public function setGraphInputChannelSpecs($var)
@@ -101,7 +101,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * The output artifact specifications for the current processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.GraphOutputChannelSpec graph_output_channel_specs = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphOutputChannelSpec>
      */
     public function getGraphOutputChannelSpecs()
     {
@@ -112,7 +112,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * The output artifact specifications for the current processor.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.GraphOutputChannelSpec graph_output_channel_specs = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphOutputChannelSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ProcessorIOSpec\GraphOutputChannelSpec[] $var
      * @return $this
      */
     public function setGraphOutputChannelSpecs($var)
@@ -127,7 +127,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * The input resource that needs to be fed from the application instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceInputBindingSpec instance_resource_input_binding_specs = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceInputBindingSpec>
      */
     public function getInstanceResourceInputBindingSpecs()
     {
@@ -138,7 +138,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * The input resource that needs to be fed from the application instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceInputBindingSpec instance_resource_input_binding_specs = 5;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceInputBindingSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceInputBindingSpec[] $var
      * @return $this
      */
     public function setInstanceResourceInputBindingSpecs($var)
@@ -156,7 +156,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * the same as the GraphOutputChannel's name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceOutputBindingSpec instance_resource_output_binding_specs = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceOutputBindingSpec>
      */
     public function getInstanceResourceOutputBindingSpecs()
     {
@@ -170,7 +170,7 @@ class ProcessorIOSpec extends \Google\Protobuf\Internal\Message
      * the same as the GraphOutputChannel's name.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.ProcessorIOSpec.InstanceResourceOutputBindingSpec instance_resource_output_binding_specs = 6;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceOutputBindingSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\ProcessorIOSpec\InstanceResourceOutputBindingSpec[] $var
      * @return $this
      */
     public function setInstanceResourceOutputBindingSpecs($var)

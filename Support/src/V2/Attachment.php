@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Attachment contains metadata about a file that was uploaded to a

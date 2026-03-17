@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing rules.
@@ -35,7 +35,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Rule[] $rules
      *           The rules returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of rules, or empty if there are no
@@ -51,7 +51,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * The rules returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Rule rules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Rule>
      */
     public function getRules()
     {
@@ -62,7 +62,7 @@ class ListRulesResponse extends \Google\Protobuf\Internal\Message
      * The rules returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Rule rules = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Rule[] $var
      * @return $this
      */
     public function setRules($var)

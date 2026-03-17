@@ -5,8 +5,8 @@
 namespace Google\Cloud\Iap\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for IAP allowed domains. Lets you to restrict access to an app
@@ -37,7 +37,7 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable
      *           Optional. Configuration for customers to opt in for the feature.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type string[] $domains
      *           Optional. List of trusted domains.
      * }
      */
@@ -86,7 +86,7 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of trusted domains.
      *
      * Generated from protobuf field <code>repeated string domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDomains()
     {
@@ -97,7 +97,7 @@ class AllowedDomainsSettings extends \Google\Protobuf\Internal\Message
      * Optional. List of trusted domains.
      *
      * Generated from protobuf field <code>repeated string domains = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDomains($var)

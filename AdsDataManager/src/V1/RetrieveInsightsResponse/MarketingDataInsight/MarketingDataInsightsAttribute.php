@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1\RetrieveInsightsResponse\MarketingDataInsight;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Insights for a collection of related attributes of the same dimension.
@@ -210,5 +210,4 @@ class MarketingDataInsightsAttribute extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

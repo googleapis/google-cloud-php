@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\ReportDefinition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A dimension or a metric in a report.
@@ -105,5 +105,4 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

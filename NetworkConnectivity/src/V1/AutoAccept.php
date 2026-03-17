@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The auto-accept setting for a group controls whether
@@ -36,7 +36,7 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $auto_accept_projects
+     *     @type string[] $auto_accept_projects
      *           Optional. A list of project ids or project numbers for which you want
      *           to enable auto-accept. The auto-accept setting is applied to
      *           spokes being created or updated in these projects.
@@ -53,7 +53,7 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
      * spokes being created or updated in these projects.
      *
      * Generated from protobuf field <code>repeated string auto_accept_projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAutoAcceptProjects()
     {
@@ -66,7 +66,7 @@ class AutoAccept extends \Google\Protobuf\Internal\Message
      * spokes being created or updated in these projects.
      *
      * Generated from protobuf field <code>repeated string auto_accept_projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAutoAcceptProjects($var)

@@ -5,8 +5,8 @@
 namespace Grafeas\V1\SlsaProvenanceZeroTwo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identifies the entity that executed the recipe, which is trusted to have
@@ -58,5 +58,4 @@ class SlsaBuilder extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

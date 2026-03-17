@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request message for resuming a patch deployment.
@@ -17,7 +17,7 @@ class ResumePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the patch deployment in the form
-     * `projects/&#42;&#47;patchDeployments/&#42;`.
+     * `projects/{@*}patchDeployments/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -46,7 +46,7 @@ class ResumePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The resource name of the patch deployment in the form
-     *           `projects/&#42;&#47;patchDeployments/&#42;`.
+     *           `projects/{@*}patchDeployments/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +56,7 @@ class ResumePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the patch deployment in the form
-     * `projects/&#42;&#47;patchDeployments/&#42;`.
+     * `projects/{@*}patchDeployments/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -68,7 +68,7 @@ class ResumePatchDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the patch deployment in the form
-     * `projects/&#42;&#47;patchDeployments/&#42;`.
+     * `projects/{@*}patchDeployments/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

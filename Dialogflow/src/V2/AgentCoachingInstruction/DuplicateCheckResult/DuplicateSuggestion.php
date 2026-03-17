@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\AgentCoachingInstruction\DuplicateCheckResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The duplicate suggestion details.
@@ -140,5 +140,4 @@ class DuplicateSuggestion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

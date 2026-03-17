@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response from listing repositories.
@@ -35,7 +35,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\Repository>|\Google\Protobuf\Internal\RepeatedField $repositories
+     *     @type \Google\Cloud\ArtifactRegistry\V1\Repository[] $repositories
      *           The repositories returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of repositories, or empty if there are
@@ -51,7 +51,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * The repositories returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Repository repositories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\Repository>
      */
     public function getRepositories()
     {
@@ -62,7 +62,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * The repositories returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.Repository repositories = 1;</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\Repository>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\Repository[] $var
      * @return $this
      */
     public function setRepositories($var)

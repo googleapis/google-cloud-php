@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A single reason why the action is not available.
@@ -188,5 +188,4 @@ class Reason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\ConfigManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * State information for ConfigSync
@@ -73,7 +73,7 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      *           of the various Pods deployed
      *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\SyncState $sync_state
      *           The state of ConfigSync's process to sync configs to a cluster
-     *     @type array<\Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError[] $errors
      *           Errors pertaining to the installation of Config Sync.
      *     @type int $rootsync_crd
      *           The state of the RootSync CRD
@@ -203,7 +203,7 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      * Errors pertaining to the installation of Config Sync.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ConfigSyncError errors = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError>
      */
     public function getErrors()
     {
@@ -214,7 +214,7 @@ class ConfigSyncState extends \Google\Protobuf\Internal\Message
      * Errors pertaining to the installation of Config Sync.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.configmanagement.v1.ConfigSyncError errors = 4;</code>
-     * @param array<\Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeHub\ConfigManagement\V1\ConfigSyncError[] $var
      * @return $this
      */
     public function setErrors($var)

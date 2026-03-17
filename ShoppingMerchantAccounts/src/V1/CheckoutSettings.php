@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [CheckoutSettings](https://support.google.com/merchants/answer/13945960) for
@@ -96,7 +96,7 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
      *           Format: `accounts/{account}/programs/{program}/checkoutSettings`
      *     @type \Google\Shopping\Merchant\Accounts\V1\UriSettings $uri_settings
      *           URI settings for cart or checkout URL.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $eligible_destinations
+     *     @type int[] $eligible_destinations
      *           Optional. The destinations (also known as [Marketing
      *           methods](https://support.google.com/merchants/answer/15130232)) to which
      *           the checkout program applies, valid destination values are `SHOPPING_ADS`,
@@ -205,7 +205,7 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
      * `FREE_LISTINGS`
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum eligible_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getEligibleDestinations()
     {
@@ -219,7 +219,7 @@ class CheckoutSettings extends \Google\Protobuf\Internal\Message
      * `FREE_LISTINGS`
      *
      * Generated from protobuf field <code>repeated .google.shopping.type.Destination.DestinationEnum eligible_destinations = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setEligibleDestinations($var)

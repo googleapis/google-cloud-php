@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2\VertexAi;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Vertex AI dataset associated with the finding.
@@ -140,5 +140,4 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

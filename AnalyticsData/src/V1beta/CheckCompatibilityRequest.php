@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for compatibility information for a report's dimensions and
@@ -77,10 +77,10 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      *           ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
      *           `property` should be the same value as in your `runReport` request.
      *           Example: properties/1234
-     *     @type array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Analytics\Data\V1beta\Dimension[] $dimensions
      *           The dimensions in this report. `dimensions` should be the same value as in
      *           your `runReport` request.
-     *     @type array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Analytics\Data\V1beta\Metric[] $metrics
      *           The metrics in this report. `metrics` should be the same value as in your
      *           `runReport` request.
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $dimension_filter
@@ -139,7 +139,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * your `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Dimension>
      */
     public function getDimensions()
     {
@@ -151,7 +151,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * your `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Dimension dimensions = 2;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Dimension[] $var
      * @return $this
      */
     public function setDimensions($var)
@@ -167,7 +167,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1beta\Metric>
      */
     public function getMetrics()
     {
@@ -179,7 +179,7 @@ class CheckCompatibilityRequest extends \Google\Protobuf\Internal\Message
      * `runReport` request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Metric metrics = 3;</code>
-     * @param array<\Google\Analytics\Data\V1beta\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1beta\Metric[] $var
      * @return $this
      */
     public function setMetrics($var)

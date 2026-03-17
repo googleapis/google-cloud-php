@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ConfigVariableTemplate represents a configuration variable template present
@@ -82,9 +82,9 @@ class ConfigVariableTemplate extends \Google\Protobuf\Internal\Message
      *     @type bool $required
      *           Optional. Flag represents that this `ConfigVariable` must be provided for a
      *           PluginInstance.
-     *     @type array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $enum_options
+     *     @type \Google\Cloud\ApiHub\V1\ConfigValueOption[] $enum_options
      *           Optional. Enum options. To be populated if `ValueType` is `ENUM`.
-     *     @type array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $multi_select_options
+     *     @type \Google\Cloud\ApiHub\V1\ConfigValueOption[] $multi_select_options
      *           Optional. Multi select options. To be populated if `ValueType` is
      *           `MULTI_SELECT`.
      * }
@@ -234,7 +234,7 @@ class ConfigVariableTemplate extends \Google\Protobuf\Internal\Message
      * Optional. Enum options. To be populated if `ValueType` is `ENUM`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption enum_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\ConfigValueOption>
      */
     public function getEnumOptions()
     {
@@ -245,7 +245,7 @@ class ConfigVariableTemplate extends \Google\Protobuf\Internal\Message
      * Optional. Enum options. To be populated if `ValueType` is `ENUM`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption enum_options = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\ConfigValueOption[] $var
      * @return $this
      */
     public function setEnumOptions($var)
@@ -261,7 +261,7 @@ class ConfigVariableTemplate extends \Google\Protobuf\Internal\Message
      * `MULTI_SELECT`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption multi_select_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\ConfigValueOption>
      */
     public function getMultiSelectOptions()
     {
@@ -273,7 +273,7 @@ class ConfigVariableTemplate extends \Google\Protobuf\Internal\Message
      * `MULTI_SELECT`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.ConfigValueOption multi_select_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\ConfigValueOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\ConfigValueOption[] $var
      * @return $this
      */
     public function setMultiSelectOptions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains data reported from an inventory source on an asset.
@@ -63,7 +63,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
      *           Labels as key value pairs.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
      *           Generic asset attributes.
-     *     @type array<\Google\Cloud\MigrationCenter\V1\PerformanceSample>|\Google\Protobuf\Internal\RepeatedField $performance_samples
+     *     @type \Google\Cloud\MigrationCenter\V1\PerformanceSample[] $performance_samples
      *           Asset performance data samples.
      *           Samples that are from more than 40 days ago or after tomorrow are ignored.
      *     @type string $trace_token
@@ -200,7 +200,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
      * Samples that are from more than 40 days ago or after tomorrow are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PerformanceSample performance_samples = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\PerformanceSample>
      */
     public function getPerformanceSamples()
     {
@@ -212,7 +212,7 @@ class AssetFrame extends \Google\Protobuf\Internal\Message
      * Samples that are from more than 40 days ago or after tomorrow are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.PerformanceSample performance_samples = 13;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\PerformanceSample>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\PerformanceSample[] $var
      * @return $this
      */
     public function setPerformanceSamples($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\OracleSourceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration to drop large object values.
@@ -30,5 +30,4 @@ class DropLargeObjects extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

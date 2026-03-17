@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataform\V1\CompilationResultAction\DataPreparation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Definition of a SQL Data Preparation
@@ -156,5 +156,4 @@ class SqlDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

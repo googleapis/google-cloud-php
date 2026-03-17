@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detected Person contains the detected person and their associated
@@ -82,7 +82,7 @@ class DetectedPerson extends \Google\Protobuf\Internal\Message
      *           The id of detected person.
      *     @type \Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PersonIdentifiedBox $detected_person_identified_box
      *           The info of detected person identified box.
-     *     @type array<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PPEIdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $detected_ppe_identified_boxes
+     *     @type \Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PPEIdentifiedBox[] $detected_ppe_identified_boxes
      *           The info of detected person associated ppe identified boxes.
      *     @type float $face_coverage_score
      *           Coverage score for each body part.
@@ -170,7 +170,7 @@ class DetectedPerson extends \Google\Protobuf\Internal\Message
      * The info of detected person associated ppe identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEIdentifiedBox detected_ppe_identified_boxes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PPEIdentifiedBox>
      */
     public function getDetectedPpeIdentifiedBoxes()
     {
@@ -181,7 +181,7 @@ class DetectedPerson extends \Google\Protobuf\Internal\Message
      * The info of detected person associated ppe identified boxes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.PersonalProtectiveEquipmentDetectionOutput.PPEIdentifiedBox detected_ppe_identified_boxes = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PPEIdentifiedBox>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput\PPEIdentifiedBox[] $var
      * @return $this
      */
     public function setDetectedPpeIdentifiedBoxes($var)
@@ -411,5 +411,4 @@ class DetectedPerson extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

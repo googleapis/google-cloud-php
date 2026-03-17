@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A template that can be used to create a [TemplateCreative][].
@@ -128,7 +128,7 @@ class CreativeTemplate extends \Google\Protobuf\Internal\Message
      *     @type bool $safe_frame_compatible
      *           Optional. Whether the Creative produced is compatible for SafeFrame
      *           rendering. This attribute defaults to `True`.
-     *     @type array<\Google\Ads\AdManager\V1\CreativeTemplateVariable>|\Google\Protobuf\Internal\RepeatedField $variables
+     *     @type \Google\Ads\AdManager\V1\CreativeTemplateVariable[] $variables
      *           Required. The list of creative template variables.
      * }
      */
@@ -511,7 +511,7 @@ class CreativeTemplate extends \Google\Protobuf\Internal\Message
      * Required. The list of creative template variables.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable variables = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreativeTemplateVariable>
      */
     public function getVariables()
     {
@@ -522,7 +522,7 @@ class CreativeTemplate extends \Google\Protobuf\Internal\Message
      * Required. The list of creative template variables.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreativeTemplateVariable variables = 14 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\CreativeTemplateVariable>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreativeTemplateVariable[] $var
      * @return $this
      */
     public function setVariables($var)

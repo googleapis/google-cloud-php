@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1\SkaffoldModules;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Git repository containing Skaffold Config modules.
@@ -132,5 +132,4 @@ class SkaffoldGitSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

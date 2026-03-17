@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The message to hold repeated API metadata.
@@ -28,7 +28,7 @@ class ApiMetadataList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ApiHub\V1\APIMetadata>|\Google\Protobuf\Internal\RepeatedField $api_metadata
+     *     @type \Google\Cloud\ApiHub\V1\APIMetadata[] $api_metadata
      *           Required. The list of API metadata.
      * }
      */
@@ -41,7 +41,7 @@ class ApiMetadataList extends \Google\Protobuf\Internal\Message
      * Required. The list of API metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.APIMetadata api_metadata = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\APIMetadata>
      */
     public function getApiMetadata()
     {
@@ -52,7 +52,7 @@ class ApiMetadataList extends \Google\Protobuf\Internal\Message
      * Required. The list of API metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.APIMetadata api_metadata = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\APIMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\APIMetadata[] $var
      * @return $this
      */
     public function setApiMetadata($var)

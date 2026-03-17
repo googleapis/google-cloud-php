@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entities are extracted from user input and represent parameters that are
@@ -116,9 +116,9 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           Required. Indicates the kind of entity type.
      *     @type int $auto_expansion_mode
      *           Indicates whether the entity type can be automatically expanded.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\EntityType\Entity[] $entities
      *           The collection of entity entries associated with the entity type.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\EntityType\ExcludedPhrase>|\Google\Protobuf\Internal\RepeatedField $excluded_phrases
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\EntityType\ExcludedPhrase[] $excluded_phrases
      *           Collection of exceptional words and phrases that shouldn't be matched.
      *           For example, if you have a size entity type with entry `giant`(an
      *           adjective), you might consider adding `giants`(a noun) as an exclusion.
@@ -255,7 +255,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EntityType.Entity entities = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\EntityType\Entity>
      */
     public function getEntities()
     {
@@ -266,7 +266,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * The collection of entity entries associated with the entity type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EntityType.Entity entities = 5;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EntityType\Entity[] $var
      * @return $this
      */
     public function setEntities($var)
@@ -285,7 +285,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * entities and excluded phrases should be mutually exclusive.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EntityType.ExcludedPhrase excluded_phrases = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\EntityType\ExcludedPhrase>
      */
     public function getExcludedPhrases()
     {
@@ -300,7 +300,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * entities and excluded phrases should be mutually exclusive.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.EntityType.ExcludedPhrase excluded_phrases = 6;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\EntityType\ExcludedPhrase>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\EntityType\ExcludedPhrase[] $var
      * @return $this
      */
     public function setExcludedPhrases($var)

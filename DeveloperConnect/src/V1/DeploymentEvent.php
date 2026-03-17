@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The DeploymentEvent resource represents the deployment of the artifact within
@@ -108,7 +108,7 @@ class DeploymentEvent extends \Google\Protobuf\Internal\Message
      *           For Cloud Run, this is the revision name.
      *     @type int $state
      *           Output only. The state of the DeploymentEvent.
-     *     @type array<\Google\Cloud\DeveloperConnect\V1\ArtifactDeployment>|\Google\Protobuf\Internal\RepeatedField $artifact_deployments
+     *     @type \Google\Cloud\DeveloperConnect\V1\ArtifactDeployment[] $artifact_deployments
      *           Output only. The artifact deployments of the DeploymentEvent. Each artifact
      *           deployment contains the artifact uri and the runtime configuration uri. For
      *           GKE, this would be all the containers images that are deployed in the pod.
@@ -332,7 +332,7 @@ class DeploymentEvent extends \Google\Protobuf\Internal\Message
      * GKE, this would be all the containers images that are deployed in the pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.ArtifactDeployment artifact_deployments = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DeveloperConnect\V1\ArtifactDeployment>
      */
     public function getArtifactDeployments()
     {
@@ -345,7 +345,7 @@ class DeploymentEvent extends \Google\Protobuf\Internal\Message
      * GKE, this would be all the containers images that are deployed in the pod.
      *
      * Generated from protobuf field <code>repeated .google.cloud.developerconnect.v1.ArtifactDeployment artifact_deployments = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\DeveloperConnect\V1\ArtifactDeployment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DeveloperConnect\V1\ArtifactDeployment[] $var
      * @return $this
      */
     public function setArtifactDeployments($var)

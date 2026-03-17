@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ContinuousBackupInfo describes the continuous backup properties of a
@@ -64,7 +64,7 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $enabled_time
      *           Output only. When ContinuousBackup was most recently enabled. Set to null
      *           if ContinuousBackup is not enabled.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $schedule
+     *     @type int[] $schedule
      *           Output only. Days of the week on which a continuous backup is taken.
      *     @type \Google\Protobuf\Timestamp $earliest_restorable_time
      *           Output only. The earliest restorable time that can be restored to. If
@@ -164,7 +164,7 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
      * Output only. Days of the week on which a continuous backup is taken.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSchedule()
     {
@@ -175,7 +175,7 @@ class ContinuousBackupInfo extends \Google\Protobuf\Internal\Message
      * Output only. Days of the week on which a continuous backup is taken.
      *
      * Generated from protobuf field <code>repeated .google.type.DayOfWeek schedule = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSchedule($var)

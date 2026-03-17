@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ComputeTokens RPC call.
@@ -30,7 +30,7 @@ class ComputeTokensResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\TokensInfo>|\Google\Protobuf\Internal\RepeatedField $tokens_info
+     *     @type \Google\Cloud\AIPlatform\V1\TokensInfo[] $tokens_info
      *           Lists of tokens info from the input. A ComputeTokensRequest could have
      *           multiple instances with a prompt in each instance. We also need to return
      *           lists of tokens info for the request with multiple instances.
@@ -47,7 +47,7 @@ class ComputeTokensResponse extends \Google\Protobuf\Internal\Message
      * lists of tokens info for the request with multiple instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TokensInfo tokens_info = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\TokensInfo>
      */
     public function getTokensInfo()
     {
@@ -60,7 +60,7 @@ class ComputeTokensResponse extends \Google\Protobuf\Internal\Message
      * lists of tokens info for the request with multiple instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TokensInfo tokens_info = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\TokensInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\TokensInfo[] $var
      * @return $this
      */
     public function setTokensInfo($var)

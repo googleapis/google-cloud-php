@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of the derived image portion of the DockerImage relationship. This
@@ -57,7 +57,7 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      *     @type int $distance
      *           Output only. The number of layers by which this image differs from the
      *           associated image basis.
-     *     @type array<\Grafeas\V1\Layer>|\Google\Protobuf\Internal\RepeatedField $layer_info
+     *     @type \Grafeas\V1\Layer[] $layer_info
      *           This contains layer-specific metadata, if populated it has length
      *           "distance" and is ordered with [distance] being the layer immediately
      *           following the base image and [1] being the final layer.
@@ -141,7 +141,7 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      * following the base image and [1] being the final layer.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Layer layer_info = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Layer>
      */
     public function getLayerInfo()
     {
@@ -154,7 +154,7 @@ class ImageOccurrence extends \Google\Protobuf\Internal\Message
      * following the base image and [1] being the final layer.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Layer layer_info = 3;</code>
-     * @param array<\Grafeas\V1\Layer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Layer[] $var
      * @return $this
      */
     public function setLayerInfo($var)

@@ -90,6 +90,3 @@ class SpanKind
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SpanKind::class, \Google\Cloud\Trace\V2\Span_SpanKind::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Data\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of users in an audience list.
@@ -53,7 +53,7 @@ class QueryAudienceListResponse extends \Google\Protobuf\Internal\Message
      *           Configuration data about AudienceList being queried. Returned to help
      *           interpret the audience rows in this response. For example, the dimensions
      *           in this AudienceList correspond to the columns in the AudienceRows.
-     *     @type array<\Google\Analytics\Data\V1alpha\AudienceRow>|\Google\Protobuf\Internal\RepeatedField $audience_rows
+     *     @type \Google\Analytics\Data\V1alpha\AudienceRow[] $audience_rows
      *           Rows for each user in an audience list. The number of rows in this
      *           response will be less than or equal to request's page size.
      *     @type int $row_count
@@ -116,7 +116,7 @@ class QueryAudienceListResponse extends \Google\Protobuf\Internal\Message
      * response will be less than or equal to request's page size.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceRow audience_rows = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Data\V1alpha\AudienceRow>
      */
     public function getAudienceRows()
     {
@@ -128,7 +128,7 @@ class QueryAudienceListResponse extends \Google\Protobuf\Internal\Message
      * response will be less than or equal to request's page size.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1alpha.AudienceRow audience_rows = 2;</code>
-     * @param array<\Google\Analytics\Data\V1alpha\AudienceRow>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Data\V1alpha\AudienceRow[] $var
      * @return $this
      */
     public function setAudienceRows($var)

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An actionable step that can be executed to solve the issue.
@@ -72,7 +72,7 @@ class Action extends \Google\Protobuf\Internal\Message
      *           [reason][google.shopping.merchant.issueresolution.v1.Action.reasons] will
      *           be present. If (your) third-party application shows a disabled button for
      *           action that is not available, then it should also show reasons.
-     *     @type array<\Google\Shopping\Merchant\IssueResolution\V1\Action\Reason>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type \Google\Shopping\Merchant\IssueResolution\V1\Action\Reason[] $reasons
      *           List of reasons why the action is not available. The list of reasons is
      *           empty if the action is available. If there is only one reason, it can be
      *           displayed next to the disabled button. If there are more reasons, all of
@@ -262,7 +262,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * them should be displayed, for example in a pop-up dialog.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Action.Reason reasons = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\IssueResolution\V1\Action\Reason>
      */
     public function getReasons()
     {
@@ -276,7 +276,7 @@ class Action extends \Google\Protobuf\Internal\Message
      * them should be displayed, for example in a pop-up dialog.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.issueresolution.v1.Action.Reason reasons = 6;</code>
-     * @param array<\Google\Shopping\Merchant\IssueResolution\V1\Action\Reason>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\IssueResolution\V1\Action\Reason[] $var
      * @return $this
      */
     public function setReasons($var)

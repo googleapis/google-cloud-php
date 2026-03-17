@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This is an error detail intended to be used with INVALID_ARGUMENT errors.
@@ -35,7 +35,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\QueryError>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Monitoring\V3\QueryError[] $errors
      *           Errors in parsing the time series query language text. The number of errors
      *           in the response may be limited.
      *     @type string $error_summary
@@ -52,7 +52,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      * in the response may be limited.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.QueryError errors = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\QueryError>
      */
     public function getErrors()
     {
@@ -64,7 +64,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      * in the response may be limited.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.QueryError errors = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\QueryError>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\QueryError[] $var
      * @return $this
      */
     public function setErrors($var)

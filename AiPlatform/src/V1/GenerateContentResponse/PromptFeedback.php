@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GenerateContentResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Content filter results for a prompt sent in the request.
@@ -42,7 +42,7 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
      *
      *     @type int $block_reason
      *           Output only. Blocked reason.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $safety_ratings
+     *     @type \Google\Cloud\AIPlatform\V1\SafetyRating[] $safety_ratings
      *           Output only. Safety ratings.
      *     @type string $block_reason_message
      *           Output only. A readable block reason message.
@@ -83,7 +83,7 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
      * Output only. Safety ratings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetyRating safety_ratings = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SafetyRating>
      */
     public function getSafetyRatings()
     {
@@ -94,7 +94,7 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
      * Output only. Safety ratings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetyRating safety_ratings = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SafetyRating[] $var
      * @return $this
      */
     public function setSafetyRatings($var)
@@ -132,5 +132,4 @@ class PromptFeedback extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ListTasks Response.
@@ -40,11 +40,11 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Batch\V1\Task>|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type \Google\Cloud\Batch\V1\Task[] $tasks
      *           Tasks.
      *     @type string $next_page_token
      *           Next page token.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * Tasks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Task tasks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\Task>
      */
     public function getTasks()
     {
@@ -68,7 +68,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * Tasks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.Task tasks = 1;</code>
-     * @param array<\Google\Cloud\Batch\V1\Task>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\Task[] $var
      * @return $this
      */
     public function setTasks($var)
@@ -109,7 +109,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListTasksResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

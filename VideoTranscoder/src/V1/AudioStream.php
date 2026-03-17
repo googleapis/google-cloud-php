@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Audio stream resource.
@@ -110,7 +110,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *           10,000,000.
      *     @type int $channel_count
      *           Number of audio channels. Must be between 1 and 6. The default is 2.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $channel_layout
+     *     @type string[] $channel_layout
      *           A list of channel names specifying layout of the audio channels.
      *           This only affects the metadata embedded in the container headers, if
      *           supported by the specified format. The default is `["fl", "fr"]`.
@@ -121,7 +121,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      *           - `sr` - Side right channel
      *           - `fc` - Front center channel
      *           - `lfe` - Low frequency
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping>|\Google\Protobuf\Internal\RepeatedField $mapping
+     *     @type \Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping[] $mapping
      *           The mapping for the
      *           [JobConfig.edit_list][google.cloud.video.transcoder.v1.JobConfig.edit_list]
      *           atoms with audio
@@ -252,7 +252,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * - `lfe` - Low frequency
      *
      * Generated from protobuf field <code>repeated string channel_layout = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getChannelLayout()
     {
@@ -272,7 +272,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * - `lfe` - Low frequency
      *
      * Generated from protobuf field <code>repeated string channel_layout = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setChannelLayout($var)
@@ -290,7 +290,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.AudioStream.AudioMapping mapping = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping>
      */
     public function getMapping()
     {
@@ -304,7 +304,7 @@ class AudioStream extends \Google\Protobuf\Internal\Message
      * [EditAtom.inputs][google.cloud.video.transcoder.v1.EditAtom.inputs].
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.AudioStream.AudioMapping mapping = 5;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\AudioStream\AudioMapping[] $var
      * @return $this
      */
     public function setMapping($var)

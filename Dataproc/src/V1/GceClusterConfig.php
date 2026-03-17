@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Common config settings for resources of Compute Engine cluster
@@ -209,7 +209,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Compute Engine default service
      *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
+     *     @type string[] $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances. The following base set of scopes is always
      *           included:
@@ -221,7 +221,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.admin.table
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type string[] $tags
      *           The Compute Engine network tags to add to all instances (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
@@ -506,7 +506,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceAccountScopes()
     {
@@ -527,7 +527,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceAccountScopes($var)
@@ -543,7 +543,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -555,7 +555,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)

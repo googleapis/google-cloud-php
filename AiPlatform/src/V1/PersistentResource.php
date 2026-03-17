@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents long-lasting resources that are dedicated to users to runs custom
@@ -150,7 +150,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *           Optional. The display name of the PersistentResource.
      *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ResourcePool>|\Google\Protobuf\Internal\RepeatedField $resource_pools
+     *     @type \Google\Cloud\AIPlatform\V1\ResourcePool[] $resource_pools
      *           Required. The spec of the pools of different resources.
      *     @type int $state
      *           Output only. The detailed state of a Study.
@@ -196,7 +196,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      *           For example, used for Ray cluster configuration.
      *     @type \Google\Cloud\AIPlatform\V1\ResourceRuntime $resource_runtime
      *           Output only. Runtime information of the Persistent Resource.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *     @type string[] $reserved_ip_ranges
      *           Optional. A list of names for the reserved IP ranges under the VPC network
      *           that can be used for this persistent resource.
      *           If set, we will deploy the persistent resource within the provided IP
@@ -270,7 +270,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      * Required. The spec of the pools of different resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ResourcePool resource_pools = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ResourcePool>
      */
     public function getResourcePools()
     {
@@ -281,7 +281,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      * Required. The spec of the pools of different resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ResourcePool resource_pools = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ResourcePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ResourcePool[] $var
      * @return $this
      */
     public function setResourcePools($var)
@@ -711,7 +711,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReservedIpRanges()
     {
@@ -727,7 +727,7 @@ class PersistentResource extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReservedIpRanges($var)

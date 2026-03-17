@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -89,7 +89,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent catalog resource name, such as
-     *           `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch`.
+     *           `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch`.
      *     @type \Google\Cloud\Retail\V2\Product $product
      *           Required. The [Product][google.cloud.retail.v2.Product] to create.
      *     @type string $product_id
@@ -114,7 +114,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -126,7 +126,7 @@ class CreateProductRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent catalog resource name, such as
-     * `projects/&#42;&#47;locations/global/catalogs/default_catalog/branches/default_branch`.
+     * `projects/{@*}locations/global/catalogs/default_catalog/branches/default_branch`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

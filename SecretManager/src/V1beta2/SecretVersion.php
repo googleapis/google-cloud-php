@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A secret version resource in the Secret Manager API.
@@ -18,7 +18,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] in the
-     * format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}secrets/{@*}versions/*`.
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] IDs in a
      * [Secret][google.cloud.secretmanager.v1beta2.Secret] start at 1 and are
      * incremented for each subsequent version of the secret.
@@ -106,7 +106,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name of the
      *           [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] in the
-     *           format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           format `projects/{@*}secrets/{@*}versions/*`.
      *           [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] IDs in a
      *           [Secret][google.cloud.secretmanager.v1beta2.Secret] start at 1 and are
      *           incremented for each subsequent version of the secret.
@@ -158,7 +158,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] in the
-     * format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}secrets/{@*}versions/*`.
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] IDs in a
      * [Secret][google.cloud.secretmanager.v1beta2.Secret] start at 1 and are
      * incremented for each subsequent version of the secret.
@@ -174,7 +174,7 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name of the
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] in the
-     * format `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * format `projects/{@*}secrets/{@*}versions/*`.
      * [SecretVersion][google.cloud.secretmanager.v1beta2.SecretVersion] IDs in a
      * [Secret][google.cloud.secretmanager.v1beta2.Secret] start at 1 and are
      * incremented for each subsequent version of the secret.

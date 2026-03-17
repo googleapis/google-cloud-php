@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Wraps a URI that might be displaying malicious content.
@@ -40,7 +40,7 @@ class Submission extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Required. The URI that is being reported for malicious content to be
      *           analyzed.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type int[] $threat_types
      *           Output only. ThreatTypes found to be associated with the submitted URI
      *           after reviewing it. This might be empty if the URI was not added to any
      *           list.
@@ -85,7 +85,7 @@ class Submission extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getThreatTypes()
     {
@@ -98,7 +98,7 @@ class Submission extends \Google\Protobuf\Internal\Message
      * list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatType threat_types = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setThreatTypes($var)

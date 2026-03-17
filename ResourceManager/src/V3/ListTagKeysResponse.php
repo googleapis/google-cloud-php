@@ -5,8 +5,8 @@
 namespace Google\Cloud\ResourceManager\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ListTagKeys response message.
@@ -35,7 +35,7 @@ class ListTagKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ResourceManager\V3\TagKey>|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *     @type \Google\Cloud\ResourceManager\V3\TagKey[] $tag_keys
      *           List of TagKeys that live under the specified parent in the request.
      *     @type string $next_page_token
      *           A pagination token returned from a previous call to `ListTagKeys`
@@ -51,7 +51,7 @@ class ListTagKeysResponse extends \Google\Protobuf\Internal\Message
      * List of TagKeys that live under the specified parent in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagKey tag_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ResourceManager\V3\TagKey>
      */
     public function getTagKeys()
     {
@@ -62,7 +62,7 @@ class ListTagKeysResponse extends \Google\Protobuf\Internal\Message
      * List of TagKeys that live under the specified parent in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagKey tag_keys = 1;</code>
-     * @param array<\Google\Cloud\ResourceManager\V3\TagKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ResourceManager\V3\TagKey[] $var
      * @return $this
      */
     public function setTagKeys($var)

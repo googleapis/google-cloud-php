@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\SingleTenantHsmInstanceProposal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters of quorum approval for the
@@ -50,11 +50,11 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
      *     @type int $required_approver_count
      *           Output only. The required numbers of approvers. This is the M value used
      *           for M of N quorum auth. It is less than the number of public keys.
-     *     @type array<\Google\Cloud\Kms\V1\Challenge>|\Google\Protobuf\Internal\RepeatedField $challenges
+     *     @type \Google\Cloud\Kms\V1\Challenge[] $challenges
      *           Output only. The challenges to be signed by 2FA keys for quorum auth. M
      *           of N of these challenges are required to be signed to approve the
      *           operation.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $approved_two_factor_public_key_pems
+     *     @type string[] $approved_two_factor_public_key_pems
      *           Output only. The public keys associated with the 2FA keys that have
      *           already approved the
      *           [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
@@ -100,7 +100,7 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Challenge challenges = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\Challenge>
      */
     public function getChallenges()
     {
@@ -113,7 +113,7 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Challenge challenges = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Kms\V1\Challenge>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\Challenge[] $var
      * @return $this
      */
     public function setChallenges($var)
@@ -131,7 +131,7 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
      * by signing the challenge.
      *
      * Generated from protobuf field <code>repeated string approved_two_factor_public_key_pems = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApprovedTwoFactorPublicKeyPems()
     {
@@ -145,7 +145,7 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
      * by signing the challenge.
      *
      * Generated from protobuf field <code>repeated string approved_two_factor_public_key_pems = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApprovedTwoFactorPublicKeyPems($var)
@@ -157,5 +157,4 @@ class QuorumParameters extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

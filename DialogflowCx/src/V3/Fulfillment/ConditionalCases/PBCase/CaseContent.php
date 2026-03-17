@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Fulfillment\ConditionalCases\PBCase;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The list of messages or conditional cases to activate for this case.
@@ -105,5 +105,4 @@ class CaseContent extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For display only. Metadata associated with a Compute Engine instance.
@@ -103,7 +103,7 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *           Internal IP address of the network interface.
      *     @type string $external_ip
      *           External IP address of the network interface.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Network tags configured on the instance.
      *     @type string $service_account
      *           Service account authorized for the instance.
@@ -281,7 +281,7 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      * Network tags configured on the instance.
      *
      * Generated from protobuf field <code>repeated string network_tags = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -292,7 +292,7 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      * Network tags configured on the instance.
      *
      * Generated from protobuf field <code>repeated string network_tags = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)

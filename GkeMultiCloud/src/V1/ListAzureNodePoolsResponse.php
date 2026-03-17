@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AzureClusters.ListAzureNodePools` method.
@@ -37,7 +37,7 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePool>|\Google\Protobuf\Internal\RepeatedField $azure_node_pools
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureNodePool[] $azure_node_pools
      *           A list of [AzureNodePool][google.cloud.gkemulticloud.v1.AzureNodePool]
      *           resources in the specified `AzureCluster`.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified `AzureCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pools = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureNodePool>
      */
     public function getAzureNodePools()
     {
@@ -67,7 +67,7 @@ class ListAzureNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified `AzureCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureNodePool azure_node_pools = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureNodePool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureNodePool[] $var
      * @return $this
      */
     public function setAzureNodePools($var)

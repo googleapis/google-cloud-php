@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A resource message representing an `ExpandedDataSet`.
@@ -85,12 +85,12 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. The description of the ExpandedDataSet.
      *           Max 50 chars.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dimension_names
+     *     @type string[] $dimension_names
      *           Immutable. The list of dimensions included in the ExpandedDataSet.
      *           See the [API
      *           Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions)
      *           for the list of dimension names.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $metric_names
+     *     @type string[] $metric_names
      *           Immutable. The list of metrics included in the ExpandedDataSet.
      *           See the [API
      *           Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics)
@@ -200,7 +200,7 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      * for the list of dimension names.
      *
      * Generated from protobuf field <code>repeated string dimension_names = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDimensionNames()
     {
@@ -214,7 +214,7 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      * for the list of dimension names.
      *
      * Generated from protobuf field <code>repeated string dimension_names = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDimensionNames($var)
@@ -232,7 +232,7 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      * for the list of dimension names.
      *
      * Generated from protobuf field <code>repeated string metric_names = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMetricNames()
     {
@@ -246,7 +246,7 @@ class ExpandedDataSet extends \Google\Protobuf\Internal\Message
      * for the list of dimension names.
      *
      * Generated from protobuf field <code>repeated string metric_names = 5 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMetricNames($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Flow;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Settings for multi-lingual agents.
@@ -47,7 +47,7 @@ class MultiLanguageSettings extends \Google\Protobuf\Internal\Message
      *           Optional. Enable multi-language detection for this flow. This can be set
      *           only if [agent level multi language
      *           setting][Agent.enable_multi_language_training] is enabled.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_response_language_codes
+     *     @type string[] $supported_response_language_codes
      *           Optional. Agent will respond in the detected language if the detected
      *           language code is in the supported resolved languages for this flow. This
      *           will be used only if multi-language training is enabled in the
@@ -104,7 +104,7 @@ class MultiLanguageSettings extends \Google\Protobuf\Internal\Message
      * the agent.
      *
      * Generated from protobuf field <code>repeated string supported_response_language_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSupportedResponseLanguageCodes()
     {
@@ -122,7 +122,7 @@ class MultiLanguageSettings extends \Google\Protobuf\Internal\Message
      * the agent.
      *
      * Generated from protobuf field <code>repeated string supported_response_language_codes = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSupportedResponseLanguageCodes($var)
@@ -134,5 +134,4 @@ class MultiLanguageSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

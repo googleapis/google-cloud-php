@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\WindowsBasedSli;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `MetricRange` is used when each window is good when the value x of a
@@ -119,5 +119,4 @@ class MetricRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Index is a resource in Corpus. It contains an indexed version of the
@@ -103,7 +103,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Output only. The create timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The update timestamp.
-     *     @type array<\Google\Cloud\VisionAI\V1\DeployedIndexReference>|\Google\Protobuf\Internal\RepeatedField $deployed_indexes
+     *     @type \Google\Cloud\VisionAI\V1\DeployedIndexReference[] $deployed_indexes
      *           Output only. References to the deployed index instance.
      *           Index of VIDEO_ON_DEMAND corpus can have at most one deployed index.
      *           Index of IMAGE corpus can have multiple deployed indexes.
@@ -339,7 +339,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * Index of IMAGE corpus can have multiple deployed indexes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.DeployedIndexReference deployed_indexes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\DeployedIndexReference>
      */
     public function getDeployedIndexes()
     {
@@ -352,7 +352,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * Index of IMAGE corpus can have multiple deployed indexes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.DeployedIndexReference deployed_indexes = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\DeployedIndexReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\DeployedIndexReference[] $var
      * @return $this
      */
     public function setDeployedIndexes($var)

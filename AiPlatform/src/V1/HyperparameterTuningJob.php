@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a HyperparameterTuningJob. A HyperparameterTuningJob
@@ -169,7 +169,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\CustomJobSpec $trial_job_spec
      *           Required. The spec of a trial job. The same spec applies to the CustomJobs
      *           created in all the trials.
-     *     @type array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $trials
+     *     @type \Google\Cloud\AIPlatform\V1\Trial[] $trials
      *           Output only. Trials of the HyperparameterTuningJob.
      *     @type int $state
      *           Output only. The detailed state of the job.
@@ -427,7 +427,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      * Output only. Trials of the HyperparameterTuningJob.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial trials = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Trial>
      */
     public function getTrials()
     {
@@ -438,7 +438,7 @@ class HyperparameterTuningJob extends \Google\Protobuf\Internal\Message
      * Output only. Trials of the HyperparameterTuningJob.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial trials = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Trial[] $var
      * @return $this
      */
     public function setTrials($var)

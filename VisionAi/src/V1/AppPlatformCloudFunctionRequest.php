@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For any cloud function based customer processing logic, customer's cloud
@@ -41,7 +41,7 @@ class AppPlatformCloudFunctionRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VisionAI\V1\AppPlatformMetadata $app_platform_metadata
      *           The metadata of the AppPlatform for customer to identify the source of the
      *           payload.
-     *     @type array<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest\StructedInputAnnotation>|\Google\Protobuf\Internal\RepeatedField $annotations
+     *     @type \Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest\StructedInputAnnotation[] $annotations
      *           The actual annotations to be processed by the customized Cloud Function.
      * }
      */
@@ -92,7 +92,7 @@ class AppPlatformCloudFunctionRequest extends \Google\Protobuf\Internal\Message
      * The actual annotations to be processed by the customized Cloud Function.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformCloudFunctionRequest.StructedInputAnnotation annotations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest\StructedInputAnnotation>
      */
     public function getAnnotations()
     {
@@ -103,7 +103,7 @@ class AppPlatformCloudFunctionRequest extends \Google\Protobuf\Internal\Message
      * The actual annotations to be processed by the customized Cloud Function.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.AppPlatformCloudFunctionRequest.StructedInputAnnotation annotations = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest\StructedInputAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\AppPlatformCloudFunctionRequest\StructedInputAnnotation[] $var
      * @return $this
      */
     public function setAnnotations($var)

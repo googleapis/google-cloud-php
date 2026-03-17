@@ -5,8 +5,8 @@
 namespace Grafeas\V1\DiscoveryOccurrence;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>grafeas.v1.DiscoveryOccurrence.File</code>
@@ -82,5 +82,4 @@ class File extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

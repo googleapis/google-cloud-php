@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for restoring a Cluster from a backup or another cluster at a given

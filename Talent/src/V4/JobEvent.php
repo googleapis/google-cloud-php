@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An event issued when a job seeker interacts with the application that
@@ -48,7 +48,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. The type of the event (see
      *           [JobEventType][google.cloud.talent.v4.JobEvent.JobEventType]).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type string[] $jobs
      *           Required. The [job name(s)][google.cloud.talent.v4.Job.name] associated
      *           with this event. For example, if this is an
      *           [impression][google.cloud.talent.v4.JobEvent.JobEventType.IMPRESSION]
@@ -107,7 +107,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getJobs()
     {
@@ -127,7 +127,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setJobs($var)

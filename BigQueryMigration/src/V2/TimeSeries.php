@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metrics object for a SubTask.
@@ -68,7 +68,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      *           metric. If the associated metric's descriptor must be auto-created, then
      *           this field specifies the metric kind of the new descriptor and must be
      *           either `GAUGE` (the default) or `CUMULATIVE`.
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\Point>|\Google\Protobuf\Internal\RepeatedField $points
+     *     @type \Google\Cloud\BigQuery\Migration\V2\Point[] $points
      *           Required. The data points of this time series. When listing time series,
      *           points are returned in reverse time order.
      *           When creating a time series, this field must contain exactly one point and
@@ -181,7 +181,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.Point points = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\Point>
      */
     public function getPoints()
     {
@@ -198,7 +198,7 @@ class TimeSeries extends \Google\Protobuf\Internal\Message
      * must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.Point points = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\Point>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\Point[] $var
      * @return $this
      */
     public function setPoints($var)

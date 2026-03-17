@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\AlertPolicy\Condition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A condition type that checks that monitored resources
@@ -88,7 +88,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *           processed). The filter must specify the metric type and the resource
      *           type. Optionally, it can specify resource labels and metric labels.
      *           This field must not exceed 2048 Unicode characters in length.
-     *     @type array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type \Google\Cloud\Monitoring\V3\Aggregation[] $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
      *           when aggregating multiple streams on each resource to a single
@@ -176,7 +176,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\Aggregation>
      */
     public function getAggregations()
     {
@@ -196,7 +196,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\Aggregation[] $var
      * @return $this
      */
     public function setAggregations($var)
@@ -298,5 +298,4 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

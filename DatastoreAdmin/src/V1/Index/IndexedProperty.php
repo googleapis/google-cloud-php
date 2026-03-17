@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastore\Admin\V1\Index;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A property of an index.
@@ -102,5 +102,4 @@ class IndexedProperty extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

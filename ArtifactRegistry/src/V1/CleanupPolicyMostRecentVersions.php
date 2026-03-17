@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CleanupPolicyMostRecentVersions is an alternate condition of a CleanupPolicy
@@ -35,7 +35,7 @@ class CleanupPolicyMostRecentVersions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $package_name_prefixes
+     *     @type string[] $package_name_prefixes
      *           List of package name prefixes that will apply this rule.
      *     @type int $keep_count
      *           Minimum number of versions to keep.
@@ -50,7 +50,7 @@ class CleanupPolicyMostRecentVersions extends \Google\Protobuf\Internal\Message
      * List of package name prefixes that will apply this rule.
      *
      * Generated from protobuf field <code>repeated string package_name_prefixes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPackageNamePrefixes()
     {
@@ -61,7 +61,7 @@ class CleanupPolicyMostRecentVersions extends \Google\Protobuf\Internal\Message
      * List of package name prefixes that will apply this rule.
      *
      * Generated from protobuf field <code>repeated string package_name_prefixes = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPackageNamePrefixes($var)

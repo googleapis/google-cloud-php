@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A deployment of a Model. Endpoints contain one or more DeployedModels.
@@ -28,9 +28,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>
@@ -187,9 +187,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           the Model may be in a different location than the DeployedModel's Endpoint.
      *           The resource name may contain version id or version alias to specify the
      *           version.
-     *            Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *            Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *                        or
-     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                      `projects/{project}/locations/{location}/models/{model}\@golden`
      *           if no version is specified, the default version will be deployed.
      *     @type string $model_version_id
      *           Output only. The version ID of the model that is deployed.
@@ -402,9 +402,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>
@@ -420,9 +420,9 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      * the Model may be in a different location than the DeployedModel's Endpoint.
      * The resource name may contain version id or version alias to specify the
      * version.
-     *  Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *  Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * if no version is specified, the default version will be deployed.
      *
      * Generated from protobuf field <code>string model = 2 [(.google.api.resource_reference) = {</code>

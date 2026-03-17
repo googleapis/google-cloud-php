@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\CommitResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional statistics about a commit.
@@ -88,5 +88,4 @@ class CommitStats extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

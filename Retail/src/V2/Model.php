@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata that describes the training and serving parameters of a
@@ -253,7 +253,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type int $filtering_option
      *           Optional. If `RECOMMENDATIONS_FILTERING_ENABLED`, recommendation filtering
      *           by attributes is enabled for the model.
-     *     @type array<\Google\Cloud\Retail\V2\Model\ServingConfigList>|\Google\Protobuf\Internal\RepeatedField $serving_config_lists
+     *     @type \Google\Cloud\Retail\V2\Model\ServingConfigList[] $serving_config_lists
      *           Output only. The list of valid serving configs associated with the
      *           PageOptimizationConfig.
      *     @type \Google\Cloud\Retail\V2\Model\ModelFeaturesConfig $model_features_config
@@ -748,7 +748,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * PageOptimizationConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Model.ServingConfigList serving_config_lists = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Model\ServingConfigList>
      */
     public function getServingConfigLists()
     {
@@ -760,7 +760,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * PageOptimizationConfig.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Model.ServingConfigList serving_config_lists = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Retail\V2\Model\ServingConfigList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Model\ServingConfigList[] $var
      * @return $this
      */
     public function setServingConfigLists($var)

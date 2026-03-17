@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * For display only. Metadata associated with a load balancer.
@@ -61,7 +61,7 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      *           URI of the health check for the load balancer. Deprecated and no longer
      *           populated as different load balancer backends might have different health
      *           checks.
-     *     @type array<\Google\Cloud\NetworkManagement\V1\LoadBalancerBackend>|\Google\Protobuf\Internal\RepeatedField $backends
+     *     @type \Google\Cloud\NetworkManagement\V1\LoadBalancerBackend[] $backends
      *           Information for the loadbalancer backends.
      *     @type int $backend_type
      *           Type of load balancer's backend configuration.
@@ -140,7 +140,7 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      * Information for the loadbalancer backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.LoadBalancerBackend backends = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\LoadBalancerBackend>
      */
     public function getBackends()
     {
@@ -151,7 +151,7 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      * Information for the loadbalancer backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.LoadBalancerBackend backends = 3;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\LoadBalancerBackend>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\LoadBalancerBackend[] $var
      * @return $this
      */
     public function setBackends($var)

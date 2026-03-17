@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of ExpandedDataSet filter expressions.
@@ -28,7 +28,7 @@ class ExpandedDataSetFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression>|\Google\Protobuf\Internal\RepeatedField $filter_expressions
+     *     @type \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression[] $filter_expressions
      *           A list of ExpandedDataSet filter expressions.
      * }
      */
@@ -41,7 +41,7 @@ class ExpandedDataSetFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * A list of ExpandedDataSet filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ExpandedDataSetFilterExpression filter_expressions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression>
      */
     public function getFilterExpressions()
     {
@@ -52,7 +52,7 @@ class ExpandedDataSetFilterExpressionList extends \Google\Protobuf\Internal\Mess
      * A list of ExpandedDataSet filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ExpandedDataSetFilterExpression filter_expressions = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1alpha\ExpandedDataSetFilterExpression[] $var
      * @return $this
      */
     public function setFilterExpressions($var)

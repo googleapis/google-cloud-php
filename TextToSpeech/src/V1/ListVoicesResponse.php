@@ -5,8 +5,8 @@
 namespace Google\Cloud\TextToSpeech\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The message returned to the client by the `ListVoices` method.
@@ -28,7 +28,7 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\TextToSpeech\V1\Voice>|\Google\Protobuf\Internal\RepeatedField $voices
+     *     @type \Google\Cloud\TextToSpeech\V1\Voice[] $voices
      *           The list of voices.
      * }
      */
@@ -41,7 +41,7 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      * The list of voices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.Voice voices = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\TextToSpeech\V1\Voice>
      */
     public function getVoices()
     {
@@ -52,7 +52,7 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      * The list of voices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.Voice voices = 1;</code>
-     * @param array<\Google\Cloud\TextToSpeech\V1\Voice>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\TextToSpeech\V1\Voice[] $var
      * @return $this
      */
     public function setVoices($var)

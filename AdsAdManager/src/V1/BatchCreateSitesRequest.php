@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `BatchCreateSites` method.
@@ -63,7 +63,7 @@ class BatchCreateSitesRequest extends \Google\Protobuf\Internal\Message
      *           Format: `networks/{network_code}`
      *           The parent field in the CreateSiteRequest must match this
      *           field.
-     *     @type array<\Google\Ads\AdManager\V1\CreateSiteRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Ads\AdManager\V1\CreateSiteRequest[] $requests
      *           Required. The `Site` objects to create.
      *           A maximum of 100 objects can be created in a batch.
      * }
@@ -110,7 +110,7 @@ class BatchCreateSitesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateSiteRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CreateSiteRequest>
      */
     public function getRequests()
     {
@@ -122,7 +122,7 @@ class BatchCreateSitesRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 100 objects can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CreateSiteRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Ads\AdManager\V1\CreateSiteRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CreateSiteRequest[] $var
      * @return $this
      */
     public function setRequests($var)

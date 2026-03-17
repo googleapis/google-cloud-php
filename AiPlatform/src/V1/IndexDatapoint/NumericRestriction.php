@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\IndexDatapoint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field allows restricts to be based on numeric comparisons rather
@@ -211,5 +211,4 @@ class NumericRestriction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\AnswerFeedback;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stores extra information about why users provided thumbs down rating.
@@ -37,7 +37,7 @@ class RatingReason extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reason_labels
+     *     @type string[] $reason_labels
      *           Optional. Custom reason labels for thumbs down rating provided by the
      *           user. The maximum number of labels allowed is 10 and the maximum length
      *           of a single label is 128 characters.
@@ -57,7 +57,7 @@ class RatingReason extends \Google\Protobuf\Internal\Message
      * of a single label is 128 characters.
      *
      * Generated from protobuf field <code>repeated string reason_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReasonLabels()
     {
@@ -70,7 +70,7 @@ class RatingReason extends \Google\Protobuf\Internal\Message
      * of a single label is 128 characters.
      *
      * Generated from protobuf field <code>repeated string reason_labels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReasonLabels($var)
@@ -110,5 +110,4 @@ class RatingReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -44,14 +44,14 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList>|\Google\Protobuf\Internal\RepeatedField $certificate_revocation_lists
+     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList[] $certificate_revocation_lists
      *           The list of
      *           [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListCertificateRevocationListsRequest.page_token][google.cloud.security.privateca.v1.ListCertificateRevocationListsRequest.page_token]
      *           to retrieve the next page of results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
      */
@@ -65,7 +65,7 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList certificate_revocation_lists = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList>
      */
     public function getCertificateRevocationLists()
     {
@@ -77,7 +77,7 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      * [CertificateRevocationLists][google.cloud.security.privateca.v1.CertificateRevocationList].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList certificate_revocation_lists = 1;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList[] $var
      * @return $this
      */
     public function setCertificateRevocationLists($var)
@@ -122,7 +122,7 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -133,7 +133,7 @@ class ListCertificateRevocationListsResponse extends \Google\Protobuf\Internal\M
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

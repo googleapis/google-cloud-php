@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\PersonalProtectiveEquipmentDetectionOutput;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PersonIdentified box contains the location and the entity info of the
@@ -187,5 +187,4 @@ class PersonIdentifiedBox extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for ListGoogleAdsLinks RPC.
@@ -35,7 +35,7 @@ class ListGoogleAdsLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Analytics\Admin\V1beta\GoogleAdsLink>|\Google\Protobuf\Internal\RepeatedField $google_ads_links
+     *     @type \Google\Analytics\Admin\V1beta\GoogleAdsLink[] $google_ads_links
      *           List of GoogleAdsLinks.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListGoogleAdsLinksResponse extends \Google\Protobuf\Internal\Message
      * List of GoogleAdsLinks.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.GoogleAdsLink google_ads_links = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Analytics\Admin\V1beta\GoogleAdsLink>
      */
     public function getGoogleAdsLinks()
     {
@@ -62,7 +62,7 @@ class ListGoogleAdsLinksResponse extends \Google\Protobuf\Internal\Message
      * List of GoogleAdsLinks.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1beta.GoogleAdsLink google_ads_links = 1;</code>
-     * @param array<\Google\Analytics\Admin\V1beta\GoogleAdsLink>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Analytics\Admin\V1beta\GoogleAdsLink[] $var
      * @return $this
      */
     public function setGoogleAdsLinks($var)

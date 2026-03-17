@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request to unresolve multiple pull request comments.
@@ -71,7 +71,7 @@ class UnresolvePullRequestCommentsRequest extends \Google\Protobuf\Internal\Mess
      *           Required. The pull request in which to resolve the pull request comments.
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/repositories/{repository_id}/pullRequests/{pull_request_id}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The names of the pull request comments to unresolve. Format:
      *           `projects/{project_number}/locations/{location_id}/repositories/{repository_id}/pullRequests/{pull_request_id}/pullRequestComments/{comment_id}`
      *           Only comments from the same threads are allowed in the same request.
@@ -122,7 +122,7 @@ class UnresolvePullRequestCommentsRequest extends \Google\Protobuf\Internal\Mess
      * Only comments from the same threads are allowed in the same request.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -135,7 +135,7 @@ class UnresolvePullRequestCommentsRequest extends \Google\Protobuf\Internal\Mess
      * Only comments from the same threads are allowed in the same request.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

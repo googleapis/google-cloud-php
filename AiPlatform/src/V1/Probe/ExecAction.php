@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Probe;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ExecAction specifies a command to execute.
@@ -33,7 +33,7 @@ class ExecAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $command
+     *     @type string[] $command
      *           Command is the command line to execute inside the container, the working
      *           directory for the command is root ('/') in the container's filesystem.
      *           The command is simply exec'd, it is not run inside a shell, so
@@ -56,7 +56,7 @@ class ExecAction extends \Google\Protobuf\Internal\Message
      * live/healthy and non-zero is unhealthy.
      *
      * Generated from protobuf field <code>repeated string command = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommand()
     {
@@ -72,7 +72,7 @@ class ExecAction extends \Google\Protobuf\Internal\Message
      * live/healthy and non-zero is unhealthy.
      *
      * Generated from protobuf field <code>repeated string command = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommand($var)
@@ -84,5 +84,4 @@ class ExecAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

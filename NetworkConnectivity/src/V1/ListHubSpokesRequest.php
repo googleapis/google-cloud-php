@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for
@@ -90,7 +90,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the hub.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $spoke_locations
+     *     @type string[] $spoke_locations
      *           A list of locations.
      *           Specify one of the following: `[global]`, a single region (for
      *           example, `[us-central1]`), or a combination of
@@ -155,7 +155,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      * includes spokes in all locations.
      *
      * Generated from protobuf field <code>repeated string spoke_locations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSpokeLocations()
     {
@@ -173,7 +173,7 @@ class ListHubSpokesRequest extends \Google\Protobuf\Internal\Message
      * includes spokes in all locations.
      *
      * Generated from protobuf field <code>repeated string spoke_locations = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSpokeLocations($var)

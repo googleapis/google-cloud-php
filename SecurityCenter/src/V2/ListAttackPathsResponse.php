@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for listing the attack paths for a given simulation or
@@ -36,7 +36,7 @@ class ListAttackPathsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\AttackPath>|\Google\Protobuf\Internal\RepeatedField $attack_paths
+     *     @type \Google\Cloud\SecurityCenter\V2\AttackPath[] $attack_paths
      *           The attack paths that the attack path simulation identified.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -52,7 +52,7 @@ class ListAttackPathsResponse extends \Google\Protobuf\Internal\Message
      * The attack paths that the attack path simulation identified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath attack_paths = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\AttackPath>
      */
     public function getAttackPaths()
     {
@@ -63,7 +63,7 @@ class ListAttackPathsResponse extends \Google\Protobuf\Internal\Message
      * The attack paths that the attack path simulation identified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.AttackPath attack_paths = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\AttackPath>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\AttackPath[] $var
      * @return $this
      */
     public function setAttackPaths($var)

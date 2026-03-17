@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the project to associate with the
      * [Secret][google.cloud.secretmanager.v1beta2.Secret], in the format
-     * `projects/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * `projects/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -75,7 +75,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the project to associate with the
      *           [Secret][google.cloud.secretmanager.v1beta2.Secret], in the format
-     *           `projects/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     *           `projects/*` or `projects/{@*}locations/*`.
      *     @type string $secret_id
      *           Required. This must be unique within the project.
      *           A secret ID is a string with a maximum length of 255 characters and can
@@ -94,7 +94,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the project to associate with the
      * [Secret][google.cloud.secretmanager.v1beta2.Secret], in the format
-     * `projects/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * `projects/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -107,7 +107,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the project to associate with the
      * [Secret][google.cloud.secretmanager.v1beta2.Secret], in the format
-     * `projects/&#42;` or `projects/&#42;&#47;locations/&#42;`.
+     * `projects/*` or `projects/{@*}locations/*`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

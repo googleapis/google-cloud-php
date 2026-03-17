@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Diagnostic info related to the answer generation model call.
@@ -136,5 +136,4 @@ class AnswerGenerationModelCallSignals extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

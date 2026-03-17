@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message with all the audit reports.
@@ -34,7 +34,7 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AuditManager\V1\AuditReport>|\Google\Protobuf\Internal\RepeatedField $audit_reports
+     *     @type \Google\Cloud\AuditManager\V1\AuditReport[] $audit_reports
      *           Output only. The audit reports.
      *     @type string $next_page_token
      *           Output only. The token to retrieve the next page of results.
@@ -49,7 +49,7 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The audit reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.AuditReport audit_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AuditManager\V1\AuditReport>
      */
     public function getAuditReports()
     {
@@ -60,7 +60,7 @@ class ListAuditReportsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The audit reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.AuditReport audit_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AuditManager\V1\AuditReport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AuditManager\V1\AuditReport[] $var
      * @return $this
      */
     public function setAuditReports($var)

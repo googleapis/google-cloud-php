@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Job compensation details.
@@ -57,7 +57,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Talent\V4\CompensationInfo\CompensationEntry>|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type \Google\Cloud\Talent\V4\CompensationInfo\CompensationEntry[] $entries
      *           Job compensation information.
      *           At most one entry can be of type
      *           [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4.CompensationInfo.CompensationType.BASE],
@@ -94,7 +94,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * which is referred as **base compensation entry** for the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompensationInfo.CompensationEntry entries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Talent\V4\CompensationInfo\CompensationEntry>
      */
     public function getEntries()
     {
@@ -108,7 +108,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * which is referred as **base compensation entry** for the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompensationInfo.CompensationEntry entries = 1;</code>
-     * @param array<\Google\Cloud\Talent\V4\CompensationInfo\CompensationEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Talent\V4\CompensationInfo\CompensationEntry[] $var
      * @return $this
      */
     public function setEntries($var)

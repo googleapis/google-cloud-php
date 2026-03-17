@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for "LivestreamService.StartDistribution".
@@ -75,7 +75,7 @@ class StartDistributionRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the channel resource, in the form of:
      *           `projects/{project}/locations/{location}/channels/{channelId}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $distribution_keys
+     *     @type string[] $distribution_keys
      *           Optional. A list of keys to identify the distribution configuration in the
      *           channel resource. If left empty, all the distributions in the channel
      *           specification will be started.
@@ -132,7 +132,7 @@ class StartDistributionRequest extends \Google\Protobuf\Internal\Message
      * specification will be started.
      *
      * Generated from protobuf field <code>repeated string distribution_keys = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDistributionKeys()
     {
@@ -145,7 +145,7 @@ class StartDistributionRequest extends \Google\Protobuf\Internal\Message
      * specification will be started.
      *
      * Generated from protobuf field <code>repeated string distribution_keys = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDistributionKeys($var)

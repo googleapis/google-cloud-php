@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\DvrSession;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DvrManifest identifies a source manifest and specifies a file name for the
@@ -123,5 +123,4 @@ class DvrManifest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\Subscription;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Reference to a linked resource tracked by this Subscription.
@@ -145,5 +145,4 @@ class LinkedResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

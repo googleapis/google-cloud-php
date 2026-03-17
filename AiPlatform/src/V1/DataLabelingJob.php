@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataLabelingJob is used to trigger a human labeling job on unlabeled data
@@ -172,7 +172,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *           Display name of a DataLabelingJob.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type string[] $datasets
      *           Required. Dataset resource names. Right now we only support labeling from a
      *           single Dataset. Format:
      *           `projects/{project}/locations/{location}/datasets/{dataset}`
@@ -224,7 +224,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           * "aiplatform.googleapis.com/schema": output only, its value is the
      *             [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s
      *             title.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $specialist_pools
+     *     @type string[] $specialist_pools
      *           The SpecialistPools' resource names associated with this job.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a DataLabelingJob. If set, this
@@ -306,7 +306,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDatasets()
     {
@@ -319,7 +319,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDatasets($var)
@@ -744,7 +744,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * The SpecialistPools' resource names associated with this job.
      *
      * Generated from protobuf field <code>repeated string specialist_pools = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSpecialistPools()
     {
@@ -755,7 +755,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * The SpecialistPools' resource names associated with this job.
      *
      * Generated from protobuf field <code>repeated string specialist_pools = 16;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSpecialistPools($var)

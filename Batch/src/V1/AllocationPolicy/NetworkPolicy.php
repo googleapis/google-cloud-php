@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\AllocationPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * NetworkPolicy describes VM instance network configurations.
@@ -28,7 +28,7 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type \Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface[] $network_interfaces
      *           Network configurations.
      * }
      */
@@ -41,7 +41,7 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      * Network configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.NetworkInterface network_interfaces = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface>
      */
     public function getNetworkInterfaces()
     {
@@ -52,7 +52,7 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
      * Network configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.NetworkInterface network_interfaces = 1;</code>
-     * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Batch\V1\AllocationPolicy\NetworkInterface[] $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -64,5 +64,4 @@ class NetworkPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

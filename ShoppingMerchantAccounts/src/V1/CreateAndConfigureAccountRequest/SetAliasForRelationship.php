@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Set an alias for a relationship between a provider and the account to
@@ -115,5 +115,4 @@ class SetAliasForRelationship extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a part of a training phrase.
@@ -22,7 +22,7 @@ class Part extends \Google\Protobuf\Internal\Message
      */
     protected $text = '';
     /**
-     * Optional. The entity type name prefixed with `&#64;`.
+     * Optional. The entity type name prefixed with `\@`.
      * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -55,7 +55,7 @@ class Part extends \Google\Protobuf\Internal\Message
      *     @type string $text
      *           Required. The text for this part.
      *     @type string $entity_type
-     *           Optional. The entity type name prefixed with `&#64;`.
+     *           Optional. The entity type name prefixed with `\@`.
      *           This field is required for annotated parts of the training phrase.
      *     @type string $alias
      *           Optional. The parameter name for the value extracted from the
@@ -100,7 +100,7 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The entity type name prefixed with `&#64;`.
+     * Optional. The entity type name prefixed with `\@`.
      * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -112,7 +112,7 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The entity type name prefixed with `&#64;`.
+     * Optional. The entity type name prefixed with `\@`.
      * This field is required for annotated parts of the training phrase.
      *
      * Generated from protobuf field <code>string entity_type = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -190,5 +190,4 @@ class Part extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

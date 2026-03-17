@@ -5,8 +5,8 @@
 namespace Google\Apps\Events\Subscriptions\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response message for
@@ -36,7 +36,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Apps\Events\Subscriptions\V1beta\Subscription>|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *     @type \Google\Apps\Events\Subscriptions\V1beta\Subscription[] $subscriptions
      *           List of subscriptions.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * List of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.apps.events.subscriptions.v1beta.Subscription subscriptions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Events\Subscriptions\V1beta\Subscription>
      */
     public function getSubscriptions()
     {
@@ -63,7 +63,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * List of subscriptions.
      *
      * Generated from protobuf field <code>repeated .google.apps.events.subscriptions.v1beta.Subscription subscriptions = 1;</code>
-     * @param array<\Google\Apps\Events\Subscriptions\V1beta\Subscription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Events\Subscriptions\V1beta\Subscription[] $var
      * @return $this
      */
     public function setSubscriptions($var)

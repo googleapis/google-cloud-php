@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration used for Private Service Connect connections. Used when
@@ -65,7 +65,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type string[] $subnetworks
      *           The resource paths of subnetworks to use for IP address management.
      *           Example:
      *           projects/{projectNumOrId}/regions/{region}/subnetworks/{resourceId}.
@@ -75,7 +75,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      *           Required. ProducerInstanceLocation is used to specify which authorization
      *           mechanism to use to determine which projects the Producer instance can be
      *           within.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_google_producers_resource_hierarchy_level
+     *     @type string[] $allowed_google_producers_resource_hierarchy_level
      *           Optional. List of Projects, Folders, or Organizations from where the
      *           Producer instance can be within. For example, a network administrator can
      *           provide both 'organizations/foo' and 'projects/bar' as
@@ -104,7 +104,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * projects/{projectNumOrId}/regions/{region}/subnetworks/{resourceId}.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 1 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSubnetworks()
     {
@@ -117,7 +117,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * projects/{projectNumOrId}/regions/{region}/subnetworks/{resourceId}.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 1 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSubnetworks($var)
@@ -212,7 +212,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * organizations/123]
      *
      * Generated from protobuf field <code>repeated string allowed_google_producers_resource_hierarchy_level = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllowedGoogleProducersResourceHierarchyLevel()
     {
@@ -237,7 +237,7 @@ class PscConfig extends \Google\Protobuf\Internal\Message
      * organizations/123]
      *
      * Generated from protobuf field <code>repeated string allowed_google_producers_resource_hierarchy_level = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllowedGoogleProducersResourceHierarchyLevel($var)
@@ -249,5 +249,4 @@ class PscConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

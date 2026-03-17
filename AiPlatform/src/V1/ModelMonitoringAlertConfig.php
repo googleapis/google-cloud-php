@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The alert config for model monitoring.
@@ -49,7 +49,7 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      *           [ModelMonitoringStatsAnomalies][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies].
      *           This can be further synced to Pub/Sub or any other services supported by
      *           Cloud Logging.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *     @type string[] $notification_channels
      *           Resource names of the NotificationChannels to send alert.
      *           Must be of the format
      *           `projects/<project_id_or_number>/notificationChannels/<channel_id>`
@@ -131,7 +131,7 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      * `projects/<project_id_or_number>/notificationChannels/<channel_id>`
      *
      * Generated from protobuf field <code>repeated string notification_channels = 3 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNotificationChannels()
     {
@@ -144,7 +144,7 @@ class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message
      * `projects/<project_id_or_number>/notificationChannels/<channel_id>`
      *
      * Generated from protobuf field <code>repeated string notification_channels = 3 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNotificationChannels($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1\Encryption;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines configuration for DRM systems in use.
@@ -206,5 +206,4 @@ class DrmSystems extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request message to annotate an Assessment.
@@ -101,7 +101,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      *           Optional. The annotation that is assigned to the Event. This field can be
      *           left empty to provide reasons that apply to an event without concluding
      *           whether the event is legitimate or fraudulent.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $reasons
+     *     @type int[] $reasons
      *           Optional. Reasons for the annotation that are assigned to the event.
      *     @type string $account_id
      *           Optional. A stable account identifier to apply to the assessment. This is
@@ -187,7 +187,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Optional. Reasons for the annotation that are assigned to the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getReasons()
     {
@@ -198,7 +198,7 @@ class AnnotateAssessmentRequest extends \Google\Protobuf\Internal\Message
      * Optional. Reasons for the annotation that are assigned to the event.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Reason reasons = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setReasons($var)

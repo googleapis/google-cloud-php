@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Browser Language Targeting.
@@ -40,10 +40,10 @@ class BrowserLanguageTargeting extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $targeted_browser_languages
+     *     @type string[] $targeted_browser_languages
      *           Optional. A list of browser language resource names that should be
      *           targeted/included.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_browser_languages
+     *     @type string[] $excluded_browser_languages
      *           Optional. A list of browser language resource names that should be
      *           excluded.
      * }
@@ -58,7 +58,7 @@ class BrowserLanguageTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_browser_languages = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetedBrowserLanguages()
     {
@@ -70,7 +70,7 @@ class BrowserLanguageTargeting extends \Google\Protobuf\Internal\Message
      * targeted/included.
      *
      * Generated from protobuf field <code>repeated string targeted_browser_languages = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetedBrowserLanguages($var)
@@ -86,7 +86,7 @@ class BrowserLanguageTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_browser_languages = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedBrowserLanguages()
     {
@@ -98,7 +98,7 @@ class BrowserLanguageTargeting extends \Google\Protobuf\Internal\Message
      * excluded.
      *
      * Generated from protobuf field <code>repeated string excluded_browser_languages = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedBrowserLanguages($var)

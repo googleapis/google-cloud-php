@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicySimulator\V1\OrgPolicyViolationsPreview;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A summary of the state of all resources scanned for compliance with the
@@ -209,5 +209,4 @@ class ResourceCounts extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

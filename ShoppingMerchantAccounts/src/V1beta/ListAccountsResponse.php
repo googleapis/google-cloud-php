@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListAccounts` method.
@@ -35,7 +35,7 @@ class ListAccountsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\Account>|\Google\Protobuf\Internal\RepeatedField $accounts
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\Account[] $accounts
      *           The accounts matching the `ListAccountsRequest`.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -51,7 +51,7 @@ class ListAccountsResponse extends \Google\Protobuf\Internal\Message
      * The accounts matching the `ListAccountsRequest`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Account accounts = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\Account>
      */
     public function getAccounts()
     {
@@ -62,7 +62,7 @@ class ListAccountsResponse extends \Google\Protobuf\Internal\Message
      * The accounts matching the `ListAccountsRequest`.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.Account accounts = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\Account>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\Account[] $var
      * @return $this
      */
     public function setAccounts($var)

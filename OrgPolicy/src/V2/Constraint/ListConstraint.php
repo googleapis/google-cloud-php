@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2\Constraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A constraint type that allows or disallows a list of string values, which
@@ -120,5 +120,4 @@ class ListConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

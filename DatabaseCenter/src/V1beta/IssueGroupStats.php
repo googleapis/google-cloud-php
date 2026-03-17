@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IssueGroupStats refers to stats for a particulare combination of relevant
@@ -84,7 +84,7 @@ class IssueGroupStats extends \Google\Protobuf\Internal\Message
      *           The number of resources from the total defined above in field
      *           total_resources_count that are healthy with respect to all of the specified
      *           issues.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\IssueStats>|\Google\Protobuf\Internal\RepeatedField $issue_stats
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\IssueStats[] $issue_stats
      *           List of issues stats containing count of resources having particular issue
      *           category.
      * }
@@ -243,7 +243,7 @@ class IssueGroupStats extends \Google\Protobuf\Internal\Message
      * category.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueStats issue_stats = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\IssueStats>
      */
     public function getIssueStats()
     {
@@ -255,7 +255,7 @@ class IssueGroupStats extends \Google\Protobuf\Internal\Message
      * category.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.IssueStats issue_stats = 6;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\IssueStats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\IssueStats[] $var
      * @return $this
      */
     public function setIssueStats($var)

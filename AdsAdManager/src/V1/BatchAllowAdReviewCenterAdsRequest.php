@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `BatchAllowAdReviewCenterAds` method.
@@ -81,7 +81,7 @@ class BatchAllowAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Messa
      *           `networks/{network_code}/webProperties/videoAndAudio`
      *           `networks/{network_code}/webProperties/mobileApp`
      *           `networks/{network_code}/webProperties/games`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The resource names of the `AdReviewCenterAd`s to allow.
      *           Format:
      *           `networks/{network_code}/webProperties/{web_property_code}/adReviewCenterAds/{ad_review_center_ad_id}`
@@ -140,7 +140,7 @@ class BatchAllowAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Messa
      * `networks/{network_code}/webProperties/{web_property_code}/adReviewCenterAds/{ad_review_center_ad_id}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -153,7 +153,7 @@ class BatchAllowAdReviewCenterAdsRequest extends \Google\Protobuf\Internal\Messa
      * `networks/{network_code}/webProperties/{web_property_code}/adReviewCenterAds/{ad_review_center_ad_id}`
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

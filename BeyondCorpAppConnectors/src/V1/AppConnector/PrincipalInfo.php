@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PrincipalInfo represents an Identity oneof.
@@ -72,5 +72,4 @@ class PrincipalInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

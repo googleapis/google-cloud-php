@@ -5,8 +5,8 @@
 namespace Google\Apps\Card\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A list of chips layed out horizontally, which can either scroll horizontally
@@ -39,7 +39,7 @@ class ChipList extends \Google\Protobuf\Internal\Message
      *
      *     @type int $layout
      *           Specified chip list layout.
-     *     @type array<\Google\Apps\Card\V1\Chip>|\Google\Protobuf\Internal\RepeatedField $chips
+     *     @type \Google\Apps\Card\V1\Chip[] $chips
      *           An array of chips.
      * }
      */
@@ -78,7 +78,7 @@ class ChipList extends \Google\Protobuf\Internal\Message
      * An array of chips.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Chip chips = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Card\V1\Chip>
      */
     public function getChips()
     {
@@ -89,7 +89,7 @@ class ChipList extends \Google\Protobuf\Internal\Message
      * An array of chips.
      *
      * Generated from protobuf field <code>repeated .google.apps.card.v1.Chip chips = 2;</code>
-     * @param array<\Google\Apps\Card\V1\Chip>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Card\V1\Chip[] $var
      * @return $this
      */
     public function setChips($var)

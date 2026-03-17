@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Intent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single followup intent in the chain.
@@ -106,5 +106,4 @@ class FollowupIntentInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `NotificationChannel` is a medium through which an alert is
@@ -184,7 +184,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *           of alerting policies on the channel at some point in the future.
      *     @type \Google\Cloud\Monitoring\V3\MutationRecord $creation_record
      *           Record of the creation of this channel.
-     *     @type array<\Google\Cloud\Monitoring\V3\MutationRecord>|\Google\Protobuf\Internal\RepeatedField $mutation_records
+     *     @type \Google\Cloud\Monitoring\V3\MutationRecord[] $mutation_records
      *           Records of the modification of this channel.
      * }
      */
@@ -568,7 +568,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Records of the modification of this channel.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\MutationRecord>
      */
     public function getMutationRecords()
     {
@@ -579,7 +579,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Records of the modification of this channel.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\MutationRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\MutationRecord[] $var
      * @return $this
      */
     public function setMutationRecords($var)

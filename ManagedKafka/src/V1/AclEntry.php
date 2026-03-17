@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the access granted for a given Resource Pattern in an ACL.
@@ -18,7 +18,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * Required. The principal. Specified as Google Cloud account, with the Kafka
      * StandardAuthorizer prefix "User:". For example:
-     * "User:test-kafka-client&#64;test-project.iam.gserviceaccount.com".
+     * "User:test-kafka-client\@test-project.iam.gserviceaccount.com".
      * Can be the wildcard "User:*" to refer to all users.
      *
      * Generated from protobuf field <code>string principal = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -59,7 +59,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
      *     @type string $principal
      *           Required. The principal. Specified as Google Cloud account, with the Kafka
      *           StandardAuthorizer prefix "User:". For example:
-     *           "User:test-kafka-client&#64;test-project.iam.gserviceaccount.com".
+     *           "User:test-kafka-client\@test-project.iam.gserviceaccount.com".
      *           Can be the wildcard "User:*" to refer to all users.
      *     @type string $permission_type
      *           Required. The permission type. Accepted values are (case insensitive):
@@ -84,7 +84,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * Required. The principal. Specified as Google Cloud account, with the Kafka
      * StandardAuthorizer prefix "User:". For example:
-     * "User:test-kafka-client&#64;test-project.iam.gserviceaccount.com".
+     * "User:test-kafka-client\@test-project.iam.gserviceaccount.com".
      * Can be the wildcard "User:*" to refer to all users.
      *
      * Generated from protobuf field <code>string principal = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -98,7 +98,7 @@ class AclEntry extends \Google\Protobuf\Internal\Message
     /**
      * Required. The principal. Specified as Google Cloud account, with the Kafka
      * StandardAuthorizer prefix "User:". For example:
-     * "User:test-kafka-client&#64;test-project.iam.gserviceaccount.com".
+     * "User:test-kafka-client\@test-project.iam.gserviceaccount.com".
      * Can be the wildcard "User:*" to refer to all users.
      *
      * Generated from protobuf field <code>string principal = 4 [(.google.api.field_behavior) = REQUIRED];</code>

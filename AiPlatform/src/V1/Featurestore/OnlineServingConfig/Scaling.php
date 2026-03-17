@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Featurestore\OnlineServingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Online serving scaling configuration. If min_node_count and
@@ -166,5 +166,4 @@ class Scaling extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about a worker
@@ -36,7 +36,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type string $worker_name
      *           Name of this worker
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkItemDetails>|\Google\Protobuf\Internal\RepeatedField $work_items
+     *     @type \Google\Cloud\Dataflow\V1beta3\WorkItemDetails[] $work_items
      *           Work items processed by this worker, sorted by time.
      * }
      */
@@ -75,7 +75,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      * Work items processed by this worker, sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkItemDetails work_items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\WorkItemDetails>
      */
     public function getWorkItems()
     {
@@ -86,7 +86,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      * Work items processed by this worker, sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkItemDetails work_items = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\WorkItemDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\WorkItemDetails[] $var
      * @return $this
      */
     public function setWorkItems($var)

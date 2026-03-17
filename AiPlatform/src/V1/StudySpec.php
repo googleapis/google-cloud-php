@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents specification of a Study.
@@ -68,9 +68,9 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *           The automated early stopping spec using median rule.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec $convex_automated_stopping_spec
      *           The automated early stopping spec using convex stopping rule.
-     *     @type array<\Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec[] $metrics
      *           Required. Metric specs for the Study.
-     *     @type array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec[] $parameters
      *           Required. The set of parameters to tune.
      *     @type int $algorithm
      *           The search algorithm specified for the Study.
@@ -187,7 +187,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. Metric specs for the Study.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.MetricSpec metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec>
      */
     public function getMetrics()
     {
@@ -198,7 +198,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. Metric specs for the Study.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.MetricSpec metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec[] $var
      * @return $this
      */
     public function setMetrics($var)
@@ -213,7 +213,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. The set of parameters to tune.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.ParameterSpec parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec>
      */
     public function getParameters()
     {
@@ -224,7 +224,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. The set of parameters to tune.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.ParameterSpec parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec[] $var
      * @return $this
      */
     public function setParameters($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ServiceConnectionPolicy resource.
@@ -133,7 +133,7 @@ class ServiceConnectionPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConfig $psc_config
      *           Configuration used for Private Service Connect connections. Used when
      *           Infrastructure is PSC.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConnection>|\Google\Protobuf\Internal\RepeatedField $psc_connections
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConnection[] $psc_connections
      *           Output only. [Output only] Information about each Private Service Connect
      *           connection.
      *     @type string $etag
@@ -440,7 +440,7 @@ class ServiceConnectionPolicy extends \Google\Protobuf\Internal\Message
      * connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionPolicy.PscConnection psc_connections = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConnection>
      */
     public function getPscConnections()
     {
@@ -452,7 +452,7 @@ class ServiceConnectionPolicy extends \Google\Protobuf\Internal\Message
      * connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionPolicy.PscConnection psc_connections = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionPolicy\PscConnection[] $var
      * @return $this
      */
     public function setPscConnections($var)

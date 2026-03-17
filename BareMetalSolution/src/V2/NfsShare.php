@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An NFS share.
@@ -92,7 +92,7 @@ class NfsShare extends \Google\Protobuf\Internal\Message
      *     @type string $volume
      *           Output only. The underlying volume of the share. Created automatically
      *           during provisioning.
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient>|\Google\Protobuf\Internal\RepeatedField $allowed_clients
+     *     @type \Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient[] $allowed_clients
      *           List of allowed access points.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels as key value pairs.
@@ -247,7 +247,7 @@ class NfsShare extends \Google\Protobuf\Internal\Message
      * List of allowed access points.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NfsShare.AllowedClient allowed_clients = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient>
      */
     public function getAllowedClients()
     {
@@ -258,7 +258,7 @@ class NfsShare extends \Google\Protobuf\Internal\Message
      * List of allowed access points.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NfsShare.AllowedClient allowed_clients = 5;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient[] $var
      * @return $this
      */
     public function setAllowedClients($var)

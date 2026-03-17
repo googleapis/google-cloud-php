@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allow the producer to specify which consumers can connect to it.
@@ -409,5 +409,4 @@ class ConsumerPscConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

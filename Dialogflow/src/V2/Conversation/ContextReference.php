@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Conversation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a section of ingested context information.
@@ -47,7 +47,7 @@ class ContextReference extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\Conversation\ContextReference\ContextContent>|\Google\Protobuf\Internal\RepeatedField $context_contents
+     *     @type \Google\Cloud\Dialogflow\V2\Conversation\ContextReference\ContextContent[] $context_contents
      *           Required. The list of content updates for a context reference.
      *     @type int $update_mode
      *           Required. The mode in which context reference contents are updated.
@@ -67,7 +67,7 @@ class ContextReference extends \Google\Protobuf\Internal\Message
      * Required. The list of content updates for a context reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.ContextReference.ContextContent context_contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\Conversation\ContextReference\ContextContent>
      */
     public function getContextContents()
     {
@@ -78,7 +78,7 @@ class ContextReference extends \Google\Protobuf\Internal\Message
      * Required. The list of content updates for a context reference.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Conversation.ContextReference.ContextContent context_contents = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\Conversation\ContextReference\ContextContent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\Conversation\ContextReference\ContextContent[] $var
      * @return $this
      */
     public function setContextContents($var)
@@ -180,5 +180,4 @@ class ContextReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

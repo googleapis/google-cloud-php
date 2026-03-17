@@ -5,8 +5,8 @@
 namespace Google\Cloud\VideoIntelligence\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Annotations corresponding to one tracked object.
@@ -64,7 +64,7 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      *           Entity to specify the object category that this track is labeled as.
      *     @type float $confidence
      *           Object category's labeling confidence of this track.
-     *     @type array<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingFrame>|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type \Google\Cloud\VideoIntelligence\V1\ObjectTrackingFrame[] $frames
      *           Information corresponding to all frames where this object track appears.
      *           Non-streaming batch mode: it may be one or multiple ObjectTrackingFrame
      *           messages in frames.
@@ -221,7 +221,7 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * Streaming mode: it can only be one ObjectTrackingFrame message in frames.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingFrame frames = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingFrame>
      */
     public function getFrames()
     {
@@ -235,7 +235,7 @@ class ObjectTrackingAnnotation extends \Google\Protobuf\Internal\Message
      * Streaming mode: it can only be one ObjectTrackingFrame message in frames.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.ObjectTrackingFrame frames = 2;</code>
-     * @param array<\Google\Cloud\VideoIntelligence\V1\ObjectTrackingFrame>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VideoIntelligence\V1\ObjectTrackingFrame[] $var
      * @return $this
      */
     public function setFrames($var)

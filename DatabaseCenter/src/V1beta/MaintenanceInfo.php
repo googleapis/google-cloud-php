@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * MaintenanceInfo to capture the maintenance details of database resource.
@@ -43,7 +43,7 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceSchedule $maintenance_schedule
      *           Optional. Maintenance window for the database resource.
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule>|\Google\Protobuf\Internal\RepeatedField $deny_maintenance_schedules
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule[] $deny_maintenance_schedules
      *           Optional. List of Deny maintenance period for the database resource.
      *     @type string $maintenance_version
      *           Output only. Current Maintenance version of the database resource. Example:
@@ -95,7 +95,7 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
      * Optional. List of Deny maintenance period for the database resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceMaintenanceDenySchedule deny_maintenance_schedules = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule>
      */
     public function getDenyMaintenanceSchedules()
     {
@@ -106,7 +106,7 @@ class MaintenanceInfo extends \Google\Protobuf\Internal\Message
      * Optional. List of Deny maintenance period for the database resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.ResourceMaintenanceDenySchedule deny_maintenance_schedules = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\ResourceMaintenanceDenySchedule[] $var
      * @return $this
      */
     public function setDenyMaintenanceSchedules($var)

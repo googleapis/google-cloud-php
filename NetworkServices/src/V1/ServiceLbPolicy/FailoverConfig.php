@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1\ServiceLbPolicy;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Option to specify health based failover behavior.
@@ -85,5 +85,4 @@ class FailoverConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

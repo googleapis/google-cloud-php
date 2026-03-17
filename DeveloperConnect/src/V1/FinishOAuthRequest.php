@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for finishing an OAuth flow.
@@ -17,7 +17,7 @@ class FinishOAuthRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the AccountConnector in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/*`.
      *
      * Generated from protobuf field <code>string account_connector = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,7 +51,7 @@ class FinishOAuthRequest extends \Google\Protobuf\Internal\Message
      *           The params returned by Google OAuth flow redirects.
      *     @type string $account_connector
      *           Required. The resource name of the AccountConnector in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;`.
+     *           `projects/{@*}locations/{@*}accountConnectors/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +123,7 @@ class FinishOAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the AccountConnector in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/*`.
      *
      * Generated from protobuf field <code>string account_connector = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -135,7 +135,7 @@ class FinishOAuthRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the AccountConnector in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;accountConnectors/&#42;`.
+     * `projects/{@*}locations/{@*}accountConnectors/*`.
      *
      * Generated from protobuf field <code>string account_connector = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

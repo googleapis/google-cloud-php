@@ -19,11 +19,7 @@ class CloudSqlEvents
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-«
-*google/cloud/sql/v1/cloud_sql_events.protogoogle.cloud.sql.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2.
-SqlEventsServiceÊAsqladmin.googleapis.comB[
-com.google.cloud.sql.v1BCloudSqlEventsProtoPZ)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbbproto3'
+            "\x0A\xAB\x02\x0A*google/cloud/sql/v1/cloud_sql_events.proto\x12\x13google.cloud.sql.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto2.\x0A\x10SqlEventsService\x1A\x1A\xCAA\x17sqladmin.googleapis.comB[\x0A\x17com.google.cloud.sql.v1B\x13CloudSqlEventsProtoP\x01Z)cloud.google.com/go/sql/apiv1/sqlpb;sqlpbb\x06proto3"
         , true);
 
         static::$is_initialized = true;

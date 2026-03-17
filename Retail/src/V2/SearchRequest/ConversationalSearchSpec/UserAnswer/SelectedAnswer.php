@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest\ConversationalSearchSpec\UserAnswer;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This field specifies the selected answers during the conversational
@@ -37,7 +37,7 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\ProductAttributeValue>|\Google\Protobuf\Internal\RepeatedField $product_attribute_values
+     *     @type \Google\Cloud\Retail\V2\ProductAttributeValue[] $product_attribute_values
      *           This field is deprecated and should not be set.
      *     @type \Google\Cloud\Retail\V2\ProductAttributeValue $product_attribute_value
      *           This field specifies the selected answer which is a attribute
@@ -53,7 +53,7 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      * This field is deprecated and should not be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductAttributeValue product_attribute_values = 1 [deprecated = true];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\ProductAttributeValue>
      * @deprecated
      */
     public function getProductAttributeValues()
@@ -68,7 +68,7 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
      * This field is deprecated and should not be set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductAttributeValue product_attribute_values = 1 [deprecated = true];</code>
-     * @param array<\Google\Cloud\Retail\V2\ProductAttributeValue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\ProductAttributeValue[] $var
      * @return $this
      * @deprecated
      */
@@ -122,5 +122,4 @@ class SelectedAnswer extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

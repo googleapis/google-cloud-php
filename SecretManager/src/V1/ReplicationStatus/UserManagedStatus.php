@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1\ReplicationStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The replication status of a
@@ -33,7 +33,7 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus>|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus[] $replicas
      *           Output only. The list of replica statuses for the
      *           [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * }
@@ -48,7 +48,7 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.ReplicationStatus.UserManagedStatus.ReplicaStatus replicas = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus>
      */
     public function getReplicas()
     {
@@ -60,7 +60,7 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
      * [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.ReplicationStatus.UserManagedStatus.ReplicaStatus replicas = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus[] $var
      * @return $this
      */
     public function setReplicas($var)
@@ -72,5 +72,4 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

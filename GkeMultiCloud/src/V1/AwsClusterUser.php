@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identities of a user-type subject for AWS clusters.
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class AwsClusterUser extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
+     * Required. The name of the user, e.g. `my-gcp-id\@gmail.com`.
      *
      * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,7 +30,7 @@ class AwsClusterUser extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $username
-     *           Required. The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
+     *           Required. The name of the user, e.g. `my-gcp-id\@gmail.com`.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +39,7 @@ class AwsClusterUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
+     * Required. The name of the user, e.g. `my-gcp-id\@gmail.com`.
      *
      * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -50,7 +50,7 @@ class AwsClusterUser extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the user, e.g. `my-gcp-id&#64;gmail.com`.
+     * Required. The name of the user, e.g. `my-gcp-id\@gmail.com`.
      *
      * Generated from protobuf field <code>string username = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

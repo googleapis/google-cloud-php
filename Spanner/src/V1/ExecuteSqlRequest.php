@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for [ExecuteSql][google.spanner.v1.Spanner.ExecuteSql] and
@@ -42,13 +42,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     protected $sql = '';
     /**
      * Parameter names and values that bind to placeholders in the SQL string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names must conform
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
@@ -152,7 +152,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      */
     protected $last_statement = false;
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be
@@ -182,13 +182,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           Required. The SQL string.
      *     @type \Google\Protobuf\Struct $params
      *           Parameter names and values that bind to placeholders in the SQL string.
-     *           A parameter placeholder consists of the `&#64;` character followed by the
-     *           parameter name (for example, `&#64;firstName`). Parameter names must conform
+     *           A parameter placeholder consists of the `\@` character followed by the
+     *           parameter name (for example, `\@firstName`). Parameter names must conform
      *           to the naming requirements of identifiers as specified at
      *           https://cloud.google.com/spanner/docs/lexical#identifiers.
      *           Parameters can appear anywhere that a literal value is expected. The same
      *           parameter name can be used more than once, for example:
-     *           `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     *           `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      *           It's an error to execute a SQL statement with unbound parameters.
      *     @type array|\Google\Protobuf\Internal\MapField $param_types
      *           It isn't always possible for Cloud Spanner to infer the right SQL type
@@ -248,7 +248,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
      *           constraints). Given this, successful execution of a DML statement shouldn't
      *           be assumed until a subsequent `Commit` call completes successfully.
      *     @type \Google\Cloud\Spanner\V1\RoutingHint $routing_hint
-     *           Optional. If present, it makes the Spanner requests location-aware.
+     *           Optional. Makes the Spanner requests location-aware if present.
      *           It gives the server hints that can be used to route the request
      *           to an appropriate server, potentially significantly decreasing latency and
      *           improving throughput. To achieve improved performance, most fields must be
@@ -362,13 +362,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameter names and values that bind to placeholders in the SQL string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names must conform
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
@@ -391,13 +391,13 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Parameter names and values that bind to placeholders in the SQL string.
-     * A parameter placeholder consists of the `&#64;` character followed by the
-     * parameter name (for example, `&#64;firstName`). Parameter names must conform
+     * A parameter placeholder consists of the `\@` character followed by the
+     * parameter name (for example, `\@firstName`). Parameter names must conform
      * to the naming requirements of identifiers as specified at
      * https://cloud.google.com/spanner/docs/lexical#identifiers.
      * Parameters can appear anywhere that a literal value is expected. The same
      * parameter name can be used more than once, for example:
-     * `"WHERE id > &#64;msg_id AND id < &#64;msg_id + 100"`
+     * `"WHERE id > \@msg_id AND id < \@msg_id + 100"`
      * It's an error to execute a SQL statement with unbound parameters.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 4;</code>
@@ -777,7 +777,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be
@@ -802,7 +802,7 @@ class ExecuteSqlRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, it makes the Spanner requests location-aware.
+     * Optional. Makes the Spanner requests location-aware if present.
      * It gives the server hints that can be used to route the request
      * to an appropriate server, potentially significantly decreasing latency and
      * improving throughput. To achieve improved performance, most fields must be

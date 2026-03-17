@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * User list response.
@@ -43,7 +43,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#usersList`.
-     *     @type array<\Google\Cloud\Sql\V1\User>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Sql\V1\User[] $items
      *           List of user resources in the instance.
      *     @type string $next_page_token
      *           Unused.
@@ -84,7 +84,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      * List of user resources in the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.User items = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\User>
      */
     public function getItems()
     {
@@ -95,7 +95,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      * List of user resources in the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.User items = 2;</code>
-     * @param array<\Google\Cloud\Sql\V1\User>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\User[] $var
      * @return $this
      */
     public function setItems($var)

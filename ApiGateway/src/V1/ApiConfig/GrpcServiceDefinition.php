@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1\ApiConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A gRPC service definition.
@@ -47,7 +47,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      *           For an example test.proto file, the following command would put the value
      *           in a new file named out.pb.
      *           $ protoc --include_imports --include_source_info test.proto -o out.pb
-     *     @type array<\Google\Cloud\ApiGateway\V1\ApiConfig\File>|\Google\Protobuf\Internal\RepeatedField $source
+     *     @type \Google\Cloud\ApiGateway\V1\ApiConfig\File[] $source
      *           Optional. Uncompiled proto files associated with the descriptor set, used for
      *           display purposes (server-side compilation is not supported). These
      *           should match the inputs to 'protoc' command used to generate
@@ -110,7 +110,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      * file_descriptor_set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.File source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiGateway\V1\ApiConfig\File>
      */
     public function getSource()
     {
@@ -124,7 +124,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      * file_descriptor_set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.File source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ApiGateway\V1\ApiConfig\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiGateway\V1\ApiConfig\File[] $var
      * @return $this
      */
     public function setSource($var)
@@ -136,5 +136,4 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

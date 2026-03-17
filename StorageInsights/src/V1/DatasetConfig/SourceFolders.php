@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageInsights\V1\DatasetConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a set of folders to include in the dataset
@@ -28,7 +28,7 @@ class SourceFolders extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $folder_numbers
+     *     @type int[]|string[] $folder_numbers
      *           Optional. The list of folder numbers to include in the dataset.
      * }
      */
@@ -41,7 +41,7 @@ class SourceFolders extends \Google\Protobuf\Internal\Message
      * Optional. The list of folder numbers to include in the dataset.
      *
      * Generated from protobuf field <code>repeated int64 folder_numbers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getFolderNumbers()
     {
@@ -52,7 +52,7 @@ class SourceFolders extends \Google\Protobuf\Internal\Message
      * Optional. The list of folder numbers to include in the dataset.
      *
      * Generated from protobuf field <code>repeated int64 folder_numbers = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setFolderNumbers($var)
@@ -64,5 +64,4 @@ class SourceFolders extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A deployment of an Index. IndexEndpoints contain one or more DeployedIndexes.
@@ -261,7 +261,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
      *           Optional. If set, the authentication is enabled for the private endpoint.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *     @type string[] $reserved_ip_ranges
      *           Optional. A list of reserved ip ranges under the VPC network that can be
      *           used for this DeployedIndex.
      *           If set, we will deploy the index within the provided ip ranges. Otherwise,
@@ -286,7 +286,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *     @type int $deployment_tier
      *           Optional. The deployment tier that the index is deployed to.
      *           DEPLOYMENT_TIER_UNSPECIFIED will use a system-chosen default tier.
-     *     @type array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $psc_automation_configs
+     *     @type \Google\Cloud\AIPlatform\V1\PSCAutomationConfig[] $psc_automation_configs
      *           Optional. If set for PSC deployed index, PSC connection will be
      *           automatically created after deployment is done and the endpoint information
      *           is populated in private_endpoints.psc_automated_endpoints.
@@ -762,7 +762,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReservedIpRanges()
     {
@@ -782,7 +782,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReservedIpRanges($var)
@@ -871,7 +871,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * is populated in private_endpoints.psc_automated_endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>
      */
     public function getPscAutomationConfigs()
     {
@@ -884,7 +884,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * is populated in private_endpoints.psc_automated_endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PSCAutomationConfig psc_automation_configs = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PSCAutomationConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PSCAutomationConfig[] $var
      * @return $this
      */
     public function setPscAutomationConfigs($var)

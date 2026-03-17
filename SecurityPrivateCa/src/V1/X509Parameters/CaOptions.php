@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the X.509 basic constraints extension, per [RFC 5280
@@ -143,5 +143,4 @@ class CaOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

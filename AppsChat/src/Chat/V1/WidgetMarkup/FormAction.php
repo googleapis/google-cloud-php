@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\WidgetMarkup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A form action describes the behavior when the form is submitted.
@@ -43,7 +43,7 @@ class FormAction extends \Google\Protobuf\Internal\Message
      *           form submission. This information is echoed back to the Chat app as part
      *           of the card click event. You can use the same method name for several
      *           elements that trigger a common behavior.
-     *     @type array<\Google\Apps\Chat\V1\WidgetMarkup\FormAction\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Apps\Chat\V1\WidgetMarkup\FormAction\ActionParameter[] $parameters
      *           List of action parameters.
      * }
      */
@@ -88,7 +88,7 @@ class FormAction extends \Google\Protobuf\Internal\Message
      * List of action parameters.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup.FormAction.ActionParameter parameters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Apps\Chat\V1\WidgetMarkup\FormAction\ActionParameter>
      */
     public function getParameters()
     {
@@ -99,7 +99,7 @@ class FormAction extends \Google\Protobuf\Internal\Message
      * List of action parameters.
      *
      * Generated from protobuf field <code>repeated .google.chat.v1.WidgetMarkup.FormAction.ActionParameter parameters = 2;</code>
-     * @param array<\Google\Apps\Chat\V1\WidgetMarkup\FormAction\ActionParameter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Apps\Chat\V1\WidgetMarkup\FormAction\ActionParameter[] $var
      * @return $this
      */
     public function setParameters($var)
@@ -111,5 +111,4 @@ class FormAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\ConditionContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Core attributes for a resource. A resource is an
@@ -178,5 +178,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

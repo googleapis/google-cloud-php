@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CloudRunMetadata contains information from a Cloud Run deployment.
@@ -55,7 +55,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The name of the Cloud Run Service that is associated with a
      *           `Rollout`. Format is
      *           `projects/{project}/locations/{location}/services/{service}`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_urls
+     *     @type string[] $service_urls
      *           Output only. The Cloud Run Service urls that are associated with a
      *           `Rollout`.
      *     @type string $revision
@@ -106,7 +106,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      * `Rollout`.
      *
      * Generated from protobuf field <code>repeated string service_urls = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceUrls()
     {
@@ -118,7 +118,7 @@ class CloudRunMetadata extends \Google\Protobuf\Internal\Message
      * `Rollout`.
      *
      * Generated from protobuf field <code>repeated string service_urls = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceUrls($var)

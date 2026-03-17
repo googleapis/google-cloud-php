@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Windows patching is performed using the Windows Update Agent.
@@ -43,12 +43,12 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $classifications
+     *     @type int[] $classifications
      *           Only apply updates of these windows update classifications. If empty, all
      *           updates are applied.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excludes
+     *     @type string[] $excludes
      *           List of KBs to exclude from update.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclusive_patches
+     *     @type string[] $exclusive_patches
      *           An exclusive list of kbs to be updated. These are the only patches
      *           that will be updated. This field must not be used with other
      *           patch configurations.
@@ -64,7 +64,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * updates are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.WindowsUpdateSettings.Classification classifications = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getClassifications()
     {
@@ -76,7 +76,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * updates are applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.WindowsUpdateSettings.Classification classifications = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setClassifications($var)
@@ -91,7 +91,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * List of KBs to exclude from update.
      *
      * Generated from protobuf field <code>repeated string excludes = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludes()
     {
@@ -102,7 +102,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * List of KBs to exclude from update.
      *
      * Generated from protobuf field <code>repeated string excludes = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludes($var)
@@ -119,7 +119,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * patch configurations.
      *
      * Generated from protobuf field <code>repeated string exclusive_patches = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExclusivePatches()
     {
@@ -132,7 +132,7 @@ class WindowsUpdateSettings extends \Google\Protobuf\Internal\Message
      * patch configurations.
      *
      * Generated from protobuf field <code>repeated string exclusive_patches = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExclusivePatches($var)

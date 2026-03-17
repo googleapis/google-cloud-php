@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Reservation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -36,7 +36,7 @@ class ListReservationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\Reservation\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type \Google\Cloud\BigQuery\Reservation\V1\Reservation[] $reservations
      *           List of reservations visible to the user.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -52,7 +52,7 @@ class ListReservationsResponse extends \Google\Protobuf\Internal\Message
      * List of reservations visible to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.Reservation reservations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Reservation\V1\Reservation>
      */
     public function getReservations()
     {
@@ -63,7 +63,7 @@ class ListReservationsResponse extends \Google\Protobuf\Internal\Message
      * List of reservations visible to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.Reservation reservations = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\Reservation\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Reservation\V1\Reservation[] $var
      * @return $this
      */
     public function setReservations($var)

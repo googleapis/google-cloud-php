@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `ListTimeSeries` response.
@@ -54,13 +54,13 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $time_series
+     *     @type \Google\Cloud\Monitoring\V3\TimeSeries[] $time_series
      *           One or more time series that match the filter included in the request.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
      *           to a non-empty value.  To see the additional results,
      *           use that value as `page_token` in the next call to this method.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $execution_errors
+     *     @type \Google\Rpc\Status[] $execution_errors
      *           Query execution errors that may have caused the time series data returned
      *           to be incomplete.
      *     @type string $unit
@@ -81,7 +81,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * One or more time series that match the filter included in the request.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Monitoring\V3\TimeSeries>
      */
     public function getTimeSeries()
     {
@@ -92,7 +92,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * One or more time series that match the filter included in the request.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
-     * @param array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Monitoring\V3\TimeSeries[] $var
      * @return $this
      */
     public function setTimeSeries($var)
@@ -138,7 +138,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getExecutionErrors()
     {
@@ -150,7 +150,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setExecutionErrors($var)

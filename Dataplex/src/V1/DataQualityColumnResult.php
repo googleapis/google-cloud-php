@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataQualityColumnResult provides a more detailed, per-column view of
@@ -59,7 +59,7 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      *           points).
      *     @type bool $passed
      *           Output only. Whether the column passed or failed.
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityDimensionResult[] $dimensions
      *           Output only. The dimension-level results for this column.
      * }
      */
@@ -166,7 +166,7 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      * Output only. The dimension-level results for this column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>
      */
     public function getDimensions()
     {
@@ -177,7 +177,7 @@ class DataQualityColumnResult extends \Google\Protobuf\Internal\Message
      * Output only. The dimension-level results for this column.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityDimensionResult dimensions = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityDimensionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityDimensionResult[] $var
      * @return $this
      */
     public function setDimensions($var)

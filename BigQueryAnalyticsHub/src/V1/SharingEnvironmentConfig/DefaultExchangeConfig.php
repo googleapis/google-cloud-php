@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\SharingEnvironmentConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Default Analytics Hub data exchange, used for secured data sharing.
@@ -30,5 +30,4 @@ class DefaultExchangeConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

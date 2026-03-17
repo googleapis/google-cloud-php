@@ -5,8 +5,8 @@
 namespace Google\Cloud\BeyondCorp\AppGateways\V1\AppGateway;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Allocated connection of the AppGateway.
@@ -98,5 +98,4 @@ class AllocatedConnection extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchCreateCustomFields` method.
@@ -28,7 +28,7 @@ class BatchCreateCustomFieldsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CustomField>|\Google\Protobuf\Internal\RepeatedField $custom_fields
+     *     @type \Google\Ads\AdManager\V1\CustomField[] $custom_fields
      *           The `CustomField` objects created.
      * }
      */
@@ -41,7 +41,7 @@ class BatchCreateCustomFieldsResponse extends \Google\Protobuf\Internal\Message
      * The `CustomField` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomField custom_fields = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomField>
      */
     public function getCustomFields()
     {
@@ -52,7 +52,7 @@ class BatchCreateCustomFieldsResponse extends \Google\Protobuf\Internal\Message
      * The `CustomField` objects created.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomField custom_fields = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomField[] $var
      * @return $this
      */
     public function setCustomFields($var)

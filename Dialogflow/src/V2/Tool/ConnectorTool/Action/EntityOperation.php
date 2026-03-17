@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Tool\ConnectorTool\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Entity CRUD operation specification.
@@ -98,5 +98,4 @@ class EntityOperation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

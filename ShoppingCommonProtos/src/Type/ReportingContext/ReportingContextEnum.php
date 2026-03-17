@@ -80,6 +80,13 @@ class ReportingContextEnum
      */
     const FREE_LISTINGS = 7;
     /**
+     * [Free product listings on UCP
+     * checkout](https://developers.google.com/merchant/ucp).
+     *
+     * Generated from protobuf enum <code>FREE_LISTINGS_UCP_CHECKOUT = 19;</code>
+     */
+    const FREE_LISTINGS_UCP_CHECKOUT = 19;
+    /**
      * [Free local product
      * listings](https://support.google.com/merchants/answer/9825611).
      *
@@ -93,6 +100,12 @@ class ReportingContextEnum
      * Generated from protobuf enum <code>FREE_LOCAL_VEHICLE_LISTINGS = 9;</code>
      */
     const FREE_LOCAL_VEHICLE_LISTINGS = 9;
+    /**
+     * [Youtube Affiliate](https://support.google.com/youtube/answer/13376398).
+     *
+     * Generated from protobuf enum <code>YOUTUBE_AFFILIATE = 18;</code>
+     */
+    const YOUTUBE_AFFILIATE = 18;
     /**
      * [YouTube
      * Shopping](https://support.google.com/merchants/answer/13478370).
@@ -112,6 +125,27 @@ class ReportingContextEnum
      * Generated from protobuf enum <code>LOCAL_CLOUD_RETAIL = 12;</code>
      */
     const LOCAL_CLOUD_RETAIL = 12;
+    /**
+     * [Product
+     * Reviews](https://support.google.com/merchants/answer/14620732).
+     *
+     * Generated from protobuf enum <code>PRODUCT_REVIEWS = 15;</code>
+     */
+    const PRODUCT_REVIEWS = 15;
+    /**
+     * [Merchant
+     * Reviews](https://developers.google.com/merchant-review-feeds).
+     *
+     * Generated from protobuf enum <code>MERCHANT_REVIEWS = 16;</code>
+     */
+    const MERCHANT_REVIEWS = 16;
+    /**
+     * YouTube Checkout
+     * .
+     *
+     * Generated from protobuf enum <code>YOUTUBE_CHECKOUT = 17;</code>
+     */
+    const YOUTUBE_CHECKOUT = 17;
 
     private static $valueToName = [
         self::REPORTING_CONTEXT_ENUM_UNSPECIFIED => 'REPORTING_CONTEXT_ENUM_UNSPECIFIED',
@@ -124,11 +158,16 @@ class ReportingContextEnum
         self::LOCAL_INVENTORY_ADS => 'LOCAL_INVENTORY_ADS',
         self::VEHICLE_INVENTORY_ADS => 'VEHICLE_INVENTORY_ADS',
         self::FREE_LISTINGS => 'FREE_LISTINGS',
+        self::FREE_LISTINGS_UCP_CHECKOUT => 'FREE_LISTINGS_UCP_CHECKOUT',
         self::FREE_LOCAL_LISTINGS => 'FREE_LOCAL_LISTINGS',
         self::FREE_LOCAL_VEHICLE_LISTINGS => 'FREE_LOCAL_VEHICLE_LISTINGS',
+        self::YOUTUBE_AFFILIATE => 'YOUTUBE_AFFILIATE',
         self::YOUTUBE_SHOPPING => 'YOUTUBE_SHOPPING',
         self::CLOUD_RETAIL => 'CLOUD_RETAIL',
         self::LOCAL_CLOUD_RETAIL => 'LOCAL_CLOUD_RETAIL',
+        self::PRODUCT_REVIEWS => 'PRODUCT_REVIEWS',
+        self::MERCHANT_REVIEWS => 'MERCHANT_REVIEWS',
+        self::YOUTUBE_CHECKOUT => 'YOUTUBE_CHECKOUT',
     ];
 
     public static function name($value)
@@ -151,7 +190,4 @@ class ReportingContextEnum
         return constant($const);
     }
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ReportingContextEnum::class, \Google\Shopping\Type\ReportingContext_ReportingContextEnum::class);
 

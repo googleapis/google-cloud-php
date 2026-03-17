@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request for `ExadbVmCluster.RemoveVirtualMachine`.
@@ -77,7 +77,7 @@ class RemoveVirtualMachineExadbVmClusterRequest extends \Google\Protobuf\Interna
      *           accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $hostnames
+     *     @type string[] $hostnames
      *           Required. The list of host names of db nodes to be removed from the
      *           ExadbVmCluster.
      * }
@@ -158,7 +158,7 @@ class RemoveVirtualMachineExadbVmClusterRequest extends \Google\Protobuf\Interna
      * ExadbVmCluster.
      *
      * Generated from protobuf field <code>repeated string hostnames = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getHostnames()
     {
@@ -170,7 +170,7 @@ class RemoveVirtualMachineExadbVmClusterRequest extends \Google\Protobuf\Interna
      * ExadbVmCluster.
      *
      * Generated from protobuf field <code>repeated string hostnames = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setHostnames($var)

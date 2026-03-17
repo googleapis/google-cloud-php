@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\TransactionOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message type to initiate a read-write transaction. Currently this
@@ -107,5 +107,4 @@ class ReadWrite extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for `DbServer.List`.
@@ -34,7 +34,7 @@ class ListDbServersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OracleDatabase\V1\DbServer>|\Google\Protobuf\Internal\RepeatedField $db_servers
+     *     @type \Google\Cloud\OracleDatabase\V1\DbServer[] $db_servers
      *           The list of database servers.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
@@ -49,7 +49,7 @@ class ListDbServersResponse extends \Google\Protobuf\Internal\Message
      * The list of database servers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbServer db_servers = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OracleDatabase\V1\DbServer>
      */
     public function getDbServers()
     {
@@ -60,7 +60,7 @@ class ListDbServersResponse extends \Google\Protobuf\Internal\Message
      * The list of database servers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.DbServer db_servers = 1;</code>
-     * @param array<\Google\Cloud\OracleDatabase\V1\DbServer>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OracleDatabase\V1\DbServer[] $var
      * @return $this
      */
     public function setDbServers($var)

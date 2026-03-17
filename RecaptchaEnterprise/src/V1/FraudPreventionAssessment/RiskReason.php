@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Risk reasons applicable to the Fraud Prevention assessment.
@@ -64,5 +64,4 @@ class RiskReason extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

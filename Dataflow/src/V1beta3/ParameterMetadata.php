@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata for a specific parameter.
@@ -120,7 +120,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *           Required. The help text to display for the parameter.
      *     @type bool $is_optional
      *           Optional. Whether the parameter is optional. Defaults to false.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $regexes
+     *     @type string[] $regexes
      *           Optional. Regexes that the parameter must match.
      *     @type int $param_type
      *           Optional. The type of the parameter.
@@ -136,12 +136,12 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      *           with 'parent_trigger_values' to make this parameter conditional (will only
      *           be rendered conditionally). Should be mappable to a ParameterMetadata.name
      *           field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_trigger_values
+     *     @type string[] $parent_trigger_values
      *           Optional. The value(s) of the 'parent_name' parameter which will trigger
      *           this parameter to be shown. If left empty, ANY non-empty value in
      *           parent_name will trigger this parameter to be shown. Only considered when
      *           this parameter is conditional (when 'parent_name' has been provided).
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption>|\Google\Protobuf\Internal\RepeatedField $enum_options
+     *     @type \Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption[] $enum_options
      *           Optional. The options shown when ENUM ParameterType is specified.
      *     @type string $default_value
      *           Optional. The default values will pre-populate the parameter with the
@@ -265,7 +265,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Regexes that the parameter must match.
      *
      * Generated from protobuf field <code>repeated string regexes = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRegexes()
     {
@@ -276,7 +276,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Optional. Regexes that the parameter must match.
      *
      * Generated from protobuf field <code>repeated string regexes = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRegexes($var)
@@ -410,7 +410,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * this parameter is conditional (when 'parent_name' has been provided).
      *
      * Generated from protobuf field <code>repeated string parent_trigger_values = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getParentTriggerValues()
     {
@@ -424,7 +424,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * this parameter is conditional (when 'parent_name' has been provided).
      *
      * Generated from protobuf field <code>repeated string parent_trigger_values = 10;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setParentTriggerValues($var)
@@ -439,7 +439,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Optional. The options shown when ENUM ParameterType is specified.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadataEnumOption enum_options = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption>
      */
     public function getEnumOptions()
     {
@@ -450,7 +450,7 @@ class ParameterMetadata extends \Google\Protobuf\Internal\Message
      * Optional. The options shown when ENUM ParameterType is specified.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadataEnumOption enum_options = 11;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ParameterMetadataEnumOption[] $var
      * @return $this
      */
     public function setEnumOptions($var)

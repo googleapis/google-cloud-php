@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Vertex AI-related information associated with the finding.
@@ -34,9 +34,9 @@ class VertexAi extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecurityCenter\V2\VertexAi\Dataset>|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type \Google\Cloud\SecurityCenter\V2\VertexAi\Dataset[] $datasets
      *           Datasets associated with the finding.
-     *     @type array<\Google\Cloud\SecurityCenter\V2\VertexAi\Pipeline>|\Google\Protobuf\Internal\RepeatedField $pipelines
+     *     @type \Google\Cloud\SecurityCenter\V2\VertexAi\Pipeline[] $pipelines
      *           Pipelines associated with the finding.
      * }
      */
@@ -49,7 +49,7 @@ class VertexAi extends \Google\Protobuf\Internal\Message
      * Datasets associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.VertexAi.Dataset datasets = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\VertexAi\Dataset>
      */
     public function getDatasets()
     {
@@ -60,7 +60,7 @@ class VertexAi extends \Google\Protobuf\Internal\Message
      * Datasets associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.VertexAi.Dataset datasets = 1;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\VertexAi\Dataset>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\VertexAi\Dataset[] $var
      * @return $this
      */
     public function setDatasets($var)
@@ -75,7 +75,7 @@ class VertexAi extends \Google\Protobuf\Internal\Message
      * Pipelines associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.VertexAi.Pipeline pipelines = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\VertexAi\Pipeline>
      */
     public function getPipelines()
     {
@@ -86,7 +86,7 @@ class VertexAi extends \Google\Protobuf\Internal\Message
      * Pipelines associated with the finding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.VertexAi.Pipeline pipelines = 2;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\VertexAi\Pipeline>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\VertexAi\Pipeline[] $var
      * @return $this
      */
     public function setPipelines($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Recommender\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains information on the impact of a reliability recommendation.
@@ -34,7 +34,7 @@ class ReliabilityProjection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $risks
+     *     @type int[] $risks
      *           Reliability risks mitigated by this recommendation.
      *     @type \Google\Protobuf\Struct $details
      *           Per-recommender projection.
@@ -49,7 +49,7 @@ class ReliabilityProjection extends \Google\Protobuf\Internal\Message
      * Reliability risks mitigated by this recommendation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.ReliabilityProjection.RiskType risks = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getRisks()
     {
@@ -60,7 +60,7 @@ class ReliabilityProjection extends \Google\Protobuf\Internal\Message
      * Reliability risks mitigated by this recommendation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.ReliabilityProjection.RiskType risks = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setRisks($var)

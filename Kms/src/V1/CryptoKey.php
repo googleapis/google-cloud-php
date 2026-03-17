@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
@@ -22,7 +22,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -117,12 +117,12 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] have a
      * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC], with the
-     * resource name in the format `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`. Only
+     * resource name in the format `projects/{@*}locations/{@*}ekmConnections/*`. Only
      * applicable if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
      * have a [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT],
      * with the resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      * Note, this list is non-exhaustive and may apply to additional
      * [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel] in the future.
      *
@@ -153,7 +153,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The resource name for this
      *           [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *     @type \Google\Cloud\Kms\V1\CryptoKeyVersion $primary
      *           Output only. A copy of the "primary"
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that will be used
@@ -223,12 +223,12 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      *           if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] have a
      *           [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      *           [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC], with the
-     *           resource name in the format `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`. Only
+     *           resource name in the format `projects/{@*}locations/{@*}ekmConnections/*`. Only
      *           applicable if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
      *           have a [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      *           [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT],
      *           with the resource name in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     *           `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      *           Note, this list is non-exhaustive and may apply to additional
      *           [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel] in the future.
      *     @type \Google\Cloud\Kms\V1\KeyAccessJustificationsPolicy $key_access_justifications_policy
@@ -250,7 +250,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -263,7 +263,7 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The resource name for this
      * [CryptoKey][google.cloud.kms.v1.CryptoKey] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -660,12 +660,12 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] have a
      * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC], with the
-     * resource name in the format `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`. Only
+     * resource name in the format `projects/{@*}locations/{@*}ekmConnections/*`. Only
      * applicable if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
      * have a [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT],
      * with the resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      * Note, this list is non-exhaustive and may apply to additional
      * [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel] in the future.
      *
@@ -685,12 +685,12 @@ class CryptoKey extends \Google\Protobuf\Internal\Message
      * if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] have a
      * [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC], with the
-     * resource name in the format `projects/&#42;&#47;locations/&#42;&#47;ekmConnections/&#42;`. Only
+     * resource name in the format `projects/{@*}locations/{@*}ekmConnections/*`. Only
      * applicable if [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
      * have a [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] of
      * [HSM_SINGLE_TENANT][google.cloud.kms.v1.ProtectionLevel.HSM_SINGLE_TENANT],
      * with the resource name in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;singleTenantHsmInstances/&#42;`.
+     * `projects/{@*}locations/{@*}singleTenantHsmInstances/*`.
      * Note, this list is non-exhaustive and may apply to additional
      * [ProtectionLevels][google.cloud.kms.v1.ProtectionLevel] in the future.
      *

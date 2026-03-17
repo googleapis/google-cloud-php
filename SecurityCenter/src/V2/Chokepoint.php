@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains details about a chokepoint, which is a resource or resource group
@@ -32,7 +32,7 @@ class Chokepoint extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_findings
+     *     @type string[] $related_findings
      *           List of resource names of findings associated with this chokepoint.
      *           For example, organizations/123/sources/456/findings/789.
      *           This list will have at most 100 findings.
@@ -49,7 +49,7 @@ class Chokepoint extends \Google\Protobuf\Internal\Message
      * This list will have at most 100 findings.
      *
      * Generated from protobuf field <code>repeated string related_findings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedFindings()
     {
@@ -62,7 +62,7 @@ class Chokepoint extends \Google\Protobuf\Internal\Message
      * This list will have at most 100 findings.
      *
      * Generated from protobuf field <code>repeated string related_findings = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedFindings($var)

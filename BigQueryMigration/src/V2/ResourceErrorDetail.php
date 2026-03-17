@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Provides details for errors and the corresponding resources.
@@ -44,7 +44,7 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Rpc\ResourceInfo $resource_info
      *           Required. Information about the resource where the error is located.
-     *     @type array<\Google\Cloud\BigQuery\Migration\V2\ErrorDetail>|\Google\Protobuf\Internal\RepeatedField $error_details
+     *     @type \Google\Cloud\BigQuery\Migration\V2\ErrorDetail[] $error_details
      *           Required. The error details for the resource.
      *     @type int $error_count
      *           Required. How many errors there are in total for the resource. Truncation
@@ -97,7 +97,7 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      * Required. The error details for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ErrorDetail error_details = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\Migration\V2\ErrorDetail>
      */
     public function getErrorDetails()
     {
@@ -108,7 +108,7 @@ class ResourceErrorDetail extends \Google\Protobuf\Internal\Message
      * Required. The error details for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.migration.v2.ErrorDetail error_details = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\BigQuery\Migration\V2\ErrorDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\Migration\V2\ErrorDetail[] $var
      * @return $this
      */
     public function setErrorDetails($var)

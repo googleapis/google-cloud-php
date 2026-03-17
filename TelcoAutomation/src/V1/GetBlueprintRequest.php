@@ -5,8 +5,8 @@
 namespace Google\Cloud\TelcoAutomation\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request object for `GetBlueprint`.
@@ -18,7 +18,7 @@ class GetBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the blueprint.
      * Case 1: If the name provided in the request is
-     * {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
+     * {blueprint_id}\@{revision_id}, then the revision with revision_id will be
      * returned. Case 2: If the name provided in the request is {blueprint}, then
      * the current state of the blueprint is returned.
      *
@@ -60,7 +60,7 @@ class GetBlueprintRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the blueprint.
      *           Case 1: If the name provided in the request is
-     *           {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
+     *           {blueprint_id}\@{revision_id}, then the revision with revision_id will be
      *           returned. Case 2: If the name provided in the request is {blueprint}, then
      *           the current state of the blueprint is returned.
      *     @type int $view
@@ -76,7 +76,7 @@ class GetBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the blueprint.
      * Case 1: If the name provided in the request is
-     * {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
+     * {blueprint_id}\@{revision_id}, then the revision with revision_id will be
      * returned. Case 2: If the name provided in the request is {blueprint}, then
      * the current state of the blueprint is returned.
      *
@@ -91,7 +91,7 @@ class GetBlueprintRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the blueprint.
      * Case 1: If the name provided in the request is
-     * {blueprint_id}&#64;{revision_id}, then the revision with revision_id will be
+     * {blueprint_id}\@{revision_id}, then the revision with revision_id will be
      * returned. Case 2: If the name provided in the request is {blueprint}, then
      * the current state of the blueprint is returned.
      *

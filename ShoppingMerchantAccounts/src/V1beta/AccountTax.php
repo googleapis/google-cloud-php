@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The tax settings of a merchant account. All methods require the admin role.
@@ -51,7 +51,7 @@ class AccountTax extends \Google\Protobuf\Internal\Message
      *     @type int|string $account
      *           Output only. The ID of the account to which these account tax settings
      *           belong.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1beta\TaxRule>|\Google\Protobuf\Internal\RepeatedField $tax_rules
+     *     @type \Google\Shopping\Merchant\Accounts\V1beta\TaxRule[] $tax_rules
      *           Tax rules. "Define the tax rules in each region.
      *           No tax will be presented if a region has no rule."
      * }
@@ -124,7 +124,7 @@ class AccountTax extends \Google\Protobuf\Internal\Message
      * No tax will be presented if a region has no rule."
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TaxRule tax_rules = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1beta\TaxRule>
      */
     public function getTaxRules()
     {
@@ -136,7 +136,7 @@ class AccountTax extends \Google\Protobuf\Internal\Message
      * No tax will be presented if a region has no rule."
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1beta.TaxRule tax_rules = 3;</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1beta\TaxRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1beta\TaxRule[] $var
      * @return $this
      */
     public function setTaxRules($var)

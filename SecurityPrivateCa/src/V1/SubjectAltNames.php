@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [SubjectAltNames][google.cloud.security.privateca.v1.SubjectAltNames]
@@ -57,15 +57,15 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dns_names
+     *     @type string[] $dns_names
      *           Contains only valid, fully-qualified host names.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type string[] $uris
      *           Contains only valid RFC 3986 URIs.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $email_addresses
+     *     @type string[] $email_addresses
      *           Contains only valid RFC 2822 E-mail addresses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type string[] $ip_addresses
      *           Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
-     *     @type array<\Google\Cloud\Security\PrivateCA\V1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $custom_sans
+     *     @type \Google\Cloud\Security\PrivateCA\V1\X509Extension[] $custom_sans
      *           Contains additional subject alternative name values.
      *           For each custom_san, the `value` field must contain an ASN.1 encoded
      *           UTF8String.
@@ -80,7 +80,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid, fully-qualified host names.
      *
      * Generated from protobuf field <code>repeated string dns_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDnsNames()
     {
@@ -91,7 +91,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid, fully-qualified host names.
      *
      * Generated from protobuf field <code>repeated string dns_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDnsNames($var)
@@ -106,7 +106,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid RFC 3986 URIs.
      *
      * Generated from protobuf field <code>repeated string uris = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUris()
     {
@@ -117,7 +117,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid RFC 3986 URIs.
      *
      * Generated from protobuf field <code>repeated string uris = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUris($var)
@@ -132,7 +132,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid RFC 2822 E-mail addresses.
      *
      * Generated from protobuf field <code>repeated string email_addresses = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getEmailAddresses()
     {
@@ -143,7 +143,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid RFC 2822 E-mail addresses.
      *
      * Generated from protobuf field <code>repeated string email_addresses = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setEmailAddresses($var)
@@ -158,7 +158,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpAddresses()
     {
@@ -169,7 +169,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -186,7 +186,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * UTF8String.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension custom_sans = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Security\PrivateCA\V1\X509Extension>
      */
     public function getCustomSans()
     {
@@ -199,7 +199,7 @@ class SubjectAltNames extends \Google\Protobuf\Internal\Message
      * UTF8String.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.X509Extension custom_sans = 5;</code>
-     * @param array<\Google\Cloud\Security\PrivateCA\V1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Security\PrivateCA\V1\X509Extension[] $var
      * @return $this
      */
     public function setCustomSans($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Overlay configuration.
@@ -37,7 +37,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Video\Transcoder\V1\Overlay\Image $image
      *           Image overlay.
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>|\Google\Protobuf\Internal\RepeatedField $animations
+     *     @type \Google\Cloud\Video\Transcoder\V1\Overlay\Animation[] $animations
      *           List of animations. The list should be chronological, without any time
      *           overlap.
      * }
@@ -88,7 +88,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>
      */
     public function getAnimations()
     {
@@ -100,7 +100,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\Overlay\Animation[] $var
      * @return $this
      */
     public function setAnimations($var)

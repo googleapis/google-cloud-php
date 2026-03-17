@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A streaming speech recognition result corresponding to a portion of the audio
@@ -77,7 +77,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Speech\V2\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *     @type \Google\Cloud\Speech\V2\SpeechRecognitionAlternative[] $alternatives
      *           May contain one or more recognition hypotheses. These alternatives are
      *           ordered in terms of accuracy, with the top (first) alternative being the
      *           most probable, as ranked by the recognizer.
@@ -120,7 +120,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Speech\V2\SpeechRecognitionAlternative>
      */
     public function getAlternatives()
     {
@@ -133,7 +133,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v2.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @param array<\Google\Cloud\Speech\V2\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Speech\V2\SpeechRecognitionAlternative[] $var
      * @return $this
      */
     public function setAlternatives($var)

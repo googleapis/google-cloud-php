@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Observability Instance specific configuration.
@@ -426,5 +426,4 @@ class ObservabilityInstanceConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

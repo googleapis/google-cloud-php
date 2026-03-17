@@ -5,8 +5,8 @@
 namespace Google\Cloud\AppEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An Application resource contains the top-level configuration of an App
@@ -19,7 +19,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Application resource in the API.
      * Example: `apps/myapp`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -64,7 +64,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage bucket that can be used for storing files
      * associated with this application. This bucket is associated with the
      * application and can be used by the gcloud deployment commands.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string code_bucket = 8;</code>
      */
@@ -83,7 +83,7 @@ class Application extends \Google\Protobuf\Internal\Message
     protected $serving_status = 0;
     /**
      * Hostname used to reach this application, as resolved by App Engine.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_hostname = 11;</code>
      */
@@ -91,7 +91,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Google Cloud Storage bucket that can be used by this application to store
      * content.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_bucket = 12;</code>
      */
@@ -138,13 +138,13 @@ class Application extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Full path to the Application resource in the API.
      *           Example: `apps/myapp`.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $id
      *           Identifier of the Application resource. This identifier is equivalent
      *           to the project ID of the Google Cloud Platform project where you want to
      *           deploy your application.
      *           Example: `myapp`.
-     *     @type array<\Google\Cloud\AppEngine\V1\UrlDispatchRule>|\Google\Protobuf\Internal\RepeatedField $dispatch_rules
+     *     @type \Google\Cloud\AppEngine\V1\UrlDispatchRule[] $dispatch_rules
      *           HTTP path dispatch rules for requests to the application that do not
      *           explicitly target a service or version. Rules are order-dependent.
      *           Up to 20 dispatch rules can be supported.
@@ -163,18 +163,18 @@ class Application extends \Google\Protobuf\Internal\Message
      *           Google Cloud Storage bucket that can be used for storing files
      *           associated with this application. This bucket is associated with the
      *           application and can be used by the gcloud deployment commands.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type \Google\Protobuf\Duration $default_cookie_expiration
      *           Cookie expiration policy for this application.
      *     @type int $serving_status
      *           Serving status of this application.
      *     @type string $default_hostname
      *           Hostname used to reach this application, as resolved by App Engine.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $default_bucket
      *           Google Cloud Storage bucket that can be used by this application to store
      *           content.
-     *           &#64;OutputOnly
+     *           \@OutputOnly
      *     @type string $service_account
      *           The service account associated with the application.
      *           This is the app-level default identity. If no identity provided during
@@ -198,7 +198,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Application resource in the API.
      * Example: `apps/myapp`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -211,7 +211,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Full path to the Application resource in the API.
      * Example: `apps/myapp`.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -263,7 +263,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Up to 20 dispatch rules can be supported.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlDispatchRule dispatch_rules = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AppEngine\V1\UrlDispatchRule>
      */
     public function getDispatchRules()
     {
@@ -276,7 +276,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Up to 20 dispatch rules can be supported.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.UrlDispatchRule dispatch_rules = 3;</code>
-     * @param array<\Google\Cloud\AppEngine\V1\UrlDispatchRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AppEngine\V1\UrlDispatchRule[] $var
      * @return $this
      */
     public function setDispatchRules($var)
@@ -357,7 +357,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage bucket that can be used for storing files
      * associated with this application. This bucket is associated with the
      * application and can be used by the gcloud deployment commands.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string code_bucket = 8;</code>
      * @return string
@@ -371,7 +371,7 @@ class Application extends \Google\Protobuf\Internal\Message
      * Google Cloud Storage bucket that can be used for storing files
      * associated with this application. This bucket is associated with the
      * application and can be used by the gcloud deployment commands.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string code_bucket = 8;</code>
      * @param string $var
@@ -449,7 +449,7 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Hostname used to reach this application, as resolved by App Engine.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_hostname = 11;</code>
      * @return string
@@ -461,7 +461,7 @@ class Application extends \Google\Protobuf\Internal\Message
 
     /**
      * Hostname used to reach this application, as resolved by App Engine.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_hostname = 11;</code>
      * @param string $var
@@ -478,7 +478,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Google Cloud Storage bucket that can be used by this application to store
      * content.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_bucket = 12;</code>
      * @return string
@@ -491,7 +491,7 @@ class Application extends \Google\Protobuf\Internal\Message
     /**
      * Google Cloud Storage bucket that can be used by this application to store
      * content.
-     * &#64;OutputOnly
+     * \@OutputOnly
      *
      * Generated from protobuf field <code>string default_bucket = 12;</code>
      * @param string $var

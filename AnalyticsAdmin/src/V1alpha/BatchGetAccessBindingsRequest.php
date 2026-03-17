@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for BatchGetAccessBindings RPC.
@@ -48,7 +48,7 @@ class BatchGetAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      *           Formats:
      *           - accounts/{account}
      *           - properties/{property}
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The names of the access bindings to retrieve.
      *           A maximum of 1000 access bindings can be retrieved in a batch.
      *           Formats:
@@ -103,7 +103,7 @@ class BatchGetAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * - properties/{property}/accessBindings/{accessBinding}
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -118,7 +118,7 @@ class BatchGetAccessBindingsRequest extends \Google\Protobuf\Internal\Message
      * - properties/{property}/accessBindings/{accessBinding}
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

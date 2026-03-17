@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ServiceBinding can be used to:
@@ -23,7 +23,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
+     * `projects/{@*}locations/{@*}serviceBindings/<service_binding_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -49,7 +49,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
     protected $update_time = null;
     /**
      * Optional. The full Service Directory Service name of the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      * This field is for Service Directory integration which will be deprecated
      * soon.
      *
@@ -83,7 +83,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. Name of the ServiceBinding resource. It matches pattern
-     *           `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
+     *           `projects/{@*}locations/{@*}serviceBindings/<service_binding_name>`.
      *     @type string $description
      *           Optional. A free-text description of the resource. Max length 1024
      *           characters.
@@ -93,7 +93,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
      *           Output only. The timestamp when the resource was updated.
      *     @type string $service
      *           Optional. The full Service Directory Service name of the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     *           `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      *           This field is for Service Directory integration which will be deprecated
      *           soon.
      *     @type string $service_id
@@ -113,7 +113,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
+     * `projects/{@*}locations/{@*}serviceBindings/<service_binding_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -125,7 +125,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. Name of the ServiceBinding resource. It matches pattern
-     * `projects/&#42;&#47;locations/&#42;&#47;serviceBindings/<service_binding_name>`.
+     * `projects/{@*}locations/{@*}serviceBindings/<service_binding_name>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -241,7 +241,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full Service Directory Service name of the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      * This field is for Service Directory integration which will be deprecated
      * soon.
      *
@@ -259,7 +259,7 @@ class ServiceBinding extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The full Service Directory Service name of the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      * This field is for Service Directory integration which will be deprecated
      * soon.
      *

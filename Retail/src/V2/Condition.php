@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Metadata that is used to define a condition that triggers an action.
@@ -52,15 +52,15 @@ class Condition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\Condition\QueryTerm>|\Google\Protobuf\Internal\RepeatedField $query_terms
+     *     @type \Google\Cloud\Retail\V2\Condition\QueryTerm[] $query_terms
      *           A list (up to 10 entries) of terms to match the query on. If not
      *           specified, match all queries.
      *           If many query terms are specified, the condition
      *           is matched if any of the terms is a match (i.e. using the OR operator).
-     *     @type array<\Google\Cloud\Retail\V2\Condition\TimeRange>|\Google\Protobuf\Internal\RepeatedField $active_time_range
+     *     @type \Google\Cloud\Retail\V2\Condition\TimeRange[] $active_time_range
      *           Range of time(s) specifying when Condition is active.
      *           Condition true if any time range matches.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type string[] $page_categories
      *           Used to support browse uses cases.
      *           A list (up to 10 entries) of categories or departments.
      *           The format should be the same as
@@ -79,7 +79,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * is matched if any of the terms is a match (i.e. using the OR operator).
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Condition.QueryTerm query_terms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Condition\QueryTerm>
      */
     public function getQueryTerms()
     {
@@ -93,7 +93,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * is matched if any of the terms is a match (i.e. using the OR operator).
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Condition.QueryTerm query_terms = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\Condition\QueryTerm>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Condition\QueryTerm[] $var
      * @return $this
      */
     public function setQueryTerms($var)
@@ -109,7 +109,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Condition true if any time range matches.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Condition.TimeRange active_time_range = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Condition\TimeRange>
      */
     public function getActiveTimeRange()
     {
@@ -121,7 +121,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Condition true if any time range matches.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Condition.TimeRange active_time_range = 3;</code>
-     * @param array<\Google\Cloud\Retail\V2\Condition\TimeRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Condition\TimeRange[] $var
      * @return $this
      */
     public function setActiveTimeRange($var)
@@ -139,7 +139,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      *
      * Generated from protobuf field <code>repeated string page_categories = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPageCategories()
     {
@@ -153,7 +153,7 @@ class Condition extends \Google\Protobuf\Internal\Message
      * [UserEvent.page_categories][google.cloud.retail.v2.UserEvent.page_categories];
      *
      * Generated from protobuf field <code>repeated string page_categories = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPageCategories($var)

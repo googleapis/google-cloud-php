@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DataQualityScan related setting.
@@ -63,7 +63,7 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule[] $rules
      *           Required. The list of rules to evaluate against a data source. At least one
      *           rule is required.
      *     @type float $sampling_percent
@@ -96,7 +96,7 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      * rule is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityRule>
      */
     public function getRules()
     {
@@ -108,7 +108,7 @@ class DataQualitySpec extends \Google\Protobuf\Internal\Message
      * rule is required.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule rules = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\DataQualityRule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule[] $var
      * @return $this
      */
     public function setRules($var)

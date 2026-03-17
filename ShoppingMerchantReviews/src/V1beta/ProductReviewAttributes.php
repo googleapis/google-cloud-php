@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Reviews\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Attributes.
@@ -277,15 +277,15 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $content
      *           Optional. The content of the review. If empty, the content might still get
      *           populated from pros and cons.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pros
+     *     @type string[] $pros
      *           Optional. Contains the advantages based on the opinion of the reviewer.
      *           Omit boilerplate text like "pro:" unless it was written by the reviewer.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cons
+     *     @type string[] $cons
      *           Optional. Contains the disadvantages based on the opinion of the reviewer.
      *           Omit boilerplate text like "con:" unless it was written by the reviewer.
      *     @type \Google\Shopping\Merchant\Reviews\V1beta\ProductReviewAttributes\ReviewLink $review_link
      *           Optional. The URI of the review landing page.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reviewer_image_links
+     *     @type string[] $reviewer_image_links
      *           Optional. A URI to an image of the reviewed product created by the review
      *           author. The URI does not have to end with an image file extension.
      *     @type int|string $min_rating
@@ -297,25 +297,25 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      *           rating must be greater than the value of the min attribute.
      *     @type float $rating
      *           Optional. The reviewer's overall rating of the product.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_names
+     *     @type string[] $product_names
      *           Optional. Descriptive name of a product.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $product_links
+     *     @type string[] $product_links
      *           Optional. The URI of the product. This URI can have the same value as the
      *           `review_link` element, if the review URI and the product URI are the
      *           same.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asins
+     *     @type string[] $asins
      *           Optional. Contains ASINs (Amazon Standard Identification Numbers)
      *           associated with a product.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gtins
+     *     @type string[] $gtins
      *           Optional. Contains GTINs (global trade item numbers) associated with a
      *           product. Sub-types of GTINs (e.g. UPC, EAN, ISBN, JAN) are supported.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mpns
+     *     @type string[] $mpns
      *           Optional. Contains MPNs (manufacturer part numbers) associated with a
      *           product.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type string[] $skus
      *           Optional. Contains SKUs (stock keeping units) associated with a product.
      *           Often this matches the product Offer Id in the product feed.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $brands
+     *     @type string[] $brands
      *           Optional. Contains brand names associated with a product.
      *     @type bool $is_spam
      *           Optional. Indicates whether the review is marked as spam in the publisher's
@@ -804,7 +804,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Omit boilerplate text like "pro:" unless it was written by the reviewer.
      *
      * Generated from protobuf field <code>repeated string pros = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPros()
     {
@@ -816,7 +816,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Omit boilerplate text like "pro:" unless it was written by the reviewer.
      *
      * Generated from protobuf field <code>repeated string pros = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPros($var)
@@ -832,7 +832,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Omit boilerplate text like "con:" unless it was written by the reviewer.
      *
      * Generated from protobuf field <code>repeated string cons = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCons()
     {
@@ -844,7 +844,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Omit boilerplate text like "con:" unless it was written by the reviewer.
      *
      * Generated from protobuf field <code>repeated string cons = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCons($var)
@@ -896,7 +896,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * author. The URI does not have to end with an image file extension.
      *
      * Generated from protobuf field <code>repeated string reviewer_image_links = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReviewerImageLinks()
     {
@@ -908,7 +908,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * author. The URI does not have to end with an image file extension.
      *
      * Generated from protobuf field <code>repeated string reviewer_image_links = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReviewerImageLinks($var)
@@ -1037,7 +1037,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Optional. Descriptive name of a product.
      *
      * Generated from protobuf field <code>repeated string product_names = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductNames()
     {
@@ -1048,7 +1048,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Optional. Descriptive name of a product.
      *
      * Generated from protobuf field <code>repeated string product_names = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductNames($var)
@@ -1065,7 +1065,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * same.
      *
      * Generated from protobuf field <code>repeated string product_links = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProductLinks()
     {
@@ -1078,7 +1078,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * same.
      *
      * Generated from protobuf field <code>repeated string product_links = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProductLinks($var)
@@ -1094,7 +1094,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * associated with a product.
      *
      * Generated from protobuf field <code>repeated string asins = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAsins()
     {
@@ -1106,7 +1106,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * associated with a product.
      *
      * Generated from protobuf field <code>repeated string asins = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAsins($var)
@@ -1122,7 +1122,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * product. Sub-types of GTINs (e.g. UPC, EAN, ISBN, JAN) are supported.
      *
      * Generated from protobuf field <code>repeated string gtins = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGtins()
     {
@@ -1134,7 +1134,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * product. Sub-types of GTINs (e.g. UPC, EAN, ISBN, JAN) are supported.
      *
      * Generated from protobuf field <code>repeated string gtins = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGtins($var)
@@ -1150,7 +1150,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * product.
      *
      * Generated from protobuf field <code>repeated string mpns = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getMpns()
     {
@@ -1162,7 +1162,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * product.
      *
      * Generated from protobuf field <code>repeated string mpns = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setMpns($var)
@@ -1178,7 +1178,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Often this matches the product Offer Id in the product feed.
      *
      * Generated from protobuf field <code>repeated string skus = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSkus()
     {
@@ -1190,7 +1190,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Often this matches the product Offer Id in the product feed.
      *
      * Generated from protobuf field <code>repeated string skus = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSkus($var)
@@ -1205,7 +1205,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Optional. Contains brand names associated with a product.
      *
      * Generated from protobuf field <code>repeated string brands = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBrands()
     {
@@ -1216,7 +1216,7 @@ class ProductReviewAttributes extends \Google\Protobuf\Internal\Message
      * Optional. Contains brand names associated with a product.
      *
      * Generated from protobuf field <code>repeated string brands = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBrands($var)

@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Indicates the location at which a package was found.
@@ -29,6 +29,13 @@ class FileLocation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.grafeas.v1.LayerDetails layer_details = 2;</code>
      */
     protected $layer_details = null;
+    /**
+     * Line number in the file where the package was found.
+     * Optional field that only applies to source repository scanning.
+     *
+     * Generated from protobuf field <code>int32 line_number = 3;</code>
+     */
+    protected $line_number = 0;
 
     /**
      * Constructor.
@@ -42,6 +49,9 @@ class FileLocation extends \Google\Protobuf\Internal\Message
      *     @type \Grafeas\V1\LayerDetails $layer_details
      *           Each package found in a file should have its own layer metadata (that is,
      *           information from the origin layer of the package).
+     *     @type int $line_number
+     *           Line number in the file where the package was found.
+     *           Optional field that only applies to source repository scanning.
      * }
      */
     public function __construct($data = NULL) {
@@ -111,6 +121,34 @@ class FileLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\LayerDetails::class);
         $this->layer_details = $var;
+
+        return $this;
+    }
+
+    /**
+     * Line number in the file where the package was found.
+     * Optional field that only applies to source repository scanning.
+     *
+     * Generated from protobuf field <code>int32 line_number = 3;</code>
+     * @return int
+     */
+    public function getLineNumber()
+    {
+        return $this->line_number;
+    }
+
+    /**
+     * Line number in the file where the package was found.
+     * Optional field that only applies to source repository scanning.
+     *
+     * Generated from protobuf field <code>int32 line_number = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLineNumber($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->line_number = $var;
 
         return $this;
     }

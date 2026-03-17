@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagFileChunkingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the fixed length chunking config.
@@ -98,5 +98,4 @@ class FixedLengthChunking extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

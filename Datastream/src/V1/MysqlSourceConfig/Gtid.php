@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1\MysqlSourceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Use GTID based replication.
@@ -30,5 +30,4 @@ class Gtid extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

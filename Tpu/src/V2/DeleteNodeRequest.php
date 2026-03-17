@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for [DeleteNode][google.cloud.tpu.v2.Tpu.DeleteNode].

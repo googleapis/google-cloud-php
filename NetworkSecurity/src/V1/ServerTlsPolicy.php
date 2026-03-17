@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ServerTlsPolicy is a resource that specifies how a server should authenticate
@@ -19,7 +19,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the ServerTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/serverTlsPolicies/{server_tls_policy}`
+     * `projects/{@*}locations/{location}/serverTlsPolicies/{server_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -88,7 +88,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the ServerTlsPolicy resource. It matches the pattern
-     *           `projects/&#42;&#47;locations/{location}/serverTlsPolicies/{server_tls_policy}`
+     *           `projects/{@*}locations/{location}/serverTlsPolicies/{server_tls_policy}`
      *     @type string $description
      *           Free-text description of the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -125,7 +125,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ServerTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/serverTlsPolicies/{server_tls_policy}`
+     * `projects/{@*}locations/{location}/serverTlsPolicies/{server_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -137,7 +137,7 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ServerTlsPolicy resource. It matches the pattern
-     * `projects/&#42;&#47;locations/{location}/serverTlsPolicies/{server_tls_policy}`
+     * `projects/{@*}locations/{location}/serverTlsPolicies/{server_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

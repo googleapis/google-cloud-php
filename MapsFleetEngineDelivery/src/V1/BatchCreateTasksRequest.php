@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `BatchCreateTask` request message.
@@ -59,7 +59,7 @@ class BatchCreateTasksRequest extends \Google\Protobuf\Internal\Message
      *           Project ID. For example, `sample-cloud-project`. The parent field in the
      *           `CreateTaskRequest` messages must either  be empty, or it must match this
      *           field.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest[] $requests
      *           Required. The request message that specifies the resources to create.
      *           Note: You can create a maximum of 500 tasks in a batch.
      * }
@@ -150,7 +150,7 @@ class BatchCreateTasksRequest extends \Google\Protobuf\Internal\Message
      * Note: You can create a maximum of 500 tasks in a batch.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.CreateTaskRequest requests = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest>
      */
     public function getRequests()
     {
@@ -162,7 +162,7 @@ class BatchCreateTasksRequest extends \Google\Protobuf\Internal\Message
      * Note: You can create a maximum of 500 tasks in a batch.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.CreateTaskRequest requests = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\CreateTaskRequest[] $var
      * @return $this
      */
     public function setRequests($var)

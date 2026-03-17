@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\FeatureView\FeatureRegistrySource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Features belonging to a single feature group that will be
@@ -37,7 +37,7 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $feature_group_id
      *           Required. Identifier of the feature group.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $feature_ids
+     *     @type string[] $feature_ids
      *           Required. Identifiers of features under the feature group.
      * }
      */
@@ -76,7 +76,7 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
      * Required. Identifiers of features under the feature group.
      *
      * Generated from protobuf field <code>repeated string feature_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFeatureIds()
     {
@@ -87,7 +87,7 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
      * Required. Identifiers of features under the feature group.
      *
      * Generated from protobuf field <code>repeated string feature_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFeatureIds($var)
@@ -99,5 +99,4 @@ class FeatureGroup extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

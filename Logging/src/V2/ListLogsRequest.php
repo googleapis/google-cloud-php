@@ -5,8 +5,8 @@
 namespace Google\Cloud\Logging\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The parameters to ListLogs.
@@ -90,7 +90,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *           *  `organizations/[ORGANIZATION_ID]`
      *           *  `billingAccounts/[BILLING_ACCOUNT_ID]`
      *           *  `folders/[FOLDER_ID]`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type string[] $resource_names
      *           Optional. List of resource names to list logs for:
      *            * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
@@ -166,7 +166,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * The resource name in the `parent` field is added to this list.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceNames()
     {
@@ -187,7 +187,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * The resource name in the `parent` field is added to this list.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceNames($var)

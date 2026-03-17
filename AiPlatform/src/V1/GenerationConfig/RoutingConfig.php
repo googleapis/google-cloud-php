@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\GenerationConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for routing the request to a specific model.
@@ -105,5 +105,4 @@ class RoutingConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

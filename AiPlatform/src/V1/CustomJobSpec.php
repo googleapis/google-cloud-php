@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents the spec of a CustomJob.
@@ -173,9 +173,9 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
      * In order to retrieve a specific version of the model, also provide
      * the version ID or version alias.
-     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *   Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the "default" version will be
      * returned. The "default" version alias is created for the first version of
      * the model, and can be moved to other versions later on. There will be
@@ -198,7 +198,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           PersistentResource instead of on-demand short-live machines.
      *           The network and CMEK configs on the job should be consistent with those on
      *           the PersistentResource, otherwise, the job will be rejected.
-     *     @type array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $worker_pool_specs
+     *     @type \Google\Cloud\AIPlatform\V1\WorkerPoolSpec[] $worker_pool_specs
      *           Required. The spec of the worker pools including machine type and Docker
      *           image. All worker pools except the first one are optional and can be
      *           skipped by providing an empty value.
@@ -222,7 +222,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Peering for Vertex
      *           AI](https://cloud.google.com/vertex-ai/docs/general/vpc-peering).
      *           If this field is left unspecified, the job is not peered with any network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *     @type string[] $reserved_ip_ranges
      *           Optional. A list of names for the reserved ip ranges under the VPC network
      *           that can be used for this job.
      *           If set, we will deploy the job within the provided ip ranges. Otherwise,
@@ -287,15 +287,15 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      *           Optional. The Experiment Run associated with this job.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadataStores}/contexts/{experiment-name}-{experiment-run-name}`
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $models
+     *     @type string[] $models
      *           Optional. The name of the Model resources for which to generate a mapping
      *           to artifact URIs. Applicable only to some of the Google-provided custom
      *           jobs. Format: `projects/{project}/locations/{location}/models/{model}`
      *           In order to retrieve a specific version of the model, also provide
      *           the version ID or version alias.
-     *             Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *             Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *                        or
-     *                      `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *                      `projects/{project}/locations/{location}/models/{model}\@golden`
      *           If no version ID or alias is specified, the "default" version will be
      *           returned. The "default" version alias is created for the first version of
      *           the model, and can be moved to other versions later on. There will be
@@ -349,7 +349,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * skipped by providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>
      */
     public function getWorkerPoolSpecs()
     {
@@ -362,7 +362,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * skipped by providing an empty value.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.WorkerPoolSpec worker_pool_specs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\WorkerPoolSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\WorkerPoolSpec[] $var
      * @return $this
      */
     public function setWorkerPoolSpecs($var)
@@ -498,7 +498,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReservedIpRanges()
     {
@@ -514,7 +514,7 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * Example: ['vertex-ai-ip-range'].
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReservedIpRanges($var)
@@ -843,16 +843,16 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
      * In order to retrieve a specific version of the model, also provide
      * the version ID or version alias.
-     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *   Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the "default" version will be
      * returned. The "default" version alias is created for the first version of
      * the model, and can be moved to other versions later on. There will be
      * exactly one default version.
      *
      * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getModels()
     {
@@ -865,16 +865,16 @@ class CustomJobSpec extends \Google\Protobuf\Internal\Message
      * jobs. Format: `projects/{project}/locations/{location}/models/{model}`
      * In order to retrieve a specific version of the model, also provide
      * the version ID or version alias.
-     *   Example: `projects/{project}/locations/{location}/models/{model}&#64;2`
+     *   Example: `projects/{project}/locations/{location}/models/{model}\@2`
      *              or
-     *            `projects/{project}/locations/{location}/models/{model}&#64;golden`
+     *            `projects/{project}/locations/{location}/models/{model}\@golden`
      * If no version ID or alias is specified, the "default" version will be
      * returned. The "default" version alias is created for the first version of
      * the model, and can be moved to other versions later on. There will be
      * exactly one default version.
      *
      * Generated from protobuf field <code>repeated string models = 20 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setModels($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\OsConfig\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response message for listing patch jobs.
@@ -34,7 +34,7 @@ class ListPatchJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\OsConfig\V1\PatchJob>|\Google\Protobuf\Internal\RepeatedField $patch_jobs
+     *     @type \Google\Cloud\OsConfig\V1\PatchJob[] $patch_jobs
      *           The list of patch jobs.
      *     @type string $next_page_token
      *           A pagination token that can be used to get the next page of results.
@@ -49,7 +49,7 @@ class ListPatchJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of patch jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchJob patch_jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\OsConfig\V1\PatchJob>
      */
     public function getPatchJobs()
     {
@@ -60,7 +60,7 @@ class ListPatchJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of patch jobs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchJob patch_jobs = 1;</code>
-     * @param array<\Google\Cloud\OsConfig\V1\PatchJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\OsConfig\V1\PatchJob[] $var
      * @return $this
      */
     public function setPatchJobs($var)

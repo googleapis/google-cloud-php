@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\X509Parameters;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the X.509 name constraints extension, per
@@ -103,43 +103,43 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $critical
      *           Indicates whether or not the name constraints are marked critical.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permitted_dns_names
+     *     @type string[] $permitted_dns_names
      *           Contains permitted DNS names. Any DNS name that can be
      *           constructed by simply adding zero or more labels to
      *           the left-hand side of the name satisfies the name constraint.
      *           For example, `example.com`, `www.example.com`, `www.sub.example.com`
      *           would satisfy `example.com` while `example1.com` does not.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_dns_names
+     *     @type string[] $excluded_dns_names
      *           Contains excluded DNS names. Any DNS name that can be
      *           constructed by simply adding zero or more labels to
      *           the left-hand side of the name satisfies the name constraint.
      *           For example, `example.com`, `www.example.com`, `www.sub.example.com`
      *           would satisfy `example.com` while `example1.com` does not.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permitted_ip_ranges
+     *     @type string[] $permitted_ip_ranges
      *           Contains the permitted IP ranges. For IPv4 addresses, the ranges
      *           are expressed using CIDR notation as specified in RFC 4632.
      *           For IPv6 addresses, the ranges are expressed in similar encoding as IPv4
      *           addresses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_ip_ranges
+     *     @type string[] $excluded_ip_ranges
      *           Contains the excluded IP ranges. For IPv4 addresses, the ranges
      *           are expressed using CIDR notation as specified in RFC 4632.
      *           For IPv6 addresses, the ranges are expressed in similar encoding as IPv4
      *           addresses.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permitted_email_addresses
+     *     @type string[] $permitted_email_addresses
      *           Contains the permitted email addresses. The value can be a particular
      *           email address, a hostname to indicate all email addresses on that host or
      *           a domain with a leading period (e.g. `.example.com`) to indicate
      *           all email addresses in that domain.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_email_addresses
+     *     @type string[] $excluded_email_addresses
      *           Contains the excluded email addresses. The value can be a particular
      *           email address, a hostname to indicate all email addresses on that host or
      *           a domain with a leading period (e.g. `.example.com`) to indicate
      *           all email addresses in that domain.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permitted_uris
+     *     @type string[] $permitted_uris
      *           Contains the permitted URIs that apply to the host part of the name.
      *           The value can be a hostname or a domain with a
      *           leading period (like `.example.com`)
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_uris
+     *     @type string[] $excluded_uris
      *           Contains the excluded URIs that apply to the host part of the name.
      *           The value can be a hostname or a domain with a
      *           leading period (like `.example.com`)
@@ -184,7 +184,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * would satisfy `example.com` while `example1.com` does not.
      *
      * Generated from protobuf field <code>repeated string permitted_dns_names = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermittedDnsNames()
     {
@@ -199,7 +199,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * would satisfy `example.com` while `example1.com` does not.
      *
      * Generated from protobuf field <code>repeated string permitted_dns_names = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermittedDnsNames($var)
@@ -218,7 +218,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * would satisfy `example.com` while `example1.com` does not.
      *
      * Generated from protobuf field <code>repeated string excluded_dns_names = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedDnsNames()
     {
@@ -233,7 +233,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * would satisfy `example.com` while `example1.com` does not.
      *
      * Generated from protobuf field <code>repeated string excluded_dns_names = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedDnsNames($var)
@@ -251,7 +251,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string permitted_ip_ranges = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermittedIpRanges()
     {
@@ -265,7 +265,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string permitted_ip_ranges = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermittedIpRanges($var)
@@ -283,7 +283,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string excluded_ip_ranges = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedIpRanges()
     {
@@ -297,7 +297,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * addresses.
      *
      * Generated from protobuf field <code>repeated string excluded_ip_ranges = 5;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedIpRanges($var)
@@ -315,7 +315,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * all email addresses in that domain.
      *
      * Generated from protobuf field <code>repeated string permitted_email_addresses = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermittedEmailAddresses()
     {
@@ -329,7 +329,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * all email addresses in that domain.
      *
      * Generated from protobuf field <code>repeated string permitted_email_addresses = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermittedEmailAddresses($var)
@@ -347,7 +347,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * all email addresses in that domain.
      *
      * Generated from protobuf field <code>repeated string excluded_email_addresses = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedEmailAddresses()
     {
@@ -361,7 +361,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * all email addresses in that domain.
      *
      * Generated from protobuf field <code>repeated string excluded_email_addresses = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedEmailAddresses($var)
@@ -378,7 +378,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * leading period (like `.example.com`)
      *
      * Generated from protobuf field <code>repeated string permitted_uris = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPermittedUris()
     {
@@ -391,7 +391,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * leading period (like `.example.com`)
      *
      * Generated from protobuf field <code>repeated string permitted_uris = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPermittedUris($var)
@@ -408,7 +408,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * leading period (like `.example.com`)
      *
      * Generated from protobuf field <code>repeated string excluded_uris = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludedUris()
     {
@@ -421,7 +421,7 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
      * leading period (like `.example.com`)
      *
      * Generated from protobuf field <code>repeated string excluded_uris = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludedUris($var)
@@ -433,5 +433,4 @@ class NameConstraints extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

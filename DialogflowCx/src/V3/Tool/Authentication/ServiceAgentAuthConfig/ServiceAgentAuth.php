@@ -25,7 +25,7 @@ class ServiceAgentAuth
      * token](https://cloud.google.com/docs/authentication/token-types#id)
      * generated from service agent. This can be used to access Cloud
      * Function and Cloud Run after you grant Invoker role to
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-dialogflow.iam.gserviceaccount.com`.
      *
      * Generated from protobuf enum <code>ID_TOKEN = 1;</code>
      */
@@ -35,7 +35,7 @@ class ServiceAgentAuth
      * token](https://cloud.google.com/docs/authentication/token-types#access)
      * generated from service agent. This can be used to access other Google
      * Cloud APIs after you grant required roles to
-     * `service-<PROJECT-NUMBER>&#64;gcp-sa-dialogflow.iam.gserviceaccount.com`.
+     * `service-<PROJECT-NUMBER>\@gcp-sa-dialogflow.iam.gserviceaccount.com`.
      *
      * Generated from protobuf enum <code>ACCESS_TOKEN = 2;</code>
      */
@@ -67,5 +67,4 @@ class ServiceAgentAuth
         return constant($const);
     }
 }
-
 

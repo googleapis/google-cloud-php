@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FirewallAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set header action sets a header and forwards the request to the
@@ -100,5 +100,4 @@ class SetHeaderAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

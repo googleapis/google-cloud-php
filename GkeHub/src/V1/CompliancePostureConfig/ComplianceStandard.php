@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeHub\V1\CompliancePostureConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.gkehub.v1.CompliancePostureConfig.ComplianceStandard</code>
@@ -62,5 +62,4 @@ class ComplianceStandard extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

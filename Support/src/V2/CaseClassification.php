@@ -5,8 +5,8 @@
 namespace Google\Cloud\Support\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Case Classification represents the topic that a case is about. It's very

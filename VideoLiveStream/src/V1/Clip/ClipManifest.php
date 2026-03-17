@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Clip;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ClipManifest identifies a source manifest for the generated clip manifest.
@@ -126,5 +126,4 @@ class ClipManifest extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

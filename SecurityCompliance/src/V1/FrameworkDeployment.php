@@ -5,8 +5,8 @@
 namespace Google\Cloud\CloudSecurityCompliance\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Framework deployments represent the assignment of a framework to a target
@@ -141,7 +141,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *           Required. A reference to the framework that you're deploying.
      *     @type string $description
      *           Optional. A user-provided description of the framework deployment.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata>|\Google\Protobuf\Internal\RepeatedField $cloud_control_metadata
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata[] $cloud_control_metadata
      *           Required. The deployment mode and parameters for each of the cloud controls
      *           in the framework. Every cloud control in the framework includes metadata.
      *     @type int $deployment_state
@@ -158,7 +158,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *           framework deployment.
      *     @type string $target_resource_display_name
      *           Output only. The display name of the target resource.
-     *     @type array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $cloud_control_deployment_references
+     *     @type \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference[] $cloud_control_deployment_references
      *           Output only. The references to the cloud control deployments. The reference
      *           includes all the cloud control deployments that are in the framework or in
      *           a cloud control group.
@@ -352,7 +352,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      * in the framework. Every cloud control in the framework includes metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata>
      */
     public function getCloudControlMetadata()
     {
@@ -364,7 +364,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      * in the framework. Every cloud control in the framework includes metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlMetadata cloud_control_metadata = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlMetadata[] $var
      * @return $this
      */
     public function setCloudControlMetadata($var)
@@ -553,7 +553,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeploymentReference cloud_control_deployment_references = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference>
      */
     public function getCloudControlDeploymentReferences()
     {
@@ -580,7 +580,7 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      * ```
      *
      * Generated from protobuf field <code>repeated .google.cloud.cloudsecuritycompliance.v1.CloudControlDeploymentReference cloud_control_deployment_references = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\CloudSecurityCompliance\V1\CloudControlDeploymentReference[] $var
      * @return $this
      */
     public function setCloudControlDeploymentReferences($var)

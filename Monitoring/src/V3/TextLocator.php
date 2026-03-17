@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A locator for text. Indicates a particular part of the text of a request or
@@ -65,7 +65,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
     /**
      * When `nested_locator` is set, this field gives the reason for the nesting.
      * Usually, the reason is a macro invocation. In that case, the macro name
-     * (including the leading '&#64;') signals the location of the macro call
+     * (including the leading '\@') signals the location of the macro call
      * in the text and a macro argument name (including the leading '$') signals
      * the location of the macro argument inside the macro body that got
      * substituted away.
@@ -100,7 +100,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
      *     @type string $nesting_reason
      *           When `nested_locator` is set, this field gives the reason for the nesting.
      *           Usually, the reason is a macro invocation. In that case, the macro name
-     *           (including the leading '&#64;') signals the location of the macro call
+     *           (including the leading '\@') signals the location of the macro call
      *           in the text and a macro argument name (including the leading '$') signals
      *           the location of the macro argument inside the macro body that got
      *           substituted away.
@@ -266,7 +266,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
     /**
      * When `nested_locator` is set, this field gives the reason for the nesting.
      * Usually, the reason is a macro invocation. In that case, the macro name
-     * (including the leading '&#64;') signals the location of the macro call
+     * (including the leading '\@') signals the location of the macro call
      * in the text and a macro argument name (including the leading '$') signals
      * the location of the macro argument inside the macro body that got
      * substituted away.
@@ -282,7 +282,7 @@ class TextLocator extends \Google\Protobuf\Internal\Message
     /**
      * When `nested_locator` is set, this field gives the reason for the nesting.
      * Usually, the reason is a macro invocation. In that case, the macro name
-     * (including the leading '&#64;') signals the location of the macro call
+     * (including the leading '\@') signals the location of the macro call
      * in the text and a macro argument name (including the leading '$') signals
      * the location of the macro argument inside the macro body that got
      * substituted away.

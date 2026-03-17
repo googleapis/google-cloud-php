@@ -5,8 +5,8 @@
 namespace Google\Cloud\StorageBatchOperations\V1\BucketList;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes configuration of a single bucket and its objects to be
@@ -140,5 +140,4 @@ class Bucket extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

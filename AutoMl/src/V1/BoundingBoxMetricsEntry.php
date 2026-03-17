@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Bounding box matching model metrics for a single intersection-over-union
@@ -49,7 +49,7 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      *           this metrics entry.
      *     @type float $mean_average_precision
      *           Output only. The mean average precision, most often close to au_prc.
-     *     @type array<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
+     *     @type \Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry[] $confidence_metrics_entries
      *           Output only. Metrics for each label-match confidence_threshold from
      *           0.05,0.10,...,0.95,0.96,0.97,0.98,0.99. Precision-recall curve is
      *           derived from them.
@@ -120,7 +120,7 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      * derived from them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.BoundingBoxMetricsEntry.ConfidenceMetricsEntry confidence_metrics_entries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry>
      */
     public function getConfidenceMetricsEntries()
     {
@@ -133,7 +133,7 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      * derived from them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.BoundingBoxMetricsEntry.ConfidenceMetricsEntry confidence_metrics_entries = 3;</code>
-     * @param array<\Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AutoMl\V1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry[] $var
      * @return $this
      */
     public function setConfidenceMetricsEntries($var)

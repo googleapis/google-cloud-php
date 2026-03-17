@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Stitcher\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for manifest generation.
@@ -36,7 +36,7 @@ class ManifestOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Stitcher\V1\RenditionFilter>|\Google\Protobuf\Internal\RepeatedField $include_renditions
+     *     @type \Google\Cloud\Video\Stitcher\V1\RenditionFilter[] $include_renditions
      *           If specified, the output manifest will only return renditions matching the
      *           specified filters.
      *     @type int $bitrate_order
@@ -54,7 +54,7 @@ class ManifestOptions extends \Google\Protobuf\Internal\Message
      * specified filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.RenditionFilter include_renditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Stitcher\V1\RenditionFilter>
      */
     public function getIncludeRenditions()
     {
@@ -66,7 +66,7 @@ class ManifestOptions extends \Google\Protobuf\Internal\Message
      * specified filters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.RenditionFilter include_renditions = 1;</code>
-     * @param array<\Google\Cloud\Video\Stitcher\V1\RenditionFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Stitcher\V1\RenditionFilter[] $var
      * @return $this
      */
     public function setIncludeRenditions($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for making inference requests against Vertex AI models.
@@ -30,7 +30,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,7 +56,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      *           have `iam.serviceAccounts.actAs` permission on the service account. If not
      *           specified, the Pub/Sub [service
      *           agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
-     *           service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     *           service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      * }
      */
     public function __construct($data = NULL) {
@@ -133,7 +133,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -149,7 +149,7 @@ class AIInference extends \Google\Protobuf\Internal\Message
      * have `iam.serviceAccounts.actAs` permission on the service account. If not
      * specified, the Pub/Sub [service
      * agent]({$universe.dns_names.final_documentation_domain}/iam/docs/service-agents),
-     * service-{project_number}&#64;gcp-sa-pubsub.iam.gserviceaccount.com, is used.
+     * service-{project_number}\@gcp-sa-pubsub.iam.gserviceaccount.com, is used.
      *
      * Generated from protobuf field <code>string service_account_email = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

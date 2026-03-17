@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecaptchaEnterprise\V1\FraudPreventionAssessment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about stolen instrument fraud, where the user is not the
@@ -69,5 +69,4 @@ class StolenInstrumentVerdict extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

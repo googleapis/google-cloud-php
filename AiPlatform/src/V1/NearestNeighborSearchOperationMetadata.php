@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Runtime operation metadata with regard to Matching Engine Index.
@@ -39,7 +39,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>|\Google\Protobuf\Internal\RepeatedField $content_validation_stats
+     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats[] $content_validation_stats
      *           The validation stats of the content (per file) to be inserted or
      *           updated on the Matching Engine Index resource. Populated if
      *           contentsDeltaUri is provided as part of
@@ -64,7 +64,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      * format, we will not have the stats for those files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.ContentValidationStats content_validation_stats = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>
      */
     public function getContentValidationStats()
     {
@@ -80,7 +80,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      * format, we will not have the stats for those files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.ContentValidationStats content_validation_stats = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats[] $var
      * @return $this
      */
     public function setContentValidationStats($var)

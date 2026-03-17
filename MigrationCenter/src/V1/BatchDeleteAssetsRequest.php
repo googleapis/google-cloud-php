@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A request to delete a list of  asset.
@@ -65,7 +65,7 @@ class BatchDeleteAssetsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. Parent value for batch asset delete.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           Required. The IDs of the assets to delete.
      *           A maximum of 1000 assets can be deleted in a batch.
      *           Format: projects/{project}/locations/{location}/assets/{name}.
@@ -112,7 +112,7 @@ class BatchDeleteAssetsRequest extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/locations/{location}/assets/{name}.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -125,7 +125,7 @@ class BatchDeleteAssetsRequest extends \Google\Protobuf\Internal\Message
      * Format: projects/{project}/locations/{location}/assets/{name}.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

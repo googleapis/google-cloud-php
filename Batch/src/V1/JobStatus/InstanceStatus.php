@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\JobStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * VM instance status.
@@ -176,5 +176,4 @@ class InstanceStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

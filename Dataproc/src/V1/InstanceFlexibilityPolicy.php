@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Instance flexibility Policy allowing a mixture of VM shapes and provisioning
@@ -46,10 +46,10 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\ProvisioningModelMix $provisioning_model_mix
      *           Optional. Defines how the Group selects the provisioning model to ensure
      *           required reliability.
-     *     @type array<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelection>|\Google\Protobuf\Internal\RepeatedField $instance_selection_list
+     *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelection[] $instance_selection_list
      *           Optional. List of instance selection options that the group will use when
      *           creating new VMs.
-     *     @type array<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelectionResult>|\Google\Protobuf\Internal\RepeatedField $instance_selection_results
+     *     @type \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelectionResult[] $instance_selection_results
      *           Output only. A list of instance selection results in the group.
      * }
      */
@@ -101,7 +101,7 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      * creating new VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection instance_selection_list = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelection>
      */
     public function getInstanceSelectionList()
     {
@@ -113,7 +113,7 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      * creating new VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelection instance_selection_list = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelection[] $var
      * @return $this
      */
     public function setInstanceSelectionList($var)
@@ -128,7 +128,7 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      * Output only. A list of instance selection results in the group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult instance_selection_results = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelectionResult>
      */
     public function getInstanceSelectionResults()
     {
@@ -139,7 +139,7 @@ class InstanceFlexibilityPolicy extends \Google\Protobuf\Internal\Message
      * Output only. A list of instance selection results in the group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.InstanceFlexibilityPolicy.InstanceSelectionResult instance_selection_results = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelectionResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\InstanceFlexibilityPolicy\InstanceSelectionResult[] $var
      * @return $this
      */
     public function setInstanceSelectionResults($var)

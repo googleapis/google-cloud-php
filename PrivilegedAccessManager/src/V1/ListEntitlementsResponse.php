@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to listing entitlements.
@@ -40,11 +40,11 @@ class ListEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $entitlements
+     *     @type \Google\Cloud\PrivilegedAccessManager\V1\Entitlement[] $entitlements
      *           The list of entitlements.
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class ListEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * The list of entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Entitlement entitlements = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>
      */
     public function getEntitlements()
     {
@@ -68,7 +68,7 @@ class ListEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * The list of entitlements.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privilegedaccessmanager.v1.Entitlement entitlements = 1;</code>
-     * @param array<\Google\Cloud\PrivilegedAccessManager\V1\Entitlement>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PrivilegedAccessManager\V1\Entitlement[] $var
      * @return $this
      */
     public function setEntitlements($var)
@@ -109,7 +109,7 @@ class ListEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class ListEntitlementsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

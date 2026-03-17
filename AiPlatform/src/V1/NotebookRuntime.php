@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A runtime is a virtual machine allocated to a particular user for a
@@ -78,7 +78,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Deprecated: This field is no longer used and the "Vertex AI
      * Notebook Service Account"
-     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * (service-PROJECT_NUMBER\@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
      * used for the runtime workload identity.
      * See
      * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
@@ -243,7 +243,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *     @type string $service_account
      *           Output only. Deprecated: This field is no longer used and the "Vertex AI
      *           Notebook Service Account"
-     *           (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     *           (service-PROJECT_NUMBER\@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
      *           used for the runtime workload identity.
      *           See
      *           https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
@@ -294,7 +294,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      *           Output only. EUC configuration of the notebook runtime.
      *     @type \Google\Cloud\AIPlatform\V1\ShieldedVmConfig $shielded_vm_config
      *           Output only. Runtime Shielded VM spec.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type string[] $network_tags
      *           Optional. The Compute Engine tags to add to runtime (see [Tagging
      *           instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *     @type \Google\Cloud\AIPlatform\V1\NotebookSoftwareConfig $software_config
@@ -585,7 +585,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Deprecated: This field is no longer used and the "Vertex AI
      * Notebook Service Account"
-     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * (service-PROJECT_NUMBER\@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
      * used for the runtime workload identity.
      * See
      * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
@@ -603,7 +603,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Deprecated: This field is no longer used and the "Vertex AI
      * Notebook Service Account"
-     * (service-PROJECT_NUMBER&#64;gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
+     * (service-PROJECT_NUMBER\@gcp-sa-aiplatform-vm.iam.gserviceaccount.com) is
      * used for the runtime workload identity.
      * See
      * https://cloud.google.com/iam/docs/service-agents#vertex-ai-notebook-service-account
@@ -1051,7 +1051,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string network_tags = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNetworkTags()
     {
@@ -1063,7 +1063,7 @@ class NotebookRuntime extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      *
      * Generated from protobuf field <code>repeated string network_tags = 25 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNetworkTags($var)

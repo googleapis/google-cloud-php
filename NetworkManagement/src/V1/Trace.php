@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Trace represents one simulated packet forwarding path.
@@ -63,7 +63,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      *           user request, and validated by the data plane model.
      *           If there are multiple traces starting from different source locations, then
      *           the endpoint_info may be different between traces.
-     *     @type array<\Google\Cloud\NetworkManagement\V1\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\NetworkManagement\V1\Step[] $steps
      *           A trace of a test contains multiple steps from the initial state to the
      *           final state (delivered, dropped, forwarded, or aborted).
      *           The steps are ordered by the processing sequence within the simulated
@@ -130,7 +130,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      * and avoid reordering or sorting them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Step steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\Step>
      */
     public function getSteps()
     {
@@ -145,7 +145,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      * and avoid reordering or sorting them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Step steps = 2;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\Step[] $var
      * @return $this
      */
     public function setSteps($var)

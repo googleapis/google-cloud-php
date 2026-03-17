@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SearchIndexEndpoint.
@@ -69,9 +69,9 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      *           Required. The index endpoint to search.
      *           Format:
      *           `projects/{project_id}/locations/{location_id}/indexEndpoints/{index_endpoint_id}'
-     *     @type array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $criteria
+     *     @type \Google\Cloud\VisionAI\V1\Criteria[] $criteria
      *           Criteria applied to search results.
-     *     @type array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $exclusion_criteria
+     *     @type \Google\Cloud\VisionAI\V1\Criteria[] $exclusion_criteria
      *           Criteria to exclude from search results.
      *           Note that `fetch_matched_annotations` will be ignored.
      *     @type int $page_size
@@ -186,7 +186,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      * Criteria applied to search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria criteria = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Criteria>
      */
     public function getCriteria()
     {
@@ -197,7 +197,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      * Criteria applied to search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria criteria = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Criteria[] $var
      * @return $this
      */
     public function setCriteria($var)
@@ -213,7 +213,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      * Note that `fetch_matched_annotations` will be ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria exclusion_criteria = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Criteria>
      */
     public function getExclusionCriteria()
     {
@@ -225,7 +225,7 @@ class SearchIndexEndpointRequest extends \Google\Protobuf\Internal\Message
      * Note that `fetch_matched_annotations` will be ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria exclusion_criteria = 7;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Criteria[] $var
      * @return $this
      */
     public function setExclusionCriteria($var)

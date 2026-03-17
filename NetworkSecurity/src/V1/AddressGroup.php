@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AddressGroup is a resource that specifies how a collection of IP/DNS used
@@ -18,7 +18,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the AddressGroup resource. It matches pattern
-     * `projects/&#42;&#47;locations/{location}/addressGroups/<address_group>`.
+     * `projects/{@*}locations/{location}/addressGroups/<address_group>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -87,7 +87,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the AddressGroup resource. It matches pattern
-     *           `projects/&#42;&#47;locations/{location}/addressGroups/<address_group>`.
+     *           `projects/{@*}locations/{location}/addressGroups/<address_group>`.
      *     @type string $description
      *           Optional. Free-text description of the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -99,13 +99,13 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. The type of the Address Group. Possible values are "IPv4" or
      *           "IPV6".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type string[] $items
      *           Optional. List of items.
      *     @type int $capacity
      *           Required. Capacity of the Address Group
      *     @type string $self_link
      *           Output only. Server-defined fully-qualified URL for this resource.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $purpose
+     *     @type int[] $purpose
      *           Optional. List of supported purposes of the Address Group.
      * }
      */
@@ -116,7 +116,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the AddressGroup resource. It matches pattern
-     * `projects/&#42;&#47;locations/{location}/addressGroups/<address_group>`.
+     * `projects/{@*}locations/{location}/addressGroups/<address_group>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -128,7 +128,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the AddressGroup resource. It matches pattern
-     * `projects/&#42;&#47;locations/{location}/addressGroups/<address_group>`.
+     * `projects/{@*}locations/{location}/addressGroups/<address_group>`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -298,7 +298,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of items.
      *
      * Generated from protobuf field <code>repeated string items = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getItems()
     {
@@ -309,7 +309,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of items.
      *
      * Generated from protobuf field <code>repeated string items = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setItems($var)
@@ -376,7 +376,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of supported purposes of the Address Group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AddressGroup.Purpose purpose = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPurpose()
     {
@@ -387,7 +387,7 @@ class AddressGroup extends \Google\Protobuf\Internal\Message
      * Optional. List of supported purposes of the Address Group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.AddressGroup.Purpose purpose = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPurpose($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response to a request to list Cloud Dataflow jobs in a project. This might
@@ -46,11 +46,11 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type \Google\Cloud\Dataflow\V1beta3\Job[] $jobs
      *           A subset of the requested job information.
      *     @type string $next_page_token
      *           Set if there may be more results than fit in this response.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\FailedLocation>|\Google\Protobuf\Internal\RepeatedField $failed_location
+     *     @type \Google\Cloud\Dataflow\V1beta3\FailedLocation[] $failed_location
      *           Zero or more messages describing the [regional endpoints]
      *           (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that
      *           failed to respond.
@@ -65,7 +65,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * A subset of the requested job information.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Job jobs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\Job>
      */
     public function getJobs()
     {
@@ -76,7 +76,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * A subset of the requested job information.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Job jobs = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\Job>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\Job[] $var
      * @return $this
      */
     public function setJobs($var)
@@ -119,7 +119,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * failed to respond.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.FailedLocation failed_location = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\FailedLocation>
      */
     public function getFailedLocation()
     {
@@ -132,7 +132,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * failed to respond.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.FailedLocation failed_location = 3;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\FailedLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\FailedLocation[] $var
      * @return $this
      */
     public function setFailedLocation($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * ResourceBackupConfig represents a resource along with its backup
@@ -110,7 +110,7 @@ class ResourceBackupConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The type of the target resource.
      *     @type array|\Google\Protobuf\Internal\MapField $target_resource_labels
      *           Labels associated with the target resource.
-     *     @type array<\Google\Cloud\BackupDR\V1\BackupConfigDetails>|\Google\Protobuf\Internal\RepeatedField $backup_configs_details
+     *     @type \Google\Cloud\BackupDR\V1\BackupConfigDetails[] $backup_configs_details
      *           Backup configurations applying to the target resource, including those
      *           targeting its related/child resources. For example, backup configuration
      *           applicable to Compute Engine disks will be populated in this field for a
@@ -307,7 +307,7 @@ class ResourceBackupConfig extends \Google\Protobuf\Internal\Message
      * Compute Engine VM which has the disk associated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupConfigDetails backup_configs_details = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BackupDR\V1\BackupConfigDetails>
      */
     public function getBackupConfigsDetails()
     {
@@ -321,7 +321,7 @@ class ResourceBackupConfig extends \Google\Protobuf\Internal\Message
      * Compute Engine VM which has the disk associated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.backupdr.v1.BackupConfigDetails backup_configs_details = 7;</code>
-     * @param array<\Google\Cloud\BackupDR\V1\BackupConfigDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BackupDR\V1\BackupConfigDetails[] $var
      * @return $this
      */
     public function setBackupConfigsDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An ExtensionTool is a way to use Vertex Extensions as a tool.
@@ -72,5 +72,4 @@ class ExtensionTool extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Network-level access control policy for the Airflow web server.
@@ -28,7 +28,7 @@ class WebServerNetworkAccessControl extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl\AllowedIpRange>|\Google\Protobuf\Internal\RepeatedField $allowed_ip_ranges
+     *     @type \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl\AllowedIpRange[] $allowed_ip_ranges
      *           A collection of allowed IP ranges with descriptions.
      * }
      */
@@ -41,7 +41,7 @@ class WebServerNetworkAccessControl extends \Google\Protobuf\Internal\Message
      * A collection of allowed IP ranges with descriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange allowed_ip_ranges = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl\AllowedIpRange>
      */
     public function getAllowedIpRanges()
     {
@@ -52,7 +52,7 @@ class WebServerNetworkAccessControl extends \Google\Protobuf\Internal\Message
      * A collection of allowed IP ranges with descriptions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orchestration.airflow.service.v1.WebServerNetworkAccessControl.AllowedIpRange allowed_ip_ranges = 1;</code>
-     * @param array<\Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl\AllowedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\WebServerNetworkAccessControl\AllowedIpRange[] $var
      * @return $this
      */
     public function setAllowedIpRanges($var)

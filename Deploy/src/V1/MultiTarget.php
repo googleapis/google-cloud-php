@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information specifying a multiTarget.
@@ -28,7 +28,7 @@ class MultiTarget extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *     @type string[] $target_ids
      *           Required. The target_ids of this multiTarget.
      * }
      */
@@ -41,7 +41,7 @@ class MultiTarget extends \Google\Protobuf\Internal\Message
      * Required. The target_ids of this multiTarget.
      *
      * Generated from protobuf field <code>repeated string target_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetIds()
     {
@@ -52,7 +52,7 @@ class MultiTarget extends \Google\Protobuf\Internal\Message
      * Required. The target_ids of this multiTarget.
      *
      * Generated from protobuf field <code>repeated string target_ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetIds($var)

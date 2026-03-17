@@ -5,8 +5,8 @@
 namespace Grafeas\V1\SlsaProvenanceZeroTwo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes where the config file that kicked off the build came from.
@@ -112,5 +112,4 @@ class SlsaConfigSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prediction output format for Video Action Recognition.
@@ -50,7 +50,7 @@ class VideoActionRecognitionPredictionResult extends \Google\Protobuf\Internal\M
      *           The end, inclusive, of the video's time segment in which the actions have
      *           been identified. Particularly, if the end is the same as the start, it
      *           means the identification happens on a specific video frame.
-     *     @type array<\Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult\IdentifiedAction>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult\IdentifiedAction[] $actions
      *           All of the actions identified in the time range.
      * }
      */
@@ -141,7 +141,7 @@ class VideoActionRecognitionPredictionResult extends \Google\Protobuf\Internal\M
      * All of the actions identified in the time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction actions = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult\IdentifiedAction>
      */
     public function getActions()
     {
@@ -152,7 +152,7 @@ class VideoActionRecognitionPredictionResult extends \Google\Protobuf\Internal\M
      * All of the actions identified in the time range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.VideoActionRecognitionPredictionResult.IdentifiedAction actions = 3;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult\IdentifiedAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\VideoActionRecognitionPredictionResult\IdentifiedAction[] $var
      * @return $this
      */
     public function setActions($var)

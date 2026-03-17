@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -29,15 +29,15 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
     protected $private_cloud = '';
     /**
      * Optional. The username of the user to be queried for credentials.
-     * The default value of this field is CloudOwner&#64;gve.local.
+     * The default value of this field is CloudOwner\@gve.local.
      * The provided value must be one of the following:
-     * CloudOwner&#64;gve.local,
-     * solution-user-01&#64;gve.local,
-     * solution-user-02&#64;gve.local,
-     * solution-user-03&#64;gve.local,
-     * solution-user-04&#64;gve.local,
-     * solution-user-05&#64;gve.local,
-     * zertoadmin&#64;gve.local.
+     * CloudOwner\@gve.local,
+     * solution-user-01\@gve.local,
+     * solution-user-02\@gve.local,
+     * solution-user-03\@gve.local,
+     * solution-user-04\@gve.local,
+     * solution-user-05\@gve.local,
+     * zertoadmin\@gve.local.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -77,15 +77,15 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      *     @type string $username
      *           Optional. The username of the user to be queried for credentials.
-     *           The default value of this field is CloudOwner&#64;gve.local.
+     *           The default value of this field is CloudOwner\@gve.local.
      *           The provided value must be one of the following:
-     *           CloudOwner&#64;gve.local,
-     *           solution-user-01&#64;gve.local,
-     *           solution-user-02&#64;gve.local,
-     *           solution-user-03&#64;gve.local,
-     *           solution-user-04&#64;gve.local,
-     *           solution-user-05&#64;gve.local,
-     *           zertoadmin&#64;gve.local.
+     *           CloudOwner\@gve.local,
+     *           solution-user-01\@gve.local,
+     *           solution-user-02\@gve.local,
+     *           solution-user-03\@gve.local,
+     *           solution-user-04\@gve.local,
+     *           solution-user-05\@gve.local,
+     *           zertoadmin\@gve.local.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,15 +131,15 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The username of the user to be queried for credentials.
-     * The default value of this field is CloudOwner&#64;gve.local.
+     * The default value of this field is CloudOwner\@gve.local.
      * The provided value must be one of the following:
-     * CloudOwner&#64;gve.local,
-     * solution-user-01&#64;gve.local,
-     * solution-user-02&#64;gve.local,
-     * solution-user-03&#64;gve.local,
-     * solution-user-04&#64;gve.local,
-     * solution-user-05&#64;gve.local,
-     * zertoadmin&#64;gve.local.
+     * CloudOwner\@gve.local,
+     * solution-user-01\@gve.local,
+     * solution-user-02\@gve.local,
+     * solution-user-03\@gve.local,
+     * solution-user-04\@gve.local,
+     * solution-user-05\@gve.local,
+     * zertoadmin\@gve.local.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -151,15 +151,15 @@ class ShowVcenterCredentialsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The username of the user to be queried for credentials.
-     * The default value of this field is CloudOwner&#64;gve.local.
+     * The default value of this field is CloudOwner\@gve.local.
      * The provided value must be one of the following:
-     * CloudOwner&#64;gve.local,
-     * solution-user-01&#64;gve.local,
-     * solution-user-02&#64;gve.local,
-     * solution-user-03&#64;gve.local,
-     * solution-user-04&#64;gve.local,
-     * solution-user-05&#64;gve.local,
-     * zertoadmin&#64;gve.local.
+     * CloudOwner\@gve.local,
+     * solution-user-01\@gve.local,
+     * solution-user-02\@gve.local,
+     * solution-user-03\@gve.local,
+     * solution-user-04\@gve.local,
+     * solution-user-05\@gve.local,
+     * zertoadmin\@gve.local.
      *
      * Generated from protobuf field <code>string username = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

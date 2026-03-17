@@ -5,8 +5,8 @@
 namespace Google\Cloud\Run\V2\SourceCode;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Storage source.
@@ -132,5 +132,4 @@ class CloudStorageSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

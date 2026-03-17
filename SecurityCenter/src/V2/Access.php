@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an access event.
@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Access extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Associated email, such as "foo&#64;google.com".
+     * Associated email, such as "foo\@google.com".
      * The email address of the authenticated user or a service account acting on
      * behalf of a third party principal making the request. For third party
      * identity callers, the `principal_subject` field is populated instead of
@@ -115,7 +115,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $principal_email
-     *           Associated email, such as "foo&#64;google.com".
+     *           Associated email, such as "foo\@google.com".
      *           The email address of the authenticated user or a service account acting on
      *           behalf of a third party principal making the request. For third party
      *           identity callers, the `principal_subject` field is populated instead of
@@ -150,7 +150,7 @@ class Access extends \Google\Protobuf\Internal\Message
      *           credentials when authenticating the service account that made the request.
      *           This is a scheme-less URI full resource name. For example:
      *           "//iam.googleapis.com/projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}".
-     *     @type array<\Google\Cloud\SecurityCenter\V2\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $service_account_delegation_info
+     *     @type \Google\Cloud\SecurityCenter\V2\ServiceAccountDelegationInfo[] $service_account_delegation_info
      *           The identity delegation history of an authenticated service account that
      *           made the request. The `serviceAccountDelegationInfo[]` object contains
      *           information about the real authorities that try to access Google Cloud
@@ -170,7 +170,7 @@ class Access extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Associated email, such as "foo&#64;google.com".
+     * Associated email, such as "foo\@google.com".
      * The email address of the authenticated user or a service account acting on
      * behalf of a third party principal making the request. For third party
      * identity callers, the `principal_subject` field is populated instead of
@@ -187,7 +187,7 @@ class Access extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Associated email, such as "foo&#64;google.com".
+     * Associated email, such as "foo\@google.com".
      * The email address of the authenticated user or a service account acting on
      * behalf of a third party principal making the request. For third party
      * identity callers, the `principal_subject` field is populated instead of
@@ -458,7 +458,7 @@ class Access extends \Google\Protobuf\Internal\Message
      * the identity delegation events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ServiceAccountDelegationInfo service_account_delegation_info = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecurityCenter\V2\ServiceAccountDelegationInfo>
      */
     public function getServiceAccountDelegationInfo()
     {
@@ -474,7 +474,7 @@ class Access extends \Google\Protobuf\Internal\Message
      * the identity delegation events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v2.ServiceAccountDelegationInfo service_account_delegation_info = 10;</code>
-     * @param array<\Google\Cloud\SecurityCenter\V2\ServiceAccountDelegationInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecurityCenter\V2\ServiceAccountDelegationInfo[] $var
      * @return $this
      */
     public function setServiceAccountDelegationInfo($var)

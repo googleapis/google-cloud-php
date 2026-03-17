@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response object for `BatchUpdateCustomTargetingKeys` method.
@@ -28,7 +28,7 @@ class BatchUpdateCustomTargetingKeysResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Ads\AdManager\V1\CustomTargetingKey>|\Google\Protobuf\Internal\RepeatedField $custom_targeting_keys
+     *     @type \Google\Ads\AdManager\V1\CustomTargetingKey[] $custom_targeting_keys
      *           The `CustomTargetingKey` objects updated.
      * }
      */
@@ -41,7 +41,7 @@ class BatchUpdateCustomTargetingKeysResponse extends \Google\Protobuf\Internal\M
      * The `CustomTargetingKey` objects updated.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingKey custom_targeting_keys = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Ads\AdManager\V1\CustomTargetingKey>
      */
     public function getCustomTargetingKeys()
     {
@@ -52,7 +52,7 @@ class BatchUpdateCustomTargetingKeysResponse extends \Google\Protobuf\Internal\M
      * The `CustomTargetingKey` objects updated.
      *
      * Generated from protobuf field <code>repeated .google.ads.admanager.v1.CustomTargetingKey custom_targeting_keys = 1;</code>
-     * @param array<\Google\Ads\AdManager\V1\CustomTargetingKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Ads\AdManager\V1\CustomTargetingKey[] $var
      * @return $this
      */
     public function setCustomTargetingKeys($var)

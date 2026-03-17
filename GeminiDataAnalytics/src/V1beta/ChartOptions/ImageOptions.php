@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta\ChartOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Options for rendering images of generated charts.
@@ -105,5 +105,4 @@ class ImageOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

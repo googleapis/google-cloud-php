@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input for tool call valid metric.
@@ -36,7 +36,7 @@ class ToolCallValidInput extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ToolCallValidSpec $metric_spec
      *           Required. Spec for tool call valid metric.
-     *     @type array<\Google\Cloud\AIPlatform\V1\ToolCallValidInstance>|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type \Google\Cloud\AIPlatform\V1\ToolCallValidInstance[] $instances
      *           Required. Repeated tool call valid instances.
      * }
      */
@@ -85,7 +85,7 @@ class ToolCallValidInput extends \Google\Protobuf\Internal\Message
      * Required. Repeated tool call valid instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolCallValidInstance instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\ToolCallValidInstance>
      */
     public function getInstances()
     {
@@ -96,7 +96,7 @@ class ToolCallValidInput extends \Google\Protobuf\Internal\Message
      * Required. Repeated tool call valid instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ToolCallValidInstance instances = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\ToolCallValidInstance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\ToolCallValidInstance[] $var
      * @return $this
      */
     public function setInstances($var)

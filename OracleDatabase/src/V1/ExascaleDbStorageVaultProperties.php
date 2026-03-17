@@ -5,8 +5,8 @@
 namespace Google\Cloud\OracleDatabase\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The properties of the ExascaleDbStorageVault.
@@ -104,7 +104,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      *           Output only. The state of the ExascaleDbStorageVault.
      *     @type string $description
      *           Optional. The description of the ExascaleDbStorageVault.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $vm_cluster_ids
+     *     @type string[] $vm_cluster_ids
      *           Output only. The list of VM cluster OCIDs associated with the
      *           ExascaleDbStorageVault.
      *     @type int $vm_cluster_count
@@ -115,10 +115,10 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      *           database storage.
      *     @type string $oci_uri
      *           Output only. Deep link to the OCI console to view this resource.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $attached_shape_attributes
+     *     @type int[] $attached_shape_attributes
      *           Output only. The shape attributes of the VM clusters attached to the
      *           ExascaleDbStorageVault.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $available_shape_attributes
+     *     @type int[] $available_shape_attributes
      *           Output only. The shape attributes available for the VM clusters to be
      *           attached to the ExascaleDbStorageVault.
      * }
@@ -283,7 +283,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated string vm_cluster_ids = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVmClusterIds()
     {
@@ -295,7 +295,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated string vm_cluster_ids = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVmClusterIds($var)
@@ -393,7 +393,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties.ShapeAttribute attached_shape_attributes = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAttachedShapeAttributes()
     {
@@ -405,7 +405,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties.ShapeAttribute attached_shape_attributes = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAttachedShapeAttributes($var)
@@ -421,7 +421,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * attached to the ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties.ShapeAttribute available_shape_attributes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAvailableShapeAttributes()
     {
@@ -433,7 +433,7 @@ class ExascaleDbStorageVaultProperties extends \Google\Protobuf\Internal\Message
      * attached to the ExascaleDbStorageVault.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oracledatabase.v1.ExascaleDbStorageVaultProperties.ShapeAttribute available_shape_attributes = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAvailableShapeAttributes($var)

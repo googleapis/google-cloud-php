@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\AutoscalingSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Thresholds define the utilization of resources triggering
@@ -99,5 +99,4 @@ class Thresholds extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

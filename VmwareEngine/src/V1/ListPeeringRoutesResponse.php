@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -36,7 +36,7 @@ class ListPeeringRoutesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VmwareEngine\V1\PeeringRoute>|\Google\Protobuf\Internal\RepeatedField $peering_routes
+     *     @type \Google\Cloud\VmwareEngine\V1\PeeringRoute[] $peering_routes
      *           A list of peering routes.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -52,7 +52,7 @@ class ListPeeringRoutesResponse extends \Google\Protobuf\Internal\Message
      * A list of peering routes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.PeeringRoute peering_routes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VmwareEngine\V1\PeeringRoute>
      */
     public function getPeeringRoutes()
     {
@@ -63,7 +63,7 @@ class ListPeeringRoutesResponse extends \Google\Protobuf\Internal\Message
      * A list of peering routes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmwareengine.v1.PeeringRoute peering_routes = 1;</code>
-     * @param array<\Google\Cloud\VmwareEngine\V1\PeeringRoute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VmwareEngine\V1\PeeringRoute[] $var
      * @return $this
      */
     public function setPeeringRoutes($var)

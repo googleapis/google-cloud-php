@@ -27,7 +27,7 @@ class PhoneticEncoding
      */
     const PHONETIC_ENCODING_IPA = 1;
     /**
-     * X-SAMPA, such as apple -> "{p&#64;l".
+     * X-SAMPA, such as apple -> "{p\@l".
      * https://en.wikipedia.org/wiki/X-SAMPA
      *
      * Generated from protobuf enum <code>PHONETIC_ENCODING_X_SAMPA = 2;</code>
@@ -60,5 +60,4 @@ class PhoneticEncoding
         return constant($const);
     }
 }
-
 

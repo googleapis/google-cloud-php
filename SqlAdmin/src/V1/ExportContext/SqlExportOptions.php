@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1\ExportContext;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Generated from protobuf message <code>google.cloud.sql.v1.ExportContext.SqlExportOptions</code>
@@ -56,7 +56,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tables
+     *     @type string[] $tables
      *           Tables to export, or that were exported, from the specified database. If
      *           you specify tables, specify one and only one database. For PostgreSQL
      *           instances, you can specify only one table.
@@ -82,7 +82,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * instances, you can specify only one table.
      *
      * Generated from protobuf field <code>repeated string tables = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTables()
     {
@@ -95,7 +95,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * instances, you can specify only one table.
      *
      * Generated from protobuf field <code>repeated string tables = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTables($var)
@@ -364,5 +364,4 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

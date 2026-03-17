@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\Tool;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * GoogleSearch tool type.
@@ -38,7 +38,7 @@ class GoogleSearch extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_domains
+     *     @type string[] $exclude_domains
      *           Optional. List of domains to be excluded from the search results.
      *           The default limit is 2000 domains.
      *           Example: ["amazon.com", "facebook.com"].
@@ -58,7 +58,7 @@ class GoogleSearch extends \Google\Protobuf\Internal\Message
      * Example: ["amazon.com", "facebook.com"].
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeDomains()
     {
@@ -71,7 +71,7 @@ class GoogleSearch extends \Google\Protobuf\Internal\Message
      * Example: ["amazon.com", "facebook.com"].
      *
      * Generated from protobuf field <code>repeated string exclude_domains = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeDomains($var)
@@ -121,5 +121,4 @@ class GoogleSearch extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

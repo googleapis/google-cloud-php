@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * This organization policy message is a modified version of the one defined in
@@ -88,7 +88,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      *           For any user defined org policies, this field has the same value as
      *           the [attached_resource] field. Only for default policy, this field has
      *           the different value.
-     *     @type array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type \Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule[] $rules
      *           List of rules for this organization policy.
      *     @type bool $inherit_from_parent
      *           If `inherit_from_parent` is true, Rules set higher up in the
@@ -186,7 +186,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      * List of rules for this organization policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy.Rule rules = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule>
      */
     public function getRules()
     {
@@ -197,7 +197,7 @@ class AnalyzerOrgPolicy extends \Google\Protobuf\Internal\Message
      * List of rules for this organization policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzerOrgPolicy.Rule rules = 2;</code>
-     * @param array<\Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\AnalyzerOrgPolicy\Rule[] $var
      * @return $this
      */
     public function setRules($var)

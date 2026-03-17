@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The ServiceConnectionMap resource.
@@ -133,11 +133,11 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      *     @type int $infrastructure
      *           Output only. The infrastructure used for connections between
      *           consumers/producers.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ProducerPscConfig>|\Google\Protobuf\Internal\RepeatedField $producer_psc_configs
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ProducerPscConfig[] $producer_psc_configs
      *           The PSC configurations on producer side.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConfig>|\Google\Protobuf\Internal\RepeatedField $consumer_psc_configs
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConfig[] $consumer_psc_configs
      *           The PSC configurations on consumer side.
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConnection>|\Google\Protobuf\Internal\RepeatedField $consumer_psc_connections
+     *     @type \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConnection[] $consumer_psc_connections
      *           Output only. PSC connection details on consumer side.
      *     @type string $token
      *           The token provided by the consumer. This token authenticates that the
@@ -399,7 +399,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * The PSC configurations on producer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig producer_psc_configs = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ProducerPscConfig>
      */
     public function getProducerPscConfigs()
     {
@@ -410,7 +410,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * The PSC configurations on producer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ProducerPscConfig producer_psc_configs = 9;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ProducerPscConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ProducerPscConfig[] $var
      * @return $this
      */
     public function setProducerPscConfigs($var)
@@ -425,7 +425,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * The PSC configurations on consumer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig consumer_psc_configs = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConfig>
      */
     public function getConsumerPscConfigs()
     {
@@ -436,7 +436,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * The PSC configurations on consumer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConfig consumer_psc_configs = 10;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConfig[] $var
      * @return $this
      */
     public function setConsumerPscConfigs($var)
@@ -451,7 +451,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * Output only. PSC connection details on consumer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection consumer_psc_connections = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConnection>
      */
     public function getConsumerPscConnections()
     {
@@ -462,7 +462,7 @@ class ServiceConnectionMap extends \Google\Protobuf\Internal\Message
      * Output only. PSC connection details on consumer side.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.ServiceConnectionMap.ConsumerPscConnection consumer_psc_connections = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConnection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\ServiceConnectionMap\ConsumerPscConnection[] $var
      * @return $this
      */
     public function setConsumerPscConnections($var)

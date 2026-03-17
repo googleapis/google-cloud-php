@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for Chat.
@@ -35,6 +35,13 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Message messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $messages;
+    /**
+     * Optional. The thinking mode to use for the agent loop.
+     * Defaults to THINKING_MODE_UNSPECIFIED if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.ThinkingMode thinking_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $thinking_mode = 0;
     protected $context_provider;
 
     /**
@@ -63,8 +70,11 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent value for chat request.
      *           Pattern: `projects/{project}/locations/{location}`
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Message>|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Message[] $messages
      *           Required. Content of current conversation.
+     *     @type int $thinking_mode
+     *           Optional. The thinking mode to use for the agent loop.
+     *           Defaults to THINKING_MODE_UNSPECIFIED if not specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -274,7 +284,7 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      * Required. Content of current conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Message messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Message>
      */
     public function getMessages()
     {
@@ -285,13 +295,41 @@ class ChatRequest extends \Google\Protobuf\Internal\Message
      * Required. Content of current conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Message messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Message>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Message[] $var
      * @return $this
      */
     public function setMessages($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\GeminiDataAnalytics\V1beta\Message::class);
         $this->messages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The thinking mode to use for the agent loop.
+     * Defaults to THINKING_MODE_UNSPECIFIED if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.ThinkingMode thinking_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getThinkingMode()
+    {
+        return $this->thinking_mode;
+    }
+
+    /**
+     * Optional. The thinking mode to use for the agent loop.
+     * Defaults to THINKING_MODE_UNSPECIFIED if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.geminidataanalytics.v1beta.ChatRequest.ThinkingMode thinking_mode = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setThinkingMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\GeminiDataAnalytics\V1beta\ChatRequest\ThinkingMode::class);
+        $this->thinking_mode = $var;
 
         return $this;
     }

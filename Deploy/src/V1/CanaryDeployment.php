@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * CanaryDeployment represents the canary deployment configuration
@@ -53,7 +53,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $percentages
+     *     @type int[] $percentages
      *           Required. The percentage based deployments that will occur as a part of a
      *           `Rollout`. List is expected in ascending order and each integer n is
      *           0 <= n < 100.
@@ -83,7 +83,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getPercentages()
     {
@@ -98,7 +98,7 @@ class CanaryDeployment extends \Google\Protobuf\Internal\Message
      * n is 0 <= n <= 100.
      *
      * Generated from protobuf field <code>repeated int32 percentages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setPercentages($var)

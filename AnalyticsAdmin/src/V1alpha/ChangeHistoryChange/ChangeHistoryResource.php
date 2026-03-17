@@ -5,8 +5,8 @@
 namespace Google\Analytics\Admin\V1alpha\ChangeHistoryChange;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A snapshot of a resource as before or after the result of a change in
@@ -1006,5 +1006,4 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

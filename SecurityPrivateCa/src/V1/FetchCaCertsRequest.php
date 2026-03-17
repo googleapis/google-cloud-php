@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -19,7 +19,7 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string ca_pool = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -66,7 +66,7 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $ca_pool
      *           Required. The resource name for the
      *           [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     *           `projects/{@*}locations/{@*}caPools/*`.
      *     @type string $request_id
      *           Optional. An ID to identify requests. Specify a unique request ID so that
      *           if you must retry your request, the server will know to ignore the request
@@ -89,7 +89,7 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string ca_pool = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -102,7 +102,7 @@ class FetchCaCertsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name for the
      * [CaPool][google.cloud.security.privateca.v1.CaPool] in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;caPools/&#42;`.
+     * `projects/{@*}locations/{@*}caPools/*`.
      *
      * Generated from protobuf field <code>string ca_pool = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

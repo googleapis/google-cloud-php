@@ -5,8 +5,8 @@
 namespace Google\Cloud\DataLabeling\V1beta1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Dataset is the resource to hold your data. You can request multiple labeling
@@ -80,11 +80,11 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           The description can be up to 10000 characters long.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time the dataset is created.
-     *     @type array<\Google\Cloud\DataLabeling\V1beta1\InputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
+     *     @type \Google\Cloud\DataLabeling\V1beta1\InputConfig[] $input_configs
      *           Output only. This is populated with the original input configs
      *           where ImportData is called. It is available only after the clients
      *           import data to this dataset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type string[] $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the dataset.
      *     @type int|string $data_item_count
@@ -220,7 +220,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * import data to this dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.InputConfig input_configs = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DataLabeling\V1beta1\InputConfig>
      */
     public function getInputConfigs()
     {
@@ -233,7 +233,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * import data to this dataset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.InputConfig input_configs = 5;</code>
-     * @param array<\Google\Cloud\DataLabeling\V1beta1\InputConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DataLabeling\V1beta1\InputConfig[] $var
      * @return $this
      */
     public function setInputConfigs($var)
@@ -249,7 +249,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * to the dataset.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBlockingResources()
     {
@@ -261,7 +261,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * to the dataset.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBlockingResources($var)

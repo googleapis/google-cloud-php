@@ -5,11 +5,14 @@
 namespace Google\Shopping\Merchant\Products\V1\ProductStatus;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The destination status of the product status.
+ * Equivalent to
+ * [`StatusPerReportingContext`][google.shopping.merchant.reports.v1.ProductView.StatusPerReportingContext]
+ * in Reports API.
  *
  * Generated from protobuf message <code>google.shopping.merchant.products.v1.ProductStatus.DestinationStatus</code>
  */
@@ -50,12 +53,12 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type int $reporting_context
      *           The name of the reporting context.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $approved_countries
+     *     @type string[] $approved_countries
      *           List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pending_countries
+     *     @type string[] $pending_countries
      *           List of country codes (ISO 3166-1 alpha-2) where the offer is pending
      *           approval.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $disapproved_countries
+     *     @type string[] $disapproved_countries
      *           List of country codes (ISO 3166-1 alpha-2) where the offer is
      *           disapproved.
      * }
@@ -95,7 +98,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
      *
      * Generated from protobuf field <code>repeated string approved_countries = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getApprovedCountries()
     {
@@ -106,7 +109,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
      *
      * Generated from protobuf field <code>repeated string approved_countries = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setApprovedCountries($var)
@@ -122,7 +125,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * approval.
      *
      * Generated from protobuf field <code>repeated string pending_countries = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPendingCountries()
     {
@@ -134,7 +137,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * approval.
      *
      * Generated from protobuf field <code>repeated string pending_countries = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPendingCountries($var)
@@ -150,7 +153,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * disapproved.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDisapprovedCountries()
     {
@@ -162,7 +165,7 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
      * disapproved.
      *
      * Generated from protobuf field <code>repeated string disapproved_countries = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDisapprovedCountries($var)
@@ -174,5 +177,4 @@ class DestinationStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

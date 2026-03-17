@@ -5,8 +5,8 @@
 namespace Google\Cloud\BackupDR\V1\AttachedDisk;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the parameters to initialize this disk.
@@ -39,7 +39,7 @@ class InitializeParams extends \Google\Protobuf\Internal\Message
      *     @type string $disk_name
      *           Optional. Specifies the disk name. If not specified, the default is to
      *           use the name of the instance.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type string[] $replica_zones
      *           Optional. URL of the zone where the disk should be created.
      *           Required for each regional disk associated with the instance.
      * }
@@ -92,7 +92,7 @@ class InitializeParams extends \Google\Protobuf\Internal\Message
      * Required for each regional disk associated with the instance.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplicaZones()
     {
@@ -104,7 +104,7 @@ class InitializeParams extends \Google\Protobuf\Internal\Message
      * Required for each regional disk associated with the instance.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplicaZones($var)
@@ -116,5 +116,4 @@ class InitializeParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

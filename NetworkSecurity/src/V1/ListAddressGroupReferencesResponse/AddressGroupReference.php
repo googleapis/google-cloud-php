@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkSecurity\V1\ListAddressGroupReferencesResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The Reference of AddressGroup.
@@ -132,5 +132,4 @@ class AddressGroupReference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of access to the Kafka Connect cluster.
@@ -31,7 +31,7 @@ class ConnectAccessConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\V1\ConnectNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $network_configs
+     *     @type \Google\Cloud\ManagedKafka\V1\ConnectNetworkConfig[] $network_configs
      *           Required.
      *           Virtual Private Cloud (VPC) networks that must be granted direct access to
      *           the Kafka Connect cluster. Minimum of 1 network is required. Maximum 10
@@ -50,7 +50,7 @@ class ConnectAccessConfig extends \Google\Protobuf\Internal\Message
      * networks can be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.ConnectNetworkConfig network_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\V1\ConnectNetworkConfig>
      */
     public function getNetworkConfigs()
     {
@@ -64,7 +64,7 @@ class ConnectAccessConfig extends \Google\Protobuf\Internal\Message
      * networks can be specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.v1.ConnectNetworkConfig network_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ManagedKafka\V1\ConnectNetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\V1\ConnectNetworkConfig[] $var
      * @return $this
      */
     public function setNetworkConfigs($var)

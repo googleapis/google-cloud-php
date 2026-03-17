@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1\Execution;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Execution summary.
@@ -132,5 +132,4 @@ class Summary extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

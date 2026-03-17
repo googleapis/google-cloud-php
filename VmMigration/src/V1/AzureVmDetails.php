@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * AzureVmDetails describes a VM in Azure.
@@ -122,7 +122,7 @@ class AzureVmDetails extends \Google\Protobuf\Internal\Message
      *           The total size of the storage allocated to the VM in MB.
      *     @type \Google\Cloud\VMMigration\V1\AzureVmDetails\OSDisk $os_disk
      *           Description of the OS disk.
-     *     @type array<\Google\Cloud\VMMigration\V1\AzureVmDetails\Disk>|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type \Google\Cloud\VMMigration\V1\AzureVmDetails\Disk[] $disks
      *           Description of the data disks.
      *     @type \Google\Cloud\VMMigration\V1\AzureVmDetails\OSDescription $os_description
      *           Description of the OS.
@@ -363,7 +363,7 @@ class AzureVmDetails extends \Google\Protobuf\Internal\Message
      * Description of the data disks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AzureVmDetails.Disk disks = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\AzureVmDetails\Disk>
      */
     public function getDisks()
     {
@@ -374,7 +374,7 @@ class AzureVmDetails extends \Google\Protobuf\Internal\Message
      * Description of the data disks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AzureVmDetails.Disk disks = 9;</code>
-     * @param array<\Google\Cloud\VMMigration\V1\AzureVmDetails\Disk>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\AzureVmDetails\Disk[] $var
      * @return $this
      */
     public function setDisks($var)

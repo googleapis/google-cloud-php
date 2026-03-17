@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\Delivery\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Task in the Delivery API represents a single action to track. In general,
@@ -199,7 +199,7 @@ class Task extends \Google\Protobuf\Internal\Message
      *     @type \Google\Maps\FleetEngine\Delivery\V1\TaskTrackingViewConfig $task_tracking_view_config
      *           The configuration for task tracking that specifies which data elements are
      *           visible to the end users under what circumstances.
-     *     @type array<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\Delivery\V1\TaskAttribute[] $attributes
      *           A list of custom Task attributes. Each attribute must have a unique key.
      * }
      */
@@ -694,7 +694,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * A list of custom Task attributes. Each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.TaskAttribute attributes = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>
      */
     public function getAttributes()
     {
@@ -705,7 +705,7 @@ class Task extends \Google\Protobuf\Internal\Message
      * A list of custom Task attributes. Each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.delivery.v1.TaskAttribute attributes = 15;</code>
-     * @param array<\Google\Maps\FleetEngine\Delivery\V1\TaskAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\Delivery\V1\TaskAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

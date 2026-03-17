@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response to the list of QueryTemplates.
@@ -34,7 +34,7 @@ class ListQueryTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate>|\Google\Protobuf\Internal\RepeatedField $query_templates
+     *     @type \Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate[] $query_templates
      *           The list of QueryTemplates.
      *     @type string $next_page_token
      *           A token to request the next page of results.
@@ -49,7 +49,7 @@ class ListQueryTemplatesResponse extends \Google\Protobuf\Internal\Message
      * The list of QueryTemplates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.QueryTemplate query_templates = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate>
      */
     public function getQueryTemplates()
     {
@@ -60,7 +60,7 @@ class ListQueryTemplatesResponse extends \Google\Protobuf\Internal\Message
      * The list of QueryTemplates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.QueryTemplate query_templates = 1;</code>
-     * @param array<\Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BigQuery\AnalyticsHub\V1\QueryTemplate[] $var
      * @return $this
      */
     public function setQueryTemplates($var)

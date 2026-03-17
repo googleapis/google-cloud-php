@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud IAM Policy information associated with the Google Cloud resource
@@ -75,5 +75,4 @@ class IamPolicy extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

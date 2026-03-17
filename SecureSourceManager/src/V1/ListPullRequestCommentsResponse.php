@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecureSourceManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response to list pull request comments.
@@ -35,7 +35,7 @@ class ListPullRequestCommentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\SecureSourceManager\V1\PullRequestComment>|\Google\Protobuf\Internal\RepeatedField $pull_request_comments
+     *     @type \Google\Cloud\SecureSourceManager\V1\PullRequestComment[] $pull_request_comments
      *           The list of pull request comments.
      *     @type string $next_page_token
      *           A token to set as page_token to retrieve the next page. If this field is
@@ -51,7 +51,7 @@ class ListPullRequestCommentsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull request comments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.PullRequestComment pull_request_comments = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\SecureSourceManager\V1\PullRequestComment>
      */
     public function getPullRequestComments()
     {
@@ -62,7 +62,7 @@ class ListPullRequestCommentsResponse extends \Google\Protobuf\Internal\Message
      * The list of pull request comments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securesourcemanager.v1.PullRequestComment pull_request_comments = 1;</code>
-     * @param array<\Google\Cloud\SecureSourceManager\V1\PullRequestComment>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\SecureSourceManager\V1\PullRequestComment[] $var
      * @return $this
      */
     public function setPullRequestComments($var)

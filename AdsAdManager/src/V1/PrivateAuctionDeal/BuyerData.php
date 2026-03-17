@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1\PrivateAuctionDeal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains buyer data. This data is required by the Marketplace API.
@@ -28,7 +28,7 @@ class BuyerData extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $buyer_emails
+     *     @type string[] $buyer_emails
      *           Optional. The email contacts of the buyer of the `PrivateAuctionDeal`.
      * }
      */
@@ -41,7 +41,7 @@ class BuyerData extends \Google\Protobuf\Internal\Message
      * Optional. The email contacts of the buyer of the `PrivateAuctionDeal`.
      *
      * Generated from protobuf field <code>repeated string buyer_emails = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBuyerEmails()
     {
@@ -52,7 +52,7 @@ class BuyerData extends \Google\Protobuf\Internal\Message
      * Optional. The email contacts of the buyer of the `PrivateAuctionDeal`.
      *
      * Generated from protobuf field <code>repeated string buyer_emails = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBuyerEmails($var)
@@ -64,5 +64,4 @@ class BuyerData extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

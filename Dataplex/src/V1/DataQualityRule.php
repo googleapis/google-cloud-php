@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A rule captures data quality intent about a data source.
@@ -35,11 +35,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      */
     protected $ignore_null = false;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at
+     * Optional. The dimension a rule belongs to. Results are also aggregated at
      * the dimension level. Custom dimension name is supported with all uppercase
      * letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $dimension = '';
     /**
@@ -76,6 +76,14 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool suspended = 506 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $suspended = false;
+    /**
+     * Optional. Specifies the debug queries for this rule.
+     * Currently, only one query is supported, but this may be expanded in the
+     * future.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule.DebugQuery debug_queries = 510 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $debug_queries;
     protected $rule_type;
 
     /**
@@ -121,7 +129,7 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *           * SetExpectation
      *           * UniquenessExpectation
      *     @type string $dimension
-     *           Required. The dimension a rule belongs to. Results are also aggregated at
+     *           Optional. The dimension a rule belongs to. Results are also aggregated at
      *           the dimension level. Custom dimension name is supported with all uppercase
      *           letters and maximum length of 30 characters.
      *     @type float $threshold
@@ -142,6 +150,10 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
      *     @type bool $suspended
      *           Optional. Whether the Rule is active or suspended.
      *           Default is false.
+     *     @type \Google\Cloud\Dataplex\V1\DataQualityRule\DebugQuery[] $debug_queries
+     *           Optional. Specifies the debug queries for this rule.
+     *           Currently, only one query is supported, but this may be expanded in the
+     *           future.
      * }
      */
     public function __construct($data = NULL) {
@@ -509,11 +521,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at
+     * Optional. The dimension a rule belongs to. Results are also aggregated at
      * the dimension level. Custom dimension name is supported with all uppercase
      * letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getDimension()
@@ -522,11 +534,11 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at
+     * Optional. The dimension a rule belongs to. Results are also aggregated at
      * the dimension level. Custom dimension name is supported with all uppercase
      * letters and maximum length of 30 characters.
      *
-     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string dimension = 502 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -658,6 +670,36 @@ class DataQualityRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->suspended = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the debug queries for this rule.
+     * Currently, only one query is supported, but this may be expanded in the
+     * future.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule.DebugQuery debug_queries = 510 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\DataQualityRule\DebugQuery>
+     */
+    public function getDebugQueries()
+    {
+        return $this->debug_queries;
+    }
+
+    /**
+     * Optional. Specifies the debug queries for this rule.
+     * Currently, only one query is supported, but this may be expanded in the
+     * future.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.DataQualityRule.DebugQuery debug_queries = 510 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataQualityRule\DebugQuery[] $var
+     * @return $this
+     */
+    public function setDebugQueries($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataplex\V1\DataQualityRule\DebugQuery::class);
+        $this->debug_queries = $arr;
 
         return $this;
     }

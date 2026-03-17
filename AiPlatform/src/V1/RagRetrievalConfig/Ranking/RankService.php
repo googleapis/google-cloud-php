@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\RagRetrievalConfig\Ranking;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config for Rank Service.
@@ -17,7 +17,7 @@ class RankService extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The model name of the rank service.
-     * Format: `semantic-ranker-512&#64;latest`
+     * Format: `semantic-ranker-512\@latest`
      *
      * Generated from protobuf field <code>optional string model_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -31,7 +31,7 @@ class RankService extends \Google\Protobuf\Internal\Message
      *
      *     @type string $model_name
      *           Optional. The model name of the rank service.
-     *           Format: `semantic-ranker-512&#64;latest`
+     *           Format: `semantic-ranker-512\@latest`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class RankService extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The model name of the rank service.
-     * Format: `semantic-ranker-512&#64;latest`
+     * Format: `semantic-ranker-512\@latest`
      *
      * Generated from protobuf field <code>optional string model_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -63,7 +63,7 @@ class RankService extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The model name of the rank service.
-     * Format: `semantic-ranker-512&#64;latest`
+     * Format: `semantic-ranker-512\@latest`
      *
      * Generated from protobuf field <code>optional string model_name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -78,5 +78,4 @@ class RankService extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

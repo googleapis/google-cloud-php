@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for GenerateHlsUri API.
@@ -39,7 +39,7 @@ class GenerateHlsUriResponse extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           A signed uri to download the HLS manifest corresponding to the requested
      *           times.
-     *     @type array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $temporal_partitions
+     *     @type \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $temporal_partitions
      *           A list of temporal partitions of the content returned in the order they
      *           appear in the stream.
      * }
@@ -82,7 +82,7 @@ class GenerateHlsUriResponse extends \Google\Protobuf\Internal\Message
      * appear in the stream.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition temporal_partitions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>
      */
     public function getTemporalPartitions()
     {
@@ -94,7 +94,7 @@ class GenerateHlsUriResponse extends \Google\Protobuf\Internal\Message
      * appear in the stream.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Partition.TemporalPartition temporal_partitions = 2;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Partition\TemporalPartition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Partition\TemporalPartition[] $var
      * @return $this
      */
     public function setTemporalPartitions($var)

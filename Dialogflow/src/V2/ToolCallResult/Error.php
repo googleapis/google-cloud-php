@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\ToolCallResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An error produced by the tool call.
@@ -64,5 +64,4 @@ class Error extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

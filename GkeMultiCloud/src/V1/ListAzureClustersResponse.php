@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeMultiCloud\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for `AzureClusters.ListAzureClusters` method.
@@ -37,7 +37,7 @@ class ListAzureClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureCluster>|\Google\Protobuf\Internal\RepeatedField $azure_clusters
+     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureCluster[] $azure_clusters
      *           A list of [AzureCluster][google.cloud.gkemulticloud.v1.AzureCluster]
      *           resources in the specified Google Cloud Platform project and region region.
      *     @type string $next_page_token
@@ -55,7 +55,7 @@ class ListAzureClustersResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud Platform project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureCluster azure_clusters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GkeMultiCloud\V1\AzureCluster>
      */
     public function getAzureClusters()
     {
@@ -67,7 +67,7 @@ class ListAzureClustersResponse extends \Google\Protobuf\Internal\Message
      * resources in the specified Google Cloud Platform project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureCluster azure_clusters = 1;</code>
-     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureCluster>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GkeMultiCloud\V1\AzureCluster[] $var
      * @return $this
      */
     public function setAzureClusters($var)

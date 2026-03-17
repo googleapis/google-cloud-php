@@ -59,6 +59,3 @@ class ChannelEnum
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ChannelEnum::class, \Google\Shopping\Type\Channel_ChannelEnum::class);
-

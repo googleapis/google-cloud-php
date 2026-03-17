@@ -5,8 +5,8 @@
 namespace Google\Ads\AdManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The `TaxonomyCategory` resource.
@@ -88,9 +88,9 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      *           from.
      *     @type int $taxonomy_type
      *           Output only. The taxonomy that this `TaxonomyCategory` belongs to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestor_names
+     *     @type string[] $ancestor_names
      *           Output only. The list of names of the ancestors of this `TaxonomyCategory`.
-     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $ancestor_taxonomy_category_ids
+     *     @type int[]|string[] $ancestor_taxonomy_category_ids
      *           Output only. The list of IDs of the ancestors of this `TaxonomyCategory`.
      * }
      */
@@ -315,7 +315,7 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. The list of names of the ancestors of this `TaxonomyCategory`.
      *
      * Generated from protobuf field <code>repeated string ancestor_names = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAncestorNames()
     {
@@ -326,7 +326,7 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. The list of names of the ancestors of this `TaxonomyCategory`.
      *
      * Generated from protobuf field <code>repeated string ancestor_names = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAncestorNames($var)
@@ -341,7 +341,7 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. The list of IDs of the ancestors of this `TaxonomyCategory`.
      *
      * Generated from protobuf field <code>repeated int64 ancestor_taxonomy_category_ids = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>|RepeatedField<string>
      */
     public function getAncestorTaxonomyCategoryIds()
     {
@@ -352,7 +352,7 @@ class TaxonomyCategory extends \Google\Protobuf\Internal\Message
      * Output only. The list of IDs of the ancestors of this `TaxonomyCategory`.
      *
      * Generated from protobuf field <code>repeated int64 ancestor_taxonomy_category_ids = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[]|string[] $var
      * @return $this
      */
     public function setAncestorTaxonomyCategoryIds($var)

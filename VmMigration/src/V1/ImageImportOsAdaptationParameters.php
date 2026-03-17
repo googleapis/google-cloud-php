@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters affecting the OS adaptation process.
@@ -67,7 +67,7 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
      *           this property will trigger an internal process which will convert the
      *           image from using the existing boot option to another.
      *           The size of the boot disk might be increased to allow the conversion
-     *     @type array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $adaptation_modifiers
+     *     @type \Google\Cloud\VMMigration\V1\AdaptationModifier[] $adaptation_modifiers
      *           Optional. Modifiers to be used as configuration of the OS adaptation
      *           process.
      * }
@@ -174,7 +174,7 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
      * process.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VMMigration\V1\AdaptationModifier>
      */
     public function getAdaptationModifiers()
     {
@@ -186,7 +186,7 @@ class ImageImportOsAdaptationParameters extends \Google\Protobuf\Internal\Messag
      * process.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.AdaptationModifier adaptation_modifiers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\VMMigration\V1\AdaptationModifier>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VMMigration\V1\AdaptationModifier[] $var
      * @return $this
      */
     public function setAdaptationModifiers($var)

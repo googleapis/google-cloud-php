@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search all resources response.
@@ -37,7 +37,7 @@ class SearchAllResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Asset\V1\ResourceSearchResult>|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type \Google\Cloud\Asset\V1\ResourceSearchResult[] $results
      *           A list of Resources that match the search query. It contains the resource
      *           standard metadata information.
      *     @type string $next_page_token
@@ -56,7 +56,7 @@ class SearchAllResourcesResponse extends \Google\Protobuf\Internal\Message
      * standard metadata information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.ResourceSearchResult results = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Asset\V1\ResourceSearchResult>
      */
     public function getResults()
     {
@@ -68,7 +68,7 @@ class SearchAllResourcesResponse extends \Google\Protobuf\Internal\Message
      * standard metadata information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.ResourceSearchResult results = 1;</code>
-     * @param array<\Google\Cloud\Asset\V1\ResourceSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Asset\V1\ResourceSearchResult[] $var
      * @return $this
      */
     public function setResults($var)

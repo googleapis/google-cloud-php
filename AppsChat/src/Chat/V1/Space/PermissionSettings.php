@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\Space;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * [Permission settings](https://support.google.com/chat/answer/13340792)
@@ -38,7 +38,7 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      */
     protected $toggle_history = null;
     /**
-     * Optional. Setting for using &#64;all in a space.
+     * Optional. Setting for using \@all in a space.
      *
      * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -82,7 +82,7 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $toggle_history
      *           Optional. Setting for toggling space history on and off.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $use_at_mention_all
-     *           Optional. Setting for using &#64;all in a space.
+     *           Optional. Setting for using \@all in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $manage_apps
      *           Optional. Setting for managing apps in a space.
      *     @type \Google\Apps\Chat\V1\Space\PermissionSetting $manage_webhooks
@@ -209,7 +209,7 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Setting for using &#64;all in a space.
+     * Optional. Setting for using \@all in a space.
      *
      * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Apps\Chat\V1\Space\PermissionSetting|null
@@ -230,7 +230,7 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Setting for using &#64;all in a space.
+     * Optional. Setting for using \@all in a space.
      *
      * Generated from protobuf field <code>optional .google.chat.v1.Space.PermissionSetting use_at_mention_all = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Apps\Chat\V1\Space\PermissionSetting $var
@@ -389,5 +389,4 @@ class PermissionSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

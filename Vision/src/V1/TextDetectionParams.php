@@ -5,8 +5,8 @@
 namespace Google\Cloud\Vision\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Parameters for text detections. This is used to control TEXT_DETECTION and
@@ -46,7 +46,7 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      *           By default, Cloud Vision API only includes confidence score for
      *           DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
      *           score for TEXT_DETECTION as well.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advanced_ocr_options
+     *     @type string[] $advanced_ocr_options
      *           A list of advanced OCR options to further fine-tune OCR behavior.
      *           Current valid values are:
      *           - `legacy_layout`: a heuristics layout detection algorithm, which serves as
@@ -99,7 +99,7 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAdvancedOcrOptions()
     {
@@ -115,7 +115,7 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      * situation.
      *
      * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAdvancedOcrOptions($var)

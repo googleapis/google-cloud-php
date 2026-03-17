@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Accounts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the `CreateAndConfigureAccount` method.
@@ -56,9 +56,9 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Shopping\Merchant\Accounts\V1\Account $account
      *           Required. The account to be created.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddUser>|\Google\Protobuf\Internal\RepeatedField $user
+     *     @type \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddUser[] $user
      *           Optional. Users to be added to the account.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $service
+     *     @type \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService[] $service
      *           Required. An account service between the account to be created and the
      *           provider account is initialized as part of the creation. At least one such
      *           service needs to be provided. Currently exactly one of these needs to be
@@ -66,7 +66,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      *           used to create a sub-account under an existing advanced account through
      *           this method. Additional `account_management` or
      *           `product_management` services may be provided.
-     *     @type array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship>|\Google\Protobuf\Internal\RepeatedField $set_alias
+     *     @type \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship[] $set_alias
      *           Optional. If a relationship is created with a provider, you can set an
      *           alias for it with this field. The calling user must be an admin on the
      *           provider to be able to set an alias.
@@ -117,7 +117,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddUser user = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddUser>
      */
     public function getUser()
     {
@@ -128,7 +128,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * Optional. Users to be added to the account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddUser user = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddUser>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddUser[] $var
      * @return $this
      */
     public function setUser($var)
@@ -149,7 +149,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `product_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService>
      */
     public function getService()
     {
@@ -166,7 +166,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * `product_management` services may be provided.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.AddAccountService service = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\AddAccountService[] $var
      * @return $this
      */
     public function setService($var)
@@ -183,7 +183,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * provider to be able to set an alias.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.SetAliasForRelationship set_alias = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship>
      */
     public function getSetAlias()
     {
@@ -196,7 +196,7 @@ class CreateAndConfigureAccountRequest extends \Google\Protobuf\Internal\Message
      * provider to be able to set an alias.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.accounts.v1.CreateAndConfigureAccountRequest.SetAliasForRelationship set_alias = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest\SetAliasForRelationship[] $var
      * @return $this
      */
     public function setSetAlias($var)

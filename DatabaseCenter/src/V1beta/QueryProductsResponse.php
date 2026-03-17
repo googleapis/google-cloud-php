@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * QueryProductsResponse represents the response containing a list of products.
@@ -42,12 +42,12 @@ class QueryProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Product[] $products
      *           List of database products returned.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unordered list. List of unreachable regions from where data could not be
      *           retrieved.
      * }
@@ -61,7 +61,7 @@ class QueryProductsResponse extends \Google\Protobuf\Internal\Message
      * List of database products returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Product products = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Product>
      */
     public function getProducts()
     {
@@ -72,7 +72,7 @@ class QueryProductsResponse extends \Google\Protobuf\Internal\Message
      * List of database products returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Product products = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Product>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Product[] $var
      * @return $this
      */
     public function setProducts($var)
@@ -116,7 +116,7 @@ class QueryProductsResponse extends \Google\Protobuf\Internal\Message
      * retrieved.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class QueryProductsResponse extends \Google\Protobuf\Internal\Message
      * retrieved.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

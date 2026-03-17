@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1\EkmConnection;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver]
@@ -20,7 +20,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Service Directory service pointing to
      * an EKM replica, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      *
      * Generated from protobuf field <code>string service_directory_service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -59,7 +59,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *     @type string $service_directory_service
      *           Required. The resource name of the Service Directory service pointing to
      *           an EKM replica, in the format
-     *           `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     *           `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      *     @type string $endpoint_filter
      *           Optional. The filter applied to the endpoints of the resolved service. If
      *           no filter is specified, all endpoints will be considered. An endpoint
@@ -68,7 +68,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/service-directory/docs/reference/rpc/google.cloud.servicedirectory.v1#resolveservicerequest.
      *     @type string $hostname
      *           Required. The hostname of the EKM replica used at TLS and HTTP layers.
-     *     @type array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $server_certificates
+     *     @type \Google\Cloud\Kms\V1\Certificate[] $server_certificates
      *           Required. A list of leaf server certificates used to authenticate HTTPS
      *           connections to the EKM replica. Currently, a maximum of 10
      *           [Certificate][google.cloud.kms.v1.Certificate] is supported.
@@ -82,7 +82,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Service Directory service pointing to
      * an EKM replica, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      *
      * Generated from protobuf field <code>string service_directory_service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the Service Directory service pointing to
      * an EKM replica, in the format
-     * `projects/&#42;&#47;locations/&#42;&#47;namespaces/&#42;&#47;services/&#42;`.
+     * `projects/{@*}locations/{@*}namespaces/{@*}services/*`.
      *
      * Generated from protobuf field <code>string service_directory_service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -175,7 +175,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      * [Certificate][google.cloud.kms.v1.Certificate] is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\Certificate>
      */
     public function getServerCertificates()
     {
@@ -188,7 +188,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      * [Certificate][google.cloud.kms.v1.Certificate] is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\Certificate[] $var
      * @return $this
      */
     public function setServerCertificates($var)
@@ -200,5 +200,4 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

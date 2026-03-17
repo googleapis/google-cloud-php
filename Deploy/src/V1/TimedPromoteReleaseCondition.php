@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `TimedPromoteReleaseCondition` contains conditions specific to an Automation
@@ -37,7 +37,7 @@ class TimedPromoteReleaseCondition extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Protobuf\Timestamp $next_promotion_time
      *           Output only. When the next scheduled promotion(s) will occur.
-     *     @type array<\Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition\Targets>|\Google\Protobuf\Internal\RepeatedField $targets_list
+     *     @type \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition\Targets[] $targets_list
      *           Output only. A list of targets involved in the upcoming timed promotion(s).
      * }
      */
@@ -86,7 +86,7 @@ class TimedPromoteReleaseCondition extends \Google\Protobuf\Internal\Message
      * Output only. A list of targets involved in the upcoming timed promotion(s).
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TimedPromoteReleaseCondition.Targets targets_list = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition\Targets>
      */
     public function getTargetsList()
     {
@@ -97,7 +97,7 @@ class TimedPromoteReleaseCondition extends \Google\Protobuf\Internal\Message
      * Output only. A list of targets involved in the upcoming timed promotion(s).
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.TimedPromoteReleaseCondition.Targets targets_list = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition\Targets>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\TimedPromoteReleaseCondition\Targets[] $var
      * @return $this
      */
     public function setTargetsList($var)

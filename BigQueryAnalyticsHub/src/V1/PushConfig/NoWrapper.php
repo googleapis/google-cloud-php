@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1\PushConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Sets the `data` field as the HTTP body for delivery.
@@ -72,5 +72,4 @@ class NoWrapper extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for SearchAssets.
@@ -101,13 +101,13 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      *           like the criteria below, but defined separately for convenience as it is
      *           used frequently. Note that if the end_time is in the future, it will be
      *           clamped to the time the request was received.
-     *     @type array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $criteria
+     *     @type \Google\Cloud\VisionAI\V1\Criteria[] $criteria
      *           Criteria applied to search results.
-     *     @type array<\Google\Cloud\VisionAI\V1\FacetGroup>|\Google\Protobuf\Internal\RepeatedField $facet_selections
+     *     @type \Google\Cloud\VisionAI\V1\FacetGroup[] $facet_selections
      *           Stores most recent facet selection state. Only facet groups with user's
      *           selection will be presented here. Selection state is either selected or
      *           unselected. Only selected facet buckets will be used as search criteria.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $result_annotation_keys
+     *     @type string[] $result_annotation_keys
      *           A list of annotation keys to specify the annotations to be retrieved and
      *           returned with each search result.
      *           Annotation granularity must be GRANULARITY_ASSET_LEVEL and its search
@@ -285,7 +285,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * Criteria applied to search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria criteria = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\Criteria>
      */
     public function getCriteria()
     {
@@ -296,7 +296,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * Criteria applied to search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.Criteria criteria = 4;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\Criteria>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\Criteria[] $var
      * @return $this
      */
     public function setCriteria($var)
@@ -313,7 +313,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * unselected. Only selected facet buckets will be used as search criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetGroup facet_selections = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\FacetGroup>
      */
     public function getFacetSelections()
     {
@@ -326,7 +326,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * unselected. Only selected facet buckets will be used as search criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.FacetGroup facet_selections = 6;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\FacetGroup>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\FacetGroup[] $var
      * @return $this
      */
     public function setFacetSelections($var)
@@ -344,7 +344,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * strategy must not be NO_SEARCH.
      *
      * Generated from protobuf field <code>repeated string result_annotation_keys = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResultAnnotationKeys()
     {
@@ -358,7 +358,7 @@ class SearchAssetsRequest extends \Google\Protobuf\Internal\Message
      * strategy must not be NO_SEARCH.
      *
      * Generated from protobuf field <code>repeated string result_annotation_keys = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResultAnnotationKeys($var)

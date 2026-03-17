@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Example represents a sample execution of the playbook in the conversation.
@@ -106,7 +106,7 @@ class Example extends \Google\Protobuf\Internal\Message
      *           Optional. The input to the playbook in the example.
      *     @type \Google\Cloud\Dialogflow\Cx\V3\PlaybookOutput $playbook_output
      *           Optional. The output of the playbook in the example.
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Action>|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Action[] $actions
      *           Required. The ordered list of actions performed by the end user and the
      *           Dialogflow agent.
      *     @type string $display_name
@@ -242,7 +242,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * Dialogflow agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Action actions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Action>
      */
     public function getActions()
     {
@@ -254,7 +254,7 @@ class Example extends \Google\Protobuf\Internal\Message
      * Dialogflow agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Action actions = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Action>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Action[] $var
      * @return $this
      */
     public function setActions($var)

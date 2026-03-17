@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the layout information of a [text_segment][google.cloud.automl.v1.Document.Layout.text_segment] in the document.
@@ -222,5 +222,4 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

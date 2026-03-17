@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A response to a request to list autoscaling policies in a project.
@@ -35,7 +35,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\AutoscalingPolicy>|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type \Google\Cloud\Dataproc\V1\AutoscalingPolicy[] $policies
      *           Output only. Autoscaling policies list.
      *     @type string $next_page_token
      *           Output only. This token is included in the response if there are more
@@ -51,7 +51,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Output only. Autoscaling policies list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AutoscalingPolicy policies = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataproc\V1\AutoscalingPolicy>
      */
     public function getPolicies()
     {
@@ -62,7 +62,7 @@ class ListAutoscalingPoliciesResponse extends \Google\Protobuf\Internal\Message
      * Output only. Autoscaling policies list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AutoscalingPolicy policies = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\AutoscalingPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataproc\V1\AutoscalingPolicy[] $var
      * @return $this
      */
     public function setPolicies($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1\ReportSummary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A set of findings that applies to assets destined for VMWare Engine.
@@ -40,11 +40,11 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allocated_regions
+     *     @type string[] $allocated_regions
      *           Set of regions in which the assets were allocated
      *     @type int|string $allocated_asset_count
      *           Count of assets which are allocated
-     *     @type array<\Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareNodeAllocation>|\Google\Protobuf\Internal\RepeatedField $node_allocations
+     *     @type \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareNodeAllocation[] $node_allocations
      *           Set of per-nodetype allocation records
      * }
      */
@@ -57,7 +57,7 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of regions in which the assets were allocated
      *
      * Generated from protobuf field <code>repeated string allocated_regions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAllocatedRegions()
     {
@@ -68,7 +68,7 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of regions in which the assets were allocated
      *
      * Generated from protobuf field <code>repeated string allocated_regions = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAllocatedRegions($var)
@@ -109,7 +109,7 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of per-nodetype allocation records
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation node_allocations = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareNodeAllocation>
      */
     public function getNodeAllocations()
     {
@@ -120,7 +120,7 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
      * Set of per-nodetype allocation records
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.ReportSummary.VmwareNodeAllocation node_allocations = 3;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareNodeAllocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\ReportSummary\VmwareNodeAllocation[] $var
      * @return $this
      */
     public function setNodeAllocations($var)
@@ -132,5 +132,4 @@ class VmwareEngineFinding extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

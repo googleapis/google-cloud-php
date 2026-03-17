@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiGateway\V1\ApiConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A lightweight description of a file.
@@ -102,5 +102,4 @@ class File extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

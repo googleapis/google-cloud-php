@@ -5,8 +5,8 @@
 namespace Google\Cloud\LifeSciences\V2beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Carries information about the pipeline execution that is returned
@@ -71,7 +71,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           The pipeline this operation represents.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The user-defined labels associated with this operation.
-     *     @type array<\Google\Cloud\LifeSciences\V2beta\Event>|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type \Google\Cloud\LifeSciences\V2beta\Event[] $events
      *           The list of events that have happened so far during the execution of this
      *           operation.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -157,7 +157,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Event events = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LifeSciences\V2beta\Event>
      */
     public function getEvents()
     {
@@ -169,7 +169,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Event events = 3;</code>
-     * @param array<\Google\Cloud\LifeSciences\V2beta\Event>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LifeSciences\V2beta\Event[] $var
      * @return $this
      */
     public function setEvents($var)

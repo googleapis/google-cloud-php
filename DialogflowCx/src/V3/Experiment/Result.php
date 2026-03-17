@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Experiment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inference result which includes an objective metric to optimize and the
@@ -36,7 +36,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\VersionMetrics>|\Google\Protobuf\Internal\RepeatedField $version_metrics
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\VersionMetrics[] $version_metrics
      *           Version variants and metrics.
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           The last time the experiment's stats data was updated. Will have default
@@ -52,7 +52,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * Version variants and metrics.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Experiment.Result.VersionMetrics version_metrics = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\VersionMetrics>
      */
     public function getVersionMetrics()
     {
@@ -63,7 +63,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * Version variants and metrics.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Experiment.Result.VersionMetrics version_metrics = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\VersionMetrics>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Experiment\Result\VersionMetrics[] $var
      * @return $this
      */
     public function setVersionMetrics($var)
@@ -113,5 +113,4 @@ class Result extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

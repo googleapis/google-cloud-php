@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request object for `CreateRelease`,
@@ -115,7 +115,7 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $validate_only
      *           Optional. If set to true, the request is validated and the user is provided
      *           with an expected result, but no actual change is made.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $override_deploy_policy
+     *     @type string[] $override_deploy_policy
      *           Optional. Deploy policies to override. Format is
      *           `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      * }
@@ -296,7 +296,7 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      *
      * Generated from protobuf field <code>repeated string override_deploy_policy = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOverrideDeployPolicy()
     {
@@ -308,7 +308,7 @@ class CreateReleaseRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      *
      * Generated from protobuf field <code>repeated string override_deploy_policy = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOverrideDeployPolicy($var)

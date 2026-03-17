@@ -66,6 +66,3 @@ class DefaultBackupScheduleType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DefaultBackupScheduleType::class, \Google\Cloud\Spanner\Admin\Instance\V1\Instance_DefaultBackupScheduleType::class);
-

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\Inventories\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for the `ListLocalInventories` method.
@@ -36,7 +36,7 @@ class ListLocalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Shopping\Merchant\Inventories\V1\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
+     *     @type \Google\Shopping\Merchant\Inventories\V1\LocalInventory[] $local_inventories
      *           The `LocalInventory` resources for the given product from the specified
      *           account.
      *     @type string $next_page_token
@@ -54,7 +54,7 @@ class ListLocalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.LocalInventory local_inventories = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\Inventories\V1\LocalInventory>
      */
     public function getLocalInventories()
     {
@@ -66,7 +66,7 @@ class ListLocalInventoriesResponse extends \Google\Protobuf\Internal\Message
      * account.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.LocalInventory local_inventories = 1;</code>
-     * @param array<\Google\Shopping\Merchant\Inventories\V1\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\Inventories\V1\LocalInventory[] $var
      * @return $this
      */
     public function setLocalInventories($var)

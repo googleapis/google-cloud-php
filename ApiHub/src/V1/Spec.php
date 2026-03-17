@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a spec associated with an API version in the API
@@ -160,7 +160,7 @@ class Spec extends \Google\Protobuf\Internal\Message
      *     @type int $parsing_mode
      *           Optional. Input only. Enum specifying the parsing mode for OpenAPI
      *           Specification (OAS) parsing.
-     *     @type array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $source_metadata
+     *     @type \Google\Cloud\ApiHub\V1\SourceMetadata[] $source_metadata
      *           Output only. The list of sources and metadata from the sources of the spec.
      * }
      */
@@ -589,7 +589,7 @@ class Spec extends \Google\Protobuf\Internal\Message
      * Output only. The list of sources and metadata from the sources of the spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\SourceMetadata>
      */
     public function getSourceMetadata()
     {
@@ -600,7 +600,7 @@ class Spec extends \Google\Protobuf\Internal\Message
      * Output only. The list of sources and metadata from the sources of the spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.SourceMetadata source_metadata = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\SourceMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\SourceMetadata[] $var
      * @return $this
      */
     public function setSourceMetadata($var)

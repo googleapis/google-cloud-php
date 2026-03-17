@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Detail human agent assistant config.
@@ -87,7 +87,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig>|\Google\Protobuf\Internal\RepeatedField $feature_configs
+     *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig[] $feature_configs
      *           Configuration of different suggestion features. One feature can have only
      *           one config.
      *     @type bool $group_suggestion_responses
@@ -100,7 +100,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      *           If `group_suggestion_responses` set to true. All the suggestions to the
      *           same participant based on the same context will be grouped into a single
      *           Pub/Sub event or StreamingAnalyzeContentResponse.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $generators
+     *     @type string[] $generators
      *           Optional. List of various generator resource names used in the
      *           conversation profile.
      *     @type bool $disable_high_latency_features_sync_delivery
@@ -136,7 +136,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * one config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionFeatureConfig feature_configs = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig>
      */
     public function getFeatureConfigs()
     {
@@ -148,7 +148,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * one config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionFeatureConfig feature_configs = 2;</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig[] $var
      * @return $this
      */
     public function setFeatureConfigs($var)
@@ -206,7 +206,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * conversation profile.
      *
      * Generated from protobuf field <code>repeated string generators = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getGenerators()
     {
@@ -218,7 +218,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * conversation profile.
      *
      * Generated from protobuf field <code>repeated string generators = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setGenerators($var)
@@ -360,5 +360,4 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

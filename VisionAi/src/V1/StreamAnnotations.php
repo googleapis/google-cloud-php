@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A wrapper of repeated StreamAnnotation.
@@ -28,7 +28,7 @@ class StreamAnnotations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\VisionAI\V1\StreamAnnotation>|\Google\Protobuf\Internal\RepeatedField $stream_annotations
+     *     @type \Google\Cloud\VisionAI\V1\StreamAnnotation[] $stream_annotations
      *           Multiple annotations.
      * }
      */
@@ -41,7 +41,7 @@ class StreamAnnotations extends \Google\Protobuf\Internal\Message
      * Multiple annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotation stream_annotations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\StreamAnnotation>
      */
     public function getStreamAnnotations()
     {
@@ -52,7 +52,7 @@ class StreamAnnotations extends \Google\Protobuf\Internal\Message
      * Multiple annotations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.StreamAnnotation stream_annotations = 1;</code>
-     * @param array<\Google\Cloud\VisionAI\V1\StreamAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\StreamAnnotation[] $var
      * @return $this
      */
     public function setStreamAnnotations($var)

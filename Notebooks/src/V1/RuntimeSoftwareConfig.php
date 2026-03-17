@@ -5,8 +5,8 @@
 namespace Google\Cloud\Notebooks\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the selection and configuration of software inside the runtime.
@@ -128,7 +128,7 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      *           Path to a Bash script that automatically runs after a notebook instance
      *           fully boots up. The path must be a URL or
      *           Cloud Storage path (`gs://path-to-file/file-name`).
-     *     @type array<\Google\Cloud\Notebooks\V1\ContainerImage>|\Google\Protobuf\Internal\RepeatedField $kernels
+     *     @type \Google\Cloud\Notebooks\V1\ContainerImage[] $kernels
      *           Optional. Use a list of container images to use as Kernels in the notebook instance.
      *     @type bool $upgradeable
      *           Output only. Bool indicating whether an newer image is available in an image family.
@@ -366,7 +366,7 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.ContainerImage kernels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Notebooks\V1\ContainerImage>
      */
     public function getKernels()
     {
@@ -377,7 +377,7 @@ class RuntimeSoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. Use a list of container images to use as Kernels in the notebook instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1.ContainerImage kernels = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Notebooks\V1\ContainerImage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Notebooks\V1\ContainerImage[] $var
      * @return $this
      */
     public function setKernels($var)

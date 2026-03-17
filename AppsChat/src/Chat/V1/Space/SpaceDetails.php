@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\Space;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about the space including description and rules.
@@ -110,5 +110,4 @@ class SpaceDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Optimization\V1\ShipmentModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A precedence rule between two events (each event is the pickup or the
@@ -237,5 +237,4 @@ class PrecedenceRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

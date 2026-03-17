@@ -5,8 +5,8 @@
 namespace Google\Cloud\Redis\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Memorystore for Redis instance.
@@ -411,7 +411,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If
      *           set to "true" AUTH is enabled on the instance. Default value is "false"
      *           meaning AUTH is disabled.
-     *     @type array<\Google\Cloud\Redis\V1\TlsCertificate>|\Google\Protobuf\Internal\RepeatedField $server_ca_certs
+     *     @type \Google\Cloud\Redis\V1\TlsCertificate[] $server_ca_certs
      *           Output only. List of server CA certificates for the instance.
      *     @type int $transit_encryption_mode
      *           Optional. The TLS mode of the Redis instance.
@@ -428,7 +428,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           replicas are not enabled for a Standard Tier instance, the only valid value
      *           is 1 and the default is 1. The valid value for basic tier is 0 and the
      *           default is also 0.
-     *     @type array<\Google\Cloud\Redis\V1\NodeInfo>|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type \Google\Cloud\Redis\V1\NodeInfo[] $nodes
      *           Output only. Info per node.
      *     @type string $read_endpoint
      *           Output only. Hostname or IP address of the exposed readonly Redis
@@ -446,12 +446,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           create the instance.
      *     @type \Google\Cloud\Redis\V1\PersistenceConfig $persistence_config
      *           Optional. Persistence configuration parameters
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $suspension_reasons
+     *     @type int[] $suspension_reasons
      *           Optional. reasons that causes instance in "SUSPENDED" state.
      *     @type string $maintenance_version
      *           Optional. The self service update maintenance version.
      *           The version is date based such as "20210712_00_00".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_maintenance_versions
+     *     @type string[] $available_maintenance_versions
      *           Optional. The available maintenance versions that an instance could update
      *           to.
      * }
@@ -1143,7 +1143,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.TlsCertificate server_ca_certs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\V1\TlsCertificate>
      */
     public function getServerCaCerts()
     {
@@ -1154,7 +1154,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.TlsCertificate server_ca_certs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\V1\TlsCertificate>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\V1\TlsCertificate[] $var
      * @return $this
      */
     public function setServerCaCerts($var)
@@ -1307,7 +1307,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Info per node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.NodeInfo nodes = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Redis\V1\NodeInfo>
      */
     public function getNodes()
     {
@@ -1318,7 +1318,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Info per node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.NodeInfo nodes = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Redis\V1\NodeInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Redis\V1\NodeInfo[] $var
      * @return $this
      */
     public function setNodes($var)
@@ -1485,7 +1485,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. reasons that causes instance in "SUSPENDED" state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.Instance.SuspensionReason suspension_reasons = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSuspensionReasons()
     {
@@ -1496,7 +1496,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Optional. reasons that causes instance in "SUSPENDED" state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1.Instance.SuspensionReason suspension_reasons = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSuspensionReasons($var)
@@ -1540,7 +1540,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * to.
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAvailableMaintenanceVersions()
     {
@@ -1552,7 +1552,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * to.
      *
      * Generated from protobuf field <code>repeated string available_maintenance_versions = 40 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAvailableMaintenanceVersions($var)

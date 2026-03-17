@@ -5,8 +5,8 @@
 namespace Google\Maps\FleetEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Trip metadata.
@@ -310,7 +310,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $pickup_time
      *           Output only. Either the estimated future time when the rider(s) will be
      *           picked up, or the actual time when they were picked up.
-     *     @type array<\Google\Maps\FleetEngine\V1\TerminalLocation>|\Google\Protobuf\Internal\RepeatedField $intermediate_destinations
+     *     @type \Google\Maps\FleetEngine\V1\TerminalLocation[] $intermediate_destinations
      *           Intermediate stops in order that the trip requests (in addition
      *           to pickup and dropoff). Initially this will not be supported for shared
      *           trips.
@@ -326,12 +326,12 @@ class Trip extends \Google\Protobuf\Internal\Message
      *           number between [0..N-1] indicating which intermediate destination the
      *           vehicle is at. The provider sets this value. If there are no
      *           `intermediate_destinations`, this field is ignored.
-     *     @type array<\Google\Maps\FleetEngine\V1\StopLocation>|\Google\Protobuf\Internal\RepeatedField $actual_intermediate_destination_arrival_points
+     *     @type \Google\Maps\FleetEngine\V1\StopLocation[] $actual_intermediate_destination_arrival_points
      *           Input only. The actual time and location of the driver's arrival at
      *           an intermediate destination.
      *           This field is for provider to provide feedback on actual arrival
      *           information at intermediate destinations.
-     *     @type array<\Google\Maps\FleetEngine\V1\StopLocation>|\Google\Protobuf\Internal\RepeatedField $actual_intermediate_destinations
+     *     @type \Google\Maps\FleetEngine\V1\StopLocation[] $actual_intermediate_destinations
      *           Input only. The actual time and location when and where the customer was
      *           picked up from an intermediate destination. This field is for provider to
      *           provide feedback on actual pickup information at intermediate destinations.
@@ -345,17 +345,17 @@ class Trip extends \Google\Protobuf\Internal\Message
      *           Output only. Either the estimated future time when the rider(s) will be
      *           dropped off at the final destination, or the actual time when they were
      *           dropped off.
-     *     @type array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $remaining_waypoints
+     *     @type \Google\Maps\FleetEngine\V1\TripWaypoint[] $remaining_waypoints
      *           Output only. The full path from the current location to the dropoff point,
      *           inclusive. This path could include waypoints from other trips.
-     *     @type array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $vehicle_waypoints
+     *     @type \Google\Maps\FleetEngine\V1\TripWaypoint[] $vehicle_waypoints
      *           This field supports manual ordering of the waypoints for the trip. It
      *           contains all of the remaining waypoints for the assigned vehicle, as well
      *           as the pickup and drop-off waypoints for this trip. If the trip hasn't been
      *           assigned to a vehicle, then Fleet Engine ignores this field. For privacy
      *           reasons, this field is only populated by the server on `UpdateTrip` and
      *           `CreateTrip` calls, NOT on `GetTrip` calls.
-     *     @type array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $route
+     *     @type \Google\Type\LatLng[] $route
      *           Output only. Anticipated route for this trip to the first entry in
      *           remaining_waypoints. Note that the first waypoint may belong to a different
      *           trip.
@@ -416,7 +416,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      *     @type int $view
      *           The subset of Trip fields that are populated and how they should be
      *           interpreted.
-     *     @type array<\Google\Maps\FleetEngine\V1\TripAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type \Google\Maps\FleetEngine\V1\TripAttribute[] $attributes
      *           A list of custom Trip attributes. Each attribute must have a unique key.
      * }
      */
@@ -691,7 +691,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * trips.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TerminalLocation intermediate_destinations = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TerminalLocation>
      */
     public function getIntermediateDestinations()
     {
@@ -704,7 +704,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * trips.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TerminalLocation intermediate_destinations = 14;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TerminalLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TerminalLocation[] $var
      * @return $this
      */
     public function setIntermediateDestinations($var)
@@ -800,7 +800,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * information at intermediate destinations.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.StopLocation actual_intermediate_destination_arrival_points = 33 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\StopLocation>
      */
     public function getActualIntermediateDestinationArrivalPoints()
     {
@@ -814,7 +814,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * information at intermediate destinations.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.StopLocation actual_intermediate_destination_arrival_points = 33 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\StopLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\StopLocation[] $var
      * @return $this
      */
     public function setActualIntermediateDestinationArrivalPoints($var)
@@ -831,7 +831,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * provide feedback on actual pickup information at intermediate destinations.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.StopLocation actual_intermediate_destinations = 34 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\StopLocation>
      */
     public function getActualIntermediateDestinations()
     {
@@ -844,7 +844,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * provide feedback on actual pickup information at intermediate destinations.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.StopLocation actual_intermediate_destinations = 34 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\StopLocation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\StopLocation[] $var
      * @return $this
      */
     public function setActualIntermediateDestinations($var)
@@ -976,7 +976,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * inclusive. This path could include waypoints from other trips.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint remaining_waypoints = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TripWaypoint>
      */
     public function getRemainingWaypoints()
     {
@@ -988,7 +988,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * inclusive. This path could include waypoints from other trips.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint remaining_waypoints = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TripWaypoint[] $var
      * @return $this
      */
     public function setRemainingWaypoints($var)
@@ -1008,7 +1008,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * `CreateTrip` calls, NOT on `GetTrip` calls.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint vehicle_waypoints = 20;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TripWaypoint>
      */
     public function getVehicleWaypoints()
     {
@@ -1024,7 +1024,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * `CreateTrip` calls, NOT on `GetTrip` calls.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripWaypoint vehicle_waypoints = 20;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TripWaypoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TripWaypoint[] $var
      * @return $this
      */
     public function setVehicleWaypoints($var)
@@ -1041,7 +1041,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * trip.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng route = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Type\LatLng>
      */
     public function getRoute()
     {
@@ -1054,7 +1054,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * trip.
      *
      * Generated from protobuf field <code>repeated .google.type.LatLng route = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Type\LatLng>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Type\LatLng[] $var
      * @return $this
      */
     public function setRoute($var)
@@ -1622,7 +1622,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * A list of custom Trip attributes. Each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripAttribute attributes = 35;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Maps\FleetEngine\V1\TripAttribute>
      */
     public function getAttributes()
     {
@@ -1633,7 +1633,7 @@ class Trip extends \Google\Protobuf\Internal\Message
      * A list of custom Trip attributes. Each attribute must have a unique key.
      *
      * Generated from protobuf field <code>repeated .maps.fleetengine.v1.TripAttribute attributes = 35;</code>
-     * @param array<\Google\Maps\FleetEngine\V1\TripAttribute>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Maps\FleetEngine\V1\TripAttribute[] $var
      * @return $this
      */
     public function setAttributes($var)

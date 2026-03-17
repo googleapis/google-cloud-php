@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\Migration\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The potential components of a full name mapping that will be mapped

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Storage\Control\V2\IntelligenceConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Filter over location and bucket using include or exclude semantics.
@@ -182,5 +182,4 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

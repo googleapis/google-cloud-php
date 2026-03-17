@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\IssueResolution\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Block of text that may contain a tooltip with more information.

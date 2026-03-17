@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Each logical interface represents a logical abstraction of the underlying
@@ -46,7 +46,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface>|\Google\Protobuf\Internal\RepeatedField $logical_network_interfaces
+     *     @type \Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface[] $logical_network_interfaces
      *           List of logical network interfaces within a logical interface.
      *     @type string $name
      *           Interface name. This is of syntax <bond><bond_mode> or <nic> and
@@ -65,7 +65,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      * List of logical network interfaces within a logical interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface.LogicalNetworkInterface logical_network_interfaces = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface>
      */
     public function getLogicalNetworkInterfaces()
     {
@@ -76,7 +76,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      * List of logical network interfaces within a logical interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface.LogicalNetworkInterface logical_network_interfaces = 1;</code>
-     * @param array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface[] $var
      * @return $this
      */
     public function setLogicalNetworkInterfaces($var)

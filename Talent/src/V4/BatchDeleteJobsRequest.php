@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request to delete a batch of jobs.
@@ -71,7 +71,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenants/bar".
      *           The parent of all of the jobs specified in `names` must match this field.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type string[] $names
      *           The names of the jobs to delete.
      *           The format is "projects/{project_id}/tenants/{tenant_id}/jobs/{job_id}".
      *           For example, "projects/foo/tenants/bar/jobs/baz".
@@ -122,7 +122,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 200 jobs can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNames()
     {
@@ -136,7 +136,7 @@ class BatchDeleteJobsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 200 jobs can be deleted in a batch.
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNames($var)

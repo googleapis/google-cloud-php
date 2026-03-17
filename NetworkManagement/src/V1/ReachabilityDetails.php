@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Results of the configuration analysis from the last run of the test.
@@ -54,7 +54,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      *           The time of the configuration analysis.
      *     @type \Google\Rpc\Status $error
      *           The details of a failure or a cancellation of reachability analysis.
-     *     @type array<\Google\Cloud\NetworkManagement\V1\Trace>|\Google\Protobuf\Internal\RepeatedField $traces
+     *     @type \Google\Cloud\NetworkManagement\V1\Trace[] $traces
      *           Result may contain a list of traces if a test has multiple possible
      *           paths in the network, such as when destination endpoint is a load balancer
      *           with multiple backends.
@@ -169,7 +169,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      * with multiple backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Trace traces = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkManagement\V1\Trace>
      */
     public function getTraces()
     {
@@ -182,7 +182,7 @@ class ReachabilityDetails extends \Google\Protobuf\Internal\Message
      * with multiple backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Trace traces = 5;</code>
-     * @param array<\Google\Cloud\NetworkManagement\V1\Trace>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkManagement\V1\Trace[] $var
      * @return $this
      */
     public function setTraces($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\BareMetalSolution\V2\NfsShare;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an 'access point' for the share.
@@ -322,5 +322,4 @@ class AllowedClient extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

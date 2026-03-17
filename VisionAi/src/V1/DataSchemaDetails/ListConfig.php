@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\DataSchemaDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration for `LIST` data type.
@@ -74,5 +74,4 @@ class ListConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

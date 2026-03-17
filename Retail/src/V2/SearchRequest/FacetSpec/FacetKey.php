@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest\FacetSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies how a facet is computed.
@@ -222,7 +222,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *               * "inventory(place_id,price)"
      *               * "inventory(place_id,original_price)"
      *               * "inventory(place_id,attributes.key)"
-     *     @type array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $intervals
+     *     @type \Google\Cloud\Retail\V2\Interval[] $intervals
      *           Set only if values should be bucketized into intervals. Must be set
      *           for facets with numerical values. Must not be set for facet with text
      *           values. Maximum number of intervals is 40.
@@ -234,7 +234,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           for its intervals and are returned in the response. If the
      *           facet key intervals are specified in the request, then the specified
      *           intervals are returned instead.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_values
+     *     @type string[] $restricted_values
      *           Only get facet for the given restricted values. For example, when using
      *           "pickupInStore" as key and set restricted values to
      *           ["store123", "store456"], only facets for "store123" and "store456" are
@@ -250,13 +250,13 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      *           * customFulfillment3
      *           * customFulfillment4
      *           * customFulfillment5
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prefixes
+     *     @type string[] $prefixes
      *           Only get facet values that start with the given string prefix. For
      *           example, suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "prefixes" to "Women", the
      *           "categories" facet gives only "Women > Shoe" and "Women > Dress".
      *           Only supported on textual fields. Maximum is 10.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contains
+     *     @type string[] $contains
      *           Only get facet values that contains the given strings. For example,
      *           suppose "categories" has three values "Women > Shoe",
      *           "Women > Dress" and "Men > Shoe". If set "contains" to "Shoe", the
@@ -429,7 +429,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * intervals are returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\Interval>
      */
     public function getIntervals()
     {
@@ -450,7 +450,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * intervals are returned instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Interval intervals = 2;</code>
-     * @param array<\Google\Cloud\Retail\V2\Interval>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\Interval[] $var
      * @return $this
      */
     public function setIntervals($var)
@@ -479,7 +479,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * * customFulfillment5
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRestrictedValues()
     {
@@ -504,7 +504,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * * customFulfillment5
      *
      * Generated from protobuf field <code>repeated string restricted_values = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRestrictedValues($var)
@@ -523,7 +523,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrefixes()
     {
@@ -538,7 +538,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string prefixes = 8;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrefixes($var)
@@ -557,7 +557,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getContains()
     {
@@ -572,7 +572,7 @@ class FacetKey extends \Google\Protobuf\Internal\Message
      * Only supported on textual fields. Maximum is 10.
      *
      * Generated from protobuf field <code>repeated string contains = 9;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setContains($var)
@@ -764,5 +764,4 @@ class FacetKey extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

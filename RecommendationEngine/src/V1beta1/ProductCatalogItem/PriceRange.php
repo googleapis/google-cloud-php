@@ -5,8 +5,8 @@
 namespace Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Product price range when there are a range of prices for different
@@ -99,5 +99,4 @@ class PriceRange extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

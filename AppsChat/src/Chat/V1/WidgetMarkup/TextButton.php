@@ -5,8 +5,8 @@
 namespace Google\Apps\Chat\V1\WidgetMarkup;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A button with text and `onclick` action.
@@ -108,5 +108,4 @@ class TextButton extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

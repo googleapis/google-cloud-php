@@ -5,8 +5,8 @@
 namespace Google\Cloud\PolicyTroubleshooter\Iam\V3\DenyRuleExplanation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about whether the principal in the request is listed as a denied
@@ -108,5 +108,4 @@ class AnnotatedDenyPrincipalMatching extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

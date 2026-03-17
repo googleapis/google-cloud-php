@@ -5,8 +5,8 @@
 namespace Google\Cloud\AuditManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An audit report.
@@ -105,7 +105,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      *           Output only. The parent scope on which the report was generated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation time of the audit report.
-     *     @type array<\Google\Cloud\AuditManager\V1\ControlDetails>|\Google\Protobuf\Internal\RepeatedField $control_details
+     *     @type \Google\Cloud\AuditManager\V1\ControlDetails[] $control_details
      *           Output only. The overall status of controls
      *     @type int $report_generation_state
      *           Output only. The state of Audit Report Generation.
@@ -339,7 +339,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      * Output only. The overall status of controls
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ControlDetails control_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AuditManager\V1\ControlDetails>
      */
     public function getControlDetails()
     {
@@ -350,7 +350,7 @@ class AuditReport extends \Google\Protobuf\Internal\Message
      * Output only. The overall status of controls
      *
      * Generated from protobuf field <code>repeated .google.cloud.auditmanager.v1.ControlDetails control_details = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\AuditManager\V1\ControlDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AuditManager\V1\ControlDetails[] $var
      * @return $this
      */
     public function setControlDetails($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Kms\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -37,7 +37,7 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Kms\V1\KeyHandle>|\Google\Protobuf\Internal\RepeatedField $key_handles
+     *     @type \Google\Cloud\Kms\V1\KeyHandle[] $key_handles
      *           Resulting [KeyHandles][google.cloud.kms.v1.KeyHandle].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -54,7 +54,7 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
      * Resulting [KeyHandles][google.cloud.kms.v1.KeyHandle].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.KeyHandle key_handles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Kms\V1\KeyHandle>
      */
     public function getKeyHandles()
     {
@@ -65,7 +65,7 @@ class ListKeyHandlesResponse extends \Google\Protobuf\Internal\Message
      * Resulting [KeyHandles][google.cloud.kms.v1.KeyHandle].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.KeyHandle key_handles = 1;</code>
-     * @param array<\Google\Cloud\Kms\V1\KeyHandle>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Kms\V1\KeyHandle[] $var
      * @return $this
      */
     public function setKeyHandles($var)

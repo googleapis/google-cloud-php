@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1\Event;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stops any events which are currently running. This only applies to events
@@ -31,5 +31,4 @@ class ReturnToProgramTask extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A `Release` resource in the Cloud Deploy API.
@@ -215,14 +215,14 @@ class Release extends \Google\Protobuf\Internal\Message
      *           configuration.
      *     @type string $skaffold_config_path
      *           Optional. Filepath of the Skaffold config inside of the config URI.
-     *     @type array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $build_artifacts
+     *     @type \Google\Cloud\Deploy\V1\BuildArtifact[] $build_artifacts
      *           Optional. List of artifacts to pass through to Skaffold command.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
      *           Output only. Snapshot of the parent pipeline taken at release creation
      *           time.
-     *     @type array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $target_snapshots
+     *     @type \Google\Cloud\Deploy\V1\Target[] $target_snapshots
      *           Output only. Snapshot of the targets taken at release creation time.
-     *     @type array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $custom_target_type_snapshots
+     *     @type \Google\Cloud\Deploy\V1\CustomTargetType[] $custom_target_type_snapshots
      *           Output only. Snapshot of the custom target types referenced by the targets
      *           taken at release creation time.
      *     @type int $render_state
@@ -601,7 +601,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * Optional. List of artifacts to pass through to Skaffold command.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\BuildArtifact>
      */
     public function getBuildArtifacts()
     {
@@ -612,7 +612,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * Optional. List of artifacts to pass through to Skaffold command.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\BuildArtifact[] $var
      * @return $this
      */
     public function setBuildArtifacts($var)
@@ -665,7 +665,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\Target>
      */
     public function getTargetSnapshots()
     {
@@ -676,7 +676,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\Target[] $var
      * @return $this
      */
     public function setTargetSnapshots($var)
@@ -692,7 +692,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_type_snapshots = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\CustomTargetType>
      */
     public function getCustomTargetTypeSnapshots()
     {
@@ -704,7 +704,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.CustomTargetType custom_target_type_snapshots = 27 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Deploy\V1\CustomTargetType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\CustomTargetType[] $var
      * @return $this
      */
     public function setCustomTargetTypeSnapshots($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\VmwareEngine\V1\DnsForwarding;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A forwarding rule is a mapping of a `domain` to `name_servers`.
@@ -39,7 +39,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      *
      *     @type string $domain
      *           Required. Domain used to resolve a `name_servers` list.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $name_servers
+     *     @type string[] $name_servers
      *           Required. List of DNS servers to use for domain resolution
      * }
      */
@@ -78,7 +78,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * Required. List of DNS servers to use for domain resolution
      *
      * Generated from protobuf field <code>repeated string name_servers = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNameServers()
     {
@@ -89,7 +89,7 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
      * Required. List of DNS servers to use for domain resolution
      *
      * Generated from protobuf field <code>repeated string name_servers = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNameServers($var)
@@ -101,5 +101,4 @@ class ForwardingRule extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

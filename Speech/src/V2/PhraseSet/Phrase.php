@@ -5,8 +5,8 @@
 namespace Google\Cloud\Speech\V2\PhraseSet;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Phrase contains words and phrase "hints" so that the speech recognition
@@ -140,5 +140,4 @@ class Phrase extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

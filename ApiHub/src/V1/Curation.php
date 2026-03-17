@@ -5,8 +5,8 @@
 namespace Google\Cloud\ApiHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A curation resource in the API Hub.
@@ -98,7 +98,7 @@ class Curation extends \Google\Protobuf\Internal\Message
      *           Optional. The description of the curation.
      *     @type \Google\Cloud\ApiHub\V1\Endpoint $endpoint
      *           Required. The endpoint to be triggered for curation.
-     *     @type array<\Google\Cloud\ApiHub\V1\Curation\PluginInstanceActionID>|\Google\Protobuf\Internal\RepeatedField $plugin_instance_actions
+     *     @type \Google\Cloud\ApiHub\V1\Curation\PluginInstanceActionID[] $plugin_instance_actions
      *           Output only. The plugin instances and associated actions that are using the
      *           curation. Note: A particular curation could be used by multiple plugin
      *           instances or multiple actions in a plugin instance.
@@ -245,7 +245,7 @@ class Curation extends \Google\Protobuf\Internal\Message
      * instances or multiple actions in a plugin instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Curation.PluginInstanceActionID plugin_instance_actions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ApiHub\V1\Curation\PluginInstanceActionID>
      */
     public function getPluginInstanceActions()
     {
@@ -258,7 +258,7 @@ class Curation extends \Google\Protobuf\Internal\Message
      * instances or multiple actions in a plugin instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apihub.v1.Curation.PluginInstanceActionID plugin_instance_actions = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\ApiHub\V1\Curation\PluginInstanceActionID>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ApiHub\V1\Curation\PluginInstanceActionID[] $var
      * @return $this
      */
     public function setPluginInstanceActions($var)

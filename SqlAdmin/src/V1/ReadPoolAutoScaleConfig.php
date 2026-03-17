@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The read pool auto-scale configuration.
@@ -71,7 +71,7 @@ class ReadPoolAutoScaleConfig extends \Google\Protobuf\Internal\Message
      *           Minimum number of read pool nodes to be maintained.
      *     @type int $max_node_count
      *           Maximum number of read pool nodes to be maintained.
-     *     @type array<\Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig\TargetMetric>|\Google\Protobuf\Internal\RepeatedField $target_metrics
+     *     @type \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig\TargetMetric[] $target_metrics
      *           Optional. Target metrics for read pool auto scaling.
      *     @type bool $disable_scale_in
      *           Indicates whether read pool auto scaling supports scale in operations
@@ -199,7 +199,7 @@ class ReadPoolAutoScaleConfig extends \Google\Protobuf\Internal\Message
      * Optional. Target metrics for read pool auto scaling.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ReadPoolAutoScaleConfig.TargetMetric target_metrics = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig\TargetMetric>
      */
     public function getTargetMetrics()
     {
@@ -210,7 +210,7 @@ class ReadPoolAutoScaleConfig extends \Google\Protobuf\Internal\Message
      * Optional. Target metrics for read pool auto scaling.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.ReadPoolAutoScaleConfig.TargetMetric target_metrics = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig\TargetMetric>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\ReadPoolAutoScaleConfig\TargetMetric[] $var
      * @return $this
      */
     public function setTargetMetrics($var)

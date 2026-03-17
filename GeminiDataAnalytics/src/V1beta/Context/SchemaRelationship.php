@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta\Context;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The relationship between two tables, including referencing and referenced
@@ -65,7 +65,7 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
      *           The size of this list must be the same as `left_schema_paths`.
      *           Each field at index i in this list must correspond to a field at the same
      *           index in the `left_schema_paths` list.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type int[] $sources
      *           Sources which generated the schema relation edge.
      *     @type float $confidence_score
      *           A confidence score for the suggested relationship.
@@ -165,7 +165,7 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
      * Sources which generated the schema relation edge.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getSources()
     {
@@ -176,7 +176,7 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
      * Sources which generated the schema relation edge.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Context.SchemaRelationship.Source sources = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setSources($var)
@@ -216,5 +216,4 @@ class SchemaRelationship extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

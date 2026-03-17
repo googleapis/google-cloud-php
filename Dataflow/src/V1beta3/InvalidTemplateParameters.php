@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Used in the error_details field of a google.rpc.Status message, this
@@ -29,7 +29,7 @@ class InvalidTemplateParameters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation>|\Google\Protobuf\Internal\RepeatedField $parameter_violations
+     *     @type \Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation[] $parameter_violations
      *           Describes all parameter violations in a template request.
      * }
      */
@@ -42,7 +42,7 @@ class InvalidTemplateParameters extends \Google\Protobuf\Internal\Message
      * Describes all parameter violations in a template request.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.InvalidTemplateParameters.ParameterViolation parameter_violations = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation>
      */
     public function getParameterViolations()
     {
@@ -53,7 +53,7 @@ class InvalidTemplateParameters extends \Google\Protobuf\Internal\Message
      * Describes all parameter violations in a template request.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.InvalidTemplateParameters.ParameterViolation parameter_violations = 1;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation[] $var
      * @return $this
      */
     public function setParameterViolations($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The internal range resource for IPAM operations within a VPC network.
@@ -204,21 +204,21 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      *           NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and
      *           both fields must match. In other words, with IPv6 this field only works as
      *           a redundant parameter.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_cidr_range
+     *     @type string[] $target_cidr_range
      *           Optional. Can be set to narrow down or pick a different address space while
      *           searching for a free range. If not set, defaults to the ["10.0.0.0/8",
      *           "172.16.0.0/12", "192.168.0.0/16"] address space (for auto-mode networks,
      *           the "10.0.0.0/9" range is used instead of "10.0.0.0/8"). This can be used
      *           to target the search in other rfc-1918 address spaces like "172.16.0.0/12"
      *           and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type string[] $users
      *           Output only. The list of resources that refer to this internal range.
      *           Resources that use the internal range for their range allocation
      *           are referred to as users of the range. Other resources mark themselves
      *           as users while doing so by creating a reference to this internal range.
      *           Having a user, based on this reference, prevents deletion of the
      *           internal range referred to. Can be empty.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $overlaps
+     *     @type int[] $overlaps
      *           Optional. Types of resources that are allowed to overlap with the current
      *           internal range.
      *     @type \Google\Cloud\NetworkConnectivity\V1\InternalRange\Migration $migration
@@ -230,7 +230,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      *           Optional. Range auto-allocation options, may be set only when
      *           auto-allocation is selected by not setting ip_cidr_range (and setting
      *           prefix_length).
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_cidr_ranges
+     *     @type string[] $exclude_cidr_ranges
      *           Optional. ExcludeCidrRanges flag. Specifies a set of CIDR blocks that
      *           allows exclusion of particular CIDR ranges from the auto-allocation
      *           process, without having to reserve these blocks
@@ -570,7 +570,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *
      * Generated from protobuf field <code>repeated string target_cidr_range = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTargetCidrRange()
     {
@@ -586,7 +586,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * and "192.168.0.0/16" or non-rfc-1918 address spaces used in the VPC.
      *
      * Generated from protobuf field <code>repeated string target_cidr_range = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTargetCidrRange($var)
@@ -606,7 +606,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * internal range referred to. Can be empty.
      *
      * Generated from protobuf field <code>repeated string users = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUsers()
     {
@@ -622,7 +622,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * internal range referred to. Can be empty.
      *
      * Generated from protobuf field <code>repeated string users = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUsers($var)
@@ -638,7 +638,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * internal range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.InternalRange.Overlap overlaps = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOverlaps()
     {
@@ -650,7 +650,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * internal range.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.InternalRange.Overlap overlaps = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOverlaps($var)
@@ -771,7 +771,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * process, without having to reserve these blocks
      *
      * Generated from protobuf field <code>repeated string exclude_cidr_ranges = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExcludeCidrRanges()
     {
@@ -784,7 +784,7 @@ class InternalRange extends \Google\Protobuf\Internal\Message
      * process, without having to reserve these blocks
      *
      * Generated from protobuf field <code>repeated string exclude_cidr_ranges = 17 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExcludeCidrRanges($var)

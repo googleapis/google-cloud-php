@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PipelineTaskExecutorDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The detail of a container execution. It contains the job names of the
@@ -70,11 +70,11 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      *           pre-caching-check container execution. This job will be available if the
      *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec]
      *           specifies the `pre_caching_check` hook in the lifecycle events.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_main_jobs
+     *     @type string[] $failed_main_jobs
      *           Output only. The names of the previously failed
      *           [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container
      *           executions. The list includes the all attempts in chronological order.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_pre_caching_check_jobs
+     *     @type string[] $failed_pre_caching_check_jobs
      *           Output only. The names of the previously failed
      *           [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
      *           pre-caching-check container executions. This job will be available if the
@@ -158,7 +158,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      * executions. The list includes the all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_main_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedMainJobs()
     {
@@ -171,7 +171,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      * executions. The list includes the all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_main_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedMainJobs($var)
@@ -191,7 +191,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      * includes the all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_pre_caching_check_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFailedPreCachingCheckJobs()
     {
@@ -207,7 +207,7 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      * includes the all attempts in chronological order.
      *
      * Generated from protobuf field <code>repeated string failed_pre_caching_check_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFailedPreCachingCheckJobs($var)
@@ -219,5 +219,4 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

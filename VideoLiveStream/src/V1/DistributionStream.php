@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\LiveStream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Multiplexing settings for output streams used in
@@ -60,7 +60,7 @@ class DistributionStream extends \Google\Protobuf\Internal\Message
      *           - `ts`, must contain exactly one audio stream and up to one video stream.
      *           - `flv`, must contain at most one audio stream and at most one video
      *           stream.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type string[] $elementary_streams
      *           Required. List of `ElementaryStream`
      *           [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed
      *           in this stream. Must contain at least one audio stream and up to one video
@@ -143,7 +143,7 @@ class DistributionStream extends \Google\Protobuf\Internal\Message
      * stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getElementaryStreams()
     {
@@ -157,7 +157,7 @@ class DistributionStream extends \Google\Protobuf\Internal\Message
      * stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setElementaryStreams($var)

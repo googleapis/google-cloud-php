@@ -5,8 +5,8 @@
 namespace Google\Cloud\OrgPolicy\V2\Constraint;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A constraint type is enforced or not enforced, which is configured in the
@@ -77,5 +77,4 @@ class BooleanConstraint extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

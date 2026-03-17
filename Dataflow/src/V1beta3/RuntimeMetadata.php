@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * RuntimeMetadata describing a runtime environment.
@@ -36,7 +36,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataflow\V1beta3\SDKInfo $sdk_info
      *           SDK Info for the template.
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[] $parameters
      *           The parameters for the template.
      * }
      */
@@ -85,7 +85,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      * The parameters for the template.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadata parameters = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>
      */
     public function getParameters()
     {
@@ -96,7 +96,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      * The parameters for the template.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadata parameters = 2;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[] $var
      * @return $this
      */
     public function setParameters($var)

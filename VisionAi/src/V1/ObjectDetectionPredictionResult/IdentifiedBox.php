@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1\ObjectDetectionPredictionResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Identified box contains location and the entity of the object.
@@ -186,5 +186,4 @@ class IdentifiedBox extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

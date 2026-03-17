@@ -5,8 +5,8 @@
 namespace Google\Cloud\Datastream\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a backfill job on a specific stream object.
@@ -60,7 +60,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      *           Output only. Backfill job's start time.
      *     @type \Google\Protobuf\Timestamp $last_end_time
      *           Output only. Backfill job's end time.
-     *     @type array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Datastream\V1\Error[] $errors
      *           Output only. Errors which caused the backfill job to fail.
      * }
      */
@@ -197,7 +197,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      * Output only. Errors which caused the backfill job to fail.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Datastream\V1\Error>
      */
     public function getErrors()
     {
@@ -208,7 +208,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      * Output only. Errors which caused the backfill job to fail.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Datastream\V1\Error[] $var
      * @return $this
      */
     public function setErrors($var)

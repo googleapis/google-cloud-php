@@ -5,8 +5,8 @@
 namespace Google\Cloud\PrivilegedAccessManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * `AccessControlEntry` is used to control who can do some operation.
@@ -30,7 +30,7 @@ class AccessControlEntry extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $principals
+     *     @type string[] $principals
      *           Optional. Users who are allowed for the operation. Each entry should be a
      *           valid v1 IAM principal identifier. The format for these is documented at:
      *           https://cloud.google.com/iam/docs/principal-identifiers#v1
@@ -47,7 +47,7 @@ class AccessControlEntry extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/docs/principal-identifiers#v1
      *
      * Generated from protobuf field <code>repeated string principals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPrincipals()
     {
@@ -60,7 +60,7 @@ class AccessControlEntry extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/iam/docs/principal-identifiers#v1
      *
      * Generated from protobuf field <code>repeated string principals = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPrincipals($var)

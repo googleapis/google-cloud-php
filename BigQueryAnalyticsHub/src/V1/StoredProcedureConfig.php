@@ -5,8 +5,8 @@
 namespace Google\Cloud\BigQuery\AnalyticsHub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stored procedure configuration, used to configure stored procedure sharing
@@ -37,7 +37,7 @@ class StoredProcedureConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Optional. If true, enable sharing of stored procedure.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $allowed_stored_procedure_types
+     *     @type int[] $allowed_stored_procedure_types
      *           Output only. Types of stored procedure supported to share.
      * }
      */
@@ -76,7 +76,7 @@ class StoredProcedureConfig extends \Google\Protobuf\Internal\Message
      * Output only. Types of stored procedure supported to share.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.StoredProcedureConfig.StoredProcedureType allowed_stored_procedure_types = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAllowedStoredProcedureTypes()
     {
@@ -87,7 +87,7 @@ class StoredProcedureConfig extends \Google\Protobuf\Internal\Message
      * Output only. Types of stored procedure supported to share.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.analyticshub.v1.StoredProcedureConfig.StoredProcedureType allowed_stored_procedure_types = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAllowedStoredProcedureTypes($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\WorkloadManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a Workload Manager Evaluation configuration.
@@ -71,13 +71,13 @@ class Evaluation extends \Google\Protobuf\Internal\Message
     /**
      * Crontab format schedule for scheduled evaluation, currently only supports
      * the following fixed schedules:
-     * * `0 *&#47;1 * * *` # Hourly
-     * * `0 *&#47;6 * * *` # Every 6 hours
-     * * `0 *&#47;12 * * *` # Every 12 hours
-     * * `0 0 *&#47;1 * *` # Daily
-     * * `0 0 *&#47;7 * *` # Weekly
-     * * `0 0 *&#47;14 * *` # Every 14 days
-     * * `0 0 1 *&#47;1 *` # Monthly
+     * * `0 {@*}1 * * *` # Hourly
+     * * `0 {@*}6 * * *` # Every 6 hours
+     * * `0 {@*}12 * * *` # Every 12 hours
+     * * `0 0 {@*}1 * *` # Daily
+     * * `0 0 {@*}7 * *` # Weekly
+     * * `0 0 {@*}14 * *` # Every 14 days
+     * * `0 0 1 {@*}1 *` # Monthly
      *
      * Generated from protobuf field <code>optional string schedule = 10;</code>
      */
@@ -104,7 +104,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
     protected $big_query_destination = null;
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      * The key will be used for CMEK encryption of the evaluation resource.
      *
      * Generated from protobuf field <code>string kms_key = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -125,7 +125,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\WorkloadManager\V1\ResourceFilter $resource_filter
      *           Resource filter for an evaluation defining the scope of resources to be
      *           evaluated.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $rule_names
+     *     @type string[] $rule_names
      *           The names of the rules used for this evaluation.
      *     @type \Google\Cloud\WorkloadManager\V1\ResourceStatus $resource_status
      *           Output only. [Output only] The current lifecycle state of the evaluation
@@ -139,13 +139,13 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *     @type string $schedule
      *           Crontab format schedule for scheduled evaluation, currently only supports
      *           the following fixed schedules:
-     *           * `0 *&#47;1 * * *` # Hourly
-     *           * `0 *&#47;6 * * *` # Every 6 hours
-     *           * `0 *&#47;12 * * *` # Every 12 hours
-     *           * `0 0 *&#47;1 * *` # Daily
-     *           * `0 0 *&#47;7 * *` # Weekly
-     *           * `0 0 *&#47;14 * *` # Every 14 days
-     *           * `0 0 1 *&#47;1 *` # Monthly
+     *           * `0 {@*}1 * * *` # Hourly
+     *           * `0 {@*}6 * * *` # Every 6 hours
+     *           * `0 {@*}12 * * *` # Every 12 hours
+     *           * `0 0 {@*}1 * *` # Daily
+     *           * `0 0 {@*}7 * *` # Weekly
+     *           * `0 0 {@*}14 * *` # Every 14 days
+     *           * `0 0 1 {@*}1 *` # Monthly
      *     @type string $custom_rules_bucket
      *           The Cloud Storage bucket name for custom rules.
      *     @type int $evaluation_type
@@ -156,7 +156,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      *           exported to BigQuery.
      *     @type string $kms_key
      *           Optional. Immutable. Customer-managed encryption key name, in the format
-     *           projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     *           projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      *           The key will be used for CMEK encryption of the evaluation resource.
      * }
      */
@@ -261,7 +261,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      * The names of the rules used for this evaluation.
      *
      * Generated from protobuf field <code>repeated string rule_names = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRuleNames()
     {
@@ -272,7 +272,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      * The names of the rules used for this evaluation.
      *
      * Generated from protobuf field <code>repeated string rule_names = 4;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRuleNames($var)
@@ -422,13 +422,13 @@ class Evaluation extends \Google\Protobuf\Internal\Message
     /**
      * Crontab format schedule for scheduled evaluation, currently only supports
      * the following fixed schedules:
-     * * `0 *&#47;1 * * *` # Hourly
-     * * `0 *&#47;6 * * *` # Every 6 hours
-     * * `0 *&#47;12 * * *` # Every 12 hours
-     * * `0 0 *&#47;1 * *` # Daily
-     * * `0 0 *&#47;7 * *` # Weekly
-     * * `0 0 *&#47;14 * *` # Every 14 days
-     * * `0 0 1 *&#47;1 *` # Monthly
+     * * `0 {@*}1 * * *` # Hourly
+     * * `0 {@*}6 * * *` # Every 6 hours
+     * * `0 {@*}12 * * *` # Every 12 hours
+     * * `0 0 {@*}1 * *` # Daily
+     * * `0 0 {@*}7 * *` # Weekly
+     * * `0 0 {@*}14 * *` # Every 14 days
+     * * `0 0 1 {@*}1 *` # Monthly
      *
      * Generated from protobuf field <code>optional string schedule = 10;</code>
      * @return string
@@ -451,13 +451,13 @@ class Evaluation extends \Google\Protobuf\Internal\Message
     /**
      * Crontab format schedule for scheduled evaluation, currently only supports
      * the following fixed schedules:
-     * * `0 *&#47;1 * * *` # Hourly
-     * * `0 *&#47;6 * * *` # Every 6 hours
-     * * `0 *&#47;12 * * *` # Every 12 hours
-     * * `0 0 *&#47;1 * *` # Daily
-     * * `0 0 *&#47;7 * *` # Weekly
-     * * `0 0 *&#47;14 * *` # Every 14 days
-     * * `0 0 1 *&#47;1 *` # Monthly
+     * * `0 {@*}1 * * *` # Hourly
+     * * `0 {@*}6 * * *` # Every 6 hours
+     * * `0 {@*}12 * * *` # Every 12 hours
+     * * `0 0 {@*}1 * *` # Daily
+     * * `0 0 {@*}7 * *` # Weekly
+     * * `0 0 {@*}14 * *` # Every 14 days
+     * * `0 0 1 {@*}1 *` # Monthly
      *
      * Generated from protobuf field <code>optional string schedule = 10;</code>
      * @param string $var
@@ -565,7 +565,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      * The key will be used for CMEK encryption of the evaluation resource.
      *
      * Generated from protobuf field <code>string kms_key = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
@@ -578,7 +578,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Immutable. Customer-managed encryption key name, in the format
-     * projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;.
+     * projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*.
      * The key will be used for CMEK encryption of the evaluation resource.
      *
      * Generated from protobuf field <code>string kms_key = 15 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>

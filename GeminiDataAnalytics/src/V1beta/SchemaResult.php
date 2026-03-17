@@ -5,8 +5,8 @@
 namespace Google\Cloud\GeminiDataAnalytics\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The result of schema resolution.
@@ -28,7 +28,7 @@ class SchemaResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>|\Google\Protobuf\Internal\RepeatedField $datasources
+     *     @type \Google\Cloud\GeminiDataAnalytics\V1beta\Datasource[] $datasources
      *           Optional. The datasources used to resolve the schema query.
      * }
      */
@@ -41,7 +41,7 @@ class SchemaResult extends \Google\Protobuf\Internal\Message
      * Optional. The datasources used to resolve the schema query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Datasource datasources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>
      */
     public function getDatasources()
     {
@@ -52,7 +52,7 @@ class SchemaResult extends \Google\Protobuf\Internal\Message
      * Optional. The datasources used to resolve the schema query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.geminidataanalytics.v1beta.Datasource datasources = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\GeminiDataAnalytics\V1beta\Datasource>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\GeminiDataAnalytics\V1beta\Datasource[] $var
      * @return $this
      */
     public function setDatasources($var)

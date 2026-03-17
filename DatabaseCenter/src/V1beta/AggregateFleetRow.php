@@ -5,8 +5,8 @@
 namespace Google\Cloud\DatabaseCenter\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Individual row grouped by a particular dimension.
@@ -47,7 +47,7 @@ class AggregateFleetRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DatabaseCenter\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $dimension
+     *     @type \Google\Cloud\DatabaseCenter\V1beta\Dimension[] $dimension
      *           Group by dimension.
      *     @type int $resource_groups_count
      *           Number of resource groups that have a particular dimension.
@@ -67,7 +67,7 @@ class AggregateFleetRow extends \Google\Protobuf\Internal\Message
      * Group by dimension.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Dimension dimension = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DatabaseCenter\V1beta\Dimension>
      */
     public function getDimension()
     {
@@ -78,7 +78,7 @@ class AggregateFleetRow extends \Google\Protobuf\Internal\Message
      * Group by dimension.
      *
      * Generated from protobuf field <code>repeated .google.cloud.databasecenter.v1beta.Dimension dimension = 1;</code>
-     * @param array<\Google\Cloud\DatabaseCenter\V1beta\Dimension>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DatabaseCenter\V1beta\Dimension[] $var
      * @return $this
      */
     public function setDimension($var)

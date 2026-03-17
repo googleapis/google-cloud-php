@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1beta\Instance\StateInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents information about instance with state UPDATING.
@@ -118,5 +118,4 @@ class UpdateInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

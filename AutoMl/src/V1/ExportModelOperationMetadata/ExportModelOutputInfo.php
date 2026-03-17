@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1\ExportModelOperationMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Further describes the output of model export.
@@ -70,5 +70,4 @@ class ExportModelOutputInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

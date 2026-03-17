@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1\AwsSourceDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message describing AWS Credentials using access key id and secret.
@@ -140,5 +140,4 @@ class AccessKeyCredentials extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

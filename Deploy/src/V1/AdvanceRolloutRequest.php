@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The request object used by `AdvanceRollout`.
@@ -64,7 +64,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`.
      *     @type string $phase_id
      *           Required. The phase ID to advance the `Rollout` to.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $override_deploy_policy
+     *     @type string[] $override_deploy_policy
      *           Optional. Deploy policies to override. Format is
      *           `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      * }
@@ -133,7 +133,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      *
      * Generated from protobuf field <code>repeated string override_deploy_policy = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOverrideDeployPolicy()
     {
@@ -145,7 +145,7 @@ class AdvanceRolloutRequest extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/deployPolicies/{deployPolicy}`.
      *
      * Generated from protobuf field <code>repeated string override_deploy_policy = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOverrideDeployPolicy($var)

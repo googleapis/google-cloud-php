@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkServices\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response returned by the ListEndpointPolicies method.
@@ -45,13 +45,13 @@ class ListEndpointPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkServices\V1\EndpointPolicy>|\Google\Protobuf\Internal\RepeatedField $endpoint_policies
+     *     @type \Google\Cloud\NetworkServices\V1\EndpointPolicy[] $endpoint_policies
      *           List of EndpointPolicy resources.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `next_page_token` is included. To get the next set of results, call this
      *           method again using the value of `next_page_token` as `page_token`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Unreachable resources. Populated when the request opts into
      *           [return_partial_success][google.cloud.networkservices.v1.ListEndpointPoliciesRequest.return_partial_success]
      *           and reading across collections e.g. when
@@ -67,7 +67,7 @@ class ListEndpointPoliciesResponse extends \Google\Protobuf\Internal\Message
      * List of EndpointPolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EndpointPolicy endpoint_policies = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkServices\V1\EndpointPolicy>
      */
     public function getEndpointPolicies()
     {
@@ -78,7 +78,7 @@ class ListEndpointPoliciesResponse extends \Google\Protobuf\Internal\Message
      * List of EndpointPolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkservices.v1.EndpointPolicy endpoint_policies = 1;</code>
-     * @param array<\Google\Cloud\NetworkServices\V1\EndpointPolicy>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkServices\V1\EndpointPolicy[] $var
      * @return $this
      */
     public function setEndpointPolicies($var)
@@ -126,7 +126,7 @@ class ListEndpointPoliciesResponse extends \Google\Protobuf\Internal\Message
      * attempting to list all resources across all supported locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -140,7 +140,7 @@ class ListEndpointPoliciesResponse extends \Google\Protobuf\Internal\Message
      * attempting to list all resources across all supported locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

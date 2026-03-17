@@ -5,8 +5,8 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\V1\PollAirflowCommandResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Information about how a command ended.
@@ -98,5 +98,4 @@ class ExitInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

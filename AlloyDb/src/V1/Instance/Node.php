@@ -5,8 +5,8 @@
 namespace Google\Cloud\AlloyDb\V1\Instance;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details of a single node in the instance.
@@ -184,5 +184,4 @@ class Node extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

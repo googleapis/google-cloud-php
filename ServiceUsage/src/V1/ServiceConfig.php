@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceUsage\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of the service.
@@ -96,7 +96,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           `calendar.googleapis.com`.
      *     @type string $title
      *           The product title for this service.
-     *     @type array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $apis
+     *     @type \Google\Protobuf\Api[] $apis
      *           A list of API interfaces exported by this service. Contains only the names,
      *           versions, and method names of the interfaces.
      *     @type \Google\Api\Documentation $documentation
@@ -108,10 +108,10 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           Auth configuration. Contains only the OAuth rules.
      *     @type \Google\Api\Usage $usage
      *           Configuration controlling usage of this service.
-     *     @type array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type \Google\Api\Endpoint[] $endpoints
      *           Configuration for network endpoints. Contains only the names and aliases
      *           of the endpoints.
-     *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $monitored_resources
+     *     @type \Google\Api\MonitoredResourceDescriptor[] $monitored_resources
      *           Defines the monitored resources used by this service. This is required
      *           by the [Service.monitoring][google.api.Service.monitoring] and
      *           [Service.logging][google.api.Service.logging] configurations.
@@ -186,7 +186,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * versions, and method names of the interfaces.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Api>
      */
     public function getApis()
     {
@@ -198,7 +198,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * versions, and method names of the interfaces.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @param array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Api[] $var
      * @return $this
      */
     public function setApis($var)
@@ -360,7 +360,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * of the endpoints.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\Endpoint>
      */
     public function getEndpoints()
     {
@@ -372,7 +372,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * of the endpoints.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @param array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\Endpoint[] $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -389,7 +389,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Api\MonitoredResourceDescriptor>
      */
     public function getMonitoredResources()
     {
@@ -402,7 +402,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Api\MonitoredResourceDescriptor[] $var
      * @return $this
      */
     public function setMonitoredResources($var)

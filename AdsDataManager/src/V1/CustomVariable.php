@@ -5,8 +5,8 @@
 namespace Google\Ads\DataManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom variable for ads conversions.
@@ -50,7 +50,7 @@ class CustomVariable extends \Google\Protobuf\Internal\Message
      *           found for the given destination, it will be ignored.
      *     @type string $value
      *           Optional. The value to store for the custom variable.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_references
+     *     @type string[] $destination_references
      *           Optional. Reference string used to determine which of the
      *           [Event.destination_references][google.ads.datamanager.v1.Event.destination_references]
      *           the custom variable should be sent to. If empty, the
@@ -125,7 +125,7 @@ class CustomVariable extends \Google\Protobuf\Internal\Message
      * will be used.
      *
      * Generated from protobuf field <code>repeated string destination_references = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDestinationReferences()
     {
@@ -140,7 +140,7 @@ class CustomVariable extends \Google\Protobuf\Internal\Message
      * will be used.
      *
      * Generated from protobuf field <code>repeated string destination_references = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDestinationReferences($var)

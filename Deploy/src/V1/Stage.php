@@ -5,8 +5,8 @@
 namespace Google\Cloud\Deploy\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Stage specifies a location to which to deploy.
@@ -59,12 +59,12 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           `projects/project/locations/location/targets/my-target`). The location of
      *           the `Target` is inferred to be the same as the location of the
      *           `DeliveryPipeline` that contains this `Stage`.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
+     *     @type string[] $profiles
      *           Optional. Skaffold profiles to use when rendering the manifest for this
      *           stage's `Target`.
      *     @type \Google\Cloud\Deploy\V1\Strategy $strategy
      *           Optional. The strategy to use for a `Rollout` to this stage.
-     *     @type array<\Google\Cloud\Deploy\V1\DeployParameters>|\Google\Protobuf\Internal\RepeatedField $deploy_parameters
+     *     @type \Google\Cloud\Deploy\V1\DeployParameters[] $deploy_parameters
      *           Optional. The deploy parameters to use for the target in this stage.
      * }
      */
@@ -114,7 +114,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * stage's `Target`.
      *
      * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getProfiles()
     {
@@ -126,7 +126,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * stage's `Target`.
      *
      * Generated from protobuf field <code>repeated string profiles = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setProfiles($var)
@@ -177,7 +177,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Optional. The deploy parameters to use for the target in this stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployParameters deploy_parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Deploy\V1\DeployParameters>
      */
     public function getDeployParameters()
     {
@@ -188,7 +188,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Optional. The deploy parameters to use for the target in this stage.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeployParameters deploy_parameters = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Deploy\V1\DeployParameters>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Deploy\V1\DeployParameters[] $var
      * @return $this
      */
     public function setDeployParameters($var)

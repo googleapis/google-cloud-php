@@ -5,8 +5,8 @@
 namespace Google\Cloud\AutoMl\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for [AutoMl.GetDataset][google.cloud.automl.v1.AutoMl.GetDataset].

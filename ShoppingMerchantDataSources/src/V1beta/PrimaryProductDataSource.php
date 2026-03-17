@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\DataSources\V1beta;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The primary data source for local and online products.
@@ -112,14 +112,14 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      *           If set, the data source will only accept products matching this
      *           combination. If unset, the data source will accept products without that
      *           restriction.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $countries
+     *     @type string[] $countries
      *           Optional. The countries where the items may be displayed. Represented as a
      *           [CLDR territory
      *           code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      *     @type \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\DefaultRule $default_rule
      *           Optional. Default rule management of the data source. If set, the linked
      *           data sources will be replaced.
-     *     @type array<\Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination>|\Google\Protobuf\Internal\RepeatedField $destinations
+     *     @type \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination[] $destinations
      *           Optional. A list of destinations describing where products of the data
      *           source can be shown.
      *           When retrieving the data source, the list contains all the destinations
@@ -277,7 +277,7 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      * code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      *
      * Generated from protobuf field <code>repeated string countries = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCountries()
     {
@@ -290,7 +290,7 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      * code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      *
      * Generated from protobuf field <code>repeated string countries = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCountries($var)
@@ -354,7 +354,7 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      * Updating this field requires at least one destination.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Destination destinations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination>
      */
     public function getDestinations()
     {
@@ -376,7 +376,7 @@ class PrimaryProductDataSource extends \Google\Protobuf\Internal\Message
      * Updating this field requires at least one destination.
      *
      * Generated from protobuf field <code>repeated .google.shopping.merchant.datasources.v1beta.PrimaryProductDataSource.Destination destinations = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Shopping\Merchant\DataSources\V1beta\PrimaryProductDataSource\Destination[] $var
      * @return $this
      */
     public function setDestinations($var)

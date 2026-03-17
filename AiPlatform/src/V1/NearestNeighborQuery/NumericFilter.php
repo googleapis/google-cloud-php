@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\NearestNeighborQuery;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Numeric filter is used to search a subset of the entities by using boolean
@@ -227,5 +227,4 @@ class NumericFilter extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

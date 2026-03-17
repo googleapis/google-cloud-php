@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Google Cloud resource under analysis.
@@ -112,5 +112,4 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

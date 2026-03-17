@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An asset represents a resource in your environment. Asset types include
@@ -95,9 +95,9 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           Output only. The list of insights associated with the asset.
      *     @type \Google\Cloud\MigrationCenter\V1\AssetPerformanceData $performance_data
      *           Output only. Performance data for the asset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type string[] $sources
      *           Output only. The list of sources contributing to the asset.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $assigned_groups
+     *     @type string[] $assigned_groups
      *           Output only. The list of groups that the asset is assigned to.
      * }
      */
@@ -365,7 +365,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Output only. The list of sources contributing to the asset.
      *
      * Generated from protobuf field <code>repeated string sources = 22 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSources()
     {
@@ -376,7 +376,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Output only. The list of sources contributing to the asset.
      *
      * Generated from protobuf field <code>repeated string sources = 22 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSources($var)
@@ -391,7 +391,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Output only. The list of groups that the asset is assigned to.
      *
      * Generated from protobuf field <code>repeated string assigned_groups = 23 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getAssignedGroups()
     {
@@ -402,7 +402,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Output only. The list of groups that the asset is assigned to.
      *
      * Generated from protobuf field <code>repeated string assigned_groups = 23 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setAssignedGroups($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for webhooks.
@@ -32,7 +32,7 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\Cx\V3\Webhook>|\Google\Protobuf\Internal\RepeatedField $webhook_overrides
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\Webhook[] $webhook_overrides
      *           The list of webhooks to override for the agent environment. The webhook
      *           must exist in the agent. You can override fields in
      *           [`generic_web_service`][google.cloud.dialogflow.cx.v3.Webhook.generic_web_service]
@@ -53,7 +53,7 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
      * [`service_directory`][google.cloud.dialogflow.cx.v3.Webhook.service_directory].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Webhook webhook_overrides = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\Webhook>
      */
     public function getWebhookOverrides()
     {
@@ -68,7 +68,7 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
      * [`service_directory`][google.cloud.dialogflow.cx.v3.Webhook.service_directory].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.Webhook webhook_overrides = 1;</code>
-     * @param array<\Google\Cloud\Dialogflow\Cx\V3\Webhook>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\Cx\V3\Webhook[] $var
      * @return $this
      */
     public function setWebhookOverrides($var)
@@ -80,5 +80,4 @@ class WebhookConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

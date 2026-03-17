@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a single synthetic example, composed of multiple fields.
@@ -30,7 +30,7 @@ class SyntheticExample extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\SyntheticField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\AIPlatform\V1\SyntheticField[] $fields
      *           Required. A list of fields that constitute an example.
      * }
      */
@@ -43,7 +43,7 @@ class SyntheticExample extends \Google\Protobuf\Internal\Message
      * Required. A list of fields that constitute an example.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticField fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SyntheticField>
      */
     public function getFields()
     {
@@ -54,7 +54,7 @@ class SyntheticExample extends \Google\Protobuf\Internal\Message
      * Required. A list of fields that constitute an example.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SyntheticField fields = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SyntheticField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SyntheticField[] $var
      * @return $this
      */
     public function setFields($var)

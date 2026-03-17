@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The autoscaling limits for the instance. Users can define the minimum and
@@ -199,7 +199,4 @@ class AutoscalingLimits extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AutoscalingLimits::class, \Google\Cloud\Spanner\Admin\Instance\V1\AutoscalingConfig_AutoscalingLimits::class);
 

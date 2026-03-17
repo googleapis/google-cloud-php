@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\SyntheticMonitorTarget;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Synthetic Monitor deployed to a Cloud Functions V2 instance.
@@ -128,5 +128,4 @@ class CloudFunctionV2Target extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

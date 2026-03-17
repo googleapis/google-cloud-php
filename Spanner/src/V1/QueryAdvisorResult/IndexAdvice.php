@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1\QueryAdvisorResult;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Recommendation to add new indexes to run queries more efficiently.
@@ -36,7 +36,7 @@ class IndexAdvice extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ddl
+     *     @type string[] $ddl
      *           Optional. DDL statements to add new indexes that will improve the query.
      *     @type float $improvement_factor
      *           Optional. Estimated latency improvement factor. For example if the query
@@ -53,7 +53,7 @@ class IndexAdvice extends \Google\Protobuf\Internal\Message
      * Optional. DDL statements to add new indexes that will improve the query.
      *
      * Generated from protobuf field <code>repeated string ddl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDdl()
     {
@@ -64,7 +64,7 @@ class IndexAdvice extends \Google\Protobuf\Internal\Message
      * Optional. DDL statements to add new indexes that will improve the query.
      *
      * Generated from protobuf field <code>repeated string ddl = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDdl($var)
@@ -106,5 +106,4 @@ class IndexAdvice extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for Import methods.
@@ -68,8 +68,8 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * to be within the same project as
      * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
      * Make sure that both
-     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
-     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * `cloud-retail-customer-data-access\@system.gserviceaccount.com` and
+     * `service-<project number>\@gcp-sa-retail.iam.gserviceaccount.com`
      * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -113,8 +113,8 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           to be within the same project as
      *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
      *           Make sure that both
-     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
-     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     *           `cloud-retail-customer-data-access\@system.gserviceaccount.com` and
+     *           `service-<project number>\@gcp-sa-retail.iam.gserviceaccount.com`
      *           have the `pubsub.topics.publish` IAM permission on the topic.
      *           Only supported when
      *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -341,8 +341,8 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * to be within the same project as
      * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
      * Make sure that both
-     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
-     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * `cloud-retail-customer-data-access\@system.gserviceaccount.com` and
+     * `service-<project number>\@gcp-sa-retail.iam.gserviceaccount.com`
      * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
@@ -365,8 +365,8 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * to be within the same project as
      * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
      * Make sure that both
-     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
-     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * `cloud-retail-customer-data-access\@system.gserviceaccount.com` and
+     * `service-<project number>\@gcp-sa-retail.iam.gserviceaccount.com`
      * have the `pubsub.topics.publish` IAM permission on the topic.
      * Only supported when
      * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]

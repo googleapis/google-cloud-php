@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\Environment;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for the version.
@@ -88,5 +88,4 @@ class VersionConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Shopping\Merchant\OrderTracking\V1beta\OrderTrackingSignal;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The line items of the order.
@@ -292,5 +292,4 @@ class LineItemDetails extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

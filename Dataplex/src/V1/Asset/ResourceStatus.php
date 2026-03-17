@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Asset;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Status of the resource referenced by an asset.
@@ -176,5 +176,4 @@ class ResourceStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\PubSub\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListTopics` method.
@@ -35,7 +35,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\PubSub\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
+     *     @type \Google\Cloud\PubSub\V1\Topic[] $topics
      *           Optional. The resulting topics.
      *     @type string $next_page_token
      *           Optional. If not empty, indicates that there may be more topics that match
@@ -51,7 +51,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The resulting topics.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\PubSub\V1\Topic>
      */
     public function getTopics()
     {
@@ -62,7 +62,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * Optional. The resulting topics.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\PubSub\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\PubSub\V1\Topic[] $var
      * @return $this
      */
     public function setTopics($var)

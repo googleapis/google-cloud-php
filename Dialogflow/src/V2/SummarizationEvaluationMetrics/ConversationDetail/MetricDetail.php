@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Aggregated result on metric level. This conatins the evaluation results
@@ -47,7 +47,7 @@ class MetricDetail extends \Google\Protobuf\Internal\Message
      *     @type float $score
      *           Output only. Aggregated(average) score on this metric across all
      *           sections.
-     *     @type array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail\SectionDetail>|\Google\Protobuf\Internal\RepeatedField $section_details
+     *     @type \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail\SectionDetail[] $section_details
      *           Output only. List of section details.
      * }
      */
@@ -124,7 +124,7 @@ class MetricDetail extends \Google\Protobuf\Internal\Message
      * Output only. List of section details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail.SectionDetail section_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail\SectionDetail>
      */
     public function getSectionDetails()
     {
@@ -135,7 +135,7 @@ class MetricDetail extends \Google\Protobuf\Internal\Message
      * Output only. List of section details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SummarizationEvaluationMetrics.ConversationDetail.MetricDetail.SectionDetail section_details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail\SectionDetail>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\SummarizationEvaluationMetrics\ConversationDetail\MetricDetail\SectionDetail[] $var
      * @return $this
      */
     public function setSectionDetails($var)
@@ -147,5 +147,4 @@ class MetricDetail extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tasks\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -40,7 +40,7 @@ class ListQueuesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tasks\V2\Queue>|\Google\Protobuf\Internal\RepeatedField $queues
+     *     @type \Google\Cloud\Tasks\V2\Queue[] $queues
      *           The list of queues.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class ListQueuesResponse extends \Google\Protobuf\Internal\Message
      * The list of queues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tasks.v2.Queue queues = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tasks\V2\Queue>
      */
     public function getQueues()
     {
@@ -71,7 +71,7 @@ class ListQueuesResponse extends \Google\Protobuf\Internal\Message
      * The list of queues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tasks.v2.Queue queues = 1;</code>
-     * @param array<\Google\Cloud\Tasks\V2\Queue>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tasks\V2\Queue[] $var
      * @return $this
      */
     public function setQueues($var)

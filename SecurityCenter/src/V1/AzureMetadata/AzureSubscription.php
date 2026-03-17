@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1\AzureMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an Azure subscription.
@@ -102,5 +102,4 @@ class AzureSubscription extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

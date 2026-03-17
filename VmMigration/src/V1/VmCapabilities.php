@@ -5,8 +5,8 @@
 namespace Google\Cloud\VMMigration\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Migrating VM source information about the VM capabilities needed for some
@@ -36,7 +36,7 @@ class VmCapabilities extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $os_capabilities
+     *     @type int[] $os_capabilities
      *           Output only. Unordered list. List of certain VM OS capabilities needed for
      *           some Compute Engine features.
      *     @type \Google\Protobuf\Timestamp $last_os_capabilities_update_time
@@ -53,7 +53,7 @@ class VmCapabilities extends \Google\Protobuf\Internal\Message
      * some Compute Engine features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.OsCapability os_capabilities = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getOsCapabilities()
     {
@@ -65,7 +65,7 @@ class VmCapabilities extends \Google\Protobuf\Internal\Message
      * some Compute Engine features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.OsCapability os_capabilities = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_behavior) = UNORDERED_LIST];</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setOsCapabilities($var)

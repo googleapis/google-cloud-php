@@ -5,8 +5,8 @@
 namespace Google\Cloud\WebRisk\V1\ThreatInfo;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Context about why the URI is unsafe.
@@ -34,9 +34,9 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type int[] $labels
      *           Labels associated with this URI that explain how it was classified.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $comments
+     *     @type string[] $comments
      *           Free-form context on why this URI is unsafe.
      * }
      */
@@ -49,7 +49,7 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
      * Labels associated with this URI that explain how it was classified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatInfo.ThreatJustification.JustificationLabel labels = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getLabels()
     {
@@ -60,7 +60,7 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
      * Labels associated with this URI that explain how it was classified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.ThreatInfo.ThreatJustification.JustificationLabel labels = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setLabels($var)
@@ -75,7 +75,7 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
      * Free-form context on why this URI is unsafe.
      *
      * Generated from protobuf field <code>repeated string comments = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getComments()
     {
@@ -86,7 +86,7 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
      * Free-form context on why this URI is unsafe.
      *
      * Generated from protobuf field <code>repeated string comments = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setComments($var)
@@ -98,5 +98,4 @@ class ThreatJustification extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

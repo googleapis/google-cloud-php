@@ -5,8 +5,8 @@
 namespace Google\Cloud\Video\Transcoder\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Input attributes that provide additional information about the input asset.
@@ -28,7 +28,7 @@ class InputAttributes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Video\Transcoder\V1\TrackDefinition>|\Google\Protobuf\Internal\RepeatedField $track_definitions
+     *     @type \Google\Cloud\Video\Transcoder\V1\TrackDefinition[] $track_definitions
      *           Optional. A list of track definitions for the input asset.
      * }
      */
@@ -41,7 +41,7 @@ class InputAttributes extends \Google\Protobuf\Internal\Message
      * Optional. A list of track definitions for the input asset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TrackDefinition track_definitions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Video\Transcoder\V1\TrackDefinition>
      */
     public function getTrackDefinitions()
     {
@@ -52,7 +52,7 @@ class InputAttributes extends \Google\Protobuf\Internal\Message
      * Optional. A list of track definitions for the input asset.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.TrackDefinition track_definitions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Video\Transcoder\V1\TrackDefinition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Video\Transcoder\V1\TrackDefinition[] $var
      * @return $this
      */
     public function setTrackDefinitions($var)

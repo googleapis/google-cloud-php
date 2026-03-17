@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PublisherModel;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A named piece of documentation.
@@ -102,5 +102,4 @@ class Documentation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

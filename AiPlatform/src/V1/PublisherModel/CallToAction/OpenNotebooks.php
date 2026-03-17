@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Open notebooks.
@@ -28,7 +28,7 @@ class OpenNotebooks extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>|\Google\Protobuf\Internal\RepeatedField $notebooks
+     *     @type \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences[] $notebooks
      *           Required. Regional resource references to notebooks.
      * }
      */
@@ -41,7 +41,7 @@ class OpenNotebooks extends \Google\Protobuf\Internal\Message
      * Required. Regional resource references to notebooks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences notebooks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>
      */
     public function getNotebooks()
     {
@@ -52,7 +52,7 @@ class OpenNotebooks extends \Google\Protobuf\Internal\Message
      * Required. Regional resource references to notebooks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PublisherModel.CallToAction.RegionalResourceReferences notebooks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\PublisherModel\CallToAction\RegionalResourceReferences[] $var
      * @return $this
      */
     public function setNotebooks($var)
@@ -64,5 +64,4 @@ class OpenNotebooks extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

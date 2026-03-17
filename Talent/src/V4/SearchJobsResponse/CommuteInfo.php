@@ -5,8 +5,8 @@
 namespace Google\Cloud\Talent\V4\SearchJobsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Commute details related to this job.
@@ -130,5 +130,4 @@ class CommuteInfo extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

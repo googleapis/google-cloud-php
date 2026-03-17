@@ -5,8 +5,8 @@
 namespace Google\Cloud\LicenseManager\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message for response for aggregating usage count
@@ -40,11 +40,11 @@ class AggregateUsageResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\LicenseManager\V1\Usage>|\Google\Protobuf\Internal\RepeatedField $usages
+     *     @type \Google\Cloud\LicenseManager\V1\Usage[] $usages
      *           The aggregated records of usage per configuration
      *     @type string $next_page_token
      *           A token identifying a page of results the server should return.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -57,7 +57,7 @@ class AggregateUsageResponse extends \Google\Protobuf\Internal\Message
      * The aggregated records of usage per configuration
      *
      * Generated from protobuf field <code>repeated .google.cloud.licensemanager.v1.Usage usages = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\LicenseManager\V1\Usage>
      */
     public function getUsages()
     {
@@ -68,7 +68,7 @@ class AggregateUsageResponse extends \Google\Protobuf\Internal\Message
      * The aggregated records of usage per configuration
      *
      * Generated from protobuf field <code>repeated .google.cloud.licensemanager.v1.Usage usages = 1;</code>
-     * @param array<\Google\Cloud\LicenseManager\V1\Usage>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\LicenseManager\V1\Usage[] $var
      * @return $this
      */
     public function setUsages($var)
@@ -109,7 +109,7 @@ class AggregateUsageResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -120,7 +120,7 @@ class AggregateUsageResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

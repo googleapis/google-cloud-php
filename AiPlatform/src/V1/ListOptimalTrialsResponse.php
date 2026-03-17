@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -32,7 +32,7 @@ class ListOptimalTrialsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $optimal_trials
+     *     @type \Google\Cloud\AIPlatform\V1\Trial[] $optimal_trials
      *           The pareto-optimal Trials for multiple objective Study or the
      *           optimal trial for single objective Study. The definition of
      *           pareto-optimal can be checked in wiki page.
@@ -51,7 +51,7 @@ class ListOptimalTrialsResponse extends \Google\Protobuf\Internal\Message
      * https://en.wikipedia.org/wiki/Pareto_efficiency
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial optimal_trials = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Trial>
      */
     public function getOptimalTrials()
     {
@@ -65,7 +65,7 @@ class ListOptimalTrialsResponse extends \Google\Protobuf\Internal\Message
      * https://en.wikipedia.org/wiki/Pareto_efficiency
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial optimal_trials = 1;</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Trial[] $var
      * @return $this
      */
     public function setOptimalTrials($var)

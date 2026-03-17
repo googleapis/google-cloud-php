@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecretManager\V1beta2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for encrypting secret payloads using customer-managed
@@ -26,7 +26,7 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      * For secrets using the
      * [Automatic][google.cloud.secretmanager.v1beta2.Replication.Automatic]
      * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,7 +48,7 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      *           For secrets using the
      *           [Automatic][google.cloud.secretmanager.v1beta2.Replication.Automatic]
      *           replication policy type, Cloud KMS CryptoKeys must reside in `global`.
-     *           The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     *           The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,7 +66,7 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      * For secrets using the
      * [Automatic][google.cloud.secretmanager.v1beta2.Replication.Automatic]
      * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,7 +86,7 @@ class CustomerManagedEncryption extends \Google\Protobuf\Internal\Message
      * For secrets using the
      * [Automatic][google.cloud.secretmanager.v1beta2.Replication.Automatic]
      * replication policy type, Cloud KMS CryptoKeys must reside in `global`.
-     * The expected format is `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
+     * The expected format is `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/*`.
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

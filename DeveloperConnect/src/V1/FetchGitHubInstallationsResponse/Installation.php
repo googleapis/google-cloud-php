@@ -5,8 +5,8 @@
 namespace Google\Cloud\DeveloperConnect\V1\FetchGitHubInstallationsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents an installation of the GitHub App.
@@ -132,5 +132,4 @@ class Installation extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

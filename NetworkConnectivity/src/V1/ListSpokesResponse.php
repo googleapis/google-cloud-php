@@ -5,8 +5,8 @@
 namespace Google\Cloud\NetworkConnectivity\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -43,13 +43,13 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $spokes
+     *     @type \Google\Cloud\NetworkConnectivity\V1\Spoke[] $spokes
      *           The requested spokes.
      *     @type string $next_page_token
      *           The token for the next page of the response. To see more results,
      *           use this value as the page_token for your next request. If this value
      *           is empty, there are no more results.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -62,7 +62,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * The requested spokes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\NetworkConnectivity\V1\Spoke>
      */
     public function getSpokes()
     {
@@ -73,7 +73,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * The requested spokes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
-     * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\NetworkConnectivity\V1\Spoke[] $var
      * @return $this
      */
     public function setSpokes($var)
@@ -118,7 +118,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -129,7 +129,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

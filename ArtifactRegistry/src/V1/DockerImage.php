@@ -5,8 +5,8 @@
 namespace Google\Cloud\ArtifactRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * DockerImage represents a docker artifact.
@@ -26,10 +26,10 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
-     * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
+     * nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
      * where "us-west4" is the registry_location, "test-project" is the
      * project_id, "test-repo" is the repository_name and
-     * "nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
+     * "nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
      * is the image's digest.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -38,7 +38,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. URL to access the image.
      * Example:
-     * us-west4-docker.pkg.dev/test-project/test-repo/nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
+     * us-west4-docker.pkg.dev/test-project/test-repo/nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -117,16 +117,16 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *           name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      *           For example,
      *           "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
-     *           nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
+     *           nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
      *           where "us-west4" is the registry_location, "test-project" is the
      *           project_id, "test-repo" is the repository_name and
-     *           "nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
+     *           "nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
      *           is the image's digest.
      *     @type string $uri
      *           Required. URL to access the image.
      *           Example:
-     *           us-west4-docker.pkg.dev/test-project/test-repo/nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
+     *           us-west4-docker.pkg.dev/test-project/test-repo/nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
+     *     @type string[] $tags
      *           Tags attached to this image.
      *     @type int|string $image_size_bytes
      *           Calculated size of the image.
@@ -152,7 +152,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      *           If the `subject_digest` is set and no `artifact_type` is given, the
      *           `media_type` will be considered as the `artifact_type`. This field is
      *           returned as the `metadata.artifactType` field in the Version resource.
-     *     @type array<\Google\Cloud\ArtifactRegistry\V1\ImageManifest>|\Google\Protobuf\Internal\RepeatedField $image_manifests
+     *     @type \Google\Cloud\ArtifactRegistry\V1\ImageManifest[] $image_manifests
      *           Optional. For multi-arch images (manifest lists), this field contains the
      *           list of image manifests.
      * }
@@ -168,10 +168,10 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
-     * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
+     * nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
      * where "us-west4" is the registry_location, "test-project" is the
      * project_id, "test-repo" is the repository_name and
-     * "nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
+     * "nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
      * is the image's digest.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -188,10 +188,10 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * name:`projects/<project_id>/locations/<location>/repositories/<repository_name>/dockerImages/<docker_image>`.
      * For example,
      * "projects/test-project/locations/us-west4/repositories/test-repo/dockerImages/
-     * nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
+     * nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf",
      * where "us-west4" is the registry_location, "test-project" is the
      * project_id, "test-repo" is the repository_name and
-     * "nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
+     * "nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf"
      * is the image's digest.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -209,7 +209,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. URL to access the image.
      * Example:
-     * us-west4-docker.pkg.dev/test-project/test-repo/nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
+     * us-west4-docker.pkg.dev/test-project/test-repo/nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -222,7 +222,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
     /**
      * Required. URL to access the image.
      * Example:
-     * us-west4-docker.pkg.dev/test-project/test-repo/nginx&#64;sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
+     * us-west4-docker.pkg.dev/test-project/test-repo/nginx\@sha256:e9954c1fc875017be1c3e36eca16be2d9e9bccc4bf072163515467d6a823c7cf
      *
      * Generated from protobuf field <code>string uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -240,7 +240,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * Tags attached to this image.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTags()
     {
@@ -251,7 +251,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * Tags attached to this image.
      *
      * Generated from protobuf field <code>repeated string tags = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTags($var)
@@ -477,7 +477,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * list of image manifests.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImageManifest image_manifests = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ArtifactRegistry\V1\ImageManifest>
      */
     public function getImageManifests()
     {
@@ -489,7 +489,7 @@ class DockerImage extends \Google\Protobuf\Internal\Message
      * list of image manifests.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1.ImageManifest image_manifests = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\ArtifactRegistry\V1\ImageManifest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ArtifactRegistry\V1\ImageManifest[] $var
      * @return $this
      */
     public function setImageManifests($var)

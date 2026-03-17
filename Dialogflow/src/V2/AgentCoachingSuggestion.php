@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Suggestion for coaching agents.
@@ -40,11 +40,11 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>|\Google\Protobuf\Internal\RepeatedField $applicable_instructions
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingInstruction[] $applicable_instructions
      *           Optional. Instructions applicable based on the current context.
-     *     @type array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\AgentActionSuggestion>|\Google\Protobuf\Internal\RepeatedField $agent_action_suggestions
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\AgentActionSuggestion[] $agent_action_suggestions
      *           Optional. Suggested actions for the agent to take.
-     *     @type array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\SampleResponse>|\Google\Protobuf\Internal\RepeatedField $sample_responses
+     *     @type \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\SampleResponse[] $sample_responses
      *           Optional. Sample response for the Agent.
      * }
      */
@@ -57,7 +57,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Instructions applicable based on the current context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingInstruction applicable_instructions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>
      */
     public function getApplicableInstructions()
     {
@@ -68,7 +68,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Instructions applicable based on the current context.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingInstruction applicable_instructions = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\AgentCoachingInstruction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingInstruction[] $var
      * @return $this
      */
     public function setApplicableInstructions($var)
@@ -83,7 +83,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Suggested actions for the agent to take.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.AgentActionSuggestion agent_action_suggestions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\AgentActionSuggestion>
      */
     public function getAgentActionSuggestions()
     {
@@ -94,7 +94,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Suggested actions for the agent to take.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.AgentActionSuggestion agent_action_suggestions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\AgentActionSuggestion>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\AgentActionSuggestion[] $var
      * @return $this
      */
     public function setAgentActionSuggestions($var)
@@ -109,7 +109,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Sample response for the Agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.SampleResponse sample_responses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\SampleResponse>
      */
     public function getSampleResponses()
     {
@@ -120,7 +120,7 @@ class AgentCoachingSuggestion extends \Google\Protobuf\Internal\Message
      * Optional. Sample response for the Agent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AgentCoachingSuggestion.SampleResponse sample_responses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\SampleResponse>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\AgentCoachingSuggestion\SampleResponse[] $var
      * @return $this
      */
     public function setSampleResponses($var)

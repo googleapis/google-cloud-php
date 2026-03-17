@@ -5,8 +5,8 @@
 namespace Google\Cloud\ModelArmor\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Responsible AI Filter settings.
@@ -28,7 +28,7 @@ class RaiFilterSettings extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ModelArmor\V1\RaiFilterSettings\RaiFilter>|\Google\Protobuf\Internal\RepeatedField $rai_filters
+     *     @type \Google\Cloud\ModelArmor\V1\RaiFilterSettings\RaiFilter[] $rai_filters
      *           Required. List of Responsible AI filters enabled for template.
      * }
      */
@@ -41,7 +41,7 @@ class RaiFilterSettings extends \Google\Protobuf\Internal\Message
      * Required. List of Responsible AI filters enabled for template.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.RaiFilterSettings.RaiFilter rai_filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ModelArmor\V1\RaiFilterSettings\RaiFilter>
      */
     public function getRaiFilters()
     {
@@ -52,7 +52,7 @@ class RaiFilterSettings extends \Google\Protobuf\Internal\Message
      * Required. List of Responsible AI filters enabled for template.
      *
      * Generated from protobuf field <code>repeated .google.cloud.modelarmor.v1.RaiFilterSettings.RaiFilter rai_filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\ModelArmor\V1\RaiFilterSettings\RaiFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ModelArmor\V1\RaiFilterSettings\RaiFilter[] $var
      * @return $this
      */
     public function setRaiFilters($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\MigrationCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The type of machines to consider when calculating virtual machine migration
@@ -31,7 +31,7 @@ class MachinePreferences extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\MigrationCenter\V1\MachineSeries>|\Google\Protobuf\Internal\RepeatedField $allowed_machine_series
+     *     @type \Google\Cloud\MigrationCenter\V1\MachineSeries[] $allowed_machine_series
      *           Compute Engine machine series to consider for insights and recommendations.
      *           If empty, no restriction is applied on the machine series.
      * }
@@ -46,7 +46,7 @@ class MachinePreferences extends \Google\Protobuf\Internal\Message
      * If empty, no restriction is applied on the machine series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.MachineSeries allowed_machine_series = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\MigrationCenter\V1\MachineSeries>
      */
     public function getAllowedMachineSeries()
     {
@@ -58,7 +58,7 @@ class MachinePreferences extends \Google\Protobuf\Internal\Message
      * If empty, no restriction is applied on the machine series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.migrationcenter.v1.MachineSeries allowed_machine_series = 1;</code>
-     * @param array<\Google\Cloud\MigrationCenter\V1\MachineSeries>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\MigrationCenter\V1\MachineSeries[] $var
      * @return $this
      */
     public function setAllowedMachineSeries($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Batch\V1\Runnable;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Container runnable.
@@ -75,7 +75,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * username to login to the Docker registry that contains the image.
      * You can either specify the username directly by using plain text or
      * specify an encrypted username by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * `projects/{@*}secrets/{@*}versions/*`. However, using a secret is
      * recommended for enhanced security.
      * Caution: If you specify the username using plain text, you risk the
      * username being exposed to any users who can view the job or its logs.
@@ -93,7 +93,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * password to login to the Docker registry that contains the image.
      * For security, it is strongly recommended to specify an
      * encrypted password by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      * Warning: If you specify the password using plain text, you risk the
      * password being exposed to any users who can view the job or its logs.
      * To avoid this risk, specify a secret that contains the password instead.
@@ -133,7 +133,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *
      *     @type string $image_uri
      *           Required. The URI to pull the container image from.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type string[] $commands
      *           Required for some container images. Overrides the `CMD` specified in the
      *           container. If there is an `ENTRYPOINT` (either in the container image or
      *           with the `entrypoint` field below) then these commands are appended as
@@ -141,7 +141,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *     @type string $entrypoint
      *           Required for some container images. Overrides the `ENTRYPOINT` specified
      *           in the container.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type string[] $volumes
      *           Volumes to mount (bind mount) from the host machine files or directories
      *           into the container, formatted to match `--volume` option for the
      *           `docker run` command&mdash;for example, `/foo:/bar` or `/foo:/bar:ro`.
@@ -167,7 +167,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *           username to login to the Docker registry that contains the image.
      *           You can either specify the username directly by using plain text or
      *           specify an encrypted username by using a Secret Manager secret:
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     *           `projects/{@*}secrets/{@*}versions/*`. However, using a secret is
      *           recommended for enhanced security.
      *           Caution: If you specify the username using plain text, you risk the
      *           username being exposed to any users who can view the job or its logs.
@@ -181,7 +181,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *           password to login to the Docker registry that contains the image.
      *           For security, it is strongly recommended to specify an
      *           encrypted password by using a Secret Manager secret:
-     *           `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     *           `projects/{@*}secrets/{@*}versions/*`.
      *           Warning: If you specify the password using plain text, you risk the
      *           password being exposed to any users who can view the job or its logs.
      *           To avoid this risk, specify a secret that contains the password instead.
@@ -244,7 +244,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * arguments to the `ENTRYPOINT`.
      *
      * Generated from protobuf field <code>repeated string commands = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCommands()
     {
@@ -258,7 +258,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * arguments to the `ENTRYPOINT`.
      *
      * Generated from protobuf field <code>repeated string commands = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCommands($var)
@@ -310,7 +310,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * mount settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getVolumes()
     {
@@ -330,7 +330,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * mount settings, you can explicitly configure them in this field.
      *
      * Generated from protobuf field <code>repeated string volumes = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setVolumes($var)
@@ -410,7 +410,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * username to login to the Docker registry that contains the image.
      * You can either specify the username directly by using plain text or
      * specify an encrypted username by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * `projects/{@*}secrets/{@*}versions/*`. However, using a secret is
      * recommended for enhanced security.
      * Caution: If you specify the username using plain text, you risk the
      * username being exposed to any users who can view the job or its logs.
@@ -433,7 +433,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * username to login to the Docker registry that contains the image.
      * You can either specify the username directly by using plain text or
      * specify an encrypted username by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`. However, using a secret is
+     * `projects/{@*}secrets/{@*}versions/*`. However, using a secret is
      * recommended for enhanced security.
      * Caution: If you specify the username using plain text, you risk the
      * username being exposed to any users who can view the job or its logs.
@@ -460,7 +460,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * password to login to the Docker registry that contains the image.
      * For security, it is strongly recommended to specify an
      * encrypted password by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      * Warning: If you specify the password using plain text, you risk the
      * password being exposed to any users who can view the job or its logs.
      * To avoid this risk, specify a secret that contains the password instead.
@@ -482,7 +482,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * password to login to the Docker registry that contains the image.
      * For security, it is strongly recommended to specify an
      * encrypted password by using a Secret Manager secret:
-     * `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;`.
+     * `projects/{@*}secrets/{@*}versions/*`.
      * Warning: If you specify the password using plain text, you risk the
      * password being exposed to any users who can view the job or its logs.
      * To avoid this risk, specify a secret that contains the password instead.
@@ -556,5 +556,4 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

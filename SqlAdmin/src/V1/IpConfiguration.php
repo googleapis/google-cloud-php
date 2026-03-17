@@ -5,8 +5,8 @@
 namespace Google\Cloud\Sql\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * IP Management configuration.
@@ -150,7 +150,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           valid client certificates. If you want to enforce SSL/TLS without enforcing
      *           the requirement for valid client certificates, then use the `ssl_mode` flag
      *           instead of the `require_ssl` flag.
-     *     @type array<\Google\Cloud\Sql\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
+     *     @type \Google\Cloud\Sql\V1\AclEntry[] $authorized_networks
      *           The list of external networks that are allowed to connect to the instance
      *           using the IP. In 'CIDR' notation, also known as 'slash' notation (for
      *           example: `157.197.200.0/24`).
@@ -185,7 +185,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           PSC settings for this instance.
      *     @type int $server_ca_mode
      *           Specify what type of CA is used for the server certificate.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_subject_alternative_names
+     *     @type string[] $custom_subject_alternative_names
      *           Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
      *     @type string $server_ca_pool
      *           Optional. The resource name of the server CA pool for an instance with
@@ -397,7 +397,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AclEntry authorized_networks = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Sql\V1\AclEntry>
      */
     public function getAuthorizedNetworks()
     {
@@ -410,7 +410,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1.AclEntry authorized_networks = 4;</code>
-     * @param array<\Google\Cloud\Sql\V1\AclEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Sql\V1\AclEntry[] $var
      * @return $this
      */
     public function setAuthorizedNetworks($var)
@@ -656,7 +656,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
      *
      * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getCustomSubjectAlternativeNames()
     {
@@ -667,7 +667,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * Optional. Custom Subject Alternative Name(SAN)s for a Cloud SQL instance.
      *
      * Generated from protobuf field <code>repeated string custom_subject_alternative_names = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setCustomSubjectAlternativeNames($var)

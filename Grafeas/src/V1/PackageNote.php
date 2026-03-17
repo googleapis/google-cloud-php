@@ -5,8 +5,8 @@
 namespace Grafeas\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * PackageNote represents a particular package version.
@@ -96,7 +96,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the package.
-     *     @type array<\Grafeas\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $distribution
+     *     @type \Grafeas\V1\Distribution[] $distribution
      *           Deprecated.
      *           The various channels by which a package is distributed.
      *     @type string $package_type
@@ -119,7 +119,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *           The description of this package.
      *     @type \Grafeas\V1\License $license
      *           Licenses that have been declared by the authors of the package.
-     *     @type array<\Grafeas\V1\Digest>|\Google\Protobuf\Internal\RepeatedField $digest
+     *     @type \Grafeas\V1\Digest[] $digest
      *           Hash value, typically a file digest, that allows unique
      *           identification a specific package.
      * }
@@ -160,7 +160,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * The various channels by which a package is distributed.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Distribution distribution = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Distribution>
      */
     public function getDistribution()
     {
@@ -172,7 +172,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * The various channels by which a package is distributed.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Distribution distribution = 10;</code>
-     * @param array<\Grafeas\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Distribution[] $var
      * @return $this
      */
     public function setDistribution($var)
@@ -424,7 +424,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * identification a specific package.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Digest digest = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Grafeas\V1\Digest>
      */
     public function getDigest()
     {
@@ -436,7 +436,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * identification a specific package.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Digest digest = 19;</code>
-     * @param array<\Grafeas\V1\Digest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Grafeas\V1\Digest[] $var
      * @return $this
      */
     public function setDigest($var)

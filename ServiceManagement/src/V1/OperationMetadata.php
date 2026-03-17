@@ -5,8 +5,8 @@
 namespace Google\Cloud\ServiceManagement\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The metadata associated with a long running operation resource.
@@ -47,10 +47,10 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type string[] $resource_names
      *           The full name of the resources that this operation is directly
      *           associated with.
-     *     @type array<\Google\Cloud\ServiceManagement\V1\OperationMetadata\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\ServiceManagement\V1\OperationMetadata\Step[] $steps
      *           Detailed status information for each step. The order is undetermined.
      *     @type int $progress_percentage
      *           Percentage of completion of this operation, ranging from 0 to 100.
@@ -68,7 +68,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * associated with.
      *
      * Generated from protobuf field <code>repeated string resource_names = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getResourceNames()
     {
@@ -80,7 +80,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * associated with.
      *
      * Generated from protobuf field <code>repeated string resource_names = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setResourceNames($var)
@@ -95,7 +95,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Detailed status information for each step. The order is undetermined.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.OperationMetadata.Step steps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ServiceManagement\V1\OperationMetadata\Step>
      */
     public function getSteps()
     {
@@ -106,7 +106,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Detailed status information for each step. The order is undetermined.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.OperationMetadata.Step steps = 2;</code>
-     * @param array<\Google\Cloud\ServiceManagement\V1\OperationMetadata\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ServiceManagement\V1\OperationMetadata\Step[] $var
      * @return $this
      */
     public function setSteps($var)

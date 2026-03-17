@@ -5,8 +5,8 @@
 namespace Google\Cloud\Memorystore\V1\CertificateAuthority;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A managed certificate authority.
@@ -28,7 +28,7 @@ class ManagedCertificateAuthority extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority\CertChain>|\Google\Protobuf\Internal\RepeatedField $ca_certs
+     *     @type \Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority\CertChain[] $ca_certs
      *           PEM encoded CA certificate chains for managed server authentication.
      * }
      */
@@ -41,7 +41,7 @@ class ManagedCertificateAuthority extends \Google\Protobuf\Internal\Message
      * PEM encoded CA certificate chains for managed server authentication.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CertificateAuthority.ManagedCertificateAuthority.CertChain ca_certs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority\CertChain>
      */
     public function getCaCerts()
     {
@@ -52,7 +52,7 @@ class ManagedCertificateAuthority extends \Google\Protobuf\Internal\Message
      * PEM encoded CA certificate chains for managed server authentication.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memorystore.v1.CertificateAuthority.ManagedCertificateAuthority.CertChain ca_certs = 1;</code>
-     * @param array<\Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority\CertChain>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Memorystore\V1\CertificateAuthority\ManagedCertificateAuthority\CertChain[] $var
      * @return $this
      */
     public function setCaCerts($var)
@@ -64,5 +64,4 @@ class ManagedCertificateAuthority extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

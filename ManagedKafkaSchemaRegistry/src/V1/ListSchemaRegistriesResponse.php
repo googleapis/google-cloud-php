@@ -5,8 +5,8 @@
 namespace Google\Cloud\ManagedKafka\SchemaRegistry\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request for ListSchemaRegistries.
@@ -28,7 +28,7 @@ class ListSchemaRegistriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\SchemaRegistry>|\Google\Protobuf\Internal\RepeatedField $schema_registries
+     *     @type \Google\Cloud\ManagedKafka\SchemaRegistry\V1\SchemaRegistry[] $schema_registries
      *           The schema registry instances.
      * }
      */
@@ -41,7 +41,7 @@ class ListSchemaRegistriesResponse extends \Google\Protobuf\Internal\Message
      * The schema registry instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.SchemaRegistry schema_registries = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\SchemaRegistry>
      */
     public function getSchemaRegistries()
     {
@@ -52,7 +52,7 @@ class ListSchemaRegistriesResponse extends \Google\Protobuf\Internal\Message
      * The schema registry instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.managedkafka.schemaregistry.v1.SchemaRegistry schema_registries = 1;</code>
-     * @param array<\Google\Cloud\ManagedKafka\SchemaRegistry\V1\SchemaRegistry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\ManagedKafka\SchemaRegistry\V1\SchemaRegistry[] $var
      * @return $this
      */
     public function setSchemaRegistries($var)

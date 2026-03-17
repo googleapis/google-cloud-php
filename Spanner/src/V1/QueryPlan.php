@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains an ordered list of nodes appearing in the query plan.
@@ -37,7 +37,7 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\V1\PlanNode>|\Google\Protobuf\Internal\RepeatedField $plan_nodes
+     *     @type \Google\Cloud\Spanner\V1\PlanNode[] $plan_nodes
      *           The nodes in the query plan. Plan nodes are returned in pre-order starting
      *           with the plan root. Each [PlanNode][google.spanner.v1.PlanNode]'s `id`
      *           corresponds to its index in `plan_nodes`.
@@ -57,7 +57,7 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      * corresponds to its index in `plan_nodes`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\V1\PlanNode>
      */
     public function getPlanNodes()
     {
@@ -70,7 +70,7 @@ class QueryPlan extends \Google\Protobuf\Internal\Message
      * corresponds to its index in `plan_nodes`.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode plan_nodes = 1;</code>
-     * @param array<\Google\Cloud\Spanner\V1\PlanNode>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\V1\PlanNode[] $var
      * @return $this
      */
     public function setPlanNodes($var)

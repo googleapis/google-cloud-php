@@ -5,8 +5,8 @@
 namespace Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud Storage location.
@@ -92,5 +92,4 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

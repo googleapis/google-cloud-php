@@ -5,8 +5,8 @@
 namespace Google\Cloud\Spanner\Admin\Database\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -37,7 +37,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\Database>|\Google\Protobuf\Internal\RepeatedField $databases
+     *     @type \Google\Cloud\Spanner\Admin\Database\V1\Database[] $databases
      *           Databases that matched the request.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -54,7 +54,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * Databases that matched the request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Spanner\Admin\Database\V1\Database>
      */
     public function getDatabases()
     {
@@ -65,7 +65,7 @@ class ListDatabasesResponse extends \Google\Protobuf\Internal\Message
      * Databases that matched the request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.Database databases = 1;</code>
-     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\Database>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Spanner\Admin\Database\V1\Database[] $var
      * @return $this
      */
     public function setDatabases($var)

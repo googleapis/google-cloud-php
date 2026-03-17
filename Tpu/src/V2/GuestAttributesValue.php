@@ -5,8 +5,8 @@
 namespace Google\Cloud\Tpu\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Array of guest attribute namespace/key/value tuples.
@@ -28,7 +28,7 @@ class GuestAttributesValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Tpu\V2\GuestAttributesEntry>|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type \Google\Cloud\Tpu\V2\GuestAttributesEntry[] $items
      *           The list of guest attributes entries.
      * }
      */
@@ -41,7 +41,7 @@ class GuestAttributesValue extends \Google\Protobuf\Internal\Message
      * The list of guest attributes entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.GuestAttributesEntry items = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Tpu\V2\GuestAttributesEntry>
      */
     public function getItems()
     {
@@ -52,7 +52,7 @@ class GuestAttributesValue extends \Google\Protobuf\Internal\Message
      * The list of guest attributes entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v2.GuestAttributesEntry items = 1;</code>
-     * @param array<\Google\Cloud\Tpu\V2\GuestAttributesEntry>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Tpu\V2\GuestAttributesEntry[] $var
      * @return $this
      */
     public function setItems($var)

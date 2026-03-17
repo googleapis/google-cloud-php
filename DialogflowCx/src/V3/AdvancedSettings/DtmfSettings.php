@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\Cx\V3\AdvancedSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Define behaviors for DTMF (dual tone multi frequency).
@@ -240,5 +240,4 @@ class DtmfSettings extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

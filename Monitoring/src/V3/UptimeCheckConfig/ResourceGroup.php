@@ -5,8 +5,8 @@
 namespace Google\Cloud\Monitoring\V3\UptimeCheckConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The resource submessage for group checks. It can be used instead of a
@@ -107,5 +107,4 @@ class ResourceGroup extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

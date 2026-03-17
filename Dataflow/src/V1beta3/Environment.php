@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataflow\V1beta3;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the environment in which a Dataflow Job runs.
@@ -199,11 +199,11 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           unspecified, the service will attempt to choose a reasonable
      *           default.  This should be in the form of the API service name,
      *           e.g. "compute.googleapis.com".
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $experiments
+     *     @type string[] $experiments
      *           The list of experiments to enable. This field should be used for SDK
      *           related experiments and not for service related experiments. The proper
      *           field for service related experiments is service_options.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_options
+     *     @type string[] $service_options
      *           Optional. The list of service options to enable. This field should be used
      *           for service related experiments only. These experiments, when graduating to
      *           GA, should be replaced by dedicated fields or become default (i.e. always
@@ -213,7 +213,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           data at rest, AKA a Customer Managed Encryption Key (CMEK).
      *           Format:
      *             projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
-     *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $worker_pools
+     *     @type \Google\Cloud\Dataflow\V1beta3\WorkerPool[] $worker_pools
      *           The worker pools. At least one "harness" worker pool must be
      *           specified in order for the job to have workers.
      *     @type \Google\Protobuf\Struct $user_agent
@@ -357,7 +357,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * field for service related experiments is service_options.
      *
      * Generated from protobuf field <code>repeated string experiments = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getExperiments()
     {
@@ -370,7 +370,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * field for service related experiments is service_options.
      *
      * Generated from protobuf field <code>repeated string experiments = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setExperiments($var)
@@ -388,7 +388,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * on).
      *
      * Generated from protobuf field <code>repeated string service_options = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getServiceOptions()
     {
@@ -402,7 +402,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * on).
      *
      * Generated from protobuf field <code>repeated string service_options = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setServiceOptions($var)
@@ -450,7 +450,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * specified in order for the job to have workers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkerPool worker_pools = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataflow\V1beta3\WorkerPool>
      */
     public function getWorkerPools()
     {
@@ -462,7 +462,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * specified in order for the job to have workers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkerPool worker_pools = 4;</code>
-     * @param array<\Google\Cloud\Dataflow\V1beta3\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataflow\V1beta3\WorkerPool[] $var
      * @return $this
      */
     public function setWorkerPools($var)

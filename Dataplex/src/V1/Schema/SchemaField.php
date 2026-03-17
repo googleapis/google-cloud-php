@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataplex\V1\Schema;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a column field within a table schema.
@@ -66,7 +66,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      *           Required. The type of field.
      *     @type int $mode
      *           Required. Additional field semantics.
-     *     @type array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type \Google\Cloud\Dataplex\V1\Schema\SchemaField[] $fields
      *           Optional. Any nested field for complex types.
      * }
      */
@@ -189,7 +189,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      * Optional. Any nested field for complex types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dataplex\V1\Schema\SchemaField>
      */
     public function getFields()
     {
@@ -200,7 +200,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      * Optional. Any nested field for complex types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dataplex\V1\Schema\SchemaField[] $var
      * @return $this
      */
     public function setFields($var)
@@ -212,5 +212,4 @@ class SchemaField extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

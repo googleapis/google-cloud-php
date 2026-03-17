@@ -5,8 +5,8 @@
 namespace Google\Cloud\AIPlatform\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for [PredictionService.GenerateContent].
@@ -19,7 +19,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Required. The fully qualified name of the publisher model or tuned model
      * endpoint to use.
      * Publisher model format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      * Tuned model endpoint format:
      * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
@@ -138,10 +138,10 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           Required. The fully qualified name of the publisher model or tuned model
      *           endpoint to use.
      *           Publisher model format:
-     *           `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     *           `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *           Tuned model endpoint format:
      *           `projects/{project}/locations/{location}/endpoints/{endpoint}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $contents
+     *     @type \Google\Cloud\AIPlatform\V1\Content[] $contents
      *           Required. The content of the current conversation with the model.
      *           For single-turn queries, this is a single instance. For multi-turn queries,
      *           this is a repeated field that contains conversation history + latest
@@ -156,7 +156,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           control over caching (e.g. what content to cache) and enjoy guaranteed cost
      *           savings. Format:
      *           `projects/{project}/locations/{location}/cachedContents/{cachedContent}`
-     *     @type array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $tools
+     *     @type \Google\Cloud\AIPlatform\V1\Tool[] $tools
      *           Optional. A list of `Tools` the model may use to generate the next
      *           response.
      *           A `Tool` is a piece of code that enables the system to interact with
@@ -172,7 +172,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints) and can only contain lowercase letters, numeric
      *           characters, underscores, and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
-     *     @type array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $safety_settings
+     *     @type \Google\Cloud\AIPlatform\V1\SafetySetting[] $safety_settings
      *           Optional. Per request settings for blocking unsafe content.
      *           Enforced on GenerateContentResponse.candidates.
      *     @type \Google\Cloud\AIPlatform\V1\ModelArmorConfig $model_armor_config
@@ -191,7 +191,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Required. The fully qualified name of the publisher model or tuned model
      * endpoint to use.
      * Publisher model format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      * Tuned model endpoint format:
      * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
@@ -207,7 +207,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Required. The fully qualified name of the publisher model or tuned model
      * endpoint to use.
      * Publisher model format:
-     * `projects/{project}/locations/{location}/publishers/&#42;&#47;models/&#42;`
+     * `projects/{project}/locations/{location}/publishers/{@*}models/*`
      * Tuned model endpoint format:
      * `projects/{project}/locations/{location}/endpoints/{endpoint}`
      *
@@ -230,7 +230,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Content>
      */
     public function getContents()
     {
@@ -244,7 +244,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Content contents = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Content>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Content[] $var
      * @return $this
      */
     public function setContents($var)
@@ -337,7 +337,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\Tool>
      */
     public function getTools()
     {
@@ -352,7 +352,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * knowledge and scope of the model.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Tool tools = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\Tool>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\Tool[] $var
      * @return $this
      */
     public function setTools($var)
@@ -442,7 +442,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Enforced on GenerateContentResponse.candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetySetting safety_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\SafetySetting>
      */
     public function getSafetySettings()
     {
@@ -454,7 +454,7 @@ class GenerateContentRequest extends \Google\Protobuf\Internal\Message
      * Enforced on GenerateContentResponse.candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SafetySetting safety_settings = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\AIPlatform\V1\SafetySetting>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\AIPlatform\V1\SafetySetting[] $var
      * @return $this
      */
     public function setSafetySettings($var)

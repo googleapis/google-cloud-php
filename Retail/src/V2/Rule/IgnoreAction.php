@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\Rule;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Prevents a term in the query from being used in search.
@@ -29,7 +29,7 @@ class IgnoreAction extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ignore_terms
+     *     @type string[] $ignore_terms
      *           Terms to ignore in the search query.
      * }
      */
@@ -42,7 +42,7 @@ class IgnoreAction extends \Google\Protobuf\Internal\Message
      * Terms to ignore in the search query.
      *
      * Generated from protobuf field <code>repeated string ignore_terms = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIgnoreTerms()
     {
@@ -53,7 +53,7 @@ class IgnoreAction extends \Google\Protobuf\Internal\Message
      * Terms to ignore in the search query.
      *
      * Generated from protobuf field <code>repeated string ignore_terms = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIgnoreTerms($var)
@@ -65,5 +65,4 @@ class IgnoreAction extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

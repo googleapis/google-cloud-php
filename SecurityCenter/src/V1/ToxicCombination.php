@@ -5,8 +5,8 @@
 namespace Google\Cloud\SecurityCenter\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains details about a group of security issues that, when the issues
@@ -47,7 +47,7 @@ class ToxicCombination extends \Google\Protobuf\Internal\Message
      *           score](https://cloud.google.com/security-command-center/docs/attack-exposure-learn#attack_exposure_scores)
      *           of this toxic combination. The score is a measure of how much this toxic
      *           combination exposes one or more high-value resources to potential attack.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_findings
+     *     @type string[] $related_findings
      *           List of resource names of findings associated with this toxic combination.
      *           For example, `organizations/123/sources/456/findings/789`.
      * }
@@ -96,7 +96,7 @@ class ToxicCombination extends \Google\Protobuf\Internal\Message
      * For example, `organizations/123/sources/456/findings/789`.
      *
      * Generated from protobuf field <code>repeated string related_findings = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedFindings()
     {
@@ -108,7 +108,7 @@ class ToxicCombination extends \Google\Protobuf\Internal\Message
      * For example, `organizations/123/sources/456/findings/789`.
      *
      * Generated from protobuf field <code>repeated string related_findings = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedFindings($var)

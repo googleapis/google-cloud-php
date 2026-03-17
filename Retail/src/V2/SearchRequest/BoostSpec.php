@@ -5,8 +5,8 @@
 namespace Google\Cloud\Retail\V2\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Boost specification to boost certain items.
@@ -42,7 +42,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $condition_boost_specs
+     *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[] $condition_boost_specs
      *           Condition boost specifications. If a product matches multiple conditions
      *           in the specifications, boost scores from these specifications are all
      *           applied and combined in a non-linear way. Maximum number of
@@ -68,7 +68,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>
      */
     public function getConditionBoostSpecs()
     {
@@ -82,7 +82,7 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
      * specifications is 20.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.SearchRequest.BoostSpec.ConditionBoostSpec condition_boost_specs = 1;</code>
-     * @param array<\Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Retail\V2\SearchRequest\BoostSpec\ConditionBoostSpec[] $var
      * @return $this
      */
     public function setConditionBoostSpecs($var)
@@ -140,5 +140,4 @@ class BoostSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

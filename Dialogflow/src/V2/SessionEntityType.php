@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dialogflow\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A session represents a conversation between a Dialogflow agent and an
@@ -69,7 +69,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      *     @type int $entity_override_mode
      *           Required. Indicates whether the additional data should override or
      *           supplement the custom entity type definition.
-     *     @type array<\Google\Cloud\Dialogflow\V2\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *     @type \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $entities
      *           Required. The collection of entities associated with this session entity
      *           type.
      * }
@@ -154,7 +154,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\EntityType\Entity>
      */
     public function getEntities()
     {
@@ -166,7 +166,7 @@ class SessionEntityType extends \Google\Protobuf\Internal\Message
      * type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EntityType.Entity entities = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dialogflow\V2\EntityType\Entity>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dialogflow\V2\EntityType\Entity[] $var
      * @return $this
      */
     public function setEntities($var)

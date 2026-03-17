@@ -5,8 +5,8 @@
 namespace Google\Cloud\Security\PrivateCA\V1\CertificateAuthority;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A Cloud KMS key configuration that a
@@ -28,7 +28,7 @@ class KeyVersionSpec extends \Google\Protobuf\Internal\Message
      *     @type string $cloud_kms_key_version
      *           The resource name for an existing Cloud KMS CryptoKeyVersion in the
      *           format
-     *           `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     *           `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      *           This option enables full flexibility in the key's capabilities and
      *           properties.
      *     @type int $algorithm
@@ -45,7 +45,7 @@ class KeyVersionSpec extends \Google\Protobuf\Internal\Message
     /**
      * The resource name for an existing Cloud KMS CryptoKeyVersion in the
      * format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      * This option enables full flexibility in the key's capabilities and
      * properties.
      *
@@ -65,7 +65,7 @@ class KeyVersionSpec extends \Google\Protobuf\Internal\Message
     /**
      * The resource name for an existing Cloud KMS CryptoKeyVersion in the
      * format
-     * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;&#47;cryptoKeyVersions/&#42;`.
+     * `projects/{@*}locations/{@*}keyRings/{@*}cryptoKeys/{@*}cryptoKeyVersions/*`.
      * This option enables full flexibility in the key's capabilities and
      * properties.
      *
@@ -125,5 +125,4 @@ class KeyVersionSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

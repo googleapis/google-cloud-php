@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dataproc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The configuration of a GKE node pool used by a [Dataproc-on-GKE
@@ -52,7 +52,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodeConfig $config
      *           Optional. The node pool configuration.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type string[] $locations
      *           Optional. The list of Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) where
      *           node pool nodes associated with a Dataproc on GKE virtual cluster
@@ -120,7 +120,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      * will choose the zone.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getLocations()
     {
@@ -139,7 +139,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      * will choose the zone.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setLocations($var)

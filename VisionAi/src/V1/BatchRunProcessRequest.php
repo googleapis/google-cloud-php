@@ -5,8 +5,8 @@
 namespace Google\Cloud\VisionAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for running the processes in a batch.
@@ -48,7 +48,7 @@ class BatchRunProcessRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource shared by all processes being created.
-     *     @type array<\Google\Cloud\VisionAI\V1\CreateProcessRequest>|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type \Google\Cloud\VisionAI\V1\CreateProcessRequest[] $requests
      *           Required. The create process requests.
      *     @type \Google\Cloud\VisionAI\V1\BatchRunProcessRequest\BatchRunProcessOptions $options
      *           Optional. Options for batch processes.
@@ -91,7 +91,7 @@ class BatchRunProcessRequest extends \Google\Protobuf\Internal\Message
      * Required. The create process requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.CreateProcessRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\VisionAI\V1\CreateProcessRequest>
      */
     public function getRequests()
     {
@@ -102,7 +102,7 @@ class BatchRunProcessRequest extends \Google\Protobuf\Internal\Message
      * Required. The create process requests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.visionai.v1.CreateProcessRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\VisionAI\V1\CreateProcessRequest>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\VisionAI\V1\CreateProcessRequest[] $var
      * @return $this
      */
     public function setRequests($var)
