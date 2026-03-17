@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_GetDataSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\DataSchema;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\GetDataSchemaRequest;
 
 /**
  * Gets data schema inside corpus.
@@ -40,10 +41,14 @@ function get_data_schema_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new GetDataSchemaRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var DataSchema $response */
-        $response = $warehouseClient->getDataSchema($formattedName);
+        $response = $warehouseClient->getDataSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_UpdateCollection_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\Collection;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UpdateCollectionRequest;
 
 /**
  * Updates a collection.
@@ -41,13 +42,15 @@ function update_collection_sample(): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $collection = new Collection();
+    $request = (new UpdateCollectionRequest())
+        ->setCollection($collection);
 
     // Call the API and handle any network failures.
     try {
         /** @var Collection $response */
-        $response = $warehouseClient->updateCollection($collection);
+        $response = $warehouseClient->updateCollection($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

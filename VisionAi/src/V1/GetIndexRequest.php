@@ -25,6 +25,22 @@ class GetIndexRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Name of the Index resource.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/indexes/{index}`
+     *                     Please see {@see WarehouseClient::indexName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -33,6 +33,25 @@ class UpdateSearchHypernymRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\SearchHypernym $searchHypernym Required. The SearchHypernym to update.
+     *                                                                 The search hypernym's `name` field is used to identify the search hypernym
+     *                                                                 to be updated. Format:
+     *                                                                 `projects/{project_number}/locations/{location}/corpora/{corpus}/searchHypernyms/{search_hypernym}`
+     * @param \Google\Protobuf\FieldMask               $updateMask     The list of fields to be updated. If left unset, all field paths will be
+     *                                                                 updated/overwritten.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateSearchHypernymRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\SearchHypernym $searchHypernym, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSearchHypernym($searchHypernym)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

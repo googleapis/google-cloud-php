@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_ViewIndexedAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\IndexedAsset;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ViewIndexedAssetsRequest;
 
 /**
  * Lists assets inside an index.
@@ -41,10 +42,14 @@ function view_indexed_assets_sample(string $formattedIndex): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ViewIndexedAssetsRequest())
+        ->setIndex($formattedIndex);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->viewIndexedAssets($formattedIndex);
+        $response = $warehouseClient->viewIndexedAssets($request);
 
         /** @var IndexedAsset $element */
         foreach ($response as $element) {

@@ -32,6 +32,24 @@ class UpdateAnnotationRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\Annotation $annotation Required. The annotation to update.
+     *                                                         The annotation's `name` field is used to identify the annotation to be
+     *                                                         updated. Format:
+     *                                                         `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}/annotations/{annotation}`
+     * @param \Google\Protobuf\FieldMask           $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateAnnotationRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\Annotation $annotation, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAnnotation($annotation)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

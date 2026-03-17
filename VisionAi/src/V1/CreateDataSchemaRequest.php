@@ -31,6 +31,24 @@ class CreateDataSchemaRequest extends \Google\Protobuf\Internal\Message
     protected $data_schema = null;
 
     /**
+     * @param string                               $parent     Required. The parent resource where this data schema will be created.
+     *                                                         Format:
+     *                                                         `projects/{project_number}/locations/{location_id}/corpora/{corpus_id}`
+     *                                                         Please see {@see WarehouseClient::corpusName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\DataSchema $dataSchema Required. The data schema to create.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateDataSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\DataSchema $dataSchema): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDataSchema($dataSchema);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_CreateIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\CreateIndexEndpointRequest;
 use Google\Cloud\VisionAI\V1\IndexEndpoint;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,13 +41,16 @@ function create_index_endpoint_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $indexEndpoint = new IndexEndpoint();
+    $request = (new CreateIndexEndpointRequest())
+        ->setParent($formattedParent)
+        ->setIndexEndpoint($indexEndpoint);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->createIndexEndpoint($formattedParent, $indexEndpoint);
+        $response = $warehouseClient->createIndexEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_UpdateEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
 use Google\Cloud\VisionAI\V1\Event;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\UpdateEventRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_event_sample(): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $event = new Event();
+    $request = (new UpdateEventRequest())
+        ->setUpdateMask($updateMask)
+        ->setEvent($event);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->updateEvent($updateMask, $event);
+        $response = $streamsServiceClient->updateEvent($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

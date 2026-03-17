@@ -24,10 +24,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_RemoveCollectionItem_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\CollectionItem;
 use Google\Cloud\VisionAI\V1\CollectionItem\Type;
+use Google\Cloud\VisionAI\V1\RemoveCollectionItemRequest;
 use Google\Cloud\VisionAI\V1\RemoveCollectionItemResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Removes an item from a collection.
@@ -48,16 +49,18 @@ function remove_collection_item_sample(
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $item = (new CollectionItem())
         ->setCollection($formattedItemCollection)
         ->setType($itemType)
         ->setItemResource($itemItemResource);
+    $request = (new RemoveCollectionItemRequest())
+        ->setItem($item);
 
     // Call the API and handle any network failures.
     try {
         /** @var RemoveCollectionItemResponse $response */
-        $response = $warehouseClient->removeCollectionItem($item);
+        $response = $warehouseClient->removeCollectionItem($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

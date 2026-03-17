@@ -51,6 +51,22 @@ class CreateApplicationRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                                $parent      Required. Value for parent. Please see
+     *                                                           {@see AppPlatformClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Application $application Required. The resource being created.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateApplicationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Application $application): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setApplication($application);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

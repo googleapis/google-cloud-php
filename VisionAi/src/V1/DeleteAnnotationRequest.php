@@ -25,6 +25,22 @@ class DeleteAnnotationRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the annotation to delete.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}/annotations/{annotation}`
+     *                     Please see {@see WarehouseClient::annotationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\DeleteAnnotationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

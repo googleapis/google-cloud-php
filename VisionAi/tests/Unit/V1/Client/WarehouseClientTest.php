@@ -20,60 +20,124 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\VisionAI\Tests\Unit\V1;
+namespace Google\Cloud\VisionAI\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\VisionAI\V1\AddCollectionItemRequest;
 use Google\Cloud\VisionAI\V1\AddCollectionItemResponse;
+use Google\Cloud\VisionAI\V1\AnalyzeAssetRequest;
 use Google\Cloud\VisionAI\V1\AnalyzeAssetResponse;
+use Google\Cloud\VisionAI\V1\AnalyzeCorpusRequest;
 use Google\Cloud\VisionAI\V1\AnalyzeCorpusResponse;
 use Google\Cloud\VisionAI\V1\Annotation;
 use Google\Cloud\VisionAI\V1\Asset;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ClipAssetRequest;
 use Google\Cloud\VisionAI\V1\ClipAssetResponse;
 use Google\Cloud\VisionAI\V1\Collection;
 use Google\Cloud\VisionAI\V1\CollectionItem;
 use Google\Cloud\VisionAI\V1\CollectionItem\Type;
 use Google\Cloud\VisionAI\V1\Corpus;
+use Google\Cloud\VisionAI\V1\CreateAnnotationRequest;
+use Google\Cloud\VisionAI\V1\CreateAssetRequest;
+use Google\Cloud\VisionAI\V1\CreateCollectionRequest;
+use Google\Cloud\VisionAI\V1\CreateCorpusRequest;
+use Google\Cloud\VisionAI\V1\CreateDataSchemaRequest;
+use Google\Cloud\VisionAI\V1\CreateIndexEndpointRequest;
+use Google\Cloud\VisionAI\V1\CreateIndexRequest;
+use Google\Cloud\VisionAI\V1\CreateSearchConfigRequest;
+use Google\Cloud\VisionAI\V1\CreateSearchHypernymRequest;
 use Google\Cloud\VisionAI\V1\DataSchema;
+use Google\Cloud\VisionAI\V1\DeleteAnnotationRequest;
+use Google\Cloud\VisionAI\V1\DeleteAssetRequest;
+use Google\Cloud\VisionAI\V1\DeleteCollectionRequest;
+use Google\Cloud\VisionAI\V1\DeleteCorpusRequest;
+use Google\Cloud\VisionAI\V1\DeleteDataSchemaRequest;
+use Google\Cloud\VisionAI\V1\DeleteIndexEndpointRequest;
+use Google\Cloud\VisionAI\V1\DeleteIndexRequest;
+use Google\Cloud\VisionAI\V1\DeleteSearchConfigRequest;
+use Google\Cloud\VisionAI\V1\DeleteSearchHypernymRequest;
+use Google\Cloud\VisionAI\V1\DeployIndexRequest;
 use Google\Cloud\VisionAI\V1\DeployIndexResponse;
 use Google\Cloud\VisionAI\V1\DeployedIndex;
+use Google\Cloud\VisionAI\V1\GenerateHlsUriRequest;
 use Google\Cloud\VisionAI\V1\GenerateHlsUriResponse;
+use Google\Cloud\VisionAI\V1\GenerateRetrievalUrlRequest;
 use Google\Cloud\VisionAI\V1\GenerateRetrievalUrlResponse;
+use Google\Cloud\VisionAI\V1\GetAnnotationRequest;
+use Google\Cloud\VisionAI\V1\GetAssetRequest;
+use Google\Cloud\VisionAI\V1\GetCollectionRequest;
+use Google\Cloud\VisionAI\V1\GetCorpusRequest;
+use Google\Cloud\VisionAI\V1\GetDataSchemaRequest;
+use Google\Cloud\VisionAI\V1\GetIndexEndpointRequest;
+use Google\Cloud\VisionAI\V1\GetIndexRequest;
+use Google\Cloud\VisionAI\V1\GetSearchConfigRequest;
+use Google\Cloud\VisionAI\V1\GetSearchHypernymRequest;
+use Google\Cloud\VisionAI\V1\ImportAssetsRequest;
 use Google\Cloud\VisionAI\V1\ImportAssetsResponse;
 use Google\Cloud\VisionAI\V1\Index;
+use Google\Cloud\VisionAI\V1\IndexAssetRequest;
 use Google\Cloud\VisionAI\V1\IndexAssetResponse;
 use Google\Cloud\VisionAI\V1\IndexEndpoint;
 use Google\Cloud\VisionAI\V1\IndexedAsset;
 use Google\Cloud\VisionAI\V1\IngestAssetRequest;
 use Google\Cloud\VisionAI\V1\IngestAssetResponse;
+use Google\Cloud\VisionAI\V1\ListAnnotationsRequest;
 use Google\Cloud\VisionAI\V1\ListAnnotationsResponse;
+use Google\Cloud\VisionAI\V1\ListAssetsRequest;
 use Google\Cloud\VisionAI\V1\ListAssetsResponse;
+use Google\Cloud\VisionAI\V1\ListCollectionsRequest;
 use Google\Cloud\VisionAI\V1\ListCollectionsResponse;
+use Google\Cloud\VisionAI\V1\ListCorporaRequest;
 use Google\Cloud\VisionAI\V1\ListCorporaResponse;
+use Google\Cloud\VisionAI\V1\ListDataSchemasRequest;
 use Google\Cloud\VisionAI\V1\ListDataSchemasResponse;
+use Google\Cloud\VisionAI\V1\ListIndexEndpointsRequest;
 use Google\Cloud\VisionAI\V1\ListIndexEndpointsResponse;
+use Google\Cloud\VisionAI\V1\ListIndexesRequest;
 use Google\Cloud\VisionAI\V1\ListIndexesResponse;
+use Google\Cloud\VisionAI\V1\ListSearchConfigsRequest;
 use Google\Cloud\VisionAI\V1\ListSearchConfigsResponse;
+use Google\Cloud\VisionAI\V1\ListSearchHypernymsRequest;
 use Google\Cloud\VisionAI\V1\ListSearchHypernymsResponse;
 use Google\Cloud\VisionAI\V1\Partition\TemporalPartition;
+use Google\Cloud\VisionAI\V1\RemoveCollectionItemRequest;
 use Google\Cloud\VisionAI\V1\RemoveCollectionItemResponse;
+use Google\Cloud\VisionAI\V1\RemoveIndexAssetRequest;
 use Google\Cloud\VisionAI\V1\RemoveIndexAssetResponse;
+use Google\Cloud\VisionAI\V1\SearchAssetsRequest;
 use Google\Cloud\VisionAI\V1\SearchAssetsResponse;
 use Google\Cloud\VisionAI\V1\SearchConfig;
 use Google\Cloud\VisionAI\V1\SearchHypernym;
+use Google\Cloud\VisionAI\V1\SearchIndexEndpointRequest;
 use Google\Cloud\VisionAI\V1\SearchIndexEndpointResponse;
 use Google\Cloud\VisionAI\V1\SearchResultItem;
+use Google\Cloud\VisionAI\V1\UndeployIndexRequest;
 use Google\Cloud\VisionAI\V1\UndeployIndexResponse;
+use Google\Cloud\VisionAI\V1\UpdateAnnotationRequest;
+use Google\Cloud\VisionAI\V1\UpdateAssetRequest;
+use Google\Cloud\VisionAI\V1\UpdateCollectionRequest;
+use Google\Cloud\VisionAI\V1\UpdateCorpusRequest;
+use Google\Cloud\VisionAI\V1\UpdateDataSchemaRequest;
+use Google\Cloud\VisionAI\V1\UpdateIndexEndpointRequest;
+use Google\Cloud\VisionAI\V1\UpdateIndexRequest;
+use Google\Cloud\VisionAI\V1\UpdateSearchConfigRequest;
+use Google\Cloud\VisionAI\V1\UpdateSearchHypernymRequest;
+use Google\Cloud\VisionAI\V1\UploadAssetRequest;
 use Google\Cloud\VisionAI\V1\UploadAssetResponse;
+use Google\Cloud\VisionAI\V1\ViewCollectionItemsRequest;
 use Google\Cloud\VisionAI\V1\ViewCollectionItemsResponse;
+use Google\Cloud\VisionAI\V1\ViewIndexedAssetsRequest;
 use Google\Cloud\VisionAI\V1\ViewIndexedAssetsResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -98,7 +162,9 @@ class WarehouseClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return WarehouseClient */
@@ -129,7 +195,8 @@ class WarehouseClientTest extends GeneratedTest
         $item->setType($itemType);
         $itemItemResource = 'itemItemResource24554228';
         $item->setItemResource($itemItemResource);
-        $response = $gapicClient->addCollectionItem($item);
+        $request = (new AddCollectionItemRequest())->setItem($item);
+        $response = $gapicClient->addCollectionItem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -152,12 +219,15 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $item = new CollectionItem();
@@ -167,8 +237,9 @@ class WarehouseClientTest extends GeneratedTest
         $item->setType($itemType);
         $itemItemResource = 'itemItemResource24554228';
         $item->setItemResource($itemItemResource);
+        $request = (new AddCollectionItemRequest())->setItem($item);
         try {
-            $gapicClient->addCollectionItem($item);
+            $gapicClient->addCollectionItem($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -211,7 +282,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->analyzeAsset($formattedName);
+        $request = (new AnalyzeAssetRequest())->setName($formattedName);
+        $response = $gapicClient->analyzeAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -266,16 +338,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->analyzeAsset($formattedName);
+        $request = (new AnalyzeAssetRequest())->setName($formattedName);
+        $response = $gapicClient->analyzeAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -328,7 +404,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->analyzeCorpus($formattedName);
+        $request = (new AnalyzeCorpusRequest())->setName($formattedName);
+        $response = $gapicClient->analyzeCorpus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -383,16 +460,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->analyzeCorpus($formattedName);
+        $request = (new AnalyzeCorpusRequest())->setName($formattedName);
+        $response = $gapicClient->analyzeCorpus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -428,7 +509,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
         $temporalPartition = new TemporalPartition();
-        $response = $gapicClient->clipAsset($formattedName, $temporalPartition);
+        $request = (new ClipAssetRequest())->setName($formattedName)->setTemporalPartition($temporalPartition);
+        $response = $gapicClient->clipAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -453,18 +535,22 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
         $temporalPartition = new TemporalPartition();
+        $request = (new ClipAssetRequest())->setName($formattedName)->setTemporalPartition($temporalPartition);
         try {
-            $gapicClient->clipAsset($formattedName, $temporalPartition);
+            $gapicClient->clipAsset($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -492,7 +578,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
         $annotation = new Annotation();
-        $response = $gapicClient->createAnnotation($formattedParent, $annotation);
+        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
+        $response = $gapicClient->createAnnotation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -517,18 +604,22 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
         $annotation = new Annotation();
+        $request = (new CreateAnnotationRequest())->setParent($formattedParent)->setAnnotation($annotation);
         try {
-            $gapicClient->createAnnotation($formattedParent, $annotation);
+            $gapicClient->createAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -556,7 +647,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $asset = new Asset();
-        $response = $gapicClient->createAsset($formattedParent, $asset);
+        $request = (new CreateAssetRequest())->setParent($formattedParent)->setAsset($asset);
+        $response = $gapicClient->createAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -581,18 +673,22 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $asset = new Asset();
+        $request = (new CreateAssetRequest())->setParent($formattedParent)->setAsset($asset);
         try {
-            $gapicClient->createAsset($formattedParent, $asset);
+            $gapicClient->createAsset($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -642,7 +738,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $collection = new Collection();
-        $response = $gapicClient->createCollection($formattedParent, $collection);
+        $request = (new CreateCollectionRequest())->setParent($formattedParent)->setCollection($collection);
+        $response = $gapicClient->createCollection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -699,17 +796,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $collection = new Collection();
-        $response = $gapicClient->createCollection($formattedParent, $collection);
+        $request = (new CreateCollectionRequest())->setParent($formattedParent)->setCollection($collection);
+        $response = $gapicClient->createCollection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -775,7 +876,8 @@ class WarehouseClientTest extends GeneratedTest
         $corpus = new Corpus();
         $corpusDisplayName = 'corpusDisplayName351425925';
         $corpus->setDisplayName($corpusDisplayName);
-        $response = $gapicClient->createCorpus($parent, $corpus);
+        $request = (new CreateCorpusRequest())->setParent($parent)->setCorpus($corpus);
+        $response = $gapicClient->createCorpus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -832,19 +934,23 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
         $corpus = new Corpus();
         $corpusDisplayName = 'corpusDisplayName351425925';
         $corpus->setDisplayName($corpusDisplayName);
-        $response = $gapicClient->createCorpus($parent, $corpus);
+        $request = (new CreateCorpusRequest())->setParent($parent)->setCorpus($corpus);
+        $response = $gapicClient->createCorpus($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -886,7 +992,8 @@ class WarehouseClientTest extends GeneratedTest
         $dataSchema = new DataSchema();
         $dataSchemaKey = 'dataSchemaKey-1958334348';
         $dataSchema->setKey($dataSchemaKey);
-        $response = $gapicClient->createDataSchema($formattedParent, $dataSchema);
+        $request = (new CreateDataSchemaRequest())->setParent($formattedParent)->setDataSchema($dataSchema);
+        $response = $gapicClient->createDataSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -911,20 +1018,24 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $dataSchema = new DataSchema();
         $dataSchemaKey = 'dataSchemaKey-1958334348';
         $dataSchema->setKey($dataSchemaKey);
+        $request = (new CreateDataSchemaRequest())->setParent($formattedParent)->setDataSchema($dataSchema);
         try {
-            $gapicClient->createDataSchema($formattedParent, $dataSchema);
+            $gapicClient->createDataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -980,7 +1091,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $index = new Index();
-        $response = $gapicClient->createIndex($formattedParent, $index);
+        $request = (new CreateIndexRequest())->setParent($formattedParent)->setIndex($index);
+        $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1037,17 +1149,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $index = new Index();
-        $response = $gapicClient->createIndex($formattedParent, $index);
+        $request = (new CreateIndexRequest())->setParent($formattedParent)->setIndex($index);
+        $response = $gapicClient->createIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1111,7 +1227,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $indexEndpoint = new IndexEndpoint();
-        $response = $gapicClient->createIndexEndpoint($formattedParent, $indexEndpoint);
+        $request = (new CreateIndexEndpointRequest())->setParent($formattedParent)->setIndexEndpoint($indexEndpoint);
+        $response = $gapicClient->createIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1168,17 +1285,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $indexEndpoint = new IndexEndpoint();
-        $response = $gapicClient->createIndexEndpoint($formattedParent, $indexEndpoint);
+        $request = (new CreateIndexEndpointRequest())->setParent($formattedParent)->setIndexEndpoint($indexEndpoint);
+        $response = $gapicClient->createIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1217,7 +1338,11 @@ class WarehouseClientTest extends GeneratedTest
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $searchConfig = new SearchConfig();
         $searchConfigId = 'searchConfigId-2124186271';
-        $response = $gapicClient->createSearchConfig($formattedParent, $searchConfig, $searchConfigId);
+        $request = (new CreateSearchConfigRequest())
+            ->setParent($formattedParent)
+            ->setSearchConfig($searchConfig)
+            ->setSearchConfigId($searchConfigId);
+        $response = $gapicClient->createSearchConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1244,19 +1369,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $searchConfig = new SearchConfig();
         $searchConfigId = 'searchConfigId-2124186271';
+        $request = (new CreateSearchConfigRequest())
+            ->setParent($formattedParent)
+            ->setSearchConfig($searchConfig)
+            ->setSearchConfigId($searchConfigId);
         try {
-            $gapicClient->createSearchConfig($formattedParent, $searchConfig, $searchConfigId);
+            $gapicClient->createSearchConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1286,7 +1418,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $searchHypernym = new SearchHypernym();
-        $response = $gapicClient->createSearchHypernym($formattedParent, $searchHypernym);
+        $request = (new CreateSearchHypernymRequest())->setParent($formattedParent)->setSearchHypernym($searchHypernym);
+        $response = $gapicClient->createSearchHypernym($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1311,18 +1444,22 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
         $searchHypernym = new SearchHypernym();
+        $request = (new CreateSearchHypernymRequest())->setParent($formattedParent)->setSearchHypernym($searchHypernym);
         try {
-            $gapicClient->createSearchHypernym($formattedParent, $searchHypernym);
+            $gapicClient->createSearchHypernym($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1346,8 +1483,15 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]', '[ANNOTATION]');
-        $gapicClient->deleteAnnotation($formattedName);
+        $formattedName = $gapicClient->annotationName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[ASSET]',
+            '[ANNOTATION]'
+        );
+        $request = (new DeleteAnnotationRequest())->setName($formattedName);
+        $gapicClient->deleteAnnotation($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1369,17 +1513,27 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]', '[ANNOTATION]');
+        $formattedName = $gapicClient->annotationName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[ASSET]',
+            '[ANNOTATION]'
+        );
+        $request = (new DeleteAnnotationRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteAnnotation($formattedName);
+            $gapicClient->deleteAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1422,7 +1576,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->deleteAsset($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1477,16 +1632,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->deleteAsset($formattedName);
+        $request = (new DeleteAssetRequest())->setName($formattedName);
+        $response = $gapicClient->deleteAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1539,7 +1698,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
-        $response = $gapicClient->deleteCollection($formattedName);
+        $request = (new DeleteCollectionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteCollection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1594,16 +1754,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
-        $response = $gapicClient->deleteCollection($formattedName);
+        $request = (new DeleteCollectionRequest())->setName($formattedName);
+        $response = $gapicClient->deleteCollection($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1638,7 +1802,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $gapicClient->deleteCorpus($formattedName);
+        $request = (new DeleteCorpusRequest())->setName($formattedName);
+        $gapicClient->deleteCorpus($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1660,17 +1825,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new DeleteCorpusRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteCorpus($formattedName);
+            $gapicClient->deleteCorpus($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1695,7 +1864,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataSchemaName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[DATA_SCHEMA]');
-        $gapicClient->deleteDataSchema($formattedName);
+        $request = (new DeleteDataSchemaRequest())->setName($formattedName);
+        $gapicClient->deleteDataSchema($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -1717,17 +1887,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataSchemaName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[DATA_SCHEMA]');
+        $request = (new DeleteDataSchemaRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteDataSchema($formattedName);
+            $gapicClient->deleteDataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1770,7 +1944,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
-        $response = $gapicClient->deleteIndex($formattedName);
+        $request = (new DeleteIndexRequest())->setName($formattedName);
+        $response = $gapicClient->deleteIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1825,16 +2000,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
-        $response = $gapicClient->deleteIndex($formattedName);
+        $request = (new DeleteIndexRequest())->setName($formattedName);
+        $response = $gapicClient->deleteIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1887,7 +2066,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->deleteIndexEndpoint($formattedName);
+        $request = (new DeleteIndexEndpointRequest())->setName($formattedName);
+        $response = $gapicClient->deleteIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1942,16 +2122,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->deleteIndexEndpoint($formattedName);
+        $request = (new DeleteIndexEndpointRequest())->setName($formattedName);
+        $response = $gapicClient->deleteIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1985,8 +2169,14 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->searchConfigName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_CONFIG]');
-        $gapicClient->deleteSearchConfig($formattedName);
+        $formattedName = $gapicClient->searchConfigName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_CONFIG]'
+        );
+        $request = (new DeleteSearchConfigRequest())->setName($formattedName);
+        $gapicClient->deleteSearchConfig($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2008,17 +2198,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->searchConfigName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_CONFIG]');
+        $formattedName = $gapicClient->searchConfigName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_CONFIG]'
+        );
+        $request = (new DeleteSearchConfigRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteSearchConfig($formattedName);
+            $gapicClient->deleteSearchConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2042,8 +2241,14 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->searchHypernymName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_HYPERNYM]');
-        $gapicClient->deleteSearchHypernym($formattedName);
+        $formattedName = $gapicClient->searchHypernymName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_HYPERNYM]'
+        );
+        $request = (new DeleteSearchHypernymRequest())->setName($formattedName);
+        $gapicClient->deleteSearchHypernym($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -2065,17 +2270,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->searchHypernymName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_HYPERNYM]');
+        $formattedName = $gapicClient->searchHypernymName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_HYPERNYM]'
+        );
+        $request = (new DeleteSearchHypernymRequest())->setName($formattedName);
         try {
-            $gapicClient->deleteSearchHypernym($formattedName);
+            $gapicClient->deleteSearchHypernym($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2121,7 +2335,10 @@ class WarehouseClientTest extends GeneratedTest
         $deployedIndex = new DeployedIndex();
         $deployedIndexIndex = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
         $deployedIndex->setIndex($deployedIndexIndex);
-        $response = $gapicClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
+        $request = (new DeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
+        $response = $gapicClient->deployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2178,19 +2395,25 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
         $deployedIndex = new DeployedIndex();
         $deployedIndexIndex = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
         $deployedIndex->setIndex($deployedIndexIndex);
-        $response = $gapicClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
+        $request = (new DeployIndexRequest())
+            ->setIndexEndpoint($formattedIndexEndpoint)
+            ->setDeployedIndex($deployedIndex);
+        $response = $gapicClient->deployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2227,7 +2450,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->generateHlsUri($formattedName);
+        $request = (new GenerateHlsUriRequest())->setName($formattedName);
+        $response = $gapicClient->generateHlsUri($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2250,17 +2474,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
+        $request = (new GenerateHlsUriRequest())->setName($formattedName);
         try {
-            $gapicClient->generateHlsUri($formattedName);
+            $gapicClient->generateHlsUri($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2287,7 +2515,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->generateRetrievalUrl($formattedName);
+        $request = (new GenerateRetrievalUrlRequest())->setName($formattedName);
+        $response = $gapicClient->generateRetrievalUrl($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2310,17 +2539,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
+        $request = (new GenerateRetrievalUrlRequest())->setName($formattedName);
         try {
-            $gapicClient->generateRetrievalUrl($formattedName);
+            $gapicClient->generateRetrievalUrl($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2346,8 +2579,15 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]', '[ANNOTATION]');
-        $response = $gapicClient->getAnnotation($formattedName);
+        $formattedName = $gapicClient->annotationName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[ASSET]',
+            '[ANNOTATION]'
+        );
+        $request = (new GetAnnotationRequest())->setName($formattedName);
+        $response = $gapicClient->getAnnotation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2370,17 +2610,27 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->annotationName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]', '[ANNOTATION]');
+        $formattedName = $gapicClient->annotationName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[ASSET]',
+            '[ANNOTATION]'
+        );
+        $request = (new GetAnnotationRequest())->setName($formattedName);
         try {
-            $gapicClient->getAnnotation($formattedName);
+            $gapicClient->getAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2407,7 +2657,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->getAsset($formattedName);
+        $request = (new GetAssetRequest())->setName($formattedName);
+        $response = $gapicClient->getAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2430,17 +2681,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
+        $request = (new GetAssetRequest())->setName($formattedName);
         try {
-            $gapicClient->getAsset($formattedName);
+            $gapicClient->getAsset($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2471,7 +2726,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
-        $response = $gapicClient->getCollection($formattedName);
+        $request = (new GetCollectionRequest())->setName($formattedName);
+        $response = $gapicClient->getCollection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2494,17 +2750,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
+        $request = (new GetCollectionRequest())->setName($formattedName);
         try {
-            $gapicClient->getCollection($formattedName);
+            $gapicClient->getCollection($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2539,7 +2799,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->getCorpus($formattedName);
+        $request = (new GetCorpusRequest())->setName($formattedName);
+        $response = $gapicClient->getCorpus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2562,17 +2823,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new GetCorpusRequest())->setName($formattedName);
         try {
-            $gapicClient->getCorpus($formattedName);
+            $gapicClient->getCorpus($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2601,7 +2866,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataSchemaName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[DATA_SCHEMA]');
-        $response = $gapicClient->getDataSchema($formattedName);
+        $request = (new GetDataSchemaRequest())->setName($formattedName);
+        $response = $gapicClient->getDataSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2624,17 +2890,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataSchemaName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[DATA_SCHEMA]');
+        $request = (new GetDataSchemaRequest())->setName($formattedName);
         try {
-            $gapicClient->getDataSchema($formattedName);
+            $gapicClient->getDataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2671,7 +2941,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
-        $response = $gapicClient->getIndex($formattedName);
+        $request = (new GetIndexRequest())->setName($formattedName);
+        $response = $gapicClient->getIndex($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2694,17 +2965,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
+        $request = (new GetIndexRequest())->setName($formattedName);
         try {
-            $gapicClient->getIndex($formattedName);
+            $gapicClient->getIndex($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2739,7 +3014,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->getIndexEndpoint($formattedName);
+        $request = (new GetIndexEndpointRequest())->setName($formattedName);
+        $response = $gapicClient->getIndexEndpoint($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2762,17 +3038,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new GetIndexEndpointRequest())->setName($formattedName);
         try {
-            $gapicClient->getIndexEndpoint($formattedName);
+            $gapicClient->getIndexEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2798,8 +3078,14 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->searchConfigName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_CONFIG]');
-        $response = $gapicClient->getSearchConfig($formattedName);
+        $formattedName = $gapicClient->searchConfigName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_CONFIG]'
+        );
+        $request = (new GetSearchConfigRequest())->setName($formattedName);
+        $response = $gapicClient->getSearchConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2822,17 +3108,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->searchConfigName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_CONFIG]');
+        $formattedName = $gapicClient->searchConfigName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_CONFIG]'
+        );
+        $request = (new GetSearchConfigRequest())->setName($formattedName);
         try {
-            $gapicClient->getSearchConfig($formattedName);
+            $gapicClient->getSearchConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2860,8 +3155,14 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse->setHypernym($hypernym);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->searchHypernymName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_HYPERNYM]');
-        $response = $gapicClient->getSearchHypernym($formattedName);
+        $formattedName = $gapicClient->searchHypernymName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_HYPERNYM]'
+        );
+        $request = (new GetSearchHypernymRequest())->setName($formattedName);
+        $response = $gapicClient->getSearchHypernym($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2884,17 +3185,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->searchHypernymName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[SEARCH_HYPERNYM]');
+        $formattedName = $gapicClient->searchHypernymName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[SEARCH_HYPERNYM]'
+        );
+        $request = (new GetSearchHypernymRequest())->setName($formattedName);
         try {
-            $gapicClient->getSearchHypernym($formattedName);
+            $gapicClient->getSearchHypernym($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -2937,7 +3247,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->importAssets($formattedParent);
+        $request = (new ImportAssetsRequest())->setParent($formattedParent);
+        $response = $gapicClient->importAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2992,16 +3303,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->importAssets($formattedParent);
+        $request = (new ImportAssetsRequest())->setParent($formattedParent);
+        $response = $gapicClient->importAssets($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3054,7 +3369,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->indexAsset($formattedName);
+        $request = (new IndexAssetRequest())->setName($formattedName);
+        $response = $gapicClient->indexAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3109,16 +3425,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->indexAsset($formattedName);
+        $request = (new IndexAssetRequest())->setName($formattedName);
+        $response = $gapicClient->indexAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3164,10 +3484,7 @@ class WarehouseClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -3205,12 +3522,15 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->ingestAsset();
@@ -3239,14 +3559,13 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $annotationsElement = new Annotation();
-        $annotations = [
-            $annotationsElement,
-        ];
+        $annotations = [$annotationsElement];
         $expectedResponse = new ListAnnotationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAnnotations($annotations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listAnnotations();
+        $request = new ListAnnotationsRequest();
+        $response = $gapicClient->listAnnotations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3270,15 +3589,19 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListAnnotationsRequest();
         try {
-            $gapicClient->listAnnotations();
+            $gapicClient->listAnnotations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3301,16 +3624,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $assetsElement = new Asset();
-        $assets = [
-            $assetsElement,
-        ];
+        $assets = [$assetsElement];
         $expectedResponse = new ListAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listAssets($formattedParent);
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3336,17 +3658,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListAssetsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listAssets($formattedParent);
+            $gapicClient->listAssets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3369,16 +3695,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $collectionsElement = new Collection();
-        $collections = [
-            $collectionsElement,
-        ];
+        $collections = [$collectionsElement];
         $expectedResponse = new ListCollectionsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCollections($collections);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listCollections($formattedParent);
+        $request = (new ListCollectionsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listCollections($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3404,17 +3729,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListCollectionsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listCollections($formattedParent);
+            $gapicClient->listCollections($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3437,16 +3766,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $corporaElement = new Corpus();
-        $corpora = [
-            $corporaElement,
-        ];
+        $corpora = [$corporaElement];
         $expectedResponse = new ListCorporaResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setCorpora($corpora);
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $gapicClient->listCorpora($parent);
+        $request = (new ListCorporaRequest())->setParent($parent);
+        $response = $gapicClient->listCorpora($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3472,17 +3800,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $parent = 'parent-995424086';
+        $request = (new ListCorporaRequest())->setParent($parent);
         try {
-            $gapicClient->listCorpora($parent);
+            $gapicClient->listCorpora($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3505,16 +3837,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataSchemasElement = new DataSchema();
-        $dataSchemas = [
-            $dataSchemasElement,
-        ];
+        $dataSchemas = [$dataSchemasElement];
         $expectedResponse = new ListDataSchemasResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataSchemas($dataSchemas);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listDataSchemas($formattedParent);
+        $request = (new ListDataSchemasRequest())->setParent($formattedParent);
+        $response = $gapicClient->listDataSchemas($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3540,17 +3871,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListDataSchemasRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listDataSchemas($formattedParent);
+            $gapicClient->listDataSchemas($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3573,16 +3908,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $indexEndpointsElement = new IndexEndpoint();
-        $indexEndpoints = [
-            $indexEndpointsElement,
-        ];
+        $indexEndpoints = [$indexEndpointsElement];
         $expectedResponse = new ListIndexEndpointsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexEndpoints($indexEndpoints);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
-        $response = $gapicClient->listIndexEndpoints($formattedParent);
+        $request = (new ListIndexEndpointsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIndexEndpoints($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3608,17 +3942,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $request = (new ListIndexEndpointsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listIndexEndpoints($formattedParent);
+            $gapicClient->listIndexEndpoints($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3641,16 +3979,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $indexesElement = new Index();
-        $indexes = [
-            $indexesElement,
-        ];
+        $indexes = [$indexesElement];
         $expectedResponse = new ListIndexesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listIndexes($formattedParent);
+        $request = (new ListIndexesRequest())->setParent($formattedParent);
+        $response = $gapicClient->listIndexes($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3676,17 +4013,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListIndexesRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listIndexes($formattedParent);
+            $gapicClient->listIndexes($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3709,16 +4050,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $searchConfigsElement = new SearchConfig();
-        $searchConfigs = [
-            $searchConfigsElement,
-        ];
+        $searchConfigs = [$searchConfigsElement];
         $expectedResponse = new ListSearchConfigsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSearchConfigs($searchConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listSearchConfigs($formattedParent);
+        $request = (new ListSearchConfigsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSearchConfigs($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3744,17 +4084,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListSearchConfigsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listSearchConfigs($formattedParent);
+            $gapicClient->listSearchConfigs($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3777,16 +4121,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $searchHypernymsElement = new SearchHypernym();
-        $searchHypernyms = [
-            $searchHypernymsElement,
-        ];
+        $searchHypernyms = [$searchHypernymsElement];
         $expectedResponse = new ListSearchHypernymsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSearchHypernyms($searchHypernyms);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->listSearchHypernyms($formattedParent);
+        $request = (new ListSearchHypernymsRequest())->setParent($formattedParent);
+        $response = $gapicClient->listSearchHypernyms($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3812,17 +4155,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new ListSearchHypernymsRequest())->setParent($formattedParent);
         try {
-            $gapicClient->listSearchHypernyms($formattedParent);
+            $gapicClient->listSearchHypernyms($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3853,7 +4200,8 @@ class WarehouseClientTest extends GeneratedTest
         $item->setType($itemType);
         $itemItemResource = 'itemItemResource24554228';
         $item->setItemResource($itemItemResource);
-        $response = $gapicClient->removeCollectionItem($item);
+        $request = (new RemoveCollectionItemRequest())->setItem($item);
+        $response = $gapicClient->removeCollectionItem($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -3876,12 +4224,15 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $item = new CollectionItem();
@@ -3891,8 +4242,9 @@ class WarehouseClientTest extends GeneratedTest
         $item->setType($itemType);
         $itemItemResource = 'itemItemResource24554228';
         $item->setItemResource($itemItemResource);
+        $request = (new RemoveCollectionItemRequest())->setItem($item);
         try {
-            $gapicClient->removeCollectionItem($item);
+            $gapicClient->removeCollectionItem($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -3935,7 +4287,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->removeIndexAsset($formattedName);
+        $request = (new RemoveIndexAssetRequest())->setName($formattedName);
+        $response = $gapicClient->removeIndexAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3990,16 +4343,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->removeIndexAsset($formattedName);
+        $request = (new RemoveIndexAssetRequest())->setName($formattedName);
+        $response = $gapicClient->removeIndexAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4032,16 +4389,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $searchResultItemsElement = new SearchResultItem();
-        $searchResultItems = [
-            $searchResultItemsElement,
-        ];
+        $searchResultItems = [$searchResultItemsElement];
         $expectedResponse = new SearchAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSearchResultItems($searchResultItems);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedCorpus = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
-        $response = $gapicClient->searchAssets($formattedCorpus);
+        $request = (new SearchAssetsRequest())->setCorpus($formattedCorpus);
+        $response = $gapicClient->searchAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -4067,17 +4423,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedCorpus = $gapicClient->corpusName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]');
+        $request = (new SearchAssetsRequest())->setCorpus($formattedCorpus);
         try {
-            $gapicClient->searchAssets($formattedCorpus);
+            $gapicClient->searchAssets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4100,16 +4460,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $searchResultItemsElement = new SearchResultItem();
-        $searchResultItems = [
-            $searchResultItemsElement,
-        ];
+        $searchResultItems = [$searchResultItemsElement];
         $expectedResponse = new SearchIndexEndpointResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSearchResultItems($searchResultItems);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->searchIndexEndpoint($formattedIndexEndpoint);
+        $request = (new SearchIndexEndpointRequest())->setIndexEndpoint($formattedIndexEndpoint);
+        $response = $gapicClient->searchIndexEndpoint($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -4135,17 +4494,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
+        $request = (new SearchIndexEndpointRequest())->setIndexEndpoint($formattedIndexEndpoint);
         try {
-            $gapicClient->searchIndexEndpoint($formattedIndexEndpoint);
+            $gapicClient->searchIndexEndpoint($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4188,7 +4551,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->undeployIndex($formattedIndexEndpoint);
+        $request = (new UndeployIndexRequest())->setIndexEndpoint($formattedIndexEndpoint);
+        $response = $gapicClient->undeployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4243,16 +4607,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedIndexEndpoint = $gapicClient->indexEndpointName('[PROJECT]', '[LOCATION]', '[INDEX_ENDPOINT]');
-        $response = $gapicClient->undeployIndex($formattedIndexEndpoint);
+        $request = (new UndeployIndexRequest())->setIndexEndpoint($formattedIndexEndpoint);
+        $response = $gapicClient->undeployIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4289,7 +4657,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $annotation = new Annotation();
-        $response = $gapicClient->updateAnnotation($annotation);
+        $request = (new UpdateAnnotationRequest())->setAnnotation($annotation);
+        $response = $gapicClient->updateAnnotation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4312,17 +4681,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $annotation = new Annotation();
+        $request = (new UpdateAnnotationRequest())->setAnnotation($annotation);
         try {
-            $gapicClient->updateAnnotation($annotation);
+            $gapicClient->updateAnnotation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4349,7 +4722,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $asset = new Asset();
-        $response = $gapicClient->updateAsset($asset);
+        $request = (new UpdateAssetRequest())->setAsset($asset);
+        $response = $gapicClient->updateAsset($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4372,17 +4746,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $asset = new Asset();
+        $request = (new UpdateAssetRequest())->setAsset($asset);
         try {
-            $gapicClient->updateAsset($asset);
+            $gapicClient->updateAsset($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4413,7 +4791,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $collection = new Collection();
-        $response = $gapicClient->updateCollection($collection);
+        $request = (new UpdateCollectionRequest())->setCollection($collection);
+        $response = $gapicClient->updateCollection($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4436,17 +4815,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $collection = new Collection();
+        $request = (new UpdateCollectionRequest())->setCollection($collection);
         try {
-            $gapicClient->updateCollection($collection);
+            $gapicClient->updateCollection($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4483,7 +4866,8 @@ class WarehouseClientTest extends GeneratedTest
         $corpus = new Corpus();
         $corpusDisplayName = 'corpusDisplayName351425925';
         $corpus->setDisplayName($corpusDisplayName);
-        $response = $gapicClient->updateCorpus($corpus);
+        $request = (new UpdateCorpusRequest())->setCorpus($corpus);
+        $response = $gapicClient->updateCorpus($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4506,19 +4890,23 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $corpus = new Corpus();
         $corpusDisplayName = 'corpusDisplayName351425925';
         $corpus->setDisplayName($corpusDisplayName);
+        $request = (new UpdateCorpusRequest())->setCorpus($corpus);
         try {
-            $gapicClient->updateCorpus($corpus);
+            $gapicClient->updateCorpus($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4549,7 +4937,8 @@ class WarehouseClientTest extends GeneratedTest
         $dataSchema = new DataSchema();
         $dataSchemaKey = 'dataSchemaKey-1958334348';
         $dataSchema->setKey($dataSchemaKey);
-        $response = $gapicClient->updateDataSchema($dataSchema);
+        $request = (new UpdateDataSchemaRequest())->setDataSchema($dataSchema);
+        $response = $gapicClient->updateDataSchema($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4572,19 +4961,23 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $dataSchema = new DataSchema();
         $dataSchemaKey = 'dataSchemaKey-1958334348';
         $dataSchema->setKey($dataSchemaKey);
+        $request = (new UpdateDataSchemaRequest())->setDataSchema($dataSchema);
         try {
-            $gapicClient->updateDataSchema($dataSchema);
+            $gapicClient->updateDataSchema($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4640,7 +5033,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $index = new Index();
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateIndex($index, $updateMask);
+        $request = (new UpdateIndexRequest())->setIndex($index)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4697,17 +5091,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $index = new Index();
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateIndex($index, $updateMask);
+        $request = (new UpdateIndexRequest())->setIndex($index)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateIndex($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4771,7 +5169,8 @@ class WarehouseClientTest extends GeneratedTest
         // Mock request
         $indexEndpoint = new IndexEndpoint();
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateIndexEndpoint($indexEndpoint, $updateMask);
+        $request = (new UpdateIndexEndpointRequest())->setIndexEndpoint($indexEndpoint)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4828,17 +5227,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $indexEndpoint = new IndexEndpoint();
         $updateMask = new FieldMask();
-        $response = $gapicClient->updateIndexEndpoint($indexEndpoint, $updateMask);
+        $request = (new UpdateIndexEndpointRequest())->setIndexEndpoint($indexEndpoint)->setUpdateMask($updateMask);
+        $response = $gapicClient->updateIndexEndpoint($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4875,7 +5278,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $searchConfig = new SearchConfig();
-        $response = $gapicClient->updateSearchConfig($searchConfig);
+        $request = (new UpdateSearchConfigRequest())->setSearchConfig($searchConfig);
+        $response = $gapicClient->updateSearchConfig($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4898,17 +5302,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $searchConfig = new SearchConfig();
+        $request = (new UpdateSearchConfigRequest())->setSearchConfig($searchConfig);
         try {
-            $gapicClient->updateSearchConfig($searchConfig);
+            $gapicClient->updateSearchConfig($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -4937,7 +5345,8 @@ class WarehouseClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $searchHypernym = new SearchHypernym();
-        $response = $gapicClient->updateSearchHypernym($searchHypernym);
+        $request = (new UpdateSearchHypernymRequest())->setSearchHypernym($searchHypernym);
+        $response = $gapicClient->updateSearchHypernym($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -4960,17 +5369,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $searchHypernym = new SearchHypernym();
+        $request = (new UpdateSearchHypernymRequest())->setSearchHypernym($searchHypernym);
         try {
-            $gapicClient->updateSearchHypernym($searchHypernym);
+            $gapicClient->updateSearchHypernym($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5013,7 +5426,8 @@ class WarehouseClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->uploadAsset($formattedName);
+        $request = (new UploadAssetRequest())->setName($formattedName);
+        $response = $gapicClient->uploadAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -5068,16 +5482,20 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->assetName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[ASSET]');
-        $response = $gapicClient->uploadAsset($formattedName);
+        $request = (new UploadAssetRequest())->setName($formattedName);
+        $response = $gapicClient->uploadAsset($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -5110,16 +5528,20 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $itemsElement = new CollectionItem();
-        $items = [
-            $itemsElement,
-        ];
+        $items = [$itemsElement];
         $expectedResponse = new ViewCollectionItemsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedCollection = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
-        $response = $gapicClient->viewCollectionItems($formattedCollection);
+        $formattedCollection = $gapicClient->collectionName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[COLLECTION]'
+        );
+        $request = (new ViewCollectionItemsRequest())->setCollection($formattedCollection);
+        $response = $gapicClient->viewCollectionItems($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5145,17 +5567,26 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedCollection = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
+        $formattedCollection = $gapicClient->collectionName(
+            '[PROJECT_NUMBER]',
+            '[LOCATION]',
+            '[CORPUS]',
+            '[COLLECTION]'
+        );
+        $request = (new ViewCollectionItemsRequest())->setCollection($formattedCollection);
         try {
-            $gapicClient->viewCollectionItems($formattedCollection);
+            $gapicClient->viewCollectionItems($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5178,16 +5609,15 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $indexedAssetsElement = new IndexedAsset();
-        $indexedAssets = [
-            $indexedAssetsElement,
-        ];
+        $indexedAssets = [$indexedAssetsElement];
         $expectedResponse = new ViewIndexedAssetsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexedAssets($indexedAssets);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedIndex = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
-        $response = $gapicClient->viewIndexedAssets($formattedIndex);
+        $request = (new ViewIndexedAssetsRequest())->setIndex($formattedIndex);
+        $response = $gapicClient->viewIndexedAssets($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5213,17 +5643,21 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedIndex = $gapicClient->indexName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[INDEX]');
+        $request = (new ViewIndexedAssetsRequest())->setIndex($formattedIndex);
         try {
-            $gapicClient->viewIndexedAssets($formattedIndex);
+            $gapicClient->viewIndexedAssets($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5252,7 +5686,8 @@ class WarehouseClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getLocation();
+        $request = new GetLocationRequest();
+        $response = $gapicClient->getLocation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -5273,15 +5708,19 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new GetLocationRequest();
         try {
-            $gapicClient->getLocation();
+            $gapicClient->getLocation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5304,14 +5743,13 @@ class WarehouseClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listLocations();
+        $request = new ListLocationsRequest();
+        $response = $gapicClient->listLocations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -5335,15 +5773,19 @@ class WarehouseClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListLocationsRequest();
         try {
-            $gapicClient->listLocations();
+            $gapicClient->listLocations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -5352,6 +5794,38 @@ class WarehouseClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function addCollectionItemAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new AddCollectionItemResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $item = new CollectionItem();
+        $itemCollection = $gapicClient->collectionName('[PROJECT_NUMBER]', '[LOCATION]', '[CORPUS]', '[COLLECTION]');
+        $item->setCollection($itemCollection);
+        $itemType = Type::TYPE_UNSPECIFIED;
+        $item->setType($itemType);
+        $itemItemResource = 'itemItemResource24554228';
+        $item->setItemResource($itemItemResource);
+        $request = (new AddCollectionItemRequest())->setItem($item);
+        $response = $gapicClient->addCollectionItemAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.visionai.v1.Warehouse/AddCollectionItem', $actualFuncCall);
+        $actualValue = $actualRequestObject->getItem();
+        $this->assertProtobufEquals($item, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 }

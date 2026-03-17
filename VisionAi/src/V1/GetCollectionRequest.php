@@ -24,6 +24,21 @@ class GetCollectionRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the collection to retrieve. Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/collections/{collection}`
+     *                     Please see {@see WarehouseClient::collectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetCollectionRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

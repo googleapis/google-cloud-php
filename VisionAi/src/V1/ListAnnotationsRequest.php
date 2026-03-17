@@ -62,6 +62,21 @@ class ListAnnotationsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $parent The parent, which owns this collection of annotations.
+     *                       Format:
+     *                       `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}`
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListAnnotationsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

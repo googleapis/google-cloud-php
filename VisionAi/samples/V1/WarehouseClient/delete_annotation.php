@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_DeleteAnnotation_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\DeleteAnnotationRequest;
 
 /**
  * Deletes annotation inside asset.
@@ -39,9 +40,13 @@ function delete_annotation_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAnnotationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $warehouseClient->deleteAnnotation($formattedName);
+        $warehouseClient->deleteAnnotation($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

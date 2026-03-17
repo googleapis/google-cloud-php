@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_UpdateProcessor_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
 use Google\Cloud\VisionAI\V1\Processor;
+use Google\Cloud\VisionAI\V1\UpdateProcessorRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,14 +40,16 @@ function update_processor_sample(string $processorDisplayName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $processor = (new Processor())
         ->setDisplayName($processorDisplayName);
+    $request = (new UpdateProcessorRequest())
+        ->setProcessor($processor);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->updateProcessor($processor);
+        $response = $appPlatformClient->updateProcessor($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

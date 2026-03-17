@@ -40,6 +40,29 @@ class CreateSearchConfigRequest extends \Google\Protobuf\Internal\Message
     protected $search_config_id = '';
 
     /**
+     * @param string                                 $parent         Required. The parent resource where this search configuration will be
+     *                                                               created. Format:
+     *                                                               `projects/{project_number}/locations/{location_id}/corpora/{corpus_id}`
+     *                                                               Please see {@see WarehouseClient::corpusName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\SearchConfig $searchConfig   Required. The search config to create.
+     * @param string                                 $searchConfigId Required. ID to use for the new search config. Will become the final
+     *                                                               component of the SearchConfig's resource name. This value should be up to
+     *                                                               63 characters, and valid characters are /[a-z][0-9]-_/. The first character
+     *                                                               must be a letter, the last could be a letter or a number.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateSearchConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\SearchConfig $searchConfig, string $searchConfigId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSearchConfig($searchConfig)
+            ->setSearchConfigId($searchConfigId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

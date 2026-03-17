@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\VisionAI\V1\Annotation;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ListAnnotationsRequest;
 
 /**
  * Lists a list of annotations inside asset.
@@ -42,10 +43,13 @@ function list_annotations_sample(): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = new ListAnnotationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->listAnnotations();
+        $response = $warehouseClient->listAnnotations($request);
 
         /** @var Annotation $element */
         foreach ($response as $element) {

@@ -42,6 +42,21 @@ class ViewCollectionItemsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $collection Required. The collection to view. Format:
+     *                           `projects/{project_number}/locations/{location}/corpora/{corpus}/collections/{collection}`
+     *                           Please see {@see WarehouseClient::collectionName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ViewCollectionItemsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $collection): self
+    {
+        return (new self())
+            ->setCollection($collection);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

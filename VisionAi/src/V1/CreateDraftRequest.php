@@ -51,6 +51,24 @@ class CreateDraftRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                          $parent  Required. Value for parent. Please see
+     *                                                 {@see AppPlatformClient::applicationName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Draft $draft   Required. The resource being created.
+     * @param string                          $draftId Required. Id of the requesting object.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateDraftRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Draft $draft, string $draftId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setDraft($draft)
+            ->setDraftId($draftId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

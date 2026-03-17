@@ -23,6 +23,19 @@ class AddCollectionItemRequest extends \Google\Protobuf\Internal\Message
     protected $item = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\CollectionItem $item Required. The item to be added.
+     *
+     * @return \Google\Cloud\VisionAI\V1\AddCollectionItemRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\CollectionItem $item): self
+    {
+        return (new self())
+            ->setItem($item);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

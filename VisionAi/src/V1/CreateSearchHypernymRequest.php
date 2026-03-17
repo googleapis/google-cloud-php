@@ -37,6 +37,26 @@ class CreateSearchHypernymRequest extends \Google\Protobuf\Internal\Message
     protected $search_hypernym_id = null;
 
     /**
+     * @param string                                   $parent           Required. The parent resource where this SearchHypernym will be created.
+     *                                                                   Format: `projects/{project_number}/locations/{location}/corpora/{corpus}`
+     *                                                                   Please see {@see WarehouseClient::corpusName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\SearchHypernym $searchHypernym   Required. The SearchHypernym to create.
+     * @param string                                   $searchHypernymId Optional. The search hypernym id.
+     *                                                                   If omitted, a random UUID will be generated.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateSearchHypernymRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\SearchHypernym $searchHypernym, string $searchHypernymId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSearchHypernym($searchHypernym)
+            ->setSearchHypernymId($searchHypernymId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

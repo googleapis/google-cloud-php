@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_StreamingService_ReleaseLease_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\StreamingServiceClient;
+use Google\Cloud\VisionAI\V1\ReleaseLeaseRequest;
 use Google\Cloud\VisionAI\V1\ReleaseLeaseResponse;
-use Google\Cloud\VisionAI\V1\StreamingServiceClient;
 
 /**
  * RleaseLease releases a lease.
@@ -41,10 +42,13 @@ function release_lease_sample(): void
     // Create a client.
     $streamingServiceClient = new StreamingServiceClient();
 
+    // Prepare the request message.
+    $request = new ReleaseLeaseRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var ReleaseLeaseResponse $response */
-        $response = $streamingServiceClient->releaseLease();
+        $response = $streamingServiceClient->releaseLease($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

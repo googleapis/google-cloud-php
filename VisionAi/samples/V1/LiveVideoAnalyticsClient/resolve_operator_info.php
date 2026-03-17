@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_LiveVideoAnalytics_ResolveOperatorInfo_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
 use Google\Cloud\VisionAI\V1\OperatorQuery;
+use Google\Cloud\VisionAI\V1\ResolveOperatorInfoRequest;
 use Google\Cloud\VisionAI\V1\ResolveOperatorInfoResponse;
 
 /**
@@ -40,15 +41,18 @@ function resolve_operator_info_sample(string $formattedParent, string $queriesOp
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $operatorQuery = (new OperatorQuery())
         ->setOperator($queriesOperator);
     $queries = [$operatorQuery,];
+    $request = (new ResolveOperatorInfoRequest())
+        ->setParent($formattedParent)
+        ->setQueries($queries);
 
     // Call the API and handle any network failures.
     try {
         /** @var ResolveOperatorInfoResponse $response */
-        $response = $liveVideoAnalyticsClient->resolveOperatorInfo($formattedParent, $queries);
+        $response = $liveVideoAnalyticsClient->resolveOperatorInfo($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

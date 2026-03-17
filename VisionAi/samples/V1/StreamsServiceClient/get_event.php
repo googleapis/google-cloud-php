@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_StreamsService_GetEvent_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
 use Google\Cloud\VisionAI\V1\Event;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\GetEventRequest;
 
 /**
  * Gets details of a single Event.
@@ -38,10 +39,14 @@ function get_event_sample(string $formattedName): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetEventRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Event $response */
-        $response = $streamsServiceClient->getEvent($formattedName);
+        $response = $streamsServiceClient->getEvent($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
