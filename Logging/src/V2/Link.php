@@ -28,26 +28,26 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Describes this link.
      * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 2;</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Output only. The creation timestamp of the link.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The resource lifecycle state.
      *
      * Generated from protobuf field <code>.google.logging.v2.LifecycleState lifecycle_state = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $lifecycle_state = 0;
+    protected $lifecycle_state = 0;
     /**
      * The information of a BigQuery Dataset. When a link is created, a BigQuery
      * dataset is created along with it, in the same project as the LogBucket it's
@@ -56,7 +56,7 @@ class Link extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.BigQueryDataset bigquery_dataset = 5;</code>
      */
-    private $bigquery_dataset = null;
+    protected $bigquery_dataset = null;
 
     /**
      * Constructor.

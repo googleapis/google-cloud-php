@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Prophecy\Argument;
@@ -37,7 +37,7 @@ class PsrLoggerTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
 
         $this->psr = TestHelpers::stub(PsrLogger::class, [
             $this->refreshLogger($this->connection->reveal())
@@ -63,7 +63,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'emergency');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::EMERGENCY;
         }))->shouldBeCalled();
 
@@ -80,7 +80,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'alert');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
@@ -97,7 +97,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'critical');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::CRITICAL;
         }))->shouldBeCalled();
 
@@ -114,7 +114,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'error');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::ERROR;
         }))->shouldBeCalled();
 
@@ -131,7 +131,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'warning');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::WARNING;
         }))->shouldBeCalled();
 
@@ -148,7 +148,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'notice');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::NOTICE;
         }))->shouldBeCalled();
 
@@ -165,7 +165,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'info');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::INFO;
         }))->shouldBeCalled();
 
@@ -182,7 +182,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'debug');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::DEBUG;
         }))->shouldBeCalled();
 
@@ -199,7 +199,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'log');
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             return $args['entries'][0]['severity'] === Logger::ALERT;
         }))->shouldBeCalled();
 
@@ -216,7 +216,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'log', 1);
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             if ($args['entries'][0]['severity'] !== Logger::ALERT) {
                 return false;
             }
@@ -241,7 +241,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(PsrLogger::class, 'log', 2);
         $snippet->addLocal('psrLogger', $this->psr);
 
-        $this->connection->writeEntries(Argument::that(function ($args) {
+        $this->connection->writeLogEntries(Argument::that(function ($args) {
             if ($args['entries'][0]['severity'] !== Logger::ALERT) {
                 return false;
             }
@@ -261,7 +261,7 @@ class PsrLoggerTest extends SnippetTestCase
         $snippet->invoke();
     }
 
-    private function refreshLogger(ConnectionInterface $connection)
+    private function refreshLogger(Gapic $connection)
     {
         return new Logger(
             $connection,

@@ -22,7 +22,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>int32 page_size = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `pageToken` must be the value of
@@ -31,7 +31,7 @@ class ListMonitoredResourceDescriptorsRequest extends \Google\Protobuf\Internal\
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * Constructor.

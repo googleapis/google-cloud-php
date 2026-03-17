@@ -28,7 +28,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $name = '';
+    protected $name = '';
     /**
      * Required. The export destination:
      *     "storage.googleapis.com/[GCS_BUCKET]"
@@ -42,7 +42,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string destination = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $destination = '';
+    protected $destination = '';
     /**
      * Optional. An [advanced logs
      * filter](https://cloud.google.com/logging/docs/view/advanced-queries). The
@@ -53,21 +53,21 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. A description of this sink.
      * The maximum length of the description is 8000 characters.
      *
      * Generated from protobuf field <code>string description = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $description = '';
+    protected $description = '';
     /**
      * Optional. If set to true, then this sink is disabled and it does not export
      * any log entries.
      *
      * Generated from protobuf field <code>bool disabled = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $disabled = false;
+    protected $disabled = false;
     /**
      * Optional. Log entries that match any of these exclusion filters will not be
      * exported.
@@ -104,7 +104,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string writer_identity = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $writer_identity = '';
+    protected $writer_identity = '';
     /**
      * Optional. This field applies only to sinks owned by organizations and
      * folders. If the field is false, the default, only the logs owned by the
@@ -123,21 +123,21 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool include_children = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $include_children = false;
+    protected $include_children = false;
     /**
      * Output only. The creation timestamp of the sink.
      * This field may not be present for older sinks.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
     /**
      * Output only. The last update timestamp of the sink.
      * This field may not be present for older sinks.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $update_time = null;
+    protected $update_time = null;
     protected $options;
 
     /**

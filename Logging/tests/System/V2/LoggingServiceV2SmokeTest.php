@@ -22,9 +22,10 @@
 
 namespace Google\Cloud\Logging\Tests\System\V2;
 
-use Google\Cloud\Logging\V2\LoggingServiceV2Client;
+use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\Api\MonitoredResource;
+use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
 
 /**
  * @group logging
@@ -43,10 +44,12 @@ class LoggingServiceV2SmokeTest extends GeneratedTest
         }
 
         $loggingServiceV2Client = new LoggingServiceV2Client();
-        $formattedLogName = $loggingServiceV2Client->logName($projectId, 'test-'.time());
-        $resource = new MonitoredResource();
-        $labels = [];
-        $entries = [];
-        $loggingServiceV2Client->writeLogEntries($entries, ['logName' => $formattedLogName, 'resource' => $resource, 'labels' => $labels]);
+        $request = new WriteLogEntriesRequest([
+            'log_name' => $loggingServiceV2Client->logName($projectId, 'test-'.time()),
+            'resource' => new MonitoredResource(),
+            'labels' => [],
+        ]);
+        $response = $loggingServiceV2Client->writeLogEntries($request);
+        $this->assertNotNull($response);
     }
 }

@@ -21,7 +21,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method. `pageToken` must be the value of
@@ -30,7 +30,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
     /**
      * Optional. The maximum number of results to return from this request.
      * Non-positive values are ignored. The presence of `nextPageToken` in the
@@ -38,7 +38,7 @@ class ListLogMetricsRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
 
     /**
      * @param string $parent Required. The name of the project containing the metrics:

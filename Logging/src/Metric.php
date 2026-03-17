@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Logging;
 
-use Google\Cloud\Core\Exception\NotFoundException;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\ApiCore\ApiException;
+use Google\Cloud\Logging\Connection\Gapic;
+use Google\Rpc\Code;
 
 /**
  * A metric counts the number of log entries that match a given filter. You can
@@ -37,7 +38,7 @@ use Google\Cloud\Logging\Connection\ConnectionInterface;
 class Metric
 {
     /**
-     * @var ConnectionInterface Represents a connection to Stackdriver Logging.
+     * @var Gapic Represents a connection to Stackdriver Logging.
      * @internal
      */
     protected $connection;
@@ -58,14 +59,14 @@ class Metric
     private $info;
 
     /**
-     * @param ConnectionInterface $connection Represents a connection to Cloud
+     * @param Gapic $connection Represents a connection to Cloud
      *        Logging. This object is created by LoggingClient,
      *        and should not be instantiated outside of this client.
      * @param string $name The metric's name.
      * @param string $projectId The project's ID.
      * @param array $info [optional] The metric's metadata.
      */
-    public function __construct(ConnectionInterface $connection, $name, $projectId, array $info = [])
+    public function __construct(Gapic $connection, $name, $projectId, array $info = [])
     {
         $this->connection = $connection;
         $this->info = $info;
@@ -90,8 +91,11 @@ class Metric
     {
         try {
             $this->info($options);
-        } catch (NotFoundException $ex) {
-            return false;
+        } catch (ApiException $ex) {
+            if ($ex->getCode() === Code::NOT_FOUND) {
+                return false;
+            }
+            throw $ex;
         }
 
         return true;
@@ -113,7 +117,7 @@ class Metric
      */
     public function delete(array $options = [])
     {
-        $this->connection->deleteMetric($options + [
+        $this->connection->deleteLogMetric($options + [
             'metricName' => $this->formattedName
         ]);
     }
@@ -145,9 +149,12 @@ class Metric
     public function update(array $metadata, array $options = [])
     {
         $options += $metadata;
-        $options += $this->info($options);
+        $options += array_intersect_key(
+            $this->info($options),
+            array_flip(['name', 'info', 'filter']),
+        );
 
-        return $this->info = $this->connection->updateMetric($options + [
+        return $this->info = $this->connection->updateLogMetric($options + [
             'metricName' => $this->formattedName
         ]);
     }
@@ -197,7 +204,7 @@ class Metric
      */
     public function reload(array $options = [])
     {
-        return $this->info = $this->connection->getMetric($options + [
+        return $this->info = $this->connection->getLogMetric($options + [
             'metricName' => $this->formattedName
         ]);
     }

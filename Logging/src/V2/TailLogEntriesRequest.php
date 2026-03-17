@@ -39,7 +39,7 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The amount of time to buffer log entries at the server before
      * being returned to prevent out of order results due to late arriving log
@@ -48,7 +48,7 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration buffer_window = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $buffer_window = null;
+    protected $buffer_window = null;
 
     /**
      * Constructor.

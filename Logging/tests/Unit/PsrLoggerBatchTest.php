@@ -23,7 +23,7 @@ use Google\Cloud\Core\Compute\Metadata\Readers\ReaderInterface;
 use Google\Cloud\Core\Report\CloudRunJobMetadataProvider;
 use Google\Cloud\Core\Report\CloudRunServiceMetadataProvider;
 use Google\Cloud\Core\Report\GAEFlexMetadataProvider;
-use Google\Cloud\Logging\Connection\Rest;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
@@ -120,7 +120,7 @@ class PsrLoggerBatchTest extends TestCase
             ->willReturn(true);
 
         $logger = new Logger(
-            $this->prophesize(Rest::class)->reveal(),
+            $this->prophesize(Gapic::class)->reveal(),
             self::LOG_NAME,
             'my-project'
         );
@@ -171,7 +171,7 @@ class PsrLoggerBatchTest extends TestCase
             ->willReturn(true);
 
         $logger = new Logger(
-            $this->prophesize(Rest::class)->reveal(),
+            $this->prophesize(Gapic::class)->reveal(),
             self::LOG_NAME,
             'my-project'
         );

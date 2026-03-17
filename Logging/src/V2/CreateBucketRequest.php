@@ -23,7 +23,7 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. A client-assigned identifier such as `"my-bucket"`. Identifiers
      * are limited to 100 characters and can include only letters, digits,
@@ -31,7 +31,7 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket_id = '';
+    protected $bucket_id = '';
     /**
      * Required. The new bucket. The region specified in the new bucket must be
      * compliant with any Location Restriction Org Policy. The name field in the
@@ -39,7 +39,7 @@ class CreateBucketRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.LogBucket bucket = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $bucket = null;
+    protected $bucket = null;
 
     /**
      * Constructor.

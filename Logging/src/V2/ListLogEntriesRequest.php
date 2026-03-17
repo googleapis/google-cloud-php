@@ -42,7 +42,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. How the results should be sorted.  Presently, the only permitted
      * values are `"timestamp asc"` (default) and `"timestamp desc"`. The first
@@ -53,7 +53,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string order_by = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $order_by = '';
+    protected $order_by = '';
     /**
      * Optional. The maximum number of results to return from this request.
      * Default is 50. If the value is negative or exceeds 1000, the request is
@@ -62,7 +62,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 page_size = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_size = 0;
+    protected $page_size = 0;
     /**
      * Optional. If present, then retrieve the next batch of results from the
      * preceding call to this method.  `page_token` must be the value of
@@ -71,7 +71,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string page_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $page_token = '';
+    protected $page_token = '';
 
     /**
      * @param string[] $resourceNames Required. Names of one or more parent resources from which to

@@ -27,14 +27,14 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $parent = '';
+    protected $parent = '';
     /**
      * Required. The new sink, whose `name` parameter is a sink identifier that
      * is not already in use.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSink sink = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $sink = null;
+    protected $sink = null;
     /**
      * Optional. Determines the kind of IAM identity returned as `writer_identity`
      * in the new sink. If this value is omitted or set to false, and if the
@@ -50,7 +50,7 @@ class CreateSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool unique_writer_identity = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $unique_writer_identity = false;
+    protected $unique_writer_identity = false;
 
     /**
      * @param string                           $parent Required. The resource in which to create the sink:

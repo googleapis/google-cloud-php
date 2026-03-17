@@ -26,7 +26,7 @@ class GetSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $sink_name = '';
+    protected $sink_name = '';
 
     /**
      * @param string $sinkName Required. The resource name of the sink:

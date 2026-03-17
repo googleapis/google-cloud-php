@@ -19,7 +19,7 @@ namespace Google\Cloud\Logging\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Metric;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -39,7 +39,7 @@ class MetricTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
         $this->metric = TestHelpers::stub(Metric::class, [
             $this->connection->reveal(),
             self::METRIC,
@@ -60,7 +60,7 @@ class MetricTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Metric::class, 'exists');
         $snippet->addLocal('metric', $this->metric);
 
-        $this->connection->getMetric(Argument::any())
+        $this->connection->getLogMetric(Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 
@@ -75,7 +75,7 @@ class MetricTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Metric::class, 'delete');
         $snippet->addLocal('metric', $this->metric);
 
-        $this->connection->deleteMetric(Argument::any())
+        $this->connection->deleteLogMetric(Argument::any())
             ->shouldBeCalled();
 
         $this->metric->___setProperty('connection', $this->connection->reveal());
@@ -88,11 +88,11 @@ class MetricTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Metric::class, 'update');
         $snippet->addLocal('metric', $this->metric);
 
-        $this->connection->updateMetric(Argument::any(), Argument::any())
+        $this->connection->updateLogMetric(Argument::any(), Argument::any())
             ->shouldBeCalled()
             ->willReturn([]);
 
-        $this->connection->getMetric(Argument::any())
+        $this->connection->getLogMetric(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 
@@ -106,7 +106,7 @@ class MetricTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Metric::class, 'info');
         $snippet->addLocal('metric', $this->metric);
 
-        $this->connection->getMetric(Argument::any())
+        $this->connection->getLogMetric(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 
@@ -121,7 +121,7 @@ class MetricTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Metric::class, 'reload');
         $snippet->addLocal('metric', $this->metric);
 
-        $this->connection->getMetric(Argument::any())
+        $this->connection->getLogMetric(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['description' => 'Foo']);
 

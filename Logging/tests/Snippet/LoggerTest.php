@@ -20,7 +20,7 @@ namespace Google\Cloud\Logging\Tests\Snippet;
 use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Entry;
 use Google\Cloud\Logging\Logger;
 use Prophecy\Argument;
@@ -41,7 +41,7 @@ class LoggerTest extends SnippetTestCase
 
     public function setUp(): void
     {
-        $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->connection = $this->prophesize(Gapic::class);
         $this->logger = TestHelpers::stub(Logger::class, [
             $this->connection->reveal(),
             self::NAME,
@@ -75,7 +75,7 @@ class LoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Logger::class, 'entries');
         $snippet->addLocal('logger', $this->logger);
 
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'entries' => [
@@ -97,7 +97,7 @@ class LoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Logger::class, 'entries', 1);
         $snippet->addLocal('logger', $this->logger);
 
-        $this->connection->listEntries(Argument::that(function ($arg) {
+        $this->connection->listLogEntries(Argument::that(function ($arg) {
             if (!isset($arg['filter']) || strpos($arg['filter'], 'AND') === false) {
                 return false;
             }
@@ -151,7 +151,7 @@ class LoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Logger::class, 'write');
         $snippet->addLocal('logger', $this->logger);
 
-        $this->connection->writeEntries(Argument::any())
+        $this->connection->writeLogEntries(Argument::any())
             ->shouldBeCalled();
 
         $this->logger->___setProperty('connection', $this->connection->reveal());
@@ -165,7 +165,7 @@ class LoggerTest extends SnippetTestCase
         $snippet->addLocal('logger', $this->logger);
         $snippet->addUse(Logger::class);
 
-        $this->connection->writeEntries(Argument::any())
+        $this->connection->writeLogEntries(Argument::any())
             ->shouldBeCalled();
 
         $this->logger->___setProperty('connection', $this->connection->reveal());
@@ -178,7 +178,7 @@ class LoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Logger::class, 'write', 2);
         $snippet->addLocal('logger', $this->logger);
 
-        $this->connection->writeEntries(Argument::any())
+        $this->connection->writeLogEntries(Argument::any())
             ->shouldBeCalled();
 
         $this->logger->___setProperty('connection', $this->connection->reveal());
@@ -191,7 +191,7 @@ class LoggerTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Logger::class, 'writeBatch');
         $snippet->addLocal('logger', $this->logger);
 
-        $this->connection->writeEntries(Argument::any())
+        $this->connection->writeLogEntries(Argument::any())
             ->shouldBeCalled();
 
         $this->logger->___setProperty('connection', $this->connection->reveal());
