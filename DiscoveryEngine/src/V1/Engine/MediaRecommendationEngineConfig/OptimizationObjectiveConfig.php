@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine\MediaRecommendationEngineConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Custom threshold for `cvr` optimization_objective.
@@ -102,5 +102,4 @@ class OptimizationObjectiveConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

@@ -25,7 +25,7 @@ class BigQueryDataset extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string dataset_id = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $dataset_id = '';
+    protected $dataset_id = '';
 
     /**
      * Constructor.

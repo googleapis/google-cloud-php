@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1\Field;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The TTL (time-to-live) configuration for documents that have this `Field`
@@ -72,7 +72,4 @@ class TtlConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TtlConfig::class, \Google\Cloud\Firestore\Admin\V1\Field_TtlConfig::class);
 

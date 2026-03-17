@@ -25,13 +25,13 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string field_path = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $field_path = '';
+    protected $field_path = '';
     /**
      * Required. The type of data in this index.
      *
      * Generated from protobuf field <code>.google.logging.v2.IndexType type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * Output only. The timestamp when the index was last modified.
      * This is used to return the timestamp, and will be ignored if supplied
@@ -39,7 +39,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $create_time = null;
+    protected $create_time = null;
 
     /**
      * Constructor.

@@ -5,8 +5,8 @@
 namespace Google\Cloud\GkeBackup\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a request to perform a single point-in-time capture of
@@ -20,7 +20,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The fully qualified name of the Backup.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -241,7 +241,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The fully qualified name of the Backup.
-     *           `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     *           `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *     @type string $uid
      *           Output only. Server generated global unique identifier of
      *           [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
@@ -361,7 +361,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the Backup.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -373,7 +373,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The fully qualified name of the Backup.
-     * `projects/&#42;&#47;locations/&#42;&#47;backupPlans/&#42;&#47;backups/&#42;`
+     * `projects/{@*}locations/{@*}backupPlans/{@*}backups/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

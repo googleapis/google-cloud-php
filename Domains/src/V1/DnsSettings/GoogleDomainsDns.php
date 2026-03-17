@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1\DnsSettings;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for using the free DNS zone provided by Google Domains as a
@@ -49,7 +49,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $name_servers
+     *     @type string[] $name_servers
      *           Output only. A list of name servers that store the DNS zone for this domain. Each name
      *           server is a domain name, with Unicode domain names expressed in
      *           Punycode format. This field is automatically populated with the name
@@ -57,7 +57,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      *     @type int $ds_state
      *           Required. The state of DS records for this domain. Used to enable or disable
      *           automatic DNSSEC.
-     *     @type array<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $ds_records
+     *     @type \Google\Cloud\Domains\V1\DnsSettings\DsRecord[] $ds_records
      *           Output only. The list of DS records published for this domain. The list is
      *           automatically populated when `ds_state` is `DS_RECORDS_PUBLISHED`,
      *           otherwise it remains empty.
@@ -75,7 +75,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      * servers assigned to the Google Domains DNS zone.
      *
      * Generated from protobuf field <code>repeated string name_servers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getNameServers()
     {
@@ -89,7 +89,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      * servers assigned to the Google Domains DNS zone.
      *
      * Generated from protobuf field <code>repeated string name_servers = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setNameServers($var)
@@ -134,7 +134,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      * otherwise it remains empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.DsRecord ds_records = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>
      */
     public function getDsRecords()
     {
@@ -147,7 +147,7 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
      * otherwise it remains empty.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.DnsSettings.DsRecord ds_records = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Domains\V1\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Domains\V1\DnsSettings\DsRecord[] $var
      * @return $this
      */
     public function setDsRecords($var)
@@ -159,5 +159,4 @@ class GoogleDomainsDns extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

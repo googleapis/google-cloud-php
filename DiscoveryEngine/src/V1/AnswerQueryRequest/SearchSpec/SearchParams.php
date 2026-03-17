@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AnswerQueryRequest\SearchSpec;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Search parameters.
@@ -119,7 +119,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      *           search result mode defaults to `DOCUMENTS`.
      *           See [parse and chunk
      *           documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $data_store_specs
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $data_store_specs
      *           Specs defining dataStores to filter on in a search call and
      *           configurations for those dataStores. This is only considered for
      *           engines with multiple dataStores use case. For single dataStore within
@@ -326,7 +326,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      * an engine, they should use the specs at the top level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>
      */
     public function getDataStoreSpecs()
     {
@@ -340,7 +340,7 @@ class SearchParams extends \Google\Protobuf\Internal\Message
      * an engine, they should use the specs at the top level.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SearchRequest.DataStoreSpec data_store_specs = 7;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SearchRequest\DataStoreSpec[] $var
      * @return $this
      */
     public function setDataStoreSpecs($var)
@@ -352,5 +352,4 @@ class SearchParams extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

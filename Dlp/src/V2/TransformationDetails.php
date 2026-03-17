@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details about a single transformation. This object contains a description of
@@ -75,7 +75,7 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      *     @type string $container_name
      *           The top level name of the container where the transformation is located
      *           (this will be the source file name or table name).
-     *     @type array<\Google\Cloud\Dlp\V2\TransformationDescription>|\Google\Protobuf\Internal\RepeatedField $transformation
+     *     @type \Google\Cloud\Dlp\V2\TransformationDescription[] $transformation
      *           Description of transformation. This would only contain more than one
      *           element if there were multiple matching transformations and which one to
      *           apply was ambiguous. Not set for states that contain no transformation,
@@ -160,7 +160,7 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      * TransformationResultStateType.METADATA_UNRETRIEVABLE.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationDescription transformation = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\TransformationDescription>
      */
     public function getTransformation()
     {
@@ -175,7 +175,7 @@ class TransformationDetails extends \Google\Protobuf\Internal\Message
      * TransformationResultStateType.METADATA_UNRETRIEVABLE.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationDescription transformation = 3;</code>
-     * @param array<\Google\Cloud\Dlp\V2\TransformationDescription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\TransformationDescription[] $var
      * @return $this
      */
     public function setTransformation($var)

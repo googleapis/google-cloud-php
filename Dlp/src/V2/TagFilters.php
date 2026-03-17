@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Tags to match against for filtering.
@@ -29,7 +29,7 @@ class TagFilters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\TagFilter>|\Google\Protobuf\Internal\RepeatedField $tag_filters
+     *     @type \Google\Cloud\Dlp\V2\TagFilter[] $tag_filters
      *           Required. A resource must match ALL of the specified tag filters to be
      *           included in the collection.
      * }
@@ -44,7 +44,7 @@ class TagFilters extends \Google\Protobuf\Internal\Message
      * included in the collection.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TagFilter tag_filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\TagFilter>
      */
     public function getTagFilters()
     {
@@ -56,7 +56,7 @@ class TagFilters extends \Google\Protobuf\Internal\Message
      * included in the collection.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TagFilter tag_filters = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\TagFilter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\TagFilter[] $var
      * @return $this
      */
     public function setTagFilters($var)

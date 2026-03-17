@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\TrainCustomModelRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Cloud Storage training data input.
@@ -234,5 +234,4 @@ class GcsTrainingInput extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

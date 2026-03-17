@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Targets being watched have changed.
@@ -65,7 +65,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      *
      *     @type int $target_change_type
      *           The type of change that occurred.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $target_ids
+     *     @type int[] $target_ids
      *           The target IDs of targets that have changed.
      *           If empty, the change applies to all targets.
      *           The order of the target IDs is not defined.
@@ -123,7 +123,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTargetIds()
     {
@@ -136,7 +136,7 @@ class TargetChange extends \Google\Protobuf\Internal\Message
      * The order of the target IDs is not defined.
      *
      * Generated from protobuf field <code>repeated int32 target_ids = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTargetIds($var)

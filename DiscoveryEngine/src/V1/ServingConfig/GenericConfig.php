@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\ServingConfig;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies the configurations needed for Generic Discovery.Currently we
@@ -80,5 +80,4 @@ class GenericConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

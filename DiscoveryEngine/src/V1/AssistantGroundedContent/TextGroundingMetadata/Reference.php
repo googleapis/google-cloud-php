@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\AssistantGroundedContent\TextGroundingMetadata;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Referenced content and related document metadata.
@@ -108,5 +108,4 @@ class Reference extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

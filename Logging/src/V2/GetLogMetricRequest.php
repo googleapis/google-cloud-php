@@ -21,7 +21,7 @@ class GetLogMetricRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string metric_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $metric_name = '';
+    protected $metric_name = '';
 
     /**
      * @param string $metricName Required. The resource name of the desired metric:

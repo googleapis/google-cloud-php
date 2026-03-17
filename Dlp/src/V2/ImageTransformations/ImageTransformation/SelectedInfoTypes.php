@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\ImageTransformations\ImageTransformation;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Apply transformation to the selected info_types.
@@ -29,7 +29,7 @@ class SelectedInfoTypes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type \Google\Cloud\Dlp\V2\InfoType[] $info_types
      *           Required. InfoTypes to apply the transformation to. Required. Provided
      *           InfoType must be unique within the ImageTransformations message.
      * }
@@ -44,7 +44,7 @@ class SelectedInfoTypes extends \Google\Protobuf\Internal\Message
      * InfoType must be unique within the ImageTransformations message.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\InfoType>
      */
     public function getInfoTypes()
     {
@@ -56,7 +56,7 @@ class SelectedInfoTypes extends \Google\Protobuf\Internal\Message
      * InfoType must be unique within the ImageTransformations message.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\InfoType[] $var
      * @return $this
      */
     public function setInfoTypes($var)
@@ -68,5 +68,4 @@ class SelectedInfoTypes extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

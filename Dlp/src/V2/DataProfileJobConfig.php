@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for setting up a job to scan resources for profile generation.
@@ -79,7 +79,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           that are profiled, and the DLP API must be enabled.
      *     @type \Google\Cloud\Dlp\V2\OtherCloudDiscoveryStartingLocation $other_cloud_starting_location
      *           Must be set only when scanning other clouds.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
+     *     @type string[] $inspect_templates
      *           Detection logic for profile generation.
      *           Not all template features are used by profiles. FindingLimits,
      *           include_quote and exclude_info_types have no impact on
@@ -93,7 +93,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           scanned.
      *           For more information, see
      *           https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
-     *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $data_profile_actions
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction[] $data_profile_actions
      *           Actions to execute at the completion of the job.
      * }
      */
@@ -220,7 +220,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getInspectTemplates()
     {
@@ -243,7 +243,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/sensitive-data-protection/docs/data-profiles#data-residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setInspectTemplates($var)
@@ -258,7 +258,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction data_profile_actions = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DataProfileAction>
      */
     public function getDataProfileActions()
     {
@@ -269,7 +269,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction data_profile_actions = 6;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction[] $var
      * @return $this
      */
     public function setDataProfileActions($var)

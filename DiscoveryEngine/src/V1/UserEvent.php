@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * UserEvent captures all metadata information Discovery Engine API needs to
@@ -417,7 +417,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           conforming to https://google.aip.dev/160#filtering.
      *           The value must be a UTF-8 encoded string with a length limit of 1,000
      *           characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\DiscoveryEngine\V1\DocumentInfo[] $documents
      *           List of [Document][google.cloud.discoveryengine.v1.Document]s associated
      *           with this user event.
      *           This field is optional except for the following event types:
@@ -446,11 +446,11 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           enabled and the user clicks a suggestion for search.
      *     @type \Google\Cloud\DiscoveryEngine\V1\TransactionInfo $transaction_info
      *           The transaction metadata (if any) associated with this user event.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_ids
+     *     @type string[] $tag_ids
      *           A list of identifiers for the independent experiment groups this user event
      *           belongs to. This is used to distinguish between user events associated with
      *           different experiment setups.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promotion_ids
+     *     @type string[] $promotion_ids
      *           The promotion IDs if this is an event associated with promotions.
      *           Currently, this field is restricted to at most one ID.
      *     @type array|\Google\Protobuf\Internal\MapField $attributes
@@ -478,7 +478,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           search, or in other ways.
      *     @type \Google\Cloud\DiscoveryEngine\V1\MediaInfo $media_info
      *           Media-specific info.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\PanelInfo>|\Google\Protobuf\Internal\RepeatedField $panels
+     *     @type \Google\Cloud\DiscoveryEngine\V1\PanelInfo[] $panels
      *           Optional. List of panels associated with this event.
      *           Used for page-level impression data.
      * }
@@ -1042,7 +1042,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * is desired.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 10;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>
      */
     public function getDocuments()
     {
@@ -1067,7 +1067,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * is desired.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.DocumentInfo documents = 10;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\DocumentInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\DocumentInfo[] $var
      * @return $this
      */
     public function setDocuments($var)
@@ -1238,7 +1238,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getTagIds()
     {
@@ -1251,7 +1251,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * different experiment setups.
      *
      * Generated from protobuf field <code>repeated string tag_ids = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setTagIds($var)
@@ -1267,7 +1267,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Currently, this field is restricted to at most one ID.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPromotionIds()
     {
@@ -1279,7 +1279,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Currently, this field is restricted to at most one ID.
      *
      * Generated from protobuf field <code>repeated string promotion_ids = 16;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPromotionIds($var)
@@ -1399,7 +1399,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Used for page-level impression data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\PanelInfo>
      */
     public function getPanels()
     {
@@ -1411,7 +1411,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Used for page-level impression data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.PanelInfo panels = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\PanelInfo>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\PanelInfo[] $var
      * @return $this
      */
     public function setPanels($var)

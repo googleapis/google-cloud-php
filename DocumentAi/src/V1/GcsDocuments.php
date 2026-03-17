@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Specifies a set of documents on Cloud Storage.
@@ -28,7 +28,7 @@ class GcsDocuments extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DocumentAI\V1\GcsDocument>|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type \Google\Cloud\DocumentAI\V1\GcsDocument[] $documents
      *           The list of documents.
      * }
      */
@@ -41,7 +41,7 @@ class GcsDocuments extends \Google\Protobuf\Internal\Message
      * The list of documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.GcsDocument documents = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\GcsDocument>
      */
     public function getDocuments()
     {
@@ -52,7 +52,7 @@ class GcsDocuments extends \Google\Protobuf\Internal\Message
      * The list of documents.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.GcsDocument documents = 1;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\GcsDocument>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\GcsDocument[] $var
      * @return $this
      */
     public function setDocuments($var)

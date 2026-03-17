@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ class TraceServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return TraceServiceClient */
@@ -77,9 +79,7 @@ class TraceServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->projectName('[PROJECT]');
         $spans = [];
-        $request = (new BatchWriteSpansRequest())
-            ->setName($formattedName)
-            ->setSpans($spans);
+        $request = (new BatchWriteSpansRequest())->setName($formattedName)->setSpans($spans);
         $gapicClient->batchWriteSpans($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,19 +104,20 @@ class TraceServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->projectName('[PROJECT]');
         $spans = [];
-        $request = (new BatchWriteSpansRequest())
-            ->setName($formattedName)
-            ->setSpans($spans);
+        $request = (new BatchWriteSpansRequest())->setName($formattedName)->setSpans($spans);
         try {
             $gapicClient->batchWriteSpans($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -190,12 +191,15 @@ class TraceServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
@@ -236,9 +240,7 @@ class TraceServiceClientTest extends GeneratedTest
         // Mock request
         $formattedName = $gapicClient->projectName('[PROJECT]');
         $spans = [];
-        $request = (new BatchWriteSpansRequest())
-            ->setName($formattedName)
-            ->setSpans($spans);
+        $request = (new BatchWriteSpansRequest())->setName($formattedName)->setSpans($spans);
         $gapicClient->batchWriteSpansAsync($request)->wait();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));

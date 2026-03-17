@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfileAction;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * If set, attaches the [tags]
@@ -57,9 +57,9 @@ class TagResources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction\TagResources\TagCondition>|\Google\Protobuf\Internal\RepeatedField $tag_conditions
+     *     @type \Google\Cloud\Dlp\V2\DataProfileAction\TagResources\TagCondition[] $tag_conditions
      *           The tags to associate with different conditions.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $profile_generations_to_tag
+     *     @type int[] $profile_generations_to_tag
      *           The profile generations for which the tag should be attached to
      *           resources. If you attach a tag to only new profiles, then if the
      *           sensitivity score of a profile subsequently changes, its tag doesn't
@@ -86,7 +86,7 @@ class TagResources extends \Google\Protobuf\Internal\Message
      * The tags to associate with different conditions.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction.TagResources.TagCondition tag_conditions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DataProfileAction\TagResources\TagCondition>
      */
     public function getTagConditions()
     {
@@ -97,7 +97,7 @@ class TagResources extends \Google\Protobuf\Internal\Message
      * The tags to associate with different conditions.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction.TagResources.TagCondition tag_conditions = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DataProfileAction\TagResources\TagCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DataProfileAction\TagResources\TagCondition[] $var
      * @return $this
      */
     public function setTagConditions($var)
@@ -117,7 +117,7 @@ class TagResources extends \Google\Protobuf\Internal\Message
      * include both `PROFILE_GENERATION_NEW` and `PROFILE_GENERATION_UPDATE`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ProfileGeneration profile_generations_to_tag = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getProfileGenerationsToTag()
     {
@@ -133,7 +133,7 @@ class TagResources extends \Google\Protobuf\Internal\Message
      * include both `PROFILE_GENERATION_NEW` and `PROFILE_GENERATION_UPDATE`.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ProfileGeneration profile_generations_to_tag = 2;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setProfileGenerationsToTag($var)
@@ -185,5 +185,4 @@ class TagResources extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

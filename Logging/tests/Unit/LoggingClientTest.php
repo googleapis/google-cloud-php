@@ -17,14 +17,12 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
+use Google\ApiCore\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Batch\BatchRunner;
-use Google\Cloud\Core\Batch\OpisClosureSerializer;
 use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
-use Google\Cloud\Core\Testing\TestHelpers;
-use Google\Cloud\Logging\Connection\ConnectionInterface;
-use Google\Cloud\Logging\Connection\Grpc;
+use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\LoggingClient;
 use Google\Cloud\Logging\Metric;
@@ -53,19 +51,14 @@ class LoggingClientTest extends TestCase
     public function setUp(): void
     {
         $this->formattedProjectId = "projects/$this->projectId";
-        $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->client = TestHelpers::stub(LoggingClient::class, [
-            [
-                'projectId' => $this->projectId
-            ]
+        $this->connection = $this->prophesize(Gapic::class);
+        $this->client = new LoggingClient([
+            'projectId' => $this->projectId,
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
-    }
-
-    public function testUsesGrpcConnectionByDefault()
-    {
-        $this->checkAndSkipGrpcTests();
-
-        $this->assertInstanceOf(Grpc::class, $this->client->___getProperty('connection'));
+        $refl = new \ReflectionObject($this->client);
+        $reflProp = $refl->getProperty('connection');
+        $reflProp->setValue($this->client, $this->connection->reveal());
     }
 
     public function testPsrBatchLogger()
@@ -75,6 +68,7 @@ class LoggingClientTest extends TestCase
             [
                 'clientConfig' => [
                     'projectId' => 'project',
+                    'credentials' => new InsecureCredentialsWrapper(),
                 ]
             ]
         );
@@ -85,7 +79,12 @@ class LoggingClientTest extends TestCase
 
         $psrBatchLogger = LoggingClient::psrBatchLogger(
             'app',
-            ['clientConfig' => ['projectId' => 'my-project']]
+            [
+                'clientConfig' => [
+                    'projectId' => 'my-project',
+                    'credentials' => new InsecureCredentialsWrapper(),
+                ]
+            ]
         );
 
         $this->assertInstanceOf(PsrLogger::class, $psrBatchLogger);
@@ -94,7 +93,10 @@ class LoggingClientTest extends TestCase
         $method = $r->getMethod('getUnwrappedClientConfig');
 
         $this->assertEquals(
-            ['projectId' => 'my-project'],
+            [
+                'projectId' => 'my-project',
+                'credentials' => new InsecureCredentialsWrapper(),
+            ],
             $method->invoke($psrBatchLogger)
         );
     }
@@ -106,14 +108,12 @@ class LoggingClientTest extends TestCase
             'parent' => $this->formattedProjectId,
             'name' => $this->sinkName,
             'destination' => $destination,
-            'outputVersionFormat' => 'VERSION_FORMAT_UNSPECIFIED'
         ])
             ->willReturn([
                 'name' => $this->sinkName,
                 'destination' => $destination
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $sink = $this->client->createSink($this->sinkName, $destination);
 
@@ -123,7 +123,6 @@ class LoggingClientTest extends TestCase
 
     public function testGetsSink()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf(Sink::class, $this->client->sink($this->sinkName));
     }
 
@@ -133,7 +132,6 @@ class LoggingClientTest extends TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $sinks = iterator_to_array($this->client->sinks());
 
         $this->assertEmpty($sinks);
@@ -149,7 +147,6 @@ class LoggingClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $sinks = iterator_to_array($this->client->sinks());
 
         $this->assertEquals($this->sinkName, $sinks[0]->name());
@@ -169,7 +166,6 @@ class LoggingClientTest extends TestCase
                 ]
             ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $sinks = iterator_to_array($this->client->sinks());
 
         $this->assertEquals($this->sinkName, $sinks[1]->name());
@@ -178,7 +174,7 @@ class LoggingClientTest extends TestCase
     public function testCreatesMetric()
     {
         $filter = 'logName = myLog';
-        $this->connection->createMetric([
+        $this->connection->createLogMetric([
             'parent' => $this->formattedProjectId,
             'name' => $this->metricName,
             'filter' => $filter
@@ -188,7 +184,6 @@ class LoggingClientTest extends TestCase
                 'filter' => $filter
             ])
             ->shouldBeCalledTimes(1);
-        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $metric = $this->client->createMetric($this->metricName, $filter);
 
@@ -198,17 +193,15 @@ class LoggingClientTest extends TestCase
 
     public function testGetsMetric()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf(Metric::class, $this->client->metric($this->metricName));
     }
 
     public function testGetsMetricsWithNoResults()
     {
-        $this->connection->listMetrics(Argument::any())
+        $this->connection->listLogMetrics(Argument::any())
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $metrics = iterator_to_array($this->client->metrics());
 
         $this->assertEmpty($metrics);
@@ -216,7 +209,7 @@ class LoggingClientTest extends TestCase
 
     public function testGetsMetricsWithoutToken()
     {
-        $this->connection->listMetrics(Argument::any())
+        $this->connection->listLogMetrics(Argument::any())
             ->willReturn([
                 'metrics' => [
                     ['name' => $this->metricName]
@@ -224,7 +217,6 @@ class LoggingClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $metrics = iterator_to_array($this->client->metrics());
 
         $this->assertEquals($this->metricName, $metrics[0]->name());
@@ -232,7 +224,7 @@ class LoggingClientTest extends TestCase
 
     public function testGetsMetricsWithToken()
     {
-        $this->connection->listMetrics(Argument::any())
+        $this->connection->listLogMetrics(Argument::any())
             ->willReturn([
                 'nextPageToken' => 'token',
                 'metrics' => [
@@ -244,7 +236,6 @@ class LoggingClientTest extends TestCase
                 ]
             ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $metrics = iterator_to_array($this->client->metrics());
 
         $this->assertEquals($this->metricName, $metrics[1]->name());
@@ -253,7 +244,7 @@ class LoggingClientTest extends TestCase
     public function testGetsEntriesWithNoResults()
     {
         $secondProjectId = 'secondProjectId';
-        $this->connection->listEntries([
+        $this->connection->listLogEntries([
             'resourceNames' => [
                 'projects/' . $this->projectId,
                 'projects/' . $secondProjectId
@@ -262,7 +253,6 @@ class LoggingClientTest extends TestCase
             ->willReturn([])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $entries = iterator_to_array($this->client->entries(['projectIds' => [$secondProjectId]]));
 
         $this->assertEmpty($entries);
@@ -270,7 +260,7 @@ class LoggingClientTest extends TestCase
 
     public function testGetsEntriesWithoutToken()
     {
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->willReturn([
                 'entries' => [
                     ['textPayload' => $this->textPayload]
@@ -278,7 +268,6 @@ class LoggingClientTest extends TestCase
             ])
             ->shouldBeCalledTimes(1);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $entries = iterator_to_array($this->client->entries());
 
         $this->assertEquals($this->textPayload, $entries[0]->info()['textPayload']);
@@ -286,7 +275,7 @@ class LoggingClientTest extends TestCase
 
     public function testGetsEntriesWithToken()
     {
-        $this->connection->listEntries(Argument::any())
+        $this->connection->listLogEntries(Argument::any())
             ->willReturn([
                 'nextPageToken' => 'token',
                 'entries' => [
@@ -298,7 +287,6 @@ class LoggingClientTest extends TestCase
                 ]
             ])->shouldBeCalledTimes(2);
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $entries = iterator_to_array($this->client->entries());
 
         $this->assertEquals($this->textPayload, $entries[1]->info()['textPayload']);
@@ -306,7 +294,6 @@ class LoggingClientTest extends TestCase
 
     public function testGetsPsrLogger()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf(PsrLogger::class, $this->client->psrLogger('myLogger'));
     }
 
@@ -330,7 +317,6 @@ class LoggingClientTest extends TestCase
             'debugOutputResource' => fopen('php://temp', 'wb')
         ];
 
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $psrLogger = $this->client->psrLogger('myLogger', $options);
         $reflection = new \ReflectionClass($psrLogger);
         foreach ($options as $name => $value) {
@@ -345,7 +331,6 @@ class LoggingClientTest extends TestCase
 
     public function testGetsLogger()
     {
-        $this->client->___setProperty('connection', $this->connection->reveal());
         $this->assertInstanceOf(Logger::class, $this->client->logger('myLogger'));
     }
 }

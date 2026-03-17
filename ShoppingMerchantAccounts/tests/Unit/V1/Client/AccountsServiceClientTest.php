@@ -31,6 +31,7 @@ use Google\Rpc\Code;
 use Google\Shopping\Merchant\Accounts\V1\Account;
 use Google\Shopping\Merchant\Accounts\V1\Client\AccountsServiceClient;
 use Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest;
+use Google\Shopping\Merchant\Accounts\V1\CreateTestAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\DeleteAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\GetAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\ListAccountsRequest;
@@ -154,6 +155,97 @@ class AccountsServiceClientTest extends GeneratedTest
         $request = (new CreateAndConfigureAccountRequest())->setAccount($account)->setService($service);
         try {
             $gapicClient->createAndConfigureAccount($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createTestAccountTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $accountId = 803333011;
+        $accountName = 'accountName1091239261';
+        $adultContent = true;
+        $testAccount = true;
+        $languageCode = 'languageCode-412800396';
+        $expectedResponse = new Account();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAccountId($accountId);
+        $expectedResponse->setAccountName($accountName);
+        $expectedResponse->setAdultContent($adultContent);
+        $expectedResponse->setTestAccount($testAccount);
+        $expectedResponse->setLanguageCode($languageCode);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $account = new Account();
+        $accountAccountName = 'accountAccountName-1464628757';
+        $account->setAccountName($accountAccountName);
+        $accountTimeZone = new TimeZone();
+        $account->setTimeZone($accountTimeZone);
+        $accountLanguageCode = 'accountLanguageCode-1326363598';
+        $account->setLanguageCode($accountLanguageCode);
+        $request = (new CreateTestAccountRequest())->setParent($formattedParent)->setAccount($account);
+        $response = $gapicClient->createTestAccount($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.shopping.merchant.accounts.v1.AccountsService/CreateTestAccount', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualRequestObject->getAccount();
+        $this->assertProtobufEquals($account, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function createTestAccountExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedParent = $gapicClient->accountName('[ACCOUNT]');
+        $account = new Account();
+        $accountAccountName = 'accountAccountName-1464628757';
+        $account->setAccountName($accountAccountName);
+        $accountTimeZone = new TimeZone();
+        $account->setTimeZone($accountTimeZone);
+        $accountLanguageCode = 'accountLanguageCode-1326363598';
+        $account->setLanguageCode($accountLanguageCode);
+        $request = (new CreateTestAccountRequest())->setParent($formattedParent)->setAccount($account);
+        try {
+            $gapicClient->createTestAccount($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

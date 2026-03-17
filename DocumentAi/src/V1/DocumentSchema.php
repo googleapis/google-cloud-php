@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The schema defines the output of the processed document by a processor.
@@ -50,7 +50,7 @@ class DocumentSchema extends \Google\Protobuf\Internal\Message
      *           Display name to show to users.
      *     @type string $description
      *           Description of the schema.
-     *     @type array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType>|\Google\Protobuf\Internal\RepeatedField $entity_types
+     *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType[] $entity_types
      *           Entity types of the schema.
      *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema\Metadata $metadata
      *           Metadata of the schema.
@@ -117,7 +117,7 @@ class DocumentSchema extends \Google\Protobuf\Internal\Message
      * Entity types of the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType entity_types = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType>
      */
     public function getEntityTypes()
     {
@@ -128,7 +128,7 @@ class DocumentSchema extends \Google\Protobuf\Internal\Message
      * Entity types of the schema.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.DocumentSchema.EntityType entity_types = 3;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\DocumentSchema\EntityType[] $var
      * @return $this
      */
     public function setEntityTypes($var)

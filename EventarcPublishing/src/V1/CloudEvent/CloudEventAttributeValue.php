@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\Publishing\V1\CloudEvent;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The following abstract data types are available for use in attributes.
@@ -270,5 +270,4 @@ class CloudEventAttributeValue extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

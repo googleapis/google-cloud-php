@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -29,7 +29,7 @@ class ListBackupSchedulesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\BackupSchedule>|\Google\Protobuf\Internal\RepeatedField $backup_schedules
+     *     @type \Google\Cloud\Firestore\Admin\V1\BackupSchedule[] $backup_schedules
      *           List of all backup schedules.
      * }
      */
@@ -42,7 +42,7 @@ class ListBackupSchedulesResponse extends \Google\Protobuf\Internal\Message
      * List of all backup schedules.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.BackupSchedule backup_schedules = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\BackupSchedule>
      */
     public function getBackupSchedules()
     {
@@ -53,7 +53,7 @@ class ListBackupSchedulesResponse extends \Google\Protobuf\Internal\Message
      * List of all backup schedules.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.BackupSchedule backup_schedules = 1;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\BackupSchedule>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\BackupSchedule[] $var
      * @return $this
      */
     public function setBackupSchedules($var)

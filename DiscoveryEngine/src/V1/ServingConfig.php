@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configures metadata that is used to generate serving time results (e.g.
@@ -271,38 +271,38 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Output only. ServingConfig created timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. ServingConfig updated timestamp.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $filter_control_ids
+     *     @type string[] $filter_control_ids
      *           Filter controls to use in serving path.
      *           All triggered filter controls will be applied.
      *           Filter controls must be in the same data store as the serving config.
      *           Maximum of 20 filter controls.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $boost_control_ids
+     *     @type string[] $boost_control_ids
      *           Boost controls to use in serving path.
      *           All triggered boost controls will be applied.
      *           Boost controls must be in the same data store as the serving config.
      *           Maximum of 20 boost controls.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $redirect_control_ids
+     *     @type string[] $redirect_control_ids
      *           IDs of the redirect controls. Only the first triggered redirect
      *           action is applied, even if multiple apply. Maximum number of
      *           specifications is 100.
      *           Can only be set if
      *           [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms_control_ids
+     *     @type string[] $synonyms_control_ids
      *           Condition synonyms specifications. If multiple synonyms conditions
      *           match, all matching synonyms controls in the list will execute.
      *           Maximum number of specifications is 100.
      *           Can only be set if
      *           [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oneway_synonyms_control_ids
+     *     @type string[] $oneway_synonyms_control_ids
      *           Condition oneway synonyms specifications. If multiple oneway synonyms
      *           conditions match, all matching oneway synonyms controls in the list
      *           will execute. Maximum number of specifications is 100.
      *           Can only be set if
      *           [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dissociate_control_ids
+     *     @type string[] $dissociate_control_ids
      *           Condition do not associate specifications. If multiple do not
      *           associate conditions match, all matching do not associate controls in
      *           the list will execute.
@@ -311,7 +311,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replacement_control_ids
+     *     @type string[] $replacement_control_ids
      *           Condition replacement specifications.
      *           Applied according to the order in the list.
      *           A previously replaced term can not be re-replaced.
@@ -319,13 +319,13 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      *           Can only be set if
      *           [SolutionType][google.cloud.discoveryengine.v1.SolutionType] is
      *           [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ignore_control_ids
+     *     @type string[] $ignore_control_ids
      *           Condition ignore specifications. If multiple ignore
      *           conditions match, all matching ignore controls in the list will
      *           execute.
      *           Order does not matter.
      *           Maximum number of specifications is 100.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $promote_control_ids
+     *     @type string[] $promote_control_ids
      *           Condition promote specifications.
      *           Maximum number of specifications is 100.
      * }
@@ -716,7 +716,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum of 20 filter controls.
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getFilterControlIds()
     {
@@ -730,7 +730,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum of 20 filter controls.
      *
      * Generated from protobuf field <code>repeated string filter_control_ids = 11;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setFilterControlIds($var)
@@ -748,7 +748,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum of 20 boost controls.
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 12;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getBoostControlIds()
     {
@@ -762,7 +762,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum of 20 boost controls.
      *
      * Generated from protobuf field <code>repeated string boost_control_ids = 12;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setBoostControlIds($var)
@@ -782,7 +782,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 14;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRedirectControlIds()
     {
@@ -798,7 +798,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string redirect_control_ids = 14;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRedirectControlIds($var)
@@ -818,7 +818,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string synonyms_control_ids = 15;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSynonymsControlIds()
     {
@@ -834,7 +834,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string synonyms_control_ids = 15;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSynonymsControlIds($var)
@@ -854,7 +854,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 16;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getOnewaySynonymsControlIds()
     {
@@ -870,7 +870,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string oneway_synonyms_control_ids = 16;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setOnewaySynonymsControlIds($var)
@@ -892,7 +892,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string dissociate_control_ids = 17;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getDissociateControlIds()
     {
@@ -910,7 +910,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string dissociate_control_ids = 17;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setDissociateControlIds($var)
@@ -931,7 +931,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 18;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getReplacementControlIds()
     {
@@ -948,7 +948,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * [SOLUTION_TYPE_SEARCH][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_SEARCH].
      *
      * Generated from protobuf field <code>repeated string replacement_control_ids = 18;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setReplacementControlIds($var)
@@ -967,7 +967,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum number of specifications is 100.
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 19;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIgnoreControlIds()
     {
@@ -982,7 +982,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum number of specifications is 100.
      *
      * Generated from protobuf field <code>repeated string ignore_control_ids = 19;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIgnoreControlIds($var)
@@ -998,7 +998,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum number of specifications is 100.
      *
      * Generated from protobuf field <code>repeated string promote_control_ids = 26;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getPromoteControlIds()
     {
@@ -1010,7 +1010,7 @@ class ServingConfig extends \Google\Protobuf\Internal\Message
      * Maximum number of specifications is 100.
      *
      * Generated from protobuf field <code>repeated string promote_control_ids = 26;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setPromoteControlIds($var)

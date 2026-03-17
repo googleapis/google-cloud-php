@@ -36,6 +36,7 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Shopping\Merchant\Accounts\V1\Account;
 use Google\Shopping\Merchant\Accounts\V1\CreateAndConfigureAccountRequest;
+use Google\Shopping\Merchant\Accounts\V1\CreateTestAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\DeleteAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\GetAccountRequest;
 use Google\Shopping\Merchant\Accounts\V1\ListAccountsRequest;
@@ -56,6 +57,7 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<Account> createAndConfigureAccountAsync(CreateAndConfigureAccountRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Account> createTestAccountAsync(CreateTestAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteAccountAsync(DeleteAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Account> getAccountAsync(GetAccountRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAccountsAsync(ListAccountsRequest $request, array $optionalArgs = [])
@@ -278,6 +280,45 @@ final class AccountsServiceClient
         array $callOptions = []
     ): Account {
         return $this->startApiCall('CreateAndConfigureAccount', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a Merchant Center test account.
+     *
+     * Test accounts are intended for development and testing purposes, such as
+     * validating API integrations or new feature behavior.
+     *
+     * Key characteristics and limitations of test accounts:
+     * - Immutable Type: A test account cannot be converted into a regular
+     * (live) Merchant Center account. Likewise, a regular account cannot be
+     * converted into a test account.
+     * - Non-Serving Products: Any products, offers, or data created within a
+     * test account will not be published or made visible to end-users on any
+     * Google surfaces. They are strictly for testing environments.
+     * - Separate Environment: Test accounts operate in a sandbox-like manner,
+     * isolated from live serving and real user traffic.
+     *
+     * The async variant is {@see AccountsServiceClient::createTestAccountAsync()} .
+     *
+     * @example samples/V1/AccountsServiceClient/create_test_account.php
+     *
+     * @param CreateTestAccountRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Account
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createTestAccount(CreateTestAccountRequest $request, array $callOptions = []): Account
+    {
+        return $this->startApiCall('CreateTestAccount', $request, $callOptions)->wait();
     }
 
     /**

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\Action;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Publish findings of a DlpJob to Dataplex Universal Catalog as a
@@ -40,5 +40,4 @@ class PublishFindingsToDataplexCatalog extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

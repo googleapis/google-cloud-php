@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * SubnetStatus contains detailed and current technical information about this
@@ -46,7 +46,7 @@ class SubnetStatus extends \Google\Protobuf\Internal\Message
      *           The name of CCFE subnet resource.
      *     @type string $mac_address
      *           BVI MAC address.
-     *     @type array<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>|\Google\Protobuf\Internal\RepeatedField $link_layer_addresses
+     *     @type \Google\Cloud\EdgeNetwork\V1\LinkLayerAddress[] $link_layer_addresses
      *           A list of LinkLayerAddress, describing the ip address and corresponding
      *           link-layer address of the neighbors for this subnet.
      * }
@@ -113,7 +113,7 @@ class SubnetStatus extends \Google\Protobuf\Internal\Message
      * link-layer address of the neighbors for this subnet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.LinkLayerAddress link_layer_addresses = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>
      */
     public function getLinkLayerAddresses()
     {
@@ -125,7 +125,7 @@ class SubnetStatus extends \Google\Protobuf\Internal\Message
      * link-layer address of the neighbors for this subnet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.edgenetwork.v1.LinkLayerAddress link_layer_addresses = 3;</code>
-     * @param array<\Google\Cloud\EdgeNetwork\V1\LinkLayerAddress>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\EdgeNetwork\V1\LinkLayerAddress[] $var
      * @return $this
      */
     public function setLinkLayerAddresses($var)

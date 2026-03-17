@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1\GoogleApiSource;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Config to enabled subscribing to events from other projects in the org.
@@ -64,5 +64,4 @@ class OrganizationSubscription extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

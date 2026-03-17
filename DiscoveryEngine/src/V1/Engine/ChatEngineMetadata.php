@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\Engine;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Additional information of a Chat Engine.
@@ -77,5 +77,4 @@ class ChatEngineMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

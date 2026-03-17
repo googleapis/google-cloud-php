@@ -5,8 +5,8 @@
 namespace Google\Cloud\Domains\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `SearchDomains` method.
@@ -28,7 +28,7 @@ class SearchDomainsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Domains\V1\RegisterParameters>|\Google\Protobuf\Internal\RepeatedField $register_parameters
+     *     @type \Google\Cloud\Domains\V1\RegisterParameters[] $register_parameters
      *           Results of the domain name search.
      * }
      */
@@ -41,7 +41,7 @@ class SearchDomainsResponse extends \Google\Protobuf\Internal\Message
      * Results of the domain name search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.RegisterParameters register_parameters = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Domains\V1\RegisterParameters>
      */
     public function getRegisterParameters()
     {
@@ -52,7 +52,7 @@ class SearchDomainsResponse extends \Google\Protobuf\Internal\Message
      * Results of the domain name search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1.RegisterParameters register_parameters = 1;</code>
-     * @param array<\Google\Cloud\Domains\V1\RegisterParameters>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Domains\V1\RegisterParameters[] $var
      * @return $this
      */
     public function setRegisterParameters($var)

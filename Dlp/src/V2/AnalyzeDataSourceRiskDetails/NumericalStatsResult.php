@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Result of the numerical stats computation.
@@ -45,7 +45,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      *           Minimum value appearing in the column.
      *     @type \Google\Cloud\Dlp\V2\Value $max_value
      *           Maximum value appearing in the column.
-     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quantile_values
+     *     @type \Google\Cloud\Dlp\V2\Value[] $quantile_values
      *           List of 99 values that partition the set of field values into 100 equal
      *           sized buckets.
      * }
@@ -132,7 +132,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      * sized buckets.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quantile_values = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Value>
      */
     public function getQuantileValues()
     {
@@ -144,7 +144,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      * sized buckets.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quantile_values = 4;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Value[] $var
      * @return $this
      */
     public function setQuantileValues($var)
@@ -156,5 +156,4 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

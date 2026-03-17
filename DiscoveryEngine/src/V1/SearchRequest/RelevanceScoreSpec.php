@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\SearchRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The specification for returning the document relevance score.
@@ -68,5 +68,4 @@ class RelevanceScoreSpec extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

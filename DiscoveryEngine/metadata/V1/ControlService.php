@@ -22,40 +22,7 @@ class ControlService
         \GPBMetadata\Google\Protobuf\GPBEmpty::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
-            '
-â
-5google/cloud/discoveryengine/v1/control_service.protogoogle.cloud.discoveryengine.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto-google/cloud/discoveryengine/v1/control.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"Ø
-CreateControlRequest>
-parent (	B.‡A˙A(&discoveryengine.googleapis.com/Control>
-control (2(.google.cloud.discoveryengine.v1.ControlB‡A
-
-control_id (	B‡A"å
-UpdateControlRequest>
-control (2(.google.cloud.discoveryengine.v1.ControlB‡A4
-update_mask (2.google.protobuf.FieldMaskB‡A"T
-DeleteControlRequest<
-name (	B.‡A˙A(
-&discoveryengine.googleapis.com/Control"Q
-GetControlRequest<
-name (	B.‡A˙A(
-&discoveryengine.googleapis.com/Control"õ
-ListControlsRequest>
-parent (	B.‡A˙A(&discoveryengine.googleapis.com/Control
-	page_size (B‡A
-
-page_token (	B‡A
-filter (	B‡A"k
-ListControlsResponse:
-controls (2(.google.cloud.discoveryengine.v1.Control
-next_page_token (	2Â
-ControlServiceˇ
-CreateControl5.google.cloud.discoveryengine.v1.CreateControlRequest(.google.cloud.discoveryengine.v1.Control"å⁄Aparent,control,control_idÇ”‰ìÈ"9/v1/{parent=projects/*/locations/*/dataStores/*}/controls:controlZR"G/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/controls:controlZO"D/v1/{parent=projects/*/locations/*/collections/*/engines/*}/controls:controlΩ
-DeleteControl5.google.cloud.discoveryengine.v1.DeleteControlRequest.google.protobuf.Empty"‹⁄AnameÇ”‰ìŒ*9/v1/{name=projects/*/locations/*/dataStores/*/controls/*}ZI*G/v1/{name=projects/*/locations/*/collections/*/dataStores/*/controls/*}ZF*D/v1/{name=projects/*/locations/*/collections/*/engines/*/controls/*}ë
-UpdateControl5.google.cloud.discoveryengine.v1.UpdateControlRequest(.google.cloud.discoveryengine.v1.Control"û⁄Acontrol,update_maskÇ”‰ìÅ2A/v1/{control.name=projects/*/locations/*/dataStores/*/controls/*}:controlZZ2O/v1/{control.name=projects/*/locations/*/collections/*/dataStores/*/controls/*}:controlZW2L/v1/{control.name=projects/*/locations/*/collections/*/engines/*/controls/*}:control…
-
-GetControl2.google.cloud.discoveryengine.v1.GetControlRequest(.google.cloud.discoveryengine.v1.Control"‹⁄AnameÇ”‰ìŒ9/v1/{name=projects/*/locations/*/dataStores/*/controls/*}ZIG/v1/{name=projects/*/locations/*/collections/*/dataStores/*/controls/*}ZFD/v1/{name=projects/*/locations/*/collections/*/engines/*/controls/*}‹
-ListControls4.google.cloud.discoveryengine.v1.ListControlsRequest5.google.cloud.discoveryengine.v1.ListControlsResponse"ﬁ⁄AparentÇ”‰ìŒ9/v1/{parent=projects/*/locations/*/dataStores/*}/controlsZIG/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/controlsZFD/v1/{parent=projects/*/locations/*/collections/*/engines/*}/controlsR Adiscoveryengine.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÜ
-#com.google.cloud.discoveryengine.v1BControlServiceProtoPZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb¢DISCOVERYENGINE™Google.Cloud.DiscoveryEngine.V1 Google\\Cloud\\DiscoveryEngine\\V1Í"Google::Cloud::DiscoveryEngine::V1bproto3'
+            "\x0A\x89\x19\x0A5google/cloud/discoveryengine/v1/control_service.proto\x12\x1Fgoogle.cloud.discoveryengine.v1\x1A\x17google/api/client.proto\x1A\x1Fgoogle/api/field_behavior.proto\x1A\x19google/api/resource.proto\x1A-google/cloud/discoveryengine/v1/control.proto\x1A\x1Bgoogle/protobuf/empty.proto\x1A google/protobuf/field_mask.proto\"\xAF\x01\x0A\x14CreateControlRequest\x12>\x0A\x06parent\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x12&discoveryengine.googleapis.com/Control\x12>\x0A\x07control\x18\x02 \x01(\x0B2(.google.cloud.discoveryengine.v1.ControlB\x03\xE0A\x02\x12\x17\x0A\x0Acontrol_id\x18\x03 \x01(\x09B\x03\xE0A\x02\"\x8C\x01\x0A\x14UpdateControlRequest\x12>\x0A\x07control\x18\x01 \x01(\x0B2(.google.cloud.discoveryengine.v1.ControlB\x03\xE0A\x02\x124\x0A\x0Bupdate_mask\x18\x02 \x01(\x0B2\x1A.google.protobuf.FieldMaskB\x03\xE0A\x01\"T\x0A\x14DeleteControlRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&discoveryengine.googleapis.com/Control\"Q\x0A\x11GetControlRequest\x12<\x0A\x04name\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x0A&discoveryengine.googleapis.com/Control\"\x9B\x01\x0A\x13ListControlsRequest\x12>\x0A\x06parent\x18\x01 \x01(\x09B.\xE0A\x02\xFAA(\x12&discoveryengine.googleapis.com/Control\x12\x16\x0A\x09page_size\x18\x02 \x01(\x05B\x03\xE0A\x01\x12\x17\x0A\x0Apage_token\x18\x03 \x01(\x09B\x03\xE0A\x01\x12\x13\x0A\x06filter\x18\x04 \x01(\x09B\x03\xE0A\x01\"k\x0A\x14ListControlsResponse\x12:\x0A\x08controls\x18\x01 \x03(\x0B2(.google.cloud.discoveryengine.v1.Control\x12\x17\x0A\x0Fnext_page_token\x18\x02 \x01(\x092\xE5\x0E\x0A\x0EControlService\x12\xFF\x02\x0A\x0DCreateControl\x125.google.cloud.discoveryengine.v1.CreateControlRequest\x1A(.google.cloud.discoveryengine.v1.Control\"\x8C\x02\xDAA\x19parent,control,control_id\x82\xD3\xE4\x93\x02\xE9\x01\"9/v1/{parent=projects/*/locations/*/dataStores/*}/controls:\x07controlZR\"G/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/controls:\x07controlZO\"D/v1/{parent=projects/*/locations/*/collections/*/engines/*}/controls:\x07control\x12\xBD\x02\x0A\x0DDeleteControl\x125.google.cloud.discoveryengine.v1.DeleteControlRequest\x1A\x16.google.protobuf.Empty\"\xDC\x01\xDAA\x04name\x82\xD3\xE4\x93\x02\xCE\x01*9/v1/{name=projects/*/locations/*/dataStores/*/controls/*}ZI*G/v1/{name=projects/*/locations/*/collections/*/dataStores/*/controls/*}ZF*D/v1/{name=projects/*/locations/*/collections/*/engines/*/controls/*}\x12\x91\x03\x0A\x0DUpdateControl\x125.google.cloud.discoveryengine.v1.UpdateControlRequest\x1A(.google.cloud.discoveryengine.v1.Control\"\x9E\x02\xDAA\x13control,update_mask\x82\xD3\xE4\x93\x02\x81\x022A/v1/{control.name=projects/*/locations/*/dataStores/*/controls/*}:\x07controlZZ2O/v1/{control.name=projects/*/locations/*/collections/*/dataStores/*/controls/*}:\x07controlZW2L/v1/{control.name=projects/*/locations/*/collections/*/engines/*/controls/*}:\x07control\x12\xC9\x02\x0A\x0AGetControl\x122.google.cloud.discoveryengine.v1.GetControlRequest\x1A(.google.cloud.discoveryengine.v1.Control\"\xDC\x01\xDAA\x04name\x82\xD3\xE4\x93\x02\xCE\x01\x129/v1/{name=projects/*/locations/*/dataStores/*/controls/*}ZI\x12G/v1/{name=projects/*/locations/*/collections/*/dataStores/*/controls/*}ZF\x12D/v1/{name=projects/*/locations/*/collections/*/engines/*/controls/*}\x12\xDC\x02\x0A\x0CListControls\x124.google.cloud.discoveryengine.v1.ListControlsRequest\x1A5.google.cloud.discoveryengine.v1.ListControlsResponse\"\xDE\x01\xDAA\x06parent\x82\xD3\xE4\x93\x02\xCE\x01\x129/v1/{parent=projects/*/locations/*/dataStores/*}/controlsZI\x12G/v1/{parent=projects/*/locations/*/collections/*/dataStores/*}/controlsZF\x12D/v1/{parent=projects/*/locations/*/collections/*/engines/*}/controls\x1AR\xCAA\x1Ediscoveryengine.googleapis.com\xD2A.https://www.googleapis.com/auth/cloud-platformB\x86\x02\x0A#com.google.cloud.discoveryengine.v1B\x13ControlServiceProtoP\x01ZMcloud.google.com/go/discoveryengine/apiv1/discoveryenginepb;discoveryenginepb\xA2\x02\x0FDISCOVERYENGINE\xAA\x02\x1FGoogle.Cloud.DiscoveryEngine.V1\xCA\x02\x1FGoogle\\Cloud\\DiscoveryEngine\\V1\xEA\x02\"Google::Cloud::DiscoveryEngine::V1b\x06proto3"
         , true);
 
         static::$is_initialized = true;

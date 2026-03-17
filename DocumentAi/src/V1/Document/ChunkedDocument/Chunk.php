@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document\ChunkedDocument;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Represents a chunk.
@@ -60,15 +60,15 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *
      *     @type string $chunk_id
      *           ID of the chunk.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_block_ids
+     *     @type string[] $source_block_ids
      *           Unused.
      *     @type string $content
      *           Text content of the chunk.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageSpan $page_span
      *           Page span of the chunk.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageHeader>|\Google\Protobuf\Internal\RepeatedField $page_headers
+     *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageHeader[] $page_headers
      *           Page headers associated with the chunk.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter>|\Google\Protobuf\Internal\RepeatedField $page_footers
+     *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter[] $page_footers
      *           Page footers associated with the chunk.
      * }
      */
@@ -107,7 +107,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Unused.
      *
      * Generated from protobuf field <code>repeated string source_block_ids = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getSourceBlockIds()
     {
@@ -118,7 +118,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Unused.
      *
      * Generated from protobuf field <code>repeated string source_block_ids = 2;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setSourceBlockIds($var)
@@ -195,7 +195,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Page headers associated with the chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageHeader page_headers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageHeader>
      */
     public function getPageHeaders()
     {
@@ -206,7 +206,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Page headers associated with the chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageHeader page_headers = 5;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageHeader>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageHeader[] $var
      * @return $this
      */
     public function setPageHeaders($var)
@@ -221,7 +221,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Page footers associated with the chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageFooter page_footers = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter>
      */
     public function getPageFooters()
     {
@@ -232,7 +232,7 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Page footers associated with the chunk.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageFooter page_footers = 6;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter[] $var
      * @return $this
      */
     public function setPageFooters($var)
@@ -244,5 +244,4 @@ class Chunk extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

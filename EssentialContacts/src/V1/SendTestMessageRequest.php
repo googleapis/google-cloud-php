@@ -5,8 +5,8 @@
 namespace Google\Cloud\EssentialContacts\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for the SendTestMessage method.
@@ -48,7 +48,7 @@ class SendTestMessageRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contacts
+     *     @type string[] $contacts
      *           Required. The list of names of the contacts to send a test message to.
      *           Format: organizations/{organization_id}/contacts/{contact_id},
      *           folders/{folder_id}/contacts/{contact_id} or
@@ -76,7 +76,7 @@ class SendTestMessageRequest extends \Google\Protobuf\Internal\Message
      * projects/{project_id}/contacts/{contact_id}
      *
      * Generated from protobuf field <code>repeated string contacts = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getContacts()
     {
@@ -90,7 +90,7 @@ class SendTestMessageRequest extends \Google\Protobuf\Internal\Message
      * projects/{project_id}/contacts/{contact_id}
      *
      * Generated from protobuf field <code>repeated string contacts = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setContacts($var)

@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class PurgeCompletionSuggestionsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The parent data store resource name for which to purge completion
      * suggestions. Follows pattern
-     * projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,7 +35,7 @@ class PurgeCompletionSuggestionsRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $parent
      *           Required. The parent data store resource name for which to purge completion
      *           suggestions. Follows pattern
-     *           projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     *           projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class PurgeCompletionSuggestionsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The parent data store resource name for which to purge completion
      * suggestions. Follows pattern
-     * projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -59,7 +59,7 @@ class PurgeCompletionSuggestionsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The parent data store resource name for which to purge completion
      * suggestions. Follows pattern
-     * projects/&#42;&#47;locations/&#42;&#47;collections/&#42;&#47;dataStores/&#42;.
+     * projects/{@*}locations/{@*}collections/{@*}dataStores/*.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

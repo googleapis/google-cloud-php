@@ -21,20 +21,20 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.Span.TimeEvent.MessageEvent.Type type = 1;</code>
      */
-    private $type = 0;
+    protected $type = 0;
     /**
      * An identifier for the MessageEvent's message that can be used to match
      * `SENT` and `RECEIVED` MessageEvents.
      *
      * Generated from protobuf field <code>int64 id = 2;</code>
      */
-    private $id = 0;
+    protected $id = 0;
     /**
      * The number of uncompressed bytes sent or received.
      *
      * Generated from protobuf field <code>int64 uncompressed_size_bytes = 3;</code>
      */
-    private $uncompressed_size_bytes = 0;
+    protected $uncompressed_size_bytes = 0;
     /**
      * The number of compressed bytes sent or received. If missing, the
      * compressed size is assumed to be the same size as the uncompressed
@@ -42,7 +42,7 @@ class MessageEvent extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 compressed_size_bytes = 4;</code>
      */
-    private $compressed_size_bytes = 0;
+    protected $compressed_size_bytes = 0;
 
     /**
      * Constructor.

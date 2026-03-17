@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\Document;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Structure to identify provenance relationships between annotations in
@@ -55,7 +55,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      *     @type int $id
      *           The Id of this operation.  Needs to be unique within the scope of the
      *           revision.
-     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent>|\Google\Protobuf\Internal\RepeatedField $parents
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[] $parents
      *           References to the original elements that are replaced.
      *     @type int $type
      *           The type of provenance operation.
@@ -136,7 +136,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      * References to the original elements that are replaced.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance.Parent parents = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent>
      */
     public function getParents()
     {
@@ -147,7 +147,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      * References to the original elements that are replaced.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance.Parent parents = 3;</code>
-     * @param array<\Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[] $var
      * @return $this
      */
     public function setParents($var)
@@ -185,5 +185,4 @@ class Provenance extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

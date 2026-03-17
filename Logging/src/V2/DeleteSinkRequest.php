@@ -27,7 +27,7 @@ class DeleteSinkRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string sink_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    private $sink_name = '';
+    protected $sink_name = '';
 
     /**
      * @param string $sinkName Required. The full resource name of the sink to delete, including the

@@ -11,8 +11,8 @@ use UnexpectedValueException;
  * satisfies the criteria to match a particular infoType.
  * Likelihood is calculated based on the number of signals a
  * finding has that implies that the finding matches the infoType. For
- * example, a string that has an '&#64;' and a '.com' is more likely to be a
- * match for an email address than a string that only has an '&#64;'.
+ * example, a string that has an '\@' and a '.com' is more likely to be a
+ * match for an email address than a string that only has an '\@'.
  * In general, the highest likelihood level has the strongest signals that
  * indicate a match. That is, a finding with a high likelihood has a low chance
  * of being a false positive.

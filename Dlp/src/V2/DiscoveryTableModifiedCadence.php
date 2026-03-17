@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The cadence at which to update data profiles when a table is modified.
@@ -37,7 +37,7 @@ class DiscoveryTableModifiedCadence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type int[] $types
      *           The type of events to consider when deciding if the table has been
      *           modified and should have the profile updated. Defaults to
      *           MODIFIED_TIMESTAMP.
@@ -57,7 +57,7 @@ class DiscoveryTableModifiedCadence extends \Google\Protobuf\Internal\Message
      * MODIFIED_TIMESTAMP.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BigQueryTableModification types = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getTypes()
     {
@@ -70,7 +70,7 @@ class DiscoveryTableModifiedCadence extends \Google\Protobuf\Internal\Message
      * MODIFIED_TIMESTAMP.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BigQueryTableModification types = 1;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setTypes($var)

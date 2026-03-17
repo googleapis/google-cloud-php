@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Details information about an error encountered during job execution or
@@ -44,7 +44,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Rpc\Status $details
      *           Detailed error codes and messages.
-     *     @type array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $timestamps
+     *     @type \Google\Protobuf\Timestamp[] $timestamps
      *           The times the error occurred. List includes the oldest timestamp and the
      *           last 9 timestamps.
      *     @type int $extra_info
@@ -97,7 +97,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * last 9 timestamps.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Protobuf\Timestamp>
      */
     public function getTimestamps()
     {
@@ -109,7 +109,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * last 9 timestamps.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
-     * @param array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Protobuf\Timestamp[] $var
      * @return $this
      */
     public function setTimestamps($var)

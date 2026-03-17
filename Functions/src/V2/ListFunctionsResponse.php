@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response for the `ListFunctions` method.
@@ -42,12 +42,12 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Functions\V2\PBFunction>|\Google\Protobuf\Internal\RepeatedField $functions
+     *     @type \Google\Cloud\Functions\V2\PBFunction[] $functions
      *           The functions that match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type string[] $unreachable
      *           Locations that could not be reached. The response does not include any
      *           functions from these locations.
      * }
@@ -61,7 +61,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * The functions that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Function functions = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Functions\V2\PBFunction>
      */
     public function getFunctions()
     {
@@ -72,7 +72,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * The functions that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v2.Function functions = 1;</code>
-     * @param array<\Google\Cloud\Functions\V2\PBFunction>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Functions\V2\PBFunction[] $var
      * @return $this
      */
     public function setFunctions($var)
@@ -116,7 +116,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * functions from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getUnreachable()
     {
@@ -128,7 +128,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * functions from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setUnreachable($var)

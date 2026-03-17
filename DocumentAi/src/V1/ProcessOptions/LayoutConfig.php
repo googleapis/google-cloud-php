@@ -5,8 +5,8 @@
 namespace Google\Cloud\DocumentAI\V1\ProcessOptions;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Serving config for layout parser processor.
@@ -214,5 +214,4 @@ class LayoutConfig extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

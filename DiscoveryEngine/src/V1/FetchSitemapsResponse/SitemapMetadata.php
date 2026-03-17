@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\FetchSitemapsResponse;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a [Sitemap][google.cloud.discoveryengine.v1.Sitemap] and its
@@ -75,5 +75,4 @@ class SitemapMetadata extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

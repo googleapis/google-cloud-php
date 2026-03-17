@@ -37,7 +37,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string log_name = 12 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $log_name = '';
+    protected $log_name = '';
     /**
      * Required. The monitored resource that produced this log entry.
      * Example: a log entry that reports a database error would be associated with
@@ -46,7 +46,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.api.MonitoredResource resource = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    private $resource = null;
+    protected $resource = null;
     /**
      * Optional. The time the event described by the log entry occurred. This time
      * is used to compute the log entry's age and to enforce the logs retention
@@ -62,20 +62,20 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $timestamp = null;
+    protected $timestamp = null;
     /**
      * Output only. The time the log entry was received by Logging.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp receive_timestamp = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $receive_timestamp = null;
+    protected $receive_timestamp = null;
     /**
      * Optional. The severity of the log entry. The default value is
      * `LogSeverity.DEFAULT`.
      *
      * Generated from protobuf field <code>.google.logging.type.LogSeverity severity = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $severity = 0;
+    protected $severity = 0;
     /**
      * Optional. A unique identifier for the log entry. If you provide a value,
      * then Logging considers other log entries in the same project, with the same
@@ -89,14 +89,14 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string insert_id = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $insert_id = '';
+    protected $insert_id = '';
     /**
      * Optional. Information about the HTTP request associated with this log
      * entry, if applicable.
      *
      * Generated from protobuf field <code>.google.logging.type.HttpRequest http_request = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $http_request = null;
+    protected $http_request = null;
     /**
      * Optional. A map of key, value pairs that provides additional information
      * about the log entry. The labels can be user-defined or system-defined.
@@ -119,7 +119,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.logging.v2.LogEntryOperation operation = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $operation = null;
+    protected $operation = null;
     /**
      * Optional. The REST resource name of the trace being written to
      * [Cloud Trace](https://cloud.google.com/trace) in
@@ -132,7 +132,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string trace = 22 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trace = '';
+    protected $trace = '';
     /**
      * Optional. The ID of the [Cloud Trace](https://cloud.google.com/trace) span
      * associated with the current operation in which the log is being written.
@@ -162,7 +162,7 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string span_id = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $span_id = '';
+    protected $span_id = '';
     /**
      * Optional. The sampling decision of the trace associated with the log entry.
      * True means that the trace resource name in the `trace` field was sampled
@@ -173,21 +173,21 @@ class LogEntry extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool trace_sampled = 30 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $trace_sampled = false;
+    protected $trace_sampled = false;
     /**
      * Optional. Source code location information associated with the log entry,
      * if any.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogEntrySourceLocation source_location = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $source_location = null;
+    protected $source_location = null;
     /**
      * Optional. Information indicating this LogEntry is part of a sequence of
      * multiple log entries split from a single LogEntry.
      *
      * Generated from protobuf field <code>.google.logging.v2.LogSplit split = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    private $split = null;
+    protected $split = null;
     protected $payload;
 
     /**

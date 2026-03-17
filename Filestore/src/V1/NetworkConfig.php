@@ -5,8 +5,8 @@
 namespace Google\Cloud\Filestore\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Network configuration for the instance.
@@ -78,7 +78,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           The name of the Google Compute Engine
      *           [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $modes
+     *     @type int[] $modes
      *           Internet protocol versions for which the instance has IP addresses
      *           assigned. For this version, only MODE_IPV4 is supported.
      *     @type string $reserved_ip_range
@@ -99,7 +99,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           range you specify can't overlap with either existing subnets or assigned IP
      *           address ranges for other Filestore instances in the selected VPC
      *           network.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type string[] $ip_addresses
      *           Output only. IPv4 addresses in the format
      *           `{octet1}.{octet2}.{octet3}.{octet4}` or IPv6 addresses in the format
      *           `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
@@ -148,7 +148,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * assigned. For this version, only MODE_IPV4 is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig.AddressMode modes = 3;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getModes()
     {
@@ -160,7 +160,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * assigned. For this version, only MODE_IPV4 is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig.AddressMode modes = 3;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setModes($var)
@@ -235,7 +235,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getIpAddresses()
     {
@@ -248,7 +248,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setIpAddresses($var)

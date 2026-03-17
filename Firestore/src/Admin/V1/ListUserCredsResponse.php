@@ -5,8 +5,8 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The response for
@@ -29,7 +29,7 @@ class ListUserCredsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Firestore\Admin\V1\UserCreds>|\Google\Protobuf\Internal\RepeatedField $user_creds
+     *     @type \Google\Cloud\Firestore\Admin\V1\UserCreds[] $user_creds
      *           The user creds for the database.
      * }
      */
@@ -42,7 +42,7 @@ class ListUserCredsResponse extends \Google\Protobuf\Internal\Message
      * The user creds for the database.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.UserCreds user_creds = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Firestore\Admin\V1\UserCreds>
      */
     public function getUserCreds()
     {
@@ -53,7 +53,7 @@ class ListUserCredsResponse extends \Google\Protobuf\Internal\Message
      * The user creds for the database.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.UserCreds user_creds = 1;</code>
-     * @param array<\Google\Cloud\Firestore\Admin\V1\UserCreds>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Firestore\Admin\V1\UserCreds[] $var
      * @return $this
      */
     public function setUserCreds($var)

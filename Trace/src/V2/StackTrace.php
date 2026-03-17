@@ -20,7 +20,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.cloudtrace.v2.StackTrace.StackFrames stack_frames = 1;</code>
      */
-    private $stack_frames = null;
+    protected $stack_frames = null;
     /**
      * The hash ID is used to conserve network bandwidth for duplicate
      * stack traces within a single trace.
@@ -32,7 +32,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int64 stack_trace_hash_id = 2;</code>
      */
-    private $stack_trace_hash_id = 0;
+    protected $stack_trace_hash_id = 0;
 
     /**
      * Constructor.

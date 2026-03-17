@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Defines an answer.
@@ -17,7 +17,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 {
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/{@*}answers/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -111,7 +111,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Immutable. Fully qualified name
-     *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     *           `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/{@*}answers/*`
      *     @type int $state
      *           The state of the answer generation.
      *     @type string $answer_text
@@ -119,26 +119,26 @@ class Answer extends \Google\Protobuf\Internal\Message
      *     @type float $grounding_score
      *           A score in the range of [0, 1] describing how grounded the answer is by the
      *           reference chunks.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Citation>|\Google\Protobuf\Internal\RepeatedField $citations
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Citation[] $citations
      *           Citations.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $grounding_supports
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport[] $grounding_supports
      *           Optional. Grounding supports.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference>|\Google\Protobuf\Internal\RepeatedField $references
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Reference[] $references
      *           References.
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_questions
+     *     @type string[] $related_questions
      *           Suggested related questions.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step>|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\Step[] $steps
      *           Answer generation steps.
      *     @type \Google\Cloud\DiscoveryEngine\V1\Answer\QueryUnderstandingInfo $query_understanding_info
      *           Query understanding information.
-     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $answer_skipped_reasons
+     *     @type int[] $answer_skipped_reasons
      *           Additional answer-skipped reasons. This provides the reason for ignored
      *           cases. If nothing is skipped, this field is not set.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Answer creation timestamp.
      *     @type \Google\Protobuf\Timestamp $complete_time
      *           Output only. Answer completed timestamp.
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $safety_ratings
+     *     @type \Google\Cloud\DiscoveryEngine\V1\SafetyRating[] $safety_ratings
      *           Optional. Safety ratings.
      * }
      */
@@ -149,7 +149,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/{@*}answers/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return string
@@ -161,7 +161,7 @@ class Answer extends \Google\Protobuf\Internal\Message
 
     /**
      * Immutable. Fully qualified name
-     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/&#42;&#47;answers/&#42;`
+     * `projects/{project}/locations/global/collections/{collection}/engines/{engine}/sessions/{@*}answers/*`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param string $var
@@ -269,7 +269,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Citations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Citation citations = 4;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Citation>
      */
     public function getCitations()
     {
@@ -280,7 +280,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Citations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Citation citations = 4;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Citation>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Citation[] $var
      * @return $this
      */
     public function setCitations($var)
@@ -295,7 +295,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Optional. Grounding supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.GroundingSupport grounding_supports = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport>
      */
     public function getGroundingSupports()
     {
@@ -306,7 +306,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Optional. Grounding supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.GroundingSupport grounding_supports = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\GroundingSupport[] $var
      * @return $this
      */
     public function setGroundingSupports($var)
@@ -321,7 +321,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * References.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Reference references = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference>
      */
     public function getReferences()
     {
@@ -332,7 +332,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * References.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Reference references = 5;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Reference>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Reference[] $var
      * @return $this
      */
     public function setReferences($var)
@@ -347,7 +347,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Suggested related questions.
      *
      * Generated from protobuf field <code>repeated string related_questions = 6;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getRelatedQuestions()
     {
@@ -358,7 +358,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Suggested related questions.
      *
      * Generated from protobuf field <code>repeated string related_questions = 6;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setRelatedQuestions($var)
@@ -373,7 +373,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Answer generation steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step steps = 7;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Answer\Step>
      */
     public function getSteps()
     {
@@ -384,7 +384,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Answer generation steps.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.Step steps = 7;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Answer\Step>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Answer\Step[] $var
      * @return $this
      */
     public function setSteps($var)
@@ -436,7 +436,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * cases. If nothing is skipped, this field is not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.AnswerSkippedReason answer_skipped_reasons = 11;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<int>
      */
     public function getAnswerSkippedReasons()
     {
@@ -448,7 +448,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * cases. If nothing is skipped, this field is not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Answer.AnswerSkippedReason answer_skipped_reasons = 11;</code>
-     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param int[] $var
      * @return $this
      */
     public function setAnswerSkippedReasons($var)
@@ -535,7 +535,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Optional. Safety ratings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SafetyRating safety_ratings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\SafetyRating>
      */
     public function getSafetyRatings()
     {
@@ -546,7 +546,7 @@ class Answer extends \Google\Protobuf\Internal\Message
      * Optional. Safety ratings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.SafetyRating safety_ratings = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\SafetyRating>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\SafetyRating[] $var
      * @return $this
      */
     public function setSafetyRatings($var)

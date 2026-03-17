@@ -5,8 +5,8 @@
 namespace Google\Cloud\Functions\V2\SecretVolume;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Configuration for a single version.
@@ -118,5 +118,4 @@ class SecretVersion extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

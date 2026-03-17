@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1\ImportUserEventsRequest;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * The inline source for the input config for ImportUserEvents method.
@@ -28,7 +28,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $user_events
+     *     @type \Google\Cloud\DiscoveryEngine\V1\UserEvent[] $user_events
      *           Required. A list of user events to import. Recommended max of 10k items.
      * }
      */
@@ -41,7 +41,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Required. A list of user events to import. Recommended max of 10k items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserEvent user_events = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\UserEvent>
      */
     public function getUserEvents()
     {
@@ -52,7 +52,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Required. A list of user events to import. Recommended max of 10k items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.UserEvent user_events = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\UserEvent[] $var
      * @return $this
      */
     public function setUserEvents($var)
@@ -64,5 +64,4 @@ class InlineSource extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

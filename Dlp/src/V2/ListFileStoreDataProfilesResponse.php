@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * List of file store data profiles generated for a given organization or
@@ -35,7 +35,7 @@ class ListFileStoreDataProfilesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\FileStoreDataProfile>|\Google\Protobuf\Internal\RepeatedField $file_store_data_profiles
+     *     @type \Google\Cloud\Dlp\V2\FileStoreDataProfile[] $file_store_data_profiles
      *           List of data profiles.
      *     @type string $next_page_token
      *           The next page token.
@@ -50,7 +50,7 @@ class ListFileStoreDataProfilesResponse extends \Google\Protobuf\Internal\Messag
      * List of data profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreDataProfile file_store_data_profiles = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\FileStoreDataProfile>
      */
     public function getFileStoreDataProfiles()
     {
@@ -61,7 +61,7 @@ class ListFileStoreDataProfilesResponse extends \Google\Protobuf\Internal\Messag
      * List of data profiles.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FileStoreDataProfile file_store_data_profiles = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\FileStoreDataProfile>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\FileStoreDataProfile[] $var
      * @return $this
      */
     public function setFileStoreDataProfiles($var)

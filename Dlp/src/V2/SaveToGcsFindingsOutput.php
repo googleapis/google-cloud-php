@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Collection of findings saved to a Cloud Storage bucket. This is used as the
@@ -30,7 +30,7 @@ class SaveToGcsFindingsOutput extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dlp\V2\Finding>|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type \Google\Cloud\Dlp\V2\Finding[] $findings
      *           List of findings.
      * }
      */
@@ -43,7 +43,7 @@ class SaveToGcsFindingsOutput extends \Google\Protobuf\Internal\Message
      * List of findings.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Finding findings = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Finding>
      */
     public function getFindings()
     {
@@ -54,7 +54,7 @@ class SaveToGcsFindingsOutput extends \Google\Protobuf\Internal\Message
      * List of findings.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Finding findings = 1;</code>
-     * @param array<\Google\Cloud\Dlp\V2\Finding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Finding[] $var
      * @return $this
      */
     public function setFindings($var)

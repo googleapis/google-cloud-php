@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Request message for
@@ -20,7 +20,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent data store resource name for which the completion is
      * performed, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -86,7 +86,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *     @type string $data_store
      *           Required. The parent data store resource name for which the completion is
      *           performed, such as
-     *           `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     *           `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *     @type string $query
      *           Required. The typeahead input used to fetch suggestions. Maximum length is
      *           128 characters.
@@ -132,7 +132,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent data store resource name for which the completion is
      * performed, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -145,7 +145,7 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The parent data store resource name for which the completion is
      * performed, such as
-     * `projects/&#42;&#47;locations/global/collections/default_collection/dataStores/default_data_store`.
+     * `projects/{@*}locations/global/collections/default_collection/dataStores/default_data_store`.
      *
      * Generated from protobuf field <code>string data_store = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -5,8 +5,8 @@
 namespace Google\Cloud\Eventarc\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A representation of the Provider resource.
@@ -48,7 +48,7 @@ class Provider extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Output only. Human friendly name for the Provider. For example "Cloud
      *           Storage".
-     *     @type array<\Google\Cloud\Eventarc\V1\EventType>|\Google\Protobuf\Internal\RepeatedField $event_types
+     *     @type \Google\Cloud\Eventarc\V1\EventType[] $event_types
      *           Output only. Event types for this provider.
      * }
      */
@@ -117,7 +117,7 @@ class Provider extends \Google\Protobuf\Internal\Message
      * Output only. Event types for this provider.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventType event_types = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Eventarc\V1\EventType>
      */
     public function getEventTypes()
     {
@@ -128,7 +128,7 @@ class Provider extends \Google\Protobuf\Internal\Message
      * Output only. Event types for this provider.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventType event_types = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Eventarc\V1\EventType>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Eventarc\V1\EventType[] $var
      * @return $this
      */
     public function setEventTypes($var)

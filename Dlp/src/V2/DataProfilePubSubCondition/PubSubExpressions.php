@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfilePubSubCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * An expression, consisting of an operator and conditions.
@@ -36,7 +36,7 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
      *
      *     @type int $logical_operator
      *           The operator to apply to the collection of conditions.
-     *     @type array<\Google\Cloud\Dlp\V2\DataProfilePubSubCondition\PubSubCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type \Google\Cloud\Dlp\V2\DataProfilePubSubCondition\PubSubCondition[] $conditions
      *           Conditions to apply to the expression.
      * }
      */
@@ -75,7 +75,7 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
      * Conditions to apply to the expression.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition conditions = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\DataProfilePubSubCondition\PubSubCondition>
      */
     public function getConditions()
     {
@@ -86,7 +86,7 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
      * Conditions to apply to the expression.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfilePubSubCondition.PubSubCondition conditions = 2;</code>
-     * @param array<\Google\Cloud\Dlp\V2\DataProfilePubSubCondition\PubSubCondition>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\DataProfilePubSubCondition\PubSubCondition[] $var
      * @return $this
      */
     public function setConditions($var)
@@ -98,5 +98,4 @@ class PubSubExpressions extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

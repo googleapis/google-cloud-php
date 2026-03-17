@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\DataProfilePubSubCondition;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * A condition consisting of a value.
@@ -105,5 +105,4 @@ class PubSubCondition extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

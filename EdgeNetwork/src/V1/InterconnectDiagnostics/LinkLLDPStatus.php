@@ -5,8 +5,8 @@
 namespace Google\Cloud\EdgeNetwork\V1\InterconnectDiagnostics;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Describing a LLDP link.
@@ -246,5 +246,4 @@ class LinkLLDPStatus extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 

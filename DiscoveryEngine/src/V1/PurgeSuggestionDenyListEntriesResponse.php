@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -38,7 +38,7 @@ class PurgeSuggestionDenyListEntriesResponse extends \Google\Protobuf\Internal\M
      *
      *     @type int|string $purge_count
      *           Number of suggestion deny list entries purged.
-     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $error_samples
+     *     @type \Google\Rpc\Status[] $error_samples
      *           A sample of errors encountered while processing the request.
      * }
      */
@@ -77,7 +77,7 @@ class PurgeSuggestionDenyListEntriesResponse extends \Google\Protobuf\Internal\M
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Rpc\Status>
      */
     public function getErrorSamples()
     {
@@ -88,7 +88,7 @@ class PurgeSuggestionDenyListEntriesResponse extends \Google\Protobuf\Internal\M
      * A sample of errors encountered while processing the request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status error_samples = 2;</code>
-     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Rpc\Status[] $var
      * @return $this
      */
     public function setErrorSamples($var)

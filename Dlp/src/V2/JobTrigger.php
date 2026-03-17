@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Contains a configuration to make API calls on a repeating basis.
@@ -97,11 +97,11 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      *           User provided description (max 256 chars)
      *     @type \Google\Cloud\Dlp\V2\InspectJobConfig $inspect_job
      *           For inspect jobs, a snapshot of the configuration.
-     *     @type array<\Google\Cloud\Dlp\V2\JobTrigger\Trigger>|\Google\Protobuf\Internal\RepeatedField $triggers
+     *     @type \Google\Cloud\Dlp\V2\JobTrigger\Trigger[] $triggers
      *           A list of triggers which will be OR'ed together. Only one in the list
      *           needs to trigger for a job to be started. The list may contain only
      *           a single Schedule trigger and must have at least one object.
-     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type \Google\Cloud\Dlp\V2\Error[] $errors
      *           Output only. A stream of errors encountered when the trigger was activated.
      *           Repeated errors may result in the JobTrigger automatically being paused.
      *           Will return the last 100 errors. Whenever the JobTrigger is modified
@@ -240,7 +240,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * a single Schedule trigger and must have at least one object.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.JobTrigger.Trigger triggers = 5;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\JobTrigger\Trigger>
      */
     public function getTriggers()
     {
@@ -253,7 +253,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * a single Schedule trigger and must have at least one object.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.JobTrigger.Trigger triggers = 5;</code>
-     * @param array<\Google\Cloud\Dlp\V2\JobTrigger\Trigger>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\JobTrigger\Trigger[] $var
      * @return $this
      */
     public function setTriggers($var)
@@ -271,7 +271,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * this list will be cleared.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\Dlp\V2\Error>
      */
     public function getErrors()
     {
@@ -285,7 +285,7 @@ class JobTrigger extends \Google\Protobuf\Internal\Message
      * this list will be cleared.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\Dlp\V2\Error[] $var
      * @return $this
      */
     public function setErrors($var)

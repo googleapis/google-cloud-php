@@ -5,8 +5,8 @@
 namespace Google\Cloud\DiscoveryEngine\V1;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Response message for
@@ -39,7 +39,7 @@ class ListSchemasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\DiscoveryEngine\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $schemas
+     *     @type \Google\Cloud\DiscoveryEngine\V1\Schema[] $schemas
      *           The [Schema][google.cloud.discoveryengine.v1.Schema]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -57,7 +57,7 @@ class ListSchemasResponse extends \Google\Protobuf\Internal\Message
      * The [Schema][google.cloud.discoveryengine.v1.Schema]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Schema schemas = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<\Google\Cloud\DiscoveryEngine\V1\Schema>
      */
     public function getSchemas()
     {
@@ -68,7 +68,7 @@ class ListSchemasResponse extends \Google\Protobuf\Internal\Message
      * The [Schema][google.cloud.discoveryengine.v1.Schema]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.discoveryengine.v1.Schema schemas = 1;</code>
-     * @param array<\Google\Cloud\DiscoveryEngine\V1\Schema>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param \Google\Cloud\DiscoveryEngine\V1\Schema[] $var
      * @return $this
      */
     public function setSchemas($var)

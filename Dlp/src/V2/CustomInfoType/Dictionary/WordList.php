@@ -5,8 +5,8 @@
 namespace Google\Cloud\Dlp\V2\CustomInfoType\Dictionary;
 
 use Google\Protobuf\Internal\GPBType;
-use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
+use Google\Protobuf\RepeatedField;
 
 /**
  * Message defining a list of words or phrases to search for in the data.
@@ -30,7 +30,7 @@ class WordList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type string[] $words
      *           Words or phrases defining the dictionary. The dictionary must contain
      *           at least one phrase and every phrase must contain at least 2 characters
      *           that are letters or digits. [required]
@@ -47,7 +47,7 @@ class WordList extends \Google\Protobuf\Internal\Message
      * that are letters or digits. [required]
      *
      * Generated from protobuf field <code>repeated string words = 1;</code>
-     * @return \Google\Protobuf\Internal\RepeatedField
+     * @return RepeatedField<string>
      */
     public function getWords()
     {
@@ -60,7 +60,7 @@ class WordList extends \Google\Protobuf\Internal\Message
      * that are letters or digits. [required]
      *
      * Generated from protobuf field <code>repeated string words = 1;</code>
-     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @param string[] $var
      * @return $this
      */
     public function setWords($var)
@@ -72,5 +72,4 @@ class WordList extends \Google\Protobuf\Internal\Message
     }
 
 }
-
 
