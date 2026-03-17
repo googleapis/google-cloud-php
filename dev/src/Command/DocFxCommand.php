@@ -152,19 +152,17 @@ class DocFxCommand extends Command
             $process = self::getPhpDocCommand($component->getPath(), $outDir);
             try {
                 $process->mustRun();
-                $output->writeln('Done.');
             } catch (ProcessFailedException $ex) {
-                if (false !== strpos($process->getErrorOutput(), 'The arguments array must contain 3 items, 0 given')) {
-                    $output->writeln('<error>Process errored out, applying PHPDoc Tag Escape fix and trying again...</>');
-                    $this->applyPhpDocTagEscapeFix($component->getPath());
-                    $process->mustRun();
-                    $output->writeln('<info>IT WORKED!</> Reverting Fix... ');
-                    $this->applyPhpDocTagEscapeFix($component->getPath(), revert: true);
-                    $output->writeln('Done.');
-                } else {
+                if (false === strpos($process->getErrorOutput(), 'The arguments array must contain 3 items, 0 given')) {
                     throw $ex;
                 }
+                $output->writeln('<error>Process errored out, applying PHPDoc Tag Escape fix and trying again...</>');
+                $this->applyPhpDocTagEscapeFix($component->getPath());
+                $process->mustRun();
+                $output->write('<info>IT WORKED!</> Reverting Fix... ');
+                $this->applyPhpDocTagEscapeFix($component->getPath(), revert: true);
             }
+            $output->writeln('Done.');
             $xml = $outDir . '/structure.xml';
         }
         if (!file_exists($xml)) {
