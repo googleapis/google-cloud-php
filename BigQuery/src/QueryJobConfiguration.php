@@ -623,8 +623,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
             isset($queryConfig['clustering']) ||
             isset($queryConfig['destinationEncryptionConfiguration']) ||
             isset($queryConfig['schemaUpdateOptions']) ||
-            isset($queryConfig['jobTimeoutMs']) ||
-            isset($queryConfig['jobId'])
+            isset($queryConfig['jobTimeoutMs'])
         ) {
             return false;
         }
