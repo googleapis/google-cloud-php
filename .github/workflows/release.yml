@@ -76,3 +76,4 @@ jobs:
               ./dev/google-cloud release:verify
             timeout_minutes: 1
             max_attempts: 3
+            retry_wait_seconds: 30
