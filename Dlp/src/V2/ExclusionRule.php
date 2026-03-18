@@ -39,6 +39,9 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\ExcludeByHotword $exclude_by_hotword
      *           Drop if the hotword rule is contained in the proximate context. For
      *           tabular data, the context includes the column name.
+     *     @type \Google\Cloud\Dlp\V2\ExcludeByImageFindings $exclude_by_image_findings
+     *           Exclude findings based on image containment rules. For example, exclude
+     *           an image finding if it overlaps with another image finding.
      *     @type int $matching_type
      *           How the rule is applied, see MatchingType documentation for details.
      * }
@@ -170,6 +173,39 @@ class ExclusionRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ExcludeByHotword::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Exclude findings based on image containment rules. For example, exclude
+     * an image finding if it overlaps with another image finding.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ExcludeByImageFindings exclude_by_image_findings = 6;</code>
+     * @return \Google\Cloud\Dlp\V2\ExcludeByImageFindings|null
+     */
+    public function getExcludeByImageFindings()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasExcludeByImageFindings()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Exclude findings based on image containment rules. For example, exclude
+     * an image finding if it overlaps with another image finding.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ExcludeByImageFindings exclude_by_image_findings = 6;</code>
+     * @param \Google\Cloud\Dlp\V2\ExcludeByImageFindings $var
+     * @return $this
+     */
+    public function setExcludeByImageFindings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ExcludeByImageFindings::class);
+        $this->writeOneof(6, $var);
 
         return $this;
     }

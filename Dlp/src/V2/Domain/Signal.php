@@ -8,7 +8,7 @@ use UnexpectedValueException;
 
 /**
  * The signal used to determine the category.
- * This list may increase over time.
+ * New values may be added in the future.
  *
  * Protobuf type <code>google.privacy.dlp.v2.Domain.Signal</code>
  */
@@ -27,11 +27,19 @@ class Signal
      */
     const MODEL = 1;
     /**
-     * A table appears to be a text embedding.
+     * A table appears to contain text embeddings.
      *
      * Generated from protobuf enum <code>TEXT_EMBEDDING = 2;</code>
      */
     const TEXT_EMBEDDING = 2;
+    /**
+     * A table appears to contain embeddings of any type (for example, text,
+     * image, multimodal). The `TEXT_EMBEDDING` signal might also be present if
+     * the table contains text embeddings.
+     *
+     * Generated from protobuf enum <code>EMBEDDING = 7;</code>
+     */
+    const EMBEDDING = 7;
     /**
      * The [Cloud SQL Vertex
      * AI](https://cloud.google.com/sql/docs/postgres/integrate-cloud-sql-with-vertex-ai)
@@ -66,6 +74,7 @@ class Signal
         self::SIGNAL_UNSPECIFIED => 'SIGNAL_UNSPECIFIED',
         self::MODEL => 'MODEL',
         self::TEXT_EMBEDDING => 'TEXT_EMBEDDING',
+        self::EMBEDDING => 'EMBEDDING',
         self::VERTEX_PLUGIN => 'VERTEX_PLUGIN',
         self::VECTOR_PLUGIN => 'VECTOR_PLUGIN',
         self::SOURCE_CODE => 'SOURCE_CODE',

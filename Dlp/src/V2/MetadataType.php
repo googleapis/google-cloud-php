@@ -25,10 +25,17 @@ class MetadataType
      * Generated from protobuf enum <code>STORAGE_METADATA = 2;</code>
      */
     const STORAGE_METADATA = 2;
+    /**
+     * Metadata extracted from the files.
+     *
+     * Generated from protobuf enum <code>CONTENT_METADATA = 3;</code>
+     */
+    const CONTENT_METADATA = 3;
 
     private static $valueToName = [
         self::METADATATYPE_UNSPECIFIED => 'METADATATYPE_UNSPECIFIED',
         self::STORAGE_METADATA => 'STORAGE_METADATA',
+        self::CONTENT_METADATA => 'CONTENT_METADATA',
     ];
 
     public static function name($value)
