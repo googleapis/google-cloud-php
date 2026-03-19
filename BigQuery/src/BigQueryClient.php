@@ -417,7 +417,11 @@ class BigQueryClient
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
         if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
-            $response = $this->connection->query($query->toQueryRequest() + [
+            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
+                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
+                $queryResultsOptions['formatOptions'] += ['formatOptions' => ['useInt64Timestamp' => $useInt64]];
+            }
+            $response = $this->connection->query($query->toQueryRequest() + $queryResultsOptions + $options + [
                 'projectId' => $this->projectId
             ]);
             if ($response['jobComplete']) {
@@ -428,7 +432,7 @@ class BigQueryClient
                     $response,
                     $this->mapper,
                     $this->createJob([], ''), // create an empty job
-                    $queryResultsOptions
+                    $queryResultsOptions + $options
                 );
             }
             $job = $this->createJob($response, $response['jobReference']['jobId']);
