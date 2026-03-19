@@ -37,8 +37,6 @@ trait JobConfigurationTrait
      */
     private $config = [];
 
-    private bool $isJobIdGenerated = false;
-
     /**
      * Sets shared job configuration properties.
      *
@@ -64,9 +62,6 @@ trait JobConfigurationTrait
 
         if (!isset($this->config['jobReference']['jobId'])) {
             $this->config['jobReference']['jobId'] = $this->generateJobId();
-
-            // Used for the Stateless query logic
-            $this->isJobIdGenerated = true;
         }
     }
 

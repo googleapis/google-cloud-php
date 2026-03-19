@@ -68,6 +68,7 @@ class QueryResults implements \IteratorAggregate
      * @var array Default options to be used for calls to get query results.
      */
     private $queryResultsOptions;
+    private bool $isStateless = false;
 
     /**
      * @param ConnectionInterface $connection Represents a connection to
@@ -102,6 +103,7 @@ class QueryResults implements \IteratorAggregate
                 ? $info['jobReference']['location']
                 : $job->identity()['location']
         ];
+        $this->isStateless = is_null($jobId) ? true : false;
         $this->mapper = $mapper;
         $this->queryResultsOptions = $queryResultsOptions;
     }
@@ -292,7 +294,7 @@ class QueryResults implements \IteratorAggregate
      */
     public function reload(array $options = [])
     {
-        if (!isset($this->info['jobReference'])) {
+        if ($this->isStateless) {
             return $this->info;
         }
 
