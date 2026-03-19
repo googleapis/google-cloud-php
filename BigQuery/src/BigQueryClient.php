@@ -416,50 +416,26 @@ class BigQueryClient
             'formatOptions.useInt64Timestamp'
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
-
-        // Check if we can build a query Request
         if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
-            $queryRequest = $query->toQueryRequest();
-
-            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
-                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
-
-                if (!isset($queryResultsOptions['formatOptions']) || !is_array($queryResultsOptions['formatOptions'])) {
-                    $queryResultsOptions['formatOptions'] = [];
-                }
-
-                $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
-            }
-
-            $statelessArgs = $queryRequest + $queryResultsOptions + [
+            $response = $this->connection->query($query->toQueryRequest() + [
                 'projectId' => $this->projectId
-            ] + $options;
-
-            if (!isset($statelessArgs['timeoutMs'])) {
-                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            ]);
+            if ($response['jobComplete']) {
+                return new QueryResults(
+                    $this->connection,
+                    '',
+                    $this->projectId,
+                    $response,
+                    $this->mapper,
+                    $this->createJob([], ''), // create an empty job
+                    $queryResultsOptions
+                );
             }
-
-            $statelessResponse = $this->connection->query($statelessArgs);
-
-            $queryResults = QueryResults::fromStatelessQuery(
-                $this->connection,
-                $this->projectId,
-                $statelessResponse,
-                $this->mapper,
-                $queryResultsOptions + $options
-            );
-
-            if (!$queryResults->isComplete()) {
-                $queryResults->waitUntilComplete();
-            }
-
-            return $queryResults;
+            $job = $this->createJob($response, $response['jobReference']['jobId']);
+        } else {
+            $job = $this->startQuery($query, $options);
         }
-
-        $queryResults = $this->startQuery(
-            $query,
-            $options
-        )->queryResults($queryResultsOptions + $options);
+        $queryResults = $job->queryResults($queryResultsOptions + $options);
         $queryResults->waitUntilComplete();
         return $queryResults;
     }
@@ -811,12 +787,18 @@ class BigQueryClient
             $response = $this->connection->insertJob($config);
         }
 
+        return $this->createJob($response, $config['jobReference']['jobId']);
+
+    }
+
+    private function createJob(array $info, string $jobId)
+    {
         return new Job(
             $this->connection,
-            $config['jobReference']['jobId'],
+            $jobId,
             $this->projectId,
             $this->mapper,
-            $response
+            $info
         );
     }
 

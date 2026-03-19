@@ -168,14 +168,51 @@ class BigQueryClientTest extends TestCase
             Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
         ))
             ->willReturn([
+                'jobComplete' => true,
+                'schema' => ['fields' => []],
+                'rows' => []
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals(null, $queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
+    public function testRunQueryStatelessWhichReturnsJob()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
                 'jobReference' => [
                     'jobId' => self::JOB_ID,
                     'projectId' => self::PROJECT_ID,
                     'location' => self::LOCATION
                 ],
-                'jobComplete' => true,
+                'jobComplete' => false,
                 'schema' => ['fields' => []],
                 'rows' => []
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'jobComplete' => true
             ])
             ->shouldBeCalledTimes(1);
 
