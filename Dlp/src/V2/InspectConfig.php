@@ -102,7 +102,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Set of rules to apply to the findings for this InspectConfig.
      * Exclusion rules, contained in the set are executed in the end, other
-     * rules are executed in the order they are specified for each info type.
+     * rules are executed in the order they are specified for each info type. Not
+     * supported for the `metadata_key_value_expression` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
      */
@@ -167,7 +168,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\InspectionRuleSet[] $rule_set
      *           Set of rules to apply to the findings for this InspectConfig.
      *           Exclusion rules, contained in the set are executed in the end, other
-     *           rules are executed in the order they are specified for each info type.
+     *           rules are executed in the order they are specified for each info type. Not
+     *           supported for the `metadata_key_value_expression` CustomInfoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -464,7 +466,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Set of rules to apply to the findings for this InspectConfig.
      * Exclusion rules, contained in the set are executed in the end, other
-     * rules are executed in the order they are specified for each info type.
+     * rules are executed in the order they are specified for each info type. Not
+     * supported for the `metadata_key_value_expression` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
      * @return RepeatedField<\Google\Cloud\Dlp\V2\InspectionRuleSet>
@@ -477,7 +480,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Set of rules to apply to the findings for this InspectConfig.
      * Exclusion rules, contained in the set are executed in the end, other
-     * rules are executed in the order they are specified for each info type.
+     * rules are executed in the order they are specified for each info type. Not
+     * supported for the `metadata_key_value_expression` CustomInfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
      * @param \Google\Cloud\Dlp\V2\InspectionRuleSet[] $var
