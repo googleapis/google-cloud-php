@@ -556,7 +556,6 @@ class GrpcTransportTest extends TestCase
         $mockCallInvoker = new MockCallInvoker($this->buildMockCallForInterceptor($callType));
 
         $r = new \ReflectionProperty(BaseStub::class, 'call_invoker');
-        $r->setAccessible(true);
         $r->setValue(
             $transport,
             $mockCallInvoker
