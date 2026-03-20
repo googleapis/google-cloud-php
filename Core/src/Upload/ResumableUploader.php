@@ -170,6 +170,14 @@ class ResumableUploader extends AbstractUploader
                 'Content-Range' => "bytes $rangeStart-$rangeEnd/$size",
             ];
 
+            if ($size !== '*' && ($rangeEnd + 1) == (int) $size) {
+                $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+                if (isset($customHeaders['X-Goog-Hash'])) {
+                    $headers['X-Goog-Hash'] = $customHeaders['X-Goog-Hash'];
+                }
+            }
+
+
             $request = new Request(
                 'PUT',
                 $resumeUri,

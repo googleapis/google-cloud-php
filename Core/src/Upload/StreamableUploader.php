@@ -43,10 +43,12 @@ class StreamableUploader extends ResumableUploader
             return [];
         }
 
+        $isFinalRequest = ($writeSize === null);
+
         // find or create the resumeUri
         $resumeUri = $this->getResumeUri();
 
-        if ($writeSize) {
+        if ($writeSize !== null) {
             $rangeEnd = $this->rangeStart + $writeSize - 1;
             $data = $this->data->read($writeSize);
         } else {
@@ -61,6 +63,13 @@ class StreamableUploader extends ResumableUploader
             'Content-Type'      => $this->contentType,
             'Content-Range'     => "bytes {$this->rangeStart}-$rangeEnd/*"
         ];
+
+        if ($isFinalRequest) {
+            $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+            if (isset($customHeaders['X-Goog-Hash'])) {
+                $headers['X-Goog-Hash'] = $customHeaders['X-Goog-Hash'];
+            }
+        }
 
         $request = new Request(
             'PUT',

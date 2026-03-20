@@ -174,6 +174,115 @@ class StreamableUploaderTest extends TestCase
         $uploader->upload();
     }
 
+    public function testUploadWithCustomGoogHashHeader()
+    {
+        $hashValue = 'md5=abc123';
+        $resumeUri = 'http://some-resume-uri.example.com';
+
+        $resumeResponse = new Response(200, ['Location' => $resumeUri]);
+        $this->requestWrapper->send(
+            Argument::type(RequestInterface::class),
+            Argument::any()
+        )->willReturn($resumeResponse)->shouldBeCalled();
+
+        $uploadResponse = new Response(200, ['Location' => $resumeUri], $this->successBody);
+        $this->requestWrapper->send(
+            Argument::that(function ($request) use ($resumeUri, $hashValue) {
+                return (string) $request->getUri() === $resumeUri
+                    && $request->getHeaderLine('X-Goog-Hash') === $hashValue;
+            }),
+            Argument::any()
+        )->willReturn($uploadResponse)->shouldBeCalled();
+
+        $uploader = new StreamableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            [
+                'restOptions' => [
+                    'headers' => [
+                        'X-Goog-Hash' => $hashValue,
+                        'Other-Header' => 'should-be-ignored'
+                    ]
+                ]
+            ]
+        );
+
+        $this->stream->write("some data");
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+    }
+
+    public function testUploadDoesNotSendGoogHashWhenConditionNotMet()
+    {
+        $hashValue = 'md5=abc123';
+        $resumeUri = 'http://some-resume-uri.example.com';
+
+        $resumeResponse = new Response(200, ['Location' => $resumeUri]);
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn($resumeResponse);
+
+        $uploadResponse = new Response(200, [], $this->successBody);
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) {
+                return !$request->hasHeader('X-Goog-Hash');
+            }),
+            Argument::type('array')
+        )->willReturn($uploadResponse);
+
+        $uploader = new StreamableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            [
+                'restOptions' => [
+                    'headers' => ['X-Goog-Hash' => $hashValue]
+                ]
+            ]
+        );
+
+        $this->stream->write("0123456789ABCDEF");
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload(16));
+    }
+
+    public function testUploadSendsGoogHashOnFinalStep()
+    {
+        $hashValue = 'md5=finalHash';
+        $resumeUri = 'http://some-resume-uri.example.com';
+
+        $resumeResponse = new Response(200, ['Location' => $resumeUri]);
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn($resumeResponse)->shouldBeCalled();
+
+        $uploadResponse = new Response(200, [], $this->successBody);
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) use ($hashValue) {
+                return $request->getHeaderLine('X-Goog-Hash') === $hashValue;
+            }),
+            Argument::type('array')
+        )->willReturn($uploadResponse)->shouldBeCalled();
+
+        $uploader = new StreamableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            [
+                'restOptions' => [
+                    'headers' => ['X-Goog-Hash' => $hashValue]
+                ]
+            ]
+        );
+
+        $this->stream->write("final data");
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+    }
+
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
         $this->expectException(GoogleException::class);
