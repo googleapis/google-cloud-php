@@ -620,10 +620,6 @@ class QueryJobConfiguration implements JobConfigurationInterface
             isset($queryConfig['tableDefinitions']) ||
             isset($queryConfig['createDisposition']) ||
             isset($queryConfig['writeDisposition']) ||
-            (
-                isset($queryConfig['priority']) &&
-                $queryConfig['priority'] !== 'INTERACTIVE'
-            ) ||
             ($queryConfig['useLegacySql'] ?? false) ||
             isset($queryConfig['maximumBillingTier']) ||
             isset($queryConfig['timePartitioning']) ||
@@ -633,6 +629,10 @@ class QueryJobConfiguration implements JobConfigurationInterface
             isset($queryConfig['schemaUpdateOptions']) ||
             isset($queryConfig['jobTimeoutMs'])
         ) {
+            return false;
+        }
+
+        if (isset($queryConfig['priority']) && $queryConfig['priority'] !== 'INTERACTIVE') {
             return false;
         }
 
