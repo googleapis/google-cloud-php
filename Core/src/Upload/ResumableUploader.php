@@ -177,7 +177,6 @@ class ResumableUploader extends AbstractUploader
                 }
             }
 
-
             $request = new Request(
                 'PUT',
                 $resumeUri,
