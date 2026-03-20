@@ -157,6 +157,179 @@ class BigQueryClientTest extends TestCase
         $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
     }
 
+    public function testRunQueryStateless()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobComplete' => true,
+                'schema' => ['fields' => []],
+                'rows' => []
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals('', $queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
+    public function testRunQueryJobQueryEndpointReturnsAJob()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobReference' => ['jobId' => self::JOB_ID]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->insertJob(Argument::any())
+            ->shouldNotBeCalled();
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'jobComplete' => true
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
+    /**
+     * @dataProvider queryOptionsDataProvider
+     */
+    public function testRunQueryNonStatelessUsesStatefulPath(string $optionName, mixed $value)
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+        $query->$optionName($value);
+
+        $this->connection->query(Argument::any())
+            ->shouldNotbeCalled();
+
+        $this->connection->insertJob(Argument::any())
+            ->willReturn([
+                'jobReference' => ['jobId' => self::JOB_ID]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'jobComplete' => true
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertNotEmpty($queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
+    public function testRunQueryUsingJobUsesStatefulPath()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING, [
+            'jobReference' => ['jobId' => self::JOB_ID]
+        ]);
+
+        $this->connection->query(Argument::any())
+            ->shouldNotbeCalled();
+
+        $this->connection->insertJob(Argument::any())
+            ->willReturn([
+                'jobReference' => ['jobId' => self::JOB_ID]
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::any())
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'jobComplete' => true
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertNotEmpty($queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
+    public function testRunQueryStatelessWhichReturnsJob()
+    {
+        $client = $this->getClient();
+        $query = $client->query(self::QUERY_STRING);
+
+        $this->connection->query(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('query', self::QUERY_STRING),
+            Argument::withEntry('jobCreationMode', 'JOB_CREATION_OPTIONAL')
+        ))
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID,
+                    'projectId' => self::PROJECT_ID,
+                    'location' => self::LOCATION
+                ],
+                'jobComplete' => false,
+                'schema' => ['fields' => []],
+                'rows' => []
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $this->connection->getQueryResults(Argument::allOf(
+            Argument::withEntry('projectId', self::PROJECT_ID),
+            Argument::withEntry('jobId', self::JOB_ID)
+        ))
+            ->willReturn([
+                'jobReference' => [
+                    'jobId' => self::JOB_ID
+                ],
+                'jobComplete' => true
+            ])
+            ->shouldBeCalledTimes(1);
+
+        $client->___setProperty('connection', $this->connection->reveal());
+        $queryResults = $client->runQuery($query);
+
+        $this->assertInstanceOf(QueryResults::class, $queryResults);
+        $this->assertEquals(self::JOB_ID, $queryResults->identity()['jobId']);
+        $this->assertTrue($queryResults->isComplete());
+    }
+
     public function testRunsQueryWithRetry()
     {
         $client = $this->getClient();
@@ -514,6 +687,55 @@ class BigQueryClientTest extends TestCase
         $this->assertInstanceOf(Job::class, $job);
         $this->assertFalse($job->isComplete());
         $this->assertEquals($this->jobResponse, $job->info());
+    }
+
+    public function queryOptionsDataProvider()
+    {
+        $destinationTable = $this->getClient()
+            ->dataset(self::DATASET_ID)
+            ->table('dummyTable');
+
+        return [
+            [
+                'useLegacySql', true
+            ],
+            [
+                'destinationTable', $destinationTable
+            ],
+            [
+                'tableDefinitions', ['testDefinition']
+            ],
+            [
+                'createDisposition', 'CREATE_IF_NEEDED'
+            ],
+            [
+                'writeDisposition', 'WRITE_TRUNCATE'
+            ],
+            [
+                'maximumBillingTier', 1
+            ],
+            [
+                'timePartitioning', ['test']
+            ],
+            [
+                'rangePartitioning', ['testRange']
+            ],
+            [
+                'clustering', ['testClustering']
+            ],
+            [
+                'destinationEncryptionConfiguration', ['ALLOW_FIELD_ADDITION']
+            ],
+            [
+                'schemaUpdateOptions', ['ALLOW_FIELD_ADDITION']
+            ],
+            [
+                'dryRun', true
+            ],
+            [
+                'priority', 'BATCH'
+            ]
+        ];
     }
 
     public function jobConfigDataProvider()

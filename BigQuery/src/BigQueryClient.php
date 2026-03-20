@@ -417,10 +417,44 @@ class BigQueryClient
         ], $options);
         $queryResultsOptions['initialTimeoutMs'] = 10000;
 
-        $queryResults = $this->startQuery(
-            $query,
-            $options
-        )->queryResults($queryResultsOptions + $options);
+        if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
+            $queryRequest = $query->toQueryRequest();
+
+            // The flattened notation does not work for POST request without special handling.
+            // Propagate it for backwards compatibility.
+            if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
+                $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
+                $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
+            }
+
+            $statelessArgs = $queryRequest + $queryResultsOptions + [
+                'projectId' => $this->projectId
+            ] + $options;
+
+            if (!isset($statelessArgs['timeoutMs'])) {
+                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            }
+
+            $response = $this->connection->query($statelessArgs);
+
+            if ($response['jobComplete'] ?? false) {
+                return new QueryResults(
+                    $this->connection,
+                    '',
+                    $this->projectId,
+                    $response,
+                    $this->mapper,
+                    $this->createJob([], ''), // create an empty job
+                    $queryResultsOptions
+                );
+            }
+
+            $job = $this->createJob($response, $response['jobReference']['jobId']);
+        } else {
+            $job = $this->startQuery($query, $options);
+        }
+
+        $queryResults = $job->queryResults($queryResultsOptions + $options);
         $queryResults->waitUntilComplete();
         return $queryResults;
     }
@@ -772,12 +806,17 @@ class BigQueryClient
             $response = $this->connection->insertJob($config);
         }
 
+        return $this->createJob($response, $config['jobReference']['jobId']);
+    }
+
+    private function createJob(array $info, string $jobId)
+    {
         return new Job(
             $this->connection,
-            $config['jobReference']['jobId'],
+            $jobId,
             $this->projectId,
             $this->mapper,
-            $response
+            $info
         );
     }
 
