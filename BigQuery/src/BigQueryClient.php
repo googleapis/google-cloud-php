@@ -434,6 +434,10 @@ class BigQueryClient
                 'projectId' => $this->projectId
             ] + $options;
 
+            if (!isset($statelessArgs['timeoutMs'])) {
+                $statelessArgs['timeoutMs'] = $statelessArgs['initialTimeoutMs'];
+            }
+
             $response = $this->connection->query($statelessArgs);
 
             if ($response['jobComplete'] ?? false) {
