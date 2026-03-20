@@ -103,7 +103,7 @@ class QueryResults implements \IteratorAggregate
                 ? $info['jobReference']['location']
                 : $job->identity()['location']
         ];
-        $this->isStateless = empty($jobId) ? true : false;
+        $this->isStateless = empty($jobId);
         $this->mapper = $mapper;
         $this->queryResultsOptions = $queryResultsOptions;
     }

@@ -420,13 +420,10 @@ class BigQueryClient
         if ($query instanceof QueryJobConfiguration && $query->isStateless()) {
             $queryRequest = $query->toQueryRequest();
 
+            // The flattened notation does not work for POST request without special handling.
+            // Propagate it for backwards compatibility.
             if (isset($queryResultsOptions['formatOptions.useInt64Timestamp'])) {
                 $useInt64 = $this->pluck('formatOptions.useInt64Timestamp', $queryResultsOptions, false);
-
-                if (!isset($queryResultsOptions['formatOptions']) || !is_array($queryResultsOptions['formatOptions'])) {
-                    $queryResultsOptions['formatOptions'] = [];
-                }
-
                 $queryResultsOptions['formatOptions']['useInt64Timestamp'] = $useInt64;
             }
 
