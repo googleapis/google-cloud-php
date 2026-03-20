@@ -235,6 +235,37 @@ class StorageClientTest extends TestCase
         );
     }
 
+    public function testCreatesBucketWithEncryptionEnforcement()
+    {
+        $bucketName = 'encrypted-bucket';
+        $encryptionConfig = [
+            'googleManagedEncryptionEnforcementConfig' => [
+                'restrictionMode' => 'FullyRestricted'
+            ],
+            'customerManagedEncryptionEnforcementConfig' => [
+                'restrictionMode' => 'NotRestricted'
+            ]
+        ];
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->connection
+            ->insertBucket(Argument::allOf(
+                Argument::withEntry('name', $bucketName),
+                Argument::withEntry('project', self::PROJECT),
+                Argument::withEntry('encryption', $encryptionConfig)
+            ))
+            ->willReturn(['name' => $bucketName]);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+
+        $this->assertInstanceOf(
+            Bucket::class,
+            $this->client->createBucket(
+                $bucketName,
+                ['encryption' => $encryptionConfig]
+            )
+        );
+    }
+
     public function testRegisteringStreamWrapper()
     {
         $this->assertTrue($this->client->registerStreamWrapper());

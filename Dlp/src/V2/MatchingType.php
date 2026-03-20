@@ -48,12 +48,26 @@ class MatchingType
      * Generated from protobuf enum <code>MATCHING_TYPE_INVERSE_MATCH = 3;</code>
      */
     const MATCHING_TYPE_INVERSE_MATCH = 3;
+    /**
+     * Rule-specific match.
+     * The matching logic is based on the specific rule being used. This is
+     * required for rules where the matching behavior is not a simple string
+     * comparison (e.g., image containment). This matching type can only be
+     * used with the `ExcludeByImageFindings` rule.
+     * - Exclude by image findings: The matching logic is defined within
+     *   `ExcludeByImageFindings` based on spatial relationships between bounding
+     *   boxes.
+     *
+     * Generated from protobuf enum <code>MATCHING_TYPE_RULE_SPECIFIC = 4;</code>
+     */
+    const MATCHING_TYPE_RULE_SPECIFIC = 4;
 
     private static $valueToName = [
         self::MATCHING_TYPE_UNSPECIFIED => 'MATCHING_TYPE_UNSPECIFIED',
         self::MATCHING_TYPE_FULL_MATCH => 'MATCHING_TYPE_FULL_MATCH',
         self::MATCHING_TYPE_PARTIAL_MATCH => 'MATCHING_TYPE_PARTIAL_MATCH',
         self::MATCHING_TYPE_INVERSE_MATCH => 'MATCHING_TYPE_INVERSE_MATCH',
+        self::MATCHING_TYPE_RULE_SPECIFIC => 'MATCHING_TYPE_RULE_SPECIFIC',
     ];
 
     public static function name($value)

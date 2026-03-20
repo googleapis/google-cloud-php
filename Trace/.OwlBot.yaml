@@ -1,4 +1,5 @@
 deep-copy-regex:
-    - source: /google/devtools/cloudtrace/(v2)/.*-php/(.*)
-      dest: /owl-bot-staging/Trace/$1/$2
+  -
+    source: '/google/devtools/cloudtrace/(v2|v1)/.*-php/(.*)'
+    dest: /owl-bot-staging/Trace/$1/$2
 api-name: Trace

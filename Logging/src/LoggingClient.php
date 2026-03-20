@@ -67,7 +67,7 @@ class LoggingClient
     use DetectProjectIdTrait;
     use ClientOptionsTrait;
 
-    const VERSION = '1.34.5';
+    const VERSION = '2.0.0-RC1';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/logging.admin';
     const READ_ONLY_SCOPE = 'https://www.googleapis.com/auth/logging.read';

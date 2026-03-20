@@ -42,12 +42,24 @@ class Mode
      * Generated from protobuf enum <code>NONE = 3;</code>
      */
     const NONE = 3;
+    /**
+     * Model is constrained to predict either function calls or natural language
+     * response.
+     * If [allowed_function_names][FunctionCallingConfig.allowed_function_names]
+     * are set, the predicted function calls will be limited to any one of
+     * `allowed_function_names`, else the predicted function calls will be any
+     * one of the provided [FunctionDeclaration].
+     *
+     * Generated from protobuf enum <code>VALIDATED = 5;</code>
+     */
+    const VALIDATED = 5;
 
     private static $valueToName = [
         self::MODE_UNSPECIFIED => 'MODE_UNSPECIFIED',
         self::AUTO => 'AUTO',
         self::ANY => 'ANY',
         self::NONE => 'NONE',
+        self::VALIDATED => 'VALIDATED',
     ];
 
     public static function name($value)

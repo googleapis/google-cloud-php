@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.cloudtrace.v1",
+    "libraryPackage": "Google\\Cloud\\Trace\\V1",
+    "services": {
+        "TraceService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TraceServiceGapicClient",
+                    "rpcs": {
+                        "GetTrace": {
+                            "methods": [
+                                "getTrace"
+                            ]
+                        },
+                        "ListTraces": {
+                            "methods": [
+                                "listTraces"
+                            ]
+                        },
+                        "PatchTraces": {
+                            "methods": [
+                                "patchTraces"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

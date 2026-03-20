@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ namespace Google\Cloud\Firestore\Admin\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Firestore\Admin\V1\Backup;
@@ -75,6 +74,7 @@ use Google\Cloud\Firestore\Admin\V1\UpdateBackupScheduleRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateDatabaseRequest;
 use Google\Cloud\Firestore\Admin\V1\UpdateFieldRequest;
 use Google\Cloud\Firestore\Admin\V1\UserCreds;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;

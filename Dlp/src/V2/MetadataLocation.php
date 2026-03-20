@@ -33,6 +33,8 @@ class MetadataLocation extends \Google\Protobuf\Internal\Message
      *           Type of metadata containing the finding.
      *     @type \Google\Cloud\Dlp\V2\StorageMetadataLabel $storage_label
      *           Storage metadata.
+     *     @type \Google\Cloud\Dlp\V2\KeyValueMetadataLabel $key_value_metadata_label
+     *           Metadata key that contains the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +95,37 @@ class MetadataLocation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\StorageMetadataLabel::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metadata key that contains the finding.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.KeyValueMetadataLabel key_value_metadata_label = 4;</code>
+     * @return \Google\Cloud\Dlp\V2\KeyValueMetadataLabel|null
+     */
+    public function getKeyValueMetadataLabel()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasKeyValueMetadataLabel()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * Metadata key that contains the finding.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.KeyValueMetadataLabel key_value_metadata_label = 4;</code>
+     * @param \Google\Cloud\Dlp\V2\KeyValueMetadataLabel $var
+     * @return $this
+     */
+    public function setKeyValueMetadataLabel($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\KeyValueMetadataLabel::class);
+        $this->writeOneof(4, $var);
 
         return $this;
     }

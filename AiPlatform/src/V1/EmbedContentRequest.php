@@ -25,43 +25,57 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $model = null;
     /**
-     * Required. Input content to be embedded. Required.
+     * Required. Input content to be embedded.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content content = 2;</code>
      */
     protected $content = null;
     /**
-     * Optional. An optional title for the text.
+     * Optional. Deprecated: Please use EmbedContentConfig.title instead.
+     * The title for the text.
      *
-     * Generated from protobuf field <code>optional string title = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string title = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $title = null;
     /**
-     * Optional. The task type of the embedding.
+     * Optional. Deprecated: Please use EmbedContentConfig.task_type instead.
+     * The task type of the embedding.
      *
-     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $task_type = null;
     /**
-     * Optional. Optional reduced dimension for the output embedding. If set,
-     * excessive values in the output embedding are truncated from the end.
+     * Optional. Deprecated: Please use EmbedContentConfig.output_dimensionality
+     * instead. Reduced dimension for the output embedding. If set, excessive
+     * values in the output embedding are truncated from the end.
      *
-     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $output_dimensionality = null;
     /**
-     * Optional. Whether to silently truncate the input content if it's longer
+     * Optional. Deprecated: Please use EmbedContentConfig.auto_truncate instead.
+     * Whether to silently truncate the input content if it's longer
      * than the maximum sequence length.
      *
-     * Generated from protobuf field <code>optional bool auto_truncate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool auto_truncate = 7 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $auto_truncate = null;
+    /**
+     * Optional. Configuration for the EmbedContent request.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbedContentConfig embed_content_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $embed_content_config = null;
 
     /**
      * @param string                              $model   Required. The name of the publisher model requested to serve the
      *                                                     prediction. Format:
      *                                                     `projects/{project}/locations/{location}/publishers/&#42;/models/*`
-     * @param \Google\Cloud\AIPlatform\V1\Content $content Required. Input content to be embedded. Required.
+     * @param \Google\Cloud\AIPlatform\V1\Content $content Required. Input content to be embedded.
      *
      * @return \Google\Cloud\AIPlatform\V1\EmbedContentRequest
      *
@@ -85,17 +99,23 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
      *           prediction. Format:
      *           `projects/{project}/locations/{location}/publishers/{@*}models/*`
      *     @type \Google\Cloud\AIPlatform\V1\Content $content
-     *           Required. Input content to be embedded. Required.
+     *           Required. Input content to be embedded.
      *     @type string $title
-     *           Optional. An optional title for the text.
+     *           Optional. Deprecated: Please use EmbedContentConfig.title instead.
+     *           The title for the text.
      *     @type int $task_type
-     *           Optional. The task type of the embedding.
+     *           Optional. Deprecated: Please use EmbedContentConfig.task_type instead.
+     *           The task type of the embedding.
      *     @type int $output_dimensionality
-     *           Optional. Optional reduced dimension for the output embedding. If set,
-     *           excessive values in the output embedding are truncated from the end.
+     *           Optional. Deprecated: Please use EmbedContentConfig.output_dimensionality
+     *           instead. Reduced dimension for the output embedding. If set, excessive
+     *           values in the output embedding are truncated from the end.
      *     @type bool $auto_truncate
-     *           Optional. Whether to silently truncate the input content if it's longer
+     *           Optional. Deprecated: Please use EmbedContentConfig.auto_truncate instead.
+     *           Whether to silently truncate the input content if it's longer
      *           than the maximum sequence length.
+     *     @type \Google\Cloud\AIPlatform\V1\EmbedContentRequest\EmbedContentConfig $embed_content_config
+     *           Optional. Configuration for the EmbedContent request.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,7 +164,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input content to be embedded. Required.
+     * Required. Input content to be embedded.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content content = 2;</code>
      * @return \Google\Cloud\AIPlatform\V1\Content|null
@@ -165,7 +185,7 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input content to be embedded. Required.
+     * Required. Input content to be embedded.
      *
      * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.Content content = 2;</code>
      * @param \Google\Cloud\AIPlatform\V1\Content $var
@@ -180,35 +200,47 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional title for the text.
+     * Optional. Deprecated: Please use EmbedContentConfig.title instead.
+     * The title for the text.
      *
-     * Generated from protobuf field <code>optional string title = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string title = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getTitle()
     {
+        if (isset($this->title)) {
+            @trigger_error('title is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->title) ? $this->title : '';
     }
 
     public function hasTitle()
     {
+        if (isset($this->title)) {
+            @trigger_error('title is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->title);
     }
 
     public function clearTitle()
     {
+        @trigger_error('title is deprecated.', E_USER_DEPRECATED);
         unset($this->title);
     }
 
     /**
-     * Optional. An optional title for the text.
+     * Optional. Deprecated: Please use EmbedContentConfig.title instead.
+     * The title for the text.
      *
-     * Generated from protobuf field <code>optional string title = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional string title = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setTitle($var)
     {
+        @trigger_error('title is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->title = $var;
 
@@ -216,35 +248,47 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The task type of the embedding.
+     * Optional. Deprecated: Please use EmbedContentConfig.task_type instead.
+     * The task type of the embedding.
      *
-     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
+     * @deprecated
      */
     public function getTaskType()
     {
+        if (isset($this->task_type)) {
+            @trigger_error('task_type is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->task_type) ? $this->task_type : 0;
     }
 
     public function hasTaskType()
     {
+        if (isset($this->task_type)) {
+            @trigger_error('task_type is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->task_type);
     }
 
     public function clearTaskType()
     {
+        @trigger_error('task_type is deprecated.', E_USER_DEPRECATED);
         unset($this->task_type);
     }
 
     /**
-     * Optional. The task type of the embedding.
+     * Optional. Deprecated: Please use EmbedContentConfig.task_type instead.
+     * The task type of the embedding.
      *
-     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbeddingTaskType task_type = 5 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setTaskType($var)
     {
+        @trigger_error('task_type is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\EmbedContentRequest\EmbeddingTaskType::class);
         $this->task_type = $var;
 
@@ -252,37 +296,49 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional reduced dimension for the output embedding. If set,
-     * excessive values in the output embedding are truncated from the end.
+     * Optional. Deprecated: Please use EmbedContentConfig.output_dimensionality
+     * instead. Reduced dimension for the output embedding. If set, excessive
+     * values in the output embedding are truncated from the end.
      *
-     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
+     * @deprecated
      */
     public function getOutputDimensionality()
     {
+        if (isset($this->output_dimensionality)) {
+            @trigger_error('output_dimensionality is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->output_dimensionality) ? $this->output_dimensionality : 0;
     }
 
     public function hasOutputDimensionality()
     {
+        if (isset($this->output_dimensionality)) {
+            @trigger_error('output_dimensionality is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->output_dimensionality);
     }
 
     public function clearOutputDimensionality()
     {
+        @trigger_error('output_dimensionality is deprecated.', E_USER_DEPRECATED);
         unset($this->output_dimensionality);
     }
 
     /**
-     * Optional. Optional reduced dimension for the output embedding. If set,
-     * excessive values in the output embedding are truncated from the end.
+     * Optional. Deprecated: Please use EmbedContentConfig.output_dimensionality
+     * instead. Reduced dimension for the output embedding. If set, excessive
+     * values in the output embedding are truncated from the end.
      *
-     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional int32 output_dimensionality = 6 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setOutputDimensionality($var)
     {
+        @trigger_error('output_dimensionality is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->output_dimensionality = $var;
 
@@ -290,39 +346,87 @@ class EmbedContentRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Whether to silently truncate the input content if it's longer
+     * Optional. Deprecated: Please use EmbedContentConfig.auto_truncate instead.
+     * Whether to silently truncate the input content if it's longer
      * than the maximum sequence length.
      *
-     * Generated from protobuf field <code>optional bool auto_truncate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool auto_truncate = 7 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
+     * @deprecated
      */
     public function getAutoTruncate()
     {
+        if (isset($this->auto_truncate)) {
+            @trigger_error('auto_truncate is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->auto_truncate) ? $this->auto_truncate : false;
     }
 
     public function hasAutoTruncate()
     {
+        if (isset($this->auto_truncate)) {
+            @trigger_error('auto_truncate is deprecated.', E_USER_DEPRECATED);
+        }
         return isset($this->auto_truncate);
     }
 
     public function clearAutoTruncate()
     {
+        @trigger_error('auto_truncate is deprecated.', E_USER_DEPRECATED);
         unset($this->auto_truncate);
     }
 
     /**
-     * Optional. Whether to silently truncate the input content if it's longer
+     * Optional. Deprecated: Please use EmbedContentConfig.auto_truncate instead.
+     * Whether to silently truncate the input content if it's longer
      * than the maximum sequence length.
      *
-     * Generated from protobuf field <code>optional bool auto_truncate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional bool auto_truncate = 7 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setAutoTruncate($var)
     {
+        @trigger_error('auto_truncate is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->auto_truncate = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for the EmbedContent request.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbedContentConfig embed_content_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EmbedContentRequest\EmbedContentConfig|null
+     */
+    public function getEmbedContentConfig()
+    {
+        return $this->embed_content_config;
+    }
+
+    public function hasEmbedContentConfig()
+    {
+        return isset($this->embed_content_config);
+    }
+
+    public function clearEmbedContentConfig()
+    {
+        unset($this->embed_content_config);
+    }
+
+    /**
+     * Optional. Configuration for the EmbedContent request.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.aiplatform.v1.EmbedContentRequest.EmbedContentConfig embed_content_config = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EmbedContentRequest\EmbedContentConfig $var
+     * @return $this
+     */
+    public function setEmbedContentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EmbedContentRequest\EmbedContentConfig::class);
+        $this->embed_content_config = $var;
 
         return $this;
     }
