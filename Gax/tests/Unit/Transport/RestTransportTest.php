@@ -460,7 +460,6 @@ class RestTransportTest extends TestCase
 
         $reflectionClass = new \ReflectionClass($transport);
         $reflectionProp = $reflectionClass->getProperty('clientCertSource');
-        $reflectionProp->setAccessible(true);
         $actualClientCertSource = $reflectionProp->getValue($transport);
 
         $this->assertEquals($mockClientCertSource, $actualClientCertSource);
