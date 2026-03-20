@@ -806,7 +806,6 @@ class BigQueryClient
         }
 
         return $this->createJob($response, $config['jobReference']['jobId']);
-
     }
 
     private function createJob(array $info, string $jobId)
