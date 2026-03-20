@@ -215,6 +215,102 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFalse($object->exists());
     }
 
+    public function testObjectWithContexts()
+    {
+        $objectName = 'test-context-' . uniqid() . '.txt';
+        $bucket = self::$bucket;
+        $content = 'Context Object';
+        $contextKey = 'system-test-key';
+        $contextValue = 'system-test-value';
+
+        // 1. Upload Object with Contexts (Insert Operation)
+        // Document says: Only 'value' is required for insert; timestamps are system-generated.
+        $object = $bucket->upload($content, [
+            'name' => $objectName,
+            'metadata' => [
+                'contexts' => [
+                    'custom' => [
+                        $contextKey => [
+                            'value' => $contextValue
+                        ]
+                    ]
+                ]
+            ]
+        ]);
+
+        // 2. Refresh info to get the full metadata from the server
+        $info = $object->info();
+
+        // 3. ASSERTIONS: Structure Validation
+        $this->assertArrayHasKey('contexts', $info, 'Backend response is missing the "contexts" key.');
+        $this->assertArrayHasKey('custom', $info['contexts'], 'Contexts structure is missing "custom" grouping.');
+        $this->assertArrayHasKey($contextKey, $info['contexts']['custom'], "The key '$contextKey' was not found in the response.");
+
+        $contextData = $info['contexts']['custom'][$contextKey];
+
+        // 4. ASSERTIONS: Data Integrity
+        $this->assertEquals(
+            $contextValue,
+            $contextData['value'],
+            'The retrieved context value does not match the uploaded value.'
+        );
+
+        // 5. ASSERTIONS: System Generated Fields (As per Document)
+        // Document mentions createTime and updateTime are added by GCS.
+        $this->assertArrayHasKey('createTime', $contextData, 'Server failed to generate createTime.');
+        $this->assertArrayHasKey('updateTime', $contextData, 'Server failed to generate updateTime.');
+
+        // Optional: Validate that timestamps are in the correct ISO 8601 format
+        $this->assertMatchesRegularExpression(
+            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*Z$/',
+            $contextData['createTime'],
+            'createTime is not a valid RFC 3339 timestamp.'
+        );
+
+        // 6. Cleanup
+        $object->delete();
+    }
+
+    public function testGetContexts()
+    {
+        $objectName = 'get-contexts-test-' . uniqid() . '.txt';
+        $bucket = self::$bucket;
+        $content = 'data or get test';
+        $contextKey = 'info-key';
+        $contextValue = 'info-value';
+
+        // 1. First we can upload the contexts with the object. Contexts are added as metadata in the upload request.
+        $object = $bucket->upload($content, [
+            'name' => $objectName,
+            'metadata' => [
+                'contexts' => [
+                    'custom' => [
+                        $contextKey => ['value' => $contextValue]
+                    ]
+                ]
+            ]
+        ]);
+
+        // 2. Now 'GET' the object and check if the contexts are present in the response and have the expected values.
+        $info = $object->info();
+
+        // 3. ASSERTIONS: Structure Validation
+        $this->assertArrayHasKey('contexts', $info, 'GET response does not contain contexts.');
+        $this->assertArrayHasKey('custom', $info['contexts'], 'Contexts structure is missing "custom" grouping.');
+
+        $retrievedContext = $info['contexts']['custom'][$contextKey];
+
+        // 4. ASSERTIONS: Data Integrity
+        // Now check the Value
+        $this->assertEquals($contextValue, $retrievedContext['value']);
+        
+        // Server-side timestamps check karein (Must exist in GET response)
+        $this->assertArrayHasKey('createTime', $retrievedContext);
+        $this->assertArrayHasKey('updateTime', $retrievedContext);
+        // Cleanup
+        $object->delete();
+    }
+
     public function testObjectExists()
     {
         $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);

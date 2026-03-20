@@ -1490,6 +1490,39 @@
                     "description": "The modification time of the object metadata in RFC 3339 format. Set initially to object creation time and then updated whenever any metadata of the object changes. This includes changes made by a requester, such as modifying custom metadata, as well as changes made by Cloud Storage on behalf of a requester, such as changing the storage class based on an Object Lifecycle Configuration.",
                     "format": "date-time"
                 }
+            },
+            "contexts" : {
+                "type": "object",
+                "description": "Object Contexts provide key-value pair metadata for the object.",
+                "properties" : {
+                    "custom" : {
+                        "type": "object",
+                        "description": "Custom user-defined contexts, where keys are user-defined strings.",
+                        "additionalProperties": {
+                            "type": "object",
+                            "description": "A single custom context entry.",
+                            "properties": {
+                                "value": {
+                                    "type": "string",
+                                    "description": "The value associated with the context key."
+                                },
+                                "createTime": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "The creation time of the context. This field is output only."
+                                },
+                                "updateTime": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "The last update time of the context. This field is output only."
+                                }
+                            },
+                            "required": [
+                                "value"
+                            ]
+                        }
+                    } 
+                }
             }
         },
         "ObjectAccessControl": {
