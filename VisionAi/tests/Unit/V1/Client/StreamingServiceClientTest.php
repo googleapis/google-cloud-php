@@ -20,24 +20,29 @@
  * This file was automatically generated - do not edit!
  */
 
-namespace Google\Cloud\VisionAI\Tests\Unit\V1;
+namespace Google\Cloud\VisionAI\Tests\Unit\V1\Client;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
+use Google\Cloud\VisionAI\V1\AcquireLeaseRequest;
+use Google\Cloud\VisionAI\V1\Client\StreamingServiceClient;
 use Google\Cloud\VisionAI\V1\Lease;
 use Google\Cloud\VisionAI\V1\ReceiveEventsRequest;
 use Google\Cloud\VisionAI\V1\ReceiveEventsResponse;
 use Google\Cloud\VisionAI\V1\ReceivePacketsRequest;
 use Google\Cloud\VisionAI\V1\ReceivePacketsResponse;
+use Google\Cloud\VisionAI\V1\ReleaseLeaseRequest;
 use Google\Cloud\VisionAI\V1\ReleaseLeaseResponse;
+use Google\Cloud\VisionAI\V1\RenewLeaseRequest;
 use Google\Cloud\VisionAI\V1\SendPacketsRequest;
 use Google\Cloud\VisionAI\V1\SendPacketsResponse;
-use Google\Cloud\VisionAI\V1\StreamingServiceClient;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -57,7 +62,9 @@ class StreamingServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return StreamingServiceClient */
@@ -86,7 +93,8 @@ class StreamingServiceClientTest extends GeneratedTest
         $expectedResponse->setSeries($series2);
         $expectedResponse->setOwner($owner2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->acquireLease();
+        $request = new AcquireLeaseRequest();
+        $response = $gapicClient->acquireLease($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -107,15 +115,19 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new AcquireLeaseRequest();
         try {
-            $gapicClient->acquireLease();
+            $gapicClient->acquireLease($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -151,10 +163,7 @@ class StreamingServiceClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -192,12 +201,15 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->receiveEvents();
@@ -239,10 +251,7 @@ class StreamingServiceClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -280,12 +289,15 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->receivePackets();
@@ -314,7 +326,8 @@ class StreamingServiceClientTest extends GeneratedTest
         // Mock response
         $expectedResponse = new ReleaseLeaseResponse();
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->releaseLease();
+        $request = new ReleaseLeaseRequest();
+        $response = $gapicClient->releaseLease($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -335,15 +348,19 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ReleaseLeaseRequest();
         try {
-            $gapicClient->releaseLease();
+            $gapicClient->releaseLease($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -372,7 +389,8 @@ class StreamingServiceClientTest extends GeneratedTest
         $expectedResponse->setSeries($series2);
         $expectedResponse->setOwner($owner2);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->renewLease();
+        $request = new RenewLeaseRequest();
+        $response = $gapicClient->renewLease($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -393,15 +411,19 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new RenewLeaseRequest();
         try {
-            $gapicClient->renewLease();
+            $gapicClient->renewLease($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -437,10 +459,7 @@ class StreamingServiceClientTest extends GeneratedTest
         $bidi->write($request);
         $responses = [];
         $responses[] = $bidi->read();
-        $bidi->writeAll([
-            $request2,
-            $request3,
-        ]);
+        $bidi->writeAll([$request2, $request3]);
         foreach ($bidi->closeWriteAndReadAll() as $response) {
             $responses[] = $response;
         }
@@ -478,12 +497,15 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         $bidi = $gapicClient->sendPackets();
@@ -518,7 +540,8 @@ class StreamingServiceClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->getLocation();
+        $request = new GetLocationRequest();
+        $response = $gapicClient->getLocation($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -539,15 +562,19 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new GetLocationRequest();
         try {
-            $gapicClient->getLocation();
+            $gapicClient->getLocation($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -570,14 +597,13 @@ class StreamingServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $locationsElement = new Location();
-        $locations = [
-            $locationsElement,
-        ];
+        $locations = [$locationsElement];
         $expectedResponse = new ListLocationsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $gapicClient->listLocations();
+        $request = new ListLocationsRequest();
+        $response = $gapicClient->listLocations($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -601,15 +627,19 @@ class StreamingServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
+        $request = new ListLocationsRequest();
         try {
-            $gapicClient->listLocations();
+            $gapicClient->listLocations($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -618,6 +648,34 @@ class StreamingServiceClientTest extends GeneratedTest
         }
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function acquireLeaseAsyncTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $series2 = 'series21367099498';
+        $owner2 = 'owner2-1054728794';
+        $expectedResponse = new Lease();
+        $expectedResponse->setId($id);
+        $expectedResponse->setSeries($series2);
+        $expectedResponse->setOwner($owner2);
+        $transport->addResponse($expectedResponse);
+        $request = new AcquireLeaseRequest();
+        $response = $gapicClient->acquireLeaseAsync($request)->wait();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.visionai.v1.StreamingService/AcquireLease', $actualFuncCall);
         $this->assertTrue($transport->isExhausted());
     }
 }

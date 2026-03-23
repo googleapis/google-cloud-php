@@ -23,6 +23,20 @@ class GetApplicationRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see AppPlatformClient::applicationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetApplicationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

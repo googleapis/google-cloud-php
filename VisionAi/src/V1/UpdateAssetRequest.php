@@ -32,6 +32,25 @@ class UpdateAssetRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\Asset $asset      Required. The asset to update.
+     *
+     *                                                    The asset's `name` field is used to identify the asset to be updated.
+     *                                                    Format:
+     *                                                    `projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}`
+     * @param \Google\Protobuf\FieldMask      $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateAssetRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\Asset $asset, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setAsset($asset)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

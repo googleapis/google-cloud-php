@@ -48,6 +48,20 @@ class ListEventsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
+     * @param string $parent Required. Parent value for ListEventsRequest. Please see
+     *                       {@see StreamsServiceClient::clusterName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListEventsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

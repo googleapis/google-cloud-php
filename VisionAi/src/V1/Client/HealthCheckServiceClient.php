@@ -22,79 +22,68 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\VisionAI\V1\Gapic;
+namespace Google\Cloud\VisionAI\V1\Client;
 
 use Google\ApiCore\ApiException;
-use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
+use Google\ApiCore\Options\ClientOptions;
+use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
-use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\VisionAI\V1\HealthCheckRequest;
 use Google\Cloud\VisionAI\V1\HealthCheckResponse;
+use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Service Description: HealthCheckService provides an interface for Vertex AI Vision Cluster Health
  * Check.
  *
  * This class provides the ability to make remote calls to the backing service through method
- * calls that map to API methods. Sample code to get started:
- *
- * ```
- * $healthCheckServiceClient = new HealthCheckServiceClient();
- * try {
- *     $response = $healthCheckServiceClient->healthCheck();
- * } finally {
- *     $healthCheckServiceClient->close();
- * }
- * ```
+ * calls that map to API methods.
  *
  * Many parameters require resource names to be formatted in a particular way. To
  * assist with these names, this class includes a format method for each type of
  * name, and additionally a parseName method to extract the individual identifiers
  * contained within formatted names that are returned by the API.
  *
- * @deprecated This class will be removed in the next major version update.
+ * @method PromiseInterface<HealthCheckResponse> healthCheckAsync(HealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  */
-class HealthCheckServiceGapicClient
+final class HealthCheckServiceClient
 {
     use GapicClientTrait;
+    use ResourceHelperTrait;
 
     /** The name of the service. */
-    const SERVICE_NAME = 'google.cloud.visionai.v1.HealthCheckService';
+    private const SERVICE_NAME = 'google.cloud.visionai.v1.HealthCheckService';
 
     /**
      * The default address of the service.
      *
      * @deprecated SERVICE_ADDRESS_TEMPLATE should be used instead.
      */
-    const SERVICE_ADDRESS = 'visionai.googleapis.com';
+    private const SERVICE_ADDRESS = 'visionai.googleapis.com';
 
     /** The address template of the service. */
     private const SERVICE_ADDRESS_TEMPLATE = 'visionai.UNIVERSE_DOMAIN';
 
     /** The default port of the service. */
-    const DEFAULT_SERVICE_PORT = 443;
+    private const DEFAULT_SERVICE_PORT = 443;
 
     /** The name of the code generator, to be included in the agent header. */
-    const CODEGEN_NAME = 'gapic';
+    private const CODEGEN_NAME = 'gapic';
 
     /** The default scopes required by the service. */
-    public static $serviceScopes = [
-        'https://www.googleapis.com/auth/cloud-platform',
-    ];
-
-    private static $clusterNameTemplate;
-
-    private static $pathTemplateMap;
+    public static $serviceScopes = ['https://www.googleapis.com/auth/cloud-platform'];
 
     private static function getClientDefaults()
     {
@@ -115,26 +104,6 @@ class HealthCheckServiceGapicClient
         ];
     }
 
-    private static function getClusterNameTemplate()
-    {
-        if (self::$clusterNameTemplate == null) {
-            self::$clusterNameTemplate = new PathTemplate('projects/{project}/locations/{location}/clusters/{cluster}');
-        }
-
-        return self::$clusterNameTemplate;
-    }
-
-    private static function getPathTemplateMap()
-    {
-        if (self::$pathTemplateMap == null) {
-            self::$pathTemplateMap = [
-                'cluster' => self::getClusterNameTemplate(),
-            ];
-        }
-
-        return self::$pathTemplateMap;
-    }
-
     /**
      * Formats a string containing the fully-qualified path to represent a cluster
      * resource.
@@ -145,9 +114,9 @@ class HealthCheckServiceGapicClient
      *
      * @return string The formatted cluster resource.
      */
-    public static function clusterName($project, $location, $cluster)
+    public static function clusterName(string $project, string $location, string $cluster): string
     {
-        return self::getClusterNameTemplate()->render([
+        return self::getPathTemplate('cluster')->render([
             'project' => $project,
             'location' => $location,
             'cluster' => $cluster,
@@ -166,52 +135,44 @@ class HealthCheckServiceGapicClient
      * listed, then parseName will check each of the supported templates, and return
      * the first match.
      *
-     * @param string $formattedName The formatted name string
-     * @param string $template      Optional name of template to match
+     * @param string  $formattedName The formatted name string
+     * @param ?string $template      Optional name of template to match
      *
      * @return array An associative array from name component IDs to component values.
      *
      * @throws ValidationException If $formattedName could not be matched.
      */
-    public static function parseName($formattedName, $template = null)
+    public static function parseName(string $formattedName, ?string $template = null): array
     {
-        $templateMap = self::getPathTemplateMap();
-        if ($template) {
-            if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
-            }
-
-            return $templateMap[$template]->match($formattedName);
-        }
-
-        foreach ($templateMap as $templateName => $pathTemplate) {
-            try {
-                return $pathTemplate->match($formattedName);
-            } catch (ValidationException $ex) {
-                // Swallow the exception to continue trying other path templates
-            }
-        }
-
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        return self::parseFormattedName($formattedName, $template);
     }
 
     /**
      * Constructor.
      *
-     * @param array $options {
+     * @param array|ClientOptions $options {
      *     Optional. Options for configuring the service API wrapper.
      *
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'visionai.googleapis.com:443'.
-     *     @type string|array|FetchAuthTokenInterface|CredentialsWrapper $credentials
-     *           The credentials to be used by the client to authorize API calls. This option
-     *           accepts either a path to a credentials file, or a decoded credentials file as a
-     *           PHP array.
-     *           *Advanced usage*: In addition, this option can also accept a pre-constructed
-     *           {@see \Google\Auth\FetchAuthTokenInterface} object or
-     *           {@see \Google\ApiCore\CredentialsWrapper} object. Note that when one of these
-     *           objects are provided, any settings in $credentialsConfig will be ignored.
+     *     @type FetchAuthTokenInterface|CredentialsWrapper $credentials
+     *           This option should only be used with a pre-constructed
+     *           {@see FetchAuthTokenInterface} or {@see CredentialsWrapper} object. Note that
+     *           when one of these objects are provided, any settings in $credentialsConfig will
+     *           be ignored.
+     *           **Important**: If you are providing a path to a credentials file, or a decoded
+     *           credentials file as a PHP array, this usage is now DEPRECATED. Providing an
+     *           unvalidated credential configuration to Google APIs can compromise the security
+     *           of your systems and data. It is recommended to create the credentials explicitly
+     *           ```
+     *           use Google\Auth\Credentials\ServiceAccountCredentials;
+     *           use Google\Cloud\VisionAI\V1\HealthCheckServiceClient;
+     *           $creds = new ServiceAccountCredentials($scopes, $json);
+     *           $options = new HealthCheckServiceClient(['credentials' => $creds]);
+     *           ```
+     *           {@see
+     *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
      *     @type array $credentialsConfig
      *           Options used to configure credentials, including auth token caching, for the
      *           client. For a full list of supporting configuration options, see
@@ -245,174 +206,107 @@ class HealthCheckServiceGapicClient
      *     @type callable $clientCertSource
      *           A callable which returns the client cert as a string. This can be used to
      *           provide a certificate and private key to the transport layer for mTLS.
+     *     @type false|LoggerInterface $logger
+     *           A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the
+     *           'GOOGLE_SDK_PHP_LOGGING' environment flag
+     *     @type string $universeDomain
+     *           The service domain for the client. Defaults to 'googleapis.com'.
      * }
      *
      * @throws ValidationException
      */
-    public function __construct(array $options = [])
+    public function __construct(array|ClientOptions $options = [])
     {
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
     }
 
+    /** Handles execution of the async variants for each documented method. */
+    public function __call($method, $args)
+    {
+        if (substr($method, -5) !== 'Async') {
+            trigger_error('Call to undefined method ' . __CLASS__ . "::$method()", E_USER_ERROR);
+        }
+
+        array_unshift($args, substr($method, 0, -5));
+        return call_user_func_array([$this, 'startAsyncCall'], $args);
+    }
+
     /**
      * HealthCheck method checks the health status of the cluster.
      *
-     * Sample code:
-     * ```
-     * $healthCheckServiceClient = new HealthCheckServiceClient();
-     * try {
-     *     $response = $healthCheckServiceClient->healthCheck();
-     * } finally {
-     *     $healthCheckServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see HealthCheckServiceClient::healthCheckAsync()} .
      *
-     * @param array $optionalArgs {
+     * @example samples/V1/HealthCheckServiceClient/health_check.php
+     *
+     * @param HealthCheckRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
      *     Optional.
      *
-     *     @type string $cluster
-     *           The parent of the resource.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\VisionAI\V1\HealthCheckResponse
+     * @return HealthCheckResponse
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function healthCheck(array $optionalArgs = [])
+    public function healthCheck(HealthCheckRequest $request, array $callOptions = []): HealthCheckResponse
     {
-        $request = new HealthCheckRequest();
-        $requestParamHeaders = [];
-        if (isset($optionalArgs['cluster'])) {
-            $request->setCluster($optionalArgs['cluster']);
-            $requestParamHeaders['cluster'] = $optionalArgs['cluster'];
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('HealthCheck', HealthCheckResponse::class, $optionalArgs, $request)->wait();
+        return $this->startApiCall('HealthCheck', $request, $callOptions)->wait();
     }
 
     /**
      * Gets information about a location.
      *
-     * Sample code:
-     * ```
-     * $healthCheckServiceClient = new HealthCheckServiceClient();
-     * try {
-     *     $response = $healthCheckServiceClient->getLocation();
-     * } finally {
-     *     $healthCheckServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see HealthCheckServiceClient::getLocationAsync()} .
      *
-     * @param array $optionalArgs {
+     * @example samples/V1/HealthCheckServiceClient/get_location.php
+     *
+     * @param GetLocationRequest $request     A request to house fields associated with the call.
+     * @param array              $callOptions {
      *     Optional.
      *
-     *     @type string $name
-     *           Resource name for the location.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\Cloud\Location\Location
+     * @return Location
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function getLocation(array $optionalArgs = [])
+    public function getLocation(GetLocationRequest $request, array $callOptions = []): Location
     {
-        $request = new GetLocationRequest();
-        $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+        return $this->startApiCall('GetLocation', $request, $callOptions)->wait();
     }
 
     /**
      * Lists information about the supported locations for this service.
      *
-     * Sample code:
-     * ```
-     * $healthCheckServiceClient = new HealthCheckServiceClient();
-     * try {
-     *     // Iterate over pages of elements
-     *     $pagedResponse = $healthCheckServiceClient->listLocations();
-     *     foreach ($pagedResponse->iteratePages() as $page) {
-     *         foreach ($page as $element) {
-     *             // doSomethingWith($element);
-     *         }
-     *     }
-     *     // Alternatively:
-     *     // Iterate through all elements
-     *     $pagedResponse = $healthCheckServiceClient->listLocations();
-     *     foreach ($pagedResponse->iterateAllElements() as $element) {
-     *         // doSomethingWith($element);
-     *     }
-     * } finally {
-     *     $healthCheckServiceClient->close();
-     * }
-     * ```
+     * The async variant is {@see HealthCheckServiceClient::listLocationsAsync()} .
      *
-     * @param array $optionalArgs {
+     * @example samples/V1/HealthCheckServiceClient/list_locations.php
+     *
+     * @param ListLocationsRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
      *     Optional.
      *
-     *     @type string $name
-     *           The resource that owns the locations collection, if applicable.
-     *     @type string $filter
-     *           The standard list filter.
-     *     @type int $pageSize
-     *           The maximum number of resources contained in the underlying API
-     *           response. The API may return fewer values in a page, even if
-     *           there are additional values to be retrieved.
-     *     @type string $pageToken
-     *           A page token is used to specify a page of values to be returned.
-     *           If no page token is specified (the default), the first page
-     *           of values will be returned. Any page token used here must have
-     *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return \Google\ApiCore\PagedListResponse
+     * @return PagedListResponse
      *
-     * @throws ApiException if the remote call fails
+     * @throws ApiException Thrown if the API call fails.
      */
-    public function listLocations(array $optionalArgs = [])
+    public function listLocations(ListLocationsRequest $request, array $callOptions = []): PagedListResponse
     {
-        $request = new ListLocationsRequest();
-        $requestParamHeaders = [];
-        if (isset($optionalArgs['name'])) {
-            $request->setName($optionalArgs['name']);
-            $requestParamHeaders['name'] = $optionalArgs['name'];
-        }
-
-        if (isset($optionalArgs['filter'])) {
-            $request->setFilter($optionalArgs['filter']);
-        }
-
-        if (isset($optionalArgs['pageSize'])) {
-            $request->setPageSize($optionalArgs['pageSize']);
-        }
-
-        if (isset($optionalArgs['pageToken'])) {
-            $request->setPageToken($optionalArgs['pageToken']);
-        }
-
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
+        return $this->startApiCall('ListLocations', $request, $callOptions);
     }
 }

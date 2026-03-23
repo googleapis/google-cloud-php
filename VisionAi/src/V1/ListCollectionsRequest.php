@@ -41,6 +41,21 @@ class ListCollectionsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
+     * @param string $parent Required. The parent corpus. Format:
+     *                       `projects/{project_number}/locations/{location}/corpora/{corpus}`
+     *                       Please see {@see WarehouseClient::corpusName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListCollectionsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_GenerateHlsUri_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\GenerateHlsUriRequest;
 use Google\Cloud\VisionAI\V1\GenerateHlsUriResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Generates a uri for an HLS manifest. The api takes in a collection of time
@@ -42,10 +43,14 @@ function generate_hls_uri_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new GenerateHlsUriRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateHlsUriResponse $response */
-        $response = $warehouseClient->generateHlsUri($formattedName);
+        $response = $warehouseClient->generateHlsUri($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

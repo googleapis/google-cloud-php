@@ -52,6 +52,22 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $parent Required. The parent, which owns this collection of assets.
+     *                       Format:
+     *                       `projects/{project_number}/locations/{location}/corpora/{corpus}`
+     *                       Please see {@see WarehouseClient::corpusName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListAssetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

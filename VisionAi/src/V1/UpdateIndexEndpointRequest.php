@@ -35,6 +35,27 @@ class UpdateIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\IndexEndpoint $indexEndpoint Required. The resource being updated.
+     * @param \Google\Protobuf\FieldMask              $updateMask    Required. Field mask is used to specify the fields to be overwritten in the
+     *                                                               IndexEndpoint resource by the update.
+     *                                                               The fields specified in the update_mask are relative to the resource, not
+     *                                                               the full request.
+     *                                                               A field of the resource will be overwritten if it is in the mask.
+     *                                                               Empty field mask is not allowed.
+     *                                                               If the mask is "*", then this is a full replacement of the resource.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateIndexEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\IndexEndpoint $indexEndpoint, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setIndexEndpoint($indexEndpoint)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

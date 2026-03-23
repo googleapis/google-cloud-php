@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\VisionAI\V1\Analysis;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\CreateAnalysisRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,17 @@ function create_analysis_sample(string $formattedParent, string $analysisId): vo
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $analysis = new Analysis();
+    $request = (new CreateAnalysisRequest())
+        ->setParent($formattedParent)
+        ->setAnalysisId($analysisId)
+        ->setAnalysis($analysis);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->createAnalysis($formattedParent, $analysisId, $analysis);
+        $response = $liveVideoAnalyticsClient->createAnalysis($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

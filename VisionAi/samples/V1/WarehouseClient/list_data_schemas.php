@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_ListDataSchemas_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\DataSchema;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ListDataSchemasRequest;
 
 /**
  * Lists a list of data schemas inside corpus.
@@ -41,10 +42,14 @@ function list_data_schemas_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ListDataSchemasRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->listDataSchemas($formattedParent);
+        $response = $warehouseClient->listDataSchemas($request);
 
         /** @var DataSchema $element */
         foreach ($response as $element) {

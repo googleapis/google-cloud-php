@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_DeleteCorpus_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\DeleteCorpusRequest;
 
 /**
  * Deletes a corpus only if its empty.
@@ -38,9 +39,13 @@ function delete_corpus_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new DeleteCorpusRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
-        $warehouseClient->deleteCorpus($formattedName);
+        $warehouseClient->deleteCorpus($request);
         printf('Call completed successfully.' . PHP_EOL);
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

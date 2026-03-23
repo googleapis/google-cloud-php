@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_CreateAnnotation_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\VisionAI\V1\Annotation;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\CreateAnnotationRequest;
 
 /**
  * Creates annotation inside asset.
@@ -40,13 +41,16 @@ function create_annotation_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $annotation = new Annotation();
+    $request = (new CreateAnnotationRequest())
+        ->setParent($formattedParent)
+        ->setAnnotation($annotation);
 
     // Call the API and handle any network failures.
     try {
         /** @var Annotation $response */
-        $response = $warehouseClient->createAnnotation($formattedParent, $annotation);
+        $response = $warehouseClient->createAnnotation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_UpdateApplicationStreamInput_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\UpdateApplicationStreamInputRequest;
 use Google\Cloud\VisionAI\V1\UpdateApplicationStreamInputResponse;
 use Google\Rpc\Status;
 
@@ -44,10 +45,14 @@ function update_application_stream_input_sample(string $formattedName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new UpdateApplicationStreamInputRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->updateApplicationStreamInput($formattedName);
+        $response = $appPlatformClient->updateApplicationStreamInput($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

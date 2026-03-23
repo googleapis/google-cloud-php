@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_GetLocation_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 
 /**
  * Gets information about a location.
@@ -41,10 +42,13 @@ function get_location_sample(): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = new GetLocationRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Location $response */
-        $response = $warehouseClient->getLocation();
+        $response = $warehouseClient->getLocation($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -29,6 +29,21 @@ class CreateCorpusRequest extends \Google\Protobuf\Internal\Message
     protected $corpus = null;
 
     /**
+     * @param string                           $parent Required. Form: `projects/{project_number}/locations/{location_id}`
+     * @param \Google\Cloud\VisionAI\V1\Corpus $corpus Required. The corpus to be created.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateCorpusRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Corpus $corpus): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCorpus($corpus);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

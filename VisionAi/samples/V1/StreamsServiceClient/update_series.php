@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_UpdateSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
 use Google\Cloud\VisionAI\V1\Series;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\UpdateSeriesRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -43,16 +44,19 @@ function update_series_sample(string $formattedSeriesStream, string $formattedSe
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $series = (new Series())
         ->setStream($formattedSeriesStream)
         ->setEvent($formattedSeriesEvent);
+    $request = (new UpdateSeriesRequest())
+        ->setUpdateMask($updateMask)
+        ->setSeries($series);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->updateSeries($updateMask, $series);
+        $response = $streamsServiceClient->updateSeries($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

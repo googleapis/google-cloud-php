@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_StreamsService_GetStream_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\GetStreamRequest;
 use Google\Cloud\VisionAI\V1\Stream;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 
 /**
  * Gets details of a single Stream.
@@ -38,10 +39,14 @@ function get_stream_sample(string $formattedName): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetStreamRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Stream $response */
-        $response = $streamsServiceClient->getStream($formattedName);
+        $response = $streamsServiceClient->getStream($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

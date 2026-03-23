@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_CreateDraft_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\CreateDraftRequest;
 use Google\Cloud\VisionAI\V1\Draft;
 use Google\Rpc\Status;
 
@@ -45,14 +46,18 @@ function create_draft_sample(
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $draft = (new Draft())
         ->setDisplayName($draftDisplayName);
+    $request = (new CreateDraftRequest())
+        ->setParent($formattedParent)
+        ->setDraftId($draftId)
+        ->setDraft($draft);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->createDraft($formattedParent, $draftId, $draft);
+        $response = $appPlatformClient->createDraft($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

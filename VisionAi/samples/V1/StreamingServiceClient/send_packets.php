@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamingService_SendPackets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\VisionAI\V1\Client\StreamingServiceClient;
 use Google\Cloud\VisionAI\V1\SendPacketsRequest;
 use Google\Cloud\VisionAI\V1\SendPacketsResponse;
-use Google\Cloud\VisionAI\V1\StreamingServiceClient;
 
 /**
  * Send packets to the series.
@@ -43,7 +43,7 @@ function send_packets_sample(): void
     // Create a client.
     $streamingServiceClient = new StreamingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new SendPacketsRequest();
 
     // Call the API and handle any network failures.

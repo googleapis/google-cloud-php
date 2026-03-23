@@ -25,6 +25,22 @@ class GetDataSchemaRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the data schema to retrieve.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location_id}/corpora/{corpus_id}/dataSchemas/{data_schema_id}`
+     *                     Please see {@see WarehouseClient::dataSchemaName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetDataSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

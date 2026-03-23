@@ -25,6 +25,22 @@ class GetAssetRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the asset to retrieve.
+     *                     Format:
+     *                     projects/{project_number}/locations/{location}/corpora/{corpus}/assets/{asset}
+     *                     Please see {@see WarehouseClient::assetName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetAssetRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

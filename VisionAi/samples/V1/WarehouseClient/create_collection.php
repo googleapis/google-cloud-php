@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_CreateCollection_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\Collection;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\CreateCollectionRequest;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,16 @@ function create_collection_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $collection = new Collection();
+    $request = (new CreateCollectionRequest())
+        ->setParent($formattedParent)
+        ->setCollection($collection);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->createCollection($formattedParent, $collection);
+        $response = $warehouseClient->createCollection($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

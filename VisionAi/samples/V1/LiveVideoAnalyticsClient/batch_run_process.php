@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_BatchRunProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\BatchRunProcessRequest;
 use Google\Cloud\VisionAI\V1\BatchRunProcessResponse;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
 use Google\Cloud\VisionAI\V1\CreateProcessRequest;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
 use Google\Cloud\VisionAI\V1\Process;
 use Google\Rpc\Status;
 
@@ -52,7 +53,7 @@ function batch_run_process_sample(
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $requestsProcess = (new Process())
         ->setAnalysis($formattedRequestsProcessAnalysis);
     $createProcessRequest = (new CreateProcessRequest())
@@ -60,11 +61,14 @@ function batch_run_process_sample(
         ->setProcessId($requestsProcessId)
         ->setProcess($requestsProcess);
     $requests = [$createProcessRequest,];
+    $request = (new BatchRunProcessRequest())
+        ->setParent($formattedParent)
+        ->setRequests($requests);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->batchRunProcess($formattedParent, $requests);
+        $response = $liveVideoAnalyticsClient->batchRunProcess($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

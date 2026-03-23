@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_ListEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
 use Google\Cloud\VisionAI\V1\Event;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\ListEventsRequest;
 
 /**
  * Lists Events in a given project and location.
@@ -39,10 +40,14 @@ function list_events_sample(string $formattedParent): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListEventsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $streamsServiceClient->listEvents($formattedParent);
+        $response = $streamsServiceClient->listEvents($request);
 
         /** @var Event $element */
         foreach ($response as $element) {

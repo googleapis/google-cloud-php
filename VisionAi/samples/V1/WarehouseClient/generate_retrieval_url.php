@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_GenerateRetrievalUrl_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\GenerateRetrievalUrlRequest;
 use Google\Cloud\VisionAI\V1\GenerateRetrievalUrlResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Generates a signed url for downloading the asset.
@@ -42,10 +43,14 @@ function generate_retrieval_url_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new GenerateRetrievalUrlRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateRetrievalUrlResponse $response */
-        $response = $warehouseClient->generateRetrievalUrl($formattedName);
+        $response = $warehouseClient->generateRetrievalUrl($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

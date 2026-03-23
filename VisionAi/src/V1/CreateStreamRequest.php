@@ -51,6 +51,24 @@ class CreateStreamRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                           $parent   Required. Value for parent. Please see
+     *                                                   {@see StreamsServiceClient::clusterName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Stream $stream   Required. The resource being created.
+     * @param string                           $streamId Required. Id of the requesting object.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateStreamRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Stream $stream, string $streamId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setStream($stream)
+            ->setStreamId($streamId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

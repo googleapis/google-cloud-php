@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_UpdateCorpus_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\Corpus;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UpdateCorpusRequest;
 
 /**
  * Updates a corpus in a project.
@@ -38,14 +39,16 @@ function update_corpus_sample(string $corpusDisplayName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $corpus = (new Corpus())
         ->setDisplayName($corpusDisplayName);
+    $request = (new UpdateCorpusRequest())
+        ->setCorpus($corpus);
 
     // Call the API and handle any network failures.
     try {
         /** @var Corpus $response */
-        $response = $warehouseClient->updateCorpus($corpus);
+        $response = $warehouseClient->updateCorpus($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

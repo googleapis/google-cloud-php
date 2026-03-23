@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_CreateOperator_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\CreateOperatorRequest;
 use Google\Cloud\VisionAI\V1\Operator;
 use Google\Rpc\Status;
 
@@ -41,13 +42,17 @@ function create_operator_sample(string $formattedParent, string $operatorId): vo
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $operator = new Operator();
+    $request = (new CreateOperatorRequest())
+        ->setParent($formattedParent)
+        ->setOperatorId($operatorId)
+        ->setOperator($operator);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->createOperator($formattedParent, $operatorId, $operator);
+        $response = $liveVideoAnalyticsClient->createOperator($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

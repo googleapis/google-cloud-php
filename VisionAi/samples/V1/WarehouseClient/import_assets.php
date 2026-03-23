@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_ImportAssets_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ImportAssetsRequest;
 use Google\Cloud\VisionAI\V1\ImportAssetsResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 use Google\Rpc\Status;
 
 /**
@@ -44,10 +45,14 @@ function import_assets_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ImportAssetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->importAssets($formattedParent);
+        $response = $warehouseClient->importAssets($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
