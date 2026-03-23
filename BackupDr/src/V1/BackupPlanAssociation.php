@@ -137,6 +137,8 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}
      *     @type \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties $cloud_sql_instance_backup_plan_association_properties
      *           Output only. Cloud SQL instance's backup plan association properties.
+     *     @type \Google\Cloud\BackupDR\V1\AlloyDBClusterBackupPlanAssociationProperties $alloydb_cluster_backup_plan_association_properties
+     *           Output only. AlloyDB cluster's backup plan association properties.
      *     @type string $backup_plan_revision_id
      *           Output only. The user friendly revision ID of the `BackupPlanRevision`.
      *           Example: v0, v1, v2, etc.
@@ -456,6 +458,37 @@ class BackupPlanAssociation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\CloudSqlInstanceBackupPlanAssociationProperties::class);
         $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. AlloyDB cluster's backup plan association properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDBClusterBackupPlanAssociationProperties alloydb_cluster_backup_plan_association_properties = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\BackupDR\V1\AlloyDBClusterBackupPlanAssociationProperties|null
+     */
+    public function getAlloydbClusterBackupPlanAssociationProperties()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasAlloydbClusterBackupPlanAssociationProperties()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Output only. AlloyDB cluster's backup plan association properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.backupdr.v1.AlloyDBClusterBackupPlanAssociationProperties alloydb_cluster_backup_plan_association_properties = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\BackupDR\V1\AlloyDBClusterBackupPlanAssociationProperties $var
+     * @return $this
+     */
+    public function setAlloydbClusterBackupPlanAssociationProperties($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BackupDR\V1\AlloyDBClusterBackupPlanAssociationProperties::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }
