@@ -233,9 +233,10 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     protected $threat_detection_enabled = false;
     /**
-     * Not supported, and ignored by Cloud Run.
+     * Deprecated: Not supported, and ignored by Cloud Run.
      *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * Generated from protobuf field <code>repeated string custom_audiences = 37 [deprecated = true];</code>
+     * @deprecated
      */
     private $custom_audiences;
     /**
@@ -392,7 +393,7 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates whether Cloud Run Threat Detection monitoring is
      *           enabled for the parent project of this worker pool.
      *     @type string[] $custom_audiences
-     *           Not supported, and ignored by Cloud Run.
+     *           Deprecated: Not supported, and ignored by Cloud Run.
      *     @type bool $satisfies_pzs
      *           Output only. Reserved for future use.
      *     @type bool $reconciling
@@ -1296,26 +1297,34 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Not supported, and ignored by Cloud Run.
+     * Deprecated: Not supported, and ignored by Cloud Run.
      *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * Generated from protobuf field <code>repeated string custom_audiences = 37 [deprecated = true];</code>
      * @return RepeatedField<string>
+     * @deprecated
      */
     public function getCustomAudiences()
     {
+        if ($this->custom_audiences->count() !== 0) {
+            @trigger_error('custom_audiences is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->custom_audiences;
     }
 
     /**
-     * Not supported, and ignored by Cloud Run.
+     * Deprecated: Not supported, and ignored by Cloud Run.
      *
-     * Generated from protobuf field <code>repeated string custom_audiences = 37;</code>
+     * Generated from protobuf field <code>repeated string custom_audiences = 37 [deprecated = true];</code>
      * @param string[] $var
      * @return $this
+     * @deprecated
      */
     public function setCustomAudiences($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        if ($arr->count() !== 0) {
+            @trigger_error('custom_audiences is deprecated.', E_USER_DEPRECATED);
+        }
         $this->custom_audiences = $arr;
 
         return $this;
