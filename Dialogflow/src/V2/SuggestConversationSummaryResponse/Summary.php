@@ -30,6 +30,13 @@ class Summary extends \Google\Protobuf\Internal\Message
      */
     private $text_sections;
     /**
+     * Same as text_sections, but in an order that is consistent with the order
+     * of the sections in the generator.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary.SummarySection sorted_text_sections = 6;</code>
+     */
+    private $sorted_text_sections;
+    /**
      * The name of the answer record. Format:
      * "projects/<Project ID>/answerRecords/<Answer Record ID>"
      *
@@ -56,6 +63,9 @@ class Summary extends \Google\Protobuf\Internal\Message
      *           The summary content that is divided into sections. The key is the
      *           section's name and the value is the section's content. There is no
      *           specific format for the key or value.
+     *     @type \Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse\Summary\SummarySection[] $sorted_text_sections
+     *           Same as text_sections, but in an order that is consistent with the order
+     *           of the sections in the generator.
      *     @type string $answer_record
      *           The name of the answer record. Format:
      *           "projects/<Project ID>/answerRecords/<Answer Record ID>"
@@ -121,6 +131,34 @@ class Summary extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->text_sections = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Same as text_sections, but in an order that is consistent with the order
+     * of the sections in the generator.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary.SummarySection sorted_text_sections = 6;</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse\Summary\SummarySection>
+     */
+    public function getSortedTextSections()
+    {
+        return $this->sorted_text_sections;
+    }
+
+    /**
+     * Same as text_sections, but in an order that is consistent with the order
+     * of the sections in the generator.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SuggestConversationSummaryResponse.Summary.SummarySection sorted_text_sections = 6;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse\Summary\SummarySection[] $var
+     * @return $this
+     */
+    public function setSortedTextSections($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\SuggestConversationSummaryResponse\Summary\SummarySection::class);
+        $this->sorted_text_sections = $arr;
 
         return $this;
     }

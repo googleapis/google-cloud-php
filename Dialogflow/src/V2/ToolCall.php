@@ -69,6 +69,18 @@ class ToolCall extends \Google\Protobuf\Internal\Message
      *           Optional. The [tool][google.cloud.dialogflow.v2.Tool] associated with
      *           this call. Format:
      *           `projects/<ProjectID>/locations/<LocationID>/tools/<ToolID>`.
+     *     @type string $ces_tool
+     *           Optional. CES tool name for this call.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/tools/<ToolID>`.
+     *     @type string $ces_toolset
+     *           Optional. CES toolset name for this call.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/toolsets/ToolsetID>`.
+     *     @type string $ces_app
+     *           Optional. CES app name for this call.
+     *           Format:
+     *           `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>`.
      *     @type string $tool_display_name
      *           Optional. A human readable short name of the tool, to be shown on the UI.
      *     @type string $tool_display_details
@@ -121,6 +133,111 @@ class ToolCall extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. CES tool name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/tools/<ToolID>`.
+     *
+     * Generated from protobuf field <code>string ces_tool = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCesTool()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasCesTool()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Optional. CES tool name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/tools/<ToolID>`.
+     *
+     * Generated from protobuf field <code>string ces_tool = 11 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCesTool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. CES toolset name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/toolsets/ToolsetID>`.
+     *
+     * Generated from protobuf field <code>string ces_toolset = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCesToolset()
+    {
+        return $this->readOneof(12);
+    }
+
+    public function hasCesToolset()
+    {
+        return $this->hasOneof(12);
+    }
+
+    /**
+     * Optional. CES toolset name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>/toolsets/ToolsetID>`.
+     *
+     * Generated from protobuf field <code>string ces_toolset = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCesToolset($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. CES app name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>`.
+     *
+     * Generated from protobuf field <code>string ces_app = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCesApp()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasCesApp()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Optional. CES app name for this call.
+     * Format:
+     * `projects/<ProjectID>/locations/<LocationID>/apps/<AppID>`.
+     *
+     * Generated from protobuf field <code>string ces_app = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCesApp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
