@@ -642,7 +642,7 @@ class RestTest extends TestCase
                 true,
                 false
             ], [
-                ['validate' => true, 'headers' => ['x-goog-hash' => 'crc32c=abc']],
+                ['validate' => true, 'headers' => ['X-Goog-Hash' => 'crc32c=abc']],
                 true,
                 true,
                 false

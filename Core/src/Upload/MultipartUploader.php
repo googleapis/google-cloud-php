@@ -99,7 +99,7 @@ class MultipartUploader extends AbstractUploader
         }
 
         $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
-        $headers = array_merge($customHeaders, $headers);
+        $headers = array_merge($headers, $customHeaders);
 
         return new Request(
             'POST',

@@ -555,7 +555,7 @@ class Rest implements ConnectionInterface
 
         // Add the X-Goog-Hash header only if there are hashes to include
         if (!empty($xGoogHashHeader)) {
-            $args['uploaderOptions']['restOptions']['headers']['x-goog-hash'] = $xGoogHashHeader;
+            $args['uploaderOptions']['restOptions']['headers']['X-Goog-Hash'] = $xGoogHashHeader;
         }
 
         if (!empty($args['headers'])) {
@@ -750,7 +750,7 @@ class Rest implements ConnectionInterface
         // If the user provided a hash, skip hashing.
         if (isset($args['metadata']['md5Hash'])
             || isset($args['metadata']['crc32c'])
-            || isset($args['headers']['x-goog-hash'])
+            || isset($args['headers']['X-Goog-Hash'])
         ) {
             return false;
         }
