@@ -37,6 +37,12 @@ class KnowledgeAssistAnswer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string answer_record = 3;</code>
      */
     protected $answer_record = '';
+    /**
+     * Debug information related to Knowledge Assist feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo knowledge_assist_debug_info = 7;</code>
+     */
+    protected $knowledge_assist_debug_info = null;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class KnowledgeAssistAnswer extends \Google\Protobuf\Internal\Message
      *           The name of the answer record.
      *           Format: `projects/<Project ID>/locations/<location ID>/answer
      *           Records/<Answer Record ID>`.
+     *     @type \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo $knowledge_assist_debug_info
+     *           Debug information related to Knowledge Assist feature.
      * }
      */
     public function __construct($data = NULL) {
@@ -163,6 +171,42 @@ class KnowledgeAssistAnswer extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->answer_record = $var;
+
+        return $this;
+    }
+
+    /**
+     * Debug information related to Knowledge Assist feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo knowledge_assist_debug_info = 7;</code>
+     * @return \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo|null
+     */
+    public function getKnowledgeAssistDebugInfo()
+    {
+        return $this->knowledge_assist_debug_info;
+    }
+
+    public function hasKnowledgeAssistDebugInfo()
+    {
+        return isset($this->knowledge_assist_debug_info);
+    }
+
+    public function clearKnowledgeAssistDebugInfo()
+    {
+        unset($this->knowledge_assist_debug_info);
+    }
+
+    /**
+     * Debug information related to Knowledge Assist feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.KnowledgeAssistDebugInfo knowledge_assist_debug_info = 7;</code>
+     * @param \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo $var
+     * @return $this
+     */
+    public function setKnowledgeAssistDebugInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\KnowledgeAssistDebugInfo::class);
+        $this->knowledge_assist_debug_info = $var;
 
         return $this;
     }

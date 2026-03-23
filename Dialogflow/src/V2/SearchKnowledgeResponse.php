@@ -29,6 +29,12 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string rewritten_query = 3;</code>
      */
     protected $rewritten_query = '';
+    /**
+     * Debug info for SearchKnowledge.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeDebugInfo search_knowledge_debug_info = 4;</code>
+     */
+    protected $search_knowledge_debug_info = null;
 
     /**
      * Constructor.
@@ -41,6 +47,8 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
      *           ordered by confidence.
      *     @type string $rewritten_query
      *           The rewritten query used to search knowledge.
+     *     @type \Google\Cloud\Dialogflow\V2\SearchKnowledgeDebugInfo $search_knowledge_debug_info
+     *           Debug info for SearchKnowledge.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,6 +106,42 @@ class SearchKnowledgeResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->rewritten_query = $var;
+
+        return $this;
+    }
+
+    /**
+     * Debug info for SearchKnowledge.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeDebugInfo search_knowledge_debug_info = 4;</code>
+     * @return \Google\Cloud\Dialogflow\V2\SearchKnowledgeDebugInfo|null
+     */
+    public function getSearchKnowledgeDebugInfo()
+    {
+        return $this->search_knowledge_debug_info;
+    }
+
+    public function hasSearchKnowledgeDebugInfo()
+    {
+        return isset($this->search_knowledge_debug_info);
+    }
+
+    public function clearSearchKnowledgeDebugInfo()
+    {
+        unset($this->search_knowledge_debug_info);
+    }
+
+    /**
+     * Debug info for SearchKnowledge.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SearchKnowledgeDebugInfo search_knowledge_debug_info = 4;</code>
+     * @param \Google\Cloud\Dialogflow\V2\SearchKnowledgeDebugInfo $var
+     * @return $this
+     */
+    public function setSearchKnowledgeDebugInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SearchKnowledgeDebugInfo::class);
+        $this->search_knowledge_debug_info = $var;
 
         return $this;
     }
