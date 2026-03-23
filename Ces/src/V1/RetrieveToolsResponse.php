@@ -17,9 +17,9 @@ use Google\Protobuf\RepeatedField;
 class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The list of tools that are included in the specified toolset.
+     * The list of tools that are included in the specified toolset.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1;</code>
      */
     private $tools;
 
@@ -30,7 +30,7 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Ces\V1\Tool[] $tools
-     *           Required. The list of tools that are included in the specified toolset.
+     *           The list of tools that are included in the specified toolset.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,9 +39,9 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of tools that are included in the specified toolset.
+     * The list of tools that are included in the specified toolset.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1;</code>
      * @return RepeatedField<\Google\Cloud\Ces\V1\Tool>
      */
     public function getTools()
@@ -50,9 +50,9 @@ class RetrieveToolsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The list of tools that are included in the specified toolset.
+     * The list of tools that are included in the specified toolset.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.ces.v1.Tool tools = 1;</code>
      * @param \Google\Cloud\Ces\V1\Tool[] $var
      * @return $this
      */

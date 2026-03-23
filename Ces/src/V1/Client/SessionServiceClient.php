@@ -32,6 +32,7 @@ use Google\ApiCore\Options\ClientOptions;
 use Google\ApiCore\PagedListResponse;
 use Google\ApiCore\ResourceHelperTrait;
 use Google\ApiCore\RetrySettings;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
@@ -389,8 +390,7 @@ final class SessionServiceClient
     }
 
     /**
-     * Initiates a single turn interaction with the CES agent within a
-     * session.
+     * Initiates a single-turn interaction with the CES agent within a session.
      *
      * The async variant is {@see SessionServiceClient::runSessionAsync()} .
      *
@@ -413,6 +413,36 @@ final class SessionServiceClient
     public function runSession(RunSessionRequest $request, array $callOptions = []): RunSessionResponse
     {
         return $this->startApiCall('RunSession', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Initiates a single-turn interaction with the CES agent. Uses server-side
+     * streaming to deliver incremental results and partial responses as they are
+     * generated.
+     *
+     * By default, complete responses (e.g., messages from callbacks or full LLM
+     * responses) are sent to the client as soon as they are available. To enable
+     * streaming individual text chunks directly from the model, set
+     * [enable_text_streaming][google.cloud.ces.v1.SessionConfig.enable_text_streaming]
+     * to true.
+     *
+     * @example samples/V1/SessionServiceClient/stream_run_session.php
+     *
+     * @param RunSessionRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return ServerStream<RunSessionResponse>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function streamRunSession(RunSessionRequest $request, array $callOptions = []): ServerStream
+    {
+        return $this->startApiCall('StreamRunSession', $request, $callOptions);
     }
 
     /**
@@ -443,13 +473,22 @@ final class SessionServiceClient
 
     /**
      * Lists information about the supported locations for this service.
-    This method can be called in two ways:
 
-    *   **List all public locations:** Use the path `GET /v1/locations`.
-    *   **List project-visible locations:** Use the path
-    `GET /v1/projects/{project_id}/locations`. This may include public
-    locations as well as private or other locations specifically visible
-    to the project.
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name] field:
+
+    * **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see SessionServiceClient::listLocationsAsync()} .
      *

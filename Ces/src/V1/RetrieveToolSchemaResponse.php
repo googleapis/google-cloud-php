@@ -17,15 +17,15 @@ use Google\Protobuf\RepeatedField;
 class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The schema of the tool input parameters.
+     * The schema of the tool input parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3;</code>
      */
     protected $input_schema = null;
     /**
-     * Required. The schema of the tool output parameters.
+     * The schema of the tool output parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4;</code>
      */
     protected $output_schema = null;
     protected $tool_identifier;
@@ -42,9 +42,9 @@ class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\ToolsetTool $toolset_tool
      *           The toolset tool that the schema is for.
      *     @type \Google\Cloud\Ces\V1\Schema $input_schema
-     *           Required. The schema of the tool input parameters.
+     *           The schema of the tool input parameters.
      *     @type \Google\Cloud\Ces\V1\Schema $output_schema
-     *           Required. The schema of the tool output parameters.
+     *           The schema of the tool output parameters.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,9 +117,9 @@ class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The schema of the tool input parameters.
+     * The schema of the tool input parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3;</code>
      * @return \Google\Cloud\Ces\V1\Schema|null
      */
     public function getInputSchema()
@@ -138,9 +138,9 @@ class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The schema of the tool input parameters.
+     * The schema of the tool input parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema input_schema = 3;</code>
      * @param \Google\Cloud\Ces\V1\Schema $var
      * @return $this
      */
@@ -153,9 +153,9 @@ class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The schema of the tool output parameters.
+     * The schema of the tool output parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4;</code>
      * @return \Google\Cloud\Ces\V1\Schema|null
      */
     public function getOutputSchema()
@@ -174,9 +174,9 @@ class RetrieveToolSchemaResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The schema of the tool output parameters.
+     * The schema of the tool output parameters.
      *
-     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Schema output_schema = 4;</code>
      * @param \Google\Cloud\Ces\V1\Schema $var
      * @return $this
      */

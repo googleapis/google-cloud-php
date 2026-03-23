@@ -17,11 +17,12 @@ class SessionInput extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. A flag to indicate if the current message is a fragment of a
-     * larger input in the bidi streaming session. When `true`, the agent will
-     * defer processing until a subsequent message with `will_continue` set to
-     * `false` is received.
-     * Note: This flag has no effect on audio and DTMF inputs, which are always
-     * processed in real-time.
+     * larger input in the bidi streaming session.
+     * When set to `true`, the agent defers processing until it receives a
+     * subsequent message where `will_continue` is `false`, or until the system
+     * detects an endpoint in the audio input.
+     * NOTE: This field does not apply to audio and DTMF inputs, as they are
+     * always processed automatically based on the endpointing signal.
      *
      * Generated from protobuf field <code>bool will_continue = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -55,11 +56,12 @@ class SessionInput extends \Google\Protobuf\Internal\Message
      *           Optional. Event input.
      *     @type bool $will_continue
      *           Optional. A flag to indicate if the current message is a fragment of a
-     *           larger input in the bidi streaming session. When `true`, the agent will
-     *           defer processing until a subsequent message with `will_continue` set to
-     *           `false` is received.
-     *           Note: This flag has no effect on audio and DTMF inputs, which are always
-     *           processed in real-time.
+     *           larger input in the bidi streaming session.
+     *           When set to `true`, the agent defers processing until it receives a
+     *           subsequent message where `will_continue` is `false`, or until the system
+     *           detects an endpoint in the audio input.
+     *           NOTE: This field does not apply to audio and DTMF inputs, as they are
+     *           always processed automatically based on the endpointing signal.
      * }
      */
     public function __construct($data = NULL) {
@@ -323,11 +325,12 @@ class SessionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A flag to indicate if the current message is a fragment of a
-     * larger input in the bidi streaming session. When `true`, the agent will
-     * defer processing until a subsequent message with `will_continue` set to
-     * `false` is received.
-     * Note: This flag has no effect on audio and DTMF inputs, which are always
-     * processed in real-time.
+     * larger input in the bidi streaming session.
+     * When set to `true`, the agent defers processing until it receives a
+     * subsequent message where `will_continue` is `false`, or until the system
+     * detects an endpoint in the audio input.
+     * NOTE: This field does not apply to audio and DTMF inputs, as they are
+     * always processed automatically based on the endpointing signal.
      *
      * Generated from protobuf field <code>bool will_continue = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -339,11 +342,12 @@ class SessionInput extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. A flag to indicate if the current message is a fragment of a
-     * larger input in the bidi streaming session. When `true`, the agent will
-     * defer processing until a subsequent message with `will_continue` set to
-     * `false` is received.
-     * Note: This flag has no effect on audio and DTMF inputs, which are always
-     * processed in real-time.
+     * larger input in the bidi streaming session.
+     * When set to `true`, the agent defers processing until it receives a
+     * subsequent message where `will_continue` is `false`, or until the system
+     * detects an endpoint in the audio input.
+     * NOTE: This field does not apply to audio and DTMF inputs, as they are
+     * always processed automatically based on the endpointing signal.
      *
      * Generated from protobuf field <code>bool will_continue = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var

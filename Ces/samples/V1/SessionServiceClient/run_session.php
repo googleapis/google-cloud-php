@@ -31,8 +31,7 @@ use Google\Cloud\Ces\V1\SessionConfig;
 use Google\Cloud\Ces\V1\SessionInput;
 
 /**
- * Initiates a single turn interaction with the CES agent within a
- * session.
+ * Initiates a single-turn interaction with the CES agent within a session.
  *
  * @param string $formattedConfigSession The unique identifier of the session.
  *                                       Format:

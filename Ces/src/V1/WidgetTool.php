@@ -37,6 +37,19 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.WidgetType widget_type = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $widget_type = 0;
+    /**
+     * Optional. Configuration for rendering the widget.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ui_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $ui_config = null;
+    /**
+     * Optional. The mapping that defines how data from a source tool is mapped to
+     * the widget's input parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.DataMapping data_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $data_mapping = null;
     protected $input;
 
     /**
@@ -54,6 +67,11 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
      *     @type int $widget_type
      *           Optional. The type of the widget tool. If not specified, the default type
      *           will be CUSTOMIZED.
+     *     @type \Google\Protobuf\Struct $ui_config
+     *           Optional. Configuration for rendering the widget.
+     *     @type \Google\Cloud\Ces\V1\WidgetTool\DataMapping $data_mapping
+     *           Optional. The mapping that defines how data from a source tool is mapped to
+     *           the widget's input parameters.
      * }
      */
     public function __construct($data = NULL) {
@@ -168,6 +186,80 @@ class WidgetTool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Ces\V1\WidgetTool\WidgetType::class);
         $this->widget_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Configuration for rendering the widget.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ui_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getUiConfig()
+    {
+        return $this->ui_config;
+    }
+
+    public function hasUiConfig()
+    {
+        return isset($this->ui_config);
+    }
+
+    public function clearUiConfig()
+    {
+        unset($this->ui_config);
+    }
+
+    /**
+     * Optional. Configuration for rendering the widget.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct ui_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setUiConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->ui_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The mapping that defines how data from a source tool is mapped to
+     * the widget's input parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.DataMapping data_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\WidgetTool\DataMapping|null
+     */
+    public function getDataMapping()
+    {
+        return $this->data_mapping;
+    }
+
+    public function hasDataMapping()
+    {
+        return isset($this->data_mapping);
+    }
+
+    public function clearDataMapping()
+    {
+        unset($this->data_mapping);
+    }
+
+    /**
+     * Optional. The mapping that defines how data from a source tool is mapped to
+     * the widget's input parameters.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool.DataMapping data_mapping = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\WidgetTool\DataMapping $var
+     * @return $this
+     */
+    public function setDataMapping($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\WidgetTool\DataMapping::class);
+        $this->data_mapping = $var;
 
         return $this;
     }
