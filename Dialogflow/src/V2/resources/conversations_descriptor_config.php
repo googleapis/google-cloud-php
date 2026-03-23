@@ -214,6 +214,7 @@ return [
             ],
             'templateMap' => [
                 'agent' => 'projects/{project}/agent',
+                'app' => 'projects/{project}/locations/{location}/apps/{app}',
                 'cXSecuritySettings' => 'projects/{project}/locations/{location}/securitySettings/{security_settings}',
                 'conversation' => 'projects/{project}/conversations/{conversation}',
                 'conversationModel' => 'projects/{project}/locations/{location}/conversationModels/{conversation_model}',
@@ -243,6 +244,7 @@ return [
                 'projectLocationKnowledgeBase' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}',
                 'projectLocationKnowledgeBaseDocument' => 'projects/{project}/locations/{location}/knowledgeBases/{knowledge_base}/documents/{document}',
                 'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
+                'toolset' => 'projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}',
             ],
         ],
     ],
