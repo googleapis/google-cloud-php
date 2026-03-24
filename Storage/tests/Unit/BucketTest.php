@@ -117,7 +117,7 @@ class BucketTest extends TestCase
     {
         $this->resumableUploader->upload()->willReturn([
             'name' => 'data.txt',
-            'generation' => 123,
+            'generation' => 123
         ]);
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $bucket = $this->getBucket();
