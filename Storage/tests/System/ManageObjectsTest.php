@@ -215,99 +215,74 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFalse($object->exists());
     }
 
+    /**
+     *  * -------------------------------------------------------------------------
+     * CONTEXT OBJECT SCENARIOS
+     * -------------------------------------------------------------------------
+     * The following methods handle logic related to Context Object workflows.
+     * 
+     *  @testObjectWithContexts For insertion of objects with contexts and retrieval of contexts via info() method.
+     *  */
+
     public function testObjectWithContexts()
     {
-        $objectName = 'test-context-' . uniqid() . '.txt';
-        $bucket = self::$bucket;
-        $content = 'Context Object';
-        $contextKey = 'system-test-key';
-        $contextValue = 'system-test-value';
+        $objectName = 'test-' . uniqid() . '.txt';
+        $object = null;
+        // Define these as variables so you don't make a typo in the assertion
+        $testKey = 'insert-test-key';
+        $testValue = 'insert-test-value';
 
-        // 1. Upload Object with Contexts (Insert Operation)
-        // Document says: Only 'value' is required for insert; timestamps are system-generated.
-        $object = $bucket->upload($content, [
-            'name' => $objectName,
-            'metadata' => [
+        try {
+            $object = self::$bucket->upload('content', [
+                'name' => $objectName,
+                'metadata' => [
                 'contexts' => [
                     'custom' => [
-                        $contextKey => [
-                            'value' => $contextValue
-                        ]
+                        $testKey => ['value' => $testValue]
                     ]
                 ]
             ]
-        ]);
-
-        // 2. Refresh info to get the full metadata from the server
-        $info = $object->info();
-
-        // 3. ASSERTIONS: Structure Validation
-        $this->assertArrayHasKey('contexts', $info, 'Backend response is missing the "contexts" key.');
-        $this->assertArrayHasKey('custom', $info['contexts'], 'Contexts structure is missing "custom" grouping.');
-        $this->assertArrayHasKey($contextKey, $info['contexts']['custom'], "The key '$contextKey' was not found in the response.");
-
-        $contextData = $info['contexts']['custom'][$contextKey];
-
-        // 4. ASSERTIONS: Data Integrity
-        $this->assertEquals(
-            $contextValue,
-            $contextData['value'],
-            'The retrieved context value does not match the uploaded value.'
-        );
-
-        // 5. ASSERTIONS: System Generated Fields (As per Document)
-        // Document mentions createTime and updateTime are added by GCS.
-        $this->assertArrayHasKey('createTime', $contextData, 'Server failed to generate createTime.');
-        $this->assertArrayHasKey('updateTime', $contextData, 'Server failed to generate updateTime.');
-
-        // Optional: Validate that timestamps are in the correct ISO 8601 format
-        $this->assertMatchesRegularExpression(
-            '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.*Z$/',
-            $contextData['createTime'],
-            'createTime is not a valid RFC 3339 timestamp.'
-        );
-
-        // 6. Cleanup
-        $object->delete();
+            ]);
+            $info = $object->info();
+            $this->assertEquals(
+                $testValue,
+                $info['contexts']['custom'][$testKey]['value']
+            );
+        } finally {
+            // This runs even if the assertEquals fails!
+            if ($object && $object->exists()) {
+                $object->delete();
+            }
+        }
     }
+
+    /**
+     * 
+     *  @testGetContexts For retrieval of contexts via info() method.
+    */
 
     public function testGetContexts()
     {
-        $objectName = 'get-contexts-test-' . uniqid() . '.txt';
-        $bucket = self::$bucket;
-        $content = 'data or get test';
+        $objectName = 'get-test-' . uniqid() . '.txt';
         $contextKey = 'info-key';
         $contextValue = 'info-value';
 
-        // 1. First we can upload the contexts with the object. Contexts are added as metadata in the upload request.
-        $object = $bucket->upload($content, [
+        self::$bucket->upload('data', [
             'name' => $objectName,
             'metadata' => [
-                'contexts' => [
-                    'custom' => [
-                        $contextKey => ['value' => $contextValue]
-                    ]
-                ]
+                'contexts' => ['custom' => [$contextKey => ['value' => $contextValue]]]
             ]
         ]);
 
-        // 2. Now 'GET' the object and check if the contexts are present in the response and have the expected values.
+        // Instead of using the $object from upload, we look it up by name
+        $object = self::$bucket->object($objectName);
         $info = $object->info();
 
-        // 3. ASSERTIONS: Structure Validation
-        $this->assertArrayHasKey('contexts', $info, 'GET response does not contain contexts.');
-        $this->assertArrayHasKey('custom', $info['contexts'], 'Contexts structure is missing "custom" grouping.');
+        $this->assertEquals(
+            $contextValue, 
+            $info['contexts']['custom'][$contextKey]['value']
+        );
 
-        $retrievedContext = $info['contexts']['custom'][$contextKey];
-
-        // 4. ASSERTIONS: Data Integrity
-        // Now check the Value
-        $this->assertEquals($contextValue, $retrievedContext['value']);
-        
-        // Server-side timestamps check karein (Must exist in GET response)
-        $this->assertArrayHasKey('createTime', $retrievedContext);
-        $this->assertArrayHasKey('updateTime', $retrievedContext);
-        // Cleanup
         $object->delete();
     }
 

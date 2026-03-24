@@ -1493,28 +1493,28 @@
             },
             "contexts" : {
                 "type": "object",
-                "description": "Object Contexts provide key-value pair metadata for the object.",
+                "description": "A collection of key-payload pairs attached to an object for metadata and identification purposes.",
                 "properties" : {
                     "custom" : {
                         "type": "object",
-                        "description": "Custom user-defined contexts, where keys are user-defined strings.",
+                        "description": "User-provided object contexts where each entry consists of a unique key and a corresponding payload.",
                         "additionalProperties": {
                             "type": "object",
-                            "description": "A single custom context entry.",
+                            "description": "An individual context entry. Keys and values must start with an alphanumeric character and cannot contain single quotes ('), double quotes (\"), backslashes (\\), or forward slashes (/). Duplicate keys are strictly prohibited within the same object.",
                             "properties": {
                                 "value": {
                                     "type": "string",
-                                    "description": "The value associated with the context key."
+                                    "description": "The primary data associated with the context key. Must comply with alphanumeric start and character restriction rules."
                                 },
                                 "createTime": {
                                     "type": "string",
                                     "format": "date-time",
-                                    "description": "The creation time of the context. This field is output only."
+                                    "description": "The timestamp (RFC 3339) indicating when this specific context was created. This is a read-only system field."
                                 },
                                 "updateTime": {
                                     "type": "string",
                                     "format": "date-time",
-                                    "description": "The last update time of the context. This field is output only."
+                                    "description": "The timestamp (RFC 3339) indicating the last time this context was modified. This is a read-only system field."
                                 }
                             },
                             "required": [

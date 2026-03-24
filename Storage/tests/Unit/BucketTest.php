@@ -559,32 +559,30 @@ class BucketTest extends TestCase
      * CONTEXT OBJECT SCENARIOS
      * -------------------------------------------------------------------------
      * The following methods handle logic related to Context Object workflows.
+     * 
+     * First test covers creating objects with valid contexts, second test covers creating objects with invalid contexts,
     */
 
     public function testCreateWithValidContexts()
     {
-        // 1. Define Valid Data Contexts
         $contexts = [
             'custom' => [
                 'test-key' => ['value' => 'test-value']
             ]
         ];
 
-        // 2. Mock for resumable uploader to return the contexts in the response, simulating a successful upload with contexts.
         $this->resumableUploader->upload()->willReturn([
             'name' => 'data.txt',
             'generation' => 123,
             'contexts' => $contexts // Need to return contexts here to simulate that they are included in the object info after upload
         ]);
 
-        // 3. Mock the connection to expect 'contexts' in the insertObject call and return the mocked resumable uploader.
         $this->connection->insertObject(Argument::that(function ($args) use ($contexts) {
             return isset($args['contexts']) && $args['contexts'] === $contexts;
         }))->willReturn($this->resumableUploader->reveal());
 
         $bucket = $this->getBucket();
 
-        // 4. Call the upload method with the defined contexts and verify that the returned object has the contexts in its info.
         $object = $bucket->upload('some data to upload', [
             'name' => 'data.txt',
             'contexts' => $contexts 
@@ -592,7 +590,6 @@ class BucketTest extends TestCase
 
         $this->assertInstanceOf(StorageObject::class, $object);
         
-        // 5. Verify context object is avaiable in the Object
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
@@ -602,7 +599,6 @@ class BucketTest extends TestCase
     */
     public function testCreateWithInvalidContexts()
     {
-        // 1. Expecting an exception.
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value cannot contain forbidden characters.');
 
@@ -614,7 +610,6 @@ class BucketTest extends TestCase
 
         $bucket = $this->getBucket();
 
-        // 2. Call here. If got exception then case will be pass.
         $bucket->upload('data', [
             'name' => 'test.txt',
             'contexts' => $invalidContexts
@@ -628,7 +623,6 @@ class BucketTest extends TestCase
     {
         $bucket = $this->getBucket();
 
-        // CASE 2: Value starts with an emoji (invalid)
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value must start with an alphanumeric character.');
 
@@ -648,7 +642,6 @@ class BucketTest extends TestCase
     */
     public function testUpdateAndReplaceContexts()
     {
-        // 1. Define the updated data
         $contextKey = 'context-key-1';
         $updatedValue = 'updated-value';
         $newContexts = [
@@ -657,7 +650,6 @@ class BucketTest extends TestCase
             ]
         ];
 
-        // 2. Mock the Connection
         // We expect patchObject to be called with the new contexts in the arguments
         $this->connection->patchObject(Argument::that(function ($args) use ($newContexts) {
             return isset($args['contexts']) && $args['contexts'] === $newContexts;
@@ -666,7 +658,6 @@ class BucketTest extends TestCase
             'contexts' => $newContexts
         ]);
 
-        // 3. Initialize the StorageObject with the Mock Connection
         // Note: Assuming $this->connection is already a prophesize(Rest::class) in your setUp
         $object = new StorageObject(
             $this->connection->reveal(),
@@ -674,12 +665,10 @@ class BucketTest extends TestCase
             'my-bucket'
         );
 
-        // 4. Execute the Update
         $object->update([
             'contexts' => $newContexts
         ]);
 
-        // 5. Assertions: Check if the internal state of the object was updated
         $info = $object->info();
         $this->assertArrayHasKey('contexts', $info);
         $this->assertEquals(
@@ -704,7 +693,6 @@ class BucketTest extends TestCase
             $bucketName
         );
 
-        // --- 1. ADDING / MODIFYING INDIVIDUAL CONTEXTS ---
         $patchData = [
             'contexts' => [
                 'custom' => [
@@ -723,7 +711,6 @@ class BucketTest extends TestCase
 
         $object->update($patchData);
 
-        // --- 2. REMOVING INDIVIDUAL CONTEXTS ---
         $removeData = [
             'contexts' => [
                 'custom' => [
@@ -744,7 +731,6 @@ class BucketTest extends TestCase
 
         $object->update($removeData);
 
-        // --- 3. CLEARING ALL CONTEXTS ---
         $clearData = [
             'contexts' => null
         ];
@@ -851,12 +837,10 @@ class BucketTest extends TestCase
     {
         $objectName = 'metadata-test.txt';
         $bucketName = 'my-bucket';
-        $projectId = 'test-project'; // Dummy project ID
+        $projectId = 'test-project'; 
         
-        // 1. Mock the 'projectId' call (Required by the Bucket/Object constructor)
         $this->connection->projectId()->willReturn($projectId);
 
-        // 2. Define the metadata response
         $metadataResponse = [
             'name' => $objectName,
             'bucket' => $bucketName,
@@ -868,17 +852,14 @@ class BucketTest extends TestCase
             ]
         ];
 
-        // 3. Mock the 'getObject' call
         $this->connection->getObject(Argument::withEntry('object', $objectName))
             ->shouldBeCalled()
             ->willReturn($metadataResponse);
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
 
-        // 4. Action: Retrieve the object
         $object = $bucket->object($objectName);
 
-        // 5. Assertions
         $info = $object->info();
         
         $this->assertArrayHasKey('contexts', $info);
@@ -896,10 +877,8 @@ class BucketTest extends TestCase
         $bucketName = 'my-bucket';
         $prefix = 'folder/';
 
-        // 1. Mock the Connection (Consolidated)
         $this->connection->projectId()->willReturn('test-project');
         
-        // We mock the API to return two objects, each with their own contexts
         $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
             ->shouldBeCalled()
             ->willReturn([
@@ -911,7 +890,6 @@ class BucketTest extends TestCase
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
 
-        // 2. Action & Assertions (Using foreach for brevity)
         $objects = $bucket->objects(['prefix' => $prefix]);
 
         $count = 0;
