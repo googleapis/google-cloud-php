@@ -294,6 +294,11 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
+        // Validate object contexts if provided in options. This will ensure that the object is not rejected by the server after upload.
+        if (isset($options['contexts']['custom'])) {
+            $this->validateContexts($options['contexts']);
+        }
+
         $encryptionKey = $options['encryptionKey'] ?? null;
         $encryptionKeySHA256 = $options['encryptionKeySHA256'] ?? null;
 
@@ -312,6 +317,41 @@ class Bucket
             $encryptionKey,
             $encryptionKeySHA256
         );
+    }
+
+    /**
+     * Validates object contexts based on storage rules.
+     *
+     * @param array $contexts The contexts array to validate.
+     * @throws \InvalidArgumentException
+    */
+    private function validateContexts(array $contexts)
+    {
+        if (!isset($contexts['custom']) || !is_array($contexts['custom'])) {
+            return;
+        }
+
+        foreach ($contexts['custom'] as $key => $data) {
+            // Validate Key
+            if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
+                throw new \InvalidArgumentException('Object context key must start with an alphanumeric character.');
+            }
+            if (strpos($key, '"') !== false) {
+                throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
+            }
+
+            // Validate Value
+            if (isset($data['value'])) {
+                $val = (string) $data['value'];
+
+                if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
+                    throw new \InvalidArgumentException('Object context value must start with an alphanumeric character.');
+                }
+                if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
+                    throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');
+                }
+            }
+        }
     }
 
     /**

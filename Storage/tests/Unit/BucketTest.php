@@ -117,7 +117,7 @@ class BucketTest extends TestCase
     {
         $this->resumableUploader->upload()->willReturn([
             'name' => 'data.txt',
-            'generation' => 123
+            'generation' => 123,
         ]);
         $this->connection->insertObject(Argument::any())->willReturn($this->resumableUploader);
         $bucket = $this->getBucket();
@@ -553,6 +553,383 @@ class BucketTest extends TestCase
         $bucket = $this->getBucket();
         $bucket->isWritable(); // raises exception
     }
+
+    /**
+     * -------------------------------------------------------------------------
+     * CONTEXT OBJECT SCENARIOS
+     * -------------------------------------------------------------------------
+     * The following methods handle logic related to Context Object workflows.
+    */
+
+    public function testCreateWithValidContexts()
+    {
+        // 1. Define Valid Data Contexts
+        $contexts = [
+            'custom' => [
+                'test-key' => ['value' => 'test-value']
+            ]
+        ];
+
+        // 2. Mock for resumable uploader to return the contexts in the response, simulating a successful upload with contexts.
+        $this->resumableUploader->upload()->willReturn([
+            'name' => 'data.txt',
+            'generation' => 123,
+            'contexts' => $contexts // Need to return contexts here to simulate that they are included in the object info after upload
+        ]);
+
+        // 3. Mock the connection to expect 'contexts' in the insertObject call and return the mocked resumable uploader.
+        $this->connection->insertObject(Argument::that(function ($args) use ($contexts) {
+            return isset($args['contexts']) && $args['contexts'] === $contexts;
+        }))->willReturn($this->resumableUploader->reveal());
+
+        $bucket = $this->getBucket();
+
+        // 4. Call the upload method with the defined contexts and verify that the returned object has the contexts in its info.
+        $object = $bucket->upload('some data to upload', [
+            'name' => 'data.txt',
+            'contexts' => $contexts 
+        ]);
+
+        $this->assertInstanceOf(StorageObject::class, $object);
+        
+        // 5. Verify context object is avaiable in the Object
+        $this->assertEquals($contexts, $object->info()['contexts']);
+    }
+
+    /**
+        * @expectedException \InvalidArgumentException
+        * @expectedExceptionMessage Object context value cannot contain forbidden characters.
+    */
+    public function testCreateWithInvalidContexts()
+    {
+        // 1. Expecting an exception.
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Object context value cannot contain forbidden characters.');
+
+        $invalidContexts = [
+            'custom' => [
+                'valid-key' => ['value' => 'invalid/value']
+            ]
+        ];
+
+        $bucket = $this->getBucket();
+
+        // 2. Call here. If got exception then case will be pass.
+        $bucket->upload('data', [
+            'name' => 'test.txt',
+            'contexts' => $invalidContexts
+        ]);
+    }
+
+    /**
+        * Test that the library rejects values that do not start with an alphanumeric character.
+    */
+    public function testRejectInvalidLeadingUnicodeValueInContexts()
+    {
+        $bucket = $this->getBucket();
+
+        // CASE 2: Value starts with an emoji (invalid)
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Object context value must start with an alphanumeric character.');
+
+        $bucket->upload('test data', [
+            'name' => 'test.txt',
+            'contexts' => [
+                'custom' => [
+                    'my-custom-key' => ['value' => '✨-sparkle']
+                ]
+            ]
+        ]);
+    }
+
+    /**
+     *  Test modifying an existing custom context key and value
+     *  This simulates the "Replace all" behaviour.
+    */
+    public function testUpdateAndReplaceContexts()
+    {
+        // 1. Define the updated data
+        $contextKey = 'context-key-1';
+        $updatedValue = 'updated-value';
+        $newContexts = [
+            'custom' => [
+                $contextKey => ['value' => $updatedValue]
+            ]
+        ];
+
+        // 2. Mock the Connection
+        // We expect patchObject to be called with the new contexts in the arguments
+        $this->connection->patchObject(Argument::that(function ($args) use ($newContexts) {
+            return isset($args['contexts']) && $args['contexts'] === $newContexts;
+        }))->shouldBeCalled()->willReturn([
+            'name' => 'test.txt',
+            'contexts' => $newContexts
+        ]);
+
+        // 3. Initialize the StorageObject with the Mock Connection
+        // Note: Assuming $this->connection is already a prophesize(Rest::class) in your setUp
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            'test.txt',
+            'my-bucket'
+        );
+
+        // 4. Execute the Update
+        $object->update([
+            'contexts' => $newContexts
+        ]);
+
+        // 5. Assertions: Check if the internal state of the object was updated
+        $info = $object->info();
+        $this->assertArrayHasKey('contexts', $info);
+        $this->assertEquals(
+            $updatedValue,
+            $info['contexts']['custom'][$contextKey]['value'],
+            'The local object info was not updated with the new context value.'
+        );
+    }
+
+    /**
+     * Test individual patching behaviors: Add, Modify, Remove, and Clear.
+     * This covers the "Patch an existing object" requirements.
+     */
+    public function testPatchIndividualContexts()
+    {
+        $objectName = 'patch-test.txt';
+        $bucketName = 'my-bucket';
+        
+        $object = new StorageObject(
+            $this->connection->reveal(), 
+            $objectName, 
+            $bucketName
+        );
+
+        // --- 1. ADDING / MODIFYING INDIVIDUAL CONTEXTS ---
+        $patchData = [
+            'contexts' => [
+                'custom' => [
+                    'new-key' => ['value' => 'brand-new-val']
+                ]
+            ]
+        ];
+
+        $this->connection->patchObject(Argument::that(function ($args) use ($patchData) {
+           return isset($args['contexts']['custom']) && 
+               $args['contexts']['custom'] === $patchData['contexts']['custom'];
+        }))->shouldBeCalledTimes(1)->willReturn([
+            'name' => $objectName,
+            'contexts' => $patchData['contexts']
+        ]);
+
+        $object->update($patchData);
+
+        // --- 2. REMOVING INDIVIDUAL CONTEXTS ---
+        $removeData = [
+            'contexts' => [
+                'custom' => [
+                    'key-to-delete' => null
+                ]
+            ]
+        ];
+
+        $this->connection->patchObject(Argument::that(function ($args) {
+        // Fix: Use isset() and array_key_exists to prevent "offset on null"
+        return isset($args['contexts']['custom']) && 
+               array_key_exists('key-to-delete', $args['contexts']['custom']) && 
+               $args['contexts']['custom']['key-to-delete'] === null;
+        }))->shouldBeCalledTimes(1)->willReturn([
+            'name' => $objectName,
+            'contexts' => ['custom' => ['remaining-key' => ['value' => 'stays']]]
+        ]);
+
+        $object->update($removeData);
+
+        // --- 3. CLEARING ALL CONTEXTS ---
+        $clearData = [
+            'contexts' => null
+        ];
+
+        $this->connection->patchObject(Argument::that(function ($args) {
+        // For clearing, contexts is explicitly null
+            return array_key_exists('contexts', $args) && $args['contexts'] === null;
+        }))->shouldBeCalledTimes(1)->willReturn([
+            'name' => $objectName
+        ]);
+
+        $object->update($clearData);
+    }
+
+    /**
+    * Test rewriting an object with context inheritance and overrides.
+    */
+    public function testRewriteObjectWithContexts()
+    {
+        $sourceName = 'source.txt';
+        $destName = 'destination.txt';
+        $bucketName = 'my-bucket';
+
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            $sourceName,
+            $bucketName
+        );
+
+        // Mocking the "Fake" Server Response
+        $this->connection->rewriteObject(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'resource' => [
+                    'name' => $destName,
+                    'bucket' => $bucketName, // Essential for the library to create the new object
+                    'generation' => 1,       // Good practice to include
+                    'contexts' => [
+                        'custom' => ['key' => ['value' => 'val']]
+                    ]
+                ],
+                'done' => true
+            ]);
+
+        // This call stays within your local machine (Unit Test)
+        $newObject = $object->rewrite($bucketName, ['name' => $destName]);
+
+        $this->assertInstanceOf(StorageObject::class, $newObject);
+        $this->assertEquals($destName, $newObject->name());
+    }
+
+    /**
+     * Test composing objects with context inheritance and overrides.
+     * @dataProvider composeContextDataProvider
+     */
+    public function testComposeObjectWithContexts(array $options, array $expectedContexts)
+    {
+        $destName = 'composed.txt';
+        $bucketName = 'my-bucket';
+        $sources = ['source1.txt', 'source2.txt'];
+
+        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+
+        // Mocking the Compose API call
+        $this->connection->composeObject(Argument::that(function ($args) use ($options) {
+            // If 'contexts' is in options, it must be in the API args. 
+            // If not, it shouldn't be present at all.
+            if (isset($options['contexts'])) {
+                return isset($args['contexts']) && $args['contexts'] === $options['contexts'];
+            }
+            return !isset($args['contexts']);
+        }))->shouldBeCalled()->willReturn([
+            'name' => $destName,
+            'bucket' => $bucketName,
+            'generation' => 12345, // <--- ADDED THIS TO FIX THE ERROR
+            'contexts' => $expectedContexts
+        ]);
+
+        $composedObject = $bucket->compose($sources, $destName, $options);
+
+        $this->assertInstanceOf(StorageObject::class, $composedObject);
+        $this->assertEquals($expectedContexts, $composedObject->info()['contexts']);
+    }
+
+    /**
+     * Data provider for Inherit and Override scenarios.
+     */
+    public function composeContextDataProvider()
+    {
+        $sourceContexts = ['custom' => ['s1-key' => ['value' => 's1-val']]];
+        $overrideContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
+
+        return [
+            'Inherit from Source' => [[], $sourceContexts],
+            'Override with New'   => [['contexts' => $overrideContexts], $overrideContexts]
+        ];
+    }
+
+    /**
+     * Test that getting an object's metadata includes the contexts.
+     * Fixed: Added projectId() mock call to prevent UnexpectedCallException.
+     */
+    public function testGetMetadataIncludesContexts()
+    {
+        $objectName = 'metadata-test.txt';
+        $bucketName = 'my-bucket';
+        $projectId = 'test-project'; // Dummy project ID
+        
+        // 1. Mock the 'projectId' call (Required by the Bucket/Object constructor)
+        $this->connection->projectId()->willReturn($projectId);
+
+        // 2. Define the metadata response
+        $metadataResponse = [
+            'name' => $objectName,
+            'bucket' => $bucketName,
+            'generation' => 12345,
+            'contexts' => [
+                'custom' => [
+                    'existing-key' => ['value' => 'existing-val']
+                ]
+            ]
+        ];
+
+        // 3. Mock the 'getObject' call
+        $this->connection->getObject(Argument::withEntry('object', $objectName))
+            ->shouldBeCalled()
+            ->willReturn($metadataResponse);
+
+        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+
+        // 4. Action: Retrieve the object
+        $object = $bucket->object($objectName);
+
+        // 5. Assertions
+        $info = $object->info();
+        
+        $this->assertArrayHasKey('contexts', $info);
+        $this->assertEquals(
+            'existing-val', 
+            $info['contexts']['custom']['existing-key']['value']
+        );
+    }
+
+    /**
+     * Test listing objects with contexts and filtering.
+     */
+    public function testListObjectsWithContextsAndFiltering()
+    {
+        $bucketName = 'my-bucket';
+        $prefix = 'folder/';
+
+        // 1. Mock the Connection (Consolidated)
+        $this->connection->projectId()->willReturn('test-project');
+        
+        // We mock the API to return two objects, each with their own contexts
+        $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
+            ->shouldBeCalled()
+            ->willReturn([
+                'items' => [
+                    ['name' => 'file1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]],
+                    ['name' => 'file2.txt', 'contexts' => ['custom' => ['k2' => ['value' => 'v2']]]]
+                ]
+            ]);
+
+        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+
+        // 2. Action & Assertions (Using foreach for brevity)
+        $objects = $bucket->objects(['prefix' => $prefix]);
+
+        $count = 0;
+        foreach ($objects as $index => $object) {
+            $count++;
+            $expectedVal = 'v' . $count;
+            $expectedKey = 'k' . $count;
+            
+            // Verify contexts are included in the response for each item
+            $this->assertEquals(
+                $expectedVal, 
+                $object->info()['contexts']['custom'][$expectedKey]['value']
+            );
+        }
+
+        $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
+    }
+ 
 
     public function testIam()
     {
