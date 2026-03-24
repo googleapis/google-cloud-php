@@ -46,6 +46,15 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. Specifies the metadata to return for each directory entry.
+     * If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`.
+     * Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by
+     * CMEK-protected workspaces.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.DirectoryContentsView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $view = 0;
 
     /**
      * Constructor.
@@ -68,6 +77,11 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
      *           When paginating, all other parameters provided to
      *           `QueryDirectoryContents`, with the exception of `page_size`, must match the
      *           call that provided the page token.
+     *     @type int $view
+     *           Optional. Specifies the metadata to return for each directory entry.
+     *           If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`.
+     *           Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by
+     *           CMEK-protected workspaces.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +203,38 @@ class QueryDirectoryContentsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the metadata to return for each directory entry.
+     * If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`.
+     * Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by
+     * CMEK-protected workspaces.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.DirectoryContentsView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. Specifies the metadata to return for each directory entry.
+     * If unspecified, the default is `DIRECTORY_CONTENTS_VIEW_BASIC`.
+     * Currently the `DIRECTORY_CONTENTS_VIEW_METADATA` view is not supported by
+     * CMEK-protected workspaces.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.DirectoryContentsView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dataform\V1\DirectoryContentsView::class);
+        $this->view = $var;
 
         return $this;
     }
