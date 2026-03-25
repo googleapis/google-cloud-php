@@ -249,7 +249,8 @@ class ManageObjectsTest extends StorageTestCase
         // For debugging purposes, to see the full object metadata including contexts.
         // Since we know the key from the previous test (or hardcode it for simplicity)
         $this->assertArrayHasKey('contexts', $info);
-
+        $this->assertArrayHasKey('custom', $info['contexts']);
+        $this->assertEquals('insert-val', $info['contexts']['custom']['insert-key']['value']);
         // CLEANUP: Always delete at the end of the dependency chain
         $object->delete();
     }
