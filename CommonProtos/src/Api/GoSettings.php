@@ -25,10 +25,11 @@ class GoSettings extends \Google\Protobuf\Internal\Message
      * Map of service names to renamed services. Keys are the package relative
      * service names and values are the name to be used for the service client
      * and call options.
-     * publishing:
-     *   go_settings:
-     *     renamed_services:
-     *       Publisher: TopicAdmin
+     * Example:
+     *     publishing:
+     *       go_settings:
+     *         renamed_services:
+     *           Publisher: TopicAdmin
      *
      * Generated from protobuf field <code>map<string, string> renamed_services = 2;</code>
      */
@@ -46,10 +47,11 @@ class GoSettings extends \Google\Protobuf\Internal\Message
      *           Map of service names to renamed services. Keys are the package relative
      *           service names and values are the name to be used for the service client
      *           and call options.
-     *           publishing:
-     *             go_settings:
-     *               renamed_services:
-     *                 Publisher: TopicAdmin
+     *           Example:
+     *               publishing:
+     *                 go_settings:
+     *                   renamed_services:
+     *                     Publisher: TopicAdmin
      * }
      */
     public function __construct($data = NULL) {
@@ -97,10 +99,11 @@ class GoSettings extends \Google\Protobuf\Internal\Message
      * Map of service names to renamed services. Keys are the package relative
      * service names and values are the name to be used for the service client
      * and call options.
-     * publishing:
-     *   go_settings:
-     *     renamed_services:
-     *       Publisher: TopicAdmin
+     * Example:
+     *     publishing:
+     *       go_settings:
+     *         renamed_services:
+     *           Publisher: TopicAdmin
      *
      * Generated from protobuf field <code>map<string, string> renamed_services = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -114,10 +117,11 @@ class GoSettings extends \Google\Protobuf\Internal\Message
      * Map of service names to renamed services. Keys are the package relative
      * service names and values are the name to be used for the service client
      * and call options.
-     * publishing:
-     *   go_settings:
-     *     renamed_services:
-     *       Publisher: TopicAdmin
+     * Example:
+     *     publishing:
+     *       go_settings:
+     *         renamed_services:
+     *           Publisher: TopicAdmin
      *
      * Generated from protobuf field <code>map<string, string> renamed_services = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

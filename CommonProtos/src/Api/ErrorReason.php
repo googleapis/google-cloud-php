@@ -630,6 +630,200 @@ class ErrorReason
      * Generated from protobuf enum <code>OVERLOADED_CREDENTIALS = 34;</code>
      */
     const OVERLOADED_CREDENTIALS = 34;
+    /**
+     * The request whose associated location violates the location org policy
+     * restrictions when creating resources in the restricted region.
+     * Example of an ErrorInfo when creating the Cloud Storage Bucket in the
+     * container "projects/123" under a restricted region
+     * "locations/asia-northeast3":
+     *     {
+     *       "reason": "LOCATION_ORG_POLICY_VIOLATED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *         "resource": "projects/123",
+     *         "location": "locations/asia-northeast3"
+     *       }
+     *     }
+     * This response indicates creating the Cloud Storage Bucket in
+     * "locations/asia-northeast3" violates the location org policy restriction.
+     *
+     * Generated from protobuf enum <code>LOCATION_ORG_POLICY_VIOLATED = 35;</code>
+     */
+    const LOCATION_ORG_POLICY_VIOLATED = 35;
+    /**
+     * The request is denied because it access data of regulated customers using
+     * TLS 1.0 and 1.1.
+     * Example of an ErrorInfo when accessing a GCP resource "projects/123" that
+     * is restricted by TLS Version Restriction for "pubsub.googleapis.com"
+     * service.
+     *     {
+     *       "reason": "TLS_ORG_POLICY_VIOLATED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *         "service": "pubsub.googleapis.com"
+     *         "resource": "projects/123",
+     *         "policyName": "constraints/gcp.restrictTLSVersion",
+     *         "tlsVersion": "TLS_VERSION_1"
+     *       }
+     *     }
+     *
+     * Generated from protobuf enum <code>TLS_ORG_POLICY_VIOLATED = 36;</code>
+     */
+    const TLS_ORG_POLICY_VIOLATED = 36;
+    /**
+     * The request is denied because the associated project has exceeded the
+     * emulator quota limit.
+     * Example of an ErrorInfo when the associated "projects/123" has exceeded the
+     * emulator quota limit.
+     *     {
+     *       "reason": "EMULATOR_QUOTA_EXCEEDED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "service": "pubsub.googleapis.com"
+     *           "consumer": "projects/123"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>EMULATOR_QUOTA_EXCEEDED = 38;</code>
+     */
+    const EMULATOR_QUOTA_EXCEEDED = 38;
+    /**
+     * The request is denied because the associated application credential header
+     * is invalid for an Android applications.
+     * Example of an ErrorInfo when the request from an Android application to the
+     * "pubsub.googleapis.com" with an invalid application credential header.
+     *     {
+     *       "reason": "CREDENTIAL_ANDROID_APP_INVALID",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "service": "pubsub.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>CREDENTIAL_ANDROID_APP_INVALID = 39;</code>
+     */
+    const CREDENTIAL_ANDROID_APP_INVALID = 39;
+    /**
+     * The request is denied because IAM permission on resource is denied.
+     * Example of an ErrorInfo when the IAM permission `aiplatform.datasets.list`
+     * is denied on resource `projects/123`.
+     *     {
+     *       "reason": "IAM_PERMISSION_DENIED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "resource": "projects/123"
+     *           "permission": "aiplatform.datasets.list"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>IAM_PERMISSION_DENIED = 41;</code>
+     */
+    const IAM_PERMISSION_DENIED = 41;
+    /**
+     * The request is denied because it contains the invalid JWT token.
+     * Example of an ErrorInfo when the request contains an invalid JWT token for
+     * service `storage.googleapis.com`.
+     *     {
+     *       "reason": "JWT_TOKEN_INVALID",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "service": "storage.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>JWT_TOKEN_INVALID = 42;</code>
+     */
+    const JWT_TOKEN_INVALID = 42;
+    /**
+     * The request is denied because it contains credential with type that is
+     * unsupported.
+     * Example of an ErrorInfo when the request contains an unsupported credential
+     * type for service `storage.googleapis.com`.
+     *     {
+     *       "reason": "CREDENTIAL_TYPE_UNSUPPORTED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "service": "storage.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>CREDENTIAL_TYPE_UNSUPPORTED = 43;</code>
+     */
+    const CREDENTIAL_TYPE_UNSUPPORTED = 43;
+    /**
+     * The request is denied because it contains unsupported account type.
+     * Example of an ErrorInfo when the request contains an unsupported account
+     * type for service `storage.googleapis.com`.
+     *     {
+     *       "reason": "ACCOUNT_TYPE_UNSUPPORTED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *           "service": "storage.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>ACCOUNT_TYPE_UNSUPPORTED = 44;</code>
+     */
+    const ACCOUNT_TYPE_UNSUPPORTED = 44;
+    /**
+     * The request is denied because the API endpoint is restricted by
+     * administrators according to the organization policy constraint.
+     * For more information see
+     * https://cloud.google.com/assured-workloads/docs/restrict-endpoint-usage.
+     * Example of an ErrorInfo when access to Google Cloud Storage service is
+     * restricted by Restrict Endpoint Usage policy:
+     *     {
+     *       "reason": "ENDPOINT_USAGE_RESTRICTION_VIOLATED",
+     *       "domain": "googleapis.com/policies/endpointUsageRestriction",
+     *       "metadata": {
+     *         "policy_name": "constraints/gcp.restrictEndpointUsage",
+     *         "checked_value": "storage.googleapis.com"
+     *         "consumer": "organization/123"
+     *         "service": "storage.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>ENDPOINT_USAGE_RESTRICTION_VIOLATED = 45;</code>
+     */
+    const ENDPOINT_USAGE_RESTRICTION_VIOLATED = 45;
+    /**
+     * The request is denied because the TLS Cipher Suite is restricted by
+     * administrators according to the organization policy constraint.
+     * For more information see
+     * https://cloud.google.com/assured-workloads/docs/restrict-tls-cipher-suites
+     * Example of an ErrorInfo when access to Google Cloud BigQuery service is
+     * restricted by Restrict TLS Cipher Suites policy:
+     *     {
+     *       "reason": "TLS_CIPHER_RESTRICTION_VIOLATED",
+     *       "domain": "googleapis.com/policies/tlsCipherRestriction",
+     *       "metadata": {
+     *         "policy_name": "constraints/gcp.restrictTLSCipherSuites",
+     *         "checked_value": "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+     *         "consumer": "organization/123"
+     *         "service": "bigquery.googleapis.com"
+     *        }
+     *     }
+     *
+     * Generated from protobuf enum <code>TLS_CIPHER_RESTRICTION_VIOLATED = 46;</code>
+     */
+    const TLS_CIPHER_RESTRICTION_VIOLATED = 46;
+    /**
+     * The request is denied because the MCP activation check fails.
+     * Example of an ErrorInfo when the container "projects/123" contacting
+     * "pubsub.googleapis.com" service which is disabled by MCP:
+     *     { "reason": "MCP_SERVER_DISABLED",
+     *       "domain": "googleapis.com",
+     *       "metadata": {
+     *         "consumer": "projects/123",
+     *         "service": "pubsub.googleapis.com"
+     *       }
+     *     }
+     * This response indicates the "pubsub.googleapis.com" has been disabled in
+     * "projects/123" for MCP.
+     *
+     * Generated from protobuf enum <code>MCP_SERVER_DISABLED = 47;</code>
+     */
+    const MCP_SERVER_DISABLED = 47;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -665,6 +859,17 @@ class ErrorReason
         self::LOCATION_POLICY_VIOLATED => 'LOCATION_POLICY_VIOLATED',
         self::MISSING_ORIGIN => 'MISSING_ORIGIN',
         self::OVERLOADED_CREDENTIALS => 'OVERLOADED_CREDENTIALS',
+        self::LOCATION_ORG_POLICY_VIOLATED => 'LOCATION_ORG_POLICY_VIOLATED',
+        self::TLS_ORG_POLICY_VIOLATED => 'TLS_ORG_POLICY_VIOLATED',
+        self::EMULATOR_QUOTA_EXCEEDED => 'EMULATOR_QUOTA_EXCEEDED',
+        self::CREDENTIAL_ANDROID_APP_INVALID => 'CREDENTIAL_ANDROID_APP_INVALID',
+        self::IAM_PERMISSION_DENIED => 'IAM_PERMISSION_DENIED',
+        self::JWT_TOKEN_INVALID => 'JWT_TOKEN_INVALID',
+        self::CREDENTIAL_TYPE_UNSUPPORTED => 'CREDENTIAL_TYPE_UNSUPPORTED',
+        self::ACCOUNT_TYPE_UNSUPPORTED => 'ACCOUNT_TYPE_UNSUPPORTED',
+        self::ENDPOINT_USAGE_RESTRICTION_VIOLATED => 'ENDPOINT_USAGE_RESTRICTION_VIOLATED',
+        self::TLS_CIPHER_RESTRICTION_VIOLATED => 'TLS_CIPHER_RESTRICTION_VIOLATED',
+        self::MCP_SERVER_DISABLED => 'MCP_SERVER_DISABLED',
     ];
 
     public static function name($value)
