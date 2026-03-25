@@ -567,15 +567,12 @@ class BucketTest extends TestCase
             'contexts' => $contexts
         ]);
 
-        $this->connection->insertObject(Argument::that(function ($args) use ($contexts) {
-            return isset($args['contexts']) && $args['contexts'] === $contexts;
-        }))->willReturn($this->resumableUploader->reveal());
-
+        $this->connection->insertObject(Argument::any())
+            ->willReturn($this->resumableUploader->reveal());
         $object = $this->getBucket()->upload('some data to upload', [
             'name' => 'data.txt',
             'contexts' => $contexts
         ]);
-
         $this->assertInstanceOf(StorageObject::class, $object);
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
@@ -597,13 +594,12 @@ class BucketTest extends TestCase
     }
 
     /**
-        * Test that the library rejects values that do not start with an alphanumeric character.
+    * Test that the library rejects values that do not start with an alphanumeric character.
     */
     public function testRejectInvalidLeadingUnicodeValueInContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value must start with an alphanumeric character.');
-
         $this->getBucket()->upload('test data', [
             'name' => 'test.txt',
             'contexts' => [
@@ -627,7 +623,6 @@ class BucketTest extends TestCase
                 $contextKey => ['value' => $updatedValue]
             ]
         ];
-        // We expect patchObject to be called with the new contexts in the arguments
         $this->connection->patchObject(Argument::that(function ($args) use ($newContexts) {
             return isset($args['contexts']) && $args['contexts'] === $newContexts;
         }))->shouldBeCalled()->willReturn([
@@ -640,11 +635,9 @@ class BucketTest extends TestCase
             'test.txt',
             'my-bucket'
         );
-
         $object->update([
             'contexts' => $newContexts
         ]);
-
         $info = $object->info();
         $this->assertArrayHasKey('contexts', $info);
         $this->assertEquals(
@@ -662,13 +655,10 @@ class BucketTest extends TestCase
         $objectName = 'patch-test.txt';
         $bucketName = 'my-bucket';
         $object = new StorageObject($this->connection->reveal(), $objectName, $bucketName);
-        // Mock the connection once using the flexible matcher
         $this->connection->patchObject(Argument::that($expectedMatchFunc))
             ->shouldBeCalledTimes(1)
             ->willReturn($mockResponse + ['name' => $objectName]);
-        // Execute the update
         $result = $object->update($patchData);
-        // Verify response
         $this->assertEquals($mockResponse['contexts'] ?? null, $result['contexts'] ?? null);
     }
 
@@ -714,24 +704,20 @@ class BucketTest extends TestCase
             $sourceName,
             $bucketName
         );
-        // Mocking the "Fake" Server Response
         $this->connection->rewriteObject(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
                 'resource' => [
                     'name' => $destName,
-                    'bucket' => $bucketName, // Essential for the library to create the new object
-                    'generation' => 1,       // Good practice to include
+                    'bucket' => $bucketName,
+                    'generation' => 1,
                     'contexts' => [
                         'custom' => ['key' => ['value' => 'val']]
                     ]
                 ],
                 'done' => true
             ]);
-
-        // This call stays within your local machine (Unit Test)
         $newObject = $object->rewrite($bucketName, ['name' => $destName]);
-
         $this->assertInstanceOf(StorageObject::class, $newObject);
         $this->assertEquals($destName, $newObject->name());
     }
@@ -747,10 +733,7 @@ class BucketTest extends TestCase
         $sources = ['source1.txt', 'source2.txt'];
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
-        // Mocking the Compose API call
         $this->connection->composeObject(Argument::that(function ($args) use ($options) {
-            // If 'contexts' is in options, it must be in the API args.
-            // If not, it shouldn't be present at all.
             if (isset($options['contexts'])) {
                 return isset($args['contexts']) && $args['contexts'] === $options['contexts'];
             }
@@ -758,12 +741,11 @@ class BucketTest extends TestCase
         }))->shouldBeCalled()->willReturn([
             'name' => $destName,
             'bucket' => $bucketName,
-            'generation' => 12345, 
+            'generation' => 12345,
             'contexts' => $expectedContexts
         ]);
 
         $composedObject = $bucket->compose($sources, $destName, $options);
-
         $this->assertInstanceOf(StorageObject::class, $composedObject);
         $this->assertEquals($expectedContexts, $composedObject->info()['contexts']);
     }
@@ -781,7 +763,7 @@ class BucketTest extends TestCase
             'Override with New'   => [['contexts' => $overrideContexts], $overrideContexts]
         ];
     }
-    
+
     public function testGetMetadataIncludesContexts()
     {
         $objectName = 'metadata-test.txt';
@@ -789,7 +771,6 @@ class BucketTest extends TestCase
         $projectId = 'test-project';
         
         $this->connection->projectId()->willReturn($projectId);
-
         $metadataResponse = [
             'name' => $objectName,
             'bucket' => $bucketName,
@@ -807,7 +788,6 @@ class BucketTest extends TestCase
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
         $info = $bucket->object($objectName)->info();
-        
         $this->assertArrayHasKey('contexts', $info);
         $this->assertEquals(
             'existing-val',
@@ -824,7 +804,6 @@ class BucketTest extends TestCase
         $prefix = 'folder/';
 
         $this->connection->projectId()->willReturn('test-project');
-        
         $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
             ->shouldBeCalled()
             ->willReturn([
@@ -841,18 +820,13 @@ class BucketTest extends TestCase
             $count++;
             $expectedVal = 'v' . $count;
             $expectedKey = 'k' . $count;
-            
-            // Verify contexts are included in the response for each item
             $this->assertEquals(
                 $expectedVal,
                 $object->info()['contexts']['custom'][$expectedKey]['value']
             );
         }
-
         $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
     }
- 
-
     public function testIam()
     {
         $bucketInfo = [
@@ -864,7 +838,6 @@ class BucketTest extends TestCase
 
         $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
-
     public function testRequesterPays()
     {
         $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))

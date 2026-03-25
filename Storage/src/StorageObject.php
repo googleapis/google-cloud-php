@@ -231,6 +231,14 @@ class StorageObject
      *           This is the retention configuration set for this object.
      *     @type string $retention.mode The mode of the retention configuration,
      *           which can be either `"Unlocked"` or `"Locked"`.
+     *     @type array $contexts User-defined or system-defined object contexts.
+     *           Each object context is a key-payload pair, where the key provides the
+     *           identification and the payload holds the associated value and additional metadata.
+     *     @type array $contexts.custom Custom user-defined contexts. Keys must start
+     *           with an alphanumeric character and cannot contain double quotes (`"`).
+     *     @type string $contexts.custom[].value The value associated with the context.
+     *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
+     *           or forward slashes (`/`).
      *     @type bool $overrideUnlockedRetention Applicable for objects that
      *           have an unlocked retention configuration. Required to be set to
      *           `true` if the operation includes a retention property that

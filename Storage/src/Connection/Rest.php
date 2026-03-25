@@ -513,6 +513,12 @@ class Rest implements ConnectionInterface
             $args['metadata']['retention'] = $args['retention'];
             unset($args['retention']);
         }
+        if (isset($args['contexts'])) {
+            // during object creation context properties go into metadata
+            // but not into request body
+            $args['metadata']['contexts'] = $args['contexts'];
+            unset($args['contexts']);
+        }
         unset($args['name']);
         $args['contentType'] = $args['metadata']['contentType']
             ?? MimeType::fromFilename($args['metadata']['name']);

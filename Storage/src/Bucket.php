@@ -329,21 +329,6 @@ class Bucket
     /**
      * Validates object contexts based on storage rules.
      * @param array $contexts The contexts array to validate.
-     * @throws \InvalidArgumentException
-     * @example
-     * ```
-     * $promise = $bucket->upload('Async Content', [
-     * 'name' => 'async-file.txt',
-     * 'metadata' => [
-     * 'contexts' => [
-     * 'custom' => [
-     * 'session-id' => ['value' => 'abc12345']
-     * ]
-     * ]
-     * ]
-     * ])->then(function (StorageObject $object) {
-     * echo 'Uploaded with contexts: ' . $object->name();
-     * });
      */
     private function validateContexts(array $contexts)
     {
