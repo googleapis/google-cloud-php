@@ -327,17 +327,20 @@ class Bucket
     }
 
     /**
-     * Validates object contexts based on storage rules.
-     * @param array $contexts The contexts array to validate.
-     */
+    * @param array $contexts The contexts array to validate.
+    * @return void
+    */
     private function validateContexts(array $contexts)
     {
-        if (!isset($contexts['custom']) || !is_array($contexts['custom'])) {
+        if (!isset($contexts['custom'])) {
             return;
         }
 
+        if (!is_array($contexts['custom'])) {
+            throw new \InvalidArgumentException('Object contexts custom field must be an array.');
+        }
+
         foreach ($contexts['custom'] as $key => $data) {
-            // Validate Key
             if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
                 throw new \InvalidArgumentException('Object context key must start with an alphanumeric character.');
             }
