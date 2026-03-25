@@ -302,7 +302,7 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
-        if (isset($options['contexts']['custom'])) {
+        if (isset($options['contexts'])) {
             $this->validateContexts($options['contexts']);
         }
 
@@ -328,13 +328,11 @@ class Bucket
 
     /**
      * Validates object contexts based on storage rules.
-     *
      * @param array $contexts The contexts array to validate.
      * @throws \InvalidArgumentException
-     *
      * @example
      * ```
-     * $promise = $bucket->uploadAsync('Async Content', [
+     * $promise = $bucket->upload('Async Content', [
      * 'name' => 'async-file.txt',
      * 'metadata' => [
      * 'contexts' => [
@@ -346,9 +344,6 @@ class Bucket
      * ])->then(function (StorageObject $object) {
      * echo 'Uploaded with contexts: ' . $object->name();
      * });
-     *
-     * $promise->wait();
-     * ```
      */
     private function validateContexts(array $contexts)
     {

@@ -758,7 +758,7 @@ class BucketTest extends TestCase
         }))->shouldBeCalled()->willReturn([
             'name' => $destName,
             'bucket' => $bucketName,
-            'generation' => 12345, // <--- ADDED THIS TO FIX THE ERROR
+            'generation' => 12345, 
             'contexts' => $expectedContexts
         ]);
 
@@ -781,11 +781,7 @@ class BucketTest extends TestCase
             'Override with New'   => [['contexts' => $overrideContexts], $overrideContexts]
         ];
     }
-
-    /**
-     * Test that getting an object's metadata includes the contexts.
-     * Fixed: Added projectId() mock call to prevent UnexpectedCallException.
-     */
+    
     public function testGetMetadataIncludesContexts()
     {
         $objectName = 'metadata-test.txt';
@@ -852,7 +848,7 @@ class BucketTest extends TestCase
                 $object->info()['contexts']['custom'][$expectedKey]['value']
             );
         }
-        
+
         $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
     }
  

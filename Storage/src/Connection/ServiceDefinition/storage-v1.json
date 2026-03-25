@@ -1522,7 +1522,7 @@
                                 "updateTime": {
                                     "type": "string",
                                     "format": "date-time",
-                                    "description": "The time at which the object context was las updated in RFC 3339 format."
+                                    "description": "The time at which the object context was last updated in RFC 3339 format."
                                 }
                             }
                         }
