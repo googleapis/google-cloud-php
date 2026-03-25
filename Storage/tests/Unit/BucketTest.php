@@ -689,37 +689,43 @@ class BucketTest extends TestCase
             ]
         ];
     }
-
-    /**
-    * Test rewriting an object with context inheritance and overrides.
-    */
     public function testRewriteObjectWithContexts()
     {
-        $sourceName = 'source.txt';
-        $destName = 'destination.txt';
-        $bucketName = 'my-bucket';
+        $contexts = [
+            'custom' => [
+                'rewrite-key' => ['value' => 'rewrite-val']
+            ]
+        ];
+        $destBucket = 'other-bucket';
+        $destName = 'rewritten-data.txt';
 
-        $object = new StorageObject(
+        $this->connection->rewriteObject(Argument::that(function ($args) use ($contexts) {
+        }))->willReturn([
+            'rewriteToken' => null,
+            'resource' => [
+                'name' => $destName,
+                'bucket' => $destBucket,
+                'generation' => 456,
+                'contexts' => $contexts 
+            ]
+        ]);
+
+        $sourceBucket = 'source-bucket';
+        $sourceObject = new StorageObject(
             $this->connection->reveal(),
-            $sourceName,
-            $bucketName
+            'source-file.txt',
+            $sourceBucket,
+            123,
+            ['bucket' => $sourceBucket] 
         );
-        $this->connection->rewriteObject(Argument::any())
-            ->shouldBeCalled()
-            ->willReturn([
-                'resource' => [
-                    'name' => $destName,
-                    'bucket' => $bucketName,
-                    'generation' => 1,
-                    'contexts' => [
-                        'custom' => ['key' => ['value' => 'val']]
-                    ]
-                ],
-                'done' => true
-            ]);
-        $newObject = $object->rewrite($bucketName, ['name' => $destName]);
-        $this->assertInstanceOf(StorageObject::class, $newObject);
-        $this->assertEquals($destName, $newObject->name());
+
+        $object = $sourceObject->rewrite($destBucket, [
+            'contexts' => $contexts
+        ]);
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($destName, $object->name());
+        $this->assertArrayHasKey('contexts', $object->info());
+        $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
     /**
