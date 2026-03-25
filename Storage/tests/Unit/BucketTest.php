@@ -554,63 +554,43 @@ class BucketTest extends TestCase
         $bucket->isWritable(); // raises exception
     }
 
-    /**
-     * -------------------------------------------------------------------------
-     * CONTEXT OBJECT SCENARIOS
-     * -------------------------------------------------------------------------
-     * The following methods handle logic related to Context Object workflows.
-     * 
-     * First test covers creating objects with valid contexts, second test covers creating objects with invalid contexts,
-    */
-
-    public function testCreateWithValidContexts()
+    public function testCreateWithObjectContexts()
     {
         $contexts = [
             'custom' => [
                 'test-key' => ['value' => 'test-value']
             ]
         ];
-
         $this->resumableUploader->upload()->willReturn([
             'name' => 'data.txt',
             'generation' => 123,
-            'contexts' => $contexts // Need to return contexts here to simulate that they are included in the object info after upload
+            'contexts' => $contexts
         ]);
 
         $this->connection->insertObject(Argument::that(function ($args) use ($contexts) {
             return isset($args['contexts']) && $args['contexts'] === $contexts;
         }))->willReturn($this->resumableUploader->reveal());
 
-        $bucket = $this->getBucket();
-
-        $object = $bucket->upload('some data to upload', [
+        $object = $this->getBucket()->upload('some data to upload', [
             'name' => 'data.txt',
-            'contexts' => $contexts 
+            'contexts' => $contexts
         ]);
 
         $this->assertInstanceOf(StorageObject::class, $object);
-        
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
-    /**
-        * @expectedException \InvalidArgumentException
-        * @expectedExceptionMessage Object context value cannot contain forbidden characters.
-    */
     public function testCreateWithInvalidContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value cannot contain forbidden characters.');
-
         $invalidContexts = [
             'custom' => [
                 'valid-key' => ['value' => 'invalid/value']
             ]
         ];
 
-        $bucket = $this->getBucket();
-
-        $bucket->upload('data', [
+        $this->getBucket()->upload('data', [
             'name' => 'test.txt',
             'contexts' => $invalidContexts
         ]);
@@ -621,12 +601,10 @@ class BucketTest extends TestCase
     */
     public function testRejectInvalidLeadingUnicodeValueInContexts()
     {
-        $bucket = $this->getBucket();
-
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value must start with an alphanumeric character.');
 
-        $bucket->upload('test data', [
+        $this->getBucket()->upload('test data', [
             'name' => 'test.txt',
             'contexts' => [
                 'custom' => [
@@ -649,7 +627,6 @@ class BucketTest extends TestCase
                 $contextKey => ['value' => $updatedValue]
             ]
         ];
-
         // We expect patchObject to be called with the new contexts in the arguments
         $this->connection->patchObject(Argument::that(function ($args) use ($newContexts) {
             return isset($args['contexts']) && $args['contexts'] === $newContexts;
@@ -658,7 +635,6 @@ class BucketTest extends TestCase
             'contexts' => $newContexts
         ]);
 
-        // Note: Assuming $this->connection is already a prophesize(Rest::class) in your setUp
         $object = new StorageObject(
             $this->connection->reveal(),
             'test.txt',
@@ -679,70 +655,49 @@ class BucketTest extends TestCase
     }
 
     /**
-     * Test individual patching behaviors: Add, Modify, Remove, and Clear.
-     * This covers the "Patch an existing object" requirements.
-     */
-    public function testPatchIndividualContexts()
+    * @dataProvider patchContextProvider
+    */
+    public function testPatchContextScenarios($patchData, $expectedMatchFunc, $mockResponse)
     {
         $objectName = 'patch-test.txt';
         $bucketName = 'my-bucket';
-        
-        $object = new StorageObject(
-            $this->connection->reveal(), 
-            $objectName, 
-            $bucketName
-        );
+        $object = new StorageObject($this->connection->reveal(), $objectName, $bucketName);
+        // Mock the connection once using the flexible matcher
+        $this->connection->patchObject(Argument::that($expectedMatchFunc))
+            ->shouldBeCalledTimes(1)
+            ->willReturn($mockResponse + ['name' => $objectName]);
+        // Execute the update
+        $result = $object->update($patchData);
+        // Verify response
+        $this->assertEquals($mockResponse['contexts'] ?? null, $result['contexts'] ?? null);
+    }
 
-        $patchData = [
-            'contexts' => [
-                'custom' => [
-                    'new-key' => ['value' => 'brand-new-val']
-                ]
+    public function patchContextProvider()
+    {
+        return [
+            'Update/Add Key' => [
+                ['contexts' => ['custom' => ['new-key' => ['value' => 'brand-new-val']]]],
+                function ($args) {
+                    return ($args['contexts']['custom']['new-key']['value'] ?? '') === 'brand-new-val';
+                },
+                ['contexts' => ['custom' => ['new-key' => ['value' => 'brand-new-val']]]]
+            ],
+            'Delete Specific Key' => [
+                ['contexts' => ['custom' => ['key-to-delete' => null]]],
+                function ($args) {
+                    return array_key_exists('key-to-delete', $args['contexts']['custom'] ?? []) &&
+                        $args['contexts']['custom']['key-to-delete'] === null;
+                },
+                ['contexts' => ['custom' => ['remaining-key' => ['value' => 'stays']]]]
+            ],
+            'Clear All Contexts' => [
+                ['contexts' => null],
+                function ($args) {
+                    return array_key_exists('contexts', $args) && $args['contexts'] === null;
+                },
+                ['contexts' => null]
             ]
         ];
-
-        $this->connection->patchObject(Argument::that(function ($args) use ($patchData) {
-           return isset($args['contexts']['custom']) && 
-               $args['contexts']['custom'] === $patchData['contexts']['custom'];
-        }))->shouldBeCalledTimes(1)->willReturn([
-            'name' => $objectName,
-            'contexts' => $patchData['contexts']
-        ]);
-
-        $object->update($patchData);
-
-        $removeData = [
-            'contexts' => [
-                'custom' => [
-                    'key-to-delete' => null
-                ]
-            ]
-        ];
-
-        $this->connection->patchObject(Argument::that(function ($args) {
-        // Fix: Use isset() and array_key_exists to prevent "offset on null"
-        return isset($args['contexts']['custom']) && 
-               array_key_exists('key-to-delete', $args['contexts']['custom']) && 
-               $args['contexts']['custom']['key-to-delete'] === null;
-        }))->shouldBeCalledTimes(1)->willReturn([
-            'name' => $objectName,
-            'contexts' => ['custom' => ['remaining-key' => ['value' => 'stays']]]
-        ]);
-
-        $object->update($removeData);
-
-        $clearData = [
-            'contexts' => null
-        ];
-
-        $this->connection->patchObject(Argument::that(function ($args) {
-        // For clearing, contexts is explicitly null
-            return array_key_exists('contexts', $args) && $args['contexts'] === null;
-        }))->shouldBeCalledTimes(1)->willReturn([
-            'name' => $objectName
-        ]);
-
-        $object->update($clearData);
     }
 
     /**
@@ -759,7 +714,6 @@ class BucketTest extends TestCase
             $sourceName,
             $bucketName
         );
-
         // Mocking the "Fake" Server Response
         $this->connection->rewriteObject(Argument::any())
             ->shouldBeCalled()
@@ -793,10 +747,9 @@ class BucketTest extends TestCase
         $sources = ['source1.txt', 'source2.txt'];
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
-
         // Mocking the Compose API call
         $this->connection->composeObject(Argument::that(function ($args) use ($options) {
-            // If 'contexts' is in options, it must be in the API args. 
+            // If 'contexts' is in options, it must be in the API args.
             // If not, it shouldn't be present at all.
             if (isset($options['contexts'])) {
                 return isset($args['contexts']) && $args['contexts'] === $options['contexts'];
@@ -837,7 +790,7 @@ class BucketTest extends TestCase
     {
         $objectName = 'metadata-test.txt';
         $bucketName = 'my-bucket';
-        $projectId = 'test-project'; 
+        $projectId = 'test-project';
         
         $this->connection->projectId()->willReturn($projectId);
 
@@ -857,14 +810,11 @@ class BucketTest extends TestCase
             ->willReturn($metadataResponse);
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
-
-        $object = $bucket->object($objectName);
-
-        $info = $object->info();
+        $info = $bucket->object($objectName)->info();
         
         $this->assertArrayHasKey('contexts', $info);
         $this->assertEquals(
-            'existing-val', 
+            'existing-val',
             $info['contexts']['custom']['existing-key']['value']
         );
     }
@@ -889,9 +839,7 @@ class BucketTest extends TestCase
             ]);
 
         $bucket = new Bucket($this->connection->reveal(), $bucketName);
-
         $objects = $bucket->objects(['prefix' => $prefix]);
-
         $count = 0;
         foreach ($objects as $index => $object) {
             $count++;
@@ -900,11 +848,11 @@ class BucketTest extends TestCase
             
             // Verify contexts are included in the response for each item
             $this->assertEquals(
-                $expectedVal, 
+                $expectedVal,
                 $object->info()['contexts']['custom'][$expectedKey]['value']
             );
         }
-
+        
         $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
     }
  

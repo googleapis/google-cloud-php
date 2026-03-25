@@ -1493,33 +1493,38 @@
             },
             "contexts" : {
                 "type": "object",
-                "description": "A collection of key-payload pairs attached to an object for metadata and identification purposes.",
+                "description": "User-defined or system-defined object contexts. Represented as key-payload pairs, where the key identifies the context and the payload contains the associated value and additional metadata.",
                 "properties" : {
                     "custom" : {
                         "type": "object",
                         "description": "User-provided object contexts where each entry consists of a unique key and a corresponding payload.",
                         "additionalProperties": {
                             "type": "object",
-                            "description": "An individual context entry. Keys and values must start with an alphanumeric character and cannot contain single quotes ('), double quotes (\"), backslashes (\\), or forward slashes (/). Duplicate keys are strictly prohibited within the same object.",
+                            "description": "The payload associated with a user-defined context key.",
                             "properties": {
                                 "value": {
                                     "type": "string",
-                                    "description": "The primary data associated with the context key. Must comply with alphanumeric start and character restriction rules."
+                                    "description": "The value of the object contexts.",
+                                    "required": true, 
+                                    "annotations": {
+                                        "required": [ 
+                                            "storage.objects.insert",
+                                            "storage.objects.patch",
+                                            "storage.objects.update"
+                                        ]
+                                    }
                                 },
                                 "createTime": {
                                     "type": "string",
                                     "format": "date-time",
-                                    "description": "The timestamp (RFC 3339) indicating when this specific context was created. This is a read-only system field."
+                                    "description": "The time at which the object contexts was created in RFC 3339 format."
                                 },
                                 "updateTime": {
                                     "type": "string",
                                     "format": "date-time",
-                                    "description": "The timestamp (RFC 3339) indicating the last time this context was modified. This is a read-only system field."
+                                    "description": "The time at which the object context was las updated in RFC 3339 format."
                                 }
-                            },
-                            "required": [
-                                "value"
-                            ]
+                            }
                         }
                     } 
                 }

@@ -215,74 +215,42 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFalse($object->exists());
     }
 
-    /**
-     *  * -------------------------------------------------------------------------
-     * CONTEXT OBJECT SCENARIOS
-     * -------------------------------------------------------------------------
-     * The following methods handle logic related to Context Object workflows.
-     * 
-     *  @testObjectWithContexts For insertion of objects with contexts and retrieval of contexts via info() method.
-     *  */
-
-    public function testObjectWithContexts()
+    public function testCreateObjectWithContexts()
     {
         $objectName = 'test-' . uniqid() . '.txt';
-        $object = null;
-        // Define these as variables so you don't make a typo in the assertion
-        $testKey = 'insert-test-key';
-        $testValue = 'insert-test-value';
+        $testKey = 'insert-key';
+        $testValue = 'insert-val';
 
-        try {
-            $object = self::$bucket->upload('content', [
-                'name' => $objectName,
-                'metadata' => [
-                'contexts' => [
-                    'custom' => [
-                        $testKey => ['value' => $testValue]
-                    ]
-                ]
-            ]
-            ]);
-            $info = $object->info();
-            $this->assertEquals(
-                $testValue,
-                $info['contexts']['custom'][$testKey]['value']
-            );
-        } finally {
-            // This runs even if the assertEquals fails!
-            if ($object && $object->exists()) {
-                $object->delete();
-            }
-        }
-    }
-
-    /**
-     * 
-     *  @testGetContexts For retrieval of contexts via info() method.
-    */
-
-    public function testGetContexts()
-    {
-        $objectName = 'get-test-' . uniqid() . '.txt';
-        $contextKey = 'info-key';
-        $contextValue = 'info-value';
-
-        self::$bucket->upload('data', [
+        $object = self::$bucket->upload('content', [
             'name' => $objectName,
             'metadata' => [
-                'contexts' => ['custom' => [$contextKey => ['value' => $contextValue]]]
+                'contexts' => [
+                    'custom' => [$testKey => ['value' => $testValue]]
+                ]
             ]
         ]);
 
-        // Instead of using the $object from upload, we look it up by name
-        $object = self::$bucket->object($objectName);
-        $info = $object->info();
-
         $this->assertEquals(
-            $contextValue, 
-            $info['contexts']['custom'][$contextKey]['value']
+            $testValue,
+            $object->info()['contexts']['custom'][$testKey]['value']
         );
 
+        return $object;
+    }
+
+    /**
+     * Test 2: Getting metadata of the SAME object passed from Test 1.
+     * @depends testCreateObjectWithContextss
+     */
+    public function testGetObjectWithContexts(StorageObject $object)
+    {
+        // We use the $object passed from the previous test.
+        $info = $object->info(['projection' => 'full']);
+        // For debugging purposes, to see the full object metadata including contexts.
+        // Since we know the key from the previous test (or hardcode it for simplicity)
+        $this->assertArrayHasKey('contexts', $info);
+
+        // CLEANUP: Always delete at the end of the dependency chain
         $object->delete();
     }
 

@@ -274,6 +274,14 @@ class Bucket
      *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
+     *     @type array $metadata.contexts User-defined or system-defined object contexts.
+     *           Each object context is a key-payload pair, where the key provides the
+     *           identification and the payload holds the associated value and additional metadata.
+     *     @type array $metadata.contexts.custom Custom user-defined contexts. Keys must start
+     *           with an alphanumeric character and cannot contain double quotes (`"`).
+     *     @type string $metadata.contexts.custom[].value The value associated with the context.
+     *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
+     *           or forward slashes (`/`).
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
@@ -294,7 +302,6 @@ class Bucket
             throw new \InvalidArgumentException('A name is required when data is of type string or null.');
         }
 
-        // Validate object contexts if provided in options. This will ensure that the object is not rejected by the server after upload.
         if (isset($options['contexts']['custom'])) {
             $this->validateContexts($options['contexts']);
         }
@@ -324,7 +331,25 @@ class Bucket
      *
      * @param array $contexts The contexts array to validate.
      * @throws \InvalidArgumentException
-    */
+     *
+     * @example
+     * ```
+     * $promise = $bucket->uploadAsync('Async Content', [
+     * 'name' => 'async-file.txt',
+     * 'metadata' => [
+     * 'contexts' => [
+     * 'custom' => [
+     * 'session-id' => ['value' => 'abc12345']
+     * ]
+     * ]
+     * ]
+     * ])->then(function (StorageObject $object) {
+     * echo 'Uploaded with contexts: ' . $object->name();
+     * });
+     *
+     * $promise->wait();
+     * ```
+     */
     private function validateContexts(array $contexts)
     {
         if (!isset($contexts['custom']) || !is_array($contexts['custom'])) {
@@ -339,11 +364,8 @@ class Bucket
             if (strpos($key, '"') !== false) {
                 throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
             }
-
-            // Validate Value
             if (isset($data['value'])) {
                 $val = (string) $data['value'];
-
                 if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
                     throw new \InvalidArgumentException('Object context value must start with an alphanumeric character.');
                 }
