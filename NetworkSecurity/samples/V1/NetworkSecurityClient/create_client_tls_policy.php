@@ -36,11 +36,12 @@ use Google\Rpc\Status;
  * @param string $formattedParent     The parent resource of the ClientTlsPolicy. Must be in
  *                                    the format `projects/&#42;/locations/{location}`. Please see
  *                                    {@see NetworkSecurityClient::locationName()} for help formatting this field.
- * @param string $clientTlsPolicyId   Short name of the ClientTlsPolicy resource to be created. This value should
- *                                    be 1-63 characters long, containing only letters, numbers, hyphens, and
- *                                    underscores, and should not start with a number. E.g. "client_mtls_policy".
+ * @param string $clientTlsPolicyId   Short name of the ClientTlsPolicy resource to be created. This
+ *                                    value should be 1-63 characters long, containing only letters, numbers,
+ *                                    hyphens, and underscores, and should not start with a number. E.g.
+ *                                    "client_mtls_policy".
  * @param string $clientTlsPolicyName Name of the ClientTlsPolicy resource. It matches the pattern
- *                                    `projects/&#42;/locations/{location}/clientTlsPolicies/{client_tls_policy}`
+ *                                    `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
  */
 function create_client_tls_policy_sample(
     string $formattedParent,
