@@ -31,6 +31,9 @@ class ManageObjectsTest extends StorageTestCase
 {
     const DATA = 'data';
 
+    private const CONTEXT_KEY = 'insert-key';
+    private const CONTEXT_VALUE = 'insert-val';
+
     public function testListsObjects()
     {
         $foundObjects = [];
@@ -218,18 +221,15 @@ class ManageObjectsTest extends StorageTestCase
     public function testCreateObjectWithContexts()
     {
         $objectName = 'test-' . uniqid() . '.txt';
-        $testKey = 'insert-key';
-        $testValue = 'insert-val';
-
         $object = self::$bucket->upload('content', [
             'name' => $objectName,
             'contexts' => [
-                'custom' => [$testKey => ['value' => $testValue]]
+                'custom' => [self::CONTEXT_KEY => ['value' => self::CONTEXT_VALUE]]
             ]
         ]);
         $this->assertEquals(
-            $testValue,
-            $object->info()['contexts']['custom'][$testKey]['value']
+            self::CONTEXT_VALUE,
+            $object->info()['contexts']['custom'][self::CONTEXT_KEY]['value']
         );
         return $object;
     }
@@ -242,7 +242,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->info(['projection' => 'full']);
         $this->assertArrayHasKey('contexts', $info);
         $this->assertArrayHasKey('custom', $info['contexts']);
-        $this->assertEquals('insert-val', $info['contexts']['custom']['insert-key']['value']);
+        $this->assertEquals(self::CONTEXT_VALUE, $info['contexts']['custom'][self::CONTEXT_KEY]['value']);
         $object->delete();
     }
 

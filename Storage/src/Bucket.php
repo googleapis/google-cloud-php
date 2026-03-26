@@ -279,7 +279,7 @@ class Bucket
      *           identification and the payload holds the associated value and additional metadata.
      *     @type array $contexts.custom Custom user-defined contexts. Keys must start
      *           with an alphanumeric character and cannot contain double quotes (`"`).
-     *     @type string $contexts.custom[].value The value associated with the context.
+     *     @type string $contexts.custom.{key}.value The value associated with the context.
      *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
      *           or forward slashes (`/`).
      *     @type string $contexts.custom.{key}.createTime The time the context
