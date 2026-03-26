@@ -335,7 +335,6 @@ class Bucket
         if (!isset($contexts['custom'])) {
             return;
         }
-
         if (!is_array($contexts['custom'])) {
             throw new \InvalidArgumentException('Object contexts custom field must be an array.');
         }

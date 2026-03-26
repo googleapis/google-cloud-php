@@ -689,6 +689,7 @@ class BucketTest extends TestCase
             ]
         ];
     }
+
     public function testRewriteObjectWithContexts()
     {
         $contexts = [
@@ -700,13 +701,14 @@ class BucketTest extends TestCase
         $destName = 'rewritten-data.txt';
 
         $this->connection->rewriteObject(Argument::that(function ($args) use ($contexts) {
+            return isset($args['contexts']) && $args['contexts'] === $contexts;
         }))->willReturn([
             'rewriteToken' => null,
             'resource' => [
                 'name' => $destName,
                 'bucket' => $destBucket,
                 'generation' => 456,
-                'contexts' => $contexts
+                'contexts' => $contexts 
             ]
         ]);
 
@@ -716,7 +718,7 @@ class BucketTest extends TestCase
             'source-file.txt',
             $sourceBucket,
             123,
-            ['bucket' => $sourceBucket]
+            ['bucket' => $sourceBucket] 
         );
 
         $object = $sourceObject->rewrite($destBucket, [
@@ -808,7 +810,6 @@ class BucketTest extends TestCase
     {
         $bucketName = 'my-bucket';
         $prefix = 'folder/';
-
         $this->connection->projectId()->willReturn('test-project');
         $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
             ->shouldBeCalled()
@@ -833,6 +834,7 @@ class BucketTest extends TestCase
         }
         $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
     }
+    
     public function testIam()
     {
         $bucketInfo = [
