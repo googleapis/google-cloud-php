@@ -54,7 +54,6 @@ class BucketTest extends TestCase
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
-
     private $connection;
     private $resumableUploader;
     private $multipartUploader;
@@ -554,7 +553,7 @@ class BucketTest extends TestCase
         $bucket->isWritable(); // raises exception
     }
 
-    public function testCreateWithObjectContexts()
+    public function testCreateObjectWithContexts()
     {
         $contexts = [
             'custom' => [
@@ -577,7 +576,7 @@ class BucketTest extends TestCase
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
-    public function testCreateWithInvalidContexts()
+    public function testCreateObjectWithInvalidContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value cannot contain forbidden characters.');
@@ -593,7 +592,7 @@ class BucketTest extends TestCase
         ]);
     }
 
-    public function testRejectInvalidLeadingUnicodeValueInContexts()
+    public function testRejectInvalidLeadingUnicodeValueInObjectContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value must start with an alphanumeric.');
@@ -610,7 +609,7 @@ class BucketTest extends TestCase
     /**
     *  @dataProvider contextUpdateProvider
     */
-    public function testUpdateAndReplaceContexts($inputContexts, $expectedInApi)
+    public function testUpdateAndRemoveObjectContexts($inputContexts, $expectedInApi)
     {
         $this->connection->patchObject(Argument::that(function ($args) use ($expectedInApi) {
             if ($expectedInApi === null) {
@@ -625,9 +624,9 @@ class BucketTest extends TestCase
         $object = new StorageObject(
             $this->connection->reveal(),
             'test.txt',
-            'my-bucket',
+            '',
             1,
-            ['bucket' => 'my-bucket']
+            ['bucket' => self::BUCKET_NAME]
         );
         $object->update(['contexts' => $inputContexts]);
         $info = $object->info();
@@ -655,8 +654,7 @@ class BucketTest extends TestCase
     public function testPatchContextScenarios($patchData, $expectedMatchFunc, $mockResponse)
     {
         $objectName = 'patch-test.txt';
-        $bucketName = 'my-bucket';
-        $object = new StorageObject($this->connection->reveal(), $objectName, $bucketName);
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
         $this->connection->patchObject(Argument::that($expectedMatchFunc))
             ->shouldBeCalledTimes(1)
             ->willReturn($mockResponse + ['name' => $objectName]);
@@ -738,10 +736,9 @@ class BucketTest extends TestCase
     public function testComposeObjectWithContexts(array $options, array $expectedContexts)
     {
         $destName = 'composed.txt';
-        $bucketName = 'my-bucket';
         $sources = ['source1.txt', 'source2.txt'];
 
-        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+        $bucket = new Bucket($this->connection->reveal(), self::BUCKET_NAME);
         $this->connection->composeObject(Argument::that(function ($args) use ($options) {
             if (isset($options['contexts'])) {
                 return isset($args['contexts']) && $args['contexts'] === $options['contexts'];
@@ -749,7 +746,7 @@ class BucketTest extends TestCase
             return !isset($args['contexts']);
         }))->shouldBeCalled()->willReturn([
             'name' => $destName,
-            'bucket' => $bucketName,
+            'bucket' => self::BUCKET_NAME,
             'generation' => 12345,
             'contexts' => $expectedContexts
         ]);
@@ -773,13 +770,12 @@ class BucketTest extends TestCase
     public function testGetMetadataIncludesContexts()
     {
         $objectName = 'metadata-test.txt';
-        $bucketName = 'my-bucket';
         $projectId = 'test-project';
         
         $this->connection->projectId()->willReturn($projectId);
         $metadataResponse = [
             'name' => $objectName,
-            'bucket' => $bucketName,
+            'bucket' => self::BUCKET_NAME,
             'generation' => 12345,
             'contexts' => [
                 'custom' => [
@@ -792,7 +788,7 @@ class BucketTest extends TestCase
             ->shouldBeCalled()
             ->willReturn($metadataResponse);
 
-        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+        $bucket = new Bucket($this->connection->reveal(), self::BUCKET_NAME);
         $info = $bucket->object($objectName)->info();
         $this->assertArrayHasKey('contexts', $info);
         $this->assertEquals(
@@ -803,7 +799,6 @@ class BucketTest extends TestCase
 
     public function testListObjectsWithContextsAndFiltering()
     {
-        $bucketName = 'my-bucket';
         $prefix = 'folder/';
         $this->connection->projectId()->willReturn('test-project');
         $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
@@ -815,7 +810,7 @@ class BucketTest extends TestCase
                 ]
             ]);
 
-        $bucket = new Bucket($this->connection->reveal(), $bucketName);
+        $bucket = new Bucket($this->connection->reveal(), self::BUCKET_NAME);
         $objects = $bucket->objects(['prefix' => $prefix]);
         $count = 0;
         foreach ($objects as $index => $object) {

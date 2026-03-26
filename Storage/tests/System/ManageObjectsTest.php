@@ -30,7 +30,6 @@ use Psr\Http\Message\StreamInterface;
 class ManageObjectsTest extends StorageTestCase
 {
     const DATA = 'data';
-
     private const CONTEXT_KEY = 'insert-key';
     private const CONTEXT_VALUE = 'insert-val';
 
@@ -221,7 +220,7 @@ class ManageObjectsTest extends StorageTestCase
     public function testCreateObjectWithContexts()
     {
         $objectName = 'test-' . uniqid() . '.txt';
-        $object = self::$bucket->upload('content', [
+        $object = self::$bucket->upload(self::DATA, [
             'name' => $objectName,
             'contexts' => [
                 'custom' => [self::CONTEXT_KEY => ['value' => self::CONTEXT_VALUE]]
@@ -245,7 +244,6 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertEquals(self::CONTEXT_VALUE, $info['contexts']['custom'][self::CONTEXT_KEY]['value']);
         $object->delete();
     }
-
     public function testObjectExists()
     {
         $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
