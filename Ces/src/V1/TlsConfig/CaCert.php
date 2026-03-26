@@ -28,11 +28,13 @@ class CaCert extends \Google\Protobuf\Internal\Message
      * is empty or unspecified, CES will use Google's default trust
      * store to verify certificates. N.B. Make sure the HTTPS server
      * certificates are signed with "subject alt name". For instance a
-     * certificate can be self-signed using the following command,
+     * certificate can be self-signed using the following command:
+     * ```
      *    openssl x509 -req -days 200 -in example.com.csr \
      *      -signkey example.com.key \
      *      -out example.com.crt \
      *      -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     * ```
      *
      * Generated from protobuf field <code>bytes cert = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -53,11 +55,13 @@ class CaCert extends \Google\Protobuf\Internal\Message
      *           is empty or unspecified, CES will use Google's default trust
      *           store to verify certificates. N.B. Make sure the HTTPS server
      *           certificates are signed with "subject alt name". For instance a
-     *           certificate can be self-signed using the following command,
+     *           certificate can be self-signed using the following command:
+     *           ```
      *              openssl x509 -req -days 200 -in example.com.csr \
      *                -signkey example.com.key \
      *                -out example.com.crt \
      *                -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     *           ```
      * }
      */
     public function __construct($data = NULL) {
@@ -99,11 +103,13 @@ class CaCert extends \Google\Protobuf\Internal\Message
      * is empty or unspecified, CES will use Google's default trust
      * store to verify certificates. N.B. Make sure the HTTPS server
      * certificates are signed with "subject alt name". For instance a
-     * certificate can be self-signed using the following command,
+     * certificate can be self-signed using the following command:
+     * ```
      *    openssl x509 -req -days 200 -in example.com.csr \
      *      -signkey example.com.key \
      *      -out example.com.crt \
      *      -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     * ```
      *
      * Generated from protobuf field <code>bytes cert = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -119,11 +125,13 @@ class CaCert extends \Google\Protobuf\Internal\Message
      * is empty or unspecified, CES will use Google's default trust
      * store to verify certificates. N.B. Make sure the HTTPS server
      * certificates are signed with "subject alt name". For instance a
-     * certificate can be self-signed using the following command,
+     * certificate can be self-signed using the following command:
+     * ```
      *    openssl x509 -req -days 200 -in example.com.csr \
      *      -signkey example.com.key \
      *      -out example.com.crt \
      *      -extfile <(printf "\nsubjectAltName='DNS:www.example.com'")
+     * ```
      *
      * Generated from protobuf field <code>bytes cert = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

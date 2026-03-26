@@ -17,13 +17,13 @@ use Google\Protobuf\RepeatedField;
 class Tool extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Identifier. The unique identifier of the tool.
-     * Format:
-     * - `projects/{project}/locations/{location}/apps/{app}/tools/{tool}` for
-     * ## standalone tools.
-     * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
-     * for tools retrieved from a toolset. These tools are dynamic and
-     * output-only, they cannot be referenced directly where a tool is expected.
+     * Identifier. The resource name of the tool. Format:
+     * * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+     *   for standalone tools.
+     * * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
+     *   for tools retrieved from a toolset.
+     * These tools are dynamic and output-only; they cannot be referenced directly
+     * where a tool is expected.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -102,16 +102,18 @@ class Tool extends \Google\Protobuf\Internal\Message
      *           Optional. The file search tool.
      *     @type \Google\Cloud\Ces\V1\SystemTool $system_tool
      *           Optional. The system tool.
+     *     @type \Google\Cloud\Ces\V1\AgentTool $agent_tool
+     *           Optional. The agent tool.
      *     @type \Google\Cloud\Ces\V1\WidgetTool $widget_tool
      *           Optional. The widget tool.
      *     @type string $name
-     *           Identifier. The unique identifier of the tool.
-     *           Format:
-     *           - `projects/{project}/locations/{location}/apps/{app}/tools/{tool}` for
-     *           ## standalone tools.
-     *           `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
-     *           for tools retrieved from a toolset. These tools are dynamic and
-     *           output-only, they cannot be referenced directly where a tool is expected.
+     *           Identifier. The resource name of the tool. Format:
+     *           * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+     *             for standalone tools.
+     *           * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
+     *             for tools retrieved from a toolset.
+     *           These tools are dynamic and output-only; they cannot be referenced directly
+     *           where a tool is expected.
      *     @type string $display_name
      *           Output only. The display name of the tool, derived based on the tool's
      *           type. For example, display name of a [ClientFunction][Tool.ClientFunction]
@@ -420,6 +422,37 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The agent tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.AgentTool agent_tool = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\AgentTool|null
+     */
+    public function getAgentTool()
+    {
+        return $this->readOneof(23);
+    }
+
+    public function hasAgentTool()
+    {
+        return $this->hasOneof(23);
+    }
+
+    /**
+     * Optional. The agent tool.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.AgentTool agent_tool = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\AgentTool $var
+     * @return $this
+     */
+    public function setAgentTool($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\AgentTool::class);
+        $this->writeOneof(23, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. The widget tool.
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.WidgetTool widget_tool = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -451,13 +484,13 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The unique identifier of the tool.
-     * Format:
-     * - `projects/{project}/locations/{location}/apps/{app}/tools/{tool}` for
-     * ## standalone tools.
-     * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
-     * for tools retrieved from a toolset. These tools are dynamic and
-     * output-only, they cannot be referenced directly where a tool is expected.
+     * Identifier. The resource name of the tool. Format:
+     * * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+     *   for standalone tools.
+     * * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
+     *   for tools retrieved from a toolset.
+     * These tools are dynamic and output-only; they cannot be referenced directly
+     * where a tool is expected.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -468,13 +501,13 @@ class Tool extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identifier. The unique identifier of the tool.
-     * Format:
-     * - `projects/{project}/locations/{location}/apps/{app}/tools/{tool}` for
-     * ## standalone tools.
-     * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
-     * for tools retrieved from a toolset. These tools are dynamic and
-     * output-only, they cannot be referenced directly where a tool is expected.
+     * Identifier. The resource name of the tool. Format:
+     * * `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
+     *   for standalone tools.
+     * * `projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}/tools/{tool}`
+     *   for tools retrieved from a toolset.
+     * These tools are dynamic and output-only; they cannot be referenced directly
+     * where a tool is expected.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var

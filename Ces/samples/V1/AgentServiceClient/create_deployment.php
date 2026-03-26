@@ -32,21 +32,14 @@ use Google\Cloud\Ces\V1\Deployment;
 /**
  * Creates a new deployment in the given app.
  *
- * @param string $formattedParent               The parent app.
- *                                              Format:
- *                                              `projects/{project}/locations/{location}/apps/{app}`
- *                                              Please see {@see AgentServiceClient::appName()} for help formatting this field.
- * @param string $deploymentDisplayName         Display name of the deployment.
- * @param string $formattedDeploymentAppVersion The resource name of the app version to deploy.
- *                                              Format:
- *                                              projects/{project}/locations/{location}/apps/{app}/versions/{version}
- *                                              Please see {@see AgentServiceClient::appVersionName()} for help formatting this field.
+ * @param string $formattedParent       The parent app.
+ *                                      Format:
+ *                                      `projects/{project}/locations/{location}/apps/{app}`
+ *                                      Please see {@see AgentServiceClient::appName()} for help formatting this field.
+ * @param string $deploymentDisplayName Display name of the deployment.
  */
-function create_deployment_sample(
-    string $formattedParent,
-    string $deploymentDisplayName,
-    string $formattedDeploymentAppVersion
-): void {
+function create_deployment_sample(string $formattedParent, string $deploymentDisplayName): void
+{
     // Create a client.
     $agentServiceClient = new AgentServiceClient();
 
@@ -54,7 +47,6 @@ function create_deployment_sample(
     $deploymentChannelProfile = new ChannelProfile();
     $deployment = (new Deployment())
         ->setDisplayName($deploymentDisplayName)
-        ->setAppVersion($formattedDeploymentAppVersion)
         ->setChannelProfile($deploymentChannelProfile);
     $request = (new CreateDeploymentRequest())
         ->setParent($formattedParent)
@@ -83,13 +75,7 @@ function callSample(): void
 {
     $formattedParent = AgentServiceClient::appName('[PROJECT]', '[LOCATION]', '[APP]');
     $deploymentDisplayName = '[DISPLAY_NAME]';
-    $formattedDeploymentAppVersion = AgentServiceClient::appVersionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[APP]',
-        '[VERSION]'
-    );
 
-    create_deployment_sample($formattedParent, $deploymentDisplayName, $formattedDeploymentAppVersion);
+    create_deployment_sample($formattedParent, $deploymentDisplayName);
 }
 // [END ces_v1_generated_AgentService_CreateDeployment_sync]

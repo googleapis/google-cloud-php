@@ -55,6 +55,12 @@ class ChannelType
      * Generated from protobuf enum <code>FIVE9 = 7;</code>
      */
     const FIVE9 = 7;
+    /**
+     * Third party contact center integration channel.
+     *
+     * Generated from protobuf enum <code>CONTACT_CENTER_INTEGRATION = 8;</code>
+     */
+    const CONTACT_CENTER_INTEGRATION = 8;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -64,6 +70,7 @@ class ChannelType
         self::GOOGLE_TELEPHONY_PLATFORM => 'GOOGLE_TELEPHONY_PLATFORM',
         self::CONTACT_CENTER_AS_A_SERVICE => 'CONTACT_CENTER_AS_A_SERVICE',
         self::FIVE9 => 'FIVE9',
+        self::CONTACT_CENTER_INTEGRATION => 'CONTACT_CENTER_INTEGRATION',
     ];
 
     public static function name($value)

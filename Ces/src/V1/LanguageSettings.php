@@ -36,8 +36,11 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      */
     protected $enable_multilingual_support = false;
     /**
-     * Optional. The action to perform when an agent receives input in an
-     * unsupported language.
+     * Optional. Deprecated: This feature is no longer supported. Use
+     * `enable_multilingual_support` instead to improve handling of multilingual
+     * input.
+     * The action to perform when an agent receives input in an unsupported
+     * language.
      * This can be a predefined action or a custom tool call.
      * Valid values are:
      * - A tool's full resource name, which triggers a specific tool execution.
@@ -46,7 +49,8 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      * [metadata][google.cloud.ces.v1.EndSession.metadata] to terminate the
      * conversation.
      *
-     * Generated from protobuf field <code>string fallback_action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string fallback_action = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
     protected $fallback_action = '';
 
@@ -65,8 +69,11 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      *           Optional. Enables multilingual support. If true, agents in the app will use
      *           pre-built instructions to improve handling of multilingual input.
      *     @type string $fallback_action
-     *           Optional. The action to perform when an agent receives input in an
-     *           unsupported language.
+     *           Optional. Deprecated: This feature is no longer supported. Use
+     *           `enable_multilingual_support` instead to improve handling of multilingual
+     *           input.
+     *           The action to perform when an agent receives input in an unsupported
+     *           language.
      *           This can be a predefined action or a custom tool call.
      *           Valid values are:
      *           - A tool's full resource name, which triggers a specific tool execution.
@@ -164,8 +171,11 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The action to perform when an agent receives input in an
-     * unsupported language.
+     * Optional. Deprecated: This feature is no longer supported. Use
+     * `enable_multilingual_support` instead to improve handling of multilingual
+     * input.
+     * The action to perform when an agent receives input in an unsupported
+     * language.
      * This can be a predefined action or a custom tool call.
      * Valid values are:
      * - A tool's full resource name, which triggers a specific tool execution.
@@ -174,17 +184,24 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      * [metadata][google.cloud.ces.v1.EndSession.metadata] to terminate the
      * conversation.
      *
-     * Generated from protobuf field <code>string fallback_action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string fallback_action = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getFallbackAction()
     {
+        if ($this->fallback_action !== '') {
+            @trigger_error('fallback_action is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->fallback_action;
     }
 
     /**
-     * Optional. The action to perform when an agent receives input in an
-     * unsupported language.
+     * Optional. Deprecated: This feature is no longer supported. Use
+     * `enable_multilingual_support` instead to improve handling of multilingual
+     * input.
+     * The action to perform when an agent receives input in an unsupported
+     * language.
      * This can be a predefined action or a custom tool call.
      * Valid values are:
      * - A tool's full resource name, which triggers a specific tool execution.
@@ -193,12 +210,14 @@ class LanguageSettings extends \Google\Protobuf\Internal\Message
      * [metadata][google.cloud.ces.v1.EndSession.metadata] to terminate the
      * conversation.
      *
-     * Generated from protobuf field <code>string fallback_action = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string fallback_action = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setFallbackAction($var)
     {
+        @trigger_error('fallback_action is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->fallback_action = $var;
 

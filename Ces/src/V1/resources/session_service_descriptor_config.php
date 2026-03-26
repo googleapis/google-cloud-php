@@ -43,6 +43,22 @@ return [
                     ],
                 ],
             ],
+            'StreamRunSession' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::SERVER_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Ces\V1\RunSessionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'config.session',
+                        'fieldAccessors' => [
+                            'getConfig',
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Location\Location',

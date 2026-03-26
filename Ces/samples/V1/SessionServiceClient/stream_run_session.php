@@ -22,8 +22,9 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START ces_v1_generated_SessionService_RunSession_sync]
+// [START ces_v1_generated_SessionService_StreamRunSession_sync]
 use Google\ApiCore\ApiException;
+use Google\ApiCore\ServerStream;
 use Google\Cloud\Ces\V1\Client\SessionServiceClient;
 use Google\Cloud\Ces\V1\RunSessionRequest;
 use Google\Cloud\Ces\V1\RunSessionResponse;
@@ -31,14 +32,22 @@ use Google\Cloud\Ces\V1\SessionConfig;
 use Google\Cloud\Ces\V1\SessionInput;
 
 /**
- * Initiates a single-turn interaction with the CES agent within a session.
+ * Initiates a single-turn interaction with the CES agent. Uses server-side
+ * streaming to deliver incremental results and partial responses as they are
+ * generated.
+ *
+ * By default, complete responses (e.g., messages from callbacks or full LLM
+ * responses) are sent to the client as soon as they are available. To enable
+ * streaming individual text chunks directly from the model, set
+ * [enable_text_streaming][google.cloud.ces.v1.SessionConfig.enable_text_streaming]
+ * to true.
  *
  * @param string $formattedConfigSession The unique identifier of the session.
  *                                       Format:
  *                                       `projects/{project}/locations/{location}/apps/{app}/sessions/{session}`
  *                                       Please see {@see SessionServiceClient::sessionName()} for help formatting this field.
  */
-function run_session_sample(string $formattedConfigSession): void
+function stream_run_session_sample(string $formattedConfigSession): void
 {
     // Create a client.
     $sessionServiceClient = new SessionServiceClient();
@@ -53,9 +62,13 @@ function run_session_sample(string $formattedConfigSession): void
 
     // Call the API and handle any network failures.
     try {
-        /** @var RunSessionResponse $response */
-        $response = $sessionServiceClient->runSession($request);
-        printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
+        /** @var ServerStream $stream */
+        $stream = $sessionServiceClient->streamRunSession($request);
+
+        /** @var RunSessionResponse $element */
+        foreach ($stream->readAll() as $element) {
+            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
@@ -79,6 +92,6 @@ function callSample(): void
         '[SESSION]'
     );
 
-    run_session_sample($formattedConfigSession);
+    stream_run_session_sample($formattedConfigSession);
 }
-// [END ces_v1_generated_SessionService_RunSession_sync]
+// [END ces_v1_generated_SessionService_StreamRunSession_sync]

@@ -31,6 +31,7 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
      */
     protected $args = null;
     protected $tool_identifier;
+    protected $tool_execution_context;
 
     /**
      * Constructor.
@@ -45,6 +46,12 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\ToolsetTool $toolset_tool
      *           Optional. The toolset tool to execute. Only one tool should match the
      *           predicate from the toolset. Otherwise, an error will be returned.
+     *     @type \Google\Protobuf\Struct $variables
+     *           Optional. The variables that are available for the tool execution.
+     *     @type \Google\Protobuf\Struct $context
+     *           Optional. The
+     *           [ToolCallContext](https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment
+     *           for details) to be passed to the Python tool.
      *     @type string $parent
      *           Required. The resource name of the app which the tool/toolset belongs to.
      *           Format: `projects/{project}/locations/{location}/apps/{app}`
@@ -127,6 +134,72 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The variables that are available for the tool execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct variables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getVariables()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasVariables()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Optional. The variables that are available for the tool execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct variables = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setVariables($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. The
+     * [ToolCallContext](https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment
+     * for details) to be passed to the Python tool.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getContext()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasContext()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. The
+     * [ToolCallContext](https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/python#environment
+     * for details) to be passed to the Python tool.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
      * Required. The resource name of the app which the tool/toolset belongs to.
      * Format: `projects/{project}/locations/{location}/apps/{app}`
      *
@@ -198,6 +271,14 @@ class ExecuteToolRequest extends \Google\Protobuf\Internal\Message
     public function getToolIdentifier()
     {
         return $this->whichOneof("tool_identifier");
+    }
+
+    /**
+     * @return string
+     */
+    public function getToolExecutionContext()
+    {
+        return $this->whichOneof("tool_execution_context");
     }
 
 }

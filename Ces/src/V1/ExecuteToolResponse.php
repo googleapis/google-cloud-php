@@ -17,14 +17,20 @@ use Google\Protobuf\RepeatedField;
 class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The tool execution result in JSON object format.
+     * The tool execution result in JSON object format.
      * Use "output" key to specify tool response and "error" key to specify
      * error details (if any). If "output" and "error" keys are not specified,
      * then whole "response" is treated as tool execution result.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct response = 2;</code>
      */
     protected $response = null;
+    /**
+     * The variable values at the end of the tool execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct variables = 4;</code>
+     */
+    protected $variables = null;
     protected $tool_identifier;
 
     /**
@@ -39,10 +45,12 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\ToolsetTool $toolset_tool
      *           The toolset tool that got executed.
      *     @type \Google\Protobuf\Struct $response
-     *           Required. The tool execution result in JSON object format.
+     *           The tool execution result in JSON object format.
      *           Use "output" key to specify tool response and "error" key to specify
      *           error details (if any). If "output" and "error" keys are not specified,
      *           then whole "response" is treated as tool execution result.
+     *     @type \Google\Protobuf\Struct $variables
+     *           The variable values at the end of the tool execution.
      * }
      */
     public function __construct($data = NULL) {
@@ -115,12 +123,12 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The tool execution result in JSON object format.
+     * The tool execution result in JSON object format.
      * Use "output" key to specify tool response and "error" key to specify
      * error details (if any). If "output" and "error" keys are not specified,
      * then whole "response" is treated as tool execution result.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct response = 2;</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getResponse()
@@ -139,12 +147,12 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The tool execution result in JSON object format.
+     * The tool execution result in JSON object format.
      * Use "output" key to specify tool response and "error" key to specify
      * error details (if any). If "output" and "error" keys are not specified,
      * then whole "response" is treated as tool execution result.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct response = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct response = 2;</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -152,6 +160,42 @@ class ExecuteToolResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->response = $var;
+
+        return $this;
+    }
+
+    /**
+     * The variable values at the end of the tool execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct variables = 4;</code>
+     * @return \Google\Protobuf\Struct|null
+     */
+    public function getVariables()
+    {
+        return $this->variables;
+    }
+
+    public function hasVariables()
+    {
+        return isset($this->variables);
+    }
+
+    public function clearVariables()
+    {
+        unset($this->variables);
+    }
+
+    /**
+     * The variable values at the end of the tool execution.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Struct variables = 4;</code>
+     * @param \Google\Protobuf\Struct $var
+     * @return $this
+     */
+    public function setVariables($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
+        $this->variables = $var;
 
         return $this;
     }
