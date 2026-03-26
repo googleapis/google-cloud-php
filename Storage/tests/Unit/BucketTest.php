@@ -708,7 +708,7 @@ class BucketTest extends TestCase
                 'name' => $destName,
                 'bucket' => $destBucket,
                 'generation' => 456,
-                'contexts' => $contexts 
+                'contexts' => $contexts
             ]
         ]);
 
@@ -718,7 +718,7 @@ class BucketTest extends TestCase
             'source-file.txt',
             $sourceBucket,
             123,
-            ['bucket' => $sourceBucket] 
+            ['bucket' => $sourceBucket]
         );
 
         $object = $sourceObject->rewrite($destBucket, [
