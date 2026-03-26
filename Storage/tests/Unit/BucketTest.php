@@ -611,40 +611,48 @@ class BucketTest extends TestCase
     }
 
     /**
-     *  Test modifying an existing custom context key and value
-     *  This simulates the "Replace all" behaviour.
+    *  @dataProvider contextUpdateProvider
     */
-    public function testUpdateAndReplaceContexts()
+    public function testUpdateAndReplaceContexts($inputContexts, $expectedInApi)
     {
-        $contextKey = 'context-key-1';
-        $updatedValue = 'updated-value';
-        $newContexts = [
-            'custom' => [
-                $contextKey => ['value' => $updatedValue]
-            ]
-        ];
-        $this->connection->patchObject(Argument::that(function ($args) use ($newContexts) {
-            return isset($args['contexts']) && $args['contexts'] === $newContexts;
+        $this->connection->patchObject(Argument::that(function ($args) use ($expectedInApi) {
+            if ($expectedInApi === null) {
+                return !isset($args['contexts']) || $args['contexts'] === null;
+            }
+            return isset($args['contexts']) && $args['contexts'] === $expectedInApi;
         }))->shouldBeCalled()->willReturn([
             'name' => 'test.txt',
-            'contexts' => $newContexts
+            'contexts' => $expectedInApi
         ]);
 
         $object = new StorageObject(
             $this->connection->reveal(),
             'test.txt',
-            'my-bucket'
+            'my-bucket',
+            1,
+            ['bucket' => 'my-bucket']
         );
-        $object->update([
-            'contexts' => $newContexts
-        ]);
+        $object->update(['contexts' => $inputContexts]);
         $info = $object->info();
-        $this->assertArrayHasKey('contexts', $info);
-        $this->assertEquals(
-            $updatedValue,
-            $info['contexts']['custom'][$contextKey]['value'],
-            'The local object info was not updated with the new context value.'
-        );
+        if ($expectedInApi === null) {
+            $this->assertArrayNotHasKey('contexts', $info);
+        } else {
+            $this->assertArrayHasKey('contexts', $info);
+            $this->assertEquals($expectedInApi, $info['contexts']);
+        }
+    }
+
+    /**
+    * Data Provider for Update scenarios
+    */
+    public function contextUpdateProvider()
+    {
+        $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
+
+        return [
+            'Valid Update' => [$validContexts['contexts'], $validContexts['contexts']],
+            'Empty Array'  => [[], []]
+        ];
     }
 
     /**
@@ -834,7 +842,7 @@ class BucketTest extends TestCase
         }
         $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
     }
-    
+
     public function testIam()
     {
         $bucketInfo = [
