@@ -235,7 +235,6 @@ class ManageObjectsTest extends StorageTestCase
     }
 
     /**
-     * Test 2: Getting metadata of the SAME object passed from Test 1.
      * @depends testCreateObjectWithContexts
      */
     public function testGetObjectWithContexts(StorageObject $object)

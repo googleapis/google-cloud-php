@@ -282,6 +282,10 @@ class Bucket
      *     @type string $contexts.custom[].value The value associated with the context.
      *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
      *           or forward slashes (`/`).
+     *     @type string $contexts.custom.{key}.createTime The time the context
+     *           was created in RFC 3339 format. **(read only)**
+     *     @type string $contexts.custom.{key}.updateTime The time the context
+     *           was last updated in RFC 3339 format. **(read only)**
      *     @type string $encryptionKey A base64 encoded AES-256 customer-supplied
      *           encryption key. If you would prefer to manage encryption
      *           utilizing the Cloud Key Management Service (KMS) please use the
@@ -349,7 +353,7 @@ class Bucket
             if (isset($data['value'])) {
                 $val = (string) $data['value'];
                 if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
-                    throw new \InvalidArgumentException('Object context value must start with an alphanumeric character.');
+                    throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
                 }
                 if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
                     throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');

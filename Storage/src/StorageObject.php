@@ -239,6 +239,10 @@ class StorageObject
      *     @type string $contexts.custom[].value The value associated with the context.
      *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
      *           or forward slashes (`/`).
+     *     @type string $contexts.custom.{key}.createTime The time the context
+     *           was created in RFC 3339 format. **(read only)**
+     *     @type string $contexts.custom.{key}.updateTime The time the context
+     *           was last updated in RFC 3339 format. **(read only)**
      *     @type bool $overrideUnlockedRetention Applicable for objects that
      *           have an unlocked retention configuration. Required to be set to
      *           `true` if the operation includes a retention property that

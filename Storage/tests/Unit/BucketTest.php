@@ -593,9 +593,6 @@ class BucketTest extends TestCase
         ]);
     }
 
-    /**
-    * Test that the library rejects values that do not start with an alphanumeric character.
-    */
     public function testRejectInvalidLeadingUnicodeValueInContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -642,9 +639,6 @@ class BucketTest extends TestCase
         }
     }
 
-    /**
-    * Data Provider for Update scenarios
-    */
     public function contextUpdateProvider()
     {
         $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
@@ -739,7 +733,6 @@ class BucketTest extends TestCase
     }
 
     /**
-     * Test composing objects with context inheritance and overrides.
      * @dataProvider composeContextDataProvider
      */
     public function testComposeObjectWithContexts(array $options, array $expectedContexts)
@@ -766,9 +759,6 @@ class BucketTest extends TestCase
         $this->assertEquals($expectedContexts, $composedObject->info()['contexts']);
     }
 
-    /**
-     * Data provider for Inherit and Override scenarios.
-     */
     public function composeContextDataProvider()
     {
         $sourceContexts = ['custom' => ['s1-key' => ['value' => 's1-val']]];
@@ -811,9 +801,6 @@ class BucketTest extends TestCase
         );
     }
 
-    /**
-     * Test listing objects with contexts and filtering.
-     */
     public function testListObjectsWithContextsAndFiltering()
     {
         $bucketName = 'my-bucket';
