@@ -50,6 +50,12 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string psc_allowed_projects = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $psc_allowed_projects;
+    /**
+     * Optional. Custom host config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig.CustomHostConfig custom_host_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_host_config = null;
 
     /**
      * Constructor.
@@ -72,6 +78,8 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Additional allowed projects for setting up PSC connections.
      *           Instance host project is automatically allowed and does not need to be
      *           included in this list.
+     *     @type \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig\CustomHostConfig $custom_host_config
+     *           Optional. Custom host config for the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +223,42 @@ class PrivateConfig extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->psc_allowed_projects = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Custom host config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig.CustomHostConfig custom_host_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig\CustomHostConfig|null
+     */
+    public function getCustomHostConfig()
+    {
+        return $this->custom_host_config;
+    }
+
+    public function hasCustomHostConfig()
+    {
+        return isset($this->custom_host_config);
+    }
+
+    public function clearCustomHostConfig()
+    {
+        unset($this->custom_host_config);
+    }
+
+    /**
+     * Optional. Custom host config for the instance.
+     *
+     * Generated from protobuf field <code>.google.cloud.securesourcemanager.v1.Instance.PrivateConfig.CustomHostConfig custom_host_config = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig\CustomHostConfig $var
+     * @return $this
+     */
+    public function setCustomHostConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig\CustomHostConfig::class);
+        $this->custom_host_config = $var;
 
         return $this;
     }

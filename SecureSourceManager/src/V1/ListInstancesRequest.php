@@ -22,28 +22,28 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than
+     * requested. If unspecified, server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
-     * Filter for filtering results.
+     * Optional. Filter for filtering results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
     /**
-     * Hint for how to order the results.
+     * Optional. Hint for how to order the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $order_by = '';
 
@@ -70,14 +70,14 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent value for ListInstancesRequest.
      *     @type int $page_size
-     *           Requested page size. Server may return fewer items than requested.
-     *           If unspecified, server will pick an appropriate default.
+     *           Optional. Requested page size. Server may return fewer items than
+     *           requested. If unspecified, server will pick an appropriate default.
      *     @type string $page_token
-     *           A token identifying a page of results the server should return.
+     *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
-     *           Filter for filtering results.
+     *           Optional. Filter for filtering results.
      *     @type string $order_by
-     *           Hint for how to order the results.
+     *           Optional. Hint for how to order the results.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,10 +112,10 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than
+     * requested. If unspecified, server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
     public function getPageSize()
@@ -124,10 +124,10 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Requested page size. Server may return fewer items than requested.
-     * If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. Server may return fewer items than
+     * requested. If unspecified, server will pick an appropriate default.
      *
-     * Generated from protobuf field <code>int32 page_size = 2;</code>
+     * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
      */
@@ -140,9 +140,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -151,9 +151,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -166,9 +166,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter for filtering results.
+     * Optional. Filter for filtering results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getFilter()
@@ -177,9 +177,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Filter for filtering results.
+     * Optional. Filter for filtering results.
      *
-     * Generated from protobuf field <code>string filter = 4;</code>
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -192,9 +192,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hint for how to order the results.
+     * Optional. Hint for how to order the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getOrderBy()
@@ -203,9 +203,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Hint for how to order the results.
+     * Optional. Hint for how to order the results.
      *
-     * Generated from protobuf field <code>string order_by = 5;</code>
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

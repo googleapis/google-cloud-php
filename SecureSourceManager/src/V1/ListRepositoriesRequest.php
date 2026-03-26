@@ -22,16 +22,16 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
     /**
@@ -75,10 +75,10 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent value for ListRepositoriesRequest.
      *     @type int $page_size
-     *           Optional. Requested page size. Server may return fewer items than
-     *           requested. If unspecified, server will pick an appropriate default.
+     *           Optional. Requested page size. If unspecified, a default size of 30 will be
+     *           used. The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
-     *           A token identifying a page of results the server should return.
+     *           Optional. A token identifying a page of results the server should return.
      *     @type string $filter
      *           Optional. Filter results.
      *     @type string $instance
@@ -122,8 +122,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -134,8 +134,8 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -150,9 +150,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getPageToken()
@@ -161,9 +161,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results the server should return.
+     * Optional. A token identifying a page of results the server should return.
      *
-     * Generated from protobuf field <code>string page_token = 3;</code>
+     * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
