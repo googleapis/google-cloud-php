@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Interval;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Result;
+use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
@@ -1250,5 +1251,34 @@ class QueryTest extends SystemTestCase
                 'value' => 'world'
             ]
         ], $res);
+    }
+
+    /**
+     * This test ensures that enabling built-in metrics does not interfere with
+     * normal client operations and that the OpenTelemetry pipeline is stable.
+     */
+    public function testBuiltInMetrics()
+    {
+        if (self::isEmulatorUsed()) {
+            $this->markTestSkipped('Built-in metrics are not supported on Emulator.');
+        }
+
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        $client = new SpannerClient([
+            'keyFilePath' => $keyFilePath,
+            'disableBuiltInMetrics' => false
+        ]);
+
+        $db = $client->connect(self::INSTANCE_NAME, self::$dbName);
+
+        // Execute a query to trigger metrics (Attempt, Operation, GFE)
+        $res = $db->execute('SELECT 1');
+        $row = $res->rows()->current();
+
+        $this->assertEquals(1, $row[0]);
+
+        // Success here means the middlewares correctly handled the request/response
+        // and recorded metrics without throwing exceptions.
+        // The final export happens at PHP shutdown via ShutdownHandler.
     }
 }

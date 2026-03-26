@@ -800,4 +800,35 @@ class SpannerClientTest extends TestCase
             $newConfig['transportConfig']['grpc']['stubOpts']['grpc.keepalive_time_ms']
         );
     }
+
+    public function testBuiltinMetricsEnabledByDefault()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(2);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+        ]);
+    }
+
+    public function testBuiltinMetricsCanBeDisabled()
+    {
+        $gapicSpannerClient = $this->prophesize(GapicSpannerClient::class);
+        $gapicSpannerClient->prependMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+        $gapicSpannerClient->addMiddleware(Argument::any())
+            ->shouldBeCalledTimes(1);
+
+        new SpannerClient([
+            'projectId' => self::PROJECT,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+            'gapicSpannerClient' => $gapicSpannerClient->reveal(),
+            'disableBuiltInMetrics' => true,
+        ]);
+    }
 }

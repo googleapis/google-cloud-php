@@ -30,6 +30,7 @@ use Google\Cloud\Core\Iterator\ItemIterator;
 use Google\Cloud\Core\LongRunning\LongRunningClientConnection;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\OptionsValidator;
+use Google\Cloud\Monitoring\V3\Client\MetricServiceClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Client\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\Client\InstanceAdminClient;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
@@ -38,14 +39,22 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
+use Google\Cloud\Spanner\Middleware\BuiltInMetricsAttemptMiddleware;
+use Google\Cloud\Spanner\Middleware\BuiltInMetricsOperationMiddleware;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
+use Google\Cloud\Spanner\OpenTelemetry\BuiltInMetricsExporter;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
+use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\SDK\Common\Util\ShutdownHandler;
+use OpenTelemetry\SDK\Metrics\MeterProvider;
+use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
+use Ramsey\Uuid\Uuid as UUID;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -133,6 +142,8 @@ class SpannerClient
     private array $defaultQueryOptions;
     private int $isolationLevel;
     private CacheItemPoolInterface|null $cacheItemPool;
+    private MeterInterface $meter;
+    private MeterProvider $meterProvider;
     private static array $activeChannels = [];
     private static int $totalActiveChannels = 0;
 
@@ -205,7 +216,8 @@ class SpannerClient
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
             'routeToLeader' => true,
-            'cacheItemPool' => null
+            'cacheItemPool' => null,
+            'disableBuiltInMetrics' => false,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -273,6 +285,8 @@ class SpannerClient
         $this->spannerClient->addMiddleware($middleware);
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
+
+        $this->configureBuiltinMetrics($options['disableBuiltInMetrics']);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -1023,5 +1037,46 @@ class SpannerClient
         ];
 
         return $config;
+    }
+
+    private function configureBuiltinMetrics(bool $disabled): void
+    {
+        if ($disabled) {
+            return;
+        }
+
+        $metricsClient = new MetricServiceClient();
+        $metricsClientId = UUID::uuid4()->toString() . '-' . getmypid();
+        $exporter = new BuiltInMetricsExporter($metricsClient, $this->projectId, $metricsClientId);
+        $reader = new ExportingReader($exporter);
+        $this->meterProvider = MeterProvider::builder()
+            ->addReader($reader)
+            ->build();
+
+        $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
+        ShutdownHandler::register([$this->meterProvider, 'shutdown']);
+
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId){
+            return new BuiltInMetricsAttemptMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->projectId,
+                SpannerClient::VERSION
+            );
+        };
+
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId){
+            return new BuiltInMetricsOperationMiddleware(
+                $handler,
+                $this->meter,
+                $metricsClientId,
+                $this->projectId,
+                SpannerClient::VERSION
+            );
+        };
+
+        $this->spannerClient->prependMiddleware($attemptMetricsMiddleware);
+        $this->spannerClient->addMiddleware($operationMetricsMiddleware);
     }
 }
