@@ -479,6 +479,25 @@ return [
                     ],
                 ],
             ],
+            'EstablishVolumePeering' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetApp\V1\Volume',
+                    'metadataReturnType' => '\Google\Cloud\NetApp\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'RestoreBackupFiles' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetApp\V1\RestoreBackupFilesResponse',
@@ -847,6 +866,54 @@ return [
                         'keyName' => 'name',
                         'fieldAccessors' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapDelete' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ExecuteOntapDeleteResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'ontap_path',
+                        'fieldAccessors' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapGet' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ExecuteOntapGetResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'ontap_path',
+                        'fieldAccessors' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapPatch' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ExecuteOntapPatchResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'ontap_path',
+                        'fieldAccessors' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapPost' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetApp\V1\ExecuteOntapPostResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'ontap_path',
+                        'fieldAccessors' => [
+                            'getOntapPath',
                         ],
                     ],
                 ],

@@ -31,18 +31,11 @@ class StoragePoolType
      * Generated from protobuf enum <code>UNIFIED = 2;</code>
      */
     const UNIFIED = 2;
-    /**
-     * Storage pool type is unified large capacity.
-     *
-     * Generated from protobuf enum <code>UNIFIED_LARGE_CAPACITY = 3;</code>
-     */
-    const UNIFIED_LARGE_CAPACITY = 3;
 
     private static $valueToName = [
         self::STORAGE_POOL_TYPE_UNSPECIFIED => 'STORAGE_POOL_TYPE_UNSPECIFIED',
         self::FILE => 'FILE',
         self::UNIFIED => 'UNIFIED',
-        self::UNIFIED_LARGE_CAPACITY => 'UNIFIED_LARGE_CAPACITY',
     ];
 
     public static function name($value)

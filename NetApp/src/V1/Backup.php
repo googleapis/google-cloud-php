@@ -53,6 +53,7 @@ class Backup extends \Google\Protobuf\Internal\Message
     protected $backup_type = 0;
     /**
      * Volume full name of this backup belongs to.
+     * Either source_volume or ontap_source should be provided.
      * Format:
      * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
      *
@@ -144,6 +145,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           policy.
      *     @type string $source_volume
      *           Volume full name of this backup belongs to.
+     *           Either source_volume or ontap_source should be provided.
      *           Format:
      *           `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
      *     @type string $source_snapshot
@@ -321,6 +323,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Volume full name of this backup belongs to.
+     * Either source_volume or ontap_source should be provided.
      * Format:
      * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
      *
@@ -334,6 +337,7 @@ class Backup extends \Google\Protobuf\Internal\Message
 
     /**
      * Volume full name of this backup belongs to.
+     * Either source_volume or ontap_source should be provided.
      * Format:
      * `projects/{projects_id}/locations/{location}/volumes/{volume_id}`
      *
