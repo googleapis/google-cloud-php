@@ -596,7 +596,7 @@ class BucketTest extends TestCase
     public function testRejectInvalidLeadingUnicodeValueInContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Object context value must start with an alphanumeric character.');
+        $this->expectExceptionMessage('Object context value must start with an alphanumeric.');
         $this->getBucket()->upload('test data', [
             'name' => 'test.txt',
             'contexts' => [
