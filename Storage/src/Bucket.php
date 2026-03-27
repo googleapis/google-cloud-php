@@ -361,6 +361,12 @@ class Bucket
                     $key
                 ));
             }
+            if (!is_scalar($data['value'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Context value for key "%s" must be a scalar type.',
+                    $key
+                ));
+            }
             $val = (string) $data['value'];
             if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
                 throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
