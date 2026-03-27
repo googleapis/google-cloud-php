@@ -651,7 +651,7 @@ class BucketTest extends TestCase
     /**
     * @dataProvider patchContextProvider
     */
-    public function testPatchContextScenarios($patchData, $expectedMatchFunc, $mockResponse)
+    public function testPatchObjectContext($patchData, $expectedMatchFunc, $mockResponse)
     {
         $objectName = 'patch-test.txt';
         $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
@@ -770,9 +770,8 @@ class BucketTest extends TestCase
     public function testGetMetadataIncludesContexts()
     {
         $objectName = 'metadata-test.txt';
-        $projectId = 'test-project';
         
-        $this->connection->projectId()->willReturn($projectId);
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
         $metadataResponse = [
             'name' => $objectName,
             'bucket' => self::BUCKET_NAME,
@@ -797,7 +796,7 @@ class BucketTest extends TestCase
         );
     }
 
-    public function testListObjectsWithContextsAndFiltering()
+    public function testListObjectsContextsWithFilter()
     {
         $prefix = 'folder/';
         $this->connection->projectId()->willReturn('test-project');
@@ -822,7 +821,7 @@ class BucketTest extends TestCase
                 $object->info()['contexts']['custom'][$expectedKey]['value']
             );
         }
-        $this->assertEquals(2, $count, 'Should have listed exactly 2 objects.');
+        $this->assertEquals(2, $count);
     }
 
     public function testIam()
