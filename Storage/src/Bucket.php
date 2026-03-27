@@ -345,7 +345,7 @@ class Bucket
 
         foreach ($contexts['custom'] as $key => $data) {
             if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
-                throw new \InvalidArgumentException('Object context key must start with an alphanumeric character.');
+                throw new \InvalidArgumentException('Object context key must start with an alphanumeric.');
             }
             if (strpos((string) $key, '"') !== false) {
                 throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
@@ -368,8 +368,7 @@ class Bucket
             $val = (string) $data['value'];
             if (!preg_match('/^[a-zA-Z0-9]/', $val) || preg_match('/[\/"]/', $val)) {
                 throw new \InvalidArgumentException(sprintf(
-                    'Context value "%s" for key "%s" is invalid. Values must start with an ' .
-                    'alphanumeric character and cannot contain forward slashes (/) or double quotes (").',
+                    'Object context value cannot contain forbidden characters.',
                     $val,
                     $key
                 ));
