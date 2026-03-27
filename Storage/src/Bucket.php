@@ -347,17 +347,32 @@ class Bucket
             if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
                 throw new \InvalidArgumentException('Object context key must start with an alphanumeric character.');
             }
-            if (strpos($key, '"') !== false) {
+            if (strpos((string) $key, '"') !== false) {
                 throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
             }
-            if (isset($data['value'])) {
-                $val = (string) $data['value'];
-                if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
-                    throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
-                }
-                if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
-                    throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');
-                }
+
+            if (!is_array($data)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Context data for key "%s" must be an array.',
+                    $key
+                ));
+            }
+
+            if (!isset($data['value'])) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Context for key "%s" must have a \'value\' property.',
+                    $key
+                ));
+            }
+
+            $val = (string) $data['value'];
+            if (!preg_match('/^[a-zA-Z0-9]/', $val) || preg_match('/[\/"]/', $val)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Context value "%s" for key "%s" is invalid. Values must start with an ' .
+                    'alphanumeric character and cannot contain forward slashes (/) or double quotes (").',
+                    $val,
+                    $key
+                ));
             }
         }
     }
