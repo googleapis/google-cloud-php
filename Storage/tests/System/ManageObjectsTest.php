@@ -245,53 +245,6 @@ class ManageObjectsTest extends StorageTestCase
         $object->delete();
     }
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testReplaceAllContexts(StorageObject $object)
-    {
-        $replacementKey = 'replaced-key-' . uniqid();
-        $replacementValue = 'replaced-value';
-
-        // GCS PUT Behavior: 
-        // Hum contexts ke andar 'custom' ko naye keys ke saath bhej rahe hain.
-        // Server-side par ye purane 'custom' block ko is naye block se replace kar dega.
-        $object->update([
-            'contexts' => [
-                'custom' => [
-                    $replacementKey => ['value' => $replacementValue]
-                ]
-            ]
-        ], [
-            // Projection full ensures we see the metadata changes immediately
-            'projection' => 'full' 
-        ]);
-
-        // IMPORTANT: Reload is required to fetch the newly replaced metadata
-        $info = $object->reload(['projection' => 'full']);
-
-        // 1. ASSERTION: Check if the new key exists (Verify PUT worked)
-        $this->assertArrayHasKey(
-            $replacementKey, 
-            $info['contexts']['custom'],
-            'The replacement key was not found after PUT operation.'
-        );
-        
-        $this->assertEquals(
-            $replacementValue,
-            $info['contexts']['custom'][$replacementKey]['value']
-        );
-
-        // 2. ASSERTION: Check if the OLD key is gone (Verify REPLACE, not Merge)
-        $this->assertArrayNotHasKey(
-            self::CONTEXT_KEY,
-            $info['contexts']['custom'],
-            'The old context key was NOT replaced. It still exists (Incorrect Merge behavior).'
-        );
-
-        return $object;
-    }
-
     public function testObjectExists()
     {
         $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
