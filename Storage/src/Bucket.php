@@ -342,8 +342,13 @@ class Bucket
         if (!is_array($contexts['custom'])) {
             throw new \InvalidArgumentException('Object contexts custom field must be an array.');
         }
-
         foreach ($contexts['custom'] as $key => $data) {
+            if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
+                throw new \InvalidArgumentException('Object context key must start with an alphanumeric.');
+            }
+            if (strpos((string) $key, '"') !== false) {
+                throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
+            }
             if (!is_array($data)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Context data for key "%s" must be an array.',
@@ -356,17 +361,12 @@ class Bucket
                     $key
                 ));
             }
-
             $val = (string) $data['value'];
             if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
-                throw new \InvalidArgumentException(
-                    'Object context value must start with an alphanumeric.'
-                );
+                throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
             }
             if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
-                throw new \InvalidArgumentException(
-                    'Object context value cannot contain forbidden characters.'
-                );
+                throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');
             }
         }
     }

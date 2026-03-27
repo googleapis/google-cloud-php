@@ -595,7 +595,7 @@ class BucketTest extends TestCase
     public function testRejectInvalidLeadingUnicodeValueInObjectContexts()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Object context value must start with an alphanumeric.');s
+        $this->expectExceptionMessage('Object context value must start with an alphanumeric.');
         $this->getBucket()->upload('test data', [
             'name' => 'test.txt',
             'contexts' => [
@@ -796,32 +796,57 @@ class BucketTest extends TestCase
         );
     }
 
-    public function testListObjectsContextsWithFilter()
+    /**
+     * @dataProvider contextFilterProvider
+     */
+    public function testListObjectsWithContextFilters($filter, $expectedItems)
     {
-        $prefix = 'folder/';
         $this->connection->projectId()->willReturn('test-project');
-        $this->connection->listObjects(Argument::withEntry('prefix', $prefix))
+        $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
             ->willReturn([
-                'items' => [
-                    ['name' => 'file1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]],
-                    ['name' => 'file2.txt', 'contexts' => ['custom' => ['k2' => ['value' => 'v2']]]]
-                ]
+                'items' => $expectedItems
             ]);
 
         $bucket = new Bucket($this->connection->reveal(), self::BUCKET_NAME);
-        $objects = $bucket->objects(['prefix' => $prefix]);
-        $count = 0;
-        foreach ($objects as $index => $object) {
-            $count++;
-            $expectedVal = 'v' . $count;
-            $expectedKey = 'k' . $count;
+        $objects = iterator_to_array($bucket->objects(['filter' => $filter]));
+
+        $this->assertCount(count($expectedItems), $objects);
+        if (count($objects) > 0 && isset($expectedItems[0]['contexts'])) {
             $this->assertEquals(
-                $expectedVal,
-                $object->info()['contexts']['custom'][$expectedKey]['value']
+                $expectedItems[0]['contexts']['custom'],
+                $objects[0]->info()['contexts']['custom']
             );
         }
-        $this->assertEquals(2, $count);
+    }
+
+    public function contextFilterProvider()
+    {
+        $unicodeKey = 'key-✨';
+        $unicodeVal = 'val-🚀';
+
+        return [
+            'Presence of key/value pair' => [
+                'contexts.custom.k1.value="v1"',
+                [['name' => 'f1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]]]
+            ],
+            'Absence of key/value pair' => [
+                '-contexts.custom.k1.value="v1"',
+                [['name' => 'f2.txt']]
+            ],
+            'Presence of key regardless of value' => [
+                'contexts.custom.k1:*',
+                [['name' => 'f1.txt']]
+            ],
+            'Absence of key regardless of value' => [
+                '-contexts.custom.k1',
+                []
+            ],
+            'Unicode key/value pair' => [
+                sprintf('contexts.custom.%s.value="%s"', $unicodeKey, $unicodeVal),
+                [['name' => 'unicode.txt', 'contexts' => ['custom' => [$unicodeKey => ['value' => $unicodeVal]]]]]
+            ]
+        ];
     }
 
     public function testIam()

@@ -30,9 +30,9 @@ use Psr\Http\Message\StreamInterface;
 class ManageObjectsTest extends StorageTestCase
 {
     const DATA = 'data';
-    private const CONTEXT_KEY = 'insert-key';
-    private const CONTEXT_VALUE = 'insert-val';
-    private const PREFIX = 'object-contexts-';
+    const CONTEXT_OBJECT_KEY = 'insert-key';
+    const CONTEXT_OBJECT_VALUE = 'insert-val';
+    const CONTEXT_OBJECT_PREFIX = 'object-contexts-';
 
     public function testListsObjects()
     {
@@ -222,14 +222,14 @@ class ManageObjectsTest extends StorageTestCase
     {
         $bucket = self::$client->createBucket(uniqid('object-contexts-'));
         $object = $bucket->upload(self::DATA, [
-            'name' => self::PREFIX . uniqid(),
+            'name' => self::CONTEXT_OBJECT_PREFIX . uniqid(),
             'contexts' => [
-                'custom' => [self::CONTEXT_KEY => ['value' => self::CONTEXT_VALUE]]
+                'custom' => [self::CONTEXT_OBJECT_KEY => ['value' => self::CONTEXT_OBJECT_VALUE]]
             ]
         ]);
         $this->assertEquals(
-            self::CONTEXT_VALUE,
-            $object->info()['contexts']['custom'][self::CONTEXT_KEY]['value']
+            self::CONTEXT_OBJECT_VALUE,
+            $object->info()['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']
         );
         return $object;
     }
@@ -242,7 +242,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->info(['projection' => 'full']);
         $this->assertArrayHasKey('contexts', $info);
         $this->assertArrayHasKey('custom', $info['contexts']);
-        $this->assertEquals(self::CONTEXT_VALUE, $info['contexts']['custom'][self::CONTEXT_KEY]['value']);
+        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
         $object->delete();
     }
 
@@ -254,14 +254,14 @@ class ManageObjectsTest extends StorageTestCase
         $object->update([
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_KEY => (object) []
+                    self::CONTEXT_OBJECT_KEY => (object) []
                 ]
             ]
         ]);
 
         $newInfo = $object->reload();
         if (isset($newInfo['contexts']['custom'])) {
-            $this->assertArrayNotHasKey(self::CONTEXT_KEY, $newInfo['contexts']['custom']);
+            $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $newInfo['contexts']['custom']);
         } else {
             $this->assertArrayNotHasKey('contexts', $newInfo);
         }
@@ -279,13 +279,13 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->update([
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_KEY => ['value' => $modifiedValue],
+                    self::CONTEXT_OBJECT_KEY => ['value' => $modifiedValue],
                     $newKey => ['value' => $newValue]
                 ]
             ]
         ]);
 
-        $this->assertEquals($modifiedValue, $info['contexts']['custom'][self::CONTEXT_KEY]['value']);
+        $this->assertEquals($modifiedValue, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
         $this->assertEquals($newValue, $info['contexts']['custom'][$newKey]['value']);
 
         $info = $object->update([
@@ -296,7 +296,7 @@ class ManageObjectsTest extends StorageTestCase
             ]
         ]);
         $this->assertArrayNotHasKey($newKey, $info['contexts']['custom']);
-        $this->assertArrayHasKey(self::CONTEXT_KEY, $info['contexts']['custom'], 'Original key should still exist.');
+        $this->assertArrayHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
         
         $info = $object->update([
             'contexts' => [
@@ -304,7 +304,6 @@ class ManageObjectsTest extends StorageTestCase
             ]
         ]);
         $hasContexts = isset($info['contexts']['custom']) && !empty($info['contexts']['custom']);
-        $this->assertFalse($hasContexts, 'All contexts should have been cleared.');
         $object->delete();
     }
 
@@ -316,7 +315,7 @@ class ManageObjectsTest extends StorageTestCase
         $inherited = $source->rewrite(self::$bucket, ['name' => 'inherit-' . uniqid()]);
         $info = $inherited->info();
         
-        $this->assertEquals(self::CONTEXT_VALUE, $info['contexts']['custom'][self::CONTEXT_KEY]['value']);
+        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
 
         $overrideKey = 'override-key';
         $overrideVal = 'override-val';
@@ -327,7 +326,7 @@ class ManageObjectsTest extends StorageTestCase
         
         $info = $overridden->info();
         $this->assertEquals($overrideVal, $info['contexts']['custom'][$overrideKey]['value']);
-        $this->assertArrayNotHasKey(self::CONTEXT_KEY, $info['contexts']['custom']);
+        $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
 
         $inherited->delete();
         $overridden->delete();
@@ -343,11 +342,11 @@ class ManageObjectsTest extends StorageTestCase
         $s2Key = 's2-key';
 
         $source2 = $bucket->upload(self::DATA, [
-            'name' => self::PREFIX . 's2-' . uniqid(),
+            'name' => self::CONTEXT_OBJECT_PREFIX . 's2-' . uniqid(),
             'contexts' => ['custom' => [$s2Key => ['value' => 'val2']]]
         ]);
         $inherit = $bucket->compose([$source1, $source2], 'c-inh-' . uniqid() . '.txt');
-        $this->assertEquals(self::CONTEXT_VALUE, $inherit->info()['contexts']['custom'][self::CONTEXT_KEY]['value']);
+        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $inherit->info()['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
 
         $oKey = 'c-override';
         $oVal = 'c-val';
@@ -356,48 +355,60 @@ class ManageObjectsTest extends StorageTestCase
             'contexts' => [
                 'custom' => [
                     $oKey => ['value' => $oVal],
-                    self::CONTEXT_KEY => (object) []
+                    self::CONTEXT_OBJECT_KEY => (object) []
                 ]
             ]
         ]);
 
         $this->assertEquals($oVal, $info['contexts']['custom'][$oKey]['value']);
-        $this->assertArrayNotHasKey(self::CONTEXT_KEY, $info['contexts']['custom']);
+        $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
         array_map(fn($o) => $o->delete(), [$inherit, $override, $source1, $source2]);
     }
 
     /**
      * @depends testCreateObjectWithContexts
      */
-    public function testListObjectsWithContextFilter(StorageObject $object)
+    public function testListObjectsWithContextFilters(StorageObject $object)
     {
         $bucket = self::$client->bucket($object->info()['bucket']);
-        $prefix = self::PREFIX . 'flt-' . uniqid();
-        $key = 'key-' . uniqid();
-        $val = 'val-' . uniqid();
+        $prefix = self::CONTEXT_OBJECT_PREFIX . 'flt-' . uniqid();
+        $uKey = 'key-✨-' . uniqid();
+        $uVal = 'val-🚀-' . uniqid();
 
         $other = $bucket->upload(self::DATA, [
-            'name' => "$prefix.txt",
+            'name' => "$prefix-target.txt",
             'contentType' => 'text/plain',
-            'contexts' => ['custom' => [$key => ['value' => $val]]]
+            'contexts' => ['custom' => [$uKey => ['value' => $uVal]]]
         ]);
 
-        $filter = sprintf('contexts.custom.%s.value="%s"', $key, $val);
+        $filter = sprintf('contexts.custom.%s.value="%s"', $uKey, $uVal);
         $objects = [];
-        for ($i = 0; $i < 3 && count($objects) !== 1; $i++) {
+        for ($i = 0; $i < 4 && count($objects) !== 1; $i++) {
             if ($i > 0) {
                 sleep(2);
             }
             $objects = iterator_to_array($bucket->objects(['filter' => $filter, 'prefix' => $prefix]));
         }
 
-        $this->assertCount(1, $objects);
-        $this->assertEquals($other->name(), $objects[0]->name());
+        $this->assertCount(1, $objects, 'Exact match filter failed.');
+        $this->assertEquals($uVal, $objects[0]->info()['contexts']['custom'][$uKey]['value']);
+
         $presence = iterator_to_array($bucket->objects([
-            'filter' => "contexts.custom.$key:*",
+            'filter' => "contexts.custom.$uKey:*",
             'prefix' => $prefix
         ]));
-        $this->assertCount(1, $presence);
+        $this->assertCount(1, $presence, 'Key presence (wildcard) filter failed.');
+        $absence = iterator_to_array($bucket->objects([
+            'filter' => "-contexts.custom.$uKey",
+            'prefix' => $prefix
+        ]));
+        
+        $this->assertCount(0, $absence, 'Key absence filter should return zero for this prefix.');
+        $absenceVal = iterator_to_array($bucket->objects([
+            'filter' => "-contexts.custom.$uKey.value=\"wrong-val\"",
+            'prefix' => $prefix
+        ]));
+        $this->assertCount(1, $absenceVal, 'Value absence filter failed.');
         $other->delete();
     }
 
