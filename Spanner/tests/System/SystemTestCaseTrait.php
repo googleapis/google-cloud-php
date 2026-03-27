@@ -69,7 +69,7 @@ trait SystemTestCaseTrait
         ];
         $clientConfig = [
             'keyFilePath' => $keyFilePath,
-            'disableBuiltInMetrics' => false,
+            'disableBuiltInMetrics' => true,
         ];
 
         $serviceAddress = getenv('SPANNER_SERVICE_ADDRESS');
