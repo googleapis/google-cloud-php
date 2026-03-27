@@ -346,9 +346,8 @@ class ManageObjectsTest extends StorageTestCase
             'contexts' => ['custom' => [$s2Key => ['value' => 'val2']]]
         ]);
         $inherit = $bucket->compose([$source1, $source2], 'c-inh-' . uniqid() . '.txt');
-        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, 
-            $inherit->info()['contexts']['custom']
-            [self::CONTEXT_OBJECT_KEY]['value']);
+        $custom = $inherit->info()['contexts']['custom'];
+        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $custom[self::CONTEXT_OBJECT_KEY]['value']);
 
         $oKey = 'c-override';
         $oVal = 'c-val';
