@@ -21,6 +21,13 @@ class TtlConfigDelta extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.FieldOperationMetadata.TtlConfigDelta.ChangeType change_type = 1;</code>
      */
     private $change_type = 0;
+    /**
+     * The offset, relative to the timestamp value in the TTL-enabled field,
+     * used determine the document's expiration time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3;</code>
+     */
+    private $expiration_offset = null;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class TtlConfigDelta extends \Google\Protobuf\Internal\Message
      *
      *     @type int $change_type
      *           Specifies how the TTL configuration is changing.
+     *     @type \Google\Protobuf\Duration $expiration_offset
+     *           The offset, relative to the timestamp value in the TTL-enabled field,
+     *           used determine the document's expiration time.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +69,44 @@ class TtlConfigDelta extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\TtlConfigDelta\ChangeType::class);
         $this->change_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The offset, relative to the timestamp value in the TTL-enabled field,
+     * used determine the document's expiration time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getExpirationOffset()
+    {
+        return $this->expiration_offset;
+    }
+
+    public function hasExpirationOffset()
+    {
+        return isset($this->expiration_offset);
+    }
+
+    public function clearExpirationOffset()
+    {
+        unset($this->expiration_offset);
+    }
+
+    /**
+     * The offset, relative to the timestamp value in the TTL-enabled field,
+     * used determine the document's expiration time.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setExpirationOffset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->expiration_offset = $var;
 
         return $this;
     }
