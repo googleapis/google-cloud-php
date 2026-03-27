@@ -287,7 +287,6 @@ class ManageObjectsTest extends StorageTestCase
 
         $this->assertEquals($modifiedValue, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
         $this->assertEquals($newValue, $info['contexts']['custom'][$newKey]['value']);
-
         $info = $object->update([
             'contexts' => [
                 'custom' => [
@@ -297,13 +296,11 @@ class ManageObjectsTest extends StorageTestCase
         ]);
         $this->assertArrayNotHasKey($newKey, $info['contexts']['custom']);
         $this->assertArrayHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
-        
         $info = $object->update([
             'contexts' => [
                 'custom' => (object) []
             ]
         ]);
-        $hasContexts = isset($info['contexts']['custom']) && !empty($info['contexts']['custom']);
         $object->delete();
     }
 
@@ -316,7 +313,6 @@ class ManageObjectsTest extends StorageTestCase
         $info = $inherited->info();
         
         $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
-
         $overrideKey = 'override-key';
         $overrideVal = 'override-val';
         $overridden = $source->rewrite(self::$bucket, [
@@ -327,10 +323,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $overridden->info();
         $this->assertEquals($overrideVal, $info['contexts']['custom'][$overrideKey]['value']);
         $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
-
-        $inherited->delete();
-        $overridden->delete();
-        $source->delete();
+        array_map(fn($o) => $o->delete(), [$inherited, $overridden, $source]);
     }
 
     /**
@@ -340,7 +333,6 @@ class ManageObjectsTest extends StorageTestCase
     {
         $bucket = self::$client->bucket($source1->info()['bucket']);
         $s2Key = 's2-key';
-
         $source2 = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . 's2-' . uniqid(),
             'contexts' => ['custom' => [$s2Key => ['value' => 'val2']]]
@@ -390,26 +382,24 @@ class ManageObjectsTest extends StorageTestCase
             }
             $objects = iterator_to_array($bucket->objects(['filter' => $filter, 'prefix' => $prefix]));
         }
-
-        $this->assertCount(1, $objects, 'Exact match filter failed.');
+        $this->assertCount(1, $objects);
         $this->assertEquals($uVal, $objects[0]->info()['contexts']['custom'][$uKey]['value']);
-
         $presence = iterator_to_array($bucket->objects([
             'filter' => "contexts.custom.$uKey:*",
             'prefix' => $prefix
         ]));
-        $this->assertCount(1, $presence, 'Key presence (wildcard) filter failed.');
+        $this->assertCount(1, $presence);
         $absence = iterator_to_array($bucket->objects([
             'filter' => "-contexts.custom.$uKey",
             'prefix' => $prefix
         ]));
         
-        $this->assertCount(0, $absence, 'Key absence filter should return zero for this prefix.');
+        $this->assertCount(0, $absence);
         $absenceVal = iterator_to_array($bucket->objects([
             'filter' => "-contexts.custom.$uKey.value=\"wrong-val\"",
             'prefix' => $prefix
         ]));
-        $this->assertCount(1, $absenceVal, 'Value absence filter failed.');
+        $this->assertCount(1, $absenceVal);
         $other->delete();
     }
 

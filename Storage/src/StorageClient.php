@@ -464,18 +464,6 @@ class StorageClient
      *           period for objects in seconds. During the retention period an
      *           object cannot be overwritten or deleted. Retention period must
      *           be greater than zero and less than 100 years.
-     *     @type array $contexts User-defined or system-defined object contexts.
-     *           Each object context is a key-payload pair, where the key provides the
-     *           identification and the payload holds the associated value and additional metadata.
-     *     @type array $contexts.custom Custom user-defined contexts. Keys must start
-     *           with an alphanumeric character and cannot contain double quotes (`"`).
-     *     @type string $contexts.custom.{key}.value The value associated with the context.
-     *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
-     *           or forward slashes (`/`).
-     *     @type string $contexts.custom.{key}.createTime The time the context
-     *           was created in RFC 3339 format. **(read only)**
-     *     @type string $contexts.custom.{key}.updateTime The time the context
-     *           was last updated in RFC 3339 format. **(read only)**
      *     @type array $iamConfiguration The bucket's IAM configuration.
      *     @type bool $iamConfiguration.bucketPolicyOnly.enabled this is an alias
      *           for $iamConfiguration.uniformBucketLevelAccess.
