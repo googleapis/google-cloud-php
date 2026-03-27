@@ -12,11 +12,12 @@ use Google\Protobuf\RepeatedField;
  * An object representing a short code, which is a phone number that is
  * typically much shorter than regular phone numbers and can be used to
  * address messages in MMS and SMS systems, as well as for abbreviated dialing
- * (e.g. "Text 611 to see how many minutes you have remaining on your plan.").
+ * (For example "Text 611 to see how many minutes you have remaining on your
+ * plan.").
  * Short codes are restricted to a region and are not internationally
  * dialable, which means the same short code can exist in different regions,
  * with different usage and pricing, even if those regions share the same
- * country calling code (e.g. US and CA).
+ * country calling code (For example: US and CA).
  *
  * Generated from protobuf message <code>google.type.PhoneNumber.ShortCode</code>
  */
@@ -33,7 +34,7 @@ class ShortCode extends \Google\Protobuf\Internal\Message
     protected $region_code = '';
     /**
      * Required. The short code digits, without a leading plus ('+') or country
-     * calling code, e.g. "611".
+     * calling code. For example "611".
      *
      * Generated from protobuf field <code>string number = 2;</code>
      */
@@ -52,7 +53,7 @@ class ShortCode extends \Google\Protobuf\Internal\Message
      *            - http://www.unicode.org/reports/tr35/#unicode_region_subtag
      *     @type string $number
      *           Required. The short code digits, without a leading plus ('+') or country
-     *           calling code, e.g. "611".
+     *           calling code. For example "611".
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +95,7 @@ class ShortCode extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The short code digits, without a leading plus ('+') or country
-     * calling code, e.g. "611".
+     * calling code. For example "611".
      *
      * Generated from protobuf field <code>string number = 2;</code>
      * @return string
@@ -106,7 +107,7 @@ class ShortCode extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The short code digits, without a leading plus ('+') or country
-     * calling code, e.g. "611".
+     * calling code. For example "611".
      *
      * Generated from protobuf field <code>string number = 2;</code>
      * @param string $var

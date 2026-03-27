@@ -11,9 +11,9 @@ use Google\Protobuf\RepeatedField;
 /**
  * An object that represents a latitude/longitude pair. This is expressed as a
  * pair of doubles to represent degrees latitude and degrees longitude. Unless
- * specified otherwise, this must conform to the
- * <a href="http://www.unoosa.org/pdf/icg/2012/template/WGS_84.pdf">WGS84
- * standard</a>. Values must be within normalized ranges.
+ * specified otherwise, this object must conform to the
+ * <a href="https://en.wikipedia.org/wiki/World_Geodetic_System#1984_version">
+ * WGS84 standard</a>. Values must be within normalized ranges.
  *
  * Generated from protobuf message <code>google.type.LatLng</code>
  */
