@@ -344,20 +344,12 @@ class Bucket
         }
 
         foreach ($contexts['custom'] as $key => $data) {
-            if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
-                throw new \InvalidArgumentException('Object context key must start with an alphanumeric.');
-            }
-            if (strpos((string) $key, '"') !== false) {
-                throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
-            }
-
             if (!is_array($data)) {
                 throw new \InvalidArgumentException(sprintf(
                     'Context data for key "%s" must be an array.',
                     $key
                 ));
             }
-
             if (!isset($data['value'])) {
                 throw new \InvalidArgumentException(sprintf(
                     'Context for key "%s" must have a \'value\' property.',
@@ -366,12 +358,15 @@ class Bucket
             }
 
             $val = (string) $data['value'];
-            if (!preg_match('/^[a-zA-Z0-9]/', $val) || preg_match('/[\/"]/', $val)) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Object context value cannot contain forbidden characters.',
-                    $val,
-                    $key
-                ));
+            if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
+                throw new \InvalidArgumentException(
+                    'Object context value must start with an alphanumeric.'
+                );
+            }
+            if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
+                throw new \InvalidArgumentException(
+                    'Object context value cannot contain forbidden characters.'
+                );
             }
         }
     }
