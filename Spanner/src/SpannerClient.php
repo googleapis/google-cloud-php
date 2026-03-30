@@ -54,7 +54,7 @@ use OpenTelemetry\SDK\Metrics\MeterProvider;
 use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\Message\StreamInterface;
-use Ramsey\Uuid\Uuid as UUID;
+use Ramsey\Uuid\Uuid as RUUID;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -1046,7 +1046,7 @@ class SpannerClient
         }
 
         $metricsClient = new MetricServiceClient();
-        $metricsClientId = UUID::uuid4()->toString() . '-' . getmypid();
+        $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
         $exporter = new BuiltInMetricsExporter($metricsClient, $this->projectId, $metricsClientId);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()

@@ -76,7 +76,7 @@ class BuiltInMetricsExporterTest extends TestCase
 
         $scope = new InstrumentationScope('google-cloud-spanner', '1.0.0', null, Attributes::create([]));
         $resource = ResourceInfo::create(Attributes::create(['service.name' => 'spanner']));
-        
+
         $attributes = Attributes::create([
             'method' => 'ExecuteSql',
             'status' => 'OK',
@@ -98,14 +98,14 @@ class BuiltInMetricsExporterTest extends TestCase
             if (!$request instanceof CreateTimeSeriesRequest) {
                 return false;
             }
-            
+
             $projectName = MetricServiceClient::projectName(self::PROJECT_ID);
             if ($request->getName() !== $projectName) {
                 return false;
             }
 
             $timeSeries = $request->getTimeSeries()[0];
-            
+
             // Verify Metric Type
             $expectedMetric = 'spanner.googleapis.com/internal/client/attempt_count';
             if ($timeSeries->getMetric()->getType() !== $expectedMetric) {
@@ -114,7 +114,7 @@ class BuiltInMetricsExporterTest extends TestCase
 
             // Verify Labels
             $labels = $timeSeries->getMetric()->getLabels();
-            if ($labels['method'] !== 'ExecuteSql' || 
+            if ($labels['method'] !== 'ExecuteSql' ||
                 $labels['status'] !== 'OK' ||
                 $labels['database'] !== 'my-db') {
                 return false;
@@ -125,7 +125,7 @@ class BuiltInMetricsExporterTest extends TestCase
             if ($resLabels['instance_id'] !== 'my-instance') {
                 return false;
             }
-            
+
             // Verify Client Hash
             if ($resLabels['client_hash'] !== '000369') {
                 return false;
