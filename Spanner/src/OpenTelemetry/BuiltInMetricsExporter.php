@@ -172,8 +172,10 @@ class BuiltInMetricsExporter implements PushMetricExporterInterface, Aggregation
         $metricType = $this->formatMetricName($otelMetric->name);
 
         $data = $otelMetric->data;
-        foreach ($data->dataPoints as $point) {
-            $timeSeriesList[] = $this->createTimeSeries($metricType, $point, $otelMetric->unit, $data);
+        if ($data instanceof Sum || $data instanceof Histogram) {
+            foreach ($data->dataPoints as $point) {
+                $timeSeriesList[] = $this->createTimeSeries($metricType, $point, $otelMetric->unit, $data);
+            }
         }
 
         return $timeSeriesList;

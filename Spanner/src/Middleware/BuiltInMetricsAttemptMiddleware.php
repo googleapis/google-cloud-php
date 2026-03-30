@@ -167,7 +167,7 @@ class BuiltInMetricsAttemptMiddleware implements MiddlewareInterface
      *
      * @param array $options The options being used for the middleware layer to communicate amongst middlewares
      * @param float $startTime The start time of the RPC attempt
-     * @param string $code The resulting code of the attempt
+     * @param int $code The resulting code of the attempt
      * @param string $method The RPC method name that is being called
      *
      * @return void
