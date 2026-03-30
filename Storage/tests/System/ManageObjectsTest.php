@@ -323,7 +323,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $overridden->info();
         $this->assertEquals($overrideVal, $info['contexts']['custom'][$overrideKey]['value']);
         $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
-        array_map(fn($o) => $o->delete(), [$inherited, $overridden, $source]);
+        $source->delete();
     }
 
     /**
@@ -355,7 +355,7 @@ class ManageObjectsTest extends StorageTestCase
 
         $this->assertEquals($oVal, $info['contexts']['custom'][$oKey]['value']);
         $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
-        array_map(fn($o) => $o->delete(), [$inherit, $override, $source1, $source2]);
+        $source1->delete();
     }
 
     /**
