@@ -344,6 +344,23 @@ final class BigtableTableAdminClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName(string $project, string $location): string
+    {
+        return self::getPathTemplate('location')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * schema_bundle resource.
      *
@@ -413,6 +430,7 @@ final class BigtableTableAdminClient
      * - cluster: projects/{project}/instances/{instance}/clusters/{cluster}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - instance: projects/{project}/instances/{instance}
+     * - location: projects/{project}/locations/{location}
      * - schemaBundle: projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}
      * - snapshot: projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}
      * - table: projects/{project}/instances/{instance}/tables/{table}

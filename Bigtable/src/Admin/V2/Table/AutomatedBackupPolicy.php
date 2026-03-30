@@ -16,19 +16,29 @@ use Google\Protobuf\RepeatedField;
 class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. How long the automated backups should be retained. The only
-     * supported value at this time is 3 days.
+     * Required. How long the automated backups should be retained. Values must
+     * be at least 3 days and at most 90 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_period = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $retention_period = null;
     /**
-     * Required. How frequently automated backups should occur. The only
-     * supported value at this time is 24 hours.
+     * How frequently automated backups should occur. The only supported value
+     * at this time is 24 hours. An undefined frequency is treated as 24 hours.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2;</code>
      */
     protected $frequency = null;
+    /**
+     * Optional. A list of Cloud Bigtable zones where automated backups are
+     * allowed to be created. If empty, automated backups will be created in all
+     * zones of the instance. Locations are in the format
+     * `projects/{project}/locations/{zone}`.
+     * This field can only set for tables in Enterprise Plus instances.
+     *
+     * Generated from protobuf field <code>repeated string locations = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $locations;
 
     /**
      * Constructor.
@@ -37,11 +47,17 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Duration $retention_period
-     *           Required. How long the automated backups should be retained. The only
-     *           supported value at this time is 3 days.
+     *           Required. How long the automated backups should be retained. Values must
+     *           be at least 3 days and at most 90 days.
      *     @type \Google\Protobuf\Duration $frequency
-     *           Required. How frequently automated backups should occur. The only
-     *           supported value at this time is 24 hours.
+     *           How frequently automated backups should occur. The only supported value
+     *           at this time is 24 hours. An undefined frequency is treated as 24 hours.
+     *     @type string[] $locations
+     *           Optional. A list of Cloud Bigtable zones where automated backups are
+     *           allowed to be created. If empty, automated backups will be created in all
+     *           zones of the instance. Locations are in the format
+     *           `projects/{project}/locations/{zone}`.
+     *           This field can only set for tables in Enterprise Plus instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,8 +66,8 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How long the automated backups should be retained. The only
-     * supported value at this time is 3 days.
+     * Required. How long the automated backups should be retained. Values must
+     * be at least 3 days and at most 90 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_period = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Duration|null
@@ -72,8 +88,8 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How long the automated backups should be retained. The only
-     * supported value at this time is 3 days.
+     * Required. How long the automated backups should be retained. Values must
+     * be at least 3 days and at most 90 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration retention_period = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\Duration $var
@@ -88,10 +104,10 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How frequently automated backups should occur. The only
-     * supported value at this time is 24 hours.
+     * How frequently automated backups should occur. The only supported value
+     * at this time is 24 hours. An undefined frequency is treated as 24 hours.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2;</code>
      * @return \Google\Protobuf\Duration|null
      */
     public function getFrequency()
@@ -110,10 +126,10 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. How frequently automated backups should occur. The only
-     * supported value at this time is 24 hours.
+     * How frequently automated backups should occur. The only supported value
+     * at this time is 24 hours. An undefined frequency is treated as 24 hours.
      *
-     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.Duration frequency = 2;</code>
      * @param \Google\Protobuf\Duration $var
      * @return $this
      */
@@ -121,6 +137,40 @@ class AutomatedBackupPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->frequency = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. A list of Cloud Bigtable zones where automated backups are
+     * allowed to be created. If empty, automated backups will be created in all
+     * zones of the instance. Locations are in the format
+     * `projects/{project}/locations/{zone}`.
+     * This field can only set for tables in Enterprise Plus instances.
+     *
+     * Generated from protobuf field <code>repeated string locations = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return RepeatedField<string>
+     */
+    public function getLocations()
+    {
+        return $this->locations;
+    }
+
+    /**
+     * Optional. A list of Cloud Bigtable zones where automated backups are
+     * allowed to be created. If empty, automated backups will be created in all
+     * zones of the instance. Locations are in the format
+     * `projects/{project}/locations/{zone}`.
+     * This field can only set for tables in Enterprise Plus instances.
+     *
+     * Generated from protobuf field <code>repeated string locations = 3 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setLocations($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->locations = $arr;
 
         return $this;
     }
