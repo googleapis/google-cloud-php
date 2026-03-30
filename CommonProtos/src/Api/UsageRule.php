@@ -10,23 +10,6 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Usage configuration rules for the service.
- * NOTE: Under development.
- * Use this rule to configure unregistered calls for the service. Unregistered
- * calls are calls that do not contain consumer project identity.
- * (Example: calls that do not contain an API key).
- * By default, API methods do not allow unregistered calls, and each method call
- * must be identified by a consumer project identity. Use this rule to
- * allow/disallow unregistered calls.
- * Example of an API that wants to allow unregistered calls for entire service.
- *     usage:
- *       rules:
- *       - selector: "*"
- *         allow_unregistered_calls: true
- * Example of a method that wants to allow unregistered calls.
- *     usage:
- *       rules:
- *       - selector: "google.example.library.v1.LibraryService.CreateBook"
- *         allow_unregistered_calls: true
  *
  * Generated from protobuf message <code>google.api.UsageRule</code>
  */
@@ -42,8 +25,11 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      */
     protected $selector = '';
     /**
-     * If true, the selected method allows unregistered calls, e.g. calls
-     * that don't identify any user or application.
+     * Use this rule to configure unregistered calls for the service. Unregistered
+     * calls are calls that do not contain consumer project identity.
+     * (Example: calls that do not contain an API key).
+     * WARNING: By default, API methods do not allow unregistered calls, and each
+     * method call must be identified by a consumer project identity.
      *
      * Generated from protobuf field <code>bool allow_unregistered_calls = 2;</code>
      */
@@ -70,8 +56,11 @@ class UsageRule extends \Google\Protobuf\Internal\Message
      *           Refer to [selector][google.api.DocumentationRule.selector] for syntax
      *           details.
      *     @type bool $allow_unregistered_calls
-     *           If true, the selected method allows unregistered calls, e.g. calls
-     *           that don't identify any user or application.
+     *           Use this rule to configure unregistered calls for the service. Unregistered
+     *           calls are calls that do not contain consumer project identity.
+     *           (Example: calls that do not contain an API key).
+     *           WARNING: By default, API methods do not allow unregistered calls, and each
+     *           method call must be identified by a consumer project identity.
      *     @type bool $skip_service_control
      *           If true, the selected method should skip service control and the control
      *           plane features, such as quota and billing, will not be available.
@@ -117,8 +106,11 @@ class UsageRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the selected method allows unregistered calls, e.g. calls
-     * that don't identify any user or application.
+     * Use this rule to configure unregistered calls for the service. Unregistered
+     * calls are calls that do not contain consumer project identity.
+     * (Example: calls that do not contain an API key).
+     * WARNING: By default, API methods do not allow unregistered calls, and each
+     * method call must be identified by a consumer project identity.
      *
      * Generated from protobuf field <code>bool allow_unregistered_calls = 2;</code>
      * @return bool
@@ -129,8 +121,11 @@ class UsageRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If true, the selected method allows unregistered calls, e.g. calls
-     * that don't identify any user or application.
+     * Use this rule to configure unregistered calls for the service. Unregistered
+     * calls are calls that do not contain consumer project identity.
+     * (Example: calls that do not contain an API key).
+     * WARNING: By default, API methods do not allow unregistered calls, and each
+     * method call must be identified by a consumer project identity.
      *
      * Generated from protobuf field <code>bool allow_unregistered_calls = 2;</code>
      * @param bool $var

@@ -177,8 +177,7 @@ class Service extends \Google\Protobuf\Internal\Message
     private $metrics;
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and
-     * [Service.logging][google.api.Service.logging] configurations.
+     * by the `Service.monitoring` and `Service.logging` configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      */
@@ -298,8 +297,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Defines the metrics used by this service.
      *     @type \Google\Api\MonitoredResourceDescriptor[] $monitored_resources
      *           Defines the monitored resources used by this service. This is required
-     *           by the [Service.monitoring][google.api.Service.monitoring] and
-     *           [Service.logging][google.api.Service.logging] configurations.
+     *           by the `Service.monitoring` and `Service.logging` configurations.
      *     @type \Google\Api\Billing $billing
      *           Billing configuration.
      *     @type \Google\Api\Logging $logging
@@ -923,8 +921,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and
-     * [Service.logging][google.api.Service.logging] configurations.
+     * by the `Service.monitoring` and `Service.logging` configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @return RepeatedField<\Google\Api\MonitoredResourceDescriptor>
@@ -936,8 +933,7 @@ class Service extends \Google\Protobuf\Internal\Message
 
     /**
      * Defines the monitored resources used by this service. This is required
-     * by the [Service.monitoring][google.api.Service.monitoring] and
-     * [Service.logging][google.api.Service.logging] configurations.
+     * by the `Service.monitoring` and `Service.logging` configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
      * @param \Google\Api\MonitoredResourceDescriptor[] $var
