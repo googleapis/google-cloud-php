@@ -627,6 +627,19 @@ class ErrorReason
      * Generated from protobuf enum <code>MEMBERSHIP_DURATION_TOO_LONG = 99;</code>
      */
     const MEMBERSHIP_DURATION_TOO_LONG = 99;
+    /**
+     * The `merchant_id` field is not valid.
+     *
+     * Generated from protobuf enum <code>INVALID_MERCHANT_ID = 100;</code>
+     */
+    const INVALID_MERCHANT_ID = 100;
+    /**
+     * The customer contains non-exempt campaigns without the EU political
+     * advertising declaration.
+     *
+     * Generated from protobuf enum <code>EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED = 101;</code>
+     */
+    const EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED = 101;
 
     private static $valueToName = [
         self::ERROR_REASON_UNSPECIFIED => 'ERROR_REASON_UNSPECIFIED',
@@ -729,6 +742,8 @@ class ErrorReason
         self::UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE => 'UNSUPPORTED_ACCOUNT_TYPES_FOR_USER_LIST_TYPE',
         self::UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK => 'UNSUPPORTED_ACCOUNT_TYPE_FOR_PARTNER_LINK',
         self::MEMBERSHIP_DURATION_TOO_LONG => 'MEMBERSHIP_DURATION_TOO_LONG',
+        self::INVALID_MERCHANT_ID => 'INVALID_MERCHANT_ID',
+        self::EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED => 'EU_POLITICAL_ADVERTISING_DECLARATION_REQUIRED',
     ];
 
     public static function name($value)
