@@ -67,6 +67,8 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec $source_code_spec
      *           Deploy from source code files with a defined entrypoint.
+     *     @type \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\ContainerSpec $container_spec
+     *           Deploy from a container image with a defined entrypoint and commands.
      *     @type string $service_account
      *           Optional. The service account that the Reasoning Engine artifact runs as.
      *           It should have "roles/storage.objectViewer" for reading the user project's
@@ -123,6 +125,37 @@ class ReasoningEngineSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\SourceCodeSpec::class);
         $this->writeOneof(11, $var);
+
+        return $this;
+    }
+
+    /**
+     * Deploy from a container image with a defined entrypoint and commands.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.ContainerSpec container_spec = 15;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\ContainerSpec|null
+     */
+    public function getContainerSpec()
+    {
+        return $this->readOneof(15);
+    }
+
+    public function hasContainerSpec()
+    {
+        return $this->hasOneof(15);
+    }
+
+    /**
+     * Deploy from a container image with a defined entrypoint and commands.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ReasoningEngineSpec.ContainerSpec container_spec = 15;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\ContainerSpec $var
+     * @return $this
+     */
+    public function setContainerSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ReasoningEngineSpec\ContainerSpec::class);
+        $this->writeOneof(15, $var);
 
         return $this;
     }
