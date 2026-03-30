@@ -54,6 +54,7 @@ class BucketTest extends TestCase
     const BUCKET_NAME = 'my-bucket';
     const PROJECT_ID = 'my-project';
     const NOTIFICATION_ID = '1234';
+    const FILE_NAME_TEST = 'test.txt';
     private $connection;
     private $resumableUploader;
     private $multipartUploader;
@@ -587,7 +588,7 @@ class BucketTest extends TestCase
         ];
 
         $this->getBucket()->upload('data', [
-            'name' => 'test.txt',
+            'name' => self::FILE_NAME_TEST,
             'contexts' => $invalidContexts
         ]);
     }
@@ -597,7 +598,7 @@ class BucketTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Object context value must start with an alphanumeric.');
         $this->getBucket()->upload('test data', [
-            'name' => 'test.txt',
+            'name' => self::FILE_NAME_TEST,
             'contexts' => [
                 'custom' => [
                     'my-custom-key' => ['value' => '✨-sparkle']
@@ -617,13 +618,13 @@ class BucketTest extends TestCase
             }
             return isset($args['contexts']) && $args['contexts'] === $expectedInApi;
         }))->shouldBeCalled()->willReturn([
-            'name' => 'test.txt',
+            'name' => self::FILE_NAME_TEST,
             'contexts' => $expectedInApi
         ]);
 
         $object = new StorageObject(
             $this->connection->reveal(),
-            'test.txt',
+            self::FILE_NAME_TEST,
             '',
             1,
             ['bucket' => self::BUCKET_NAME]
@@ -653,7 +654,7 @@ class BucketTest extends TestCase
     */
     public function testPatchObjectContext($patchData, $expectedMatchFunc, $mockResponse)
     {
-        $objectName = 'patch-test.txt';
+        $objectName = 'patch-'.self::FILE_NAME_TEST;
         $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
         $this->connection->patchObject(Argument::that($expectedMatchFunc))
             ->shouldBeCalledTimes(1)
@@ -769,7 +770,7 @@ class BucketTest extends TestCase
 
     public function testGetMetadataIncludesContexts()
     {
-        $objectName = 'metadata-test.txt';
+        $objectName = 'metadata-'.self::FILE_NAME_TEST;
         
         $this->connection->projectId()->willReturn(self::PROJECT_ID);
         $metadataResponse = [
