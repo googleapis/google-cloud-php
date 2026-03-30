@@ -120,7 +120,7 @@ class BuiltInMetricsAttemptMiddleware implements MiddlewareInterface
         $originalCallback = $options['metadataCallback'] ?? null;
 
         // This gets the metadata on an ok status meaning we can get the GFE latency header for unary calls
-        $options['metadataCallback'] = function($metadata) use ($originalCallback, $call, $options) {
+        $options['metadataCallback'] = function ($metadata) use ($originalCallback, $call, $options) {
             $this->recordGfeLatency($metadata, $call, $options);
             if ($originalCallback) {
                 $originalCallback($metadata);
@@ -134,7 +134,7 @@ class BuiltInMetricsAttemptMiddleware implements MiddlewareInterface
             );
         } catch (Exception $e) {
             // In case that the call is not a unary call and it is a streaming call error.
-            $this->recordAttempt($startTime,$e->getCode(), $call->getMethod(), $options);
+            $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options);
             $this->recordGfeError($e, $call, $options);
             throw $e;
         }
