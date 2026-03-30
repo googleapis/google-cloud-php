@@ -34,9 +34,15 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      */
     protected $request_id = '';
+    /**
+     * Optional. If set to true, will force the deletion of the instance.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $force = false;
 
     /**
      * @param string $name Required. Name of the resource. Please see
@@ -72,6 +78,8 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      *           clients from accidentally creating duplicate commitments.
      *           The request ID must be a valid UUID with the exception that zero UUID is
      *           not supported (00000000-0000-0000-0000-000000000000).
+     *     @type bool $force
+     *           Optional. If set to true, will force the deletion of the instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,7 +126,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getRequestId()
@@ -139,7 +147,7 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
      * The request ID must be a valid UUID with the exception that zero UUID is
      * not supported (00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string request_id = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */
@@ -147,6 +155,32 @@ class DeleteInstanceRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If set to true, will force the deletion of the instance.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Optional. If set to true, will force the deletion of the instance.
+     *
+     * Generated from protobuf field <code>bool force = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }
