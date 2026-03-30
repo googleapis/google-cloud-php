@@ -64,11 +64,5 @@
             "@test-snippets",
             "@test-system"
         ]
-    },
-    "config": {
-        "allow-plugins": {
-            "php-http/discovery": false,
-            "tbachert/spi": false
-        }
     }
 }
