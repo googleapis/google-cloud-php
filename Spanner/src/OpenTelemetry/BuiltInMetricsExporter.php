@@ -193,8 +193,7 @@ class BuiltInMetricsExporter implements PushMetricExporterInterface, Aggregation
         NumberDataPoint|HistogramDataPoint $otelPoint,
         ?string $unit,
         DataInterface $otelData
-    ): TimeSeries
-    {
+    ): TimeSeries {
         $ts = new TimeSeries();
         $unit = $unit ?? '1';
 

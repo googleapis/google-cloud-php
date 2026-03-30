@@ -1056,7 +1056,7 @@ class SpannerClient
         $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
         ShutdownHandler::register([$this->meterProvider, 'shutdown']);
 
-        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId){
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
             return new BuiltInMetricsAttemptMiddleware(
                 $handler,
                 $this->meter,
@@ -1066,7 +1066,7 @@ class SpannerClient
             );
         };
 
-        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId){
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
             return new BuiltInMetricsOperationMiddleware(
                 $handler,
                 $this->meter,
