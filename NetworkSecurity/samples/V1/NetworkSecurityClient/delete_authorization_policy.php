@@ -32,8 +32,8 @@ use Google\Rpc\Status;
 /**
  * Deletes a single AuthorizationPolicy.
  *
- * @param string $formattedName A name of the AuthorizationPolicy to delete. Must be in the format
- *                              `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
+ * @param string $formattedName A name of the AuthorizationPolicy to delete. Must be in the
+ *                              format `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
  *                              {@see NetworkSecurityClient::authorizationPolicyName()} for help formatting this field.
  */
 function delete_authorization_policy_sample(string $formattedName): void
