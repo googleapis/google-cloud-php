@@ -801,7 +801,7 @@ class BucketTest extends TestCase
      */
     public function testListObjectsWithContextFilters($filter, $expectedItems)
     {
-        $this->connection->projectId()->willReturn('test-project');
+        $this->connection->projectId()->willReturn(self::PROJECT_ID);
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
             ->willReturn([
