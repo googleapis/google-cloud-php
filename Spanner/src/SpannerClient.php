@@ -50,6 +50,7 @@ use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use OpenTelemetry\API\Metrics\MeterInterface;
+use OpenTelemetry\API\Metrics\MeterProviderInterface;
 use OpenTelemetry\SDK\Common\Util\ShutdownHandler;
 use OpenTelemetry\SDK\Metrics\MeterProvider;
 use OpenTelemetry\SDK\Metrics\MetricReader\ExportingReader;
@@ -143,7 +144,7 @@ class SpannerClient
     private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
     private MeterInterface $meter;
-    private MeterProvider $meterProvider;
+    private MeterProviderInterface $meterProvider;
     private static array $activeChannels = [];
     private static int $totalActiveChannels = 0;
 

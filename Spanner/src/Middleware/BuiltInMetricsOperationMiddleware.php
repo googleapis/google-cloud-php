@@ -133,7 +133,7 @@ class BuiltInMetricsOperationMiddleware implements MiddlewareInterface
      * Records a completed operation (failures are considered completions).
      *
      * @param float $startTime The start time of the operation
-     * @param string $code The resulting code of the operation
+     * @param int $code The resulting code of the operation
      * @param string $method The RPC name being called
      * @param array $options The options used for middleware communication
      *
