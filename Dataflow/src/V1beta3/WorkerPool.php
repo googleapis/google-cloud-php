@@ -89,6 +89,18 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      */
     protected $disk_type = '';
     /**
+     * Optional. IOPS provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_iops = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disk_provisioned_iops = 0;
+    /**
+     * Optional. Throughput provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_throughput_mibps = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $disk_provisioned_throughput_mibps = 0;
+    /**
      * Fully qualified source image for disks.
      *
      * Generated from protobuf field <code>string disk_source_image = 8;</code>
@@ -229,6 +241,10 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
      *     @type string $disk_type
      *           Type of root disk for VMs.  If empty or unspecified, the service will
      *           attempt to choose a reasonable default.
+     *     @type int|string $disk_provisioned_iops
+     *           Optional. IOPS provisioned for the root disk for VMs.
+     *     @type int|string $disk_provisioned_throughput_mibps
+     *           Optional. Throughput provisioned for the root disk for VMs.
      *     @type string $disk_source_image
      *           Fully qualified source image for disks.
      *     @type string $zone
@@ -523,6 +539,58 @@ class WorkerPool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->disk_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. IOPS provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_iops = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDiskProvisionedIops()
+    {
+        return $this->disk_provisioned_iops;
+    }
+
+    /**
+     * Optional. IOPS provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_iops = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDiskProvisionedIops($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->disk_provisioned_iops = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Throughput provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_throughput_mibps = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getDiskProvisionedThroughputMibps()
+    {
+        return $this->disk_provisioned_throughput_mibps;
+    }
+
+    /**
+     * Optional. Throughput provisioned for the root disk for VMs.
+     *
+     * Generated from protobuf field <code>int64 disk_provisioned_throughput_mibps = 24 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setDiskProvisionedThroughputMibps($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->disk_provisioned_throughput_mibps = $var;
 
         return $this;
     }

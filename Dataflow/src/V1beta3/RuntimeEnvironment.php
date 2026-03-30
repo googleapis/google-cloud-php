@@ -162,6 +162,12 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $streaming_mode = null;
+    /**
+     * Optional. Additional pipeline option flags for the job.
+     *
+     * Generated from protobuf field <code>repeated string additional_pipeline_options = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $additional_pipeline_options;
 
     /**
      * Constructor.
@@ -244,6 +250,8 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *           case. For more information, see
      *           [Set the pipeline streaming
      *           mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *     @type string[] $additional_pipeline_options
+     *           Optional. Additional pipeline option flags for the job.
      * }
      */
     public function __construct($data = NULL) {
@@ -803,6 +811,32 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\StreamingMode::class);
         $this->streaming_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Additional pipeline option flags for the job.
+     *
+     * Generated from protobuf field <code>repeated string additional_pipeline_options = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<string>
+     */
+    public function getAdditionalPipelineOptions()
+    {
+        return $this->additional_pipeline_options;
+    }
+
+    /**
+     * Optional. Additional pipeline option flags for the job.
+     *
+     * Generated from protobuf field <code>repeated string additional_pipeline_options = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string[] $var
+     * @return $this
+     */
+    public function setAdditionalPipelineOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->additional_pipeline_options = $arr;
 
         return $this;
     }
