@@ -41,31 +41,6 @@ php.owlbot_copy_version(
     version_string="longrunning",
 )
 
-### [START] protoc backwards compatibility fixes
-
-# roll back to private properties.
-s.replace(
-    "src/**/**/*.php",
-    r"Generated from protobuf field ([^\n]{0,})\n\s{5}\*/\n\s{4}protected \$",
-    r"""Generated from protobuf field \1
-     */
-    private $""")
-
-# prevent proto messages from being marked final
-s.replace(
-    "src/**/**/*.php",
-    r"final class",
-    r"class")
-
-### [END] protoc backwards compatibility fixes
-
-# fix relative cloud.google.com links
-s.replace(
-    "src/**/**/*.php",
-    r"(.{0,})\]\((/.{0,})\)",
-    r"\1](https://cloud.google.com\2)"
-)
-
 # format generated clients
 subprocess.run([
     'npm',

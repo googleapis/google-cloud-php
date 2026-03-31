@@ -27,7 +27,7 @@ class ListOperationsResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
-    private $next_page_token = '';
+    protected $next_page_token = '';
     /**
      * Unordered list. Unreachable resources. Populated when the request sets
      * `ListOperationsRequest.return_partial_success` and reads across

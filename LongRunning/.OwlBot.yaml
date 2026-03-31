@@ -5,4 +5,6 @@ deep-copy-regex:
       dest: /owl-bot-staging/LongRunning/tests/$1
     - source: /google/longrunning/.*-php/proto/src/(.*)
       dest: /owl-bot-staging/LongRunning/proto/src/$1
+    - source: /google/longrunning/.*-php/samples/(.*)
+      dest: /owl-bot-staging/LongRunning/samples/$1
 api-name: LongRunning
