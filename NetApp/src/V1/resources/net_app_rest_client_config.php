@@ -357,6 +357,64 @@ return [
                     ],
                 ],
             ],
+            'EstablishVolumePeering' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/volumes/*}:establishPeering',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapDelete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{ontap_path=projects/*/locations/*/storagePools/*/ontap/**}',
+                'placeholders' => [
+                    'ontap_path' => [
+                        'getters' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapGet' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{ontap_path=projects/*/locations/*/storagePools/*/ontap/**}',
+                'placeholders' => [
+                    'ontap_path' => [
+                        'getters' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapPatch' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{ontap_path=projects/*/locations/*/storagePools/*/ontap/**}',
+                'body' => '*',
+                'placeholders' => [
+                    'ontap_path' => [
+                        'getters' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
+            'ExecuteOntapPost' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{ontap_path=projects/*/locations/*/storagePools/*/ontap/**}',
+                'body' => '*',
+                'placeholders' => [
+                    'ontap_path' => [
+                        'getters' => [
+                            'getOntapPath',
+                        ],
+                    ],
+                ],
+            ],
             'GetActiveDirectory' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/activeDirectories/*}',

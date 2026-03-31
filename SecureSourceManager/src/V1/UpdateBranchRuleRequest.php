@@ -27,19 +27,19 @@ class UpdateBranchRuleRequest extends \Google\Protobuf\Internal\Message
      */
     protected $validate_only = false;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * branchRule resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
 
     /**
      * @param \Google\Cloud\SecureSourceManager\V1\BranchRule $branchRule
-     * @param \Google\Protobuf\FieldMask                      $updateMask Required. Field mask is used to specify the fields to be overwritten in the
+     * @param \Google\Protobuf\FieldMask                      $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
      *                                                                    branchRule resource by the update.
      *                                                                    The fields specified in the update_mask are relative to the resource, not
      *                                                                    the full request. A field will be overwritten if it is in the mask.
@@ -67,7 +67,7 @@ class UpdateBranchRuleRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set, validate the request and preview the review, but do not
      *           actually post it.  (https://google.aip.dev/163, for declarative friendly)
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           Optional. Field mask is used to specify the fields to be overwritten in the
      *           branchRule resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask.
@@ -140,13 +140,13 @@ class UpdateBranchRuleRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * branchRule resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -165,13 +165,13 @@ class UpdateBranchRuleRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * branchRule resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

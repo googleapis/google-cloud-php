@@ -167,6 +167,15 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.cx.v3.DataStoreConnectionSignals data_store_connection_signals = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_store_connection_signals = null;
+    /**
+     * Optional. Contains the sequence of trace blocks from the current
+     * conversation turn. Trace blocks are ordered chronologically and contain
+     * detailed traces of runtime behavior such as tool calls, LLM calls, flow and
+     * playbook invocations, agent utterances and user utterances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TraceBlock trace_blocks = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $trace_blocks;
     protected $query;
 
     /**
@@ -283,6 +292,11 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals $data_store_connection_signals
      *           Optional. Data store connection feature output signals.
      *           Filled only when data stores are involved in serving the query.
+     *     @type \Google\Cloud\Dialogflow\Cx\V3\TraceBlock[] $trace_blocks
+     *           Optional. Contains the sequence of trace blocks from the current
+     *           conversation turn. Trace blocks are ordered chronologically and contain
+     *           detailed traces of runtime behavior such as tool calls, LLM calls, flow and
+     *           playbook invocations, agent utterances and user utterances.
      * }
      */
     public function __construct($data = NULL) {
@@ -1073,6 +1087,38 @@ class QueryResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\Cx\V3\DataStoreConnectionSignals::class);
         $this->data_store_connection_signals = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Contains the sequence of trace blocks from the current
+     * conversation turn. Trace blocks are ordered chronologically and contain
+     * detailed traces of runtime behavior such as tool calls, LLM calls, flow and
+     * playbook invocations, agent utterances and user utterances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TraceBlock trace_blocks = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\Cx\V3\TraceBlock>
+     */
+    public function getTraceBlocks()
+    {
+        return $this->trace_blocks;
+    }
+
+    /**
+     * Optional. Contains the sequence of trace blocks from the current
+     * conversation turn. Trace blocks are ordered chronologically and contain
+     * detailed traces of runtime behavior such as tool calls, LLM calls, flow and
+     * playbook invocations, agent utterances and user utterances.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.cx.v3.TraceBlock trace_blocks = 37 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\Cx\V3\TraceBlock[] $var
+     * @return $this
+     */
+    public function setTraceBlocks($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\Cx\V3\TraceBlock::class);
+        $this->trace_blocks = $arr;
 
         return $this;
     }

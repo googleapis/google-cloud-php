@@ -282,6 +282,13 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $block_devices;
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $clone_details = null;
 
     /**
      * Constructor.
@@ -388,6 +395,9 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetApp\V1\BlockDevice[] $block_devices
      *           Optional. Block devices for the volume.
      *           Currently, only one block device is permitted per Volume.
+     *     @type \Google\Cloud\NetApp\V1\Volume\CloneDetails $clone_details
+     *           Output only. If this volume is a clone, this field contains details about
+     *           the clone.
      * }
      */
     public function __construct($data = NULL) {
@@ -1593,6 +1603,44 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetApp\V1\BlockDevice::class);
         $this->block_devices = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetApp\V1\Volume\CloneDetails|null
+     */
+    public function getCloneDetails()
+    {
+        return $this->clone_details;
+    }
+
+    public function hasCloneDetails()
+    {
+        return isset($this->clone_details);
+    }
+
+    public function clearCloneDetails()
+    {
+        unset($this->clone_details);
+    }
+
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetApp\V1\Volume\CloneDetails $var
+     * @return $this
+     */
+    public function setCloneDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\Volume\CloneDetails::class);
+        $this->clone_details = $var;
 
         return $this;
     }

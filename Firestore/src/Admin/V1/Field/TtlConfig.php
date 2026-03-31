@@ -11,11 +11,12 @@ use Google\Protobuf\RepeatedField;
 /**
  * The TTL (time-to-live) configuration for documents that have this `Field`
  * set.
- * Storing a timestamp value into a TTL-enabled field will be treated as
- * the document's absolute expiration time. For Enterprise edition databases,
- * the timestamp value may also be stored in an array value in the
- * TTL-enabled field.
- * Timestamp values in the past indicate that the document is eligible for
+ * A timestamp stored in a TTL-enabled field will be used to determine the
+ * expiration time of the document. The expiration time is the sum
+ * of the timestamp value and the `expiration_offset`.
+ * For Enterprise edition databases, the timestamp value may alternatively be
+ * stored in an array value in the TTL-enabled field.
+ * An expiration time in the past indicates that the document is eligible for
  * immediate expiration. Using any other data type or leaving the field absent
  * will disable expiration for the individual document.
  *
@@ -29,6 +30,17 @@ class TtlConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig.State state = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
+    /**
+     * Optional. The offset, relative to the timestamp value from the
+     * TTL-enabled field, used to determine the document's expiration time.
+     * `expiration_offset.seconds` must be between 0 and 2,147,483,647
+     * inclusive. Values more precise than seconds are rejected.
+     * If unset, defaults to 0, in which case the expiration time is the same
+     * as the timestamp value from the TTL-enabled field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $expiration_offset = null;
 
     /**
      * Constructor.
@@ -38,6 +50,13 @@ class TtlConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $state
      *           Output only. The state of the TTL configuration.
+     *     @type \Google\Protobuf\Duration $expiration_offset
+     *           Optional. The offset, relative to the timestamp value from the
+     *           TTL-enabled field, used to determine the document's expiration time.
+     *           `expiration_offset.seconds` must be between 0 and 2,147,483,647
+     *           inclusive. Values more precise than seconds are rejected.
+     *           If unset, defaults to 0, in which case the expiration time is the same
+     *           as the timestamp value from the TTL-enabled field.
      * }
      */
     public function __construct($data = NULL) {
@@ -67,6 +86,52 @@ class TtlConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig\State::class);
         $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The offset, relative to the timestamp value from the
+     * TTL-enabled field, used to determine the document's expiration time.
+     * `expiration_offset.seconds` must be between 0 and 2,147,483,647
+     * inclusive. Values more precise than seconds are rejected.
+     * If unset, defaults to 0, in which case the expiration time is the same
+     * as the timestamp value from the TTL-enabled field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getExpirationOffset()
+    {
+        return $this->expiration_offset;
+    }
+
+    public function hasExpirationOffset()
+    {
+        return isset($this->expiration_offset);
+    }
+
+    public function clearExpirationOffset()
+    {
+        unset($this->expiration_offset);
+    }
+
+    /**
+     * Optional. The offset, relative to the timestamp value from the
+     * TTL-enabled field, used to determine the document's expiration time.
+     * `expiration_offset.seconds` must be between 0 and 2,147,483,647
+     * inclusive. Values more precise than seconds are rejected.
+     * If unset, defaults to 0, in which case the expiration time is the same
+     * as the timestamp value from the TTL-enabled field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration expiration_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setExpirationOffset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->expiration_offset = $var;
 
         return $this;
     }

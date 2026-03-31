@@ -80,6 +80,18 @@ class WidgetType
      * Generated from protobuf enum <code>APPOINTMENT_DETAILS = 10;</code>
      */
     const APPOINTMENT_DETAILS = 10;
+    /**
+     * Appointment scheduler widget.
+     *
+     * Generated from protobuf enum <code>APPOINTMENT_SCHEDULER = 11;</code>
+     */
+    const APPOINTMENT_SCHEDULER = 11;
+    /**
+     * Contact form widget.
+     *
+     * Generated from protobuf enum <code>CONTACT_FORM = 12;</code>
+     */
+    const CONTACT_FORM = 12;
 
     private static $valueToName = [
         self::WIDGET_TYPE_UNSPECIFIED => 'WIDGET_TYPE_UNSPECIFIED',
@@ -93,6 +105,8 @@ class WidgetType
         self::OVERALL_SATISFACTION => 'OVERALL_SATISFACTION',
         self::ORDER_SUMMARY => 'ORDER_SUMMARY',
         self::APPOINTMENT_DETAILS => 'APPOINTMENT_DETAILS',
+        self::APPOINTMENT_SCHEDULER => 'APPOINTMENT_SCHEDULER',
+        self::CONTACT_FORM => 'CONTACT_FORM',
     ];
 
     public static function name($value)

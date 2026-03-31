@@ -41,9 +41,6 @@ use Google\ApiCore\PagedListResponse;
  * Google Account of the credentials is a user. If not set, defaults to the
  * account of the request. Format:
  * `accountTypes/{loginAccountType}/accounts/{loginAccountId}`
- * * `linked-account`: (Optional) The resource name of the account with an
- * established product link to the `login-account`. Format:
- * `accountTypes/{linkedAccountType}/accounts/{linkedAccountId}`
  *
  * @param string $formattedParent Account to search for partner links. If no `filter` is specified,
  *                                all partner links where this account is either the `owning_account` or

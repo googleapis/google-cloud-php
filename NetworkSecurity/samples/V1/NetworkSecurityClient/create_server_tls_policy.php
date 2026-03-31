@@ -36,9 +36,10 @@ use Google\Rpc\Status;
  * @param string $formattedParent     The parent resource of the ServerTlsPolicy. Must be in
  *                                    the format `projects/&#42;/locations/{location}`. Please see
  *                                    {@see NetworkSecurityClient::locationName()} for help formatting this field.
- * @param string $serverTlsPolicyId   Short name of the ServerTlsPolicy resource to be created. This value should
- *                                    be 1-63 characters long, containing only letters, numbers, hyphens, and
- *                                    underscores, and should not start with a number. E.g. "server_mtls_policy".
+ * @param string $serverTlsPolicyId   Short name of the ServerTlsPolicy resource to be created. This
+ *                                    value should be 1-63 characters long, containing only letters, numbers,
+ *                                    hyphens, and underscores, and should not start with a number. E.g.
+ *                                    "server_mtls_policy".
  * @param string $serverTlsPolicyName Name of the ServerTlsPolicy resource. It matches the pattern
  *                                    `projects/&#42;/locations/{location}/serverTlsPolicies/{server_tls_policy}`
  */

@@ -205,6 +205,18 @@ return [
                     ],
                 ],
             ],
+            'GetSharedRegionalCertificateAuthority' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Redis\Cluster\V1\SharedRegionalCertificateAuthority',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupCollections' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -302,6 +314,7 @@ return [
             'templateMap' => [
                 'backup' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}',
                 'backupCollection' => 'projects/{project}/locations/{location}/backupCollections/{backup_collection}',
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'certificateAuthority' => 'projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority',
                 'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
                 'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
@@ -310,6 +323,7 @@ return [
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
+                'sharedRegionalCertificateAuthority' => 'projects/{project}/locations/{location}/sharedRegionalCertificateAuthority',
             ],
         ],
     ],

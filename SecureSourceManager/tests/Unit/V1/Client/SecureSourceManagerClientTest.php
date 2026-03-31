@@ -114,7 +114,6 @@ use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
-use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
@@ -568,6 +567,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $requirePullRequest = false;
         $minimumReviewsCount = 672799098;
         $minimumApprovalsCount = 579210129;
+        $requireCodeOwnerApproval = false;
         $requireCommentsResolved = false;
         $allowStaleReviews = false;
         $requireLinearHistory = true;
@@ -580,6 +580,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $expectedResponse->setRequirePullRequest($requirePullRequest);
         $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
         $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCodeOwnerApproval($requireCodeOwnerApproval);
         $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
         $expectedResponse->setAllowStaleReviews($allowStaleReviews);
         $expectedResponse->setRequireLinearHistory($requireLinearHistory);
@@ -2751,6 +2752,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $requirePullRequest = false;
         $minimumReviewsCount = 672799098;
         $minimumApprovalsCount = 579210129;
+        $requireCodeOwnerApproval = false;
         $requireCommentsResolved = false;
         $allowStaleReviews = false;
         $requireLinearHistory = true;
@@ -2763,6 +2765,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $expectedResponse->setRequirePullRequest($requirePullRequest);
         $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
         $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCodeOwnerApproval($requireCodeOwnerApproval);
         $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
         $expectedResponse->setAllowStaleReviews($allowStaleReviews);
         $expectedResponse->setRequireLinearHistory($requireLinearHistory);
@@ -4898,6 +4901,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $requirePullRequest = false;
         $minimumReviewsCount = 672799098;
         $minimumApprovalsCount = 579210129;
+        $requireCodeOwnerApproval = false;
         $requireCommentsResolved = false;
         $allowStaleReviews = false;
         $requireLinearHistory = true;
@@ -4910,6 +4914,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $expectedResponse->setRequirePullRequest($requirePullRequest);
         $expectedResponse->setMinimumReviewsCount($minimumReviewsCount);
         $expectedResponse->setMinimumApprovalsCount($minimumApprovalsCount);
+        $expectedResponse->setRequireCodeOwnerApproval($requireCodeOwnerApproval);
         $expectedResponse->setRequireCommentsResolved($requireCommentsResolved);
         $expectedResponse->setAllowStaleReviews($allowStaleReviews);
         $expectedResponse->setRequireLinearHistory($requireLinearHistory);
@@ -4922,8 +4927,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $branchRule = new BranchRule();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule)->setUpdateMask($updateMask);
+        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule);
         $response = $gapicClient->updateBranchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -4939,8 +4943,6 @@ class SecureSourceManagerClientTest extends GeneratedTest
         );
         $actualValue = $actualApiRequestObject->getBranchRule();
         $this->assertProtobufEquals($branchRule, $actualValue);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateBranchRuleTest');
         $response->pollUntilComplete([
@@ -4996,8 +4998,7 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $branchRule = new BranchRule();
-        $updateMask = new FieldMask();
-        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule)->setUpdateMask($updateMask);
+        $request = (new UpdateBranchRuleRequest())->setBranchRule($branchRule);
         $response = $gapicClient->updateBranchRule($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5060,11 +5061,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $updateMask = new FieldMask();
         $hook = new Hook();
         $hookTargetUri = 'hookTargetUri737306680';
         $hook->setTargetUri($hookTargetUri);
-        $request = (new UpdateHookRequest())->setUpdateMask($updateMask)->setHook($hook);
+        $request = (new UpdateHookRequest())->setHook($hook);
         $response = $gapicClient->updateHook($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -5075,8 +5075,6 @@ class SecureSourceManagerClientTest extends GeneratedTest
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.securesourcemanager.v1.SecureSourceManager/UpdateHook', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getUpdateMask();
-        $this->assertProtobufEquals($updateMask, $actualValue);
         $actualValue = $actualApiRequestObject->getHook();
         $this->assertProtobufEquals($hook, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -5133,11 +5131,10 @@ class SecureSourceManagerClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $updateMask = new FieldMask();
         $hook = new Hook();
         $hookTargetUri = 'hookTargetUri737306680';
         $hook->setTargetUri($hookTargetUri);
-        $request = (new UpdateHookRequest())->setUpdateMask($updateMask)->setHook($hook);
+        $request = (new UpdateHookRequest())->setHook($hook);
         $response = $gapicClient->updateHook($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());

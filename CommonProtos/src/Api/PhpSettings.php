@@ -21,6 +21,21 @@ class PhpSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.api.CommonLanguageSettings common = 1;</code>
      */
     protected $common = null;
+    /**
+     * The package name to use in Php. Clobbers the php_namespace option
+     * set in the protobuf. This should be used **only** by APIs
+     * who have already set the language_settings.php.package_name" field
+     * in gapic.yaml. API teams should use the protobuf php_namespace option
+     * where possible.
+     * Example of a YAML configuration::
+     *     publishing:
+     *       library_settings:
+     *         php_settings:
+     *           library_package: Google\Cloud\PubSub\V1
+     *
+     * Generated from protobuf field <code>string library_package = 2;</code>
+     */
+    protected $library_package = '';
 
     /**
      * Constructor.
@@ -30,6 +45,17 @@ class PhpSettings extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Api\CommonLanguageSettings $common
      *           Some settings.
+     *     @type string $library_package
+     *           The package name to use in Php. Clobbers the php_namespace option
+     *           set in the protobuf. This should be used **only** by APIs
+     *           who have already set the language_settings.php.package_name" field
+     *           in gapic.yaml. API teams should use the protobuf php_namespace option
+     *           where possible.
+     *           Example of a YAML configuration::
+     *               publishing:
+     *                 library_settings:
+     *                   php_settings:
+     *                     library_package: Google\Cloud\PubSub\V1
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +95,50 @@ class PhpSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Api\CommonLanguageSettings::class);
         $this->common = $var;
+
+        return $this;
+    }
+
+    /**
+     * The package name to use in Php. Clobbers the php_namespace option
+     * set in the protobuf. This should be used **only** by APIs
+     * who have already set the language_settings.php.package_name" field
+     * in gapic.yaml. API teams should use the protobuf php_namespace option
+     * where possible.
+     * Example of a YAML configuration::
+     *     publishing:
+     *       library_settings:
+     *         php_settings:
+     *           library_package: Google\Cloud\PubSub\V1
+     *
+     * Generated from protobuf field <code>string library_package = 2;</code>
+     * @return string
+     */
+    public function getLibraryPackage()
+    {
+        return $this->library_package;
+    }
+
+    /**
+     * The package name to use in Php. Clobbers the php_namespace option
+     * set in the protobuf. This should be used **only** by APIs
+     * who have already set the language_settings.php.package_name" field
+     * in gapic.yaml. API teams should use the protobuf php_namespace option
+     * where possible.
+     * Example of a YAML configuration::
+     *     publishing:
+     *       library_settings:
+     *         php_settings:
+     *           library_package: Google\Cloud\PubSub\V1
+     *
+     * Generated from protobuf field <code>string library_package = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLibraryPackage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->library_package = $var;
 
         return $this;
     }
