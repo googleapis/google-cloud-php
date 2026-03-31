@@ -130,6 +130,31 @@
                                 "establishPeering"
                             ]
                         },
+                        "EstablishVolumePeering": {
+                            "methods": [
+                                "establishVolumePeering"
+                            ]
+                        },
+                        "ExecuteOntapDelete": {
+                            "methods": [
+                                "executeOntapDelete"
+                            ]
+                        },
+                        "ExecuteOntapGet": {
+                            "methods": [
+                                "executeOntapGet"
+                            ]
+                        },
+                        "ExecuteOntapPatch": {
+                            "methods": [
+                                "executeOntapPatch"
+                            ]
+                        },
+                        "ExecuteOntapPost": {
+                            "methods": [
+                                "executeOntapPost"
+                            ]
+                        },
                         "GetActiveDirectory": {
                             "methods": [
                                 "getActiveDirectory"
