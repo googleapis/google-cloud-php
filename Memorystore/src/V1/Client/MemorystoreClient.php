@@ -50,11 +50,13 @@ use Google\Cloud\Memorystore\V1\GetBackupCollectionRequest;
 use Google\Cloud\Memorystore\V1\GetBackupRequest;
 use Google\Cloud\Memorystore\V1\GetCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1\GetInstanceRequest;
+use Google\Cloud\Memorystore\V1\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1\Instance;
 use Google\Cloud\Memorystore\V1\ListBackupCollectionsRequest;
 use Google\Cloud\Memorystore\V1\ListBackupsRequest;
 use Google\Cloud\Memorystore\V1\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1\RescheduleMaintenanceRequest;
+use Google\Cloud\Memorystore\V1\SharedRegionalCertificateAuthority;
 use Google\Cloud\Memorystore\V1\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -81,6 +83,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getCertificateAuthorityAsync(GetCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Instance> getInstanceAsync(GetInstanceRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SharedRegionalCertificateAuthority> getSharedRegionalCertificateAuthorityAsync(GetSharedRegionalCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listInstancesAsync(ListInstancesRequest $request, array $optionalArgs = [])
@@ -242,6 +245,25 @@ final class MemorystoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a crypto_key
      * resource.
      *
@@ -382,11 +404,29 @@ final class MemorystoreClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * shared_regional_certificate_authority resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted shared_regional_certificate_authority resource.
+     */
+    public static function sharedRegionalCertificateAuthorityName(string $project, string $location): string
+    {
+        return self::getPathTemplate('sharedRegionalCertificateAuthority')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
      * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
      * - cryptoKeyVersion: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}
      * - forwardingRule: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}
@@ -394,6 +434,7 @@ final class MemorystoreClient
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
+     * - sharedRegionalCertificateAuthority: projects/{project}/locations/{location}/sharedRegionalCertificateAuthority
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -741,6 +782,36 @@ final class MemorystoreClient
     public function getInstance(GetInstanceRequest $request, array $callOptions = []): Instance
     {
         return $this->startApiCall('GetInstance', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of shared regional certificate authority information for
+     * Memorystore instance.
+     *
+     * The async variant is
+     * {@see MemorystoreClient::getSharedRegionalCertificateAuthorityAsync()} .
+     *
+     * @example samples/V1/MemorystoreClient/get_shared_regional_certificate_authority.php
+     *
+     * @param GetSharedRegionalCertificateAuthorityRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SharedRegionalCertificateAuthority
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSharedRegionalCertificateAuthority(
+        GetSharedRegionalCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): SharedRegionalCertificateAuthority {
+        return $this->startApiCall('GetSharedRegionalCertificateAuthority', $request, $callOptions)->wait();
     }
 
     /**
