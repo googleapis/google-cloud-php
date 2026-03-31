@@ -1,0 +1,66 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.devtools.clouderrorreporting.v1beta1",
+    "libraryPackage": "Google\\Cloud\\ErrorReporting\\V1beta1",
+    "services": {
+        "ErrorGroupService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ErrorGroupServiceGapicClient",
+                    "rpcs": {
+                        "GetGroup": {
+                            "methods": [
+                                "getGroup"
+                            ]
+                        },
+                        "UpdateGroup": {
+                            "methods": [
+                                "updateGroup"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ErrorStatsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ErrorStatsServiceGapicClient",
+                    "rpcs": {
+                        "DeleteEvents": {
+                            "methods": [
+                                "deleteEvents"
+                            ]
+                        },
+                        "ListEvents": {
+                            "methods": [
+                                "listEvents"
+                            ]
+                        },
+                        "ListGroupStats": {
+                            "methods": [
+                                "listGroupStats"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ReportErrorsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ReportErrorsServiceGapicClient",
+                    "rpcs": {
+                        "ReportErrorEvent": {
+                            "methods": [
+                                "reportErrorEvent"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
