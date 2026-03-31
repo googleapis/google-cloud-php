@@ -199,6 +199,12 @@ class SpannerClient
      *     @type int $isolationLevel The level of Isolation for the transactions executed by this Client's instance.
      *           **Defaults to** IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED
      *     @type CacheItemPoolInterface $cacheItemPool
+     *     @type bool $disableBuiltInMetrics If true, built-in metrics collection will be disabled.
+     *           **Defaults to** false.
+     *     @type array $metricsOptions Configuration options for the internal `MetricServiceClient`
+     *           used to export metrics.
+     *     @type MetricServiceClient $metricServiceClient An explicit instance of
+     *           `MetricServiceClient` to use for exporting metrics.
      * }
      * @throws GoogleException If the gRPC extension is not enabled.
      */
@@ -287,7 +293,7 @@ class SpannerClient
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
 
-        $this->configureBuiltinMetrics($options['disableBuiltInMetrics']);
+        $this->configureBuiltinMetrics($options);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -1040,13 +1046,38 @@ class SpannerClient
         return $config;
     }
 
-    private function configureBuiltinMetrics(bool $disabled): void
+    private function configureBuiltinMetrics(array &$options): void
     {
-        if ($disabled) {
+        $metricsClient = $this->pluck('metricServiceClient', $options, false);
+        $metricsOptions = $this->pluck('metricsOptions', $options, false) ?: [];
+
+        if ($this->pluck('disableBuiltInMetrics', $options, false)) {
             return;
         }
 
-        $metricsClient = new MetricServiceClient();
+        if (!$metricsClient) {
+            $metricsOptions += [
+                'projectId' => $this->projectId,
+                'keyFile' => $options['keyFile'] ?? null,
+                'keyFilePath' => $options['keyFilePath'] ?? null,
+                'credentials' => $options['credentials'] ?? null,
+                'credentialsConfig' => $options['credentialsConfig'] ?? null,
+                'universeDomain' => $options['universeDomain'] ?? null,
+                'transport' => $options['transport'] ?? null,
+                'transportConfig' => $options['transportConfig'] ?? null,
+            ];
+
+            try {
+                $metricsClient = new MetricServiceClient($metricsOptions);
+            } catch (ValidationException $e) {
+                return;
+            }
+        }
+
+        if (!$metricsClient instanceof MetricServiceClient) {
+            throw new ValidationException('The "metricServiceClient" option must be a MetricServiceClient instance.');
+        }
+
         $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
         $exporter = new BuiltInMetricsExporter($metricsClient, $this->projectId, $metricsClientId);
         $reader = new ExportingReader($exporter);
