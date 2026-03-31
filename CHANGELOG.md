@@ -1,5 +1,170 @@
 # Changelog
 
+## 0.325.0
+
+<details><summary>googleads/data-manager 0.4.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add INVALID_MERCHANT_ID to the ErrorReason enum for when the merchant_id field is not valid ([#9051](https://github.com/googleapis/google-cloud-php/issues/9051)) ([34d5b9d](https://github.com/googleapis/google-cloud-php/commit/34d5b9dfb8985cdbd154540e02b07a6af96f017b))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.56.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add container_spec to Reasoning Engine public protos ([#9058](https://github.com/googleapis/google-cloud-php/issues/9058)) ([8d04833](https://github.com/googleapis/google-cloud-php/commit/8d04833b6a922030a98f836a57b960977ef528e5))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.22.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add locations field to AutomatedBackupPolicy ([#9041](https://github.com/googleapis/google-cloud-php/issues/9041)) ([3e6d0f1](https://github.com/googleapis/google-cloud-php/commit/3e6d0f1aadf5ce93f3ea3dd5032c39e8dd60bab3))
+
+
+### Bug Fixes
+
+* **Bigtable:** Ensure samples are generated for admin clients ([#9045](https://github.com/googleapis/google-cloud-php/issues/9045)) ([0022585](https://github.com/googleapis/google-cloud-php/commit/0022585b7b60320e71398cc4548389b8e40615ec))
+
+</details>
+
+<details><summary>google/cloud-ces 0.2.0</summary>
+
+
+
+### Features
+
+* [Ces] update public libraries for CES v1 ([#9040](https://github.com/googleapis/google-cloud-php/issues/9040)) ([d62d86d](https://github.com/googleapis/google-cloud-php/commit/d62d86d31d35671bfed1403a1c8f52e201aec234))
+
+</details>
+
+<details><summary>google/common-protos 4.13.0</summary>
+
+
+
+### Features
+
+* Publish client batch config schema ([#9046](https://github.com/googleapis/google-cloud-php/issues/9046)) ([803f9c5](https://github.com/googleapis/google-cloud-php/commit/803f9c50f26ab2f7450b51f3f062b1ae29d1353c))
+* Publish new error reasons ([803f9c5](https://github.com/googleapis/google-cloud-php/commit/803f9c50f26ab2f7450b51f3f062b1ae29d1353c))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.3.0</summary>
+
+
+
+### Features
+
+* **DataCatalogLineage:** Add configmanagement ([#9039](https://github.com/googleapis/google-cloud-php/issues/9039)) ([fbe2e3f](https://github.com/googleapis/google-cloud-php/commit/fbe2e3fcb32ac020514f4830d0083aaa427a25e6))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.10.0</summary>
+
+
+
+### Features
+
+* [Dataflow] Add Pausing/Yaml capabilities to public protos ([#9057](https://github.com/googleapis/google-cloud-php/issues/9057)) ([4b21892](https://github.com/googleapis/google-cloud-php/commit/4b21892d0d6141e495217bf836babcea96e439b9))
+* [Dataflow] add sha256 field to Package proto ([#9059](https://github.com/googleapis/google-cloud-php/issues/9059)) ([3ceff36](https://github.com/googleapis/google-cloud-php/commit/3ceff36477afa856212fba10ab8b99a31d601b32))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.11.0</summary>
+
+
+
+### Features
+
+* [Dataform] add folders and teamFolders related changes to v1 ([#9043](https://github.com/googleapis/google-cloud-php/issues/9043)) ([457db98](https://github.com/googleapis/google-cloud-php/commit/457db9882638b1a688ef00ff6d926e36deb65e27))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.11.0</summary>
+
+
+
+### Features
+
+* [DialogflowCx] updated v3 dialogflow client libraries with `dtmf_pattern` and `trace_blocks` ([#9044](https://github.com/googleapis/google-cloud-php/issues/9044)) ([6408d67](https://github.com/googleapis/google-cloud-php/commit/6408d6798b43632f658902f2f86361ca228aa567))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0-RC3</summary>
+
+
+
+### Features
+
+* [Firestore] add `expiration_offset` to `Field` ([#9054](https://github.com/googleapis/google-cloud-php/issues/9054)) ([d241351](https://github.com/googleapis/google-cloud-php/commit/d241351fe4567dd24ce161fc58e4dc1a7e3fddfd))
+
+</details>
+
+<details><summary>google/longrunning 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.7.0</summary>
+
+
+
+### Features
+
+* [Memorystore] [Memorystore for Valkey] Add support for Flexible CA feature ([#9061](https://github.com/googleapis/google-cloud-php/issues/9061)) ([0cac659](https://github.com/googleapis/google-cloud-php/commit/0cac65988b430ca8483af2eec115b1595fbfd5b1))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.11.0</summary>
+
+
+
+### Features
+
+* [NetApp] Add ONTAP passthrough APIs ([#9047](https://github.com/googleapis/google-cloud-php/issues/9047)) ([cb626ee](https://github.com/googleapis/google-cloud-php/commit/cb626ee0325a61aa9280536b3b7540f007e60039))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.3.0</summary>
+
+
+
+### Features
+
+* [NetworkSecurity] Publish proto definitions for AuthzPolicy, TlsInspectionPolicy, GatewaySecurityPolicy, GatewaySecurityPolicyRule, and UrlList ([#9049](https://github.com/googleapis/google-cloud-php/issues/9049)) ([f96ce62](https://github.com/googleapis/google-cloud-php/commit/f96ce620f369ce81c964bb60e12af92acb2f98e2))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.7.0</summary>
+
+
+
+### Features
+
+* [RedisCluster] [Memorystore for Redis Cluster] Add support for Flexible CA feature ([#9060](https://github.com/googleapis/google-cloud-php/issues/9060)) ([5b1dec0](https://github.com/googleapis/google-cloud-php/commit/5b1dec070969bea742b83b07ffb461ed93e78b99))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.8.0</summary>
+
+
+
+### Features
+
+* [SecureSourceManager] Add CustomHostConfig to configure custom hostnames for private instances ([#9053](https://github.com/googleapis/google-cloud-php/issues/9053)) ([fd0c30c](https://github.com/googleapis/google-cloud-php/commit/fd0c30cb7fffd1aede54f485eb7f37334cb811c8))
+
+</details>
+
 ## 0.324.0
 
 <details><summary>google/cloud-ai-platform 1.55.0</summary>
