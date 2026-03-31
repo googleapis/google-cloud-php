@@ -29,6 +29,21 @@ class UpdateCorpusRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\Corpus $corpus     Required. The corpus which replaces the resource on the server.
+     * @param \Google\Protobuf\FieldMask       $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateCorpusRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\Corpus $corpus, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCorpus($corpus)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

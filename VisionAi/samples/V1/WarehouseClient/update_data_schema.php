@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_UpdateDataSchema_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\DataSchema;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UpdateDataSchemaRequest;
 
 /**
  * Updates data schema inside corpus.
@@ -40,14 +41,16 @@ function update_data_schema_sample(string $dataSchemaKey): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $dataSchema = (new DataSchema())
         ->setKey($dataSchemaKey);
+    $request = (new UpdateDataSchemaRequest())
+        ->setDataSchema($dataSchema);
 
     // Call the API and handle any network failures.
     try {
         /** @var DataSchema $response */
-        $response = $warehouseClient->updateDataSchema($dataSchema);
+        $response = $warehouseClient->updateDataSchema($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -37,12 +37,19 @@ class Modality
      * Generated from protobuf enum <code>CHAT_ONLY = 3;</code>
      */
     const CHAT_ONLY = 3;
+    /**
+     * Widget supports chat, voice, and video input.
+     *
+     * Generated from protobuf enum <code>CHAT_VOICE_AND_VIDEO = 4;</code>
+     */
+    const CHAT_VOICE_AND_VIDEO = 4;
 
     private static $valueToName = [
         self::MODALITY_UNSPECIFIED => 'MODALITY_UNSPECIFIED',
         self::CHAT_AND_VOICE => 'CHAT_AND_VOICE',
         self::VOICE_ONLY => 'VOICE_ONLY',
         self::CHAT_ONLY => 'CHAT_ONLY',
+        self::CHAT_VOICE_AND_VIDEO => 'CHAT_VOICE_AND_VIDEO',
     ];
 
     public static function name($value)

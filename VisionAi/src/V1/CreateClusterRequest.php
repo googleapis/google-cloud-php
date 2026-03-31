@@ -51,6 +51,24 @@ class CreateClusterRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                            $parent    Required. Value for parent. Please see
+     *                                                     {@see StreamsServiceClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Cluster $cluster   Required. The resource being created.
+     * @param string                            $clusterId Required. Id of the requesting object.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateClusterRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Cluster $cluster, string $clusterId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setCluster($cluster)
+            ->setClusterId($clusterId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

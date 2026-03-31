@@ -663,7 +663,7 @@ final class SecureSourceManagerClient
      * Batch creates pull request comments. This function is used to create
      * multiple PullRequestComments for code review. There needs to be exactly one
      * PullRequestComment of type Review, and at most 100 PullRequestComments of
-     * type Code per request. The Postition of the code comments must be unique
+     * type Code per request. The Position of the code comments must be unique
      * within the request.
      *
      * The async variant is
@@ -2188,6 +2188,22 @@ final class SecureSourceManagerClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name] field:
+
+    * **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see SecureSourceManagerClient::listLocationsAsync()} .
      *

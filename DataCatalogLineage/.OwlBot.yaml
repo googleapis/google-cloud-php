@@ -1,4 +1,6 @@
 deep-copy-regex:
     - source: /google/cloud/datacatalog/lineage/(v1)/.*-php/(.*)
       dest: /owl-bot-staging/DataCatalogLineage/$1/$2
+    - source: /google/cloud/datacatalog/lineage/configmanagement/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/DataCatalogLineage/ConfigManagement/$1/$2
 api-name: DataCatalogLineage

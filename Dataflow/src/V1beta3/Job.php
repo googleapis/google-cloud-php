@@ -255,6 +255,12 @@ class Job extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.dataflow.v1beta3.ServiceResources service_resources = 28 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $service_resources = null;
+    /**
+     * Output only. Indicates whether the job can be paused.
+     *
+     * Generated from protobuf field <code>bool pausable = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $pausable = false;
 
     /**
      * Constructor.
@@ -389,6 +395,8 @@ class Job extends \Google\Protobuf\Internal\Message
      *           from the server; it is ignored if it is set in any requests.
      *     @type \Google\Cloud\Dataflow\V1beta3\ServiceResources $service_resources
      *           Output only. Resources used by the Dataflow Service to run the job.
+     *     @type bool $pausable
+     *           Output only. Indicates whether the job can be paused.
      * }
      */
     public function __construct($data = NULL) {
@@ -1362,6 +1370,32 @@ class Job extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataflow\V1beta3\ServiceResources::class);
         $this->service_resources = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether the job can be paused.
+     *
+     * Generated from protobuf field <code>bool pausable = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getPausable()
+    {
+        return $this->pausable;
+    }
+
+    /**
+     * Output only. Indicates whether the job can be paused.
+     *
+     * Generated from protobuf field <code>bool pausable = 29 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setPausable($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->pausable = $var;
 
         return $this;
     }

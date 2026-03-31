@@ -142,6 +142,25 @@ final class AnswerRecordsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a app
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $app
+     *
+     * @return string The formatted app resource.
+     */
+    public static function appName(string $project, string $location, string $app): string
+    {
+        return self::getPathTemplate('app')->render([
+            'project' => $project,
+            'location' => $location,
+            'app' => $app,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a context
      * resource.
      *
@@ -545,11 +564,33 @@ final class AnswerRecordsClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a toolset
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $app
+     * @param string $toolset
+     *
+     * @return string The formatted toolset resource.
+     */
+    public static function toolsetName(string $project, string $location, string $app, string $toolset): string
+    {
+        return self::getPathTemplate('toolset')->render([
+            'project' => $project,
+            'location' => $location,
+            'app' => $app,
+            'toolset' => $toolset,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - agent: projects/{project}/agent
      * - answerRecord: projects/{project}/answerRecords/{answer_record}
+     * - app: projects/{project}/locations/{location}/apps/{app}
      * - context: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - intent: projects/{project}/agent/intents/{intent}
      * - location: projects/{project}/locations/{location}
@@ -570,6 +611,7 @@ final class AnswerRecordsClient
      * - projectSessionContext: projects/{project}/agent/sessions/{session}/contexts/{context}
      * - session: projects/{project}/agent/sessions/{session}
      * - tool: projects/{project}/locations/{location}/tools/{tool}
+     * - toolset: projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -755,6 +797,22 @@ final class AnswerRecordsClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name] field:
+
+    * **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see AnswerRecordsClient::listLocationsAsync()} .
      *

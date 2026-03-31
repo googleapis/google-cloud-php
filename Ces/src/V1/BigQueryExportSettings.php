@@ -22,7 +22,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
      */
     protected $enabled = false;
     /**
-     * Optional. The project ID of the BigQuery dataset to export the data to.
+     * Optional. The **project ID** of the BigQuery dataset to export the data to.
      * Note: If the BigQuery dataset is in a different project from the app,
      * you should grant `roles/bigquery.admin` role to the CES service agent
      * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
@@ -31,7 +31,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
      */
     protected $project = '';
     /**
-     * Optional. The BigQuery dataset to export the data to.
+     * Optional. The BigQuery **dataset ID** to export the data to.
      *
      * Generated from protobuf field <code>string dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -46,12 +46,12 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Optional. Indicates whether the BigQuery export is enabled.
      *     @type string $project
-     *           Optional. The project ID of the BigQuery dataset to export the data to.
+     *           Optional. The **project ID** of the BigQuery dataset to export the data to.
      *           Note: If the BigQuery dataset is in a different project from the app,
      *           you should grant `roles/bigquery.admin` role to the CES service agent
      *           `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
      *     @type string $dataset
-     *           Optional. The BigQuery dataset to export the data to.
+     *           Optional. The BigQuery **dataset ID** to export the data to.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,7 +86,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The project ID of the BigQuery dataset to export the data to.
+     * Optional. The **project ID** of the BigQuery dataset to export the data to.
      * Note: If the BigQuery dataset is in a different project from the app,
      * you should grant `roles/bigquery.admin` role to the CES service agent
      * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
@@ -100,7 +100,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The project ID of the BigQuery dataset to export the data to.
+     * Optional. The **project ID** of the BigQuery dataset to export the data to.
      * Note: If the BigQuery dataset is in a different project from the app,
      * you should grant `roles/bigquery.admin` role to the CES service agent
      * `service-<PROJECT-NUMBER>\@gcp-sa-ces.iam.gserviceaccount.com`.
@@ -118,7 +118,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BigQuery dataset to export the data to.
+     * Optional. The BigQuery **dataset ID** to export the data to.
      *
      * Generated from protobuf field <code>string dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -129,7 +129,7 @@ class BigQueryExportSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BigQuery dataset to export the data to.
+     * Optional. The BigQuery **dataset ID** to export the data to.
      *
      * Generated from protobuf field <code>string dataset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

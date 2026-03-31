@@ -25,8 +25,8 @@ class ListPullRequestFileDiffsRequest extends \Google\Protobuf\Internal\Message
      */
     protected $name = '';
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,8 +65,8 @@ class ListPullRequestFileDiffsRequest extends \Google\Protobuf\Internal\Message
      *           Format:
      *           `projects/{project_number}/locations/{location_id}/repositories/{repository_id}/pullRequests/{pull_request_id}`
      *     @type int $page_size
-     *           Optional. Requested page size. Server may return fewer items than
-     *           requested. If unspecified, server will pick an appropriate default.
+     *           Optional. Requested page size. If unspecified, a default size of 30 will be
+     *           used. The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
      *           Optional. A token identifying a page of results the server should return.
      * }
@@ -107,8 +107,8 @@ class ListPullRequestFileDiffsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -119,8 +119,8 @@ class ListPullRequestFileDiffsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Requested page size. Server may return fewer items than
-     * requested. If unspecified, server will pick an appropriate default.
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

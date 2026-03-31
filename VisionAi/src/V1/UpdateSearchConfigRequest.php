@@ -33,6 +33,26 @@ class UpdateSearchConfigRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\SearchConfig $searchConfig Required. The search configuration to update.
+     *
+     *                                                             The search configuration's `name` field is used to identify the resource to
+     *                                                             be updated. Format:
+     *                                                             `projects/{project_number}/locations/{location}/corpora/{corpus}/searchConfigs/{search_config}`
+     * @param \Google\Protobuf\FieldMask             $updateMask   The list of fields to be updated. If left unset, all field paths will be
+     *                                                             updated/overwritten.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateSearchConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\SearchConfig $searchConfig, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setSearchConfig($searchConfig)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -40,8 +40,7 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The Dataflow Messages API is used for monitoring the progress of
- * Dataflow jobs.
+ * Service Description: The Dataflow Messages API is used to monitor the progress of Dataflow jobs.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.

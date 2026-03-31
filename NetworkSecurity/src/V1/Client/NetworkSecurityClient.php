@@ -44,23 +44,59 @@ use Google\Cloud\Location\GetLocationRequest;
 use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy;
+use Google\Cloud\NetworkSecurity\V1\AuthzPolicy;
+use Google\Cloud\NetworkSecurity\V1\BackendAuthenticationConfig;
 use Google\Cloud\NetworkSecurity\V1\ClientTlsPolicy;
 use Google\Cloud\NetworkSecurity\V1\CreateAuthorizationPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateAuthzPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateBackendAuthenticationConfigRequest;
 use Google\Cloud\NetworkSecurity\V1\CreateClientTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateGatewaySecurityPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateGatewaySecurityPolicyRuleRequest;
 use Google\Cloud\NetworkSecurity\V1\CreateServerTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateTlsInspectionPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\CreateUrlListRequest;
 use Google\Cloud\NetworkSecurity\V1\DeleteAuthorizationPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteAuthzPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteBackendAuthenticationConfigRequest;
 use Google\Cloud\NetworkSecurity\V1\DeleteClientTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteGatewaySecurityPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteGatewaySecurityPolicyRuleRequest;
 use Google\Cloud\NetworkSecurity\V1\DeleteServerTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteTlsInspectionPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\DeleteUrlListRequest;
+use Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicy;
+use Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicyRule;
 use Google\Cloud\NetworkSecurity\V1\GetAuthorizationPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetAuthzPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetBackendAuthenticationConfigRequest;
 use Google\Cloud\NetworkSecurity\V1\GetClientTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetGatewaySecurityPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetGatewaySecurityPolicyRuleRequest;
 use Google\Cloud\NetworkSecurity\V1\GetServerTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetTlsInspectionPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\GetUrlListRequest;
 use Google\Cloud\NetworkSecurity\V1\ListAuthorizationPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListAuthzPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListBackendAuthenticationConfigsRequest;
 use Google\Cloud\NetworkSecurity\V1\ListClientTlsPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListGatewaySecurityPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListGatewaySecurityPolicyRulesRequest;
 use Google\Cloud\NetworkSecurity\V1\ListServerTlsPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListTlsInspectionPoliciesRequest;
+use Google\Cloud\NetworkSecurity\V1\ListUrlListsRequest;
 use Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy;
+use Google\Cloud\NetworkSecurity\V1\TlsInspectionPolicy;
 use Google\Cloud\NetworkSecurity\V1\UpdateAuthorizationPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateAuthzPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateBackendAuthenticationConfigRequest;
 use Google\Cloud\NetworkSecurity\V1\UpdateClientTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateGatewaySecurityPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateGatewaySecurityPolicyRuleRequest;
 use Google\Cloud\NetworkSecurity\V1\UpdateServerTlsPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateTlsInspectionPolicyRequest;
+use Google\Cloud\NetworkSecurity\V1\UpdateUrlListRequest;
+use Google\Cloud\NetworkSecurity\V1\UrlList;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -80,20 +116,50 @@ use Psr\Log\LoggerInterface;
  * contained within formatted names that are returned by the API.
  *
  * @method PromiseInterface<OperationResponse> createAuthorizationPolicyAsync(CreateAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createAuthzPolicyAsync(CreateAuthzPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createBackendAuthenticationConfigAsync(CreateBackendAuthenticationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createClientTlsPolicyAsync(CreateClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGatewaySecurityPolicyAsync(CreateGatewaySecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createGatewaySecurityPolicyRuleAsync(CreateGatewaySecurityPolicyRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> createServerTlsPolicyAsync(CreateServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createTlsInspectionPolicyAsync(CreateTlsInspectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> createUrlListAsync(CreateUrlListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteAuthorizationPolicyAsync(DeleteAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAuthzPolicyAsync(DeleteAuthzPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteBackendAuthenticationConfigAsync(DeleteBackendAuthenticationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteClientTlsPolicyAsync(DeleteClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGatewaySecurityPolicyAsync(DeleteGatewaySecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteGatewaySecurityPolicyRuleAsync(DeleteGatewaySecurityPolicyRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> deleteServerTlsPolicyAsync(DeleteServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteTlsInspectionPolicyAsync(DeleteTlsInspectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteUrlListAsync(DeleteUrlListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<AuthorizationPolicy> getAuthorizationPolicyAsync(GetAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<AuthzPolicy> getAuthzPolicyAsync(GetAuthzPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendAuthenticationConfig> getBackendAuthenticationConfigAsync(GetBackendAuthenticationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ClientTlsPolicy> getClientTlsPolicyAsync(GetClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GatewaySecurityPolicy> getGatewaySecurityPolicyAsync(GetGatewaySecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<GatewaySecurityPolicyRule> getGatewaySecurityPolicyRuleAsync(GetGatewaySecurityPolicyRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ServerTlsPolicy> getServerTlsPolicyAsync(GetServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TlsInspectionPolicy> getTlsInspectionPolicyAsync(GetTlsInspectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<UrlList> getUrlListAsync(GetUrlListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listAuthorizationPoliciesAsync(ListAuthorizationPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAuthzPoliciesAsync(ListAuthzPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listBackendAuthenticationConfigsAsync(ListBackendAuthenticationConfigsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClientTlsPoliciesAsync(ListClientTlsPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGatewaySecurityPoliciesAsync(ListGatewaySecurityPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listGatewaySecurityPolicyRulesAsync(ListGatewaySecurityPolicyRulesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listServerTlsPoliciesAsync(ListServerTlsPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listTlsInspectionPoliciesAsync(ListTlsInspectionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUrlListsAsync(ListUrlListsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateAuthorizationPolicyAsync(UpdateAuthorizationPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAuthzPolicyAsync(UpdateAuthzPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateBackendAuthenticationConfigAsync(UpdateBackendAuthenticationConfigRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateClientTlsPolicyAsync(UpdateClientTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGatewaySecurityPolicyAsync(UpdateGatewaySecurityPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateGatewaySecurityPolicyRuleAsync(UpdateGatewaySecurityPolicyRuleRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> updateServerTlsPolicyAsync(UpdateServerTlsPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateTlsInspectionPolicyAsync(UpdateTlsInspectionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateUrlListAsync(UpdateUrlListRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Location> getLocationAsync(GetLocationRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listLocationsAsync(ListLocationsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRequest $request, array $optionalArgs = [])
@@ -219,6 +285,85 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a authz_policy
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $authzPolicy
+     *
+     * @return string The formatted authz_policy resource.
+     */
+    public static function authzPolicyName(string $project, string $location, string $authzPolicy): string
+    {
+        return self::getPathTemplate('authzPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'authz_policy' => $authzPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * backend_authentication_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $backendAuthenticationConfig
+     *
+     * @return string The formatted backend_authentication_config resource.
+     */
+    public static function backendAuthenticationConfigName(
+        string $project,
+        string $location,
+        string $backendAuthenticationConfig
+    ): string {
+        return self::getPathTemplate('backendAuthenticationConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'backend_authentication_config' => $backendAuthenticationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a certificate
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $certificate
+     *
+     * @return string The formatted certificate resource.
+     */
+    public static function certificateName(string $project, string $location, string $certificate): string
+    {
+        return self::getPathTemplate('certificate')->render([
+            'project' => $project,
+            'location' => $location,
+            'certificate' => $certificate,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a
      * client_tls_policy resource.
      *
@@ -234,6 +379,53 @@ final class NetworkSecurityClient
             'project' => $project,
             'location' => $location,
             'client_tls_policy' => $clientTlsPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * gateway_security_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $gatewaySecurityPolicy
+     *
+     * @return string The formatted gateway_security_policy resource.
+     */
+    public static function gatewaySecurityPolicyName(
+        string $project,
+        string $location,
+        string $gatewaySecurityPolicy
+    ): string {
+        return self::getPathTemplate('gatewaySecurityPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'gateway_security_policy' => $gatewaySecurityPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * gateway_security_policy_rule resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $gatewaySecurityPolicy
+     * @param string $rule
+     *
+     * @return string The formatted gateway_security_policy_rule resource.
+     */
+    public static function gatewaySecurityPolicyRuleName(
+        string $project,
+        string $location,
+        string $gatewaySecurityPolicy,
+        string $rule
+    ): string {
+        return self::getPathTemplate('gatewaySecurityPolicyRule')->render([
+            'project' => $project,
+            'location' => $location,
+            'gateway_security_policy' => $gatewaySecurityPolicy,
+            'rule' => $rule,
         ]);
     }
 
@@ -274,13 +466,82 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * tls_inspection_policy resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $tlsInspectionPolicy
+     *
+     * @return string The formatted tls_inspection_policy resource.
+     */
+    public static function tlsInspectionPolicyName(
+        string $project,
+        string $location,
+        string $tlsInspectionPolicy
+    ): string {
+        return self::getPathTemplate('tlsInspectionPolicy')->render([
+            'project' => $project,
+            'location' => $location,
+            'tls_inspection_policy' => $tlsInspectionPolicy,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a trust_config
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $trustConfig
+     *
+     * @return string The formatted trust_config resource.
+     */
+    public static function trustConfigName(string $project, string $location, string $trustConfig): string
+    {
+        return self::getPathTemplate('trustConfig')->render([
+            'project' => $project,
+            'location' => $location,
+            'trust_config' => $trustConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a url_list
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $urlList
+     *
+     * @return string The formatted url_list resource.
+     */
+    public static function urlListName(string $project, string $location, string $urlList): string
+    {
+        return self::getPathTemplate('urlList')->render([
+            'project' => $project,
+            'location' => $location,
+            'url_list' => $urlList,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - authorizationPolicy: projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}
+     * - authzPolicy: projects/{project}/locations/{location}/authzPolicies/{authz_policy}
+     * - backendAuthenticationConfig: projects/{project}/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
+     * - certificate: projects/{project}/locations/{location}/certificates/{certificate}
      * - clientTlsPolicy: projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}
+     * - gatewaySecurityPolicy: projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}
+     * - gatewaySecurityPolicyRule: projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}/rules/{rule}
      * - location: projects/{project}/locations/{location}
      * - serverTlsPolicy: projects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}
+     * - tlsInspectionPolicy: projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy}
+     * - trustConfig: projects/{project}/locations/{location}/trustConfigs/{trust_config}
+     * - urlList: projects/{project}/locations/{location}/urlLists/{url_list}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -416,6 +677,61 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Creates a new AuthzPolicy in a given project and location.
+     *
+     * The async variant is {@see NetworkSecurityClient::createAuthzPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_authz_policy.php
+     *
+     * @param CreateAuthzPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AuthzPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createAuthzPolicy(CreateAuthzPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateAuthzPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new BackendAuthenticationConfig in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::createBackendAuthenticationConfigAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_backend_authentication_config.php
+     *
+     * @param CreateBackendAuthenticationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<BackendAuthenticationConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createBackendAuthenticationConfig(
+        CreateBackendAuthenticationConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateBackendAuthenticationConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a new ClientTlsPolicy in a given project and location.
      *
      * The async variant is {@see NetworkSecurityClient::createClientTlsPolicyAsync()}
@@ -442,6 +758,64 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('CreateClientTlsPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new GatewaySecurityPolicy in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::createGatewaySecurityPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_gateway_security_policy.php
+     *
+     * @param CreateGatewaySecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GatewaySecurityPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGatewaySecurityPolicy(
+        CreateGatewaySecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGatewaySecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new GatewaySecurityPolicy in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::createGatewaySecurityPolicyRuleAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_gateway_security_policy_rule.php
+     *
+     * @param CreateGatewaySecurityPolicyRuleRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GatewaySecurityPolicyRule>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createGatewaySecurityPolicyRule(
+        CreateGatewaySecurityPolicyRuleRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateGatewaySecurityPolicyRule', $request, $callOptions)->wait();
     }
 
     /**
@@ -474,6 +848,61 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Creates a new TlsInspectionPolicy in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::createTlsInspectionPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_tls_inspection_policy.php
+     *
+     * @param CreateTlsInspectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<TlsInspectionPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createTlsInspectionPolicy(
+        CreateTlsInspectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('CreateTlsInspectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Creates a new UrlList in a given project and location.
+     *
+     * The async variant is {@see NetworkSecurityClient::createUrlListAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/create_url_list.php
+     *
+     * @param CreateUrlListRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<UrlList>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createUrlList(CreateUrlListRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('CreateUrlList', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single AuthorizationPolicy.
      *
      * The async variant is
@@ -500,6 +929,62 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteAuthorizationPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single AuthzPolicy.
+     *
+     * The async variant is {@see NetworkSecurityClient::deleteAuthzPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_authz_policy.php
+     *
+     * @param DeleteAuthzPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteAuthzPolicy(DeleteAuthzPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteAuthzPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single BackendAuthenticationConfig to
+     * BackendAuthenticationConfig.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::deleteBackendAuthenticationConfigAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_backend_authentication_config.php
+     *
+     * @param DeleteBackendAuthenticationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteBackendAuthenticationConfig(
+        DeleteBackendAuthenticationConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteBackendAuthenticationConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -532,6 +1017,64 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Deletes a single GatewaySecurityPolicy.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::deleteGatewaySecurityPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_gateway_security_policy.php
+     *
+     * @param DeleteGatewaySecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGatewaySecurityPolicy(
+        DeleteGatewaySecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGatewaySecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single GatewaySecurityPolicyRule.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::deleteGatewaySecurityPolicyRuleAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_gateway_security_policy_rule.php
+     *
+     * @param DeleteGatewaySecurityPolicyRuleRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteGatewaySecurityPolicyRule(
+        DeleteGatewaySecurityPolicyRuleRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteGatewaySecurityPolicyRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Deletes a single ServerTlsPolicy.
      *
      * The async variant is {@see NetworkSecurityClient::deleteServerTlsPolicyAsync()}
@@ -558,6 +1101,61 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('DeleteServerTlsPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single TlsInspectionPolicy.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::deleteTlsInspectionPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_tls_inspection_policy.php
+     *
+     * @param DeleteTlsInspectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteTlsInspectionPolicy(
+        DeleteTlsInspectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('DeleteTlsInspectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a single UrlList.
+     *
+     * The async variant is {@see NetworkSecurityClient::deleteUrlListAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/delete_url_list.php
+     *
+     * @param DeleteUrlListRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<null>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteUrlList(DeleteUrlListRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('DeleteUrlList', $request, $callOptions)->wait();
     }
 
     /**
@@ -590,6 +1188,62 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Gets details of a single AuthzPolicy.
+     *
+     * The async variant is {@see NetworkSecurityClient::getAuthzPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_authz_policy.php
+     *
+     * @param GetAuthzPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return AuthzPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getAuthzPolicy(GetAuthzPolicyRequest $request, array $callOptions = []): AuthzPolicy
+    {
+        return $this->startApiCall('GetAuthzPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single BackendAuthenticationConfig to
+     * BackendAuthenticationConfig.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::getBackendAuthenticationConfigAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_backend_authentication_config.php
+     *
+     * @param GetBackendAuthenticationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return BackendAuthenticationConfig
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getBackendAuthenticationConfig(
+        GetBackendAuthenticationConfigRequest $request,
+        array $callOptions = []
+    ): BackendAuthenticationConfig {
+        return $this->startApiCall('GetBackendAuthenticationConfig', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single ClientTlsPolicy.
      *
      * The async variant is {@see NetworkSecurityClient::getClientTlsPolicyAsync()} .
@@ -616,6 +1270,64 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Gets details of a single GatewaySecurityPolicy.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::getGatewaySecurityPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_gateway_security_policy.php
+     *
+     * @param GetGatewaySecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GatewaySecurityPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGatewaySecurityPolicy(
+        GetGatewaySecurityPolicyRequest $request,
+        array $callOptions = []
+    ): GatewaySecurityPolicy {
+        return $this->startApiCall('GetGatewaySecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single GatewaySecurityPolicyRule.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::getGatewaySecurityPolicyRuleAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_gateway_security_policy_rule.php
+     *
+     * @param GetGatewaySecurityPolicyRuleRequest $request     A request to house fields associated with the call.
+     * @param array                               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return GatewaySecurityPolicyRule
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getGatewaySecurityPolicyRule(
+        GetGatewaySecurityPolicyRuleRequest $request,
+        array $callOptions = []
+    ): GatewaySecurityPolicyRule {
+        return $this->startApiCall('GetGatewaySecurityPolicyRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Gets details of a single ServerTlsPolicy.
      *
      * The async variant is {@see NetworkSecurityClient::getServerTlsPolicyAsync()} .
@@ -639,6 +1351,61 @@ final class NetworkSecurityClient
     public function getServerTlsPolicy(GetServerTlsPolicyRequest $request, array $callOptions = []): ServerTlsPolicy
     {
         return $this->startApiCall('GetServerTlsPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single TlsInspectionPolicy.
+     *
+     * The async variant is {@see NetworkSecurityClient::getTlsInspectionPolicyAsync()}
+     * .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_tls_inspection_policy.php
+     *
+     * @param GetTlsInspectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return TlsInspectionPolicy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getTlsInspectionPolicy(
+        GetTlsInspectionPolicyRequest $request,
+        array $callOptions = []
+    ): TlsInspectionPolicy {
+        return $this->startApiCall('GetTlsInspectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets details of a single UrlList.
+     *
+     * The async variant is {@see NetworkSecurityClient::getUrlListAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/get_url_list.php
+     *
+     * @param GetUrlListRequest $request     A request to house fields associated with the call.
+     * @param array             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return UrlList
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getUrlList(GetUrlListRequest $request, array $callOptions = []): UrlList
+    {
+        return $this->startApiCall('GetUrlList', $request, $callOptions)->wait();
     }
 
     /**
@@ -671,6 +1438,61 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Lists AuthzPolicies in a given project and location.
+     *
+     * The async variant is {@see NetworkSecurityClient::listAuthzPoliciesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_authz_policies.php
+     *
+     * @param ListAuthzPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listAuthzPolicies(ListAuthzPoliciesRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListAuthzPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists BackendAuthenticationConfigs in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::listBackendAuthenticationConfigsAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_backend_authentication_configs.php
+     *
+     * @param ListBackendAuthenticationConfigsRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listBackendAuthenticationConfigs(
+        ListBackendAuthenticationConfigsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListBackendAuthenticationConfigs', $request, $callOptions);
+    }
+
+    /**
      * Lists ClientTlsPolicies in a given project and location.
      *
      * The async variant is {@see NetworkSecurityClient::listClientTlsPoliciesAsync()}
@@ -697,6 +1519,64 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): PagedListResponse {
         return $this->startApiCall('ListClientTlsPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists GatewaySecurityPolicies in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::listGatewaySecurityPoliciesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_gateway_security_policies.php
+     *
+     * @param ListGatewaySecurityPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGatewaySecurityPolicies(
+        ListGatewaySecurityPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGatewaySecurityPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists GatewaySecurityPolicyRules in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::listGatewaySecurityPolicyRulesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_gateway_security_policy_rules.php
+     *
+     * @param ListGatewaySecurityPolicyRulesRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listGatewaySecurityPolicyRules(
+        ListGatewaySecurityPolicyRulesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListGatewaySecurityPolicyRules', $request, $callOptions);
     }
 
     /**
@@ -729,6 +1609,61 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Lists TlsInspectionPolicies in a given project and location.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::listTlsInspectionPoliciesAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_tls_inspection_policies.php
+     *
+     * @param ListTlsInspectionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listTlsInspectionPolicies(
+        ListTlsInspectionPoliciesRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListTlsInspectionPolicies', $request, $callOptions);
+    }
+
+    /**
+     * Lists UrlLists in a given project and location.
+     *
+     * The async variant is {@see NetworkSecurityClient::listUrlListsAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/list_url_lists.php
+     *
+     * @param ListUrlListsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUrlLists(ListUrlListsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListUrlLists', $request, $callOptions);
+    }
+
+    /**
      * Updates the parameters of a single AuthorizationPolicy.
      *
      * The async variant is
@@ -755,6 +1690,62 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('UpdateAuthorizationPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single AuthzPolicy.
+     *
+     * The async variant is {@see NetworkSecurityClient::updateAuthzPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_authz_policy.php
+     *
+     * @param UpdateAuthzPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<AuthzPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateAuthzPolicy(UpdateAuthzPolicyRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateAuthzPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single BackendAuthenticationConfig to
+     * BackendAuthenticationConfig.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::updateBackendAuthenticationConfigAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_backend_authentication_config.php
+     *
+     * @param UpdateBackendAuthenticationConfigRequest $request     A request to house fields associated with the call.
+     * @param array                                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<BackendAuthenticationConfig>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateBackendAuthenticationConfig(
+        UpdateBackendAuthenticationConfigRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateBackendAuthenticationConfig', $request, $callOptions)->wait();
     }
 
     /**
@@ -787,6 +1778,64 @@ final class NetworkSecurityClient
     }
 
     /**
+     * Updates the parameters of a single GatewaySecurityPolicy.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::updateGatewaySecurityPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_gateway_security_policy.php
+     *
+     * @param UpdateGatewaySecurityPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GatewaySecurityPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGatewaySecurityPolicy(
+        UpdateGatewaySecurityPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateGatewaySecurityPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single GatewaySecurityPolicyRule.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::updateGatewaySecurityPolicyRuleAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_gateway_security_policy_rule.php
+     *
+     * @param UpdateGatewaySecurityPolicyRuleRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<GatewaySecurityPolicyRule>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateGatewaySecurityPolicyRule(
+        UpdateGatewaySecurityPolicyRuleRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateGatewaySecurityPolicyRule', $request, $callOptions)->wait();
+    }
+
+    /**
      * Updates the parameters of a single ServerTlsPolicy.
      *
      * The async variant is {@see NetworkSecurityClient::updateServerTlsPolicyAsync()}
@@ -813,6 +1862,61 @@ final class NetworkSecurityClient
         array $callOptions = []
     ): OperationResponse {
         return $this->startApiCall('UpdateServerTlsPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single TlsInspectionPolicy.
+     *
+     * The async variant is
+     * {@see NetworkSecurityClient::updateTlsInspectionPolicyAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_tls_inspection_policy.php
+     *
+     * @param UpdateTlsInspectionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<TlsInspectionPolicy>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateTlsInspectionPolicy(
+        UpdateTlsInspectionPolicyRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('UpdateTlsInspectionPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates the parameters of a single UrlList.
+     *
+     * The async variant is {@see NetworkSecurityClient::updateUrlListAsync()} .
+     *
+     * @example samples/V1/NetworkSecurityClient/update_url_list.php
+     *
+     * @param UpdateUrlListRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<UrlList>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateUrlList(UpdateUrlListRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateUrlList', $request, $callOptions)->wait();
     }
 
     /**
@@ -843,6 +1947,22 @@ final class NetworkSecurityClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name] field:
+
+    * **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see NetworkSecurityClient::listLocationsAsync()} .
      *

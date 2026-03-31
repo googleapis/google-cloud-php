@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_IngestAsset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\IngestAssetRequest;
 use Google\Cloud\VisionAI\V1\IngestAssetResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Ingests data for the asset. It is not allowed to ingest a data chunk which
@@ -46,7 +46,7 @@ function ingest_asset_sample(): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new IngestAssetRequest();
 
     // Call the API and handle any network failures.

@@ -23,6 +23,20 @@ class GetIndexEndpointRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Name of the IndexEndpoint resource. Please see
+     *                     {@see WarehouseClient::indexEndpointName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetIndexEndpointRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

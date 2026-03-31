@@ -23,6 +23,20 @@ class ListPrebuiltProcessorsRequest extends \Google\Protobuf\Internal\Message
     protected $parent = '';
 
     /**
+     * @param string $parent Required. Parent path. Please see
+     *                       {@see AppPlatformClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListPrebuiltProcessorsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

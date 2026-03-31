@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_CreateEvent_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\CreateEventRequest;
 use Google\Cloud\VisionAI\V1\Event;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -41,13 +42,17 @@ function create_event_sample(string $formattedParent, string $eventId): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $event = new Event();
+    $request = (new CreateEventRequest())
+        ->setParent($formattedParent)
+        ->setEventId($eventId)
+        ->setEvent($event);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->createEvent($formattedParent, $eventId, $event);
+        $response = $streamsServiceClient->createEvent($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

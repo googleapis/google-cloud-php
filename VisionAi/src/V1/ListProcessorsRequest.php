@@ -48,6 +48,20 @@ class ListProcessorsRequest extends \Google\Protobuf\Internal\Message
     protected $order_by = '';
 
     /**
+     * @param string $parent Required. Parent value for ListProcessorsRequest. Please see
+     *                       {@see AppPlatformClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListProcessorsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

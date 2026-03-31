@@ -60,6 +60,15 @@ use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\DestinationVolumeParameters;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
 use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
+use Google\Cloud\NetApp\V1\EstablishVolumePeeringRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapDeleteRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapDeleteResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapGetRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapGetResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapPatchRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapPatchResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapPostRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapPostResponse;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
@@ -132,6 +141,7 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
+use Google\Protobuf\Struct;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -3611,6 +3621,456 @@ class NetAppClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function establishVolumePeeringTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishVolumePeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $name2 = 'name2-1052831874';
+        $stateDetails = 'stateDetails632437908';
+        $shareName = 'shareName-1788152085';
+        $psaRange = 'psaRange1004849276';
+        $storagePool = 'storagePool897344352';
+        $network = 'network1843485230';
+        $capacityGib = 498394811;
+        $unixPermissions = 'unixPermissions1137975373';
+        $description = 'description-1724546052';
+        $snapReserve = -1.42958764e8;
+        $snapshotDirectory = true;
+        $usedGib = 279083970;
+        $kerberosEnabled = false;
+        $ldapEnabled = false;
+        $activeDirectory = 'activeDirectory475662452';
+        $kmsConfig = 'kmsConfig917255152';
+        $hasReplication = false;
+        $largeCapacity = true;
+        $multipleEndpoints = false;
+        $replicaZone = 'replicaZone1404354259';
+        $zone = 'zone3744684';
+        $coldTierSizeGib = 212809252;
+        $throughputMibps = 1.49869682e8;
+        $hotTierSizeUsedGib = 151116719;
+        $expectedResponse = new Volume();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setStateDetails($stateDetails);
+        $expectedResponse->setShareName($shareName);
+        $expectedResponse->setPsaRange($psaRange);
+        $expectedResponse->setStoragePool($storagePool);
+        $expectedResponse->setNetwork($network);
+        $expectedResponse->setCapacityGib($capacityGib);
+        $expectedResponse->setUnixPermissions($unixPermissions);
+        $expectedResponse->setDescription($description);
+        $expectedResponse->setSnapReserve($snapReserve);
+        $expectedResponse->setSnapshotDirectory($snapshotDirectory);
+        $expectedResponse->setUsedGib($usedGib);
+        $expectedResponse->setKerberosEnabled($kerberosEnabled);
+        $expectedResponse->setLdapEnabled($ldapEnabled);
+        $expectedResponse->setActiveDirectory($activeDirectory);
+        $expectedResponse->setKmsConfig($kmsConfig);
+        $expectedResponse->setHasReplication($hasReplication);
+        $expectedResponse->setLargeCapacity($largeCapacity);
+        $expectedResponse->setMultipleEndpoints($multipleEndpoints);
+        $expectedResponse->setReplicaZone($replicaZone);
+        $expectedResponse->setZone($zone);
+        $expectedResponse->setColdTierSizeGib($coldTierSizeGib);
+        $expectedResponse->setThroughputMibps($throughputMibps);
+        $expectedResponse->setHotTierSizeUsedGib($hotTierSizeUsedGib);
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/establishVolumePeeringTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishVolumePeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishVolumePeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/EstablishVolumePeering', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerClusterName();
+        $this->assertProtobufEquals($peerClusterName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerSvmName();
+        $this->assertProtobufEquals($peerSvmName, $actualValue);
+        $actualValue = $actualApiRequestObject->getPeerVolumeName();
+        $this->assertProtobufEquals($peerVolumeName, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishVolumePeeringTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function establishVolumePeeringExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/establishVolumePeeringTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->volumeName('[PROJECT]', '[LOCATION]', '[VOLUME]');
+        $peerClusterName = 'peerClusterName-1759308435';
+        $peerSvmName = 'peerSvmName-1166928515';
+        $peerVolumeName = 'peerVolumeName486635827';
+        $request = (new EstablishVolumePeeringRequest())
+            ->setName($formattedName)
+            ->setPeerClusterName($peerClusterName)
+            ->setPeerSvmName($peerSvmName)
+            ->setPeerVolumeName($peerVolumeName);
+        $response = $gapicClient->establishVolumePeering($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/establishVolumePeeringTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapDeleteTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ExecuteOntapDeleteResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapDeleteRequest())->setOntapPath($ontapPath);
+        $response = $gapicClient->executeOntapDelete($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ExecuteOntapDelete', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOntapPath();
+        $this->assertProtobufEquals($ontapPath, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapDeleteExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapDeleteRequest())->setOntapPath($ontapPath);
+        try {
+            $gapicClient->executeOntapDelete($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapGetTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ExecuteOntapGetResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapGetRequest())->setOntapPath($ontapPath);
+        $response = $gapicClient->executeOntapGet($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ExecuteOntapGet', $actualFuncCall);
+        $actualValue = $actualRequestObject->getOntapPath();
+        $this->assertProtobufEquals($ontapPath, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapGetExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapGetRequest())->setOntapPath($ontapPath);
+        try {
+            $gapicClient->executeOntapGet($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapPatchTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ExecuteOntapPatchResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $body = new Struct();
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapPatchRequest())->setBody($body)->setOntapPath($ontapPath);
+        $response = $gapicClient->executeOntapPatch($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ExecuteOntapPatch', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
+        $actualValue = $actualRequestObject->getOntapPath();
+        $this->assertProtobufEquals($ontapPath, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapPatchExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $body = new Struct();
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapPatchRequest())->setBody($body)->setOntapPath($ontapPath);
+        try {
+            $gapicClient->executeOntapPatch($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapPostTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new ExecuteOntapPostResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $body = new Struct();
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapPostRequest())->setBody($body)->setOntapPath($ontapPath);
+        $response = $gapicClient->executeOntapPost($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.netapp.v1.NetApp/ExecuteOntapPost', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBody();
+        $this->assertProtobufEquals($body, $actualValue);
+        $actualValue = $actualRequestObject->getOntapPath();
+        $this->assertProtobufEquals($ontapPath, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function executeOntapPostExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $body = new Struct();
+        $ontapPath = 'ontapPath-2095945184';
+        $request = (new ExecuteOntapPostRequest())->setBody($body)->setOntapPath($ontapPath);
+        try {
+            $gapicClient->executeOntapPost($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /** @test */

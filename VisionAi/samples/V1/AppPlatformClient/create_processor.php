@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_CreateProcessor_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\CreateProcessorRequest;
 use Google\Cloud\VisionAI\V1\Processor;
 use Google\Rpc\Status;
 
@@ -45,14 +46,18 @@ function create_processor_sample(
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $processor = (new Processor())
         ->setDisplayName($processorDisplayName);
+    $request = (new CreateProcessorRequest())
+        ->setParent($formattedParent)
+        ->setProcessorId($processorId)
+        ->setProcessor($processor);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->createProcessor($formattedParent, $processorId, $processor);
+        $response = $appPlatformClient->createProcessor($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

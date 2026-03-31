@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_RemoveApplicationStreamInput_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputRequest;
 use Google\Cloud\VisionAI\V1\RemoveApplicationStreamInputResponse;
 use Google\Rpc\Status;
 
@@ -44,10 +45,14 @@ function remove_application_stream_input_sample(string $formattedName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new RemoveApplicationStreamInputRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->removeApplicationStreamInput($formattedName);
+        $response = $appPlatformClient->removeApplicationStreamInput($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

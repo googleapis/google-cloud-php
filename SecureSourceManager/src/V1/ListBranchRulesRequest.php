@@ -20,10 +20,15 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
      */
     protected $parent = '';
     /**
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_size = 0;
     /**
+     * Optional. A token identifying a page of results the server should return.
+     *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $page_token = '';
@@ -49,7 +54,10 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *     @type int $page_size
+     *           Optional. Requested page size. If unspecified, a default size of 30 will be
+     *           used. The maximum value is 100; values above 100 will be coerced to 100.
      *     @type string $page_token
+     *           Optional. A token identifying a page of results the server should return.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,6 +88,9 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
      */
@@ -89,6 +100,9 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Requested page size. If unspecified, a default size of 30 will be
+     * used. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
      * @return $this
@@ -102,6 +116,8 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. A token identifying a page of results the server should return.
+     *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
@@ -111,6 +127,8 @@ class ListBranchRulesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. A token identifying a page of results the server should return.
+     *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this

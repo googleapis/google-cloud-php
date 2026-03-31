@@ -19,7 +19,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -56,16 +56,17 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $sni = '';
     /**
-     * Optional. Defines a mechanism to provision client identity (public and private keys)
-     * for peer to peer authentication. The presence of this dictates mTLS.
+     * Optional. Defines a mechanism to provision client identity (public and
+     * private keys) for peer to peer authentication. The presence of this
+     * dictates mTLS.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.CertificateProvider client_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $client_certificate = null;
     /**
-     * Optional. Defines the mechanism to obtain the Certificate Authority certificate to
-     * validate the server certificate. If empty, client does not validate the
-     * server certificate.
+     * Optional. Defines the mechanism to obtain the Certificate Authority
+     * certificate to validate the server certificate. If empty, client does not
+     * validate the server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -79,7 +80,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     *           `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     *           `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *     @type string $description
      *           Optional. Free-text description of the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -92,12 +93,13 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
      *           Optional. Server Name Indication string to present to the server during TLS
      *           handshake. E.g: "secure.example.com".
      *     @type \Google\Cloud\NetworkSecurity\V1\CertificateProvider $client_certificate
-     *           Optional. Defines a mechanism to provision client identity (public and private keys)
-     *           for peer to peer authentication. The presence of this dictates mTLS.
+     *           Optional. Defines a mechanism to provision client identity (public and
+     *           private keys) for peer to peer authentication. The presence of this
+     *           dictates mTLS.
      *     @type \Google\Cloud\NetworkSecurity\V1\ValidationCA[] $server_validation_ca
-     *           Optional. Defines the mechanism to obtain the Certificate Authority certificate to
-     *           validate the server certificate. If empty, client does not validate the
-     *           server certificate.
+     *           Optional. Defines the mechanism to obtain the Certificate Authority
+     *           certificate to validate the server certificate. If empty, client does not
+     *           validate the server certificate.
      * }
      */
     public function __construct($data = NULL) {
@@ -107,7 +109,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -119,7 +121,7 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the ClientTlsPolicy resource. It matches the pattern
-     * `projects/{@*}locations/{location}/clientTlsPolicies/{client_tls_policy}`
+     * `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -286,8 +288,9 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision client identity (public and private keys)
-     * for peer to peer authentication. The presence of this dictates mTLS.
+     * Optional. Defines a mechanism to provision client identity (public and
+     * private keys) for peer to peer authentication. The presence of this
+     * dictates mTLS.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.CertificateProvider client_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\NetworkSecurity\V1\CertificateProvider|null
@@ -308,8 +311,9 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision client identity (public and private keys)
-     * for peer to peer authentication. The presence of this dictates mTLS.
+     * Optional. Defines a mechanism to provision client identity (public and
+     * private keys) for peer to peer authentication. The presence of this
+     * dictates mTLS.
      *
      * Generated from protobuf field <code>.google.cloud.networksecurity.v1.CertificateProvider client_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkSecurity\V1\CertificateProvider $var
@@ -324,9 +328,9 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines the mechanism to obtain the Certificate Authority certificate to
-     * validate the server certificate. If empty, client does not validate the
-     * server certificate.
+     * Optional. Defines the mechanism to obtain the Certificate Authority
+     * certificate to validate the server certificate. If empty, client does not
+     * validate the server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return RepeatedField<\Google\Cloud\NetworkSecurity\V1\ValidationCA>
@@ -337,9 +341,9 @@ class ClientTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines the mechanism to obtain the Certificate Authority certificate to
-     * validate the server certificate. If empty, client does not validate the
-     * server certificate.
+     * Optional. Defines the mechanism to obtain the Certificate Authority
+     * certificate to validate the server certificate. If empty, client does not
+     * validate the server certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA server_validation_ca = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\NetworkSecurity\V1\ValidationCA[] $var

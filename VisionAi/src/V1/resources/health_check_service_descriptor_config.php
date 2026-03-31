@@ -23,7 +23,29 @@
 return [
     'interfaces' => [
         'google.cloud.visionai.v1.HealthCheckService' => [
+            'HealthCheck' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\HealthCheckResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'cluster',
+                        'fieldAccessors' => [
+                            'getCluster',
+                        ],
+                    ],
+                ],
+            ],
             'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'ListLocations' => [
@@ -35,7 +57,20 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'templateMap' => [
+                'cluster' => 'projects/{project}/locations/{location}/clusters/{cluster}',
             ],
         ],
     ],

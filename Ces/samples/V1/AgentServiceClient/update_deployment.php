@@ -32,16 +32,10 @@ use Google\Cloud\Ces\V1\UpdateDeploymentRequest;
 /**
  * Updates the specified deployment.
  *
- * @param string $deploymentDisplayName         Display name of the deployment.
- * @param string $formattedDeploymentAppVersion The resource name of the app version to deploy.
- *                                              Format:
- *                                              projects/{project}/locations/{location}/apps/{app}/versions/{version}
- *                                              Please see {@see AgentServiceClient::appVersionName()} for help formatting this field.
+ * @param string $deploymentDisplayName Display name of the deployment.
  */
-function update_deployment_sample(
-    string $deploymentDisplayName,
-    string $formattedDeploymentAppVersion
-): void {
+function update_deployment_sample(string $deploymentDisplayName): void
+{
     // Create a client.
     $agentServiceClient = new AgentServiceClient();
 
@@ -49,7 +43,6 @@ function update_deployment_sample(
     $deploymentChannelProfile = new ChannelProfile();
     $deployment = (new Deployment())
         ->setDisplayName($deploymentDisplayName)
-        ->setAppVersion($formattedDeploymentAppVersion)
         ->setChannelProfile($deploymentChannelProfile);
     $request = (new UpdateDeploymentRequest())
         ->setDeployment($deployment);
@@ -76,13 +69,7 @@ function update_deployment_sample(
 function callSample(): void
 {
     $deploymentDisplayName = '[DISPLAY_NAME]';
-    $formattedDeploymentAppVersion = AgentServiceClient::appVersionName(
-        '[PROJECT]',
-        '[LOCATION]',
-        '[APP]',
-        '[VERSION]'
-    );
 
-    update_deployment_sample($deploymentDisplayName, $formattedDeploymentAppVersion);
+    update_deployment_sample($deploymentDisplayName);
 }
 // [END ces_v1_generated_AgentService_UpdateDeployment_sync]

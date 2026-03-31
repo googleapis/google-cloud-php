@@ -37,6 +37,15 @@ class Package extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string location = 2;</code>
      */
     protected $location = '';
+    /**
+     * Optional. The hex-encoded SHA256 checksum of the package.
+     * If the checksum is provided, the worker will verify the checksum of the
+     * package before using it. If the checksum does not match, the worker will
+     * fail to start.
+     *
+     * Generated from protobuf field <code>string sha256 = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $sha256 = '';
 
     /**
      * Constructor.
@@ -51,6 +60,11 @@ class Package extends \Google\Protobuf\Internal\Message
      *           Google Cloud Storage:
      *             storage.googleapis.com/{bucket}
      *             bucket.storage.googleapis.com/
+     *     @type string $sha256
+     *           Optional. The hex-encoded SHA256 checksum of the package.
+     *           If the checksum is provided, the worker will verify the checksum of the
+     *           package before using it. If the checksum does not match, the worker will
+     *           fail to start.
      * }
      */
     public function __construct($data = NULL) {
@@ -112,6 +126,38 @@ class Package extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The hex-encoded SHA256 checksum of the package.
+     * If the checksum is provided, the worker will verify the checksum of the
+     * package before using it. If the checksum does not match, the worker will
+     * fail to start.
+     *
+     * Generated from protobuf field <code>string sha256 = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSha256()
+    {
+        return $this->sha256;
+    }
+
+    /**
+     * Optional. The hex-encoded SHA256 checksum of the package.
+     * If the checksum is provided, the worker will verify the checksum of the
+     * package before using it. If the checksum does not match, the worker will
+     * fail to start.
+     *
+     * Generated from protobuf field <code>string sha256 = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSha256($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->sha256 = $var;
 
         return $this;
     }

@@ -570,6 +570,7 @@ return [
                 'cluster' => 'projects/{project}/instances/{instance}/clusters/{cluster}',
                 'cryptoKeyVersion' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}',
                 'instance' => 'projects/{project}/instances/{instance}',
+                'location' => 'projects/{project}/locations/{location}',
                 'schemaBundle' => 'projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}',
                 'snapshot' => 'projects/{project}/instances/{instance}/clusters/{cluster}/snapshots/{snapshot}',
                 'table' => 'projects/{project}/instances/{instance}/tables/{table}',

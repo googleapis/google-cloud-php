@@ -69,6 +69,50 @@
                 }
             }
         },
+        "Tools": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ToolsGapicClient",
+                    "rpcs": {
+                        "CreateTool": {
+                            "methods": [
+                                "createTool"
+                            ]
+                        },
+                        "DeleteTool": {
+                            "methods": [
+                                "deleteTool"
+                            ]
+                        },
+                        "GetTool": {
+                            "methods": [
+                                "getTool"
+                            ]
+                        },
+                        "ListTools": {
+                            "methods": [
+                                "listTools"
+                            ]
+                        },
+                        "UpdateTool": {
+                            "methods": [
+                                "updateTool"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Generators": {
             "clients": {
                 "grpc": {
@@ -969,50 +1013,6 @@
                         "UpdateSipTrunk": {
                             "methods": [
                                 "updateSipTrunk"
-                            ]
-                        },
-                        "GetLocation": {
-                            "methods": [
-                                "getLocation"
-                            ]
-                        },
-                        "ListLocations": {
-                            "methods": [
-                                "listLocations"
-                            ]
-                        }
-                    }
-                }
-            }
-        },
-        "Tools": {
-            "clients": {
-                "grpc": {
-                    "libraryClient": "ToolsGapicClient",
-                    "rpcs": {
-                        "CreateTool": {
-                            "methods": [
-                                "createTool"
-                            ]
-                        },
-                        "DeleteTool": {
-                            "methods": [
-                                "deleteTool"
-                            ]
-                        },
-                        "GetTool": {
-                            "methods": [
-                                "getTool"
-                            ]
-                        },
-                        "ListTools": {
-                            "methods": [
-                                "listTools"
-                            ]
-                        },
-                        "UpdateTool": {
-                            "methods": [
-                                "updateTool"
                             ]
                         },
                         "GetLocation": {

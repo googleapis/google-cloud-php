@@ -16,7 +16,7 @@ use Google\Protobuf\RepeatedField;
 class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A unique identifier for an instance. The name should be of the
+     * Identifier. A unique identifier for an instance. The name should be of the
      * format:
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * `project_number`: Maps to a unique int64 id assigned to each project.
@@ -26,7 +26,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `instance_id`: User provided name for the instance, must be unique for a
      * project_number and location_id combination.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -43,6 +43,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     protected $update_time = null;
     /**
      * Optional. Labels as key value pairs.
+     * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * For more information, see [Requirements for
+     * labels](https://cloud.google.com/resource-manager/docs/best-practices-labels#label_encoding).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -94,7 +98,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. A unique identifier for an instance. The name should be of the
+     *           Identifier. A unique identifier for an instance. The name should be of the
      *           format:
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      *           `project_number`: Maps to a unique int64 id assigned to each project.
@@ -109,6 +113,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. Update timestamp.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels as key value pairs.
+     *           Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           For more information, see [Requirements for
+     *           labels](https://cloud.google.com/resource-manager/docs/best-practices-labels#label_encoding).
      *     @type \Google\Cloud\SecureSourceManager\V1\Instance\PrivateConfig $private_config
      *           Optional. Private settings for private instance.
      *     @type int $state
@@ -132,7 +140,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for an instance. The name should be of the
+     * Identifier. A unique identifier for an instance. The name should be of the
      * format:
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * `project_number`: Maps to a unique int64 id assigned to each project.
@@ -142,7 +150,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `instance_id`: User provided name for the instance, must be unique for a
      * project_number and location_id combination.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -151,7 +159,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for an instance. The name should be of the
+     * Identifier. A unique identifier for an instance. The name should be of the
      * format:
      * `projects/{project_number}/locations/{location_id}/instances/{instance_id}`
      * `project_number`: Maps to a unique int64 id assigned to each project.
@@ -161,7 +169,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * `instance_id`: User provided name for the instance, must be unique for a
      * project_number and location_id combination.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -247,6 +255,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels as key value pairs.
+     * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * For more information, see [Requirements for
+     * labels](https://cloud.google.com/resource-manager/docs/best-practices-labels#label_encoding).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -258,6 +270,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Labels as key value pairs.
+     * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * For more information, see [Requirements for
+     * labels](https://cloud.google.com/resource-manager/docs/best-practices-labels#label_encoding).
      *
      * Generated from protobuf field <code>map<string, string> labels = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

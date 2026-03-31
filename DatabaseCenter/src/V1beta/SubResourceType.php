@@ -44,6 +44,24 @@ class SubResourceType
      */
     const SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY = 5;
     /**
+     * A resource acting as a read pool.
+     *
+     * Generated from protobuf enum <code>SUB_RESOURCE_TYPE_READ_POOL = 6;</code>
+     */
+    const SUB_RESOURCE_TYPE_READ_POOL = 6;
+    /**
+     * Represents a reservation resource.
+     *
+     * Generated from protobuf enum <code>SUB_RESOURCE_TYPE_RESERVATION = 7;</code>
+     */
+    const SUB_RESOURCE_TYPE_RESERVATION = 7;
+    /**
+     * Represents a dataset resource.
+     *
+     * Generated from protobuf enum <code>SUB_RESOURCE_TYPE_DATASET = 8;</code>
+     */
+    const SUB_RESOURCE_TYPE_DATASET = 8;
+    /**
      * For the rest of the categories.
      *
      * Generated from protobuf enum <code>SUB_RESOURCE_TYPE_OTHER = 4;</code>
@@ -56,6 +74,9 @@ class SubResourceType
         self::SUB_RESOURCE_TYPE_SECONDARY => 'SUB_RESOURCE_TYPE_SECONDARY',
         self::SUB_RESOURCE_TYPE_READ_REPLICA => 'SUB_RESOURCE_TYPE_READ_REPLICA',
         self::SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY => 'SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY',
+        self::SUB_RESOURCE_TYPE_READ_POOL => 'SUB_RESOURCE_TYPE_READ_POOL',
+        self::SUB_RESOURCE_TYPE_RESERVATION => 'SUB_RESOURCE_TYPE_RESERVATION',
+        self::SUB_RESOURCE_TYPE_DATASET => 'SUB_RESOURCE_TYPE_DATASET',
         self::SUB_RESOURCE_TYPE_OTHER => 'SUB_RESOURCE_TYPE_OTHER',
     ];
 

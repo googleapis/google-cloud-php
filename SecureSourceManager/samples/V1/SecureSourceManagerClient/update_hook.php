@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
 use Google\Cloud\SecureSourceManager\V1\Hook;
 use Google\Cloud\SecureSourceManager\V1\UpdateHookRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -42,11 +41,9 @@ function update_hook_sample(string $hookTargetUri): void
     $secureSourceManagerClient = new SecureSourceManagerClient();
 
     // Prepare the request message.
-    $updateMask = new FieldMask();
     $hook = (new Hook())
         ->setTargetUri($hookTargetUri);
     $request = (new UpdateHookRequest())
-        ->setUpdateMask($updateMask)
         ->setHook($hook);
 
     // Call the API and handle any network failures.

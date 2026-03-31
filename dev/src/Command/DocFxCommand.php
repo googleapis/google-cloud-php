@@ -65,7 +65,7 @@ class DocFxCommand extends Command
 
     protected function configure()
     {
-        $this->setName('docs:docfx')
+        $this->setName('docs:generate')
             ->setDescription('Generate DocFX yaml from a phpdoc strucutre.xml')
             ->setAliases(['docfx'])
             ->addOption('xml', '', InputOption::VALUE_REQUIRED, 'Path to phpdoc structure.xml')

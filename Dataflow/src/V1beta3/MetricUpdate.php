@@ -10,7 +10,6 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Describes the state of a metric.
- * Next ID: 14
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.MetricUpdate</code>
  */
@@ -83,6 +82,15 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     protected $trie = null;
     /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     * Introduced this field to avoid breaking older SDKs when Dataflow service
+     * starts to populate the `bounded_trie` field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value bounded_trie = 14;</code>
+     */
+    protected $bounded_trie = null;
+    /**
      * A struct value describing properties of a distribution of numeric values.
      *
      * Generated from protobuf field <code>.google.protobuf.Value distribution = 11;</code>
@@ -152,6 +160,11 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $trie
      *           Worker-computed aggregate value for the "Trie" aggregation kind.  The only
      *           possible value type is a BoundedTrieNode.
+     *     @type \Google\Protobuf\Value $bounded_trie
+     *           Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     *           possible value type is a BoundedTrieNode.
+     *           Introduced this field to avoid breaking older SDKs when Dataflow service
+     *           starts to populate the `bounded_trie` field.
      *     @type \Google\Protobuf\Value $distribution
      *           A struct value describing properties of a distribution of numeric values.
      *     @type \Google\Protobuf\Value $gauge
@@ -472,6 +485,48 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
         $this->trie = $var;
+
+        return $this;
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     * Introduced this field to avoid breaking older SDKs when Dataflow service
+     * starts to populate the `bounded_trie` field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value bounded_trie = 14;</code>
+     * @return \Google\Protobuf\Value|null
+     */
+    public function getBoundedTrie()
+    {
+        return $this->bounded_trie;
+    }
+
+    public function hasBoundedTrie()
+    {
+        return isset($this->bounded_trie);
+    }
+
+    public function clearBoundedTrie()
+    {
+        unset($this->bounded_trie);
+    }
+
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind.  The only
+     * possible value type is a BoundedTrieNode.
+     * Introduced this field to avoid breaking older SDKs when Dataflow service
+     * starts to populate the `bounded_trie` field.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Value bounded_trie = 14;</code>
+     * @param \Google\Protobuf\Value $var
+     * @return $this
+     */
+    public function setBoundedTrie($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Value::class);
+        $this->bounded_trie = $var;
 
         return $this;
     }

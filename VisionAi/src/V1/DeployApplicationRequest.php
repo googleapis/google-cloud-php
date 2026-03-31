@@ -55,6 +55,22 @@ class DeployApplicationRequest extends \Google\Protobuf\Internal\Message
     protected $enable_monitoring = false;
 
     /**
+     * @param string $name Required. the name of the application to retrieve.
+     *                     Format:
+     *                     "projects/{project}/locations/{location}/applications/{application}"
+     *                     Please see {@see AppPlatformClient::applicationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\DeployApplicationRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -96,6 +96,12 @@ class Intent extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 8;</code>
      */
     protected $description = '';
+    /**
+     * Optional. Matching DTMF pattern for the intent.
+     *
+     * Generated from protobuf field <code>string dtmf_pattern = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $dtmf_pattern = '';
 
     /**
      * Constructor.
@@ -149,6 +155,8 @@ class Intent extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Human readable description for better understanding an intent like its
      *           scope, content, result etc. Maximum character limit: 140 characters.
+     *     @type string $dtmf_pattern
+     *           Optional. Matching DTMF pattern for the intent.
      * }
      */
     public function __construct($data = NULL) {
@@ -420,6 +428,32 @@ class Intent extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Matching DTMF pattern for the intent.
+     *
+     * Generated from protobuf field <code>string dtmf_pattern = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getDtmfPattern()
+    {
+        return $this->dtmf_pattern;
+    }
+
+    /**
+     * Optional. Matching DTMF pattern for the intent.
+     *
+     * Generated from protobuf field <code>string dtmf_pattern = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDtmfPattern($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->dtmf_pattern = $var;
 
         return $this;
     }

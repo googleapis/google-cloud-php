@@ -23,6 +23,20 @@ class DeleteCorpusRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The resource name of the corpus to delete. Please see
+     *                     {@see WarehouseClient::corpusName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\DeleteCorpusRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

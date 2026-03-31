@@ -152,6 +152,17 @@ return [
                     ],
                 ],
             ],
+            'GetSharedRegionalCertificateAuthority' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/sharedRegionalCertificateAuthority}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListBackupCollections' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/backupCollections',

@@ -39,6 +39,20 @@ class DeleteOperatorRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string $name Required. Name of the resource
+     *                     Please see {@see LiveVideoAnalyticsClient::operatorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\DeleteOperatorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

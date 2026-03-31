@@ -48,8 +48,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: Provides a method to create and modify Google Cloud Dataflow jobs.
- * A Job is a multi-stage computation graph run by the Cloud Dataflow service.
+ * Service Description: Provides a method to create and modify Dataflow jobs.
+ * A Job is a multi-stage computation graph run by the Dataflow service.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
@@ -259,7 +259,7 @@ final class JobsV1Beta3Client
     }
 
     /**
-     * Creates a Cloud Dataflow job.
+     * Creates a Dataflow job.
      *
      * To create a job, we recommend using `projects.locations.jobs.create` with a
      * [regional endpoint]

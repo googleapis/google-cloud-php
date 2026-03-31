@@ -25,9 +25,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_DeployIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\DeployIndexRequest;
 use Google\Cloud\VisionAI\V1\DeployIndexResponse;
 use Google\Cloud\VisionAI\V1\DeployedIndex;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 use Google\Rpc\Status;
 
 /**
@@ -49,14 +50,17 @@ function deploy_index_sample(
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $deployedIndex = (new DeployedIndex())
         ->setIndex($formattedDeployedIndexIndex);
+    $request = (new DeployIndexRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint)
+        ->setDeployedIndex($deployedIndex);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->deployIndex($formattedIndexEndpoint, $deployedIndex);
+        $response = $warehouseClient->deployIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

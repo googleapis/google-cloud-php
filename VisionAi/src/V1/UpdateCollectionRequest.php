@@ -38,6 +38,31 @@ class UpdateCollectionRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\Collection $collection Required. The collection to update.
+     *
+     *                                                         The collection's `name` field is used to identify the collection to be
+     *                                                         updated. Format:
+     *                                                         `projects/{project_number}/locations/{location}/corpora/{corpus}/collections/{collection}`
+     * @param \Google\Protobuf\FieldMask           $updateMask The list of fields to be updated.
+     *                                                         - Unset `update_mask` or set `update_mask` to be a single "*" only will
+     *                                                         update all updatable fields with the value provided in `collection`.
+     *                                                         - To update `display_name` value to empty string, set it in the
+     *                                                         `collection`
+     *                                                         to empty string, and set `update_mask` with "display_name". Same applies
+     *                                                         to other updatable string fields in the `collection`.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateCollectionRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\Collection $collection, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setCollection($collection)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

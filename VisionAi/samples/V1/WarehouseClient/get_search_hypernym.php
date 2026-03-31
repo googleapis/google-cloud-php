@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_GetSearchHypernym_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\GetSearchHypernymRequest;
 use Google\Cloud\VisionAI\V1\SearchHypernym;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Gets a SearchHypernym inside a corpus.
@@ -40,10 +41,14 @@ function get_search_hypernym_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new GetSearchHypernymRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var SearchHypernym $response */
-        $response = $warehouseClient->getSearchHypernym($formattedName);
+        $response = $warehouseClient->getSearchHypernym($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

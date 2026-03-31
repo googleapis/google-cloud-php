@@ -57,7 +57,7 @@ class Hook extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the hook.
      *
-     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
     /**
@@ -292,7 +292,7 @@ class Hook extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the hook.
      *
-     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -303,7 +303,7 @@ class Hook extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the hook.
      *
-     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

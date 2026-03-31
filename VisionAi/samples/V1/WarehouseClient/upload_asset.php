@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_UploadAsset_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UploadAssetRequest;
 use Google\Cloud\VisionAI\V1\UploadAssetResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 use Google\Rpc\Status;
 
 /**
@@ -51,10 +52,14 @@ function upload_asset_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new UploadAssetRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->uploadAsset($formattedName);
+        $response = $warehouseClient->uploadAsset($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

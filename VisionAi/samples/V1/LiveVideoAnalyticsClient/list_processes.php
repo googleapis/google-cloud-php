@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_ListProcesses_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\ListProcessesRequest;
 use Google\Cloud\VisionAI\V1\Process;
 
 /**
@@ -39,10 +40,14 @@ function list_processes_sample(string $formattedParent): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new ListProcessesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $liveVideoAnalyticsClient->listProcesses($formattedParent);
+        $response = $liveVideoAnalyticsClient->listProcesses($request);
 
         /** @var Process $element */
         foreach ($response as $element) {

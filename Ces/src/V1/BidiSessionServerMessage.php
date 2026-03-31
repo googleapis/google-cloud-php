@@ -30,7 +30,7 @@ class BidiSessionServerMessage extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\RecognitionResult $recognition_result
      *           Optional. Realtime speech recognition result for the audio input.
      *     @type \Google\Cloud\Ces\V1\InterruptionSignal $interruption_signal
-     *           Optional. Interruption signal detected from the audio input.
+     *           Optional. Indicates the agent's audio response has been interrupted.
      *     @type \Google\Cloud\Ces\V1\EndSession $end_session
      *           Optional. Indicates that the session has ended.
      *     @type \Google\Cloud\Ces\V1\GoAway $go_away
@@ -106,7 +106,7 @@ class BidiSessionServerMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Interruption signal detected from the audio input.
+     * Optional. Indicates the agent's audio response has been interrupted.
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.InterruptionSignal interruption_signal = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Ces\V1\InterruptionSignal|null
@@ -122,7 +122,7 @@ class BidiSessionServerMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Interruption signal detected from the audio input.
+     * Optional. Indicates the agent's audio response has been interrupted.
      *
      * Generated from protobuf field <code>.google.cloud.ces.v1.InterruptionSignal interruption_signal = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Ces\V1\InterruptionSignal $var
