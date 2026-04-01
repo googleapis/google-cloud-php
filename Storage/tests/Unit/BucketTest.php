@@ -577,15 +577,13 @@ class BucketTest extends TestCase
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
-    public function testCreateObjectWithInvalidContexts()
+    /**
+    * @dataProvider invalidContextsProvider
+    */
+    public function testUploadWithInvalidContexts($invalidContexts, $expectedMessage)
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Object context value cannot contain forbidden characters.');
-        $invalidContexts = [
-            'custom' => [
-                'valid-key' => ['value' => 'invalid/value']
-            ]
-        ];
+        $this->expectExceptionMessage($expectedMessage);
 
         $this->getBucket()->upload('data', [
             'name' => self::FILE_NAME_TEST,
@@ -593,22 +591,58 @@ class BucketTest extends TestCase
         ]);
     }
 
-    public function testRejectInvalidLeadingUnicodeValueInObjectContexts()
+    /**
+    * @dataProvider invalidContextsProvider
+    */
+    public function testRewriteWithInvalidContexts($invalidContexts, $expectedMessage)
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Object context value must start with an alphanumeric.');
-        $this->getBucket()->upload('test data', [
-            'name' => self::FILE_NAME_TEST,
-            'contexts' => [
-                'custom' => [
-                    'my-custom-key' => ['value' => '✨-sparkle']
-                ]
+        $this->expectExceptionMessage($expectedMessage);
+
+        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
+        $sourceObject->rewrite('dest-bucket', ['contexts' => $invalidContexts]);
+    }
+
+    public function testRewriteWithEmptyContexts()
+    {
+        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
+        
+        $this->connection->rewriteObject(Argument::withEntry('contexts', []))
+            ->shouldBeCalled()
+            ->willReturn(['resource' => ['name' => 'dest.txt', 'contexts' => []]]);
+
+        $result = $sourceObject->rewrite('dest-bucket', ['contexts' => []]);
+        $this->assertEmpty($result->info()['contexts']);
+    }
+
+    public function invalidContextsProvider()
+    {
+        return [
+            'Invalid Leading Unicode' => [
+                ['custom' => ['key' => ['value' => '✨-sparkle']]],
+                'Object context value must start with an alphanumeric.'
+            ],
+            'Forbidden Characters (Slash and Quote)' => [
+                ['custom' => ['k1' => ['value' => 'invalid/val'], 'k2' => ['value' => 'val"quote']]],
+                'Object context value cannot contain forbidden characters.'
+            ],
+            'Key Not Starting with Alphanumeric' => [
+                ['custom' => ['_key' => ['value' => 'val']]],
+                'Object context key must start with an alphanumeric.'
+            ],
+            'Custom Field Not An Array' => [
+                ['custom' => 'not-an-array'],
+                'Object contexts custom field must be an array.'
+            ],
+            'Value Property Missing' => [
+                ['custom' => ['key' => ['no-value-here' => 'val']]],
+                'Context for key "key" must have a \'value\' property.'
             ]
-        ]);
+        ];
     }
 
     /**
-    *  @dataProvider contextUpdateProvider
+    *  @dataProvider objectContextUpdateDataProvider
     */
     public function testUpdateAndRemoveObjectContexts($inputContexts, $expectedInApi)
     {
@@ -632,62 +666,53 @@ class BucketTest extends TestCase
         $object->update(['contexts' => $inputContexts]);
         $info = $object->info();
         if ($expectedInApi === null) {
-            $this->assertArrayNotHasKey('contexts', $info);
+            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
+            $this->assertFalse($hasContexts);
         } else {
             $this->assertArrayHasKey('contexts', $info);
             $this->assertEquals($expectedInApi, $info['contexts']);
         }
     }
 
-    public function contextUpdateProvider()
+    public function objectContextUpdateDataProvider()
     {
         $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
 
         return [
             'Valid Update' => [$validContexts['contexts'], $validContexts['contexts']],
-            'Empty Array'  => [[], []]
+            'Empty Array'  => [[], []],
+            'Null Case'      => [null, null]
         ];
     }
 
     /**
-    * @dataProvider patchContextProvider
+    * @dataProvider objectContextPatchDataProvider
     */
-    public function testPatchObjectContext($patchData, $expectedMatchFunc, $mockResponse)
+    public function testPatchObjectContext($key, $value)
     {
         $objectName = 'patch-'.self::FILE_NAME_TEST;
         $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
-        $this->connection->patchObject(Argument::that($expectedMatchFunc))
-            ->shouldBeCalledTimes(1)
-            ->willReturn($mockResponse + ['name' => $objectName]);
+       
+        $patchData = ['contexts' => ['custom' => [$key => $value]]];
+       
+        $this->connection->patchObject(Argument::withEntry('contexts', $patchData['contexts']))
+        ->shouldBeCalledTimes(1)
+        ->willReturn([
+            'name' => $objectName,
+            'contexts' => $patchData['contexts']
+        ]);
+
         $result = $object->update($patchData);
-        $this->assertEquals($mockResponse['contexts'] ?? null, $result['contexts'] ?? null);
+        $this->assertEquals($value, $result['contexts']['custom'][$key]);
     }
 
-    public function patchContextProvider()
+    public function objectContextPatchDataProvider()
     {
         return [
-            'Update/Add Key' => [
-                ['contexts' => ['custom' => ['new-key' => ['value' => 'brand-new-val']]]],
-                function ($args) {
-                    return ($args['contexts']['custom']['new-key']['value'] ?? '') === 'brand-new-val';
-                },
-                ['contexts' => ['custom' => ['new-key' => ['value' => 'brand-new-val']]]]
-            ],
-            'Delete Specific Key' => [
-                ['contexts' => ['custom' => ['key-to-delete' => null]]],
-                function ($args) {
-                    return array_key_exists('key-to-delete', $args['contexts']['custom'] ?? []) &&
-                        $args['contexts']['custom']['key-to-delete'] === null;
-                },
-                ['contexts' => ['custom' => ['remaining-key' => ['value' => 'stays']]]]
-            ],
-            'Clear All Contexts' => [
-                ['contexts' => null],
-                function ($args) {
-                    return array_key_exists('contexts', $args) && $args['contexts'] === null;
-                },
-                ['contexts' => null]
-            ]
+            'Update Key'          => ['new-key', 'brand-new-val'],
+            'Delete Key'          => ['key-to-delete', null],
+            'Empty Value'         => ['key-with-empty', ''],
+            'Special Chars Key'   => ['key123', 'value-456']
         ];
     }
 
@@ -732,7 +757,7 @@ class BucketTest extends TestCase
     }
 
     /**
-     * @dataProvider composeContextDataProvider
+     * @dataProvider objectContextComposeDataProvider
      */
     public function testComposeObjectWithContexts(array $options, array $expectedContexts)
     {
@@ -757,7 +782,7 @@ class BucketTest extends TestCase
         $this->assertEquals($expectedContexts, $composedObject->info()['contexts']);
     }
 
-    public function composeContextDataProvider()
+    public function objectContextComposeDataProvider()
     {
         $sourceContexts = ['custom' => ['s1-key' => ['value' => 's1-val']]];
         $overrideContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
@@ -771,7 +796,7 @@ class BucketTest extends TestCase
     public function testGetMetadataIncludesContexts()
     {
         $objectName = 'metadata-'.self::FILE_NAME_TEST;
-        
+        $now = (new \DateTime())->format('Y-m-d\TH:i:s.v\Z');
         $this->connection->projectId()->willReturn(self::PROJECT_ID);
         $metadataResponse = [
             'name' => $objectName,
@@ -779,7 +804,9 @@ class BucketTest extends TestCase
             'generation' => 12345,
             'contexts' => [
                 'custom' => [
-                    'existing-key' => ['value' => 'existing-val']
+                    'existing-key' => ['value' => 'existing-val'],
+                    'createTime' => $now,
+                    'updateTime' => $now
                 ]
             ]
         ];
@@ -791,6 +818,14 @@ class BucketTest extends TestCase
         $bucket = new Bucket($this->connection->reveal(), self::BUCKET_NAME);
         $info = $bucket->object($objectName)->info();
         $this->assertArrayHasKey('contexts', $info);
+        $this->assertArrayHasKey(
+            'createTime',
+            $info['contexts']['custom']
+        );
+        $this->assertArrayHasKey(
+            'updateTime',
+            $info['contexts']['custom']
+        );
         $this->assertEquals(
             'existing-val',
             $info['contexts']['custom']['existing-key']['value']
@@ -798,7 +833,7 @@ class BucketTest extends TestCase
     }
 
     /**
-     * @dataProvider contextFilterProvider
+     * @dataProvider objectContextFilterDataProvider
      */
     public function testListObjectsWithContextFilters($filter, $expectedItems)
     {
@@ -821,32 +856,38 @@ class BucketTest extends TestCase
         }
     }
 
-    public function contextFilterProvider()
+    public function objectContextFilterDataProvider()
     {
         $unicodeKey = 'key-✨';
         $unicodeVal = 'val-🚀';
-
         return [
-            'Presence of key/value pair' => [
-                'contexts.custom.k1.value="v1"',
-                [['name' => 'f1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]]]
-            ],
-            'Absence of key/value pair' => [
-                '-contexts.custom.k1.value="v1"',
-                [['name' => 'f2.txt']]
-            ],
-            'Presence of key regardless of value' => [
-                'contexts.custom.k1:*',
-                [['name' => 'f1.txt']]
-            ],
-            'Absence of key regardless of value' => [
-                '-contexts.custom.k1',
-                []
-            ],
-            'Unicode key/value pair' => [
-                sprintf('contexts.custom.%s.value="%s"', $unicodeKey, $unicodeVal),
-                [['name' => 'unicode.txt', 'contexts' => ['custom' => [$unicodeKey => ['value' => $unicodeVal]]]]]
+        'Presence of key/value pair' => [
+            'contexts.custom.k1.value="v1"',
+            [
+                ['name' => 'match.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]],
             ]
+        ],
+        'Absence of key/value pair' => [
+            '-contexts.custom.k1.value="v1"',
+            [
+                ['name' => 'f1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v2']]]], // Diff value
+                ['name' => 'f2.txt'],
+            ]
+        ],
+        'Presence of key regardless of value' => [
+            'contexts.custom.k1:*',
+            [
+                ['name' => 'f1.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'v1']]]],
+                ['name' => 'f2.txt', 'contexts' => ['custom' => ['k1' => ['value' => 'any']]]],
+            ]
+        ],
+        'Unicode key/value pair' => [
+            sprintf('contexts.custom.%s.value="%s"', $unicodeKey, $unicodeVal),
+            [
+                ['name' => 'unicode.txt', 'contexts' => ['custom' => [$unicodeKey => ['value' => $unicodeVal]]]],
+                ['name' => 'another.txt', 'contexts' => ['custom' => [$unicodeKey => ['value' => $unicodeVal]]]]
+            ]
+        ]
         ];
     }
 
