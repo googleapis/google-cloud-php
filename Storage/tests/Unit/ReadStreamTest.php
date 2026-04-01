@@ -73,4 +73,15 @@ class ReadStreamTest extends TestCase
 
         $this->assertEquals(0, $stream->getSize());
     }
+
+    public function testReturnsZeroWhenGetSizeIsZeroAndWrapperDataIsNull()
+    {
+        $httpStream = $this->prophesize(StreamInterface::class);
+        $httpStream->getSize()->willReturn(null);
+        $httpStream->getMetadata('wrapper_data')->willReturn(null);
+
+        $stream = new ReadStream($httpStream->reveal());
+
+        $this->assertEquals(0, $stream->getSize());
+    }
 }
