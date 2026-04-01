@@ -34,8 +34,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
      *           contains complete, terminating sentences, which results in better prosody
      *           in the output audio.
      *     @type string $markup
-     *           Markup for HD voices specifically. This field may not be used with any
-     *           other voices.
+     *           Markup for Chirp 3: HD voices specifically. This field may not be used
+     *           with any other voices.
      *     @type \Google\Cloud\TextToSpeech\V1\MultiSpeakerMarkup $multi_speaker_markup
      *           Multi-speaker markup for Gemini TTS. This field may not
      *           be used with any other voices.
@@ -84,8 +84,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Markup for HD voices specifically. This field may not be used with any
-     * other voices.
+     * Markup for Chirp 3: HD voices specifically. This field may not be used
+     * with any other voices.
      *
      * Generated from protobuf field <code>string markup = 5;</code>
      * @return string
@@ -101,8 +101,8 @@ class StreamingSynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Markup for HD voices specifically. This field may not be used with any
-     * other voices.
+     * Markup for Chirp 3: HD voices specifically. This field may not be used
+     * with any other voices.
      *
      * Generated from protobuf field <code>string markup = 5;</code>
      * @param string $var
