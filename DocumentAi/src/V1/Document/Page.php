@@ -87,7 +87,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $tokens;
     /**
-     * A list of detected non-text visual elements e.g. checkbox,
+     * A list of detected non-text visual elements, for example, checkbox,
      * signature etc. on the page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.VisualElement visual_elements = 9;</code>
@@ -169,7 +169,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Token[] $tokens
      *           A list of visually detected tokens on the page.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\VisualElement[] $visual_elements
-     *           A list of detected non-text visual elements e.g. checkbox,
+     *           A list of detected non-text visual elements, for example, checkbox,
      *           signature etc. on the page.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Table[] $tables
      *           A list of visually detected tables on the page.
@@ -503,7 +503,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of detected non-text visual elements e.g. checkbox,
+     * A list of detected non-text visual elements, for example, checkbox,
      * signature etc. on the page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.VisualElement visual_elements = 9;</code>
@@ -515,7 +515,7 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of detected non-text visual elements e.g. checkbox,
+     * A list of detected non-text visual elements, for example, checkbox,
      * signature etc. on the page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.VisualElement visual_elements = 9;</code>
