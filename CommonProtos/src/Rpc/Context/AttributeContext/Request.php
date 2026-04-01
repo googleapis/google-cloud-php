@@ -100,15 +100,6 @@ class Request extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.rpc.context.AttributeContext.Auth auth = 13;</code>
      */
     protected $auth = null;
-    /**
-     * The values from Origin header from the HTTP request, such as
-     * "https://console.cloud.google.com". Modern browsers can only have one
-     * origin. Special browsers and/or HTTP clients may require multiple
-     * origins.
-     *
-     * Generated from protobuf field <code>string origin = 14;</code>
-     */
-    protected $origin = '';
 
     /**
      * Constructor.
@@ -151,11 +142,6 @@ class Request extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Context\AttributeContext\Auth $auth
      *           The request authentication. May be absent for unauthenticated requests.
      *           Derived from the HTTP request `Authorization` header or equivalent.
-     *     @type string $origin
-     *           The values from Origin header from the HTTP request, such as
-     *           "https://console.cloud.google.com". Modern browsers can only have one
-     *           origin. Special browsers and/or HTTP clients may require multiple
-     *           origins.
      * }
      */
     public function __construct($data = NULL) {
@@ -513,38 +499,6 @@ class Request extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Context\AttributeContext\Auth::class);
         $this->auth = $var;
-
-        return $this;
-    }
-
-    /**
-     * The values from Origin header from the HTTP request, such as
-     * "https://console.cloud.google.com". Modern browsers can only have one
-     * origin. Special browsers and/or HTTP clients may require multiple
-     * origins.
-     *
-     * Generated from protobuf field <code>string origin = 14;</code>
-     * @return string
-     */
-    public function getOrigin()
-    {
-        return $this->origin;
-    }
-
-    /**
-     * The values from Origin header from the HTTP request, such as
-     * "https://console.cloud.google.com". Modern browsers can only have one
-     * origin. Special browsers and/or HTTP clients may require multiple
-     * origins.
-     *
-     * Generated from protobuf field <code>string origin = 14;</code>
-     * @param string $var
-     * @return $this
-     */
-    public function setOrigin($var)
-    {
-        GPBUtil::checkString($var, True);
-        $this->origin = $var;
 
         return $this;
     }
