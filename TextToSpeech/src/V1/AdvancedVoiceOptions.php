@@ -23,29 +23,14 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      */
     protected $low_latency_journey_synthesis = null;
     /**
-     * Optional. Input only. Deprecated, use safety_settings instead.
-     * If true, relaxes safety filters for Gemini TTS.
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
-     * Generated from protobuf field <code>bool relax_safety_filters = 8 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @deprecated
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $relax_safety_filters = false;
-    /**
-     * Optional. Input only. This applies to Gemini TTS only. If set, the category
-     * specified in the safety setting will be blocked if the harm probability is
-     * above the threshold. Otherwise, the safety filter will be disabled by
-     * default.
-     *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings safety_settings = 9 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $safety_settings = null;
-    /**
-     * Optional. If true, textnorm will be applied to text input. This feature is
-     * enabled by default. Only applies for Gemini TTS.
-     *
-     * Generated from protobuf field <code>optional bool enable_textnorm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $enable_textnorm = null;
 
     /**
      * Constructor.
@@ -57,16 +42,10 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
      *           Only for Journey voices. If false, the synthesis is context aware
      *           and has a higher latency.
      *     @type bool $relax_safety_filters
-     *           Optional. Input only. Deprecated, use safety_settings instead.
-     *           If true, relaxes safety filters for Gemini TTS.
-     *     @type \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions\SafetySettings $safety_settings
-     *           Optional. Input only. This applies to Gemini TTS only. If set, the category
-     *           specified in the safety setting will be blocked if the harm probability is
-     *           above the threshold. Otherwise, the safety filter will be disabled by
-     *           default.
-     *     @type bool $enable_textnorm
-     *           Optional. If true, textnorm will be applied to text input. This feature is
-     *           enabled by default. Only applies for Gemini TTS.
+     *           Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     *           supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     *           Otherwise, will return result
+     *           [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      * }
      */
     public function __construct($data = NULL) {
@@ -113,115 +92,33 @@ class AdvancedVoiceOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Input only. Deprecated, use safety_settings instead.
-     * If true, relaxes safety filters for Gemini TTS.
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
-     * Generated from protobuf field <code>bool relax_safety_filters = 8 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
-     * @deprecated
      */
     public function getRelaxSafetyFilters()
     {
-        if ($this->relax_safety_filters !== false) {
-            @trigger_error('relax_safety_filters is deprecated.', E_USER_DEPRECATED);
-        }
         return $this->relax_safety_filters;
     }
 
     /**
-     * Optional. Input only. Deprecated, use safety_settings instead.
-     * If true, relaxes safety filters for Gemini TTS.
+     * Optional. Input only. If true, relaxes safety filters for Gemini TTS. Only
+     * supported for accounts linked to Invoiced (Offline) Cloud billing accounts.
+     * Otherwise, will return result
+     * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].
      *
-     * Generated from protobuf field <code>bool relax_safety_filters = 8 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool relax_safety_filters = 8 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
      * @return $this
-     * @deprecated
      */
     public function setRelaxSafetyFilters($var)
     {
-        @trigger_error('relax_safety_filters is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->relax_safety_filters = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Input only. This applies to Gemini TTS only. If set, the category
-     * specified in the safety setting will be blocked if the harm probability is
-     * above the threshold. Otherwise, the safety filter will be disabled by
-     * default.
-     *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings safety_settings = 9 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions\SafetySettings|null
-     */
-    public function getSafetySettings()
-    {
-        return $this->safety_settings;
-    }
-
-    public function hasSafetySettings()
-    {
-        return isset($this->safety_settings);
-    }
-
-    public function clearSafetySettings()
-    {
-        unset($this->safety_settings);
-    }
-
-    /**
-     * Optional. Input only. This applies to Gemini TTS only. If set, the category
-     * specified in the safety setting will be blocked if the harm probability is
-     * above the threshold. Otherwise, the safety filter will be disabled by
-     * default.
-     *
-     * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AdvancedVoiceOptions.SafetySettings safety_settings = 9 [(.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions\SafetySettings $var
-     * @return $this
-     */
-    public function setSafetySettings($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions\SafetySettings::class);
-        $this->safety_settings = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. If true, textnorm will be applied to text input. This feature is
-     * enabled by default. Only applies for Gemini TTS.
-     *
-     * Generated from protobuf field <code>optional bool enable_textnorm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return bool
-     */
-    public function getEnableTextnorm()
-    {
-        return isset($this->enable_textnorm) ? $this->enable_textnorm : false;
-    }
-
-    public function hasEnableTextnorm()
-    {
-        return isset($this->enable_textnorm);
-    }
-
-    public function clearEnableTextnorm()
-    {
-        unset($this->enable_textnorm);
-    }
-
-    /**
-     * Optional. If true, textnorm will be applied to text input. This feature is
-     * enabled by default. Only applies for Gemini TTS.
-     *
-     * Generated from protobuf field <code>optional bool enable_textnorm = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setEnableTextnorm($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->enable_textnorm = $var;
 
         return $this;
     }

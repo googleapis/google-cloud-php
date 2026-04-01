@@ -34,9 +34,9 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      */
     protected $audio_config = null;
     /**
-     * Optional. Advanced voice options.
+     * Advanced voice options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8;</code>
      */
     protected $advanced_voice_options = null;
 
@@ -70,7 +70,7 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\TextToSpeech\V1\AudioConfig $audio_config
      *           Required. The configuration of the synthesized audio.
      *     @type \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions $advanced_voice_options
-     *           Optional. Advanced voice options.
+     *           Advanced voice options.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,9 +187,9 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Advanced voice options.
+     * Advanced voice options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8;</code>
      * @return \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions|null
      */
     public function getAdvancedVoiceOptions()
@@ -208,9 +208,9 @@ class SynthesizeSpeechRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Advanced voice options.
+     * Advanced voice options.
      *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 8;</code>
      * @param \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions $var
      * @return $this
      */

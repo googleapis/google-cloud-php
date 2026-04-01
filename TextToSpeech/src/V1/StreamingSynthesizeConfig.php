@@ -40,12 +40,6 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.CustomPronunciations custom_pronunciations = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $custom_pronunciations = null;
-    /**
-     * Optional. Advanced voice options.
-     *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     */
-    protected $advanced_voice_options = null;
 
     /**
      * Constructor.
@@ -66,8 +60,6 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
      *           In order to customize the pronunciation of a phrase, there must be an exact
      *           match of the phrase in the input types. If using SSML, the phrase must not
      *           be inside a phoneme tag.
-     *     @type \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions $advanced_voice_options
-     *           Optional. Advanced voice options.
      * }
      */
     public function __construct($data = NULL) {
@@ -193,42 +185,6 @@ class StreamingSynthesizeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\CustomPronunciations::class);
         $this->custom_pronunciations = $var;
-
-        return $this;
-    }
-
-    /**
-     * Optional. Advanced voice options.
-     *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions|null
-     */
-    public function getAdvancedVoiceOptions()
-    {
-        return $this->advanced_voice_options;
-    }
-
-    public function hasAdvancedVoiceOptions()
-    {
-        return isset($this->advanced_voice_options);
-    }
-
-    public function clearAdvancedVoiceOptions()
-    {
-        unset($this->advanced_voice_options);
-    }
-
-    /**
-     * Optional. Advanced voice options.
-     *
-     * Generated from protobuf field <code>optional .google.cloud.texttospeech.v1.AdvancedVoiceOptions advanced_voice_options = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions $var
-     * @return $this
-     */
-    public function setAdvancedVoiceOptions($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\TextToSpeech\V1\AdvancedVoiceOptions::class);
-        $this->advanced_voice_options = $var;
 
         return $this;
     }

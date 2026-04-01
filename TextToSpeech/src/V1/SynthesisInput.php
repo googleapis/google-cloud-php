@@ -51,8 +51,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
      *     @type string $text
      *           The raw text to be synthesized.
      *     @type string $markup
-     *           Markup for Chirp 3: HD voices specifically. This field may not be used
-     *           with any other voices.
+     *           Markup for HD voices specifically. This field may not be used with any
+     *           other voices.
      *     @type string $ssml
      *           The SSML document to be synthesized. The SSML document must be valid
      *           and well-formed. Otherwise the RPC will fail and return
@@ -115,8 +115,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Markup for Chirp 3: HD voices specifically. This field may not be used
-     * with any other voices.
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
      *
      * Generated from protobuf field <code>string markup = 5;</code>
      * @return string
@@ -132,8 +132,8 @@ class SynthesisInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Markup for Chirp 3: HD voices specifically. This field may not be used
-     * with any other voices.
+     * Markup for HD voices specifically. This field may not be used with any
+     * other voices.
      *
      * Generated from protobuf field <code>string markup = 5;</code>
      * @param string $var
