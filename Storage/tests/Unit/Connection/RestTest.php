@@ -539,7 +539,7 @@ class RestTest extends TestCase
         $testStream = Utils::streamFor($testData);
         $expectedCrc32c = $rest->getCrcFromStreamForTest($testStream);
         $expectedMd5 = base64_encode(Utils::hash($testStream, 'md5', true));
-        $expectedHashHeader = 'crc32c=' . $expectedCrc32c . ',md5=' . $expectedMd5;
+        $expectedHashHeader = 'md5=' . $expectedMd5 . ',crc32c=' . $expectedCrc32c;
 
         $actualRequest = null;
         $response = new Response(200, ['Location' => 'http://www.mordor.com'], $this->successBody);
