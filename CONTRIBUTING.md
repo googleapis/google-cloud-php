@@ -109,7 +109,7 @@ $ export GOOGLE_CLOUD_PHP_FIRESTORE_TESTS_KEY_PATH='/path/to/keyfile.json'
 ### Coding Style
 
 Please follow the established coding style in the library. Google Cloud PHP follows the [PSR-2](https://www.php-fig.org/psr/psr-2/) Coding Style.
-This is enforced using both [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) and [PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer).
+This is enforced using both [PHP CS Fixer](https://github.com/PHP-CS-Fixer/PHP-CS-Fixer) and [PHP Code Sniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer).
 
 You can run both of these checks using the `style-check` composer script:
 

@@ -25,6 +25,22 @@ class GetSearchHypernymRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the SearchHypernym to retrieve.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/searchHypernyms/{search_hypernym}`
+     *                     Please see {@see WarehouseClient::searchHypernymName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetSearchHypernymRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

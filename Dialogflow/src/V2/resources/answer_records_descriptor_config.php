@@ -93,6 +93,7 @@ return [
             'templateMap' => [
                 'agent' => 'projects/{project}/agent',
                 'answerRecord' => 'projects/{project}/answerRecords/{answer_record}',
+                'app' => 'projects/{project}/locations/{location}/apps/{app}',
                 'context' => 'projects/{project}/agent/sessions/{session}/contexts/{context}',
                 'intent' => 'projects/{project}/agent/intents/{intent}',
                 'location' => 'projects/{project}/locations/{location}',
@@ -113,6 +114,7 @@ return [
                 'projectSessionContext' => 'projects/{project}/agent/sessions/{session}/contexts/{context}',
                 'session' => 'projects/{project}/agent/sessions/{session}',
                 'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
+                'toolset' => 'projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}',
             ],
         ],
     ],

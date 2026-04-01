@@ -44,6 +44,7 @@ use Google\Cloud\Redis\Cluster\V1\GetBackupCollectionRequest;
 use Google\Cloud\Redis\Cluster\V1\GetBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupCollectionsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupCollectionsResponse;
 use Google\Cloud\Redis\Cluster\V1\ListBackupsRequest;
@@ -52,6 +53,7 @@ use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersResponse;
 use Google\Cloud\Redis\Cluster\V1\RescheduleClusterMaintenanceRequest;
 use Google\Cloud\Redis\Cluster\V1\RescheduleClusterMaintenanceRequest\RescheduleType;
+use Google\Cloud\Redis\Cluster\V1\SharedRegionalCertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -122,6 +124,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -132,6 +136,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -262,6 +268,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -272,6 +280,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -942,6 +952,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -952,6 +964,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->clusterName('[PROJECT]', '[LOCATION]', '[CLUSTER]');
@@ -1062,6 +1076,74 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $request = (new GetClusterCertificateAuthorityRequest())->setName($formattedName);
         try {
             $gapicClient->getClusterCertificateAuthority($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSharedRegionalCertificateAuthorityTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new SharedRegionalCertificateAuthority();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->sharedRegionalCertificateAuthorityName('[PROJECT]', '[LOCATION]');
+        $request = (new GetSharedRegionalCertificateAuthorityRequest())->setName($formattedName);
+        $response = $gapicClient->getSharedRegionalCertificateAuthority($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.redis.cluster.v1.CloudRedisCluster/GetSharedRegionalCertificateAuthority',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSharedRegionalCertificateAuthorityExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sharedRegionalCertificateAuthorityName('[PROJECT]', '[LOCATION]');
+        $request = (new GetSharedRegionalCertificateAuthorityRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSharedRegionalCertificateAuthority($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -1316,6 +1398,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1326,6 +1410,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1467,6 +1553,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -1477,6 +1565,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1743,6 +1833,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $deletionProtectionEnabled = true;
         $backupCollection = 'backupCollection-1182285509';
         $kmsKey = 'kmsKey-591635343';
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -1753,6 +1845,8 @@ class CloudRedisClusterClientTest extends GeneratedTest
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
         $expectedResponse->setBackupCollection($backupCollection);
         $expectedResponse->setKmsKey($kmsKey);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

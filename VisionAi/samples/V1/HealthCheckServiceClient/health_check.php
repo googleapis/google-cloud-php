@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_HealthCheckService_HealthCheck_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\HealthCheckServiceClient;
+use Google\Cloud\VisionAI\V1\HealthCheckRequest;
 use Google\Cloud\VisionAI\V1\HealthCheckResponse;
-use Google\Cloud\VisionAI\V1\HealthCheckServiceClient;
 
 /**
  * HealthCheck method checks the health status of the cluster.
@@ -41,10 +42,13 @@ function health_check_sample(): void
     // Create a client.
     $healthCheckServiceClient = new HealthCheckServiceClient();
 
+    // Prepare the request message.
+    $request = new HealthCheckRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var HealthCheckResponse $response */
-        $response = $healthCheckServiceClient->healthCheck();
+        $response = $healthCheckServiceClient->healthCheck($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

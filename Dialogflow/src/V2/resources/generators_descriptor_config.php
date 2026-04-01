@@ -127,9 +127,11 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'app' => 'projects/{project}/locations/{location}/apps/{app}',
                 'generator' => 'projects/{project}/locations/{location}/generators/{generator}',
                 'project' => 'projects/{project}',
                 'tool' => 'projects/{project}/locations/{location}/tools/{tool}',
+                'toolset' => 'projects/{project}/locations/{location}/apps/{app}/toolsets/{toolset}',
             ],
         ],
     ],

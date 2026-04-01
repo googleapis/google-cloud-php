@@ -49,6 +49,25 @@ class UpdateProcessorRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\Processor $processor  Required. The resource being updated.
+     * @param \Google\Protobuf\FieldMask          $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
+     *                                                        Processor resource by the update.
+     *                                                        The fields specified in the update_mask are relative to the resource, not
+     *                                                        the full request. A field will be overwritten if it is in the mask. If the
+     *                                                        user does not provide a mask then all fields will be overwritten.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateProcessorRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\Processor $processor, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setProcessor($processor)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -124,6 +124,18 @@ class JobState
      * Generated from protobuf enum <code>JOB_STATE_RESOURCE_CLEANING_UP = 12;</code>
      */
     const JOB_STATE_RESOURCE_CLEANING_UP = 12;
+    /**
+     * `JOB_STATE_PAUSING` is not implemented yet.
+     *
+     * Generated from protobuf enum <code>JOB_STATE_PAUSING = 13;</code>
+     */
+    const JOB_STATE_PAUSING = 13;
+    /**
+     * `JOB_STATE_PAUSED` is not implemented yet.
+     *
+     * Generated from protobuf enum <code>JOB_STATE_PAUSED = 14;</code>
+     */
+    const JOB_STATE_PAUSED = 14;
 
     private static $valueToName = [
         self::JOB_STATE_UNKNOWN => 'JOB_STATE_UNKNOWN',
@@ -139,6 +151,8 @@ class JobState
         self::JOB_STATE_CANCELLING => 'JOB_STATE_CANCELLING',
         self::JOB_STATE_QUEUED => 'JOB_STATE_QUEUED',
         self::JOB_STATE_RESOURCE_CLEANING_UP => 'JOB_STATE_RESOURCE_CLEANING_UP',
+        self::JOB_STATE_PAUSING => 'JOB_STATE_PAUSING',
+        self::JOB_STATE_PAUSED => 'JOB_STATE_PAUSED',
     ];
 
     public static function name($value)

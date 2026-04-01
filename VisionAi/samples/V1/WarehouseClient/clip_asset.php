@@ -24,9 +24,10 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_ClipAsset_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ClipAssetRequest;
 use Google\Cloud\VisionAI\V1\ClipAssetResponse;
 use Google\Cloud\VisionAI\V1\Partition\TemporalPartition;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Supported by STREAM_VIDEO corpus type.
@@ -46,13 +47,16 @@ function clip_asset_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $temporalPartition = new TemporalPartition();
+    $request = (new ClipAssetRequest())
+        ->setName($formattedName)
+        ->setTemporalPartition($temporalPartition);
 
     // Call the API and handle any network failures.
     try {
         /** @var ClipAssetResponse $response */
-        $response = $warehouseClient->clipAsset($formattedName, $temporalPartition);
+        $response = $warehouseClient->clipAsset($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

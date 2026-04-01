@@ -25,9 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamingService_ReceiveEvents_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
+use Google\Cloud\VisionAI\V1\Client\StreamingServiceClient;
 use Google\Cloud\VisionAI\V1\ReceiveEventsRequest;
 use Google\Cloud\VisionAI\V1\ReceiveEventsResponse;
-use Google\Cloud\VisionAI\V1\StreamingServiceClient;
 
 /**
  * Receive events given the stream name.
@@ -43,7 +43,7 @@ function receive_events_sample(): void
     // Create a client.
     $streamingServiceClient = new StreamingServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $request = new ReceiveEventsRequest();
 
     // Call the API and handle any network failures.

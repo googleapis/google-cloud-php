@@ -16,13 +16,13 @@ use Google\Protobuf\RepeatedField;
 class UpdateHookRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * hook resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $update_mask = null;
     /**
@@ -34,7 +34,7 @@ class UpdateHookRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param \Google\Cloud\SecureSourceManager\V1\Hook $hook       Required. The hook being updated.
-     * @param \Google\Protobuf\FieldMask                $updateMask Required. Field mask is used to specify the fields to be overwritten in the
+     * @param \Google\Protobuf\FieldMask                $updateMask Optional. Field mask is used to specify the fields to be overwritten in the
      *                                                              hook resource by the update.
      *                                                              The fields specified in the update_mask are relative to the resource, not
      *                                                              the full request. A field will be overwritten if it is in the mask.
@@ -58,7 +58,7 @@ class UpdateHookRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
+     *           Optional. Field mask is used to specify the fields to be overwritten in the
      *           hook resource by the update.
      *           The fields specified in the update_mask are relative to the resource, not
      *           the full request. A field will be overwritten if it is in the mask.
@@ -73,13 +73,13 @@ class UpdateHookRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * hook resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
@@ -98,13 +98,13 @@ class UpdateHookRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
+     * Optional. Field mask is used to specify the fields to be overwritten in the
      * hook resource by the update.
      * The fields specified in the update_mask are relative to the resource, not
      * the full request. A field will be overwritten if it is in the mask.
      * The special value "*" means full replacement.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_UpdateIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\Index;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UpdateIndexRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -46,14 +47,17 @@ function update_index_sample(): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $index = new Index();
     $updateMask = new FieldMask();
+    $request = (new UpdateIndexRequest())
+        ->setIndex($index)
+        ->setUpdateMask($updateMask);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->updateIndex($index, $updateMask);
+        $response = $warehouseClient->updateIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

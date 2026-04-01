@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\VisionAI\V1\Analysis;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\UpdateAnalysisRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_analysis_sample(): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $analysis = new Analysis();
+    $request = (new UpdateAnalysisRequest())
+        ->setUpdateMask($updateMask)
+        ->setAnalysis($analysis);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->updateAnalysis($updateMask, $analysis);
+        $response = $liveVideoAnalyticsClient->updateAnalysis($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

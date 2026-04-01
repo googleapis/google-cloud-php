@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_ListOperators_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\ListOperatorsRequest;
 use Google\Cloud\VisionAI\V1\Operator;
 
 /**
@@ -39,10 +40,14 @@ function list_operators_sample(string $formattedParent): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new ListOperatorsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $liveVideoAnalyticsClient->listOperators($formattedParent);
+        $response = $liveVideoAnalyticsClient->listOperators($request);
 
         /** @var Operator $element */
         foreach ($response as $element) {

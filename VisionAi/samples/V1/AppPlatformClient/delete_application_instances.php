@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_DeleteApplicationInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\DeleteApplicationInstancesRequest;
 use Google\Cloud\VisionAI\V1\Instance;
 use Google\Rpc\Status;
 
@@ -48,13 +49,16 @@ function delete_application_instances_sample(
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $formattedInstanceIds = [$formattedInstanceIdsElement,];
+    $request = (new DeleteApplicationInstancesRequest())
+        ->setName($formattedName)
+        ->setInstanceIds($formattedInstanceIds);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->deleteApplicationInstances($formattedName, $formattedInstanceIds);
+        $response = $appPlatformClient->deleteApplicationInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

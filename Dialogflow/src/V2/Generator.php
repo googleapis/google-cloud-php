@@ -67,6 +67,24 @@ class Generator extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SuggestionDedupingConfig suggestion_deduping_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $suggestion_deduping_config = null;
+    /**
+     * Optional. List of CES toolset specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ToolsetTool toolset_tools = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $toolset_tools;
+    /**
+     * Optional. List of CES tool specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesToolSpec ces_tool_specs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ces_tool_specs;
+    /**
+     * Optional. List of CES app specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $ces_app_specs;
     protected $context;
     protected $foundation_model;
 
@@ -108,6 +126,12 @@ class Generator extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig $suggestion_deduping_config
      *           Optional. Configuration for suggestion deduping. This is only applicable to
      *           AI Coach feature.
+     *     @type \Google\Cloud\Dialogflow\V2\ToolsetTool[] $toolset_tools
+     *           Optional. List of CES toolset specs that the generator can choose from.
+     *     @type \Google\Cloud\Dialogflow\V2\CesToolSpec[] $ces_tool_specs
+     *           Optional. List of CES tool specs that the generator can choose from.
+     *     @type \Google\Cloud\Dialogflow\V2\CesAppSpec[] $ces_app_specs
+     *           Optional. List of CES app specs that the generator can choose from.
      * }
      */
     public function __construct($data = NULL) {
@@ -499,6 +523,84 @@ class Generator extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\SuggestionDedupingConfig::class);
         $this->suggestion_deduping_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of CES toolset specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ToolsetTool toolset_tools = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\ToolsetTool>
+     */
+    public function getToolsetTools()
+    {
+        return $this->toolset_tools;
+    }
+
+    /**
+     * Optional. List of CES toolset specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ToolsetTool toolset_tools = 27 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\ToolsetTool[] $var
+     * @return $this
+     */
+    public function setToolsetTools($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\ToolsetTool::class);
+        $this->toolset_tools = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of CES tool specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesToolSpec ces_tool_specs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\CesToolSpec>
+     */
+    public function getCesToolSpecs()
+    {
+        return $this->ces_tool_specs;
+    }
+
+    /**
+     * Optional. List of CES tool specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesToolSpec ces_tool_specs = 28 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\CesToolSpec[] $var
+     * @return $this
+     */
+    public function setCesToolSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\CesToolSpec::class);
+        $this->ces_tool_specs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. List of CES app specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\Dialogflow\V2\CesAppSpec>
+     */
+    public function getCesAppSpecs()
+    {
+        return $this->ces_app_specs;
+    }
+
+    /**
+     * Optional. List of CES app specs that the generator can choose from.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.CesAppSpec ces_app_specs = 29 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dialogflow\V2\CesAppSpec[] $var
+     * @return $this
+     */
+    public function setCesAppSpecs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\CesAppSpec::class);
+        $this->ces_app_specs = $arr;
 
         return $this;
     }

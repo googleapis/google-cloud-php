@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_ListInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
 use Google\Cloud\VisionAI\V1\Instance;
+use Google\Cloud\VisionAI\V1\ListInstancesRequest;
 
 /**
  * Lists Instances in a given project and location.
@@ -39,10 +40,14 @@ function list_instances_sample(string $formattedParent): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new ListInstancesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appPlatformClient->listInstances($formattedParent);
+        $response = $appPlatformClient->listInstances($request);
 
         /** @var Instance $element */
         foreach ($response as $element) {

@@ -51,10 +51,12 @@ use Google\Cloud\Redis\Cluster\V1\GetBackupCollectionRequest;
 use Google\Cloud\Redis\Cluster\V1\GetBackupRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\GetClusterRequest;
+use Google\Cloud\Redis\Cluster\V1\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupCollectionsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListBackupsRequest;
 use Google\Cloud\Redis\Cluster\V1\ListClustersRequest;
 use Google\Cloud\Redis\Cluster\V1\RescheduleClusterMaintenanceRequest;
+use Google\Cloud\Redis\Cluster\V1\SharedRegionalCertificateAuthority;
 use Google\Cloud\Redis\Cluster\V1\UpdateClusterRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\Operation;
@@ -96,6 +98,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<BackupCollection> getBackupCollectionAsync(GetBackupCollectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Cluster> getClusterAsync(GetClusterRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CertificateAuthority> getClusterCertificateAuthorityAsync(GetClusterCertificateAuthorityRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<SharedRegionalCertificateAuthority> getSharedRegionalCertificateAuthorityAsync(GetSharedRegionalCertificateAuthorityRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupCollectionsAsync(ListBackupCollectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listBackupsAsync(ListBackupsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listClustersAsync(ListClustersRequest $request, array $optionalArgs = [])
@@ -241,6 +244,25 @@ final class CloudRedisClusterClient
             'project' => $project,
             'location' => $location,
             'backup_collection' => $backupCollection,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a ca_pool
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $caPool
+     *
+     * @return string The formatted ca_pool resource.
+     */
+    public static function caPoolName(string $project, string $location, string $caPool): string
+    {
+        return self::getPathTemplate('caPool')->render([
+            'project' => $project,
+            'location' => $location,
+            'ca_pool' => $caPool,
         ]);
     }
 
@@ -404,11 +426,29 @@ final class CloudRedisClusterClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * shared_regional_certificate_authority resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted shared_regional_certificate_authority resource.
+     */
+    public static function sharedRegionalCertificateAuthorityName(string $project, string $location): string
+    {
+        return self::getPathTemplate('sharedRegionalCertificateAuthority')->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - backup: projects/{project}/locations/{location}/backupCollections/{backup_collection}/backups/{backup}
      * - backupCollection: projects/{project}/locations/{location}/backupCollections/{backup_collection}
+     * - caPool: projects/{project}/locations/{location}/caPools/{ca_pool}
      * - certificateAuthority: projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority
      * - cluster: projects/{project}/locations/{location}/clusters/{cluster}
      * - cryptoKey: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}
@@ -417,6 +457,7 @@ final class CloudRedisClusterClient
      * - location: projects/{project}/locations/{location}
      * - network: projects/{project}/global/networks/{network}
      * - serviceAttachment: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}
+     * - sharedRegionalCertificateAuthority: projects/{project}/locations/{location}/sharedRegionalCertificateAuthority
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -777,6 +818,36 @@ final class CloudRedisClusterClient
         array $callOptions = []
     ): CertificateAuthority {
         return $this->startApiCall('GetClusterCertificateAuthority', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Gets the details of regional certificate authority information for Redis
+     * cluster.
+     *
+     * The async variant is
+     * {@see CloudRedisClusterClient::getSharedRegionalCertificateAuthorityAsync()} .
+     *
+     * @example samples/V1/CloudRedisClusterClient/get_shared_regional_certificate_authority.php
+     *
+     * @param GetSharedRegionalCertificateAuthorityRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return SharedRegionalCertificateAuthority
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function getSharedRegionalCertificateAuthority(
+        GetSharedRegionalCertificateAuthorityRequest $request,
+        array $callOptions = []
+    ): SharedRegionalCertificateAuthority {
+        return $this->startApiCall('GetSharedRegionalCertificateAuthority', $request, $callOptions)->wait();
     }
 
     /**

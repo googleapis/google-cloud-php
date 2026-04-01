@@ -16,12 +16,35 @@ use Google\Protobuf\RepeatedField;
 class MTLSPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
+     * When the client presents an invalid certificate or no certificate to the
+     * load balancer, the `client_validation_mode` specifies how the client
+     * connection is handled.
+     * Required if the policy is to be used with the Application Load
+     * Balancers. For Traffic Director it must be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy.MTLSPolicy.ClientValidationMode client_validation_mode = 2;</code>
+     */
+    protected $client_validation_mode = 0;
+    /**
+     * Required if the policy is to be used with Traffic Director. For
+     * Application Load Balancers it must be empty.
      * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1.ValidationCA client_validation_ca = 1;</code>
      */
     private $client_validation_ca;
+    /**
+     * Reference to the TrustConfig from certificatemanager.googleapis.com
+     * namespace.
+     * If specified, the chain validation will be performed against certificates
+     * configured in the given TrustConfig.
+     * Allowed only if the policy is to be used with Application Load
+     * Balancers.
+     *
+     * Generated from protobuf field <code>string client_validation_trust_config = 4 [(.google.api.resource_reference) = {</code>
+     */
+    protected $client_validation_trust_config = '';
 
     /**
      * Constructor.
@@ -29,9 +52,24 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type int $client_validation_mode
+     *           When the client presents an invalid certificate or no certificate to the
+     *           load balancer, the `client_validation_mode` specifies how the client
+     *           connection is handled.
+     *           Required if the policy is to be used with the Application Load
+     *           Balancers. For Traffic Director it must be empty.
      *     @type \Google\Cloud\NetworkSecurity\V1\ValidationCA[] $client_validation_ca
+     *           Required if the policy is to be used with Traffic Director. For
+     *           Application Load Balancers it must be empty.
      *           Defines the mechanism to obtain the Certificate Authority certificate to
      *           validate the client certificate.
+     *     @type string $client_validation_trust_config
+     *           Reference to the TrustConfig from certificatemanager.googleapis.com
+     *           namespace.
+     *           If specified, the chain validation will be performed against certificates
+     *           configured in the given TrustConfig.
+     *           Allowed only if the policy is to be used with Application Load
+     *           Balancers.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,6 +78,42 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * When the client presents an invalid certificate or no certificate to the
+     * load balancer, the `client_validation_mode` specifies how the client
+     * connection is handled.
+     * Required if the policy is to be used with the Application Load
+     * Balancers. For Traffic Director it must be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy.MTLSPolicy.ClientValidationMode client_validation_mode = 2;</code>
+     * @return int
+     */
+    public function getClientValidationMode()
+    {
+        return $this->client_validation_mode;
+    }
+
+    /**
+     * When the client presents an invalid certificate or no certificate to the
+     * load balancer, the `client_validation_mode` specifies how the client
+     * connection is handled.
+     * Required if the policy is to be used with the Application Load
+     * Balancers. For Traffic Director it must be empty.
+     *
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1.ServerTlsPolicy.MTLSPolicy.ClientValidationMode client_validation_mode = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setClientValidationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy\MTLSPolicy\ClientValidationMode::class);
+        $this->client_validation_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required if the policy is to be used with Traffic Director. For
+     * Application Load Balancers it must be empty.
      * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
@@ -52,6 +126,8 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Required if the policy is to be used with Traffic Director. For
+     * Application Load Balancers it must be empty.
      * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
@@ -63,6 +139,42 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetworkSecurity\V1\ValidationCA::class);
         $this->client_validation_ca = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Reference to the TrustConfig from certificatemanager.googleapis.com
+     * namespace.
+     * If specified, the chain validation will be performed against certificates
+     * configured in the given TrustConfig.
+     * Allowed only if the policy is to be used with Application Load
+     * Balancers.
+     *
+     * Generated from protobuf field <code>string client_validation_trust_config = 4 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getClientValidationTrustConfig()
+    {
+        return $this->client_validation_trust_config;
+    }
+
+    /**
+     * Reference to the TrustConfig from certificatemanager.googleapis.com
+     * namespace.
+     * If specified, the chain validation will be performed against certificates
+     * configured in the given TrustConfig.
+     * Allowed only if the policy is to be used with Application Load
+     * Balancers.
+     *
+     * Generated from protobuf field <code>string client_validation_trust_config = 4 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setClientValidationTrustConfig($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->client_validation_trust_config = $var;
 
         return $this;
     }

@@ -50,6 +50,16 @@ class McpToolset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.TlsConfig tls_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $tls_config = null;
+    /**
+     * Optional. The custom headers to send in the request to the MCP server. The
+     * values must be in the format `$context.variables.<name_of_variable>` and
+     * can be set in the session variables. See
+     * https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> custom_headers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $custom_headers;
 
     /**
      * Constructor.
@@ -75,6 +85,12 @@ class McpToolset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Ces\V1\TlsConfig $tls_config
      *           Optional. The TLS configuration. Includes the custom server certificates
      *           that the client should trust.
+     *     @type array|\Google\Protobuf\Internal\MapField $custom_headers
+     *           Optional. The custom headers to send in the request to the MCP server. The
+     *           values must be in the format `$context.variables.<name_of_variable>` and
+     *           can be set in the session variables. See
+     *           https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -232,6 +248,40 @@ class McpToolset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\TlsConfig::class);
         $this->tls_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The custom headers to send in the request to the MCP server. The
+     * values must be in the format `$context.variables.<name_of_variable>` and
+     * can be set in the session variables. See
+     * https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> custom_headers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getCustomHeaders()
+    {
+        return $this->custom_headers;
+    }
+
+    /**
+     * Optional. The custom headers to send in the request to the MCP server. The
+     * values must be in the format `$context.variables.<name_of_variable>` and
+     * can be set in the session variables. See
+     * https://docs.cloud.google.com/customer-engagement-ai/conversational-agents/ps/tool/open-api#openapi-injection
+     * for more details.
+     *
+     * Generated from protobuf field <code>map<string, string> custom_headers = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setCustomHeaders($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->custom_headers = $arr;
 
         return $this;
     }

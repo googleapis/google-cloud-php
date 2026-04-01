@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\VisionAI\V1\Analysis;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\ListAnalysesRequest;
 
 /**
  * Lists Analyses in a given project and location.
@@ -39,10 +40,14 @@ function list_analyses_sample(string $formattedParent): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new ListAnalysesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $liveVideoAnalyticsClient->listAnalyses($formattedParent);
+        $response = $liveVideoAnalyticsClient->listAnalyses($request);
 
         /** @var Analysis $element */
         foreach ($response as $element) {

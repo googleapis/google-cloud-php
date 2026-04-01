@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_Warehouse_CreateSearchConfig_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\CreateSearchConfigRequest;
 use Google\Cloud\VisionAI\V1\SearchConfig;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Creates a search configuration inside a corpus.
@@ -58,13 +59,17 @@ function create_search_config_sample(string $formattedParent, string $searchConf
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $searchConfig = new SearchConfig();
+    $request = (new CreateSearchConfigRequest())
+        ->setParent($formattedParent)
+        ->setSearchConfig($searchConfig)
+        ->setSearchConfigId($searchConfigId);
 
     // Call the API and handle any network failures.
     try {
         /** @var SearchConfig $response */
-        $response = $warehouseClient->createSearchConfig($formattedParent, $searchConfig, $searchConfigId);
+        $response = $warehouseClient->createSearchConfig($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

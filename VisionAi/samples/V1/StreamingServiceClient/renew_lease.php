@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_StreamingService_RenewLease_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\StreamingServiceClient;
 use Google\Cloud\VisionAI\V1\Lease;
-use Google\Cloud\VisionAI\V1\StreamingServiceClient;
+use Google\Cloud\VisionAI\V1\RenewLeaseRequest;
 
 /**
  * RenewLease renews a lease.
@@ -41,10 +42,13 @@ function renew_lease_sample(): void
     // Create a client.
     $streamingServiceClient = new StreamingServiceClient();
 
+    // Prepare the request message.
+    $request = new RenewLeaseRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var Lease $response */
-        $response = $streamingServiceClient->renewLease();
+        $response = $streamingServiceClient->renewLease($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

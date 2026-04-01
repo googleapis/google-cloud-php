@@ -94,12 +94,14 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $description = 'description-1724546052';
+        $dtmfPattern = 'dtmfPattern-319320198';
         $expectedResponse = new Intent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDtmfPattern($dtmfPattern);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');
@@ -365,12 +367,14 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $description = 'description-1724546052';
+        $dtmfPattern = 'dtmfPattern-319320198';
         $expectedResponse = new Intent();
         $expectedResponse->setName($name2);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDtmfPattern($dtmfPattern);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->intentName('[PROJECT]', '[LOCATION]', '[AGENT]', '[INTENT]');
@@ -631,12 +635,14 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $description = 'description-1724546052';
+        $dtmfPattern = 'dtmfPattern-319320198';
         $expectedResponse = new Intent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDtmfPattern($dtmfPattern);
         $transport->addResponse($expectedResponse);
         // Mock request
         $intent = new Intent();
@@ -836,12 +842,14 @@ class IntentsClientTest extends GeneratedTest
         $priority = 1165461084;
         $isFallback = false;
         $description = 'description-1724546052';
+        $dtmfPattern = 'dtmfPattern-319320198';
         $expectedResponse = new Intent();
         $expectedResponse->setName($name);
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setPriority($priority);
         $expectedResponse->setIsFallback($isFallback);
         $expectedResponse->setDescription($description);
+        $expectedResponse->setDtmfPattern($dtmfPattern);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->agentName('[PROJECT]', '[LOCATION]', '[AGENT]');

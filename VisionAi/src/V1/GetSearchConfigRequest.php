@@ -25,6 +25,22 @@ class GetSearchConfigRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the search configuration to retrieve.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/searchConfigs/{search_config}`
+     *                     Please see {@see WarehouseClient::searchConfigName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetSearchConfigRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

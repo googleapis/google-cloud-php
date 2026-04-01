@@ -51,6 +51,24 @@ class CreateProcessRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                            $parent    Required. Value for parent. Please see
+     *                                                     {@see LiveVideoAnalyticsClient::clusterName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Process $process   Required. The resource being created.
+     * @param string                            $processId Required. Id of the requesting object.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateProcessRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Process $process, string $processId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setProcess($process)
+            ->setProcessId($processId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

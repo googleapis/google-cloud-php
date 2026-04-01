@@ -19,7 +19,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the deployment.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}
+     * `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
@@ -31,11 +31,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     protected $display_name = '';
     /**
-     * Required. The resource name of the app version to deploy.
+     * Optional. The resource name of the app version to deploy.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/versions/{version}
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
+     * Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use
+     * the draft app.
      *
-     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
     protected $app_version = '';
     /**
@@ -74,13 +76,15 @@ class Deployment extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Identifier. The resource name of the deployment.
      *           Format:
-     *           projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}
+     *           `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`
      *     @type string $display_name
      *           Required. Display name of the deployment.
      *     @type string $app_version
-     *           Required. The resource name of the app version to deploy.
+     *           Optional. The resource name of the app version to deploy.
      *           Format:
-     *           projects/{project}/locations/{location}/apps/{app}/versions/{version}
+     *           `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
+     *           Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use
+     *           the draft app.
      *     @type \Google\Cloud\Ces\V1\ChannelProfile $channel_profile
      *           Required. The channel profile used in the deployment.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -101,7 +105,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the deployment.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}
+     * `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
@@ -114,7 +118,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
     /**
      * Identifier. The resource name of the deployment.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}
+     * `projects/{project}/locations/{location}/apps/{app}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
@@ -155,11 +159,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the app version to deploy.
+     * Optional. The resource name of the app version to deploy.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/versions/{version}
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
+     * Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use
+     * the draft app.
      *
-     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getAppVersion()
@@ -168,11 +174,13 @@ class Deployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The resource name of the app version to deploy.
+     * Optional. The resource name of the app version to deploy.
      * Format:
-     * projects/{project}/locations/{location}/apps/{app}/versions/{version}
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`
+     * Use `projects/{project}/locations/{location}/apps/{app}/versions/-` to use
+     * the draft app.
      *
-     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string app_version = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

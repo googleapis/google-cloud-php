@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_CreateProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\CreateProcessRequest;
 use Google\Cloud\VisionAI\V1\Process;
 use Google\Rpc\Status;
 
@@ -46,14 +47,18 @@ function create_process_sample(
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $process = (new Process())
         ->setAnalysis($formattedProcessAnalysis);
+    $request = (new CreateProcessRequest())
+        ->setParent($formattedParent)
+        ->setProcessId($processId)
+        ->setProcess($process);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->createProcess($formattedParent, $processId, $process);
+        $response = $liveVideoAnalyticsClient->createProcess($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

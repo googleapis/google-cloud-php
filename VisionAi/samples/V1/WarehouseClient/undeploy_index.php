@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_UndeployIndex_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\UndeployIndexRequest;
 use Google\Cloud\VisionAI\V1\UndeployIndexResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 use Google\Rpc\Status;
 
 /**
@@ -42,10 +43,14 @@ function undeploy_index_sample(string $formattedIndexEndpoint): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new UndeployIndexRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->undeployIndex($formattedIndexEndpoint);
+        $response = $warehouseClient->undeployIndex($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

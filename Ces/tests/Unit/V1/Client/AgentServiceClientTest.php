@@ -609,8 +609,6 @@ class AgentServiceClientTest extends GeneratedTest
         $deployment = new Deployment();
         $deploymentDisplayName = 'deploymentDisplayName-275331480';
         $deployment->setDisplayName($deploymentDisplayName);
-        $deploymentAppVersion = $gapicClient->appVersionName('[PROJECT]', '[LOCATION]', '[APP]', '[VERSION]');
-        $deployment->setAppVersion($deploymentAppVersion);
         $deploymentChannelProfile = new ChannelProfile();
         $deployment->setChannelProfile($deploymentChannelProfile);
         $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
@@ -654,8 +652,6 @@ class AgentServiceClientTest extends GeneratedTest
         $deployment = new Deployment();
         $deploymentDisplayName = 'deploymentDisplayName-275331480';
         $deployment->setDisplayName($deploymentDisplayName);
-        $deploymentAppVersion = $gapicClient->appVersionName('[PROJECT]', '[LOCATION]', '[APP]', '[VERSION]');
-        $deployment->setAppVersion($deploymentAppVersion);
         $deploymentChannelProfile = new ChannelProfile();
         $deployment->setChannelProfile($deploymentChannelProfile);
         $request = (new CreateDeploymentRequest())->setParent($formattedParent)->setDeployment($deployment);
@@ -3619,8 +3615,6 @@ class AgentServiceClientTest extends GeneratedTest
         $deployment = new Deployment();
         $deploymentDisplayName = 'deploymentDisplayName-275331480';
         $deployment->setDisplayName($deploymentDisplayName);
-        $deploymentAppVersion = $gapicClient->appVersionName('[PROJECT]', '[LOCATION]', '[APP]', '[VERSION]');
-        $deployment->setAppVersion($deploymentAppVersion);
         $deploymentChannelProfile = new ChannelProfile();
         $deployment->setChannelProfile($deploymentChannelProfile);
         $request = (new UpdateDeploymentRequest())->setDeployment($deployment);
@@ -3661,8 +3655,6 @@ class AgentServiceClientTest extends GeneratedTest
         $deployment = new Deployment();
         $deploymentDisplayName = 'deploymentDisplayName-275331480';
         $deployment->setDisplayName($deploymentDisplayName);
-        $deploymentAppVersion = $gapicClient->appVersionName('[PROJECT]', '[LOCATION]', '[APP]', '[VERSION]');
-        $deployment->setAppVersion($deploymentAppVersion);
         $deploymentChannelProfile = new ChannelProfile();
         $deployment->setChannelProfile($deploymentChannelProfile);
         $request = (new UpdateDeploymentRequest())->setDeployment($deployment);

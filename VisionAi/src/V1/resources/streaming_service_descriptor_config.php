@@ -23,22 +23,74 @@
 return [
     'interfaces' => [
         'google.cloud.visionai.v1.StreamingService' => [
+            'AcquireLease' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\Lease',
+                'headerParams' => [
+                    [
+                        'keyName' => 'series',
+                        'fieldAccessors' => [
+                            'getSeries',
+                        ],
+                    ],
+                ],
+            ],
             'ReceiveEvents' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\ReceiveEventsResponse',
             ],
             'ReceivePackets' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\ReceivePacketsResponse',
+            ],
+            'ReleaseLease' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\ReleaseLeaseResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'series',
+                        'fieldAccessors' => [
+                            'getSeries',
+                        ],
+                    ],
+                ],
+            ],
+            'RenewLease' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\Lease',
+                'headerParams' => [
+                    [
+                        'keyName' => 'series',
+                        'fieldAccessors' => [
+                            'getSeries',
+                        ],
+                    ],
                 ],
             ],
             'SendPackets' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\VisionAI\V1\SendPacketsResponse',
             ],
             'GetLocation' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Location\Location',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'ListLocations' => [
@@ -50,7 +102,20 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getLocations',
                 ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Location\ListLocationsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
                 'interfaceOverride' => 'google.cloud.location.Locations',
+            ],
+            'templateMap' => [
+                'series' => 'projects/{project}/locations/{location}/clusters/{cluster}/series/{series}',
             ],
         ],
     ],

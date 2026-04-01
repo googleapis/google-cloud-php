@@ -16,16 +16,16 @@ use Google\Protobuf\RepeatedField;
 class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/*`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     protected $name = '';
 
     /**
-     * @param string $name Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     *                     `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
+     * @param string $name Required. A name of the AuthorizationPolicy to delete. Must be in the
+     *                     format `projects/{project}/locations/{location}/authorizationPolicies/*`. Please see
      *                     {@see NetworkSecurityClient::authorizationPolicyName()} for help formatting this field.
      *
      * @return \Google\Cloud\NetworkSecurity\V1\DeleteAuthorizationPolicyRequest
@@ -45,8 +45,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     *           `projects/{project}/locations/{location}/authorizationPolicies/*`.
+     *           Required. A name of the AuthorizationPolicy to delete. Must be in the
+     *           format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      * }
      */
     public function __construct($data = NULL) {
@@ -55,8 +55,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/*`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -67,8 +67,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/*`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

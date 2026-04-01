@@ -17,17 +17,17 @@ use Google\Protobuf\RepeatedField;
 class BranchRule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A unique identifier for a BranchRule. The name should be of the
+     * Identifier. A unique identifier for a BranchRule. The name should be of the
      * format:
      * `projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
     /**
@@ -94,6 +94,13 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      */
     protected $minimum_approvals_count = 0;
     /**
+     * Optional. Determines if code owners must approve before merging to the
+     * branch.
+     *
+     * Generated from protobuf field <code>bool require_code_owner_approval = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $require_code_owner_approval = false;
+    /**
      * Optional. Determines if require comments resolved before merging to the
      * branch.
      *
@@ -128,7 +135,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. A unique identifier for a BranchRule. The name should be of the
+     *           Identifier. A unique identifier for a BranchRule. The name should be of the
      *           format:
      *           `projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}`
      *     @type string $uid
@@ -160,6 +167,9 @@ class BranchRule extends \Google\Protobuf\Internal\Message
      *     @type int $minimum_approvals_count
      *           Optional. The minimum number of approvals required for the branch rule to
      *           be matched.
+     *     @type bool $require_code_owner_approval
+     *           Optional. Determines if code owners must approve before merging to the
+     *           branch.
      *     @type bool $require_comments_resolved
      *           Optional. Determines if require comments resolved before merging to the
      *           branch.
@@ -179,11 +189,11 @@ class BranchRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for a BranchRule. The name should be of the
+     * Identifier. A unique identifier for a BranchRule. The name should be of the
      * format:
      * `projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -192,11 +202,11 @@ class BranchRule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for a BranchRule. The name should be of the
+     * Identifier. A unique identifier for a BranchRule. The name should be of the
      * format:
      * `projects/{project}/locations/{location}/repositories/{repository}/branchRules/{branch_rule}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -211,7 +221,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -222,7 +232,7 @@ class BranchRule extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */
@@ -502,6 +512,34 @@ class BranchRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->minimum_approvals_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Determines if code owners must approve before merging to the
+     * branch.
+     *
+     * Generated from protobuf field <code>bool require_code_owner_approval = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getRequireCodeOwnerApproval()
+    {
+        return $this->require_code_owner_approval;
+    }
+
+    /**
+     * Optional. Determines if code owners must approve before merging to the
+     * branch.
+     *
+     * Generated from protobuf field <code>bool require_code_owner_approval = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRequireCodeOwnerApproval($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->require_code_owner_approval = $var;
 
         return $this;
     }

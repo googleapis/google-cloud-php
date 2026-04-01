@@ -29,7 +29,7 @@ use Google\Cloud\Dataflow\V1beta3\CreateJobRequest;
 use Google\Cloud\Dataflow\V1beta3\Job;
 
 /**
- * Creates a Cloud Dataflow job.
+ * Creates a Dataflow job.
  *
  * To create a job, we recommend using `projects.locations.jobs.create` with a
  * [regional endpoint]

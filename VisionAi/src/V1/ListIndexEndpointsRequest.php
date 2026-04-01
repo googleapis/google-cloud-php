@@ -54,6 +54,20 @@ class ListIndexEndpointsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $parent Required. Format: `projects/{project}/locations/{location}`
+     *                       Please see {@see WarehouseClient::locationName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListIndexEndpointsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

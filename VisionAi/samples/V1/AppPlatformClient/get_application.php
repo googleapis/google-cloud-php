@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_AppPlatform_GetApplication_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
 use Google\Cloud\VisionAI\V1\Application;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\GetApplicationRequest;
 
 /**
  * Gets details of a single Application.
@@ -38,10 +39,14 @@ function get_application_sample(string $formattedName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new GetApplicationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Application $response */
-        $response = $appPlatformClient->getApplication($formattedName);
+        $response = $appPlatformClient->getApplication($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

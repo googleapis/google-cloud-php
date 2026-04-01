@@ -52,6 +52,24 @@ class UpdateApplicationInstancesRequest extends \Google\Protobuf\Internal\Messag
     protected $allow_missing = false;
 
     /**
+     * @param string                                                                                  $name                 Required. the name of the application to retrieve.
+     *                                                                                                                      Format:
+     *                                                                                                                      "projects/{project}/locations/{location}/applications/{application}"
+     *                                                                                                                      Please see {@see AppPlatformClient::applicationName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\UpdateApplicationInstancesRequest\UpdateApplicationInstance[] $applicationInstances
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateApplicationInstancesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name, array $applicationInstances): self
+    {
+        return (new self())
+            ->setName($name)
+            ->setApplicationInstances($applicationInstances);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

@@ -42,9 +42,85 @@ return [
                     ],
                 ],
             ],
+            'CreateAuthzPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\AuthzPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBackendAuthenticationConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\BackendAuthenticationConfig',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateClientTlsPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\ClientTlsPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateGatewaySecurityPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateGatewaySecurityPolicyRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicyRule',
                     'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -80,7 +156,83 @@ return [
                     ],
                 ],
             ],
+            'CreateTlsInspectionPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\TlsInspectionPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateUrlList' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\UrlList',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAuthorizationPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteAuthzPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteBackendAuthenticationConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
@@ -118,7 +270,83 @@ return [
                     ],
                 ],
             ],
+            'DeleteGatewaySecurityPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteGatewaySecurityPolicyRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteServerTlsPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteTlsInspectionPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteUrlList' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
@@ -157,6 +385,46 @@ return [
                     ],
                 ],
             ],
+            'UpdateAuthzPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\AuthzPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'authz_policy.name',
+                        'fieldAccessors' => [
+                            'getAuthzPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBackendAuthenticationConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\BackendAuthenticationConfig',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'backend_authentication_config.name',
+                        'fieldAccessors' => [
+                            'getBackendAuthenticationConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateClientTlsPolicy' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\ClientTlsPolicy',
@@ -172,6 +440,46 @@ return [
                         'keyName' => 'client_tls_policy.name',
                         'fieldAccessors' => [
                             'getClientTlsPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGatewaySecurityPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'gateway_security_policy.name',
+                        'fieldAccessors' => [
+                            'getGatewaySecurityPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateGatewaySecurityPolicyRule' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicyRule',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'gateway_security_policy_rule.name',
+                        'fieldAccessors' => [
+                            'getGatewaySecurityPolicyRule',
                             'getName',
                         ],
                     ],
@@ -197,9 +505,73 @@ return [
                     ],
                 ],
             ],
+            'UpdateTlsInspectionPolicy' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\TlsInspectionPolicy',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'tls_inspection_policy.name',
+                        'fieldAccessors' => [
+                            'getTlsInspectionPolicy',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateUrlList' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\NetworkSecurity\V1\UrlList',
+                    'metadataReturnType' => '\Google\Cloud\NetworkSecurity\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'url_list.name',
+                        'fieldAccessors' => [
+                            'getUrlList',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetAuthorizationPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkSecurity\V1\AuthorizationPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAuthzPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\AuthzPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBackendAuthenticationConfig' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\BackendAuthenticationConfig',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -221,9 +593,57 @@ return [
                     ],
                 ],
             ],
+            'GetGatewaySecurityPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetGatewaySecurityPolicyRule' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\GatewaySecurityPolicyRule',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetServerTlsPolicy' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetTlsInspectionPolicy' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\TlsInspectionPolicy',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetUrlList' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\UrlList',
                 'headerParams' => [
                     [
                         'keyName' => 'name',
@@ -253,6 +673,46 @@ return [
                     ],
                 ],
             ],
+            'ListAuthzPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAuthzPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListAuthzPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListBackendAuthenticationConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBackendAuthenticationConfigs',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListBackendAuthenticationConfigsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListClientTlsPolicies' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -273,6 +733,46 @@ return [
                     ],
                 ],
             ],
+            'ListGatewaySecurityPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGatewaySecurityPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListGatewaySecurityPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListGatewaySecurityPolicyRules' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getGatewaySecurityPolicyRules',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListGatewaySecurityPolicyRulesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListServerTlsPolicies' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -284,6 +784,46 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListServerTlsPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListTlsInspectionPolicies' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTlsInspectionPolicies',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListTlsInspectionPoliciesResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListUrlLists' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getUrlLists',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\NetworkSecurity\V1\ListUrlListsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -368,9 +908,18 @@ return [
             ],
             'templateMap' => [
                 'authorizationPolicy' => 'projects/{project}/locations/{location}/authorizationPolicies/{authorization_policy}',
+                'authzPolicy' => 'projects/{project}/locations/{location}/authzPolicies/{authz_policy}',
+                'backendAuthenticationConfig' => 'projects/{project}/locations/{location}/backendAuthenticationConfigs/{backend_authentication_config}',
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
+                'certificate' => 'projects/{project}/locations/{location}/certificates/{certificate}',
                 'clientTlsPolicy' => 'projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}',
+                'gatewaySecurityPolicy' => 'projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}',
+                'gatewaySecurityPolicyRule' => 'projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}/rules/{rule}',
                 'location' => 'projects/{project}/locations/{location}',
                 'serverTlsPolicy' => 'projects/{project}/locations/{location}/serverTlsPolicies/{server_tls_policy}',
+                'tlsInspectionPolicy' => 'projects/{project}/locations/{location}/tlsInspectionPolicies/{tls_inspection_policy}',
+                'trustConfig' => 'projects/{project}/locations/{location}/trustConfigs/{trust_config}',
+                'urlList' => 'projects/{project}/locations/{location}/urlLists/{url_list}',
             ],
         ],
     ],

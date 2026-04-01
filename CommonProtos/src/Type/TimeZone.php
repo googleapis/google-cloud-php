@@ -17,13 +17,13 @@ use Google\Protobuf\RepeatedField;
 class TimeZone extends \Google\Protobuf\Internal\Message
 {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      */
     protected $id = '';
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
@@ -36,9 +36,9 @@ class TimeZone extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $id
-     *           IANA Time Zone Database time zone, e.g. "America/New_York".
+     *           IANA Time Zone Database time zone. For example "America/New_York".
      *     @type string $version
-     *           Optional. IANA Time Zone Database version number, e.g. "2019a".
+     *           Optional. IANA Time Zone Database version number. For example "2019a".
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +47,7 @@ class TimeZone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @return string
@@ -58,7 +58,7 @@ class TimeZone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      *
      * Generated from protobuf field <code>string id = 1;</code>
      * @param string $var
@@ -73,7 +73,7 @@ class TimeZone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @return string
@@ -84,7 +84,7 @@ class TimeZone extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @param string $var

@@ -42,6 +42,22 @@ class RuntimeUpdatableParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double worker_utilization_hint = 3;</code>
      */
     protected $worker_utilization_hint = null;
+    /**
+     * Optional. Deprecated: Use `autoscaling_tier` instead.
+     * The backlog threshold duration in seconds for autoscaling. Value must be
+     * non-negative.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration acceptable_backlog_duration = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
+     */
+    protected $acceptable_backlog_duration = null;
+    /**
+     * Optional. The backlog threshold tier for autoscaling. Value must be one of
+     * "low-latency", "medium-latency", or "high-latency".
+     *
+     * Generated from protobuf field <code>optional string autoscaling_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $autoscaling_tier = null;
 
     /**
      * Constructor.
@@ -62,6 +78,13 @@ class RuntimeUpdatableParams extends \Google\Protobuf\Internal\Message
      *           For more information, see
      *           [Update an existing
      *           pipeline](https://cloud.google.com/dataflow/docs/guides/updating-a-pipeline).
+     *     @type \Google\Protobuf\Duration $acceptable_backlog_duration
+     *           Optional. Deprecated: Use `autoscaling_tier` instead.
+     *           The backlog threshold duration in seconds for autoscaling. Value must be
+     *           non-negative.
+     *     @type string $autoscaling_tier
+     *           Optional. The backlog threshold tier for autoscaling. Value must be one of
+     *           "low-latency", "medium-latency", or "high-latency".
      * }
      */
     public function __construct($data = NULL) {
@@ -187,6 +210,94 @@ class RuntimeUpdatableParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->worker_utilization_hint = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Deprecated: Use `autoscaling_tier` instead.
+     * The backlog threshold duration in seconds for autoscaling. Value must be
+     * non-negative.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration acceptable_backlog_duration = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     * @deprecated
+     */
+    public function getAcceptableBacklogDuration()
+    {
+        if (isset($this->acceptable_backlog_duration)) {
+            @trigger_error('acceptable_backlog_duration is deprecated.', E_USER_DEPRECATED);
+        }
+        return $this->acceptable_backlog_duration;
+    }
+
+    public function hasAcceptableBacklogDuration()
+    {
+        if (isset($this->acceptable_backlog_duration)) {
+            @trigger_error('acceptable_backlog_duration is deprecated.', E_USER_DEPRECATED);
+        }
+        return isset($this->acceptable_backlog_duration);
+    }
+
+    public function clearAcceptableBacklogDuration()
+    {
+        @trigger_error('acceptable_backlog_duration is deprecated.', E_USER_DEPRECATED);
+        unset($this->acceptable_backlog_duration);
+    }
+
+    /**
+     * Optional. Deprecated: Use `autoscaling_tier` instead.
+     * The backlog threshold duration in seconds for autoscaling. Value must be
+     * non-negative.
+     *
+     * Generated from protobuf field <code>optional .google.protobuf.Duration acceptable_backlog_duration = 4 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     * @deprecated
+     */
+    public function setAcceptableBacklogDuration($var)
+    {
+        @trigger_error('acceptable_backlog_duration is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->acceptable_backlog_duration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The backlog threshold tier for autoscaling. Value must be one of
+     * "low-latency", "medium-latency", or "high-latency".
+     *
+     * Generated from protobuf field <code>optional string autoscaling_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getAutoscalingTier()
+    {
+        return isset($this->autoscaling_tier) ? $this->autoscaling_tier : '';
+    }
+
+    public function hasAutoscalingTier()
+    {
+        return isset($this->autoscaling_tier);
+    }
+
+    public function clearAutoscalingTier()
+    {
+        unset($this->autoscaling_tier);
+    }
+
+    /**
+     * Optional. The backlog threshold tier for autoscaling. Value must be one of
+     * "low-latency", "medium-latency", or "high-latency".
+     *
+     * Generated from protobuf field <code>optional string autoscaling_tier = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAutoscalingTier($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->autoscaling_tier = $var;
 
         return $this;
     }

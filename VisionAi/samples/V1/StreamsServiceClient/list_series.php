@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_ListSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\ListSeriesRequest;
 use Google\Cloud\VisionAI\V1\Series;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 
 /**
  * Lists Series in a given project and location.
@@ -39,10 +40,14 @@ function list_series_sample(string $formattedParent): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListSeriesRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $streamsServiceClient->listSeries($formattedParent);
+        $response = $streamsServiceClient->listSeries($request);
 
         /** @var Series $element */
         foreach ($response as $element) {

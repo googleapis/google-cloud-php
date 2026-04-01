@@ -37,6 +37,14 @@ class ExportAppRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string gcs_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $gcs_uri = '';
+    /**
+     * Optional. The resource name of the app version to export.
+     * Format:
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`.
+     *
+     * Generated from protobuf field <code>string app_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $app_version = '';
 
     /**
      * @param string $name Required. The resource name of the app to export. Please see
@@ -67,6 +75,10 @@ class ExportAppRequest extends \Google\Protobuf\Internal\Message
      *           Storage](https://cloud.google.com/storage/docs/) URI to which to export the
      *           app. The format of this URI must be `gs://<bucket-name>/<object-name>`. The
      *           exported app archive will be written directly to the specified GCS object.
+     *     @type string $app_version
+     *           Optional. The resource name of the app version to export.
+     *           Format:
+     *           `projects/{project}/locations/{location}/apps/{app}/versions/{version}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -154,6 +166,36 @@ class ExportAppRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gcs_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The resource name of the app version to export.
+     * Format:
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`.
+     *
+     * Generated from protobuf field <code>string app_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAppVersion()
+    {
+        return $this->app_version;
+    }
+
+    /**
+     * Optional. The resource name of the app version to export.
+     * Format:
+     * `projects/{project}/locations/{location}/apps/{app}/versions/{version}`.
+     *
+     * Generated from protobuf field <code>string app_version = 4 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAppVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->app_version = $var;
 
         return $this;
     }

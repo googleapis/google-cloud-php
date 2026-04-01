@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_ListLocations_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\Location\ListLocationsRequest;
 use Google\Cloud\Location\Location;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
 
 /**
  * Lists information about the supported locations for this service.
@@ -42,10 +43,13 @@ function list_locations_sample(): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = new ListLocationsRequest();
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appPlatformClient->listLocations();
+        $response = $appPlatformClient->listLocations($request);
 
         /** @var Location $element */
         foreach ($response as $element) {

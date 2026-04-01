@@ -27,6 +27,7 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\LongRunning\CancelOperationRequest;
+use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\DeleteOperationRequest;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\ListOperationsRequest;
@@ -56,13 +57,13 @@ class OperationsClientTest extends GeneratedTest
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /** @return \Google\LongRunning\Client\OperationsClient */
+    /** @return OperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new \Google\LongRunning\Client\OperationsClient($options);
+        return new OperationsClient($options);
     }
 
     /** @test */

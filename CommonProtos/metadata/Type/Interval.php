@@ -16,7 +16,7 @@ class Interval
         }
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
-            "\x0A\x86\x02\x0A\x1Agoogle/type/interval.proto\x12\x0Bgoogle.type\"h\x0A\x08Interval\x12.\x0A\x0Astart_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12,\x0A\x08end_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.TimestampBi\x0A\x0Fcom.google.typeB\x0DIntervalProtoP\x01Z<google.golang.org/genproto/googleapis/type/interval;interval\xF8\x01\x01\xA2\x02\x03GTPb\x06proto3"
+            "\x0A\x83\x02\x0A\x1Agoogle/type/interval.proto\x12\x0Bgoogle.type\"h\x0A\x08Interval\x12.\x0A\x0Astart_time\x18\x01 \x01(\x0B2\x1A.google.protobuf.Timestamp\x12,\x0A\x08end_time\x18\x02 \x01(\x0B2\x1A.google.protobuf.TimestampBf\x0A\x0Fcom.google.typeB\x0DIntervalProtoP\x01Z<google.golang.org/genproto/googleapis/type/interval;interval\xA2\x02\x03GTPb\x06proto3"
         , true);
 
         static::$is_initialized = true;

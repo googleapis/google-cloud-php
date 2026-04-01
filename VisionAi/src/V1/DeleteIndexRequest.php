@@ -25,6 +25,22 @@ class DeleteIndexRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. The name of the index to delete.
+     *                     Format:
+     *                     `projects/{project_number}/locations/{location}/corpora/{corpus}/indexes/{index}`
+     *                     Please see {@see WarehouseClient::indexName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\DeleteIndexRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {
