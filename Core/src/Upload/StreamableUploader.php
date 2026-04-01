@@ -64,12 +64,13 @@ class StreamableUploader extends ResumableUploader
             'Content-Range'     => "bytes {$this->rangeStart}-$rangeEnd/*"
         ];
 
-        if ($isFinalRequest) {
-            $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
-            if (isset($customHeaders['X-Goog-Hash'])) {
-                $headers['X-Goog-Hash'] = $customHeaders['X-Goog-Hash'];
-            }
+        $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+
+        // Only include X-Goog-Hash if this is the final request
+        if (!$isFinalRequest) {
+            unset($customHeaders['X-Goog-Hash']);
         }
+        $headers = array_merge($headers, $customHeaders);
 
         $request = new Request(
             'PUT',
