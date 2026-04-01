@@ -137,6 +137,12 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_account = 22;</code>
      */
     protected $service_account = '';
+    /**
+     * Output only. Evaluation runs for the Tuning Job.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluateDatasetRun evaluate_dataset_runs = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $evaluate_dataset_runs;
     protected $source_model;
     protected $tuning_spec;
 
@@ -215,6 +221,8 @@ class TuningJob extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/iam/docs/service-agents#vertex-ai-secure-fine-tuning-service-agent
      *           Users starting the pipeline must have the `iam.serviceAccounts.actAs`
      *           permission on this service account.
+     *     @type \Google\Cloud\AIPlatform\V1\EvaluateDatasetRun[] $evaluate_dataset_runs
+     *           Output only. Evaluation runs for the Tuning Job.
      * }
      */
     public function __construct($data = NULL) {
@@ -847,6 +855,32 @@ class TuningJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_account = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Evaluation runs for the Tuning Job.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluateDatasetRun evaluate_dataset_runs = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\EvaluateDatasetRun>
+     */
+    public function getEvaluateDatasetRuns()
+    {
+        return $this->evaluate_dataset_runs;
+    }
+
+    /**
+     * Output only. Evaluation runs for the Tuning Job.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EvaluateDatasetRun evaluate_dataset_runs = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EvaluateDatasetRun[] $var
+     * @return $this
+     */
+    public function setEvaluateDatasetRuns($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\EvaluateDatasetRun::class);
+        $this->evaluate_dataset_runs = $arr;
 
         return $this;
     }

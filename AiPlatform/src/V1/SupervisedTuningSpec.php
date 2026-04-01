@@ -43,6 +43,12 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool export_last_checkpoint_only = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $export_last_checkpoint_only = false;
+    /**
+     * Optional. Evaluation Config for Tuning Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EvaluationConfig evaluation_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $evaluation_config = null;
 
     /**
      * Constructor.
@@ -62,6 +68,8 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
      *           Optional. If set to true, disable intermediate checkpoints for SFT and only
      *           the last checkpoint will be exported. Otherwise, enable intermediate
      *           checkpoints for SFT. Default is false.
+     *     @type \Google\Cloud\AIPlatform\V1\EvaluationConfig $evaluation_config
+     *           Optional. Evaluation Config for Tuning Job.
      * }
      */
     public function __construct($data = NULL) {
@@ -187,6 +195,42 @@ class SupervisedTuningSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->export_last_checkpoint_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Evaluation Config for Tuning Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EvaluationConfig evaluation_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\AIPlatform\V1\EvaluationConfig|null
+     */
+    public function getEvaluationConfig()
+    {
+        return $this->evaluation_config;
+    }
+
+    public function hasEvaluationConfig()
+    {
+        return isset($this->evaluation_config);
+    }
+
+    public function clearEvaluationConfig()
+    {
+        unset($this->evaluation_config);
+    }
+
+    /**
+     * Optional. Evaluation Config for Tuning Job.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EvaluationConfig evaluation_config = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\AIPlatform\V1\EvaluationConfig $var
+     * @return $this
+     */
+    public function setEvaluationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EvaluationConfig::class);
+        $this->evaluation_config = $var;
 
         return $this;
     }
