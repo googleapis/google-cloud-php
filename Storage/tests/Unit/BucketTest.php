@@ -964,7 +964,7 @@ class BucketTest extends TestCase
         $this->assertArrayHasKey('contexts', $object->info());
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
-    
+
     public function testIam()
     {
         $bucketInfo = [

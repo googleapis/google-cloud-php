@@ -61,7 +61,7 @@ trait ValidateContextsTrait
                 ));
             }
             $val = (string) $data['value'];
-            if (!preg_match('/^[a-zA-Z0-9]/', $val)) {
+            if ($val !== '' && !preg_match('/^[a-zA-Z0-9]/', $val)) {
                 throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
             }
             if (strpos($val, '/') !== false || strpos($val, '"') !== false) {

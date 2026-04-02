@@ -245,7 +245,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->update([
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_OBJECT_KEY => (object) [],
+                    self::CONTEXT_OBJECT_KEY => null,
                     $replacementKey => ['value' => $replacementVal]
                 ]
             ]
@@ -278,7 +278,7 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->update([
             'contexts' => [
                 'custom' => [
-                    $newKey => (object) [],
+                    $newKey => null,
                     self::CONTEXT_OBJECT_KEY => ['value' => self::CONTEXT_OBJECT_VALUE]
                 ]
             ]
@@ -421,7 +421,7 @@ class ManageObjectsTest extends StorageTestCase
         $object->update([
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_OBJECT_KEY => (object) []
+                    self::CONTEXT_OBJECT_KEY => null
                 ]
             ]
         ]);

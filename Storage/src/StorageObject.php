@@ -486,7 +486,7 @@ class StorageObject
         return new StorageObject(
             $this->connection,
             $response['resource']['name'],
-            $response['resource']['bucket'] ?? $destination,
+            $response['resource']['bucket'] ?? ($destination instanceof Bucket ? $destination->name() : $destination),
             $response['resource']['generation'] ?? null,
             $response['resource'] + ['requesterProjectId' => $this->identity['userProject']],
             $destinationKey,
