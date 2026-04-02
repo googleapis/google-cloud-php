@@ -48,12 +48,13 @@ use Google\Apps\Chat\V1\SpaceEvent;
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * with [administrator
- * approval](https://support.google.com/a?p=chat-app-auth) in
- * [Developer Preview](https://developers.google.com/workspace/preview)
+ * approval](https://support.google.com/a?p=chat-app-auth)
  * with one of the following authorization scopes:
  * - `https://www.googleapis.com/auth/chat.app.spaces`
+ * - `https://www.googleapis.com/auth/chat.app.spaces.readonly`
  * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
  * - `https://www.googleapis.com/auth/chat.app.memberships`
+ * - `https://www.googleapis.com/auth/chat.app.memberships.readonly`
  *
  * - [User
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
