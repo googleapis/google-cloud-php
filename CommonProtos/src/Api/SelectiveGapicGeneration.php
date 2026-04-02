@@ -11,6 +11,7 @@ use Google\Protobuf\RepeatedField;
 /**
  * This message is used to configure the generation of a subset of the RPCs in
  * a service for client libraries.
+ * Note: This feature should not be used in most cases.
  *
  * Generated from protobuf message <code>google.api.SelectiveGapicGeneration</code>
  */
