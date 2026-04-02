@@ -235,36 +235,24 @@ class ManageObjectsTest extends StorageTestCase
     }
 
     /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testGetObjectWithContexts(StorageObject $object)
+    * @depends testCreateObjectWithContexts
+    */
+    public function testUpdateReplacesAllObjectContexts(StorageObject $object)
     {
-        $info = $object->info(['projection' => 'full']);
-        $this->assertArrayHasKey('contexts', $info);
-        $this->assertArrayHasKey('custom', $info['contexts']);
-        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
-        $object->delete();
-    }
+        $replacementKey = 'replacement-key-' . uniqid();
+        $replacementVal = 'replacement-value';
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testRemoveEmptyObjectWithContexts(StorageObject $object)
-    {
-        $object->update([
+        $info = $object->update([
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_OBJECT_KEY => (object) []
+                    self::CONTEXT_OBJECT_KEY => (object) [],
+                    $replacementKey => ['value' => $replacementVal]
                 ]
             ]
         ]);
-
-        $newInfo = $object->reload();
-        if (isset($newInfo['contexts']['custom'])) {
-            $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $newInfo['contexts']['custom']);
-        } else {
-            $this->assertArrayNotHasKey('contexts', $newInfo);
-        }
+        $this->assertEquals($replacementVal, $info['contexts']['custom'][$replacementKey]['value']);
+        $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
+        $this->assertCount(1, $info['contexts']['custom']);
         $object->delete();
     }
 
@@ -290,17 +278,27 @@ class ManageObjectsTest extends StorageTestCase
         $info = $object->update([
             'contexts' => [
                 'custom' => [
-                    $newKey => (object) []
+                    $newKey => (object) [],
+                    self::CONTEXT_OBJECT_KEY => ['value' => self::CONTEXT_OBJECT_VALUE]
                 ]
             ]
         ]);
         $this->assertArrayNotHasKey($newKey, $info['contexts']['custom']);
         $this->assertArrayHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
+        $this->assertEquals(
+            self::CONTEXT_OBJECT_VALUE,
+            $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']
+        );
         $info = $object->update([
             'contexts' => [
                 'custom' => (object) []
             ]
         ]);
+        if (isset($info['contexts'])) {
+            $this->assertArrayNotHasKey('custom', $info['contexts']);
+        } else {
+            $this->assertArrayNotHasKey('contexts', $info);
+        }
         $object->delete();
     }
 
@@ -361,6 +359,18 @@ class ManageObjectsTest extends StorageTestCase
     /**
      * @depends testCreateObjectWithContexts
      */
+    public function testGetObjectWithContexts(StorageObject $object)
+    {
+        $info = $object->info(['projection' => 'full']);
+        $this->assertArrayHasKey('contexts', $info);
+        $this->assertArrayHasKey('custom', $info['contexts']);
+        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
+        $object->delete();
+    }
+
+    /**
+     * @depends testCreateObjectWithContexts
+     */
     public function testListObjectsWithContextFilters(StorageObject $object)
     {
         $bucket = self::$client->bucket($object->info()['bucket']);
@@ -401,6 +411,28 @@ class ManageObjectsTest extends StorageTestCase
         ]));
         $this->assertCount(1, $absenceVal);
         $other->delete();
+    }
+
+    /**
+     * @depends testCreateObjectWithContexts
+     */
+    public function testRemoveEmptyObjectWithContexts(StorageObject $object)
+    {
+        $object->update([
+            'contexts' => [
+                'custom' => [
+                    self::CONTEXT_OBJECT_KEY => (object) []
+                ]
+            ]
+        ]);
+
+        $newInfo = $object->reload();
+        if (isset($newInfo['contexts']['custom'])) {
+            $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $newInfo['contexts']['custom']);
+        } else {
+            $this->assertArrayNotHasKey('contexts', $newInfo);
+        }
+        $object->delete();
     }
 
     public function testObjectExists()

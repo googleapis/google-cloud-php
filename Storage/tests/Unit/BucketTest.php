@@ -569,7 +569,7 @@ class BucketTest extends TestCase
 
         $this->connection->insertObject(Argument::any())
             ->willReturn($this->resumableUploader->reveal());
-        $object = $this->getBucket()->upload('some data to upload', [
+        $object = $this->getBucket()->upload('upload', [
             'name' => 'data.txt',
             'contexts' => $contexts
         ]);
@@ -580,7 +580,7 @@ class BucketTest extends TestCase
     /**
     * @dataProvider invalidContextsProvider
     */
-    public function testUploadWithInvalidContexts($invalidContexts, $expectedMessage)
+    public function testCreateObjectWithInvalidContexts($invalidContexts, $expectedMessage)
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -589,6 +589,91 @@ class BucketTest extends TestCase
             'name' => self::FILE_NAME_TEST,
             'contexts' => $invalidContexts
         ]);
+    }
+
+    public function testUpdateReplacesAllMetadataIncludingContexts()
+    {
+        $objectName = 'replace-test.txt';
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
+        $newContexts = ['custom' => ['new-key' => ['value' => 'new-val']]];
+
+        $this->connection->patchObject(Argument::withEntry('contexts', $newContexts))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $objectName,
+                'contexts' => $newContexts,
+            ]);
+
+        $result = $object->update(['contexts' => $newContexts]);
+        $this->assertEquals('new-val', $result['contexts']['custom']['new-key']['value']);
+        $this->assertArrayNotHasKey('contentType', $result);
+    }
+
+    /**
+    *  @dataProvider objectContextUpdateDataProvider
+    */
+    public function testUpdateAndRemoveObjectContexts($inputContexts, $expectedInApi)
+    {
+        $this->connection->patchObject(Argument::that(function ($args) use ($expectedInApi) {
+            if ($expectedInApi === null) {
+                return !isset($args['contexts']) || $args['contexts'] === null;
+            }
+            return isset($args['contexts']) && $args['contexts'] === $expectedInApi;
+        }))->shouldBeCalled()->willReturn([
+            'name' => self::FILE_NAME_TEST,
+            'contexts' => $expectedInApi
+        ]);
+
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            self::FILE_NAME_TEST,
+            '',
+            1,
+            ['bucket' => self::BUCKET_NAME]
+        );
+        $object->update(['contexts' => $inputContexts]);
+        $info = $object->info();
+        if ($expectedInApi === null) {
+            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
+            $this->assertFalse($hasContexts);
+        } else {
+            $this->assertArrayHasKey('contexts', $info);
+            $this->assertEquals($expectedInApi, $info['contexts']);
+        }
+    }
+
+    public function objectContextUpdateDataProvider()
+    {
+        $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
+
+        return [
+            'Valid Update' => [$validContexts['contexts'], $validContexts['contexts']],
+            'Empty Array'  => [[], []],
+            'Null Case'      => [null, null]
+        ];
+    }
+
+    public function testClearAllObjectContexts()
+    {
+        $objectName = 'clear-test.txt';
+        $object = new StorageObject(
+            $this->connection->reveal(),
+            $objectName,
+            self::BUCKET_NAME
+        );
+
+        $patchData = ['contexts' => []];
+        $this->connection->patchObject(Argument::withEntry('contexts', []))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => $objectName,
+                'bucket' => self::BUCKET_NAME,
+                'contexts' => []
+            ]);
+
+        $result = $object->update($patchData);
+        $this->assertIsArray($result['contexts']);
+        $this->assertEmpty($result['contexts']);
     }
 
     /**
@@ -641,119 +726,37 @@ class BucketTest extends TestCase
         ];
     }
 
-    /**
-    *  @dataProvider objectContextUpdateDataProvider
-    */
-    public function testUpdateAndRemoveObjectContexts($inputContexts, $expectedInApi)
+    public function testRewriteWithContextOverride()
     {
-        $this->connection->patchObject(Argument::that(function ($args) use ($expectedInApi) {
-            if ($expectedInApi === null) {
-                return !isset($args['contexts']) || $args['contexts'] === null;
-            }
-            return isset($args['contexts']) && $args['contexts'] === $expectedInApi;
-        }))->shouldBeCalled()->willReturn([
-            'name' => self::FILE_NAME_TEST,
-            'contexts' => $expectedInApi
-        ]);
-
-        $object = new StorageObject(
-            $this->connection->reveal(),
-            self::FILE_NAME_TEST,
-            '',
-            1,
-            ['bucket' => self::BUCKET_NAME]
-        );
-        $object->update(['contexts' => $inputContexts]);
-        $info = $object->info();
-        if ($expectedInApi === null) {
-            $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
-            $this->assertFalse($hasContexts);
-        } else {
-            $this->assertArrayHasKey('contexts', $info);
-            $this->assertEquals($expectedInApi, $info['contexts']);
-        }
-    }
-
-    public function objectContextUpdateDataProvider()
-    {
-        $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
-
-        return [
-            'Valid Update' => [$validContexts['contexts'], $validContexts['contexts']],
-            'Empty Array'  => [[], []],
-            'Null Case'      => [null, null]
-        ];
-    }
-
-    /**
-    * @dataProvider objectContextPatchDataProvider
-    */
-    public function testPatchObjectContext($key, $value)
-    {
-        $objectName = 'patch-'.self::FILE_NAME_TEST;
-        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
-       
-        $patchData = ['contexts' => ['custom' => [$key => $value]]];
-       
-        $this->connection->patchObject(Argument::withEntry('contexts', $patchData['contexts']))
-        ->shouldBeCalledTimes(1)
-        ->willReturn([
-            'name' => $objectName,
-            'contexts' => $patchData['contexts']
-        ]);
-
-        $result = $object->update($patchData);
-        $this->assertEquals($value, $result['contexts']['custom'][$key]);
-    }
-
-    public function objectContextPatchDataProvider()
-    {
-        return [
-            'Update Key'          => ['new-key', 'brand-new-val'],
-            'Delete Key'          => ['key-to-delete', null],
-            'Empty Value'         => ['key-with-empty', ''],
-            'Special Chars Key'   => ['key123', 'value-456']
-        ];
-    }
-
-    public function testRewriteObjectWithContexts()
-    {
-        $contexts = [
-            'custom' => [
-                'rewrite-key' => ['value' => 'rewrite-val']
-            ]
-        ];
-        $destBucket = 'other-bucket';
-        $destName = 'rewritten-data.txt';
-
-        $this->connection->rewriteObject(Argument::that(function ($args) use ($contexts) {
-            return isset($args['contexts']) && $args['contexts'] === $contexts;
-        }))->willReturn([
-            'rewriteToken' => null,
-            'resource' => [
-                'name' => $destName,
-                'bucket' => $destBucket,
-                'generation' => 456,
-                'contexts' => $contexts
-            ]
-        ]);
-
-        $sourceBucket = 'source-bucket';
         $sourceObject = new StorageObject(
             $this->connection->reveal(),
-            'source-file.txt',
-            $sourceBucket,
-            123,
-            ['bucket' => $sourceBucket]
+            'source.txt',
+            self::BUCKET_NAME
         );
 
-        $object = $sourceObject->rewrite($destBucket, [
-            'contexts' => $contexts
+        $overriddenContexts = [
+            'custom' => ['override-key' => ['value' => 'override-val']]
+        ];
+
+        $this->connection->rewriteObject(Argument::withEntry('contexts', $overriddenContexts))
+            ->shouldBeCalled()
+            ->willReturn([
+                'resource' => [
+                    'name' => 'dest.txt',
+                    'bucket' => 'dest-bucket',
+                    'generation' => '1',
+                    'contexts' => $overriddenContexts
+                ]
+            ]);
+
+        $result = $sourceObject->rewrite('dest-bucket', [
+            'contexts' => $overriddenContexts
         ]);
-        $this->assertInstanceOf(StorageObject::class, $object);
-        $this->assertEquals($destName, $object->name());
-        $this->assertArrayHasKey('contexts', $object->info());
-        $this->assertEquals($contexts, $object->info()['contexts']);
+        $this->assertInstanceOf(StorageObject::class, $result);
+        $this->assertEquals(
+            'override-val',
+            $result->info()['contexts']['custom']['override-key']['value']
+        );
     }
 
     /**
@@ -832,7 +835,7 @@ class BucketTest extends TestCase
         );
     }
 
-    /**
+     /**
      * @dataProvider objectContextFilterDataProvider
      */
     public function testListObjectsWithContextFilters($filter, $expectedItems)
@@ -891,6 +894,77 @@ class BucketTest extends TestCase
         ];
     }
 
+    /**
+    * @dataProvider objectContextPatchDataProvider
+    */
+    public function testPatchExistingObjectContext($key, $value)
+    {
+        $objectName = 'patch-'.self::FILE_NAME_TEST;
+        $object = new StorageObject($this->connection->reveal(), $objectName, self::BUCKET_NAME);
+       
+        $patchData = ['contexts' => ['custom' => [$key => $value]]];
+       
+        $this->connection->patchObject(Argument::withEntry('contexts', $patchData['contexts']))
+        ->shouldBeCalledTimes(1)
+        ->willReturn([
+            'name' => $objectName,
+            'contexts' => $patchData['contexts']
+        ]);
+
+        $result = $object->update($patchData);
+        $this->assertEquals($value, $result['contexts']['custom'][$key]);
+    }
+
+    public function objectContextPatchDataProvider()
+    {
+        return [
+            'Update Key'          => ['new-key', 'brand-new-val'],
+            'Delete Key'          => ['key-to-delete', null],
+            'Empty Value'         => ['key-with-empty', ''],
+            'Special Chars Key'   => ['key123', 'value-456']
+        ];
+    }
+
+    public function testRewriteObjectWithContexts()
+    {
+        $contexts = [
+            'custom' => [
+                'rewrite-key' => ['value' => 'rewrite-val']
+            ]
+        ];
+        $destBucket = 'other-bucket';
+        $destName = 'rewritten-data.txt';
+
+        $this->connection->rewriteObject(Argument::that(function ($args) use ($contexts) {
+            return isset($args['contexts']) && $args['contexts'] === $contexts;
+        }))->willReturn([
+            'rewriteToken' => null,
+            'resource' => [
+                'name' => $destName,
+                'bucket' => $destBucket,
+                'generation' => 456,
+                'contexts' => $contexts
+            ]
+        ]);
+
+        $sourceBucket = 'source-bucket';
+        $sourceObject = new StorageObject(
+            $this->connection->reveal(),
+            'source-file.txt',
+            $sourceBucket,
+            123,
+            ['bucket' => $sourceBucket]
+        );
+
+        $object = $sourceObject->rewrite($destBucket, [
+            'contexts' => $contexts
+        ]);
+        $this->assertInstanceOf(StorageObject::class, $object);
+        $this->assertEquals($destName, $object->name());
+        $this->assertArrayHasKey('contexts', $object->info());
+        $this->assertEquals($contexts, $object->info()['contexts']);
+    }
+    
     public function testIam()
     {
         $bucketInfo = [
