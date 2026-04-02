@@ -62,7 +62,7 @@ class ReadStream implements StreamInterface
     {
         $metadata = $this->stream->getMetadata('wrapper_data');
 
-        if (!is_array($metadata)) {
+        if (is_null($metadata)) {
             return 0;
         }
 
