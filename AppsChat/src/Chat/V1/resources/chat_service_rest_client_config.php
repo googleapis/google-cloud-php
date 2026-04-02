@@ -76,6 +76,18 @@ return [
                     ],
                 ],
             ],
+            'CreateSection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=users/*}/sections',
+                'body' => 'section',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSpace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/spaces',
@@ -117,6 +129,17 @@ return [
             'DeleteReaction' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=spaces/*/messages/*/reactions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSection' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=users/*/sections/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -276,6 +299,28 @@ return [
                     ],
                 ],
             ],
+            'ListSectionItems' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=users/*/sections/*}/items',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSections' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=users/*}/sections',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSpaceEvents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=spaces/*}/spaceEvents',
@@ -293,6 +338,30 @@ return [
             'ListSpaces' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/spaces',
+            ],
+            'MoveSectionItem' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/sections/*/items/*}:move',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'PositionSection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=users/*/sections/*}:position',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'SearchSpaces' => [
                 'method' => 'get',
@@ -337,6 +406,22 @@ return [
                     'message.name' => [
                         'getters' => [
                             'getMessage',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateSection' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{section.name=users/*/sections/*}',
+                'body' => 'section',
+                'placeholders' => [
+                    'section.name' => [
+                        'getters' => [
+                            'getSection',
                             'getName',
                         ],
                     ],
