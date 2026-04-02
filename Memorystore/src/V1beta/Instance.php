@@ -152,6 +152,26 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.memorystore.v1beta.Instance.Mode mode = 26 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mode = 0;
+    /**
+     * Optional. Immutable. The Server CA mode for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1beta.Instance.ServerCaMode server_ca_mode = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $server_ca_mode = null;
+    /**
+     * Optional. Immutable. The customer-managed CA pool for the instance. Only
+     * applicable if the Server CA mode is CUSTOMER_MANAGED_CAS_CA. Format:
+     * "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    protected $server_ca_pool = null;
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 58 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $rotate_server_certificate = null;
 
     /**
      * Constructor.
@@ -208,6 +228,14 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Endpoints for the instance.
      *     @type int $mode
      *           Optional. The mode config for the instance.
+     *     @type int $server_ca_mode
+     *           Optional. Immutable. The Server CA mode for the instance.
+     *     @type string $server_ca_pool
+     *           Optional. Immutable. The customer-managed CA pool for the instance. Only
+     *           applicable if the Server CA mode is CUSTOMER_MANAGED_CAS_CA. Format:
+     *           "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *     @type bool $rotate_server_certificate
+     *           Optional. Input only. Rotate the server certificates.
      * }
      */
     public function __construct($data = NULL) {
@@ -873,6 +901,118 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1beta\Instance\Mode::class);
         $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The Server CA mode for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1beta.Instance.ServerCaMode server_ca_mode = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getServerCaMode()
+    {
+        return isset($this->server_ca_mode) ? $this->server_ca_mode : 0;
+    }
+
+    public function hasServerCaMode()
+    {
+        return isset($this->server_ca_mode);
+    }
+
+    public function clearServerCaMode()
+    {
+        unset($this->server_ca_mode);
+    }
+
+    /**
+     * Optional. Immutable. The Server CA mode for the instance.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.memorystore.v1beta.Instance.ServerCaMode server_ca_mode = 56 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServerCaMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Memorystore\V1beta\Instance\ServerCaMode::class);
+        $this->server_ca_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. The customer-managed CA pool for the instance. Only
+     * applicable if the Server CA mode is CUSTOMER_MANAGED_CAS_CA. Format:
+     * "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServerCaPool()
+    {
+        return isset($this->server_ca_pool) ? $this->server_ca_pool : '';
+    }
+
+    public function hasServerCaPool()
+    {
+        return isset($this->server_ca_pool);
+    }
+
+    public function clearServerCaPool()
+    {
+        unset($this->server_ca_pool);
+    }
+
+    /**
+     * Optional. Immutable. The customer-managed CA pool for the instance. Only
+     * applicable if the Server CA mode is CUSTOMER_MANAGED_CAS_CA. Format:
+     * "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 57 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServerCaPool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->server_ca_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 58 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getRotateServerCertificate()
+    {
+        return isset($this->rotate_server_certificate) ? $this->rotate_server_certificate : false;
+    }
+
+    public function hasRotateServerCertificate()
+    {
+        return isset($this->rotate_server_certificate);
+    }
+
+    public function clearRotateServerCertificate()
+    {
+        unset($this->rotate_server_certificate);
+    }
+
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 58 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRotateServerCertificate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->rotate_server_certificate = $var;
 
         return $this;
     }

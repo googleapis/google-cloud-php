@@ -30,6 +30,11 @@
                                 "getInstance"
                             ]
                         },
+                        "GetSharedRegionalCertificateAuthority": {
+                            "methods": [
+                                "getSharedRegionalCertificateAuthority"
+                            ]
+                        },
                         "ListInstances": {
                             "methods": [
                                 "listInstances"
