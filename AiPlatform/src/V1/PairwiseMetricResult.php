@@ -27,6 +27,12 @@ class PairwiseMetricResult extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string explanation = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $explanation = '';
+    /**
+     * Output only. Spec for custom output.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutput custom_output = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $custom_output = null;
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class PairwiseMetricResult extends \Google\Protobuf\Internal\Message
      *           Output only. Pairwise metric choice.
      *     @type string $explanation
      *           Output only. Explanation for pairwise metric score.
+     *     @type \Google\Cloud\AIPlatform\V1\CustomOutput $custom_output
+     *           Output only. Spec for custom output.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +101,42 @@ class PairwiseMetricResult extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->explanation = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Spec for custom output.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutput custom_output = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\CustomOutput|null
+     */
+    public function getCustomOutput()
+    {
+        return $this->custom_output;
+    }
+
+    public function hasCustomOutput()
+    {
+        return isset($this->custom_output);
+    }
+
+    public function clearCustomOutput()
+    {
+        unset($this->custom_output);
+    }
+
+    /**
+     * Output only. Spec for custom output.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.CustomOutput custom_output = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\CustomOutput $var
+     * @return $this
+     */
+    public function setCustomOutput($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\CustomOutput::class);
+        $this->custom_output = $var;
 
         return $this;
     }
