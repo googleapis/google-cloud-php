@@ -57,6 +57,8 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
      *     @type float $float_value
      *           Float value.
      *     @type bool $signature_value
+     *           A signature - a graphical representation of a person's name,
+     *           often used to sign a document.
      *     @type string $text
      *           Optional. An optional field to store a normalized string.
      *           For some entity types, one of respective `structured_value` fields may
@@ -302,6 +304,9 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A signature - a graphical representation of a person's name,
+     * often used to sign a document.
+     *
      * Generated from protobuf field <code>bool signature_value = 10;</code>
      * @return bool
      */
@@ -316,6 +321,9 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * A signature - a graphical representation of a person's name,
+     * often used to sign a document.
+     *
      * Generated from protobuf field <code>bool signature_value = 10;</code>
      * @param bool $var
      * @return $this

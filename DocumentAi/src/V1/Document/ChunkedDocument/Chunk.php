@@ -51,6 +51,12 @@ class Chunk extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkPageFooter page_footers = 6;</code>
      */
     private $page_footers;
+    /**
+     * Chunk fields inside this chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkField chunk_fields = 7;</code>
+     */
+    private $chunk_fields;
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Page headers associated with the chunk.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter[] $page_footers
      *           Page footers associated with the chunk.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkField[] $chunk_fields
+     *           Chunk fields inside this chunk.
      * }
      */
     public function __construct($data = NULL) {
@@ -239,6 +247,32 @@ class Chunk extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkPageFooter::class);
         $this->page_footers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Chunk fields inside this chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkField chunk_fields = 7;</code>
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkField>
+     */
+    public function getChunkFields()
+    {
+        return $this->chunk_fields;
+    }
+
+    /**
+     * Chunk fields inside this chunk.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.ChunkedDocument.Chunk.ChunkField chunk_fields = 7;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkField[] $var
+     * @return $this
+     */
+    public function setChunkFields($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument\Chunk\ChunkField::class);
+        $this->chunk_fields = $arr;
 
         return $this;
     }
