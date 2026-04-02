@@ -44,6 +44,7 @@ class StorageObject
 {
     use ArrayTrait;
     use EncryptionTrait;
+    use ValidateContextsTrait;
 
     /**
      * @deprecated
@@ -472,6 +473,10 @@ class StorageObject
         $destinationKeySHA256 = $options['destinationEncryptionKeySHA256'] ?? null;
 
         $options = $this->formatDestinationRequest($destination, $options);
+
+        if (isset($options['contexts'])) {
+            $this->validateContexts($options['contexts']);
+        }
 
         do {
             $response = $this->connection->rewriteObject($options);
