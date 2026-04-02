@@ -689,7 +689,7 @@ class BucketTest extends TestCase
 
     public function testRewriteWithEmptyContexts()
     {
-        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);    
+        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
         $this->connection->rewriteObject(Argument::withEntry('contexts', []))
             ->shouldBeCalled()
             ->willReturn(['resource' => ['name' => 'dest.txt', 'contexts' => []]]);
