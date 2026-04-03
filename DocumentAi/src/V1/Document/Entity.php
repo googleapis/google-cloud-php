@@ -26,13 +26,14 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     protected $text_anchor = null;
     /**
-     * Required. Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema, for example, `Address`.
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     protected $type = '';
     /**
-     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity, for example, `1600 Amphitheatre
+     * Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -65,9 +66,9 @@ class Entity extends \Google\Protobuf\Internal\Message
     protected $id = '';
     /**
      * Optional. Normalized entity value. Absent if the extracted value could
-     * not be converted or the type (e.g. address) is not supported for certain
-     * parsers. This field is also only populated for certain supported document
-     * types.
+     * not be converted or the type (for example, address) is not supported for
+     * certain parsers. This field is also only populated for certain supported
+     * document types.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.NormalizedValue normalized_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -110,9 +111,10 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           Text anchor indexing into the
      *           [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $type
-     *           Required. Entity type from a schema e.g. `Address`.
+     *           Required. Entity type from a schema, for example, `Address`.
      *     @type string $mention_text
-     *           Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
+     *           Optional. Text value of the entity, for example, `1600 Amphitheatre
+     *           Pkwy`.
      *     @type string $mention_id
      *           Optional. Deprecated.  Use `id` field instead.
      *     @type float $confidence
@@ -125,9 +127,9 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           for this document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Entity\NormalizedValue $normalized_value
      *           Optional. Normalized entity value. Absent if the extracted value could
-     *           not be converted or the type (e.g. address) is not supported for certain
-     *           parsers. This field is also only populated for certain supported document
-     *           types.
+     *           not be converted or the type (for example, address) is not supported for
+     *           certain parsers. This field is also only populated for certain supported
+     *           document types.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[] $properties
      *           Optional. Entities can be nested to form a hierarchical data structure
      *           representing the content in the document.
@@ -186,7 +188,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema, for example, `Address`.
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -197,7 +199,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema, for example, `Address`.
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -212,7 +214,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity, for example, `1600 Amphitheatre
+     * Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -223,7 +226,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value of the entity, for example, `1600 Amphitheatre
+     * Pkwy`.
      *
      * Generated from protobuf field <code>string mention_text = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -357,9 +361,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Normalized entity value. Absent if the extracted value could
-     * not be converted or the type (e.g. address) is not supported for certain
-     * parsers. This field is also only populated for certain supported document
-     * types.
+     * not be converted or the type (for example, address) is not supported for
+     * certain parsers. This field is also only populated for certain supported
+     * document types.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.NormalizedValue normalized_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Entity\NormalizedValue|null
@@ -381,9 +385,9 @@ class Entity extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Normalized entity value. Absent if the extracted value could
-     * not be converted or the type (e.g. address) is not supported for certain
-     * parsers. This field is also only populated for certain supported document
-     * types.
+     * not be converted or the type (for example, address) is not supported for
+     * certain parsers. This field is also only populated for certain supported
+     * document types.
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Entity.NormalizedValue normalized_value = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Entity\NormalizedValue $var

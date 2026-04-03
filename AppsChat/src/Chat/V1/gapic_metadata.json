@@ -35,6 +35,11 @@
                                 "createReaction"
                             ]
                         },
+                        "CreateSection": {
+                            "methods": [
+                                "createSection"
+                            ]
+                        },
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
@@ -58,6 +63,11 @@
                         "DeleteReaction": {
                             "methods": [
                                 "deleteReaction"
+                            ]
+                        },
+                        "DeleteSection": {
+                            "methods": [
+                                "deleteSection"
                             ]
                         },
                         "DeleteSpace": {
@@ -135,6 +145,16 @@
                                 "listReactions"
                             ]
                         },
+                        "ListSectionItems": {
+                            "methods": [
+                                "listSectionItems"
+                            ]
+                        },
+                        "ListSections": {
+                            "methods": [
+                                "listSections"
+                            ]
+                        },
                         "ListSpaceEvents": {
                             "methods": [
                                 "listSpaceEvents"
@@ -143,6 +163,16 @@
                         "ListSpaces": {
                             "methods": [
                                 "listSpaces"
+                            ]
+                        },
+                        "MoveSectionItem": {
+                            "methods": [
+                                "moveSectionItem"
+                            ]
+                        },
+                        "PositionSection": {
+                            "methods": [
+                                "positionSection"
                             ]
                         },
                         "SearchSpaces": {
@@ -163,6 +193,11 @@
                         "UpdateMessage": {
                             "methods": [
                                 "updateMessage"
+                            ]
+                        },
+                        "UpdateSection": {
+                            "methods": [
+                                "updateSection"
                             ]
                         },
                         "UpdateSpace": {

@@ -36,9 +36,11 @@ use Google\Cloud\Memorystore\V1beta\CreateInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\DeleteInstanceRequest;
 use Google\Cloud\Memorystore\V1beta\GetCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1beta\GetInstanceRequest;
+use Google\Cloud\Memorystore\V1beta\GetSharedRegionalCertificateAuthorityRequest;
 use Google\Cloud\Memorystore\V1beta\Instance;
 use Google\Cloud\Memorystore\V1beta\ListInstancesRequest;
 use Google\Cloud\Memorystore\V1beta\ListInstancesResponse;
+use Google\Cloud\Memorystore\V1beta\SharedRegionalCertificateAuthority;
 use Google\Cloud\Memorystore\V1beta\UpdateInstanceRequest;
 use Google\LongRunning\Client\OperationsClient;
 use Google\LongRunning\GetOperationRequest;
@@ -105,6 +107,8 @@ class MemorystoreClientTest extends GeneratedTest
         $shardCount = 495377042;
         $engineVersion = 'engineVersion-618177573';
         $deletionProtectionEnabled = true;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -112,6 +116,8 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setShardCount($shardCount);
         $expectedResponse->setEngineVersion($engineVersion);
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -432,6 +438,8 @@ class MemorystoreClientTest extends GeneratedTest
         $shardCount = 495377042;
         $engineVersion = 'engineVersion-618177573';
         $deletionProtectionEnabled = true;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setUid($uid);
@@ -439,6 +447,8 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setShardCount($shardCount);
         $expectedResponse->setEngineVersion($engineVersion);
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -481,6 +491,74 @@ class MemorystoreClientTest extends GeneratedTest
         $request = (new GetInstanceRequest())->setName($formattedName);
         try {
             $gapicClient->getInstance($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSharedRegionalCertificateAuthorityTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $expectedResponse = new SharedRegionalCertificateAuthority();
+        $expectedResponse->setName($name2);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->sharedRegionalCertificateAuthorityName('[PROJECT]', '[LOCATION]');
+        $request = (new GetSharedRegionalCertificateAuthorityRequest())->setName($formattedName);
+        $response = $gapicClient->getSharedRegionalCertificateAuthority($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.cloud.memorystore.v1beta.Memorystore/GetSharedRegionalCertificateAuthority',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getSharedRegionalCertificateAuthorityExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->sharedRegionalCertificateAuthorityName('[PROJECT]', '[LOCATION]');
+        $request = (new GetSharedRegionalCertificateAuthorityRequest())->setName($formattedName);
+        try {
+            $gapicClient->getSharedRegionalCertificateAuthority($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
@@ -590,6 +668,8 @@ class MemorystoreClientTest extends GeneratedTest
         $shardCount = 495377042;
         $engineVersion = 'engineVersion-618177573';
         $deletionProtectionEnabled = true;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -597,6 +677,8 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setShardCount($shardCount);
         $expectedResponse->setEngineVersion($engineVersion);
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -856,6 +938,8 @@ class MemorystoreClientTest extends GeneratedTest
         $shardCount = 495377042;
         $engineVersion = 'engineVersion-618177573';
         $deletionProtectionEnabled = true;
+        $serverCaPool = 'serverCaPool-1294323103';
+        $rotateServerCertificate = false;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setUid($uid);
@@ -863,6 +947,8 @@ class MemorystoreClientTest extends GeneratedTest
         $expectedResponse->setShardCount($shardCount);
         $expectedResponse->setEngineVersion($engineVersion);
         $expectedResponse->setDeletionProtectionEnabled($deletionProtectionEnabled);
+        $expectedResponse->setServerCaPool($serverCaPool);
+        $expectedResponse->setRotateServerCertificate($rotateServerCertificate);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

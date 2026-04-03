@@ -95,6 +95,17 @@ return [
                     ],
                 ],
             ],
+            'GetSharedRegionalCertificateAuthority' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta/{name=projects/*/locations/*/sharedRegionalCertificateAuthority}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{parent=projects/*/locations/*}/instances',

@@ -40,12 +40,14 @@ use Google\Apps\Chat\V1\CreateCustomEmojiRequest;
 use Google\Apps\Chat\V1\CreateMembershipRequest;
 use Google\Apps\Chat\V1\CreateMessageRequest;
 use Google\Apps\Chat\V1\CreateReactionRequest;
+use Google\Apps\Chat\V1\CreateSectionRequest;
 use Google\Apps\Chat\V1\CreateSpaceRequest;
 use Google\Apps\Chat\V1\CustomEmoji;
 use Google\Apps\Chat\V1\DeleteCustomEmojiRequest;
 use Google\Apps\Chat\V1\DeleteMembershipRequest;
 use Google\Apps\Chat\V1\DeleteMessageRequest;
 use Google\Apps\Chat\V1\DeleteReactionRequest;
+use Google\Apps\Chat\V1\DeleteSectionRequest;
 use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
@@ -61,12 +63,19 @@ use Google\Apps\Chat\V1\ListCustomEmojisRequest;
 use Google\Apps\Chat\V1\ListMembershipsRequest;
 use Google\Apps\Chat\V1\ListMessagesRequest;
 use Google\Apps\Chat\V1\ListReactionsRequest;
+use Google\Apps\Chat\V1\ListSectionItemsRequest;
+use Google\Apps\Chat\V1\ListSectionsRequest;
 use Google\Apps\Chat\V1\ListSpaceEventsRequest;
 use Google\Apps\Chat\V1\ListSpacesRequest;
 use Google\Apps\Chat\V1\Membership;
 use Google\Apps\Chat\V1\Message;
+use Google\Apps\Chat\V1\MoveSectionItemRequest;
+use Google\Apps\Chat\V1\MoveSectionItemResponse;
+use Google\Apps\Chat\V1\PositionSectionRequest;
+use Google\Apps\Chat\V1\PositionSectionResponse;
 use Google\Apps\Chat\V1\Reaction;
 use Google\Apps\Chat\V1\SearchSpacesRequest;
+use Google\Apps\Chat\V1\Section;
 use Google\Apps\Chat\V1\SetUpSpaceRequest;
 use Google\Apps\Chat\V1\Space;
 use Google\Apps\Chat\V1\SpaceEvent;
@@ -75,6 +84,7 @@ use Google\Apps\Chat\V1\SpaceReadState;
 use Google\Apps\Chat\V1\ThreadReadState;
 use Google\Apps\Chat\V1\UpdateMembershipRequest;
 use Google\Apps\Chat\V1\UpdateMessageRequest;
+use Google\Apps\Chat\V1\UpdateSectionRequest;
 use Google\Apps\Chat\V1\UpdateSpaceNotificationSettingRequest;
 use Google\Apps\Chat\V1\UpdateSpaceReadStateRequest;
 use Google\Apps\Chat\V1\UpdateSpaceRequest;
@@ -101,11 +111,13 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<Membership> createMembershipAsync(CreateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> createMessageAsync(CreateMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Reaction> createReactionAsync(CreateReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Section> createSectionAsync(CreateSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> createSpaceAsync(CreateSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteCustomEmojiAsync(DeleteCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> deleteMembershipAsync(DeleteMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteMessageAsync(DeleteMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteReactionAsync(DeleteReactionRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<void> deleteSectionAsync(DeleteSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
@@ -121,12 +133,17 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<PagedListResponse> listMembershipsAsync(ListMembershipsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listMessagesAsync(ListMessagesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listReactionsAsync(ListReactionsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSectionItemsAsync(ListSectionItemsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listSectionsAsync(ListSectionsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSpaceEventsAsync(ListSpaceEventsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> listSpacesAsync(ListSpacesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<MoveSectionItemResponse> moveSectionItemAsync(MoveSectionItemRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PositionSectionResponse> positionSectionAsync(PositionSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<PagedListResponse> searchSpacesAsync(SearchSpacesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> setUpSpaceAsync(SetUpSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> updateMembershipAsync(UpdateMembershipRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Message> updateMessageAsync(UpdateMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Section> updateSectionAsync(UpdateSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> updateSpaceAsync(UpdateSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceNotificationSetting> updateSpaceNotificationSettingAsync(UpdateSpaceNotificationSettingRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<SpaceReadState> updateSpaceReadStateAsync(UpdateSpaceReadStateRequest $request, array $optionalArgs = [])
@@ -165,9 +182,11 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.admin.spaces.readonly',
         'https://www.googleapis.com/auth/chat.app.delete',
         'https://www.googleapis.com/auth/chat.app.memberships',
+        'https://www.googleapis.com/auth/chat.app.memberships.readonly',
         'https://www.googleapis.com/auth/chat.app.messages.readonly',
         'https://www.googleapis.com/auth/chat.app.spaces',
         'https://www.googleapis.com/auth/chat.app.spaces.create',
+        'https://www.googleapis.com/auth/chat.app.spaces.readonly',
         'https://www.googleapis.com/auth/chat.bot',
         'https://www.googleapis.com/auth/chat.customemojis',
         'https://www.googleapis.com/auth/chat.customemojis.readonly',
@@ -187,6 +206,8 @@ final class ChatServiceClient
         'https://www.googleapis.com/auth/chat.spaces.readonly',
         'https://www.googleapis.com/auth/chat.users.readstate',
         'https://www.googleapis.com/auth/chat.users.readstate.readonly',
+        'https://www.googleapis.com/auth/chat.users.sections',
+        'https://www.googleapis.com/auth/chat.users.sections.readonly',
         'https://www.googleapis.com/auth/chat.users.spacesettings',
     ];
 
@@ -319,6 +340,42 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a section
+     * resource.
+     *
+     * @param string $user
+     * @param string $section
+     *
+     * @return string The formatted section resource.
+     */
+    public static function sectionName(string $user, string $section): string
+    {
+        return self::getPathTemplate('section')->render([
+            'user' => $user,
+            'section' => $section,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a section_item
+     * resource.
+     *
+     * @param string $user
+     * @param string $section
+     * @param string $item
+     *
+     * @return string The formatted section_item resource.
+     */
+    public static function sectionItemName(string $user, string $section, string $item): string
+    {
+        return self::getPathTemplate('sectionItem')->render([
+            'user' => $user,
+            'section' => $section,
+            'item' => $item,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a space
      * resource.
      *
@@ -421,6 +478,21 @@ final class ChatServiceClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a user
+     * resource.
+     *
+     * @param string $user
+     *
+     * @return string The formatted user resource.
+     */
+    public static function userName(string $user): string
+    {
+        return self::getPathTemplate('user')->render([
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
@@ -430,12 +502,15 @@ final class ChatServiceClient
      * - message: spaces/{space}/messages/{message}
      * - quotedMessageMetadata: spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}
      * - reaction: spaces/{space}/messages/{message}/reactions/{reaction}
+     * - section: users/{user}/sections/{section}
+     * - sectionItem: users/{user}/sections/{section}/items/{item}
      * - space: spaces/{space}
      * - spaceEvent: spaces/{space}/spaceEvents/{space_event}
      * - spaceNotificationSetting: users/{user}/spaces/{space}/spaceNotificationSetting
      * - spaceReadState: users/{user}/spaces/{space}/spaceReadState
      * - thread: spaces/{space}/threads/{thread}
      * - threadReadState: users/{user}/spaces/{space}/threads/{thread}/threadReadState
+     * - user: users/{user}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -798,6 +873,43 @@ final class ChatServiceClient
     }
 
     /**
+     * Creates a section in Google Chat. Sections help users group conversations
+     * and customize the list of spaces displayed in Chat navigation panel. Only
+     * sections of type `CUSTOM_SECTION` can be created. For details, see [Create
+     * and organize sections in Google
+     * Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     *
+     * The async variant is {@see ChatServiceClient::createSectionAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/create_section.php
+     *
+     * @param CreateSectionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Section
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function createSection(CreateSectionRequest $request, array $callOptions = []): Section
+    {
+        return $this->startApiCall('CreateSection', $request, $callOptions)->wait();
+    }
+
+    /**
      * Creates a space. Can be used to create a named space, or a
      * group chat in `Import mode`. For an example, see [Create a
      * space](https://developers.google.com/workspace/chat/create-spaces).
@@ -1043,6 +1155,43 @@ final class ChatServiceClient
     public function deleteReaction(DeleteReactionRequest $request, array $callOptions = []): void
     {
         $this->startApiCall('DeleteReaction', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Deletes a section of type `CUSTOM_SECTION`.
+     *
+     * If the section contains items, such as spaces, the items are moved to
+     * Google Chat's default sections and are not deleted.
+     *
+     * For details, see [Create and organize sections in Google
+     * Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     *
+     * The async variant is {@see ChatServiceClient::deleteSectionAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/delete_section.php
+     *
+     * @param DeleteSectionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function deleteSection(DeleteSectionRequest $request, array $callOptions = []): void
+    {
+        $this->startApiCall('DeleteSection', $request, $callOptions)->wait();
     }
 
     /**
@@ -1294,8 +1443,7 @@ final class ChatServiceClient
      * that invoke the Chat app.
      * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
      * with [administrator
-     * approval](https://support.google.com/a?p=chat-app-auth) (available in
-     * [Developer Preview](https://developers.google.com/workspace/preview)).
+     * approval](https://support.google.com/a?p=chat-app-auth).
      * When using this authentication scope,
      * this method returns details about a public message in a space.
      *
@@ -1408,12 +1556,13 @@ final class ChatServiceClient
      * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
-     * approval](https://support.google.com/a?p=chat-app-auth) in
-     * [Developer Preview](https://developers.google.com/workspace/preview)
+     * approval](https://support.google.com/a?p=chat-app-auth)
      * with one of the following authorization scopes:
      * - `https://www.googleapis.com/auth/chat.app.spaces`
+     * - `https://www.googleapis.com/auth/chat.app.spaces.readonly`
      * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
      * - `https://www.googleapis.com/auth/chat.app.memberships`
+     * - `https://www.googleapis.com/auth/chat.app.memberships.readonly`
      *
      * - [User
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
@@ -1684,8 +1833,7 @@ final class ChatServiceClient
      * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
-     * approval](https://support.google.com/a?p=chat-app-auth) in
-     * [Developer Preview](https://developers.google.com/workspace/preview)
+     * approval](https://support.google.com/a?p=chat-app-auth)
      * with the authorization scope:
      * - `https://www.googleapis.com/auth/chat.app.messages.readonly`. When
      * using this authentication scope, this method only returns public
@@ -1761,6 +1909,80 @@ final class ChatServiceClient
     }
 
     /**
+     * Lists items in a section.
+     *
+     * Only spaces can be section items. For details, see [Create and organize
+     * sections in Google Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     * - `https://www.googleapis.com/auth/chat.users.sections.readonly`
+     *
+     * The async variant is {@see ChatServiceClient::listSectionItemsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_section_items.php
+     *
+     * @param ListSectionItemsRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSectionItems(ListSectionItemsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSectionItems', $request, $callOptions);
+    }
+
+    /**
+     * Lists sections available to the Chat user. Sections help users group their
+     * conversations and customize the list of spaces displayed in Chat
+     * navigation panel. For details, see [Create and organize sections in Google
+     * Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     * - `https://www.googleapis.com/auth/chat.users.sections.readonly`
+     *
+     * The async variant is {@see ChatServiceClient::listSectionsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/list_sections.php
+     *
+     * @param ListSectionsRequest $request     A request to house fields associated with the call.
+     * @param array               $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listSections(ListSectionsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('ListSections', $request, $callOptions);
+    }
+
+    /**
      * Lists events from a Google Chat space. For each event, the
      * [payload](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces.spaceEvents#SpaceEvent.FIELDS.oneof_payload)
      * contains the most recent version of the Chat resource. For example, if you
@@ -1779,12 +2001,13 @@ final class ChatServiceClient
      * - [App
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
      * with [administrator
-     * approval](https://support.google.com/a?p=chat-app-auth) in
-     * [Developer Preview](https://developers.google.com/workspace/preview)
+     * approval](https://support.google.com/a?p=chat-app-auth)
      * with one of the following authorization scopes:
      * - `https://www.googleapis.com/auth/chat.app.spaces`
+     * - `https://www.googleapis.com/auth/chat.app.spaces.readonly`
      * - `https://www.googleapis.com/auth/chat.app.messages.readonly`
      * - `https://www.googleapis.com/auth/chat.app.memberships`
+     * - `https://www.googleapis.com/auth/chat.app.memberships.readonly`
      *
      * - [User
      * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
@@ -1871,6 +2094,76 @@ final class ChatServiceClient
     public function listSpaces(ListSpacesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('ListSpaces', $request, $callOptions);
+    }
+
+    /**
+     * Moves an item from one section to another. For example, if a section
+     * contains spaces, this method can be used to move a space to a different
+     * section. For details, see [Create and organize sections in Google
+     * Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     *
+     * The async variant is {@see ChatServiceClient::moveSectionItemAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/move_section_item.php
+     *
+     * @param MoveSectionItemRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return MoveSectionItemResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function moveSectionItem(MoveSectionItemRequest $request, array $callOptions = []): MoveSectionItemResponse
+    {
+        return $this->startApiCall('MoveSectionItem', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Changes the sort order of a section. For details, see [Create and organize
+     * sections in Google Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     *
+     * The async variant is {@see ChatServiceClient::positionSectionAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/position_section.php
+     *
+     * @param PositionSectionRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PositionSectionResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function positionSection(PositionSectionRequest $request, array $callOptions = []): PositionSectionResponse
+    {
+        return $this->startApiCall('PositionSection', $request, $callOptions)->wait();
     }
 
     /**
@@ -2089,6 +2382,41 @@ final class ChatServiceClient
     public function updateMessage(UpdateMessageRequest $request, array $callOptions = []): Message
     {
         return $this->startApiCall('UpdateMessage', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Updates a section. Only sections of type `CUSTOM_SECTION` can be updated.
+     * For details, see [Create and organize sections in Google
+     * Chat](https://support.google.com/chat/answer/16059854).
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with the [authorization
+     * scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.users.sections`
+     *
+     * The async variant is {@see ChatServiceClient::updateSectionAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/update_section.php
+     *
+     * @param UpdateSectionRequest $request     A request to house fields associated with the call.
+     * @param array                $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Section
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateSection(UpdateSectionRequest $request, array $callOptions = []): Section
+    {
+        return $this->startApiCall('UpdateSection', $request, $callOptions)->wait();
     }
 
     /**

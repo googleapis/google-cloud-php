@@ -75,6 +75,18 @@ return [
                     ],
                 ],
             ],
+            'CreateSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Section',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateSpace' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\Space',
@@ -116,6 +128,18 @@ return [
                 ],
             ],
             'DeleteReaction' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Protobuf\GPBEmpty',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Protobuf\GPBEmpty',
                 'headerParams' => [
@@ -323,6 +347,46 @@ return [
                     ],
                 ],
             ],
+            'ListSectionItems' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSectionItems',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListSectionItemsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSections' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getSections',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\ListSectionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListSpaceEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -354,6 +418,30 @@ return [
                 ],
                 'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
                 'responseType' => 'Google\Apps\Chat\V1\ListSpacesResponse',
+            ],
+            'MoveSectionItem' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\MoveSectionItemResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'PositionSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\PositionSectionResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
             ],
             'SearchSpaces' => [
                 'pageStreaming' => [
@@ -392,6 +480,19 @@ return [
                         'keyName' => 'message.name',
                         'fieldAccessors' => [
                             'getMessage',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateSection' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Apps\Chat\V1\Section',
+                'headerParams' => [
+                    [
+                        'keyName' => 'section.name',
+                        'fieldAccessors' => [
+                            'getSection',
                             'getName',
                         ],
                     ],
@@ -455,12 +556,15 @@ return [
                 'message' => 'spaces/{space}/messages/{message}',
                 'quotedMessageMetadata' => 'spaces/{space}/messages/{message}/quotedMessageMetadata/{quoted_message_metadata}',
                 'reaction' => 'spaces/{space}/messages/{message}/reactions/{reaction}',
+                'section' => 'users/{user}/sections/{section}',
+                'sectionItem' => 'users/{user}/sections/{section}/items/{item}',
                 'space' => 'spaces/{space}',
                 'spaceEvent' => 'spaces/{space}/spaceEvents/{space_event}',
                 'spaceNotificationSetting' => 'users/{user}/spaces/{space}/spaceNotificationSetting',
                 'spaceReadState' => 'users/{user}/spaces/{space}/spaceReadState',
                 'thread' => 'spaces/{space}/threads/{thread}',
                 'threadReadState' => 'users/{user}/spaces/{space}/threads/{thread}/threadReadState',
+                'user' => 'users/{user}',
             ],
         ],
     ],

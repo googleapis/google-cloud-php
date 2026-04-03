@@ -33,6 +33,12 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string caption = 3;</code>
      */
     protected $caption = '';
+    /**
+     * Annotation of the table block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     */
+    protected $annotations = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
      *           Body rows containing main table content.
      *     @type string $caption
      *           Table caption/title.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Annotations $annotations
+     *           Annotation of the table block.
      * }
      */
     public function __construct($data = NULL) {
@@ -127,6 +135,42 @@ class LayoutTableBlock extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->caption = $var;
+
+        return $this;
+    }
+
+    /**
+     * Annotation of the table block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\Annotations|null
+     */
+    public function getAnnotations()
+    {
+        return $this->annotations;
+    }
+
+    public function hasAnnotations()
+    {
+        return isset($this->annotations);
+    }
+
+    public function clearAnnotations()
+    {
+        unset($this->annotations);
+    }
+
+    /**
+     * Annotation of the table block.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Annotations annotations = 4;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Annotations $var
+     * @return $this
+     */
+    public function setAnnotations($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Annotations::class);
+        $this->annotations = $var;
 
         return $this;
     }

@@ -45,8 +45,7 @@ use Google\Apps\Chat\V1\Message;
  * - [App
  * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app)
  * with [administrator
- * approval](https://support.google.com/a?p=chat-app-auth) in
- * [Developer Preview](https://developers.google.com/workspace/preview)
+ * approval](https://support.google.com/a?p=chat-app-auth)
  * with the authorization scope:
  * - `https://www.googleapis.com/auth/chat.app.messages.readonly`. When
  * using this authentication scope, this method only returns public
