@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" colors="true">
+  <php>
+    <env name="GOOGLE_APPLICATION_CREDENTIALS" value="tests/Unit/testdata/json-key-file.json"/>
+  </php>
+  <coverage>
+    <include>
+      <directory suffix=".php">src/ApiCore</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="unit">
+      <directory>tests/Unit</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
