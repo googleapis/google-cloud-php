@@ -50,6 +50,11 @@ class OperationResponseTest extends TestCase
     use ProphecyTrait;
     use TestTrait;
 
+    public static function tearDownAfterClass(): void
+    {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
+    }
+
     /**
      * @dataProvider provideOperationsClients
      */
@@ -64,6 +69,9 @@ class OperationResponseTest extends TestCase
 
     public function provideOperationsClients()
     {
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $keyFilePath);
+
         return [
             [$this->createOperationsClient()],
             [$this->prophesize(LROOperationsClient::class)->reveal()],
@@ -262,7 +270,7 @@ class OperationResponseTest extends TestCase
     public function testNewSurfaceCustomOperation()
     {
         // This mock requires a specific namespace, so it must be defined in a separate file
-        require_once __DIR__ . '/testdata/src/CustomOperationClient.php';
+        require_once __DIR__ . '/testdata/mocks/CustomOperationClient.php';
 
         $phpunit = $this;
         $operationName = 'test-123';
@@ -338,7 +346,7 @@ class OperationResponseTest extends TestCase
         $this->expectExceptionMessage('Request class must support the static build method');
 
         // This mock requires a specific namespace, so it must be defined in a separate file
-        require_once __DIR__ . '/testdata/src/CustomOperationClient.php';
+        require_once __DIR__ . '/testdata/mocks/CustomOperationClient.php';
 
         $operationClient = $this->prophesize(Client\NewSurfaceCustomOperationClient::class);
         $options = [

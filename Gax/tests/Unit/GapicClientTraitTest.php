@@ -68,11 +68,18 @@ class GapicClientTraitTest extends TestCase
     use ProphecyTrait;
     use TestTrait;
 
+    public function setUp(): void
+    {
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $keyFilePath);
+    }
+
     public function tearDown(): void
     {
         // Reset the static gapicVersion field between tests
         $client = new StubGapicClient();
         $client->set('gapicVersionFromFile', null, true);
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=');
     }
 
     public function testHeadersOverwriteBehavior()
@@ -108,7 +115,7 @@ class GapicClientTraitTest extends TestCase
         ];
         $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
         ]);
         $transport->startUnaryCall(
             Argument::type(Call::class),
@@ -170,7 +177,7 @@ class GapicClientTraitTest extends TestCase
         ];
         $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
         ]);
         $transport->startUnaryCall(
             Argument::type(Call::class),
@@ -668,7 +675,7 @@ class GapicClientTraitTest extends TestCase
             : 'rest';
         $transportConfig = [
             'rest' => [
-                'restClientConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
+                'restClientConfigPath' => __DIR__ . '/testdata/resources/test_service_rest_client_config.php',
             ],
         ];
         return [
@@ -700,7 +707,7 @@ class GapicClientTraitTest extends TestCase
         $apiEndpoint = 'address:443';
         $transportConfig = [
             'rest' => [
-                'restConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
+                'restConfigPath' => __DIR__ . '/testdata/resources/test_service_rest_client_config.php',
             ],
         ];
         return [
@@ -944,7 +951,7 @@ class GapicClientTraitTest extends TestCase
         ];
         $transport = $this->prophesize(TransportInterface::class);
         $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
         ]);
         $clientClass = $clientClass ?: StubGapicClientExtension::class;
         $client = new $clientClass();
@@ -977,7 +984,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
             ]
         )
@@ -1003,7 +1010,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ]),
                 'metadataReturnType' => 'metadataType'
             ]
@@ -1031,7 +1038,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
             ]
         )
@@ -1059,7 +1066,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
             ]
         )
@@ -1376,7 +1383,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
             ]
         )
@@ -1446,7 +1453,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
             ]
         )
@@ -1516,7 +1523,7 @@ class GapicClientTraitTest extends TestCase
                 ],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                   'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                   'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ])
                 ]
             )
@@ -1563,7 +1570,7 @@ class GapicClientTraitTest extends TestCase
             [
                 'headers' => AgentHeader::buildAgentHeader([]) + ['Foo' => 'Bar'],
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ]),
                 'timeoutMillis' => null, // adds null timeoutMillis,
                 'transportOptions' => [],
@@ -1594,7 +1601,7 @@ class GapicClientTraitTest extends TestCase
                 'transportOptions' => ['custom' => ['addModifyUnaryCallableOption' => true]],
                 'headers' => AgentHeader::buildAgentHeader([]),
                 'credentialsWrapper' => CredentialsWrapper::build([
-                    'keyFile' => __DIR__ . '/testdata/json-key-file.json'
+                    'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json'
                 ]),
                 'timeoutMillis' => 'blue', // invalid type, this is ignored
             ]
@@ -1696,7 +1703,7 @@ class GapicClientTraitTest extends TestCase
         $client = new GapicV2SurfaceClient([
             'apiKey' => 'abc-123',
             'credentialsConfig' => [
-                'keyFile' => __DIR__ . '/testdata/json-key-file.json',
+                'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json',
             ],
         ]);
 
@@ -1802,15 +1809,15 @@ trait ClientDefaultsTrait
         return [
             'apiEndpoint' => 'test.address.com:443',
             'serviceName' => 'test.interface.v1.api',
-            'clientConfig' => __DIR__ . '/testdata/test_service_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/testdata/test_service_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/testdata/resources/test_service_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/testdata/resources/test_service_descriptor_config.php',
             'disableRetries' => false,
             'auth' => null,
             'authConfig' => null,
             'transport' => null,
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/testdata/test_service_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/testdata/resources/test_service_rest_client_config.php',
                 ]
             ],
         ];

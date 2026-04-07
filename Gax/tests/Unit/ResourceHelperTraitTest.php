@@ -86,7 +86,7 @@ class ResourceHelperTraitStub
 {
     use ResourceHelperTrait;
 
-    const CONFIG_PATH = __DIR__ . '/testdata/test_service_descriptor_config.php';
+    const CONFIG_PATH = __DIR__ . '/testdata/resources/test_service_descriptor_config.php';
     const SERVICE_NAME = 'test.interface.v1.api';
 
     private static function getClientDefaults()

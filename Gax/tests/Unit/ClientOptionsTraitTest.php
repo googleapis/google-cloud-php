@@ -61,7 +61,7 @@ class ClientOptionsTraitTest extends TestCase
 
     public function testGetGapicVersionWithVersionFile()
     {
-        require_once __DIR__ . '/testdata/src/GapicClientStub.php';
+        require_once __DIR__ . '/testdata/mocks/src/GapicClientStub.php';
         $version = '1.2.3-dev';
         $client = new \GapicClientStub();
         $this->assertEquals($version, $client::getGapicVersion([]));
@@ -101,18 +101,39 @@ class ClientOptionsTraitTest extends TestCase
 
     public function createCredentialsWrapperData()
     {
-        $keyFilePath = __DIR__ . '/testdata/json-key-file.json';
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
+
         $fetcher = $this->prophesize(FetchAuthTokenInterface::class)->reveal();
         $credentialsWrapper = new CredentialsWrapper($fetcher);
+
         return [
-            [null, [], CredentialsWrapper::build()],
             [$keyFilePath, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
             [$keyFile, [], CredentialsWrapper::build(['keyFile' => $keyFile])],
             [$fetcher, [], new CredentialsWrapper($fetcher)],
             [$credentialsWrapper, [], $credentialsWrapper],
         ];
     }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testCreateCredentialsWrapperFromEnv()
+    {
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $keyFilePath);
+
+        $expectedCredentialsWrapper = CredentialsWrapper::build();
+        $client = new StubClientOptionsClient();
+        $actualCredentialsWrapper = $client->createCredentialsWrapper(
+            null,
+            [],
+            GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
+        );
+
+        $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
+    }
+
 
     /**
      * @dataProvider createCredentialsWrapperValidationExceptionData
@@ -178,13 +199,13 @@ class ClientOptionsTraitTest extends TestCase
     {
         $apiConfig = new ApiConfig();
         $apiConfig->mergeFromJsonString(
-            file_get_contents(__DIR__ . '/testdata/test_service_grpc_config.json')
+            file_get_contents(__DIR__ . '/testdata/resources/test_service_grpc_config.json')
         );
         $grpcGcpConfig = new Config('test.address.com:443', $apiConfig);
 
         $defaultOptions = [
             'apiEndpoint' => 'test.address.com:443',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/test_service_grpc_config.json',
+            'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
             'disableRetries' => false,
             'transport' => null,
             'transportConfig' => [
@@ -475,7 +496,7 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testMtlsClientOptionWithDefaultClientCertSource()
     {
-        putenv('HOME=' . __DIR__ . '/testdata/mtls');
+        putenv('HOME=' . __DIR__ . '/testdata/creds/mtls');
         putenv('GOOGLE_API_USE_MTLS_ENDPOINT=auto');
         putenv(CredentialsLoader::MTLS_CERT_ENV_VAR . '=true');
 
@@ -689,7 +710,7 @@ class StubClientOptionsClient
     {
         return [
             'apiEndpoint' => 'test.address.com:443',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/test_service_grpc_config.json',
+            'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
         ];
     }
 }

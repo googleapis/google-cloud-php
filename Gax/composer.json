@@ -34,17 +34,12 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\ApiCore\\Dev\\": "dev/src",
             "Google\\ApiCore\\Tests\\": "tests",
-            "GPBMetadata\\Google\\": "metadata/Google",
             "Google\\Showcase\\": "tests/Conformance/src",
             "GPBMetadata\\Google\\Showcase\\": "tests/Conformance/metadata"
         }
     },
     "scripts": {
-        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh",
-        "test": "./vendor/bin/phpunit",
-        "cs-lint": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n --dry-run\"",
-        "cs-fix": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n\""
+        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh"
     }
 }

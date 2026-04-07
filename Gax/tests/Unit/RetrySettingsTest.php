@@ -41,13 +41,13 @@ class RetrySettingsTest extends TestCase
 
     private static function buildInputConfig()
     {
-        $contents = file_get_contents(__DIR__ . '/testdata/test_service_client_config.json');
+        $contents = file_get_contents(__DIR__ . '/testdata/resources/test_service_client_config.json');
         return json_decode($contents, true);
     }
 
     private static function buildInvalidInputConfig()
     {
-        $contents = file_get_contents(__DIR__ . '/testdata/test_service_invalid_client_config.json');
+        $contents = file_get_contents(__DIR__ . '/testdata/resources/test_service_invalid_client_config.json');
         return json_decode($contents, true);
     }
 

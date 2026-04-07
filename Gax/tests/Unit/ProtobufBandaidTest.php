@@ -19,7 +19,8 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\Testing\GeneratedTest;
 
-require_once __DIR__ . '/MyMessage.php';
+require_once __DIR__ . '/testdata/generated/MyMessage.php';
+require_once __DIR__ . '/testdata/generated/metadata/Example.php';
 
 class ProtobufBandaidTest extends GeneratedTest
 {

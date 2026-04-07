@@ -32,6 +32,9 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
+require_once __DIR__ . '/../testdata/mocks/TestInterceptor.php';
+require_once __DIR__ . '/../testdata/mocks/TestUnaryInterceptor.php';
+
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;

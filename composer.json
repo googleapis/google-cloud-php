@@ -802,7 +802,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Google\\ApiCore\\Dev\\": "Gax/dev/src",
+            "Google\\ApiCore\\Tests\\": "Gax/tests",
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
             "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",

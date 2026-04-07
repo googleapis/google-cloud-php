@@ -46,11 +46,11 @@ class RequestBuilderTest extends TestCase
     {
         $this->builder = new RequestBuilder(
             'www.example.com',
-            __DIR__ . '/testdata/test_service_rest_client_config.php'
+            __DIR__ . '/testdata/resources/test_service_rest_client_config.php'
         );
         $this->numericEnumsBuilder = new RequestBuilder(
             'www.example.com',
-            __DIR__ . '/testdata/test_numeric_enums_rest_client_config.php'
+            __DIR__ . '/testdata/resources/test_numeric_enums_rest_client_config.php'
         );
     }
 

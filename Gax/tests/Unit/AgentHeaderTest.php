@@ -113,7 +113,7 @@ class AgentHeaderTest extends TestCase
 
     public function testGetGapicVersionWithVersionFile()
     {
-        require_once __DIR__ . '/testdata/src/GapicClientStub.php';
+        require_once __DIR__ . '/testdata/mocks/src/GapicClientStub.php';
         $expectedVersion = '1.2.3-dev';
         $actualVersion = AgentHeader::readGapicVersionFromFile(\GapicClientStub::class);
         $this->assertEquals($expectedVersion, $actualVersion);

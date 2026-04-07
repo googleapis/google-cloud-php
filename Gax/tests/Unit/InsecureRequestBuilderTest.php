@@ -32,7 +32,7 @@ class InsecureRequestBuilderTest extends TestCase
     {
         $this->builder = new InsecureRequestBuilder(
             'www.example.com',
-            __DIR__ . '/testdata/test_service_rest_client_config.php'
+            __DIR__ . '/testdata/resources/test_service_rest_client_config.php'
         );
     }
 

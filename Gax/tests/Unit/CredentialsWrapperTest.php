@@ -61,7 +61,7 @@ class CredentialsWrapperTest extends TestCase
     public function testBuildWithoutExplicitKeyFile($args, $expectedCredentialsWrapper)
     {
         $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/json-key-file.json');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/creds/json-key-file.json');
 
         $actualCredentialsWrapper = CredentialsWrapper::build($args);
         $this->assertEquals($expectedCredentialsWrapper, $actualCredentialsWrapper);
@@ -81,7 +81,7 @@ class CredentialsWrapperTest extends TestCase
     public function buildDataWithoutExplicitKeyFile()
     {
         $appDefaultCreds = getenv('GOOGLE_APPLICATION_CREDENTIALS');
-        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/json-key-file.json');
+        $this->setEnv('GOOGLE_APPLICATION_CREDENTIALS', __DIR__ . '/testdata/creds/json-key-file.json');
         $scopes = ['myscope'];
         $authHttpHandler = HttpHandlerFactory::build();
         $asyncAuthHttpHandler = function ($request, $options) use ($authHttpHandler) {
@@ -130,7 +130,7 @@ class CredentialsWrapperTest extends TestCase
 
     public function buildDataWithKeyFile()
     {
-        $keyFilePath = __DIR__ . '/testdata/json-key-file.json';
+        $keyFilePath = __DIR__ . '/testdata/creds/json-key-file.json';
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
 
         $scopes = ['myscope'];
@@ -576,7 +576,7 @@ class CredentialsWrapperTest extends TestCase
     public function testSerializeCredentialsWrapper()
     {
         $credentialsWrapper = CredentialsWrapper::build([
-            'keyFile' => __DIR__ . '/testdata/json-key-file.json',
+            'keyFile' => __DIR__ . '/testdata/creds/json-key-file.json',
         ]);
         $serialized = serialize($credentialsWrapper);
         $this->assertIsString($serialized);
