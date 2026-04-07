@@ -134,7 +134,8 @@ class CredentialsWrapperTest extends TestCase
         $keyFile = json_decode(file_get_contents($keyFilePath), true);
 
         $scopes = ['myscope'];
-        $authHttpHandler = function () {};
+        $authHttpHandler = function () {
+        };
         $defaultAuthCache = new MemoryCacheItemPool();
         $authCache = new SysVCacheItemPool();
         $authCacheOptions = ['lifetime' => 600];
@@ -382,7 +383,8 @@ class CredentialsWrapperTest extends TestCase
      */
     public function testGetAuthorizationHeaderCallback($fetcher, $expectedCallbackResponse)
     {
-        $httpHandler = function () {};
+        $httpHandler = function () {
+        };
         $credentialsWrapper = new CredentialsWrapper($fetcher, $httpHandler);
         $callback = $credentialsWrapper->getAuthorizationHeaderCallback('audience');
         $actualResponse = $callback();

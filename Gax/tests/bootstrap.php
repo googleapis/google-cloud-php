@@ -38,8 +38,7 @@ use Google\ApiCore\Testing\ProtobufMessageComparator;
 use Grpc\Interceptor;
 
 // This is a long line, but better not set some temporary variables that get picked up by something later
-if (
-    (new \ReflectionClass(Interceptor::class))
+if ((new \ReflectionClass(Interceptor::class))
         ->getMethod('interceptUnaryUnary')
         ->getParameters()[3]
         ->getName() === 'metadata'

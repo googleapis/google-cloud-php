@@ -643,5 +643,4 @@ class MockRequestBody extends \Google\Protobuf\Internal\Message
     {
         return $this->whichOneof('oneof_field');
     }
-
 }

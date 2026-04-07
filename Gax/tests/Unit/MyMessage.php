@@ -23,5 +23,4 @@ class MyMessage extends \Google\Protobuf\Internal\Message
         \GPBMetadata\Google\ApiCore\Tests\Unit\Example::initOnce();
         parent::__construct($data);
     }
-
 }

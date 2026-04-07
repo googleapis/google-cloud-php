@@ -80,5 +80,4 @@ class InsecureCredentialsWrapperTest extends TestCase
 
         $this->assertInstanceOf(Promise::class, $response);
     }
-
 }

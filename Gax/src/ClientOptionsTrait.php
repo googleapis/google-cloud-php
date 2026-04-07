@@ -152,8 +152,7 @@ trait ClientOptionsTrait
             $options['logger'] = ApplicationDefaultCredentials::getDefaultLogger();
         }
 
-        if (
-            $options['logger'] !== null
+        if ($options['logger'] !== null
             && $options['logger'] !== false
             && !$options['logger'] instanceof LoggerInterface
         ) {

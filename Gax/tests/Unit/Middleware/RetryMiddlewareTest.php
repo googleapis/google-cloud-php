@@ -399,7 +399,7 @@ class RetryMiddlewareTest extends TestCase
             ]);
 
         $callCount = 0;
-        $handler = function(Call $call, $options) use (&$callCount, &$reportedRetries) {
+        $handler = function (Call $call, $options) use (&$callCount, &$reportedRetries) {
             $promise = new Promise(function () use (&$callCount, &$reportedRetries, $options, &$promise) {
                 if ($callCount === 0) {
                     ++$callCount;

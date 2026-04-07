@@ -162,5 +162,4 @@ class MockResponse extends \Google\Protobuf\Internal\Message
 
         return $this;
     }
-
 }

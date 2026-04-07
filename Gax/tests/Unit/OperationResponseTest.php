@@ -275,10 +275,12 @@ class OperationResponseTest extends TestCase
                 $phpunit->assertEquals('arg2', $request->arg2);
                 $phpunit->assertEquals('arg3', $request->arg3);
                 return new class {
-                    public function getDone() {
+                    public function getDone()
+                    {
                         return true;
                     }
-                    public function getError() {
+                    public function getError()
+                    {
                         return false;
                     }
                 };

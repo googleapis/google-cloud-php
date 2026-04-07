@@ -547,7 +547,9 @@ class ClientOptionsTraitTest extends TestCase
         $client = new UniverseDomainStubClientOptionsClient();
         $client->buildClientOptions([
             'universeDomain' => 'foo.com',
-            'clientCertSource' => function () { $this->fail('this should not be called');},
+            'clientCertSource' => function () {
+                $this->fail('this should not be called');
+            },
         ]);
     }
 
