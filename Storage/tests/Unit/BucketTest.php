@@ -686,18 +686,6 @@ class BucketTest extends TestCase
         $sourceObject->rewrite('dest-bucket', ['contexts' => $invalidContexts]);
     }
 
-    public function testRewriteWithEmptyContexts()
-    {
-        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
-        $this->connection->rewriteObject(Argument::withEntry('contexts', []))
-            ->shouldBeCalled()
-            ->willReturn(['resource' => ['name' => 'dest.txt', 'bucket' => self::BUCKET_NAME, 'generation' => '1', 'contexts' => []]]);
-
-        $result = $sourceObject->rewrite('dest-bucket', ['contexts' => []]);
-        $this->assertInstanceOf(StorageObject::class, $result);
-        $this->assertEmpty($result->info()['contexts']);
-    }
-
     public function objectInvalidContextsDataProvider()
     {
         return [
@@ -722,6 +710,19 @@ class BucketTest extends TestCase
                 'Object contexts custom field must be an array.'
             ]
         ];
+    }
+
+    public function testRewriteWithEmptyContexts()
+    {
+        $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
+        $this->connection->rewriteObject(Argument::withEntry('contexts', []))
+            ->shouldBeCalled()
+            ->willReturn(['resource' =>
+                            ['name' => 'dest.txt', 'bucket' => self::BUCKET_NAME, 'generation' => '1', 'contexts' => []]
+                        ]);
+        $result = $sourceObject->rewrite('dest-bucket', ['contexts' => []]);
+        $this->assertInstanceOf(StorageObject::class, $result);
+        $this->assertEmpty($result->info()['contexts']);
     }
 
     public function testRewriteWithContextOverride()
