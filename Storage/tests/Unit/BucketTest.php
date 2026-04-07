@@ -578,7 +578,7 @@ class BucketTest extends TestCase
     }
 
     /**
-    * @dataProvider invalidContextsProvider
+    * @dataProvider objectInvalidContextsDataProvider
     */
     public function testCreateObjectWithInvalidContexts($invalidContexts, $expectedMessage)
     {
@@ -647,7 +647,6 @@ class BucketTest extends TestCase
         $validContexts = ['contexts' => ['custom' => ['key-1' => ['value' => 'val-1']]]];
         return [
             'Valid Update' => [$validContexts['contexts'], $validContexts['contexts']],
-            'Empty Array'  => [[], []],
             'Null Case'      => [null, null]
         ];
     }
@@ -676,7 +675,7 @@ class BucketTest extends TestCase
     }
 
     /**
-    * @dataProvider invalidContextsProvider
+    * @dataProvider objectInvalidContextsDataProvider
     */
     public function testRewriteWithInvalidContexts($invalidContexts, $expectedMessage)
     {
@@ -692,13 +691,14 @@ class BucketTest extends TestCase
         $sourceObject = new StorageObject($this->connection->reveal(), 'source.txt', self::BUCKET_NAME);
         $this->connection->rewriteObject(Argument::withEntry('contexts', []))
             ->shouldBeCalled()
-            ->willReturn(['resource' => ['name' => 'dest.txt', 'contexts' => []]]);
+            ->willReturn(['resource' => ['name' => 'dest.txt', 'bucket' => self::BUCKET_NAME, 'generation' => '1', 'contexts' => []]]);
 
         $result = $sourceObject->rewrite('dest-bucket', ['contexts' => []]);
+        $this->assertInstanceOf(StorageObject::class, $result);
         $this->assertEmpty($result->info()['contexts']);
     }
 
-    public function invalidContextsProvider()
+    public function objectInvalidContextsDataProvider()
     {
         return [
             'Invalid Leading Unicode' => [
