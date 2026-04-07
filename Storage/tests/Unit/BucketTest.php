@@ -718,7 +718,10 @@ class BucketTest extends TestCase
                 'Object contexts custom field must be an array.'
             ],
             'Value Property Missing' => [
-                ['custom' => ['key' => ['no-value-here' => 'val']]],
+                [
+                    'custom' => 
+                        ['key' => ['no-value-here' => 'val']]
+                ],
                 'Context for key "key" must have a \'value\' property.'
             ]
         ];
