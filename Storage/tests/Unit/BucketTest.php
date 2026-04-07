@@ -701,6 +701,10 @@ class BucketTest extends TestCase
     public function objectInvalidContextsDataProvider()
     {
         return [
+            'Value Property Missing' => [
+                ['custom' =>['key' => ['no-value-here' => 'val']]],
+                'Context for key "key" must have a \'value\' property.'
+            ],
             'Invalid Leading Unicode' => [
                 ['custom' => ['key' => ['value' => '✨-sparkle']]],
                 'Object context value must start with an alphanumeric.'
@@ -716,13 +720,6 @@ class BucketTest extends TestCase
             'Custom Field Not An Array' => [
                 ['custom' => 'not-an-array'],
                 'Object contexts custom field must be an array.'
-            ],
-            'Value Property Missing' => [
-                [
-                    'custom' => 
-                        ['key' => ['no-value-here' => 'val']]
-                ],
-                'Context for key "key" must have a \'value\' property.'
             ]
         ];
     }
