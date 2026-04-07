@@ -12,11 +12,12 @@
         "phpunit/phpunit": "^9.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "2.*",
-        "phpdocumentor/reflection": "^5.3.3||^6.0",
-        "phpdocumentor/reflection-docblock": "^5.3.3||^6.0",
+        "phpdocumentor/reflection": "^6.0",
+        "phpdocumentor/reflection-docblock": "^5.3.3",
         "erusev/parsedown": "^1.6",
         "phpseclib/phpseclib": "^2.0||^3.0",
-        "google/cloud-pubsub": "^2.0"
+        "google/cloud-pubsub": "^2.0",
+        "nikic/php-parser": "^5"
     },
     "suggest": {
         "phpseclib/phpseclib": "May be used in place of OpenSSL for creating signed Cloud Storage URLs. Please require version ^2.",
