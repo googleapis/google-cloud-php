@@ -291,7 +291,7 @@ class ManageObjectsTest extends StorageTestCase
         );
         $info = $object->update([
             'contexts' => [
-                'custom' => (object) []
+                'custom' => null
             ]
         ]);
         if (isset($info['contexts'])) {
@@ -346,7 +346,7 @@ class ManageObjectsTest extends StorageTestCase
             'contexts' => [
                 'custom' => [
                     $oKey => ['value' => $oVal],
-                    self::CONTEXT_OBJECT_KEY => (object) []
+                    self::CONTEXT_OBJECT_KEY => null
                 ]
             ]
         ]);
