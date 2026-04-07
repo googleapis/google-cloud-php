@@ -34,7 +34,7 @@ jobs:
             composer update --prefer-dist --no-interaction --no-suggest -d Gax/
 
         - name: Run PHPUnit
-          run: Gax/vendor/bin/phpunit -c phpunit-conformance.xml.dist
+          run: Gax/vendor/bin/phpunit -c Gax/phpunit-conformance.xml.dist
 
 
 
