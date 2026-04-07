@@ -254,6 +254,10 @@ class Component
                 $this->componentDependencies[] = new Component($componentName);
             }
         }
+        if (in_array('google/gax', $composerJson['require'] ?? [])) {
+            // GAX depend on google/common-protos
+            $this->componentDependencies[] = new Component('CommonProtos');
+        }
     }
 
     /**
