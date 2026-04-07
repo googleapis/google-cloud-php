@@ -98,6 +98,9 @@ class MultipartUploader extends AbstractUploader
             $headers['Content-Length'] = $size;
         }
 
+        $customHeaders = $this->requestOptions['restOptions']['headers'] ?? [];
+        $headers = array_merge($headers, $customHeaders);
+
         return new Request(
             'POST',
             $this->uri,
