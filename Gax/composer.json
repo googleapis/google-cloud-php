@@ -1,0 +1,50 @@
+{
+    "name": "google/gax",
+    "type": "library",
+    "description": "Google API Core for PHP",
+    "keywords": ["google"],
+    "homepage": "https://github.com/googleapis/gax-php",
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": "^8.1",
+        "google/auth": "^1.49",
+        "google/grpc-gcp": "^0.4",
+        "grpc/grpc": "^1.13",
+        "google/protobuf": "^4.31||^5.34",
+        "guzzlehttp/promises": "^2.0",
+        "guzzlehttp/psr7": "^2.0",
+        "google/common-protos": "^4.4",
+        "google/longrunning": "~0.4",
+        "ramsey/uuid": "^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "phpspec/prophecy-phpunit": "^2.1",
+        "phpstan/phpstan": "^2.0",
+        "google/cloud-tools": "^0.16.1"
+    },
+    "conflict": {
+        "ext-protobuf": "<4.31.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Google\\ApiCore\\": "src",
+            "GPBMetadata\\ApiCore\\": "metadata/ApiCore"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\ApiCore\\Dev\\": "dev/src",
+            "Google\\ApiCore\\Tests\\": "tests",
+            "GPBMetadata\\Google\\": "metadata/Google",
+            "Google\\Showcase\\": "tests/Conformance/src",
+            "GPBMetadata\\Google\\Showcase\\": "tests/Conformance/metadata"
+        }
+    },
+    "scripts": {
+        "regenerate-test-protos": "dev/sh/regenerate-test-protos.sh",
+        "test": "./vendor/bin/phpunit",
+        "cs-lint": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n --dry-run\"",
+        "cs-fix": "vendor/bin/php-tools cs-fixer googleapis/gax-php --ref $(git rev-parse --abbrev-ref HEAD) --flags \"\\-n\""
+    }
+}
