@@ -114,8 +114,6 @@ class SpannerClient
     use ApiHelperTrait;
     use RequestTrait;
 
-    const VERSION = '2.0.0-RC1';
-
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
     private const GRPC_KEEPALIVE_MILLISECONDS = 120 * 1000;
