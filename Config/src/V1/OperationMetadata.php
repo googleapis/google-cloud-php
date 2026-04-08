@@ -73,6 +73,8 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. Metadata about the deployment operation state.
      *     @type \Google\Cloud\Config\V1\PreviewOperationMetadata $preview_metadata
      *           Output only. Metadata about the preview operation state.
+     *     @type \Google\Cloud\Config\V1\ProvisionDeploymentGroupOperationMetadata $provision_deployment_group_metadata
+     *           Output only. Metadata about ProvisionDeploymentGroup operation state.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when the operation was created.
      *     @type \Google\Protobuf\Timestamp $end_time
@@ -156,6 +158,37 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\PreviewOperationMetadata::class);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Metadata about ProvisionDeploymentGroup operation state.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProvisionDeploymentGroupOperationMetadata provision_deployment_group_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Config\V1\ProvisionDeploymentGroupOperationMetadata|null
+     */
+    public function getProvisionDeploymentGroupMetadata()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasProvisionDeploymentGroupMetadata()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Output only. Metadata about ProvisionDeploymentGroup operation state.
+     *
+     * Generated from protobuf field <code>.google.cloud.config.v1.ProvisionDeploymentGroupOperationMetadata provision_deployment_group_metadata = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Config\V1\ProvisionDeploymentGroupOperationMetadata $var
+     * @return $this
+     */
+    public function setProvisionDeploymentGroupMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Config\V1\ProvisionDeploymentGroupOperationMetadata::class);
+        $this->writeOneof(10, $var);
 
         return $this;
     }

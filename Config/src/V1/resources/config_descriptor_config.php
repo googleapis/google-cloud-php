@@ -42,6 +42,25 @@ return [
                     ],
                 ],
             ],
+            'CreateDeploymentGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\DeploymentGroup',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreatePreview' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
@@ -80,6 +99,25 @@ return [
                     ],
                 ],
             ],
+            'DeleteDeploymentGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\DeploymentGroup',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePreview' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Preview',
@@ -99,9 +137,47 @@ return [
                     ],
                 ],
             ],
+            'DeprovisionDeploymentGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\DeploymentGroup',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'LockDeployment' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Config\V1\Deployment',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ProvisionDeploymentGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\DeploymentGroup',
                     'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -172,6 +248,26 @@ return [
                         'keyName' => 'deployment.name',
                         'fieldAccessors' => [
                             'getDeployment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDeploymentGroup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Config\V1\DeploymentGroup',
+                    'metadataReturnType' => '\Google\Cloud\Config\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'deployment_group.name',
+                        'fieldAccessors' => [
+                            'getDeploymentGroup',
                             'getName',
                         ],
                     ],
@@ -261,6 +357,30 @@ return [
                     ],
                 ],
             ],
+            'GetDeploymentGroup' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\DeploymentGroup',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDeploymentGroupRevision' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\DeploymentGroupRevision',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetPreview' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Preview',
@@ -336,6 +456,46 @@ return [
             'ImportStatefile' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Config\V1\Statefile',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentGroupRevisions' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDeploymentGroupRevisions',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListDeploymentGroupRevisionsResponse',
+                'headerParams' => [
+                    [
+                        'keyName' => 'parent',
+                        'fieldAccessors' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentGroups' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDeploymentGroups',
+                ],
+                'callType' => \Google\ApiCore\Call::PAGINATED_CALL,
+                'responseType' => 'Google\Cloud\Config\V1\ListDeploymentGroupsResponse',
                 'headerParams' => [
                     [
                         'keyName' => 'parent',
@@ -561,6 +721,8 @@ return [
             'templateMap' => [
                 'autoMigrationConfig' => 'projects/{project}/locations/{location}/autoMigrationConfig',
                 'deployment' => 'projects/{project}/locations/{location}/deployments/{deployment}',
+                'deploymentGroup' => 'projects/{project}/locations/{location}/deploymentGroups/{deployment_group}',
+                'deploymentGroupRevision' => 'projects/{project}/locations/{location}/deploymentGroups/{deployment_group}/revisions/{revision}',
                 'location' => 'projects/{project}/locations/{location}',
                 'preview' => 'projects/{project}/locations/{location}/previews/{preview}',
                 'resource' => 'projects/{project}/locations/{location}/deployments/{deployment}/revisions/{revision}/resources/{resource}',
