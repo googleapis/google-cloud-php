@@ -84,6 +84,10 @@ return [
                     ],
                 ],
             ],
+            'GetClientConfiguration' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\ClientConfiguration',
+            ],
             'MutateRow' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\Bigtable\V2\MutateRowResponse',
@@ -130,6 +134,27 @@ return [
                         ],
                     ],
                 ],
+            ],
+            'OpenAuthorizedView' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\SessionResponse',
+            ],
+            'OpenMaterializedView' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\SessionResponse',
+            ],
+            'OpenTable' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\Bigtable\V2\SessionResponse',
             ],
             'PingAndWarm' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
