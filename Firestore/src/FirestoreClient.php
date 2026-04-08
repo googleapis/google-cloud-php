@@ -88,7 +88,7 @@ class FirestoreClient
     use ClientOptionsTrait;
     use RequestProcessorTrait;
 
-    const VERSION = '2.0.0-RC1';
+    const VERSION = '2.0.0';
 
     const DEFAULT_DATABASE = '(default)';
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/cloud-platform';
