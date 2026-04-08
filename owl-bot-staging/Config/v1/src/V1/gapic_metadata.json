@@ -1,0 +1,233 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.config.v1",
+    "libraryPackage": "Google\\Cloud\\Config\\V1",
+    "services": {
+        "Config": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConfigGapicClient",
+                    "rpcs": {
+                        "CreateDeployment": {
+                            "methods": [
+                                "createDeployment"
+                            ]
+                        },
+                        "CreateDeploymentGroup": {
+                            "methods": [
+                                "createDeploymentGroup"
+                            ]
+                        },
+                        "CreatePreview": {
+                            "methods": [
+                                "createPreview"
+                            ]
+                        },
+                        "DeleteDeployment": {
+                            "methods": [
+                                "deleteDeployment"
+                            ]
+                        },
+                        "DeleteDeploymentGroup": {
+                            "methods": [
+                                "deleteDeploymentGroup"
+                            ]
+                        },
+                        "DeletePreview": {
+                            "methods": [
+                                "deletePreview"
+                            ]
+                        },
+                        "DeleteStatefile": {
+                            "methods": [
+                                "deleteStatefile"
+                            ]
+                        },
+                        "DeprovisionDeploymentGroup": {
+                            "methods": [
+                                "deprovisionDeploymentGroup"
+                            ]
+                        },
+                        "ExportDeploymentStatefile": {
+                            "methods": [
+                                "exportDeploymentStatefile"
+                            ]
+                        },
+                        "ExportLockInfo": {
+                            "methods": [
+                                "exportLockInfo"
+                            ]
+                        },
+                        "ExportPreviewResult": {
+                            "methods": [
+                                "exportPreviewResult"
+                            ]
+                        },
+                        "ExportRevisionStatefile": {
+                            "methods": [
+                                "exportRevisionStatefile"
+                            ]
+                        },
+                        "GetAutoMigrationConfig": {
+                            "methods": [
+                                "getAutoMigrationConfig"
+                            ]
+                        },
+                        "GetDeployment": {
+                            "methods": [
+                                "getDeployment"
+                            ]
+                        },
+                        "GetDeploymentGroup": {
+                            "methods": [
+                                "getDeploymentGroup"
+                            ]
+                        },
+                        "GetDeploymentGroupRevision": {
+                            "methods": [
+                                "getDeploymentGroupRevision"
+                            ]
+                        },
+                        "GetPreview": {
+                            "methods": [
+                                "getPreview"
+                            ]
+                        },
+                        "GetResource": {
+                            "methods": [
+                                "getResource"
+                            ]
+                        },
+                        "GetResourceChange": {
+                            "methods": [
+                                "getResourceChange"
+                            ]
+                        },
+                        "GetResourceDrift": {
+                            "methods": [
+                                "getResourceDrift"
+                            ]
+                        },
+                        "GetRevision": {
+                            "methods": [
+                                "getRevision"
+                            ]
+                        },
+                        "GetTerraformVersion": {
+                            "methods": [
+                                "getTerraformVersion"
+                            ]
+                        },
+                        "ImportStatefile": {
+                            "methods": [
+                                "importStatefile"
+                            ]
+                        },
+                        "ListDeploymentGroupRevisions": {
+                            "methods": [
+                                "listDeploymentGroupRevisions"
+                            ]
+                        },
+                        "ListDeploymentGroups": {
+                            "methods": [
+                                "listDeploymentGroups"
+                            ]
+                        },
+                        "ListDeployments": {
+                            "methods": [
+                                "listDeployments"
+                            ]
+                        },
+                        "ListPreviews": {
+                            "methods": [
+                                "listPreviews"
+                            ]
+                        },
+                        "ListResourceChanges": {
+                            "methods": [
+                                "listResourceChanges"
+                            ]
+                        },
+                        "ListResourceDrifts": {
+                            "methods": [
+                                "listResourceDrifts"
+                            ]
+                        },
+                        "ListResources": {
+                            "methods": [
+                                "listResources"
+                            ]
+                        },
+                        "ListRevisions": {
+                            "methods": [
+                                "listRevisions"
+                            ]
+                        },
+                        "ListTerraformVersions": {
+                            "methods": [
+                                "listTerraformVersions"
+                            ]
+                        },
+                        "LockDeployment": {
+                            "methods": [
+                                "lockDeployment"
+                            ]
+                        },
+                        "ProvisionDeploymentGroup": {
+                            "methods": [
+                                "provisionDeploymentGroup"
+                            ]
+                        },
+                        "UnlockDeployment": {
+                            "methods": [
+                                "unlockDeployment"
+                            ]
+                        },
+                        "UpdateAutoMigrationConfig": {
+                            "methods": [
+                                "updateAutoMigrationConfig"
+                            ]
+                        },
+                        "UpdateDeployment": {
+                            "methods": [
+                                "updateDeployment"
+                            ]
+                        },
+                        "UpdateDeploymentGroup": {
+                            "methods": [
+                                "updateDeploymentGroup"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
