@@ -31,14 +31,22 @@ class PeerInfo extends \Google\Protobuf\Internal\Message
      */
     protected $application_frontend_id = 0;
     /**
+     * The Cloud region of the application frontend that served this request.
+     *
+     * Generated from protobuf field <code>string application_frontend_region = 6;</code>
+     */
+    protected $application_frontend_region = '';
+    /**
      * The Cloud zone of the application frontend that served this request.
      *
-     * Generated from protobuf field <code>string application_frontend_zone = 3;</code>
+     * Generated from protobuf field <code>string application_frontend_zone = 3 [deprecated = true];</code>
+     * @deprecated
      */
     protected $application_frontend_zone = '';
     /**
      * The subzone of the application frontend that served this request, e.g. an
-     * identifier for where within the zone the application frontend is.
+     * identifier for where within a zone (within the reported region) the
+     * application frontend is.
      *
      * Generated from protobuf field <code>string application_frontend_subzone = 4;</code>
      */
@@ -60,11 +68,14 @@ class PeerInfo extends \Google\Protobuf\Internal\Message
      *     @type int|string $application_frontend_id
      *           An opaque identifier for the application frontend which serviced this
      *           request.
+     *     @type string $application_frontend_region
+     *           The Cloud region of the application frontend that served this request.
      *     @type string $application_frontend_zone
      *           The Cloud zone of the application frontend that served this request.
      *     @type string $application_frontend_subzone
      *           The subzone of the application frontend that served this request, e.g. an
-     *           identifier for where within the zone the application frontend is.
+     *           identifier for where within a zone (within the reported region) the
+     *           application frontend is.
      *     @type int $transport_type
      * }
      */
@@ -130,25 +141,57 @@ class PeerInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The Cloud region of the application frontend that served this request.
+     *
+     * Generated from protobuf field <code>string application_frontend_region = 6;</code>
+     * @return string
+     */
+    public function getApplicationFrontendRegion()
+    {
+        return $this->application_frontend_region;
+    }
+
+    /**
+     * The Cloud region of the application frontend that served this request.
+     *
+     * Generated from protobuf field <code>string application_frontend_region = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setApplicationFrontendRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->application_frontend_region = $var;
+
+        return $this;
+    }
+
+    /**
      * The Cloud zone of the application frontend that served this request.
      *
-     * Generated from protobuf field <code>string application_frontend_zone = 3;</code>
+     * Generated from protobuf field <code>string application_frontend_zone = 3 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getApplicationFrontendZone()
     {
+        if ($this->application_frontend_zone !== '') {
+            @trigger_error('application_frontend_zone is deprecated.', E_USER_DEPRECATED);
+        }
         return $this->application_frontend_zone;
     }
 
     /**
      * The Cloud zone of the application frontend that served this request.
      *
-     * Generated from protobuf field <code>string application_frontend_zone = 3;</code>
+     * Generated from protobuf field <code>string application_frontend_zone = 3 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setApplicationFrontendZone($var)
     {
+        @trigger_error('application_frontend_zone is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->application_frontend_zone = $var;
 
@@ -157,7 +200,8 @@ class PeerInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The subzone of the application frontend that served this request, e.g. an
-     * identifier for where within the zone the application frontend is.
+     * identifier for where within a zone (within the reported region) the
+     * application frontend is.
      *
      * Generated from protobuf field <code>string application_frontend_subzone = 4;</code>
      * @return string
@@ -169,7 +213,8 @@ class PeerInfo extends \Google\Protobuf\Internal\Message
 
     /**
      * The subzone of the application frontend that served this request, e.g. an
-     * identifier for where within the zone the application frontend is.
+     * identifier for where within a zone (within the reported region) the
+     * application frontend is.
      *
      * Generated from protobuf field <code>string application_frontend_subzone = 4;</code>
      * @param string $var
