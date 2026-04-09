@@ -32,9 +32,6 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-require_once __DIR__ . '/../testdata/mocks/TestInterceptor.php';
-require_once __DIR__ . '/../testdata/mocks/TestUnaryInterceptor.php';
-
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
@@ -53,6 +50,7 @@ use Grpc\BaseStub;
 use Grpc\CallInvoker;
 use Grpc\ChannelCredentials;
 use Grpc\ClientStreamingCall;
+use Grpc\Interceptor;
 use Grpc\ServerStreamingCall;
 use Grpc\UnaryCall;
 use GuzzleHttp\Promise\Promise;
@@ -581,6 +579,20 @@ class GrpcTransportTest extends TestCase
 
     public function interceptorDataProvider()
     {
+        $useDeprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
+            ->getMethod('interceptUnaryUnary')
+            ->getParameters()[3]
+            ->getName() === 'metadata';
+
+        if ($useDeprecatedInterceptors) {
+            class_alias(DeprecatedTestInterceptor::class, TestInterceptor::class, );
+            class_alias(DeprecatedTestUnaryInterceptor::class, TestUnaryInterceptor::class);
+        }
+
+        // add "mocks" directory to autoloader
+        $loader = require __DIR__ . '/../../../vendor/autoload.php';
+        $loader->addPsr4(__NAMESPACE__ . '\\', __DIR__ . '/../testdata/mocks/');
+
         return [
             [
                 UnaryCall::class,

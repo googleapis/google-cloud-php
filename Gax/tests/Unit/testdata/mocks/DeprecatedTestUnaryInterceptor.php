@@ -2,17 +2,17 @@
 
 namespace Google\ApiCore\Tests\Unit\Transport;
 
-use Grpc\Interceptor;
+use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 
-class TestUnaryInterceptor extends Interceptor
+class TestUnaryInterceptor implements UnaryInterceptorInterface
 {
     public function interceptUnaryUnary(
         $method,
         $argument,
         $deserialize,
-        $continuation = null,
-        array $metadata = [],
-        array $options = []
+        array $metadata,
+        array $options,
+        callable $continuation
     ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);

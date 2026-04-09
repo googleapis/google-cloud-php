@@ -10,9 +10,9 @@ class TestInterceptor extends Interceptor
         $method,
         $argument,
         $deserialize,
-        $continuation,
         array $metadata = [],
-        array $options = []
+        array $options = [],
+        $continuation
     ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
@@ -22,9 +22,9 @@ class TestInterceptor extends Interceptor
         $method,
         $argument,
         $deserialize,
-        $continuation,
         array $metadata = [],
-        array $options = []
+        array $options = [],
+        $continuation
     ) {
         $options['test-interceptor-insert'] = 'inserted-value';
         return $continuation($method, $argument, $deserialize, $metadata, $options);
