@@ -10,6 +10,8 @@ parameters:
         # Ignore Monolog3 for now, as these tests run using Monolog2
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
         - Logging/src/LogMessageProcessor/MonologV3MessageProcessor.php
+        # ignore GAX because we implement a stricter phpstan.neon.dist there
+        - Gax
     ignoreErrors:
         # Protobuf constant classes sometimes contain multiple values for one array key
         - identifier: array.duplicateKey
