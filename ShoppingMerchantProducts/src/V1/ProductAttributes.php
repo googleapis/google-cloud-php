@@ -366,12 +366,21 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      */
     private $handling_cutoff_times;
     /**
-     * The shipping label of the product, used to group product in account-level
-     * shipping rules.
+     * The shipping label of the product, used to group products in account-level
+     * shipping rules. Max. 100 characters. For more information, see
+     * [Shipping label](https://support.google.com/merchants/answer/6324504).
      *
      * Generated from protobuf field <code>optional string shipping_label = 46;</code>
      */
     protected $shipping_label = null;
+    /**
+     * The return label of the product, used to group products in account-level
+     * return policies. Max. 100 characters. For more information, see
+     * [Return policy label](https://support.google.com/merchants/answer/9445425).
+     *
+     * Generated from protobuf field <code>optional string return_policy_label = 170;</code>
+     */
+    protected $return_policy_label = null;
     /**
      * The transit time label of the product, used to group product in
      * account-level transit time tables.
@@ -857,8 +866,13 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
      *     @type \Google\Shopping\Merchant\Products\V1\HandlingCutoffTime[] $handling_cutoff_times
      *           The handling cutoff times for shipping.
      *     @type string $shipping_label
-     *           The shipping label of the product, used to group product in account-level
-     *           shipping rules.
+     *           The shipping label of the product, used to group products in account-level
+     *           shipping rules. Max. 100 characters. For more information, see
+     *           [Shipping label](https://support.google.com/merchants/answer/6324504).
+     *     @type string $return_policy_label
+     *           The return label of the product, used to group products in account-level
+     *           return policies. Max. 100 characters. For more information, see
+     *           [Return policy label](https://support.google.com/merchants/answer/9445425).
      *     @type string $transit_time_label
      *           The transit time label of the product, used to group product in
      *           account-level transit time tables.
@@ -2846,8 +2860,9 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The shipping label of the product, used to group product in account-level
-     * shipping rules.
+     * The shipping label of the product, used to group products in account-level
+     * shipping rules. Max. 100 characters. For more information, see
+     * [Shipping label](https://support.google.com/merchants/answer/6324504).
      *
      * Generated from protobuf field <code>optional string shipping_label = 46;</code>
      * @return string
@@ -2868,8 +2883,9 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The shipping label of the product, used to group product in account-level
-     * shipping rules.
+     * The shipping label of the product, used to group products in account-level
+     * shipping rules. Max. 100 characters. For more information, see
+     * [Shipping label](https://support.google.com/merchants/answer/6324504).
      *
      * Generated from protobuf field <code>optional string shipping_label = 46;</code>
      * @param string $var
@@ -2879,6 +2895,46 @@ class ProductAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->shipping_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * The return label of the product, used to group products in account-level
+     * return policies. Max. 100 characters. For more information, see
+     * [Return policy label](https://support.google.com/merchants/answer/9445425).
+     *
+     * Generated from protobuf field <code>optional string return_policy_label = 170;</code>
+     * @return string
+     */
+    public function getReturnPolicyLabel()
+    {
+        return isset($this->return_policy_label) ? $this->return_policy_label : '';
+    }
+
+    public function hasReturnPolicyLabel()
+    {
+        return isset($this->return_policy_label);
+    }
+
+    public function clearReturnPolicyLabel()
+    {
+        unset($this->return_policy_label);
+    }
+
+    /**
+     * The return label of the product, used to group products in account-level
+     * return policies. Max. 100 characters. For more information, see
+     * [Return policy label](https://support.google.com/merchants/answer/9445425).
+     *
+     * Generated from protobuf field <code>optional string return_policy_label = 170;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReturnPolicyLabel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->return_policy_label = $var;
 
         return $this;
     }
