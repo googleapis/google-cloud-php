@@ -42,6 +42,7 @@ use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\LongRunning\Operation as OperationProto;
 use Google\Protobuf\Duration;
 use Psr\Cache\CacheItemPoolInterface;
@@ -130,6 +131,7 @@ class SpannerClient
     private bool $routeToLeader;
     private array $defaultQueryOptions;
     private int $isolationLevel;
+    private int $readLockMode;
     private CacheItemPoolInterface|null $cacheItemPool;
     private static array $activeChannels = [];
     private static int $totalActiveChannels = 0;
@@ -202,6 +204,7 @@ class SpannerClient
             'queryOptions' => [],
             'directedReadOptions' => [],
             'isolationLevel' => IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED,
+            'readLockMode' => ReadLockMode::READ_LOCK_MODE_UNSPECIFIED,
             'routeToLeader' => true,
             'cacheItemPool' => null
         ];
@@ -211,6 +214,7 @@ class SpannerClient
         $this->routeToLeader = $options['routeToLeader'];
         $this->defaultQueryOptions = $options['queryOptions'];
         $this->isolationLevel = $options['isolationLevel'];
+        $this->readLockMode = $options['readLockMode'];
 
         $options = $this->configureKeepAlive($options);
 
@@ -589,6 +593,7 @@ class SpannerClient
                 'defaultQueryOptions' => $this->defaultQueryOptions,
                 'returnInt64AsObject' => $this->returnInt64AsObject,
                 'isolationLevel' => $this->isolationLevel,
+                'readLockMode' => $this->readLockMode,
                 'cacheItemPool' => $this->cacheItemPool,
                 'instance' => $instance,
             ],
