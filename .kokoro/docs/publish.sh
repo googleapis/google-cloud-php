@@ -42,15 +42,6 @@ do
         $VERBOSITY_FLAG
 done
 
-# Add GAX repo
-GAX_DIR=$PROJECT_DIR/dev/vendor/google/gax
-$PROJECT_DIR/dev/google-cloud docfx \
-    --path $GAX_DIR \
-    --out gax-out \
-    --metadata-version $(cat $GAX_DIR/VERSION) \
-    $STAGING_FLAG \
-    $VERBOSITY_FLAG
-
 # Add Auth repo
 AUTH_DIR=$PROJECT_DIR/dev/vendor/google/auth
 $PROJECT_DIR/dev/google-cloud docfx \
