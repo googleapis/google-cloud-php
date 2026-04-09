@@ -3,5 +3,5 @@ parameters:
     level: 5
     paths:
     - src
-    bootstrapFiles:
-    - tests/bootstrap_phpstan.php
+    ignoreErrors:
+    - identifier: trait.unused

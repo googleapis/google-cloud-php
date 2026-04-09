@@ -51,8 +51,8 @@ class Segment
     private ?string $value;
     private ?string $key;
     private ?RelativeResourceTemplate $template;
-    private ?string $stringRepr;
-    private ?string $separator;
+    private string $stringRepr;
+    private string $separator;
 
     /**
      * Segment constructor.

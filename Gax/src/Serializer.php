@@ -37,6 +37,17 @@ use Google\Protobuf\Descriptor;
 use Google\Protobuf\DescriptorPool;
 use Google\Protobuf\FieldDescriptor;
 use Google\Protobuf\Internal\Message;
+use Google\Rpc\BadRequest;
+use Google\Rpc\DebugInfo;
+use Google\Rpc\ErrorInfo;
+use Google\Rpc\Help;
+use Google\Rpc\LocalizedMessage;
+use Google\Rpc\PreconditionFailure;
+use Google\Rpc\QuotaFailure;
+use Google\Rpc\RequestInfo;
+use Google\Rpc\ResourceInfo;
+use Google\Rpc\RetryInfo;
+use Google\Rpc\Status;
 use RuntimeException;
 
 /**
@@ -180,7 +191,7 @@ class Serializer
         $result = [];
         // If metadata contains a "status" bin, use that instead
         if (isset($metadata['grpc-status-details-bin'])) {
-            $status = new \Google\Rpc\Status();
+            $status = new Status();
             $status->mergeFromString($metadata['grpc-status-details-bin'][0]);
             foreach ($status->getDetails() as $any) {
                 if (isset(KnownTypes::TYPE_URLS[$any->getTypeUrl()])) {
@@ -212,7 +223,18 @@ class Serializer
                 if (self::hasBinaryHeaderSuffix($key)) {
                     if (isset(KnownTypes::BIN_TYPES[$key])) {
                         $class = KnownTypes::BIN_TYPES[$key];
-                        /** @var Message $message */
+                        /**
+                         * @var BadRequest
+                         *    | DebugInfo
+                         *    | ErrorInfo
+                         *    | Help
+                         *    | LocalizedMessage
+                         *    | PreconditionFailure
+                         *    | QuotaFailure
+                         *    | RequestInfo
+                         *    | ResourceInfo
+                         *    | RetryInfo $message
+                         */
                         $message = new $class();
                         try {
                             $message->mergeFromString($value);
@@ -467,9 +489,10 @@ class Serializer
      */
     private function checkFieldRepeated(FieldDescriptor $field): bool
     {
+        // @phpstan-ignore function.alreadyNarrowedType
         return method_exists($field, 'isRepeated')
             ? $field->isRepeated()
-            : $field->getLabel() === GPBLabel::REPEATED;
+            : $field->getLabel() === GPBLabel::REPEATED; // @phpstan-ignore method.notFound
     }
 
     /**

@@ -55,7 +55,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
     private array $decoderOptions;
 
     private RequestInterface $originalRequest;
-    private ?JsonStreamDecoder $decoder;
+    private JsonStreamDecoder $decoder;
     private string $decodeType;
     private ?ResponseInterface $response;
     private stdClass $status;
@@ -181,7 +181,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      */
     public function cancel()
     {
-        if (!is_null($this->decoder)) {
+        if (isset($this->decoder)) {
             $this->decoder->close();
         }
     }
