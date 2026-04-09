@@ -38,6 +38,21 @@ return [
                     'deployment_id',
                 ],
             ],
+            'CreateDeploymentGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deploymentGroups',
+                'body' => 'deployment_group',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'deployment_group_id',
+                ],
+            ],
             'CreatePreview' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/previews',
@@ -61,6 +76,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteDeploymentGroup' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deploymentGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePreview' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*}',
@@ -75,6 +101,18 @@ return [
             'DeleteStatefile' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*}:deleteState',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeprovisionDeploymentGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deploymentGroups/*}:deprovision',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -153,6 +191,28 @@ return [
                     ],
                 ],
             ],
+            'GetDeploymentGroup' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deploymentGroups/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDeploymentGroupRevision' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deploymentGroups/*/revisions/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetPreview' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/previews/*}',
@@ -223,6 +283,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deployments/*}:importState',
                 'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentGroupRevisions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/deploymentGroups/*}/revisions',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDeploymentGroups' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/deploymentGroups',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -320,6 +402,18 @@ return [
                     ],
                 ],
             ],
+            'ProvisionDeploymentGroup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deploymentGroups/*}:provision',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UnlockDeployment' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deployments/*}:unlock',
@@ -353,6 +447,19 @@ return [
                     'deployment.name' => [
                         'getters' => [
                             'getDeployment',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateDeploymentGroup' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{deployment_group.name=projects/*/locations/*/deploymentGroups/*}',
+                'body' => 'deployment_group',
+                'placeholders' => [
+                    'deployment_group.name' => [
+                        'getters' => [
+                            'getDeploymentGroup',
                             'getName',
                         ],
                     ],

@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2023 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,31 +22,16 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START config_v1_generated_Config_ListLocations_sync]
+// [START config_v1_generated_Config_UpdateDeploymentGroup_sync]
 use Google\ApiCore\ApiException;
-use Google\ApiCore\PagedListResponse;
+use Google\ApiCore\OperationResponse;
 use Google\Cloud\Config\V1\Client\ConfigClient;
-use Google\Cloud\Location\ListLocationsRequest;
-use Google\Cloud\Location\Location;
+use Google\Cloud\Config\V1\DeploymentGroup;
+use Google\Cloud\Config\V1\UpdateDeploymentGroupRequest;
+use Google\Rpc\Status;
 
 /**
- * Lists information about the supported locations for this service.
-
-This method lists locations based on the resource scope provided in
-the [ListLocationsRequest.name] field:
-
-* **Global locations**: If `name` is empty, the method lists the
-public locations available to all projects. * **Project-specific
-locations**: If `name` follows the format
-`projects/{project}`, the method lists locations visible to that
-specific project. This includes public, private, or other
-project-specific locations enabled for the project.
-
-For gRPC and client library implementations, the resource name is
-passed as the `name` field. For direct service calls, the resource
-name is
-incorporated into the request path based on the specific service
-implementation and version.
+ * Updates a [DeploymentGroup][google.cloud.config.v1.DeploymentGroup]
  *
  * This sample has been automatically generated and should be regarded as a code
  * template only. It will require modifications to work:
@@ -54,25 +39,33 @@ implementation and version.
  *  - It may require specifying regional endpoints when creating the service client,
  *    please see the apiEndpoint client configuration option for more details.
  */
-function list_locations_sample(): void
+function update_deployment_group_sample(): void
 {
     // Create a client.
     $configClient = new ConfigClient();
 
     // Prepare the request message.
-    $request = new ListLocationsRequest();
+    $deploymentGroup = new DeploymentGroup();
+    $request = (new UpdateDeploymentGroupRequest())
+        ->setDeploymentGroup($deploymentGroup);
 
     // Call the API and handle any network failures.
     try {
-        /** @var PagedListResponse $response */
-        $response = $configClient->listLocations($request);
+        /** @var OperationResponse $response */
+        $response = $configClient->updateDeploymentGroup($request);
+        $response->pollUntilComplete();
 
-        /** @var Location $element */
-        foreach ($response as $element) {
-            printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
+        if ($response->operationSucceeded()) {
+            /** @var DeploymentGroup $result */
+            $result = $response->getResult();
+            printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
+        } else {
+            /** @var Status $error */
+            $error = $response->getError();
+            printf('Operation failed with error data: %s' . PHP_EOL, $error->serializeToJsonString());
         }
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
     }
 }
-// [END config_v1_generated_Config_ListLocations_sync]
+// [END config_v1_generated_Config_UpdateDeploymentGroup_sync]
