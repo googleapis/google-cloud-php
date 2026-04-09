@@ -579,32 +579,30 @@ class GrpcTransportTest extends TestCase
 
     public function interceptorDataProvider()
     {
-        $useDeprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
-            ->getMethod('interceptUnaryUnary')
-            ->getParameters()[3]
-            ->getName() === 'metadata';
-
-        if ($useDeprecatedInterceptors) {
-            class_alias(DeprecatedTestInterceptor::class, TestInterceptor::class, );
-            class_alias(DeprecatedTestUnaryInterceptor::class, TestUnaryInterceptor::class);
-        }
-
         // add "mocks" directory to autoloader
         $loader = require __DIR__ . '/../../../vendor/autoload.php';
         $loader->addPsr4(__NAMESPACE__ . '\\', __DIR__ . '/../testdata/mocks/');
 
+        $deprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
+            ->getMethod('interceptUnaryUnary')
+            ->getParameters()[3]
+            ->getName() === 'metadata';
+
+        $interceptor = $deprecatedInterceptors ? new DeprecatedTestInterceptor(): new TestInterceptor();
+        $unaryInterceptor = $deprecatedInterceptors ? new DeprecatedTestUnaryInterceptor(): new TestUnaryInterceptor();
+
         return [
             [
                 UnaryCall::class,
-                new TestUnaryInterceptor()
+                $unaryInterceptor
             ],
             [
                 UnaryCall::class,
-                new TestInterceptor()
+                $interceptor
             ],
             [
                 ServerStreamingCall::class,
-                new TestInterceptor()
+                $interceptor
             ]
         ];
     }

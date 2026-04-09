@@ -490,9 +490,13 @@ class Serializer
     private function checkFieldRepeated(FieldDescriptor $field): bool
     {
         // @phpstan-ignore function.alreadyNarrowedType
-        return method_exists($field, 'isRepeated')
-            ? $field->isRepeated()
-            : $field->getLabel() === GPBLabel::REPEATED; // @phpstan-ignore method.notFound
+        if (method_exists($field, 'isRepeated')) {
+            return $field->isRepeated();
+        }
+        if (method_exists($field, 'getLabel')) {
+            return $field->getLabel() === GPBLabel::REPEATED;
+        }
+        throw new \LogicException('unable to check field repeated');
     }
 
     /**

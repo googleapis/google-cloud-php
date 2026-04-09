@@ -4,7 +4,7 @@ namespace Google\ApiCore\Tests\Unit\Transport;
 
 use Google\ApiCore\Transport\Grpc\UnaryInterceptorInterface;
 
-class TestUnaryInterceptor implements UnaryInterceptorInterface
+class DeprecatedTestUnaryInterceptor implements UnaryInterceptorInterface
 {
     public function interceptUnaryUnary(
         $method,
