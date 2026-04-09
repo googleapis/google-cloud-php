@@ -74,6 +74,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
@@ -82,6 +83,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $versionNumber = 135927952;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);
@@ -222,6 +224,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
@@ -230,6 +233,7 @@ class ProductsServiceClientTest extends GeneratedTest
         $versionNumber = 135927952;
         $expectedResponse = new Product();
         $expectedResponse->setName($name2);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);
