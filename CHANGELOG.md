@@ -1,5 +1,194 @@
 # Changelog
 
+## 0.326.0
+
+<details><summary>google/cloud-ai-platform 1.57.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add evaluation metrics and autorater configuration to the AI Platform v1 API ([#9074](https://github.com/googleapis/google-cloud-php/issues/9074)) ([63b8cfb](https://github.com/googleapis/google-cloud-php/commit/63b8cfb0444e710df83ead3e816c1c013a517647))
+
+</details>
+
+<details><summary>google/apps-chat 0.18.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Support app authentication with admin-consent scopes for Chat API ListMessages, GetMessage, GetSpaceEvent and ListSpaceEvents ([#9076](https://github.com/googleapis/google-cloud-php/issues/9076)) ([7df87f1](https://github.com/googleapis/google-cloud-php/commit/7df87f1f264b212b482163000f3d86862f639ca9))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.23.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add session based protocol ([#9087](https://github.com/googleapis/google-cloud-php/issues/9087)) ([9a52356](https://github.com/googleapis/google-cloud-php/commit/9a52356e3991c022e5c1d568797b93ba3c2d5da1))
+
+
+### Documentation
+
+* Update various comments ([9a52356](https://github.com/googleapis/google-cloud-php/commit/9a52356e3991c022e5c1d568797b93ba3c2d5da1))
+
+</details>
+
+<details><summary>google/common-protos 4.14.0</summary>
+
+
+
+### Features
+
+* [CommonProtos] update SelectiveGapicGeneration usage doc ([#9070](https://github.com/googleapis/google-cloud-php/issues/9070)) ([93dd13c](https://github.com/googleapis/google-cloud-php/commit/93dd13cbb61a81c813fd03f4eabad87ad29e5218))
+
+
+### Documentation
+
+* Update comments and formatting ([93dd13c](https://github.com/googleapis/google-cloud-php/commit/93dd13cbb61a81c813fd03f4eabad87ad29e5218))
+
+</details>
+
+<details><summary>google/cloud-config 1.8.0</summary>
+
+
+
+### Features
+
+* [Config] adding DeploymentGroups, you can now manage deployment of multiple module root dependencies in a single DAG ([#9088](https://github.com/googleapis/google-cloud-php/issues/9088)) ([6ea26f5](https://github.com/googleapis/google-cloud-php/commit/6ea26f54cd5912d141ea6cd285cd96db1871e7c2))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable full object checksum validation on JSON path ([#8825](https://github.com/googleapis/google-cloud-php/issues/8825)) ([277f985](https://github.com/googleapis/google-cloud-php/commit/277f985d461e91108c1dc0e23e3271427d566021))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.11.0</summary>
+
+
+
+### Features
+
+* [Dlp] added support for detecting key-value pairs in client provided metadata ([#9079](https://github.com/googleapis/google-cloud-php/issues/9079)) ([cb2837c](https://github.com/googleapis/google-cloud-php/commit/cb2837c34c183bf762729ed86391def38a6d23ee))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.7.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added a fields for image and table annotation output ([#9072](https://github.com/googleapis/google-cloud-php/issues/9072)) ([e379546](https://github.com/googleapis/google-cloud-php/commit/e37954649954690e2fd33b9e6b1d4f191fcc8991))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 2.0.0-RC2</summary>
+
+
+
+### Bug Fixes
+
+* **Logging:** Format timestamp and severity for API ([#9078](https://github.com/googleapis/google-cloud-php/issues/9078)) ([650b5e3](https://github.com/googleapis/google-cloud-php/commit/650b5e35530492adb1784d2948da5ef2c7f23d93))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.8.0</summary>
+
+
+
+### Features
+
+* [Memorystore] [Memorystore for Valkey] Add support for Flexible CA feature ([#9075](https://github.com/googleapis/google-cloud-php/issues/9075)) ([ceeb2e2](https://github.com/googleapis/google-cloud-php/commit/ceeb2e2af71c7299aa314a9e84f819e9d9b3b205))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.2</summary>
+
+
+
+### Documentation
+
+* [PubSub] Fix documentation URL AIInference MessageTransform service_account_email field ([#9083](https://github.com/googleapis/google-cloud-php/issues/9083)) ([a917277](https://github.com/googleapis/google-cloud-php/commit/a9172779b7ac881eb8150351629d9b750d4f8d60))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.5.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] a new field `base64_encoded_name` is added to the `Product` message ([#9089](https://github.com/googleapis/google-cloud-php/issues/9089)) ([a58b916](https://github.com/googleapis/google-cloud-php/commit/a58b916e32e87c7abe491b580b302b831961cce1))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.6.1</summary>
+
+
+
+### Bug Fixes
+
+* **spanner:** Client-level read lock mode setting ([#9084](https://github.com/googleapis/google-cloud-php/issues/9084)) ([e21a5b5](https://github.com/googleapis/google-cloud-php/commit/e21a5b5e37967635d91016c38e1815325b293365))
+
+</details>
+
+<details><summary>google/cloud-storage 1.51.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable full object checksum validation on JSON path ([#8825](https://github.com/googleapis/google-cloud-php/issues/8825)) ([277f985](https://github.com/googleapis/google-cloud-php/commit/277f985d461e91108c1dc0e23e3271427d566021))
+
+
+### Bug Fixes
+
+* **Storage:** Add null check for $stream-&gt;getMetadata ([#9071](https://github.com/googleapis/google-cloud-php/issues/9071)) ([1c0051a](https://github.com/googleapis/google-cloud-php/commit/1c0051ab903b9b3a3882d9eb70ea6b2e3cebc8c8))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.8.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Support safety settings for Gemini voices and deprecate `relax_safety_filters` ([#9064](https://github.com/googleapis/google-cloud-php/issues/9064)) ([aafc718](https://github.com/googleapis/google-cloud-php/commit/aafc71895988d9395cc73567fc5f4168194587b6))
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.0</summary>
+
+
+
+### Features
+
+* [Translate] A new field `mime_type` is added to message `.google.cloud.translation.v3.AdaptiveMtTranslateRequest` ([#9080](https://github.com/googleapis/google-cloud-php/issues/9080)) ([15416d7](https://github.com/googleapis/google-cloud-php/commit/15416d776c783dc1e691fb271bdb7667087cc1a9))
+
+</details>
+
 ## 0.325.0
 
 <details><summary>googleads/data-manager 0.4.0</summary>
