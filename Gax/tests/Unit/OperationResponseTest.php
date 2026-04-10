@@ -31,6 +31,13 @@
  */
 namespace Google\ApiCore\Tests\Unit;
 
+use Google\CustomOperation\Client\NewSurfaceCustomOperationClient;
+use Google\CustomOperation\CancelOperationRequest as CustomCancelOperationRequest;
+use Google\CustomOperation\CustomOperation;
+use Google\CustomOperation\CustomOperationClient;
+use Google\CustomOperation\CustomOperationWithErrorAnnotations;
+use Google\CustomOperation\DeleteOperationRequest as CustomDeleteOperationRequest;
+use Google\CustomOperation\GetOperationRequest as CustomGetOperationRequest;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\LongRunning\CancelOperationRequest;
@@ -49,6 +56,16 @@ class OperationResponseTest extends TestCase
 {
     use ProphecyTrait;
     use TestTrait;
+
+    public static function setUpBeforeClass(): void
+    {
+        // add mocks to autoloader
+        $loader = file_exists(__DIR__ . '/../../../vendor/autoload.php')
+            ? require __DIR__ . '/../../../vendor/autoload.php'
+            : require __DIR__ . '/../../vendor/autoload.php';
+
+        $loader->addPsr4('Google\\', __DIR__ . '/testdata/mocks/');
+    }
 
     public static function tearDownAfterClass(): void
     {
@@ -269,13 +286,10 @@ class OperationResponseTest extends TestCase
 
     public function testNewSurfaceCustomOperation()
     {
-        // This mock requires a specific namespace, so it must be defined in a separate file
-        require_once __DIR__ . '/testdata/mocks/CustomOperationClient.php';
-
         $phpunit = $this;
         $operationName = 'test-123';
-        $operationClient = $this->prophesize(Client\NewSurfaceCustomOperationClient::class);
-        $operationClient->getNewSurfaceOperation(Argument::type(Client\GetOperationRequest::class))
+        $operationClient = $this->prophesize(NewSurfaceCustomOperationClient::class);
+        $operationClient->getNewSurfaceOperation(Argument::type(CustomGetOperationRequest::class))
             ->shouldBeCalledOnce()
             ->will(function ($args) use ($phpunit) {
                 list($request) = $args;
@@ -293,7 +307,7 @@ class OperationResponseTest extends TestCase
                     }
                 };
             });
-        $operationClient->cancelNewSurfaceOperation(Argument::type(Client\CancelOperationRequest::class))
+        $operationClient->cancelNewSurfaceOperation(Argument::type(CustomCancelOperationRequest::class))
             ->shouldBeCalledOnce()
             ->will(function ($args) use ($phpunit) {
                 list($request) = $args;
@@ -302,7 +316,7 @@ class OperationResponseTest extends TestCase
                 $phpunit->assertEquals('arg3', $request->arg3);
                 return true;
             });
-        $operationClient->deleteNewSurfaceOperation(Argument::type(Client\DeleteOperationRequest::class))
+        $operationClient->deleteNewSurfaceOperation(Argument::type(CustomDeleteOperationRequest::class))
             ->shouldBeCalledOnce()
             ->will(function ($args) use ($phpunit) {
                 list($request) = $args;
@@ -319,9 +333,9 @@ class OperationResponseTest extends TestCase
                 'setArgumentTwo' => 'arg2',
                 'setArgumentThree' => 'arg3'
             ],
-            'getOperationRequest' => Client\GetOperationRequest::class,
-            'cancelOperationRequest' => Client\CancelOperationRequest::class,
-            'deleteOperationRequest' => Client\DeleteOperationRequest::class,
+            'getOperationRequest' => CustomGetOperationRequest::class,
+            'cancelOperationRequest' => CustomCancelOperationRequest::class,
+            'deleteOperationRequest' => CustomDeleteOperationRequest::class,
         ];
         $operationResponse = new OperationResponse($operationName, $operationClient->reveal(), $options);
 
@@ -345,10 +359,7 @@ class OperationResponseTest extends TestCase
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Request class must support the static build method');
 
-        // This mock requires a specific namespace, so it must be defined in a separate file
-        require_once __DIR__ . '/testdata/mocks/CustomOperationClient.php';
-
-        $operationClient = $this->prophesize(Client\NewSurfaceCustomOperationClient::class);
+        $operationClient = $this->prophesize(NewSurfaceCustomOperationClient::class);
         $options = [
             'getOperationRequest' => \stdClass::class, // a class that does not have a "build" method.
         ];
@@ -520,7 +531,31 @@ class OperationResponseTest extends TestCase
     private function createOperationResponse($options, $reloadCount)
     {
         $opName = 'operations/opname';
-        return new FakeOperationResponse($opName, $this->createOperationClient($reloadCount), $options);
+        return new class($opName, $this->createOperationClient($reloadCount), $options) extends OperationResponse {
+            private $currentTime = 0;
+            private $sleeps;
+
+            public function getSleeps()
+            {
+                return $this->sleeps;
+            }
+
+            public function sleepMillis(int $millis)
+            {
+                $this->currentTime += $millis;
+                $this->sleeps[] = $millis;
+            }
+
+            public function setTimes($times)
+            {
+                $this->times = $times;
+            }
+
+            public function getCurrentTimeMillis()
+            {
+                return $this->currentTime;
+            }
+        };
     }
 
     private function createOperationClient($reloadCount)
@@ -539,51 +574,4 @@ class OperationResponseTest extends TestCase
 
         return $opClient->reveal();
     }
-}
-
-class FakeOperationResponse extends OperationResponse
-{
-    private $currentTime = 0;
-    private $sleeps;
-
-    public function getSleeps()
-    {
-        return $this->sleeps;
-    }
-
-    public function sleepMillis(int $millis)
-    {
-        $this->currentTime += $millis;
-        $this->sleeps[] = $millis;
-    }
-
-    public function setTimes($times)
-    {
-        $this->times = $times;
-    }
-
-    public function getCurrentTimeMillis()
-    {
-        return $this->currentTime;
-    }
-}
-
-interface CustomOperationClient
-{
-    public function getMyOperationPlease($name, $requiredArg1, $requiredArg2);
-    public function cancelMyOperationPlease($name, $requiredArg1, $requiredArg2);
-    public function deleteMyOperationPlease($name, $requiredArg1, $requiredArg2);
-}
-
-interface CustomOperation
-{
-    public function isThisOperationDoneOrWhat();
-    public function getError();
-}
-
-interface CustomOperationWithErrorAnnotations
-{
-    public function isThisOperationDoneOrWhat();
-    public function getTheErrorCode();
-    public function getTheErrorMessage();
 }

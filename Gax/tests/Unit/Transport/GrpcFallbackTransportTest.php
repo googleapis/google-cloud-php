@@ -91,7 +91,7 @@ class GrpcFallbackTransportTest extends TestCase
             ->setName('hello')
             ->setNumber(15);
 
-        $httpHandler = function (RequestInterface $request, array $options = []) use ($expectedResponse, $expectedRequest) {
+        $httpHandler = function (RequestInterface $request) use ($expectedResponse, $expectedRequest) {
             $this->assertEquals($expectedRequest, $request);
 
             return Create::promiseFor(

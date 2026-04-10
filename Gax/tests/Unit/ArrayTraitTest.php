@@ -42,7 +42,16 @@ class ArrayTraitTest extends TestCase
 
     public function setUp(): void
     {
-        $this->implementation = new ArrayTraitStub();
+        $this->implementation = new class() {
+            use ArrayTrait {
+                arrayFilterRemoveNull as public;
+                isAssoc as public;
+                pluck as public;
+                pluckArray as public;
+                subsetArray as public;
+                arrayMergeRecursive as public;
+            }
+        };
     }
 
     public function testPluck()
@@ -180,17 +189,5 @@ class ArrayTraitTest extends TestCase
 
         $res = $this->implementation->arrayMergeRecursive($array1, $array2);
         $this->assertEquals($expected, $res);
-    }
-}
-
-class ArrayTraitStub
-{
-    use ArrayTrait {
-        arrayFilterRemoveNull as public;
-        isAssoc as public;
-        pluck as public;
-        pluckArray as public;
-        subsetArray as public;
-        arrayMergeRecursive as public;
     }
 }

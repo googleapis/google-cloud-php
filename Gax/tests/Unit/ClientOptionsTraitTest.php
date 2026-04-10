@@ -52,34 +52,84 @@ class ClientOptionsTraitTest extends TestCase
     use ProphecyTrait;
     use TestTrait;
 
+    private $clientStub;
+    private $universeDomainClientStub;
+
+    public function setUp(): void
+    {
+        $this->clientStub = new class() {
+            use ClientOptionsTrait {
+                buildClientOptions as public;
+                createCredentialsWrapper as public;
+                determineMtlsEndpoint as public;
+                getGapicVersion as public;
+                shouldUseMtlsEndpoint as public;
+            }
+
+            private const SERVICE_NAME = 'TEST_SERVICE_NAME';
+
+            public function set($name, $val, $static = false)
+            {
+                if (!property_exists($this, $name)) {
+                    throw new \InvalidArgumentException("Property not found: $name");
+                }
+                if ($static) {
+                    $this::$$name = $val;
+                } else {
+                    $this->$name = $val;
+                }
+            }
+
+            public static function getClientDefaults()
+            {
+                return [
+                    'apiEndpoint' => 'test.address.com:443',
+                    'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
+                ];
+            }
+        };
+
+        $this->universeDomainClientStub = new class() {
+            use ClientOptionsTrait {
+                buildClientOptions as public;
+            }
+
+            private const SERVICE_ADDRESS_TEMPLATE = 'stub.UNIVERSE_DOMAIN';
+
+            public static function getClientDefaults()
+            {
+                return [
+                    'apiEndpoint' => 'test.address.com:443',
+                ];
+            }
+        };
+    }
+
     public function tearDown(): void
     {
         // Reset the static gapicVersion field between tests
-        $client = new StubClientOptionsClient();
-        $client->set('gapicVersionFromFile', null, true);
+        $this->clientStub->set('gapicVersionFromFile', null, true);
     }
 
     public function testGetGapicVersionWithVersionFile()
     {
         require_once __DIR__ . '/testdata/mocks/src/GapicClientStub.php';
         $version = '1.2.3-dev';
-        $client = new \GapicClientStub();
+        $client = new GapicClientStub();
         $this->assertEquals($version, $client::getGapicVersion([]));
     }
 
     public function testGetGapicVersionWithNoAvailableVersion()
     {
-        $client = new StubClientOptionsClient();
-        $this->assertSame('', $client::getGapicVersion([]));
+        $this->assertSame('', $this->clientStub::getGapicVersion([]));
     }
 
     public function testGetGapicVersionWithLibVersion()
     {
         $version = '1.2.3-dev';
-        $client = new StubClientOptionsClient();
-        $client->set('gapicVersionFromFile', $version, true);
+        $this->clientStub->set('gapicVersionFromFile', $version, true);
         $options = ['libVersion' => $version];
-        $this->assertEquals($version, $client::getGapicVersion(
+        $this->assertEquals($version, $this->clientStub::getGapicVersion(
             $options
         ));
     }
@@ -89,8 +139,7 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testCreateCredentialsWrapper($auth, $authConfig, $expectedCredentialsWrapper)
     {
-        $client = new StubClientOptionsClient();
-        $actualCredentialsWrapper = $client->createCredentialsWrapper(
+        $actualCredentialsWrapper = $this->clientStub->createCredentialsWrapper(
             $auth,
             $authConfig,
             GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
@@ -124,8 +173,7 @@ class ClientOptionsTraitTest extends TestCase
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . $keyFilePath);
 
         $expectedCredentialsWrapper = CredentialsWrapper::build();
-        $client = new StubClientOptionsClient();
-        $actualCredentialsWrapper = $client->createCredentialsWrapper(
+        $actualCredentialsWrapper = $this->clientStub->createCredentialsWrapper(
             null,
             [],
             GetUniverseDomainInterface::DEFAULT_UNIVERSE_DOMAIN
@@ -140,11 +188,10 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testCreateCredentialsWrapperValidationException($auth, $authConfig)
     {
-        $client = new StubClientOptionsClient();
 
         $this->expectException(ValidationException::class);
 
-        $client->createCredentialsWrapper(
+        $this->clientStub->createCredentialsWrapper(
             $auth,
             $authConfig,
             ''
@@ -164,11 +211,10 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testCreateCredentialsWrapperInvalidArgumentException($auth, $authConfig)
     {
-        $client = new StubClientOptionsClient();
 
         $this->expectException(InvalidArgumentException::class);
 
-        $client->createCredentialsWrapper(
+        $this->clientStub->createCredentialsWrapper(
             $auth,
             $authConfig,
             ''
@@ -190,8 +236,7 @@ class ClientOptionsTraitTest extends TestCase
         if (!extension_loaded('sysvshm')) {
             $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
         }
-        $client = new StubClientOptionsClient();
-        $updatedOptions = $client->buildClientOptions($options);
+        $updatedOptions = $this->clientStub->buildClientOptions($options);
         $this->assertEquals($expectedUpdatedOptions, $updatedOptions);
     }
 
@@ -274,8 +319,22 @@ class ClientOptionsTraitTest extends TestCase
         if (!extension_loaded('sysvshm')) {
             $this->markTestSkipped('The sysvshm extension must be installed to execute this test.');
         }
-        $client = new RestOnlyClient();
-        $updatedOptions = $client->buildClientOptions($options);
+        $restOnlyClient = new class() {
+            use ClientOptionsTrait {
+                buildClientOptions as public;
+            }
+
+            private static function supportedTransports()
+            {
+                return ['rest', 'fake-transport'];
+            }
+
+            private static function defaultTransport()
+            {
+                return 'rest';
+            }
+        };
+        $updatedOptions = $restOnlyClient->buildClientOptions($options);
         $this->assertEquals($expectedUpdatedOptions, $updatedOptions);
     }
 
@@ -335,24 +394,44 @@ class ClientOptionsTraitTest extends TestCase
 
     public function testDefaultScopes()
     {
-        $client = new DefaultScopeAndAudienceClientOptionsClient();
+        $defaultScopeClient = new class() {
+            use ClientOptionsTrait {
+                buildClientOptions as public;
+            }
+
+            const SERVICE_ADDRESS = 'service-address';
+
+            public static $serviceScopes = [
+                'default-scope-1',
+                'default-scope-2',
+            ];
+
+            public static function getClientDefaults()
+            {
+                return [
+                    'credentialsConfig' => [
+                        'defaultScopes' => self::$serviceScopes,
+                    ],
+                ];
+            }
+        };
 
         // verify scopes are not set by default
-        $defaultOptions = $client->buildClientOptions([]);
+        $defaultOptions = $defaultScopeClient->buildClientOptions([]);
         $this->assertArrayNotHasKey('scopes', $defaultOptions['credentialsConfig']);
 
         // verify scopes are set when a custom api endpoint is used
-        $defaultOptions = $client->buildClientOptions([
+        $defaultOptions = $defaultScopeClient->buildClientOptions([
             'apiEndpoint' => 'www.someotherendpoint.com',
         ]);
         $this->assertArrayHasKey('scopes', $defaultOptions['credentialsConfig']);
         $this->assertEquals(
-            $client::$serviceScopes,
+            $defaultScopeClient::$serviceScopes,
             $defaultOptions['credentialsConfig']['scopes']
         );
 
         // verify user-defined scopes override default scopes
-        $defaultOptions = $client->buildClientOptions([
+        $defaultOptions = $defaultScopeClient->buildClientOptions([
             'credentialsConfig' => ['scopes' => ['user-scope-1']],
             'apiEndpoint' => 'www.someotherendpoint.com',
         ]);
@@ -363,8 +442,8 @@ class ClientOptionsTraitTest extends TestCase
         );
 
         // verify empty default scopes has no effect
-        $client::$serviceScopes = null;
-        $defaultOptions = $client->buildClientOptions([
+        $defaultScopeClient::$serviceScopes = null;
+        $defaultOptions = $defaultScopeClient->buildClientOptions([
             'apiEndpoint' => 'www.someotherendpoint.com',
         ]);
         $this->assertArrayNotHasKey('scopes', $defaultOptions['credentialsConfig']);
@@ -373,11 +452,9 @@ class ClientOptionsTraitTest extends TestCase
     /** @dataProvider provideDetermineMtlsEndpoint */
     public function testDetermineMtlsEndpoint($apiEndpoint, $expected)
     {
-        $client = new StubClientOptionsClient();
-
         $this->assertEquals(
             $expected,
-            $client::determineMtlsEndpoint($apiEndpoint)
+            $this->clientStub::determineMtlsEndpoint($apiEndpoint)
         );
     }
 
@@ -403,12 +480,11 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testShouldUseMtlsEndpoint($envVarValue, $options, $expected)
     {
-        $client = new StubClientOptionsClient();
 
         putenv('GOOGLE_API_USE_MTLS_ENDPOINT=' . $envVarValue);
         $this->assertEquals(
             $expected,
-            $client->shouldUseMtlsEndpoint($options)
+            $this->clientStub->shouldUseMtlsEndpoint($options)
         );
     }
 
@@ -435,8 +511,7 @@ class ClientOptionsTraitTest extends TestCase
             putenv($envVar);
         }
 
-        $client = new StubClientOptionsClient();
-        $options = $client->buildClientOptions($options);
+        $options = $this->clientStub->buildClientOptions($options);
 
         // Only check the keys we care about
         $options = array_intersect_key(
@@ -500,8 +575,7 @@ class ClientOptionsTraitTest extends TestCase
         putenv('GOOGLE_API_USE_MTLS_ENDPOINT=auto');
         putenv(CredentialsLoader::MTLS_CERT_ENV_VAR . '=true');
 
-        $client = new StubClientOptionsClient();
-        $options = $client->buildClientOptions([]);
+        $options = $this->clientStub->buildClientOptions([]);
 
         $this->assertSame('test.mtls.address.com:443', $options['apiEndpoint']);
         $this->assertTrue(is_callable($options['clientCertSource']));
@@ -517,8 +591,7 @@ class ClientOptionsTraitTest extends TestCase
         if ($envVar) {
             putenv($envVar);
         }
-        $client = new UniverseDomainStubClientOptionsClient();
-        $updatedOptions = $client->buildClientOptions($options);
+        $updatedOptions = $this->universeDomainClientStub->buildClientOptions($options);
 
         $this->assertEquals($expectedEndpoint, $updatedOptions['apiEndpoint']);
     }
@@ -565,8 +638,7 @@ class ClientOptionsTraitTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('mTLS is not supported outside the "googleapis.com" universe');
 
-        $client = new UniverseDomainStubClientOptionsClient();
-        $client->buildClientOptions([
+        $this->universeDomainClientStub->buildClientOptions([
             'universeDomain' => 'foo.com',
             'clientCertSource' => function () {
                 $this->fail('this should not be called');
@@ -576,18 +648,16 @@ class ClientOptionsTraitTest extends TestCase
 
     public function testBuildClientOptionsTwice()
     {
-        $client = new StubClientOptionsClient();
-        $options = $client->buildClientOptions([]);
-        $options2 = $client->buildClientOptions($options);
+        $options = $this->clientStub->buildClientOptions([]);
+        $options2 = $this->clientStub->buildClientOptions($options);
         $this->assertEquals($options, $options2);
     }
 
     public function testBuildClientOptionsWithClientOptions()
     {
-        $client = new StubClientOptionsClient();
         $clientOptions = new ClientOptions([]);
         $clientOptions->setApiEndpoint('TestEndpoint.com');
-        $builtOptions = $client->buildClientOptions($clientOptions);
+        $builtOptions = $this->clientStub->buildClientOptions($clientOptions);
 
         $this->assertEquals($clientOptions['apiEndpoint'], $builtOptions['apiEndpoint']);
     }
@@ -599,11 +669,10 @@ class ClientOptionsTraitTest extends TestCase
     {
         putenv('GOOGLE_SDK_PHP_LOGGING=true');
 
-        $client = new StubClientOptionsClient();
         $optionsArray = [
             'logger' => false,
         ];
-        $options = $client->buildClientOptions($optionsArray);
+        $options = $this->clientStub->buildClientOptions($optionsArray);
 
         $this->assertFalse($options['transportConfig']['rest']['logger']);
         $this->assertFalse($options['transportConfig']['grpc']['logger']);
@@ -617,9 +686,8 @@ class ClientOptionsTraitTest extends TestCase
     {
         putenv('GOOGLE_SDK_PHP_LOGGING=true');
 
-        $client = new StubClientOptionsClient();
         $optionsArray = [];
-        $options = $client->buildClientOptions($optionsArray);
+        $options = $this->clientStub->buildClientOptions($optionsArray);
 
         $this->assertInstanceOf(StdOutLogger::class, $options['transportConfig']['rest']['logger']);
         $this->assertInstanceOf(StdOutLogger::class, $options['transportConfig']['grpc']['logger']);
@@ -632,8 +700,7 @@ class ClientOptionsTraitTest extends TestCase
     {
         putenv('GOOGLE_SDK_PHP_LOGGING=true');
 
-        $client = new StubClientOptionsClient();
-        $options = $client->buildClientOptions([
+        $options = $this->clientStub->buildClientOptions([
             'apiEndpoint' => 'test'
         ]);
         $parsedOutput = json_decode($this->getActualOutputForAssertion(), true);
@@ -646,9 +713,8 @@ class ClientOptionsTraitTest extends TestCase
 
     public function testLoggerIsNullIfFlagIsEmptyAndNoEnvVar()
     {
-        $client = new StubClientOptionsClient();
         $optionsArray = [];
-        $options = $client->buildClientOptions($optionsArray);
+        $options = $this->clientStub->buildClientOptions($optionsArray);
 
         $this->assertNull($options['transportConfig']['rest']['logger']);
         $this->assertNull($options['transportConfig']['grpc']['logger']);
@@ -656,12 +722,11 @@ class ClientOptionsTraitTest extends TestCase
 
     public function testLoggerIsSetWhenALoggerIsPassed()
     {
-        $client = new StubClientOptionsClient();
         $logger = new StdOutLogger();
         $optionsArray = [
             'logger' => $logger
         ];
-        $options = $client->buildClientOptions($optionsArray);
+        $options = $this->clientStub->buildClientOptions($optionsArray);
 
         $this->assertEquals($options['transportConfig']['rest']['logger'], $logger);
         $this->assertEquals($options['transportConfig']['grpc']['logger'], $logger);
@@ -674,99 +739,9 @@ class ClientOptionsTraitTest extends TestCase
             'The "logger" option in the options array should be PSR-3 LoggerInterface compatible'
         );
 
-        $client = new StubClientOptionsClient();
         $optionsArray = [
             'logger' => 'nonValidOption'
         ];
-        $client->buildClientOptions($optionsArray);
-    }
-}
-
-class StubClientOptionsClient
-{
-    use ClientOptionsTrait {
-        buildClientOptions as public;
-        createCredentialsWrapper as public;
-        determineMtlsEndpoint as public;
-        getGapicVersion as public;
-        shouldUseMtlsEndpoint as public;
-    }
-
-    private const SERVICE_NAME = 'TEST_SERVICE_NAME';
-
-    public function set($name, $val, $static = false)
-    {
-        if (!property_exists($this, $name)) {
-            throw new \InvalidArgumentException("Property not found: $name");
-        }
-        if ($static) {
-            $this::$$name = $val;
-        } else {
-            $this->$name = $val;
-        }
-    }
-
-    public static function getClientDefaults()
-    {
-        return [
-            'apiEndpoint' => 'test.address.com:443',
-            'gcpApiConfigPath' => __DIR__ . '/testdata/resources/test_service_grpc_config.json',
-        ];
-    }
-}
-
-class RestOnlyClient
-{
-    use ClientOptionsTrait {
-        buildClientOptions as public;
-    }
-
-    private static function supportedTransports()
-    {
-        return ['rest', 'fake-transport'];
-    }
-
-    private static function defaultTransport()
-    {
-        return 'rest';
-    }
-}
-
-class DefaultScopeAndAudienceClientOptionsClient
-{
-    use ClientOptionsTrait {
-        buildClientOptions as public;
-    }
-
-    const SERVICE_ADDRESS = 'service-address';
-
-    public static $serviceScopes = [
-        'default-scope-1',
-        'default-scope-2',
-    ];
-
-    public static function getClientDefaults()
-    {
-        return [
-            'credentialsConfig' => [
-                'defaultScopes' => self::$serviceScopes,
-            ],
-        ];
-    }
-}
-
-class UniverseDomainStubClientOptionsClient
-{
-    use ClientOptionsTrait {
-        buildClientOptions as public;
-    }
-
-    private const SERVICE_ADDRESS_TEMPLATE = 'stub.UNIVERSE_DOMAIN';
-
-    public static function getClientDefaults()
-    {
-        return [
-            'apiEndpoint' => 'test.address.com:443',
-        ];
+        $this->clientStub->buildClientOptions($optionsArray);
     }
 }

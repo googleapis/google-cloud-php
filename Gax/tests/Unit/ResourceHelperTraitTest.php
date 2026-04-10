@@ -38,29 +38,61 @@ use PHPUnit\Framework\TestCase;
 
 class ResourceHelperTraitTest extends TestCase
 {
+    private $stub;
+
+    public function setUp(): void
+    {
+        $this->stub = new class() {
+            use ResourceHelperTrait;
+
+            const CONFIG_PATH = __DIR__ . '/testdata/resources/test_service_descriptor_config.php';
+            const SERVICE_NAME = 'test.interface.v1.api';
+
+            private static function getClientDefaults()
+            {
+                return ['descriptorsConfigPath' => self::CONFIG_PATH];
+            }
+
+            public static function parseName($formattedName, $template = null)
+            {
+                return self::parseFormattedName($formattedName, $template);
+            }
+
+            public static function testRegisterPathTemplates()
+            {
+                self::registerPathTemplates();
+                return self::$templateMap;
+            }
+
+            public static function testGetPathTemplate($key)
+            {
+                return self::getPathTemplate($key);
+            }
+        };
+    }
     public function testRegisterPathTemplates()
     {
-        $got = ResourceHelperTraitStub::testRegisterPathTemplates();
+        $got = $this->stub::testRegisterPathTemplates();
         $this->assertEquals(count($got), 4);
         $this->assertTrue($got['project'] instanceof PathTemplate);
     }
 
     public function testGetPathTemplate()
     {
-        $got = ResourceHelperTraitStub::testGetPathTemplate('project');
+        $got = $this->stub::testGetPathTemplate('project');
         $this->assertNotNull($got);
         $this->assertTrue($got instanceof PathTemplate);
     }
 
     public function testGetPathTemplateNull()
     {
-        $got = ResourceHelperTraitStub::testGetPathTemplate('does_not_exist');
+        $got = $this->stub::testGetPathTemplate('does_not_exist');
         $this->assertNull($got);
     }
 
     public function testParseName()
     {
-        $got = ResourceHelperTraitStub::parseName('projects/abc123', 'project');
+        $got = $this->stub::parseName('projects/abc123', 'project');
         $this->assertEquals(count($got), 1);
         $this->assertEquals($got['project'], 'abc123');
     }
@@ -70,7 +102,7 @@ class ResourceHelperTraitTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Template name does_not_exist does not exist');
 
-        ResourceHelperTraitStub::parseName('projects/abc123', 'does_not_exist');
+        $this->stub::parseName('projects/abc123', 'does_not_exist');
     }
 
     public function testParseNameNoMatchingPattern()
@@ -78,35 +110,6 @@ class ResourceHelperTraitTest extends TestCase
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('Input did not match any known format. Input: no/matching/pattern');
 
-        ResourceHelperTraitStub::parseName('no/matching/pattern');
-    }
-}
-
-class ResourceHelperTraitStub
-{
-    use ResourceHelperTrait;
-
-    const CONFIG_PATH = __DIR__ . '/testdata/resources/test_service_descriptor_config.php';
-    const SERVICE_NAME = 'test.interface.v1.api';
-
-    private static function getClientDefaults()
-    {
-        return ['descriptorsConfigPath' => self::CONFIG_PATH];
-    }
-
-    public static function parseName($formattedName, $template = null)
-    {
-        return self::parseFormattedName($formattedName, $template);
-    }
-
-    public static function testRegisterPathTemplates()
-    {
-        self::registerPathTemplates();
-        return self::$templateMap;
-    }
-
-    public static function testGetPathTemplate($key)
-    {
-        return self::getPathTemplate($key);
+        $this->stub::parseName('no/matching/pattern');
     }
 }

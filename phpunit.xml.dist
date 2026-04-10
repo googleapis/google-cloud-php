@@ -24,6 +24,7 @@
     <testsuite name="Unit Test Suite">
       <directory>*/tests/Unit</directory>
       <exclude>dev/tests/Unit</exclude>
+      <exclude>Core</exclude>
     </testsuite>
   </testsuites>
   <php>

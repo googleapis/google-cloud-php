@@ -194,7 +194,9 @@ class FixedSizeCollectionTest extends TestCase
             ->willReturn(2);
 
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('collectionSize must be greater than or equal to the number of elements in initialPage');
+        $this->expectExceptionMessage(
+            'collectionSize must be greater than or equal to the number of elements in initialPage'
+        );
 
         new FixedSizeCollection($page->reveal(), $collectionSize);
     }

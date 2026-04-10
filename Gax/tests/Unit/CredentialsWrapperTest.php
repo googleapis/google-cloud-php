@@ -95,31 +95,55 @@ class CredentialsWrapperTest extends TestCase
         $testData = [
             [
                 [],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $defaultAuthCache)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    httpHandler: $authHttpHandler,
+                    cache: $defaultAuthCache
+                )),
             ],
             [
                 ['scopes' => $scopes],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $authHttpHandler, null, $defaultAuthCache)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    scope: $scopes,
+                    httpHandler: $authHttpHandler,
+                    cache: $defaultAuthCache
+                )),
             ],
             [
                 ['scopes' => $scopes, 'authHttpHandler' => $asyncAuthHttpHandler],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials($scopes, $asyncAuthHttpHandler, null, $defaultAuthCache), $asyncAuthHttpHandler),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    $scopes,
+                    $asyncAuthHttpHandler,
+                    cache: $defaultAuthCache
+                ), $asyncAuthHttpHandler),
             ],
             [
                 ['enableCaching' => false],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, null)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    httpHandler: $authHttpHandler
+                )),
             ],
             [
                 ['authCacheOptions' => $authCacheOptions],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, $authCacheOptions, $defaultAuthCache)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    httpHandler: $authHttpHandler,
+                    cacheConfig: $authCacheOptions,
+                    cache: $defaultAuthCache
+                )),
             ],
             [
                 ['authCache' => $authCache],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $authCache)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    httpHandler: $authHttpHandler,
+                    cache: $authCache
+                )),
             ],
             [
                 ['quotaProject' => $quotaProject],
-                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(null, $authHttpHandler, null, $defaultAuthCache, $quotaProject)),
+                new CredentialsWrapper(ApplicationDefaultCredentials::getCredentials(
+                    httpHandler: $authHttpHandler,
+                    cache: $defaultAuthCache,
+                    quotaProject: $quotaProject
+                )),
             ],
         ];
 
@@ -194,8 +218,11 @@ class CredentialsWrapperTest extends TestCase
     /**
      * @dataProvider provideCheckUniverseDomainFails
      */
-    public function testCheckUniverseDomainFails(?string $universeDomain, ?string $credentialsUniverse, ?string $message = null)
-    {
+    public function testCheckUniverseDomainFails(
+        ?string $universeDomain,
+        ?string $credentialsUniverse,
+        ?string $message = null
+    ) {
         $this->expectException(ValidationException::class);
         $this->expectExceptionMessage($message ?: sprintf(
             'The configured universe domain (%s) does not match the credential universe domain (%s)',
@@ -260,7 +287,7 @@ class CredentialsWrapperTest extends TestCase
             ['googleapis.com', ''],
             ['', 'googleapis.com', 'The universe domain cannot be empty'],
             [null, 'foo.com'], // null in CredentialsWrapper will default to "googleapis.com"
-            ['foo.com', null], // Credentials not implementing GetUniverseDomainInterface will default to "googleapis.com"
+            ['foo.com', null], // Credentials not implementing GetUniverseDomainInterface will default to googleapis.com
         ];
     }
 
@@ -411,8 +438,7 @@ class CredentialsWrapperTest extends TestCase
             ]);
         $expiredInvalidFetcher->fetchAuthToken(Argument::any())
             ->willReturn(['not-a' => 'valid-token']);
-        $unexpiredFetcher = $this->prophesize();
-        $unexpiredFetcher->willImplement(FetchAuthTokenInterface::class);
+        $unexpiredFetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $unexpiredFetcher->getLastReceivedToken()
             ->willReturn([
                 'access_token' => 123,
@@ -432,8 +458,7 @@ class CredentialsWrapperTest extends TestCase
                 'access_token' => null,
             ]);
 
-        $customFetcher = $this->prophesize();
-        $customFetcher->willImplement(FetchAuthTokenInterface::class);
+        $customFetcher = $this->prophesize(FetchAuthTokenInterface::class);
         $customFetcher->getLastReceivedToken()->willReturn(null);
         $customFetcher->fetchAuthToken(Argument::any())
             ->willReturn([

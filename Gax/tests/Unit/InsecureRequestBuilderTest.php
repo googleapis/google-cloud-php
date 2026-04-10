@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+namespace Google\ApiCore\Tests\Unit;
+
 use Google\ApiCore\InsecureRequestBuilder;
 use Google\ApiCore\Testing\MockRequestBody;
 use PHPUnit\Framework\TestCase;
