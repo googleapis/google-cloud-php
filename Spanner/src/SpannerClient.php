@@ -1096,7 +1096,7 @@ class SpannerClient
                 $this->meter,
                 $metricsClientId,
                 $this->projectId,
-                SpannerClient::VERSION
+                $this->clientVersion()
             );
         };
 
@@ -1106,11 +1106,21 @@ class SpannerClient
                 $this->meter,
                 $metricsClientId,
                 $this->projectId,
-                SpannerClient::VERSION
+                $this->clientVersion()
             );
         };
 
         $this->spannerClient->prependMiddleware($attemptMetricsMiddleware);
         $this->spannerClient->addMiddleware($operationMetricsMiddleware);
+    }
+
+    /**
+     * Returns the current client version.
+     *
+     * @return string
+     */
+    private function clientVersion(): string
+    {
+        return trim(file_get_contents(__DIR__ . '/../VERSION'));
     }
 }
