@@ -15,6 +15,11 @@
                                 "createDeployment"
                             ]
                         },
+                        "CreateDeploymentGroup": {
+                            "methods": [
+                                "createDeploymentGroup"
+                            ]
+                        },
                         "CreatePreview": {
                             "methods": [
                                 "createPreview"
@@ -25,6 +30,11 @@
                                 "deleteDeployment"
                             ]
                         },
+                        "DeleteDeploymentGroup": {
+                            "methods": [
+                                "deleteDeploymentGroup"
+                            ]
+                        },
                         "DeletePreview": {
                             "methods": [
                                 "deletePreview"
@@ -33,6 +43,11 @@
                         "DeleteStatefile": {
                             "methods": [
                                 "deleteStatefile"
+                            ]
+                        },
+                        "DeprovisionDeploymentGroup": {
+                            "methods": [
+                                "deprovisionDeploymentGroup"
                             ]
                         },
                         "ExportDeploymentStatefile": {
@@ -63,6 +78,16 @@
                         "GetDeployment": {
                             "methods": [
                                 "getDeployment"
+                            ]
+                        },
+                        "GetDeploymentGroup": {
+                            "methods": [
+                                "getDeploymentGroup"
+                            ]
+                        },
+                        "GetDeploymentGroupRevision": {
+                            "methods": [
+                                "getDeploymentGroupRevision"
                             ]
                         },
                         "GetPreview": {
@@ -98,6 +123,16 @@
                         "ImportStatefile": {
                             "methods": [
                                 "importStatefile"
+                            ]
+                        },
+                        "ListDeploymentGroupRevisions": {
+                            "methods": [
+                                "listDeploymentGroupRevisions"
+                            ]
+                        },
+                        "ListDeploymentGroups": {
+                            "methods": [
+                                "listDeploymentGroups"
                             ]
                         },
                         "ListDeployments": {
@@ -140,6 +175,11 @@
                                 "lockDeployment"
                             ]
                         },
+                        "ProvisionDeploymentGroup": {
+                            "methods": [
+                                "provisionDeploymentGroup"
+                            ]
+                        },
                         "UnlockDeployment": {
                             "methods": [
                                 "unlockDeployment"
@@ -153,6 +193,11 @@
                         "UpdateDeployment": {
                             "methods": [
                                 "updateDeployment"
+                            ]
+                        },
+                        "UpdateDeploymentGroup": {
+                            "methods": [
+                                "updateDeploymentGroup"
                             ]
                         },
                         "GetLocation": {

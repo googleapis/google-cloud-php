@@ -135,10 +135,12 @@ class RegionalInventoryServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $account = 1177318867;
         $region = 'region-934795532';
         $expectedResponse = new RegionalInventory();
         $expectedResponse->setName($name);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setAccount($account);
         $expectedResponse->setRegion($region);
         $transport->addResponse($expectedResponse);

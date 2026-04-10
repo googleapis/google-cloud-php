@@ -37,12 +37,26 @@ class ResourceCategory
      * Generated from protobuf enum <code>DATABASE = 3;</code>
      */
     const DATABASE = 3;
+    /**
+     * A resource that is a Dataset.
+     *
+     * Generated from protobuf enum <code>DATASET = 4;</code>
+     */
+    const DATASET = 4;
+    /**
+     * A resource that is a Reservation.
+     *
+     * Generated from protobuf enum <code>RESERVATION = 5;</code>
+     */
+    const RESERVATION = 5;
 
     private static $valueToName = [
         self::RESOURCE_CATEGORY_UNSPECIFIED => 'RESOURCE_CATEGORY_UNSPECIFIED',
         self::INSTANCE => 'INSTANCE',
         self::CLUSTER => 'CLUSTER',
         self::DATABASE => 'DATABASE',
+        self::DATASET => 'DATASET',
+        self::RESERVATION => 'RESERVATION',
     ];
 
     public static function name($value)

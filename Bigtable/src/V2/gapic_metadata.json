@@ -25,6 +25,11 @@
                                 "generateInitialChangeStreamPartitions"
                             ]
                         },
+                        "GetClientConfiguration": {
+                            "methods": [
+                                "getClientConfiguration"
+                            ]
+                        },
                         "MutateRow": {
                             "methods": [
                                 "mutateRow"
@@ -33,6 +38,21 @@
                         "MutateRows": {
                             "methods": [
                                 "mutateRows"
+                            ]
+                        },
+                        "OpenAuthorizedView": {
+                            "methods": [
+                                "openAuthorizedView"
+                            ]
+                        },
+                        "OpenMaterializedView": {
+                            "methods": [
+                                "openMaterializedView"
+                            ]
+                        },
+                        "OpenTable": {
+                            "methods": [
+                                "openTable"
                             ]
                         },
                         "PingAndWarm": {

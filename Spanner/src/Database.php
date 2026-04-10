@@ -55,6 +55,7 @@ use Google\Cloud\Spanner\V1\Mutation;
 use Google\Cloud\Spanner\V1\Mutation\Delete;
 use Google\Cloud\Spanner\V1\Mutation\Write;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use Google\LongRunning\ListOperationsRequest;
 use Google\LongRunning\Operation as OperationProto;
@@ -128,6 +129,7 @@ class Database
     private CacheItemPoolInterface $cacheItemPool;
     private array $info;
     private int $isolationLevel;
+    private int $readLockMode;
     private TransactionOptionsBuilder $transactionOptionsBuilder;
 
     /**
@@ -175,6 +177,7 @@ class Database
         $this->returnInt64AsObject = $options['returnInt64AsObject'] ?? false;
         $this->info = $options['database'] ?? [];
         $this->isolationLevel = $options['isolationLevel'] ?? IsolationLevel::ISOLATION_LEVEL_UNSPECIFIED;
+        $this->readLockMode = $options['readLockMode'] ?? ReadLockMode::READ_LOCK_MODE_UNSPECIFIED;
         $this->operation = new Operation(
             $this->spannerClient,
             $serializer,
@@ -807,7 +810,8 @@ class Database
         $txnOptions = $options['transactionOptions'] ?? [];
         $options['transactionOptions'] = $this->transactionOptionsBuilder
             ->configureReadWriteTransactionOptions($txnOptions + [
-                'isolationLevel' => $this->isolationLevel
+                'isolationLevel' => $this->isolationLevel,
+                'readLockMode' => $this->readLockMode
             ]);
 
         return $this->operation->transaction($this->session, $options);
@@ -915,7 +919,8 @@ class Database
         $txnOptions = $options['transactionOptions'] ?? [];
         $options['transactionOptions'] = $this->transactionOptionsBuilder
             ->configureReadWriteTransactionOptions($txnOptions + [
-                'isolationLevel' => $this->isolationLevel
+                'isolationLevel' => $this->isolationLevel,
+                'readLockMode' => $this->readLockMode
             ]);
 
         $attempt = 0;

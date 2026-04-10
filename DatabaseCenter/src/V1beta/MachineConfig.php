@@ -34,6 +34,20 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional double vcpu_count = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $vcpu_count = null;
+    /**
+     * Optional. Baseline slots for BigQuery Reservations. Baseline slots are in
+     * increments of 50.
+     *
+     * Generated from protobuf field <code>optional int64 baseline_slot_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $baseline_slot_count = null;
+    /**
+     * Optional. Max slots for BigQuery Reservations. Max slots are in increments
+     * of 50.
+     *
+     * Generated from protobuf field <code>optional int64 max_reservation_slot_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $max_reservation_slot_count = null;
 
     /**
      * Constructor.
@@ -47,6 +61,12 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The number of Shards (if applicable).
      *     @type float $vcpu_count
      *           Optional. The number of vCPUs (if applicable).
+     *     @type int|string $baseline_slot_count
+     *           Optional. Baseline slots for BigQuery Reservations. Baseline slots are in
+     *           increments of 50.
+     *     @type int|string $max_reservation_slot_count
+     *           Optional. Max slots for BigQuery Reservations. Max slots are in increments
+     *           of 50.
      * }
      */
     public function __construct($data = NULL) {
@@ -148,6 +168,82 @@ class MachineConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkDouble($var);
         $this->vcpu_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Baseline slots for BigQuery Reservations. Baseline slots are in
+     * increments of 50.
+     *
+     * Generated from protobuf field <code>optional int64 baseline_slot_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getBaselineSlotCount()
+    {
+        return isset($this->baseline_slot_count) ? $this->baseline_slot_count : 0;
+    }
+
+    public function hasBaselineSlotCount()
+    {
+        return isset($this->baseline_slot_count);
+    }
+
+    public function clearBaselineSlotCount()
+    {
+        unset($this->baseline_slot_count);
+    }
+
+    /**
+     * Optional. Baseline slots for BigQuery Reservations. Baseline slots are in
+     * increments of 50.
+     *
+     * Generated from protobuf field <code>optional int64 baseline_slot_count = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setBaselineSlotCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->baseline_slot_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Max slots for BigQuery Reservations. Max slots are in increments
+     * of 50.
+     *
+     * Generated from protobuf field <code>optional int64 max_reservation_slot_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int|string
+     */
+    public function getMaxReservationSlotCount()
+    {
+        return isset($this->max_reservation_slot_count) ? $this->max_reservation_slot_count : 0;
+    }
+
+    public function hasMaxReservationSlotCount()
+    {
+        return isset($this->max_reservation_slot_count);
+    }
+
+    public function clearMaxReservationSlotCount()
+    {
+        unset($this->max_reservation_slot_count);
+    }
+
+    /**
+     * Optional. Max slots for BigQuery Reservations. Max slots are in increments
+     * of 50.
+     *
+     * Generated from protobuf field <code>optional int64 max_reservation_slot_count = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setMaxReservationSlotCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->max_reservation_slot_count = $var;
 
         return $this;
     }

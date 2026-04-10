@@ -14,6 +14,9 @@ Update your `google/cloud-logging` dependency to `^2.0`:
 
 ## Changes
 
+### Version constant removed
+Removed `LoggingClient::VERSION`, use the `VERSION` file in the library root instead.
+
 ### Client Options changes
 
 The following client options are removed/replaced with other options present in
@@ -52,5 +55,3 @@ This is a major change, but one that we hope won't break any users. When the
 The Rest and Grpc connection classes (along with the `ConnectionInterface`) have been
 removed in favor of using the GAPIC generated clients directly. See `src/Connection/Gapic.php`
 for an example.
-
-
