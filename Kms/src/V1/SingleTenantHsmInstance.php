@@ -80,6 +80,15 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp disable_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $disable_time = null;
+    /**
+     * Optional. Immutable. Indicates whether key portability is enabled for the
+     * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+     * This can only be set at creation time. Key portability features are
+     * disabled by default and not yet available in GA.
+     *
+     * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    protected $key_portability_enabled = false;
 
     /**
      * Constructor.
@@ -118,6 +127,11 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      *           before this time otherwise the
      *           [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] will
      *           become disabled.
+     *     @type bool $key_portability_enabled
+     *           Optional. Immutable. Indicates whether key portability is enabled for the
+     *           [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+     *           This can only be set at creation time. Key portability features are
+     *           disabled by default and not yet available in GA.
      * }
      */
     public function __construct($data = NULL) {
@@ -387,6 +401,38 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->disable_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Indicates whether key portability is enabled for the
+     * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+     * This can only be set at creation time. Key portability features are
+     * disabled by default and not yet available in GA.
+     *
+     * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return bool
+     */
+    public function getKeyPortabilityEnabled()
+    {
+        return $this->key_portability_enabled;
+    }
+
+    /**
+     * Optional. Immutable. Indicates whether key portability is enabled for the
+     * [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+     * This can only be set at creation time. Key portability features are
+     * disabled by default and not yet available in GA.
+     *
+     * Generated from protobuf field <code>bool key_portability_enabled = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setKeyPortabilityEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->key_portability_enabled = $var;
 
         return $this;
     }
