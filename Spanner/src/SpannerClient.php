@@ -39,11 +39,11 @@ use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\Batch\BatchClient;
-use Google\Cloud\Spanner\Middleware\BuiltInMetricsAttemptMiddleware;
-use Google\Cloud\Spanner\Middleware\BuiltInMetricsOperationMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsAttemptMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsOperationMiddleware;
 use Google\Cloud\Spanner\Middleware\RequestIdHeaderMiddleware;
 use Google\Cloud\Spanner\Middleware\SpannerMiddleware;
-use Google\Cloud\Spanner\OpenTelemetry\BuiltInMetricsExporter;
+use Google\Cloud\Spanner\OpenTelemetry\MetricsExporter;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
 use Google\LongRunning\Operation as OperationProto;
@@ -201,8 +201,8 @@ class SpannerClient
      *     @type CacheItemPoolInterface $cacheItemPool
      *     @type bool $disableBuiltInMetrics If true, built-in metrics collection will be disabled.
      *           **Defaults to** false.
-     *     @type array $metricsOptions Configuration options for the internal `MetricServiceClient`
-     *           used to export metrics.
+     *     @type int $metricsTimeoutMillis The timeout in milliseconds for the internal
+     *           `MetricServiceClient` used to export metrics. **Defaults to** 100.
      *     @type MetricServiceClient $metricServiceClient An explicit instance of
      *           `MetricServiceClient` to use for exporting metrics.
      * }
@@ -225,6 +225,7 @@ class SpannerClient
             'routeToLeader' => true,
             'cacheItemPool' => null,
             'disableBuiltInMetrics' => false,
+            'metricsTimeoutMillis' => 100,
         ];
 
         $this->returnInt64AsObject = $options['returnInt64AsObject'];
@@ -293,7 +294,7 @@ class SpannerClient
         $this->instanceAdminClient->addMiddleware($middleware);
         $this->databaseAdminClient->addMiddleware($middleware);
 
-        $this->configureBuiltinMetrics($options);
+        $this->configureMetrics($options);
 
         $this->projectName = InstanceAdminClient::projectName($this->projectId);
         $this->cacheItemPool = $options['cacheItemPool'];
@@ -1046,17 +1047,17 @@ class SpannerClient
         return $config;
     }
 
-    private function configureBuiltinMetrics(array &$options): void
+    private function configureMetrics(array &$options): void
     {
         $metricsClient = $this->pluck('metricServiceClient', $options, false);
-        $metricsOptions = $this->pluck('metricsOptions', $options, false) ?: [];
+        $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
 
         if ($this->pluck('disableBuiltInMetrics', $options, false)) {
             return;
         }
 
         if (!$metricsClient) {
-            $metricsOptions += [
+            $metricsOptions = [
                 'projectId' => $this->projectId,
                 'keyFile' => $options['keyFile'] ?? null,
                 'keyFilePath' => $options['keyFilePath'] ?? null,
@@ -1064,12 +1065,13 @@ class SpannerClient
                 'credentialsConfig' => $options['credentialsConfig'] ?? null,
                 'universeDomain' => $options['universeDomain'] ?? null,
                 'transport' => $options['transport'] ?? null,
-                'transportConfig' => $options['transportConfig'] ?? null,
+                'transportConfig' => $options['transportConfig'] ?? null
             ];
 
             try {
-                $metricsClient = new MetricServiceClient($metricsOptions);
+                $metricsClient = new MetricServiceClient(array_filter($metricsOptions));
             } catch (ValidationException $e) {
+                // If we cannot instantiate the metrics client, we should not stop the execution
                 return;
             }
         }
@@ -1079,7 +1081,7 @@ class SpannerClient
         }
 
         $metricsClientId = RUUID::uuid4()->toString() . '-' . getmypid();
-        $exporter = new BuiltInMetricsExporter($metricsClient, $this->projectId, $metricsClientId);
+        $exporter = new MetricsExporter($metricsClient, $this->projectId, $metricsClientId, $timeoutMillis);
         $reader = new ExportingReader($exporter);
         $this->meterProvider = MeterProvider::builder()
             ->addReader($reader)
@@ -1089,7 +1091,7 @@ class SpannerClient
         ShutdownHandler::register([$this->meterProvider, 'shutdown']);
 
         $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
-            return new BuiltInMetricsAttemptMiddleware(
+            return new MetricsAttemptMiddleware(
                 $handler,
                 $this->meter,
                 $metricsClientId,
@@ -1099,7 +1101,7 @@ class SpannerClient
         };
 
         $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
-            return new BuiltInMetricsOperationMiddleware(
+            return new MetricsOperationMiddleware(
                 $handler,
                 $this->meter,
                 $metricsClientId,

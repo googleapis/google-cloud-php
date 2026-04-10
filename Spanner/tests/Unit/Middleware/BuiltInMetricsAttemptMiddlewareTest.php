@@ -21,7 +21,7 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\ServerStreamingCallInterface;
-use Google\Cloud\Spanner\Middleware\BuiltInMetricsAttemptMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsAttemptMiddleware;
 use GuzzleHttp\Promise\FulfilledPromise;
 use GuzzleHttp\Promise\RejectedPromise;
 use OpenTelemetry\API\Metrics\CounterInterface;
@@ -91,7 +91,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $clientId = 'test-client-id';
         $clientName = 'php-spanner/1.0.0';
 
-        $middleware = new BuiltInMetricsAttemptMiddleware(
+        $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
@@ -124,7 +124,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
 
         $this->attemptCounter->add(1, $expectedLabels)->shouldBeCalled();
         $this->attemptHistogram->record(Argument::type('float'), $expectedLabels)->shouldBeCalled();
-        
+
         // GFE metrics
         $this->gfeHistogram->record(12.5, $expectedLabels)->shouldBeCalled();
 
@@ -136,14 +136,14 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
     {
         $callWrapper = $this->prophesize(ServerStreamingCallInterface::class);
         $callWrapper->getMetadata()->willReturn(['server-timing' => ['gfet4t7; dur=45.0']]);
-        
+
         $serverStream = new ServerStream($callWrapper->reveal());
 
         $this->nextHandler = function ($call, $options) use ($serverStream) {
             return $serverStream;
         };
 
-        $middleware = new BuiltInMetricsAttemptMiddleware(
+        $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
@@ -176,7 +176,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             return new FulfilledPromise('ok');
         };
 
-        $middleware = new BuiltInMetricsAttemptMiddleware(
+        $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
@@ -205,7 +205,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             return new RejectedPromise(new \Exception('fail', 7));
         };
 
-        $middleware = new BuiltInMetricsAttemptMiddleware(
+        $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             'client',
@@ -228,7 +228,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->gfeErrorCounter->add(1, Argument::any())->shouldBeCalled();
 
         $promise = $middleware($call->reveal(), $options);
-        
+
         try {
             $promise->wait();
         } catch (\Exception $e) {

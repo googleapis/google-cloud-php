@@ -58,10 +58,10 @@ use OpenTelemetry\SDK\Metrics\MetricMetadataInterface;
 use OpenTelemetry\SDK\Metrics\PushMetricExporterInterface;
 
 /**
- * BuiltInMetricsExporter exports Spanner client metrics to Google Cloud Monitoring
+ * MetricsExporter exports Spanner client metrics to Google Cloud Monitoring
  * using the internal service endpoint.
  */
-class BuiltInMetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
+class MetricsExporter implements PushMetricExporterInterface, AggregationTemporalitySelectorInterface
 {
     private const SPANNER_RESOURCE_TYPE = 'spanner_instance_client';
     private const NATIVE_METRICS_PREFIX = 'spanner.googleapis.com/internal/client/';
@@ -81,17 +81,20 @@ class BuiltInMetricsExporter implements PushMetricExporterInterface, Aggregation
     private MetricServiceClient $client;
     private string $projectId;
     private string $clientHash;
+    private int $timeoutMillis;
 
     /**
      * @param MetricServiceClient $client The monitoring client.
      * @param string $projectId The GCP project ID metrics will be written to.
      * @param string $clientUid The unique client identifier.
+     * @param int $timeoutMillis The timeout defined for the metrics client during export.
      */
-    public function __construct(MetricServiceClient $client, string $projectId, string $clientUid)
+    public function __construct(MetricServiceClient $client, string $projectId, string $clientUid, int $timeoutMillis)
     {
         $this->client = $client;
         $this->projectId = $projectId;
         $this->clientHash = $this->generateClientHash($clientUid);
+        $this->timeoutMillis = $timeoutMillis;
     }
 
     /**
@@ -120,7 +123,9 @@ class BuiltInMetricsExporter implements PushMetricExporterInterface, Aggregation
             $request->setTimeSeries($chunk);
 
             try {
-                $this->client->createServiceTimeSeries($request);
+                $this->client->createServiceTimeSeries($request, [
+                    'timeoutMillis' => $this->timeoutMillis
+                ]);
             } catch (\Exception $e) {
                 // Fail silently during shutdown to avoid user-visible errors.
             }

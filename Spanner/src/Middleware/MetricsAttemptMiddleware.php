@@ -51,7 +51,7 @@ use OpenTelemetry\API\Metrics\MeterInterface;
  * for an Attempt, where an Attempt is an RPC call as part of an Operation.
  * If an Operation fails, said Operation may contain multiple attempts depending on the retry configuration.
  */
-class BuiltInMetricsAttemptMiddleware implements MiddlewareInterface
+class MetricsAttemptMiddleware implements MiddlewareInterface
 {
     private HistogramInterface $attemptLatencyHistogram;
     private CounterInterface $attemptCountCounter;

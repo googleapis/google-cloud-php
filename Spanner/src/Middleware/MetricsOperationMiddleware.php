@@ -48,7 +48,7 @@ use OpenTelemetry\API\Metrics\MeterInterface;
  * A middleware to be added outside of the retry loops of GAX. This middleware handles the recording of Built-in metrics
  * for an Operation, where an Operation is an end to end call to an RPC with either a success or a failing result.
  */
-class BuiltInMetricsOperationMiddleware implements MiddlewareInterface
+class MetricsOperationMiddleware implements MiddlewareInterface
 {
     private HistogramInterface $operationLatencyHistogram;
     private CounterInterface $operationCountCounter;

@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit\Middleware;
 
 use Google\ApiCore\Call;
-use Google\Cloud\Spanner\Middleware\BuiltInMetricsOperationMiddleware;
+use Google\Cloud\Spanner\Middleware\MetricsOperationMiddleware;
 use GuzzleHttp\Promise\FulfilledPromise;
 use OpenTelemetry\API\Metrics\CounterInterface;
 use OpenTelemetry\API\Metrics\HistogramInterface;
@@ -68,7 +68,7 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
         $clientId = 'test-client-id';
         $clientName = 'php-spanner/1.0.0';
 
-        $middleware = new BuiltInMetricsOperationMiddleware(
+        $middleware = new MetricsOperationMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
