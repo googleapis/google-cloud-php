@@ -27,7 +27,6 @@ use Google\Cloud\Audit\RequestMetadata;
 use Google\Cloud\Audit\AuthorizationInfo;
 use PHPUnit\Framework\TestCase;
 use Prophecy\PhpUnit\ProphecyTrait;
-use stdClass;
 
 /**
  * @group core
@@ -75,7 +74,7 @@ class OperationResponseTraitTest extends TestCase
             'caller_ip' => '127.8.9.10', // Sic(!)
         ]);
         $response = new Response(self::METADATA_TYPE, $meta, self::RESULT_TYPE, $result);
-        $operation = new OperationResponse(self::OPERATION_NAME, new stdClass(), ['lastProtoResponse' => $response]);
+        $operation = new OperationResponse(self::OPERATION_NAME, null, ['lastProtoResponse' => $response]);
         $got = $this->operationToArray($operation, $this->serializer, $this->lroResponseMappers);
 
         $expected = [
