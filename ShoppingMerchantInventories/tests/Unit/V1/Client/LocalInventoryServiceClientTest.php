@@ -135,10 +135,12 @@ class LocalInventoryServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $account = 1177318867;
         $storeCode = 'storeCode921424523';
         $expectedResponse = new LocalInventory();
         $expectedResponse->setName($name);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setAccount($account);
         $expectedResponse->setStoreCode($storeCode);
         $transport->addResponse($expectedResponse);
