@@ -25,6 +25,7 @@
     },
     "suggest": {
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
+        "ext-opentelemetry": "Provides a significant increase in performance for OpenTelemetry metrics collection.",
         "brick/math": "Perform arithmetic on NUMERIC values."
     },
     "extra": {
