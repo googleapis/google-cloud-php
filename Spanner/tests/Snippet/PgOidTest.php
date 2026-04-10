@@ -27,6 +27,8 @@ class PgOidTest extends SnippetTestCase
 {
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new PgOid('123');
         $snippet = $this->snippetFromClass(PgOid::class);
         $res = $snippet->invoke('pgOid');

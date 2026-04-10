@@ -27,6 +27,8 @@ class NumericTest extends SnippetTestCase
 {
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new Numeric('99999999999999999999999999999999999999.999999999');
         $snippet = $this->snippetFromClass(Numeric::class);
         $res = $snippet->invoke('numeric');

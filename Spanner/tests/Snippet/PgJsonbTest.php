@@ -27,6 +27,8 @@ class PgJsonbTest extends SnippetTestCase
 {
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new PgJsonb('{}');
         $snippet = $this->snippetFromClass(PgJsonb::class);
         $res = $snippet->invoke('pgJsonb');

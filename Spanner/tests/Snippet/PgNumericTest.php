@@ -27,6 +27,8 @@ class PgNumericTest extends SnippetTestCase
 {
     public function testClass()
     {
+        $this->checkAndSkipGrpcTests();
+
         $expected = new PgNumeric('99999999999999999999999999999999999999.000000999999999');
         $snippet = $this->snippetFromClass(PgNumeric::class);
         $res = $snippet->invoke('pgNumeric');
