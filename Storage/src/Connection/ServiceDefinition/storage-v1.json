@@ -4824,6 +4824,11 @@
                             "required": true,
                             "location": "path"
                         },
+                        "filter": {
+                            "type": "string",
+                            "description": "Filter results to include only objects to which the specified context is attached. You can filter by the presence, absence, or specific value of context keys.",
+                            "location": "query"
+                        },
                         "delimiter": {
                             "type": "string",
                             "description": "Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.",

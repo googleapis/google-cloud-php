@@ -805,7 +805,7 @@ class BucketTest extends TestCase
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
             ->willReturn([
-                'items' => [] 
+                'items' => null 
             ]);
 
         $bucket = $this->getBucket();
@@ -823,7 +823,7 @@ class BucketTest extends TestCase
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
             ->willReturn([
-                'items' => []
+                'items' => null
             ]);
 
         $bucket = $this->getBucket();

@@ -33,7 +33,6 @@ class ManageObjectsTest extends StorageTestCase
     const CONTEXT_OBJECT_KEY = 'insert-key';
     const CONTEXT_OBJECT_VALUE = 'insert-val';
     const CONTEXT_OBJECT_PREFIX = 'object-contexts-';
-
     public function testListsObjects()
     {
         $foundObjects = [];
@@ -339,7 +338,7 @@ class ManageObjectsTest extends StorageTestCase
         $object->delete();
     }
     
-    public function testOverrideContextsDuringCopyOrRewrite()
+    public function testOverrideContextsDuringCopy()
     {
         $initialContexts = [
             'custom' => [
@@ -361,7 +360,7 @@ class ManageObjectsTest extends StorageTestCase
         );
 
         $overrideVal = 'new-value';
-        $overridden = $source->rewrite(self::$bucket, [
+        $overridden = $source->copy(self::$bucket, [
             'name' => 'overridden-' . uniqid() . '.txt',
             'contexts' => [
                 'custom' => [
@@ -460,69 +459,62 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testListObjectsWithContextFilters()
     {
-       $activeContext = [
-            'custom' => [
-                'tag' => ['value' => 'active'],
-                'tag2' => ['value' => 'inactive'],
-                'tag3' => ['value' => 'filter']
-            ],
-        ];
-        $source1 = $this->testCreateObjectWithContexts($activeContext);
-
-        $info = $source1->info();
-
-        $this->assertArrayHasKey('contexts', $info, 'Contexts property missing.');
-        $this->assertArrayHasKey('custom', $info['contexts'], 'Custom context group missing.');
-
-        $this->assertCount(3, $info['contexts']['custom']);
-        return $source1;
-    }
-    
-    /**
-     * @depends testListObjectsWithContextFilters
-     */
-    public function testExistListObjectsWithContextFilters(StorageObject $source1)
-    {
-        $info = $source1->info();
-
-        $custom = $info['contexts']['custom'] ?? [];
-
-        $this->assertArrayHasKey('tag', $custom, 'Tag 1 is missing');
-        $this->assertArrayHasKey('tag2', $custom, 'Tag 2 is missing');
-        $this->assertArrayHasKey('tag3', $custom, 'Tag 3 is missing');
-
-        $source1->delete();
-    }
-
-    /**
-     * @depends testListObjectsWithContextFilters
-     */
-    public function testKeyPairWithListContextObjectFilter(StorageObject $source1)
-    {
-        $info = $source1->info();
-
-        $custom = $info['contexts']['custom'] ?? [];
-
-        $this->assertArrayHasKey('tag2', $custom, 'Tag 2 is missing');
-        $this->assertEquals(
-            'inactive', 
-            $custom['tag2']['value'], 
-            'Tag 2 value does not match expected "inactive".'
-        );
-
-        $source1->delete();
-    }
-
-    /**
-     * @depends testListObjectsWithContextFilters
-     */
-    public function testAbsenceOfKeyValuePairObjectFilter(StorageObject $source1)
-    {
-        $info = $source1->info();
         
+        $bucketName = 'test-context-filter-' . time();
+        $bucket = self::createBucket(self::$client, $bucketName);
+        try{
+            $activeFile = $bucket->upload('content', [
+                'name' => 'test-active.txt',
+                'metadata' => ['contexts' => ['custom' => ['status' => ['value' => 'active']]]]
+            ]);
 
+            $inactiveFile = $bucket->upload('content', [
+                'name' => 'test-inactive.txt',
+                'metadata' => ['contexts' => ['custom' => ['status' => ['value' => 'inactive']]]]
+            ]);
+
+            $noneFile = $bucket->upload('content', [
+                'name' => 'test-none.txt'
+            ]);
+
+            sleep(2);
+
+            $objects = iterator_to_array($bucket->objects());
+            $this->assertCount(3, $objects);
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => 'contexts."status"="active"'
+            ]));
+            $this->assertCount(1, $objects);
+            $this->assertEquals($activeFile->name(), $objects[0]->name());
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => '-contexts."status"="active"'
+            ]));
+            $this->assertCount(2, $objects); 
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => 'contexts."status":*'
+            ]));
+            $this->assertCount(2, $objects); // Active and Inactive File
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => '-contexts."status":*'
+            ]));
+            $this->assertCount(1, $objects);
+            $this->assertEquals($noneFile->name(), $objects[0]->name());
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => 'contexts."status"="ghost"'
+            ]));
+            $this->assertCount(0, $objects);
+        }finally {
+            foreach ($bucket->objects() as $object) {
+                $object->delete();
+            }
+            $bucket->delete();
+        }
     }
-
 
     public function testUploadAsync()
     {
