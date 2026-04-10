@@ -29,6 +29,11 @@ class Digest extends \Google\Protobuf\Internal\Message
      *           A message digest produced with the SHA-384 algorithm.
      *     @type string $sha512
      *           A message digest produced with the SHA-512 algorithm.
+     *     @type string $external_mu
+     *           A message digest produced with SHAKE-256, to be used with ML-DSA
+     *           external-μ algorithms only. See "message representative" note in
+     *           section 6.2, algorithm 7 of the FIPS-204 standard:
+     *           https://doi.org/10.6028/nist.fips.204
      * }
      */
     public function __construct($data = NULL) {
@@ -125,6 +130,43 @@ class Digest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * A message digest produced with SHAKE-256, to be used with ML-DSA
+     * external-μ algorithms only. See "message representative" note in
+     * section 6.2, algorithm 7 of the FIPS-204 standard:
+     * https://doi.org/10.6028/nist.fips.204
+     *
+     * Generated from protobuf field <code>bytes external_mu = 4;</code>
+     * @return string
+     */
+    public function getExternalMu()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasExternalMu()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * A message digest produced with SHAKE-256, to be used with ML-DSA
+     * external-μ algorithms only. See "message representative" note in
+     * section 6.2, algorithm 7 of the FIPS-204 standard:
+     * https://doi.org/10.6028/nist.fips.204
+     *
+     * Generated from protobuf field <code>bytes external_mu = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setExternalMu($var)
+    {
+        GPBUtil::checkString($var, False);
+        $this->writeOneof(4, $var);
 
         return $this;
     }
