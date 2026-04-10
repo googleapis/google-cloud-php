@@ -20,6 +20,10 @@ jobs:
             php: "8.1"
             extensions: "protobuf,grpc"
             type: "Unit Test + protobuf extension"
+          - platform: "ubuntu-latest"
+            php: "8.1"
+            extensions: ""
+            type: "Unit Test (no gRPC)"
     name: PHP ${{ matrix.php }} ${{ matrix.type }} (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     continue-on-error: true

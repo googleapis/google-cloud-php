@@ -200,7 +200,7 @@ class RestTransport implements TransportInterface
         $request = $this->requestBuilder->build(
             $call->getMethod(),
             $call->getMessage()
-            // Exclude headers here because they will be added in _serverStreamRequest().
+            // Exclude headers here because they will be added in doServerStreamRequest().
         );
 
         $decoderOptions = [];
@@ -209,7 +209,7 @@ class RestTransport implements TransportInterface
         }
 
         return new ServerStream(
-            $this->_serverStreamRequest(
+            $this->doServerStreamRequest(
                 $this->httpHandler,
                 $request,
                 $headers,
@@ -233,7 +233,7 @@ class RestTransport implements TransportInterface
      *
      * @return RestServerStreamingCall
      */
-    private function _serverStreamRequest(
+    private function doServerStreamRequest(
         $httpHandler,
         $request,
         $headers,

@@ -19,9 +19,6 @@ namespace Google\ApiCore\Tests\Unit;
 
 use Google\ApiCore\Testing\GeneratedTest;
 
-require_once __DIR__ . '/testdata/generated/MyMessage.php';
-require_once __DIR__ . '/testdata/generated/metadata/Example.php';
-
 class ProtobufBandaidTest extends GeneratedTest
 {
     /**
@@ -34,11 +31,27 @@ class ProtobufBandaidTest extends GeneratedTest
 
     public function protobufMessageProvider()
     {
+        $this->autoloadGeneratedFiles();
+
         $msg1 = new MyMessage();
         $msg2 = new Mymessage();
         return [
             [$msg1, $msg2],
             [[$msg1, $msg2], [$msg1, $msg2]]
         ];
+    }
+
+    private function autoloadGeneratedFiles()
+    {
+        // add generated messages to autoloader
+        $loader = file_exists(__DIR__ . '/../../../vendor/autoload.php')
+            ? require __DIR__ . '/../../../vendor/autoload.php'
+            : require __DIR__ . '/../../vendor/autoload.php';
+
+        $loader->addPsr4(__NAMESPACE__ . '\\', __DIR__ . '/testdata/generated/');
+        $loader->addPsr4(
+            'GPBMetadata\\'  . __NAMESPACE__ . '\\',
+            __DIR__ . '/testdata/generated/metadata'
+        );
     }
 }

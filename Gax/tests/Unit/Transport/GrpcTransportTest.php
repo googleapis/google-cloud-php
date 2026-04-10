@@ -580,7 +580,9 @@ class GrpcTransportTest extends TestCase
     public function interceptorDataProvider()
     {
         // add "mocks" directory to autoloader
-        $loader = require __DIR__ . '/../../../vendor/autoload.php';
+        $loader = file_exists(__DIR__ . '/../../../../vendor/autoload.php')
+            ? require __DIR__ . '/../../../../vendor/autoload.php'
+            : require __DIR__ . '/../../../vendor/autoload.php';
         $loader->addPsr4(__NAMESPACE__ . '\\', __DIR__ . '/../testdata/mocks/');
 
         $deprecatedInterceptors = (new \ReflectionClass(Interceptor::class))

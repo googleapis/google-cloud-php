@@ -92,7 +92,7 @@ class JsonStreamDecoder
     public function decode()
     {
         try {
-            foreach ($this->_decode() as $response) {
+            foreach ($this->doDecode() as $response) {
                 yield $response;
             }
         } catch (RuntimeException $re) {
@@ -112,7 +112,7 @@ class JsonStreamDecoder
     /**
      * @return \Generator
      */
-    private function _decode()
+    private function doDecode()
     {
         $decodeType = $this->decodeType;
         $str = false;
