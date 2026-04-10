@@ -23,8 +23,10 @@ class DataDocumentationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\DatasetResult $dataset_result
+     *           Output only. Insights for a Dataset resource.
      *     @type \Google\Cloud\Dataplex\V1\DataDocumentationResult\TableResult $table_result
-     *           Output only. Table result for insights.
+     *           Output only. Insights for a Table resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +35,38 @@ class DataDocumentationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Table result for insights.
+     * Output only. Insights for a Dataset resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.DatasetResult dataset_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\DataDocumentationResult\DatasetResult|null
+     */
+    public function getDatasetResult()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasDatasetResult()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Output only. Insights for a Dataset resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.DatasetResult dataset_result = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult\DatasetResult $var
+     * @return $this
+     */
+    public function setDatasetResult($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\DataDocumentationResult\DatasetResult::class);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. Insights for a Table resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.TableResult table_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Dataplex\V1\DataDocumentationResult\TableResult|null
@@ -49,7 +82,7 @@ class DataDocumentationResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Table result for insights.
+     * Output only. Insights for a Table resource.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.DataDocumentationResult.TableResult table_result = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Dataplex\V1\DataDocumentationResult\TableResult $var
