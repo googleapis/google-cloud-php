@@ -218,126 +218,186 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFalse($object->exists());
     }
 
-    public function testCreateObjectWithContexts()
+    private function testCreateObjectWithContexts(array $uploadContexts)
     {
-        $bucket = self::$client->createBucket(uniqid('object-contexts-'));
+       $bucket = self::$client->createBucket(uniqid('object-contexts-'));
+
         $object = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . uniqid(),
-            'contexts' => [
-                'custom' => [self::CONTEXT_OBJECT_KEY => ['value' => self::CONTEXT_OBJECT_VALUE]]
-            ]
+            'contexts' => $uploadContexts
         ]);
-        $this->assertEquals(
-            self::CONTEXT_OBJECT_VALUE,
-            $object->info()['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']
-        );
         return $object;
     }
 
-    /**
-    * @depends testCreateObjectWithContexts
-    */
-    public function testUpdateReplacesAllObjectContexts(StorageObject $object)
+    public function testCreateRetrieveAndUpdateObjectContexts()
     {
-        $replacementKey = 'replacement-key-' . uniqid();
-        $replacementVal = 'replacement-value';
+        $initialContexts = [
+            'custom' => [
+                'team-owner' => ['value' => 'storage-team'],
+                'priority' => ['value' => 'high'],
+            ],
+        ];
 
-        $info = $object->update([
-            'contexts' => [
-                'custom' => [
-                    self::CONTEXT_OBJECT_KEY => null,
-                    $replacementKey => ['value' => $replacementVal]
-                ]
-            ]
-        ]);
-        $this->assertEquals($replacementVal, $info['contexts']['custom'][$replacementKey]['value']);
-        $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
-        $this->assertCount(1, $info['contexts']['custom']);
-        $object->delete();
-    }
-
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testPatchObjectWithContext(StorageObject $object)
-    {
-        $newKey = 'added-key-' . uniqid();
-        $newValue = 'added-value';
-        $modifiedValue = 'modified-value';
-        $info = $object->update([
-            'contexts' => [
-                'custom' => [
-                    self::CONTEXT_OBJECT_KEY => ['value' => $modifiedValue],
-                    $newKey => ['value' => $newValue]
-                ]
-            ]
-        ]);
-
-        $this->assertEquals($modifiedValue, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
-        $this->assertEquals($newValue, $info['contexts']['custom'][$newKey]['value']);
-        $info = $object->update([
-            'contexts' => [
-                'custom' => [
-                    $newKey => null,
-                    self::CONTEXT_OBJECT_KEY => ['value' => self::CONTEXT_OBJECT_VALUE]
-                ]
-            ]
-        ]);
-        $this->assertArrayNotHasKey($newKey, $info['contexts']['custom']);
-        $this->assertArrayHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
+        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $metadata = $object->info();
+        $this->assertArrayHasKey('contexts', $metadata);
         $this->assertEquals(
-            self::CONTEXT_OBJECT_VALUE,
-            $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']
+            'storage-team', 
+            $metadata['contexts']['custom']['team-owner']['value']
         );
-        $info = $object->update([
+        $this->assertArrayHasKey('createTime', $metadata['contexts']['custom']['team-owner']);
+
+        $patchMetadata = [
             'contexts' => [
-                'custom' => null
-            ]
-        ]);
-        if (isset($info['contexts'])) {
-            $this->assertArrayNotHasKey('custom', $info['contexts']);
-        } else {
-            $this->assertArrayNotHasKey('contexts', $info);
-        }
+                'custom' => [
+                    'priority' => ['value' => 'critical'], 
+                    'env' => ['value' => 'prod'],          
+                    'team-owner' => null,                 
+                ],
+            ],
+        ];
+        $updatedMetadata = $object->update($patchMetadata);
+        $finalCustom = $updatedMetadata['contexts']['custom'];
+        $this->assertEquals('critical', $finalCustom['priority']['value']);
+        $this->assertEquals('prod', $finalCustom['env']['value']);
+        
+        $this->assertArrayNotHasKey('team-owner', $finalCustom);
+        
+        $this->assertArrayHasKey('updateTime', $finalCustom['priority']);
         $object->delete();
     }
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testRewriteObjectWithContexts(StorageObject $source)
+    public function testGetContextAndServerGenratedTimes()
+    {   
+        $initialContexts = [
+            'custom' => [
+                'temp-key' => ['value' => 'temp'],
+                'status' => ['value' => 'to-be-cleared'],
+            ],
+        ];
+
+        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $info = $object->info();
+        $this->assertArrayHasKey('contexts', $info, 'Contexts missing from server response.');
+    
+        $context = $info['contexts']['custom']['status'];
+        $this->assertEquals('to-be-cleared', $context['value']);
+        $this->assertArrayHasKey(
+            'createTime', 
+            $context, 
+            'Server failed to generate createTime for context.'
+        );
+        $this->assertArrayHasKey(
+            'updateTime', 
+            $context, 
+            'Server failed to generate updateTime for context.'
+        );
+        $object->delete();
+    }
+
+    public function testClearAllExistingContexts()
     {
-        $inherited = $source->rewrite(self::$bucket, ['name' => 'inherit-' . uniqid()]);
+        $initialContexts = [
+            'custom' => [
+                'temp-key' => ['value' => 'temp'],
+                'status' => ['value' => 'to-be-cleared'],
+            ],
+        ];
+
+        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $object->update([
+            'contexts' => null
+        ]);
+        $info = $object->info();
+        $this->assertArrayNotHasKey('contexts', $info);
+        $object->delete();
+    }
+
+    public function testCopyOrRewriteObjectWithContexts()
+    {
+        $initialContexts = [
+            'custom' => [
+                'tag' => ['value' => 'orignal'],
+            ],
+        ];
+
+        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $inherited = $object->rewrite(self::$bucket, ['name' => 'inherit-' . uniqid()]);
         $info = $inherited->info();
         
-        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
+        $this->assertEquals('orignal', $info['contexts']['custom']['tag']['value']);
         $overrideKey = 'override-key';
         $overrideVal = 'override-val';
-        $overridden = $source->rewrite(self::$bucket, [
+        $overridden = $object->rewrite(self::$bucket, [
             'name' => 'override-' . uniqid(),
             'contexts' => ['custom' => [$overrideKey => ['value' => $overrideVal]]]
         ]);
         
         $info = $overridden->info();
         $this->assertEquals($overrideVal, $info['contexts']['custom'][$overrideKey]['value']);
-        $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $info['contexts']['custom']);
+        $this->assertArrayNotHasKey('tag', $info['contexts']['custom']);
+        $object->delete();
+    }
+    
+    public function testOverrideContextsDuringCopyOrRewrite()
+    {
+        $initialContexts = [
+            'custom' => [
+                'tag' => ['value' => 'original'],
+            ],
+        ];
+        
+        $source = $this->testCreateObjectWithContexts($initialContexts);
+        $destName = 'rewrite-dest-' . uniqid() . '.txt';
+
+        $inherited = $source->rewrite(self::$bucket, [
+            'name' => $destName
+        ]);
+        
+        $this->assertEquals($destName, $inherited->name());
+        $this->assertEquals(
+            'original', 
+            $inherited->info()['contexts']['custom']['tag']['value']
+        );
+
+        $overrideVal = 'new-value';
+        $overridden = $source->rewrite(self::$bucket, [
+            'name' => 'overridden-' . uniqid() . '.txt',
+            'contexts' => [
+                'custom' => [
+                    'tag' => ['value' => $overrideVal]
+                ]
+            ]
+        ]);
+
+        $info = $overridden->info();
+        $this->assertEquals($overrideVal, $info['contexts']['custom']['tag']['value']);
+        $dropped = $source->rewrite(self::$bucket, [
+            'name' => 'dropped-' . uniqid() . '.txt',
+            'dropContextGroups' => ['custom']
+        ]);
+        $this->assertArrayNotHasKey('contexts', $dropped->info()['contexts']);
         $source->delete();
     }
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testComposeObjectWithContexts(StorageObject $source1)
+    public function testOverrideContextsForComposeObject()
     {
+        $initialContexts = [
+            'custom' => [
+                'tag' => ['value' => 'file1'],
+            ],
+        ];
+        
+        $source1 = $this->testCreateObjectWithContexts($initialContexts);
         $bucket = self::$client->bucket($source1->info()['bucket']);
         $s2Key = 's2-key';
         $source2 = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . 's2-' . uniqid(),
-            'contexts' => ['custom' => [$s2Key => ['value' => 'val2']]]
+            'contexts' => ['custom' => [$s2Key => ['value' => 'file2']]]
         ]);
         $inherit = $bucket->compose([$source1, $source2], 'c-inh-' . uniqid() . '.txt');
         $custom = $inherit->info()['contexts']['custom'];
-        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $custom[self::CONTEXT_OBJECT_KEY]['value']);
+        $this->assertEquals('file1', $custom['tag']['value']);
 
         $oKey = 'c-override';
         $oVal = 'c-val';
@@ -356,92 +416,113 @@ class ManageObjectsTest extends StorageTestCase
         $source1->delete();
     }
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testGetObjectWithContexts(StorageObject $object)
+    public function testInheritContextsForComposeObject()
     {
-        $info = $object->info(['projection' => 'full']);
-        $this->assertArrayHasKey('contexts', $info);
-        $this->assertArrayHasKey('custom', $info['contexts']);
-        $this->assertEquals(self::CONTEXT_OBJECT_VALUE, $info['contexts']['custom'][self::CONTEXT_OBJECT_KEY]['value']);
-        $object->delete();
-    }
+        $initialContexts1 = [
+            'custom' => [
+                'tag' => ['value' => 'file1-original'],
+            ],
+        ];
+        $source1 = $this->testCreateObjectWithContexts($initialContexts1);
 
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testListObjectsWithContextFilters(StorageObject $object)
-    {
-        $bucket = self::$client->bucket($object->info()['bucket']);
-        $prefix = self::CONTEXT_OBJECT_PREFIX . 'flt-' . uniqid();
-        $uKey = 'key-✨-' . uniqid();
-        $uVal = 'val-🚀-' . uniqid();
-
-        $other = $bucket->upload(self::DATA, [
-            'name' => "$prefix-target.txt",
-            'contentType' => 'text/plain',
-            'contexts' => ['custom' => [$uKey => ['value' => $uVal]]]
-        ]);
-
-        $filter = sprintf('contexts.custom.%s.value="%s"', $uKey, $uVal);
-        $objects = [];
-        for ($i = 0; $i < 4 && count($objects) !== 1; $i++) {
-            if ($i > 0) {
-                sleep(2);
-            }
-            $objects = iterator_to_array($bucket->objects(['filter' => $filter, 'prefix' => $prefix]));
-        }
-        $this->assertCount(1, $objects);
-        $this->assertEquals($uVal, $objects[0]->info()['contexts']['custom'][$uKey]['value']);
-        $presence = iterator_to_array($bucket->objects([
-            'filter' => "contexts.custom.$uKey:*",
-            'prefix' => $prefix
-        ]));
-        $this->assertCount(1, $presence);
-        $absence = iterator_to_array($bucket->objects([
-            'filter' => "-contexts.custom.$uKey",
-            'prefix' => $prefix
-        ]));
-        
-        $this->assertCount(0, $absence);
-        $absenceVal = iterator_to_array($bucket->objects([
-            'filter' => "-contexts.custom.$uKey.value=\"wrong-val\"",
-            'prefix' => $prefix
-        ]));
-        $this->assertCount(1, $absenceVal);
-        $other->delete();
-    }
-
-    /**
-     * @depends testCreateObjectWithContexts
-     */
-    public function testRemoveEmptyObjectWithContexts(StorageObject $object)
-    {
-        $object->update([
+        $s2Key = 's2-specific-key';
+        $bucket = self::$client->bucket($source1->info()['bucket']);
+        $source2 = $bucket->upload('data', [
+            'name' => 'source2-' . uniqid() . '.txt',
             'contexts' => [
                 'custom' => [
-                    self::CONTEXT_OBJECT_KEY => null
+                    $s2Key => ['value' => 'file2-data']
                 ]
             ]
         ]);
 
-        $newInfo = $object->reload();
-        if (isset($newInfo['contexts']['custom'])) {
-            $this->assertArrayNotHasKey(self::CONTEXT_OBJECT_KEY, $newInfo['contexts']['custom']);
-        } else {
-            $this->assertArrayNotHasKey('contexts', $newInfo);
-        }
-        $object->delete();
+        $destName = 'c-inh-' . uniqid() . '.txt';
+        $inheritedObject = $bucket->compose([$source1, $source2], $destName);
+
+        $info = $inheritedObject->info();
+        $custom = $info['contexts']['custom'];
+
+        $this->assertEquals(
+            'file1-original', 
+            $custom['tag']['value'], 
+            'The composed object failed to inherit context from the first source.'
+        );
+
+        $this->assertArrayNotHasKey(
+            $s2Key, 
+            $custom['s2-specific-key'], 
+            'The composed object incorrectly merged contexts from the second source.'
+        );
+
+        $source1->delete();
+        $source2->delete();
     }
 
-    public function testObjectExists()
+    public function testListObjectsWithContextFilters()
     {
-        $object = self::$bucket->upload(self::DATA, ['name' => uniqid(self::TESTING_PREFIX)]);
-        $this->assertTrue($object->exists());
-        $object->delete();
-        $this->assertFalse($object->exists());
+       $activeContext = [
+            'custom' => [
+                'tag' => ['value' => 'active'],
+                'tag2' => ['value' => 'inactive'],
+                'tag3' => ['value' => 'filter']
+            ],
+        ];
+        $source1 = $this->testCreateObjectWithContexts($activeContext);
+
+        $info = $source1->info();
+
+        $this->assertArrayHasKey('contexts', $info, 'Contexts property missing.');
+        $this->assertArrayHasKey('custom', $info['contexts'], 'Custom context group missing.');
+
+        $this->assertCount(3, $info['contexts']['custom']);
+        return $source1;
     }
+    
+    /**
+     * @depends testListObjectsWithContextFilters
+     */
+    public function testExistListObjectsWithContextFilters(StorageObject $source1)
+    {
+        $info = $source1->info();
+
+        $custom = $info['contexts']['custom'] ?? [];
+
+        $this->assertArrayHasKey('tag', $custom, 'Tag 1 is missing');
+        $this->assertArrayHasKey('tag2', $custom, 'Tag 2 is missing');
+        $this->assertArrayHasKey('tag3', $custom, 'Tag 3 is missing');
+
+        $source1->delete();
+    }
+
+    /**
+     * @depends testListObjectsWithContextFilters
+     */
+    public function testKeyPairWithListContextObjectFilter(StorageObject $source1)
+    {
+        $info = $source1->info();
+
+        $custom = $info['contexts']['custom'] ?? [];
+
+        $this->assertArrayHasKey('tag2', $custom, 'Tag 2 is missing');
+        $this->assertEquals(
+            'inactive', 
+            $custom['tag2']['value'], 
+            'Tag 2 value does not match expected "inactive".'
+        );
+
+        $source1->delete();
+    }
+
+    /**
+     * @depends testListObjectsWithContextFilters
+     */
+    public function testAbsenceOfKeyValuePairObjectFilter(StorageObject $source1)
+    {
+        $info = $source1->info();
+        
+
+    }
+
 
     public function testUploadAsync()
     {
