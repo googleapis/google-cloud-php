@@ -628,4 +628,3 @@ class CredentialsWrapperTest extends TestCase
         }
     }
 }
-
