@@ -24,6 +24,7 @@ use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\Connection\Gapic;
+use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\Client\MetricsServiceV2Client;
@@ -167,7 +168,7 @@ class GapicTest extends TestCase
                                 'latency' => '1.0s'
                             ],
                             'timestamp' => date('Y-m-d H:i:s', 100),
-                            'severity' => 'DEBUG',
+                            'severity' => Logger::DEBUG,
                         ]
                     ]
                 ],

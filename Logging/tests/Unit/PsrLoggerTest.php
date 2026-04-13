@@ -17,12 +17,23 @@
 
 namespace Google\Cloud\Logging\Tests\Unit;
 
+use Google\Api\MonitoredResource;
 use Google\Cloud\Core\Batch\OpisClosureSerializerV4;
 use Google\Cloud\Core\Report\EmptyMetadataProvider;
 use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Google\Cloud\Logging\Connection\Gapic;
+use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
+use Google\Cloud\Logging\V2\LogEntry;
+use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
+use Google\Cloud\Logging\V2\WriteLogEntriesResponse;
+use Google\Protobuf\Internal\GPBType;
+use Google\Protobuf\Internal\MapField;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Timestamp;
+use Google\Protobuf\Value;
 use PHPUnit\Framework\TestCase;
+use Prophecy\Argument;
 use Psr\Log\InvalidArgumentException;
 use Prophecy\PhpUnit\ProphecyTrait;
 
@@ -49,7 +60,7 @@ class PsrLoggerTest extends TestCase
 
     public function getPsrLogger($connection, ?array $resource = null, ?array $labels = null, $messageKey = 'message')
     {
-        $logger = new Logger($connection->reveal(), $this->logName, $this->projectId, $resource, $labels);
+        $logger = new Logger($connection, $this->logName, $this->projectId, $resource, $labels);
         return new PsrLogger($logger, $messageKey, ['metadataProvider' => new EmptyMetadataProvider()]);
     }
 
@@ -71,11 +82,45 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal());
 
         $this->assertNull(
             $psrLogger->$level($this->textPayload, [
                 'stackdriverOptions' => ['timestamp' => null]
+            ])
+        );
+    }
+
+    /**
+     * @dataProvider levelProvider
+     */
+    public function testWritesEntryRequestWithDefinedLevels($level)
+    {
+        $map = new MapField(GPBType::STRING, GPBType::MESSAGE, Value::class);
+        $map['message'] = new Value(['string_value' => $this->textPayload]);
+        $entry = new LogEntry([
+            'severity' => array_flip(Logger::getLogLevelMap())[$level],
+            'log_name' => $this->formattedName,
+            'resource' => new MonitoredResource($this->resource),
+            'timestamp' => new Timestamp(['seconds' => 100]),
+            'json_payload' => new Struct(['fields' => $map])
+        ]);
+        $request = new WriteLogEntriesRequest(['entries' => [$entry]]);
+
+        $loggingClient = $this->prophesize(LoggingServiceV2Client::class);
+        $loggingClient->writeLogEntries($request, [])
+            ->shouldBeCalledOnce()
+            ->willReturn(new WriteLogEntriesResponse());
+
+        $connection = new Gapic([
+            'loggingGapicClient' => $loggingClient->reveal()
+        ]);
+
+        $psrLogger = $this->getPsrLogger($connection);
+
+        $this->assertNull(
+            $psrLogger->$level($this->textPayload, [
+                'stackdriverOptions' => ['timestamp' => date('Y-m-d H:i:s', 100)]
             ])
         );
     }
@@ -109,7 +154,7 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal());
 
         $this->assertNull(
             $psrLogger->log($this->severity, $this->textPayload, [
@@ -136,7 +181,7 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection, $resource, $labels);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal(), $resource, $labels);
 
         $this->assertNull(
             $psrLogger->log($this->severity, $this->textPayload, [
@@ -164,7 +209,7 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection, null, $defaultLabels);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal(), null, $defaultLabels);
 
         $this->assertNull(
             $psrLogger->log($this->severity, $this->textPayload, [
@@ -181,7 +226,7 @@ class PsrLoggerTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $psrLogger = $this->getPsrLogger($this->connection);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal());
         $psrLogger->log('INVALID-LEVEL', $this->textPayload);
     }
 
@@ -215,7 +260,7 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection, null, null, $customKey);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal(), null, null, $customKey);
         $psrLogger->log($this->severity, $this->textPayload, [
             'stackdriverOptions' => ['timestamp' => null]
         ]);
@@ -291,7 +336,7 @@ class PsrLoggerTest extends TestCase
         ])
             ->willReturn([])
             ->shouldBeCalledTimes(1);
-        $psrLogger = $this->getPsrLogger($this->connection);
+        $psrLogger = $this->getPsrLogger($this->connection->reveal());
         $psrLogger->log($this->severity, $this->textPayload, [
             'exception' => $throwable,
             'stackdriverOptions' => ['timestamp' => null]
