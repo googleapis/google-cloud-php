@@ -683,12 +683,12 @@ class BucketTest extends TestCase
     {
         return [
             'remove an individual context by setting it to null' => [
-                ['custom' => ['key-to-delete' => null]], 
+                ['custom' => ['key-to-delete' => null]],
                 ['custom' => ['key-to-delete' => null]]
             ],
             'clear all contexts by setting custom to null' => [
-                ['custom' => null],   
-                ['custom' => null]   
+                ['custom' => null],
+                ['custom' => null]
             ]
         ];
     }
@@ -733,7 +733,7 @@ class BucketTest extends TestCase
             'destinationObject' => $destName,
             'destination' => [
                 'contexts' => $contexts,
-                'contentType' => 'text/plain' 
+                'contentType' => 'text/plain'
             ],
             'sourceObjects' => [
                 ['name' => 'src1.txt'],
@@ -805,14 +805,14 @@ class BucketTest extends TestCase
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
             ->willReturn([
-                'items' => null 
+                'items' => null
             ]);
 
         $bucket = $this->getBucket();
         $iterator = $bucket->objects([
             'filter' => $filter
         ]);
-        $iterator->current(); 
+        $iterator->current();
     }
 
     /**

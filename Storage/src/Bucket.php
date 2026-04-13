@@ -739,9 +739,9 @@ class Bucket
      *
      * @param array $options [optional] {
      *     Configuration options.
-     * 
-     *     @type string $filter Filter results to include only objects to which the 
-     *           specified context is attached. You can filter by the presence, 
+     *
+     *     @type string $filter Filter results to include only objects to which the
+     *           specified context is attached. You can filter by the presence,
      *           absence, or specific value of context keys.
      *     @type string $delimiter Returns results in a directory-like mode.
      *           Results will contain only objects whose names, aside from the

@@ -219,7 +219,7 @@ class ManageObjectsTest extends StorageTestCase
 
     private function testCreateObjectWithContexts(array $uploadContexts)
     {
-       $bucket = self::$client->createBucket(uniqid('object-contexts-'));
+        $bucket = self::$client->createBucket(uniqid('object-contexts-'));
 
         $object = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . uniqid(),
@@ -241,7 +241,7 @@ class ManageObjectsTest extends StorageTestCase
         $metadata = $object->info();
         $this->assertArrayHasKey('contexts', $metadata);
         $this->assertEquals(
-            'storage-team', 
+            'storage-team',
             $metadata['contexts']['custom']['team-owner']['value']
         );
         $this->assertArrayHasKey('createTime', $metadata['contexts']['custom']['team-owner']);
@@ -249,9 +249,9 @@ class ManageObjectsTest extends StorageTestCase
         $patchMetadata = [
             'contexts' => [
                 'custom' => [
-                    'priority' => ['value' => 'critical'], 
-                    'env' => ['value' => 'prod'],          
-                    'team-owner' => null,                 
+                    'priority' => ['value' => 'critical'],
+                    'env' => ['value' => 'prod'],
+                    'team-owner' => null,
                 ],
             ],
         ];
@@ -259,15 +259,13 @@ class ManageObjectsTest extends StorageTestCase
         $finalCustom = $updatedMetadata['contexts']['custom'];
         $this->assertEquals('critical', $finalCustom['priority']['value']);
         $this->assertEquals('prod', $finalCustom['env']['value']);
-        
         $this->assertArrayNotHasKey('team-owner', $finalCustom);
-        
         $this->assertArrayHasKey('updateTime', $finalCustom['priority']);
         $object->delete();
     }
 
     public function testGetContextAndServerGenratedTimes()
-    {   
+    {
         $initialContexts = [
             'custom' => [
                 'temp-key' => ['value' => 'temp'],
@@ -282,13 +280,13 @@ class ManageObjectsTest extends StorageTestCase
         $context = $info['contexts']['custom']['status'];
         $this->assertEquals('to-be-cleared', $context['value']);
         $this->assertArrayHasKey(
-            'createTime', 
-            $context, 
+            'createTime',
+            $context,
             'Server failed to generate createTime for context.'
         );
         $this->assertArrayHasKey(
-            'updateTime', 
-            $context, 
+            'updateTime',
+            $context,
             'Server failed to generate updateTime for context.'
         );
         $object->delete();
@@ -355,7 +353,7 @@ class ManageObjectsTest extends StorageTestCase
         
         $this->assertEquals($destName, $inherited->name());
         $this->assertEquals(
-            'original', 
+            'original',
             $inherited->info()['contexts']['custom']['tag']['value']
         );
 
@@ -437,19 +435,16 @@ class ManageObjectsTest extends StorageTestCase
 
         $destName = 'c-inh-' . uniqid() . '.txt';
         $inheritedObject = $bucket->compose([$source1, $source2], $destName);
-
-        $info = $inheritedObject->info();
-        $custom = $info['contexts']['custom'];
+        $custom = $inheritedObject->info()['contexts']['custom'];
 
         $this->assertEquals(
-            'file1-original', 
-            $custom['tag']['value'], 
+            'file1-original',
+            $custom['tag']['value'],
             'The composed object failed to inherit context from the first source.'
         );
-
         $this->assertArrayNotHasKey(
-            $s2Key, 
-            $custom['s2-specific-key'], 
+            $s2Key,
+            $custom['s2-specific-key'],
             'The composed object incorrectly merged contexts from the second source.'
         );
 
@@ -459,10 +454,9 @@ class ManageObjectsTest extends StorageTestCase
 
     public function testListObjectsWithContextFilters()
     {
-        
         $bucketName = 'test-context-filter-' . time();
         $bucket = self::createBucket(self::$client, $bucketName);
-        try{
+        try {
             $activeFile = $bucket->upload('content', [
                 'name' => 'test-active.txt',
                 'metadata' => ['contexts' => ['custom' => ['status' => ['value' => 'active']]]]
@@ -476,11 +470,14 @@ class ManageObjectsTest extends StorageTestCase
             $noneFile = $bucket->upload('content', [
                 'name' => 'test-none.txt'
             ]);
-
-            sleep(2);
-
             $objects = iterator_to_array($bucket->objects());
             $this->assertCount(3, $objects);
+
+            $objects = iterator_to_array($bucket->objects([
+                'filter' => 'contexts."status"="inactive"'
+            ]));
+            $this->assertCount(1, $objects);
+            $this->assertEquals($inactiveFile->name(), $objects[0]->name());
 
             $objects = iterator_to_array($bucket->objects([
                 'filter' => 'contexts."status"="active"'
@@ -491,12 +488,12 @@ class ManageObjectsTest extends StorageTestCase
             $objects = iterator_to_array($bucket->objects([
                 'filter' => '-contexts."status"="active"'
             ]));
-            $this->assertCount(2, $objects); 
+            $this->assertCount(2, $objects);
 
             $objects = iterator_to_array($bucket->objects([
                 'filter' => 'contexts."status":*'
             ]));
-            $this->assertCount(2, $objects); // Active and Inactive File
+            $this->assertCount(2, $objects); 
 
             $objects = iterator_to_array($bucket->objects([
                 'filter' => '-contexts."status":*'
@@ -508,7 +505,7 @@ class ManageObjectsTest extends StorageTestCase
                 'filter' => 'contexts."status"="ghost"'
             ]));
             $this->assertCount(0, $objects);
-        }finally {
+        } finally {
             foreach ($bucket->objects() as $object) {
                 $object->delete();
             }
