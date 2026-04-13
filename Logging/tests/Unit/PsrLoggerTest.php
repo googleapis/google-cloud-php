@@ -143,7 +143,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeLogEntries([
             'entries' => [
                 [
-                    'severity' => $this->severity,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$this->severity],
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $this->resource,
@@ -169,7 +169,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeLogEntries([
             'entries' => [
                 [
-                    'severity' => $this->severity,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$this->severity],
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $resource,
@@ -197,7 +197,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeLogEntries([
             'entries' => [
                 [
-                    'severity' => $this->severity,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$this->severity],
                     'jsonPayload' => ['message' => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $newResource,
@@ -249,7 +249,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeLogEntries([
             'entries' => [
                 [
-                    'severity' => $this->severity,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$this->severity],
                     'jsonPayload' => [$customKey => $this->textPayload],
                     'logName' => $this->formattedName,
                     'resource' => $this->resource,
@@ -322,7 +322,7 @@ class PsrLoggerTest extends TestCase
         $this->connection->writeLogEntries([
             'entries' => [
                 [
-                    'severity' => $this->severity,
+                    'severity' => array_flip(Logger::getLogLevelMap())[$this->severity],
                     'jsonPayload' => [
                         'message' => $this->textPayload,
                         'exception' => (string) $throwable

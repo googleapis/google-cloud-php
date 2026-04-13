@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Logging\Tests\Unit\Connection;
 
+use Google\ApiCore\GPBType;
 use Google\ApiCore\Page;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Logging\Connection\Grpc;
@@ -25,6 +26,7 @@ use Google\Cloud\Core\GrpcRequestWrapper;
 use Google\ApiCore\Serializer;
 use Google\Cloud\Logging\Connection\Gapic;
 use Google\Cloud\Logging\Logger;
+use Google\Cloud\Logging\Type\LogSeverity;
 use Google\Cloud\Logging\V2\Client\ConfigServiceV2Client;
 use Google\Cloud\Logging\V2\Client\LoggingServiceV2Client;
 use Google\Cloud\Logging\V2\Client\MetricsServiceV2Client;
@@ -36,6 +38,7 @@ use Google\Cloud\Logging\V2\DeleteSinkRequest;
 use Google\Cloud\Logging\V2\GetLogMetricRequest;
 use Google\Cloud\Logging\V2\GetSinkRequest;
 use Google\Cloud\Logging\V2\ListLogEntriesRequest;
+use Google\Cloud\Logging\V2\ListLogEntriesResponse;
 use Google\Cloud\Logging\V2\ListLogMetricsRequest;
 use Google\Cloud\Logging\V2\ListSinksRequest;
 use Google\Cloud\Logging\V2\LogEntry;
@@ -45,7 +48,11 @@ use Google\Cloud\Logging\V2\UpdateLogMetricRequest;
 use Google\Cloud\Logging\V2\UpdateSinkRequest;
 use Google\Cloud\Logging\V2\WriteLogEntriesRequest;
 use Google\Cloud\Logging\V2\WriteLogEntriesResponse;
+use Google\Protobuf\Internal\MapField;
 use Google\Protobuf\Internal\Message;
+use Google\Protobuf\Struct;
+use Google\Protobuf\Timestamp;
+use Google\Protobuf\Value;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
@@ -259,5 +266,38 @@ class GapicTest extends TestCase
                 null,
             ]
         ];
+    }
+
+    public function testSerializedEntry()
+    {
+        $map = new MapField(GPBType::STRING, GPBType::MESSAGE, Value::class);
+        $map['message'] = new Value(['string_value' => 'aPayload']);
+
+        $entry = new LogEntry([
+            'severity' => LogSeverity::DEBUG,
+            'timestamp' => new Timestamp(['seconds' => 100]),
+            'json_payload' => new Struct(['fields' => $map]),
+        ]);
+
+        $page = $this->prophesize(Page::class);
+        $page->getResponseObject()->willReturn(new ListLogEntriesResponse(['entries' => [$entry]]));
+        $pagedListResponse = $this->prophesize(PagedListResponse::class);
+        $pagedListResponse->getPage()
+            ->willReturn($page->reveal());
+
+        $this->loggingGapicClient->listLogEntries(
+            new ListLogEntriesRequest(['filter' => 'logName=foo']),
+            Argument::type('array')
+        )
+            ->shouldBeCalledOnce()
+            ->willReturn($pagedListResponse->reveal());
+
+        $connection = new Gapic(['loggingGapicClient' => $this->loggingGapicClient->reveal()]);
+
+        $entries = $connection->listLogEntries(['filter' => 'logName=foo']);
+        $info = $entries['entries'][0];
+        $this->assertEquals('DEBUG', $info['severity']);
+        $this->assertEquals(date('Y-m-d\TH:i:s.u\Z', 100), $info['timestamp']);
+        $this->assertEquals(['message' => 'aPayload'], $info['jsonPayload']);
     }
 }
