@@ -526,6 +526,8 @@ class ClientOptionsTraitTest extends TestCase
     {
         $defaultEndpoint = 'test.address.com:443';
         $mtlsEndpoint = 'test.mtls.address.com:443';
+        $homeDir = PHP_OS_FAMILY === 'Windows' ? 'APPDATA' : 'HOME';
+
         return [
             [
                 [],
@@ -556,7 +558,7 @@ class ClientOptionsTraitTest extends TestCase
             ],
             [
                 [
-                    'HOME=' . __DIR__ . '/testdata/nonexistant',
+                    $homeDir . '=' . __DIR__ . '/testdata/nonexistant',
                     'GOOGLE_API_USE_MTLS_ENDPOINT', // no env var
                     CredentialsLoader::MTLS_CERT_ENV_VAR . '=true',
                 ],
@@ -571,7 +573,8 @@ class ClientOptionsTraitTest extends TestCase
      */
     public function testMtlsClientOptionWithDefaultClientCertSource()
     {
-        putenv('HOME=' . __DIR__ . '/testdata/creds/mtls');
+        $homeDir = PHP_OS_FAMILY === 'Windows' ? 'APPDATA' : 'HOME';
+        putenv($homeDir . '=' . __DIR__ . '/testdata/creds/mtls');
         putenv('GOOGLE_API_USE_MTLS_ENDPOINT=auto');
         putenv(CredentialsLoader::MTLS_CERT_ENV_VAR . '=true');
 
