@@ -1,6 +1,4 @@
 <?php
-
-declare(strict_types=1);
 /**
  * Copyright 2015 Google Inc. All Rights Reserved.
  *
@@ -55,9 +53,9 @@ class Bucket
     use ArrayTrait;
     use EncryptionTrait;
 
-    public const NOTIFICATION_TEMPLATE = '//pubsub.googleapis.com/%s';
-    public const TOPIC_TEMPLATE = 'projects/%s/topics/%s';
-    public const TOPIC_REGEX = '/projects\/[^\/]*\/topics\/(.*)/';
+    const NOTIFICATION_TEMPLATE = '//pubsub.googleapis.com/%s';
+    const TOPIC_TEMPLATE = 'projects/%s/topics/%s';
+    const TOPIC_REGEX = '/projects\/[^\/]*\/topics\/(.*)/';
 
     /**
      * @var Acl ACL for the bucket.
@@ -107,7 +105,7 @@ class Bucket
         $this->connection = $connection;
         $this->identity = [
             'bucket' => $name,
-            'userProject' => $this->pluck('requesterProjectId', $info, false),
+            'userProject' => $this->pluck('requesterProjectId', $info, false)
         ];
         $this->info = $info;
         $this->projectId = $this->connection->projectId();
@@ -317,7 +315,7 @@ class Bucket
 
         $response = $this->connection->insertObject(
             $this->formatEncryptionHeaders($options) + $this->identity + [
-                'data' => $data,
+                'data' => $data
             ]
         )->upload();
 
@@ -332,7 +330,7 @@ class Bucket
         );
     }
 
-    private function validateContexts(array $contexts): void
+    private function validateContexts(array $contexts)
     {
         if (!isset($contexts['custom'])) {
             return;
@@ -344,7 +342,7 @@ class Bucket
             if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
                 throw new \InvalidArgumentException('Object context key must start with an alphanumeric.');
             }
-            if (str_contains((string) $key, '"')) {
+            if (strpos((string) $key, '"') !== false) {
                 throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
             }
             if (!is_array($data)) {
@@ -369,7 +367,7 @@ class Bucket
             if ($val !== '' && !preg_match('/^[a-zA-Z0-9]/', $val)) {
                 throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
             }
-            if (str_contains($val, '/')   || str_contains($val, '"')) {
+            if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
                 throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');
             }
         }
@@ -460,24 +458,26 @@ class Bucket
         $encryptionKeySHA256 = $options['encryptionKeySHA256'] ?? null;
 
         $promise = $this->connection->insertObject(
-            $this->formatEncryptionHeaders($options)
-            + $this->identity
-            + [
-                'data' => $data,
-                'resumable' => false,
+            $this->formatEncryptionHeaders($options) +
+            $this->identity +
+            [
+               'data' => $data,
+               'resumable' => false
             ]
         )->uploadAsync();
 
         return $promise->then(
-            fn(array $response) => new StorageObject(
-                $this->connection,
-                $response['name'],
-                $this->identity['bucket'],
-                $response['generation'],
-                $response,
-                $encryptionKey,
-                $encryptionKeySHA256
-            )
+            function (array $response) use ($encryptionKey, $encryptionKeySHA256) {
+                return new StorageObject(
+                    $this->connection,
+                    $response['name'],
+                    $this->identity['bucket'],
+                    $response['generation'],
+                    $response,
+                    $encryptionKey,
+                    $encryptionKeySHA256
+                );
+            }
         );
     }
 
@@ -551,7 +551,7 @@ class Bucket
         return $this->connection->insertObject(
             $this->formatEncryptionHeaders($options) + $this->identity + [
                 'data' => $data,
-                'resumable' => true,
+                'resumable' => true
             ]
         );
     }
@@ -620,7 +620,7 @@ class Bucket
             $this->formatEncryptionHeaders($options) + $this->identity + [
                 'data' => $data,
                 'streamable' => true,
-                'validate' => false,
+                'validate' => false
             ]
         );
     }
@@ -668,7 +668,7 @@ class Bucket
             $this->identity['bucket'],
             $generation,
             array_filter([
-                'requesterProjectId' => $this->identity['userProject'],
+                'requesterProjectId' => $this->identity['userProject']
             ]),
             $encryptionKey,
             $encryptionKeySHA256
@@ -714,7 +714,7 @@ class Bucket
             $this->identity['bucket'],
             $res['generation'], // restored object will have a new generation
             $res + array_filter([
-                'requesterProjectId' => $this->identity['userProject'],
+                'requesterProjectId' => $this->identity['userProject']
             ])
         );
     }
@@ -774,7 +774,7 @@ class Bucket
     public function objects(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-
+        
         return new ObjectIterator(
             new ObjectPageIterator(
                 fn(array $object) => new StorageObject(
@@ -886,7 +886,7 @@ class Bucket
     {
         $res = $this->connection->insertNotification($options + $this->identity + [
             'topic' => $this->getFormattedTopic($topic),
-            'payload_format' => 'JSON_API_V1',
+            'payload_format' => 'JSON_API_V1'
         ]);
 
         return new Notification(
@@ -894,7 +894,7 @@ class Bucket
             $res['id'],
             $this->identity['bucket'],
             $res + [
-                'requesterProjectId' => $this->identity['userProject'],
+                'requesterProjectId' => $this->identity['userProject']
             ]
         );
     }
@@ -965,14 +965,16 @@ class Bucket
         /** @var ItemIterator<Notification> */
         return new ItemIterator(
             new PageIterator(
-                fn(array $notification) => new Notification(
-                    $this->connection,
-                    $notification['id'],
-                    $this->identity['bucket'],
-                    $notification + [
-                        'requesterProjectId' => $this->identity['userProject'],
-                    ]
-                ),
+                function (array $notification) {
+                    return new Notification(
+                        $this->connection,
+                        $notification['id'],
+                        $this->identity['bucket'],
+                        $notification + [
+                            'requesterProjectId' => $this->identity['userProject']
+                        ]
+                    );
+                },
                 [$this->connection, 'listNotifications'],
                 $options + $this->identity,
                 ['resultLimit' => $resultLimit]
@@ -999,7 +1001,7 @@ class Bucket
      * }
      * @return void
      */
-    public function delete(array $options = []): void
+    public function delete(array $options = [])
     {
         $this->connection->deleteBucket($options + $this->identity);
     }
@@ -1178,8 +1180,8 @@ class Bucket
         $options += [
             'destinationBucket' => $this->name(),
             'destinationObject' => $name,
-            'destinationPredefinedAcl' => $options['predefinedAcl'] ?? null,
-            'destination' => $options['metadata'] ?? null,
+            'destinationPredefinedAcl' => isset($options['predefinedAcl']) ? $options['predefinedAcl'] : null,
+            'destination' => isset($options['metadata']) ? $options['metadata'] : null,
             'userProject' => $this->identity['userProject'],
             'sourceObjects' => array_map(function ($sourceObject) {
                 $name = null;
@@ -1192,9 +1194,9 @@ class Bucket
 
                 return array_filter([
                     'name' => $name ?: $sourceObject,
-                    'generation' => $generation,
+                    'generation' => $generation
                 ]);
-            }, $sourceObjects),
+            }, $sourceObjects)
         ];
 
         if (!isset($options['destination']['contentType'])) {
@@ -1216,7 +1218,7 @@ class Bucket
             $this->identity['bucket'],
             $response['generation'],
             $response + array_filter([
-                'requesterProjectId' => $this->identity['userProject'],
+                'requesterProjectId' => $this->identity['userProject']
             ])
         );
     }
@@ -1459,7 +1461,7 @@ class Bucket
                 $this->identity['bucket'],
                 [
                     'parent' => null,
-                    'args' => $this->identity,
+                    'args' => $this->identity
                 ]
             );
         }
@@ -1516,9 +1518,9 @@ class Bucket
         if (!isset($options['ifMetagenerationMatch'])) {
             if (!isset($this->info['metageneration'])) {
                 throw new \BadMethodCallException(
-                    'No metageneration value was detected. Please either provide '
-                    . 'a value explicitly or ensure metadata is loaded through a '
-                    . 'call such as Bucket::reload().'
+                    'No metageneration value was detected. Please either provide ' .
+                    'a value explicitly or ensure metadata is loaded through a ' .
+                    'call such as Bucket::reload().'
                 );
             }
 
@@ -1816,8 +1818,8 @@ class Bucket
 
         if (!$this->projectId) {
             throw new GoogleException(
-                'No project ID was provided, '
-                . 'and we were unable to detect a default project ID.'
+                'No project ID was provided, ' .
+                'and we were unable to detect a default project ID.'
             );
         }
 
