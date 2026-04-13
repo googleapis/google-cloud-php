@@ -777,15 +777,17 @@ class Bucket
         
         return new ObjectIterator(
             new ObjectPageIterator(
-                fn(array $object) => new StorageObject(
-                    $this->connection,
-                    $object['name'],
-                    $this->identity['bucket'],
-                    $object['generation'] ?? null,
-                    $object + array_filter([
-                        'requesterProjectId' => $this->identity['userProject'],
-                    ])
-                ),
+                function (array $object) {
+                    return new StorageObject(
+                        $this->connection,
+                        $object['name'],
+                        $this->identity['bucket'],
+                        isset($object['generation']) ? $object['generation'] : null,
+                        $object + array_filter([
+                            'requesterProjectId' => $this->identity['userProject']
+                        ])
+                    );
+                },
                 [$this->connection, 'listObjects'],
                 $options + $this->identity,
                 ['resultLimit' => $resultLimit]
