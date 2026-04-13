@@ -774,7 +774,6 @@ class Bucket
     public function objects(array $options = [])
     {
         $resultLimit = $this->pluck('resultLimit', $options, false);
-        
         return new ObjectIterator(
             new ObjectPageIterator(
                 function (array $object) {
