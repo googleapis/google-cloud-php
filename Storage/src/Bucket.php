@@ -740,9 +740,6 @@ class Bucket
      * @param array $options [optional] {
      *     Configuration options.
      *
-     *     @type string $filter Filter results to include only objects to which the
-     *           specified context is attached. You can filter by the presence,
-     *           absence, or specific value of context keys.
      *     @type string $delimiter Returns results in a directory-like mode.
      *           Results will contain only objects whose names, aside from the
      *           prefix, do not contain delimiter. Objects whose names, aside
@@ -765,6 +762,9 @@ class Bucket
      *           distinct results. **Defaults to** `false`.
      *     @type string $fields Selector which will cause the response to only
      *           return the specified fields.
+     *     @type string $filter Filter results to include only objects to which the
+     *           specified context is attached. You can filter by the presence,
+     *           absence, or specific value of context keys.
      *     @type string $matchGlob A glob pattern to filter results. The string
      *           value must be UTF-8 encoded. See:
      *           https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-object-glob

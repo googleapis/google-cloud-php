@@ -493,7 +493,7 @@ class ManageObjectsTest extends StorageTestCase
             $objects = iterator_to_array($bucket->objects([
                 'filter' => 'contexts."status":*'
             ]));
-            $this->assertCount(2, $objects); 
+            $this->assertCount(2, $objects);
 
             $objects = iterator_to_array($bucket->objects([
                 'filter' => '-contexts."status":*'
