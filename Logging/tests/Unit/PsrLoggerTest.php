@@ -33,7 +33,6 @@ use Google\Protobuf\Struct;
 use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Argument;
 use Psr\Log\InvalidArgumentException;
 use Prophecy\PhpUnit\ProphecyTrait;
 

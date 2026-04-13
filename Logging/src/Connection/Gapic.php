@@ -183,11 +183,13 @@ class Gapic
     {
         /**
          * @var GetSinkRequest $getSinkRequest
+         * @var LogSink $_logSink
          * @var array $callOptions
          */
-        [$getSinkRequest, $callOptions] = $this->validateOptions(
+        [$getSinkRequest, $_sink, $callOptions] = $this->validateOptions(
             $args,
             new GetSinkRequest(),
+            new LogSink(), // unused, for backwards compatibility
             CallOptions::class
         );
         return $this->handleResponse(
