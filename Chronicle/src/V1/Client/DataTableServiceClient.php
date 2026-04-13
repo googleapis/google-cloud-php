@@ -147,8 +147,12 @@ final class DataTableServiceClient
      *
      * @return string The formatted data_access_scope resource.
      */
-    public static function dataAccessScopeName(string $project, string $location, string $instance, string $dataAccessScope): string
-    {
+    public static function dataAccessScopeName(
+        string $project,
+        string $location,
+        string $instance,
+        string $dataAccessScope
+    ): string {
         return self::getPathTemplate('dataAccessScope')->render([
             'project' => $project,
             'location' => $location,
@@ -189,8 +193,12 @@ final class DataTableServiceClient
      *
      * @return string The formatted data_table_operation_errors resource.
      */
-    public static function dataTableOperationErrorsName(string $project, string $location, string $instance, string $dataTableOperationErrors): string
-    {
+    public static function dataTableOperationErrorsName(
+        string $project,
+        string $location,
+        string $instance,
+        string $dataTableOperationErrors
+    ): string {
         return self::getPathTemplate('dataTableOperationErrors')->render([
             'project' => $project,
             'location' => $location,
@@ -211,8 +219,13 @@ final class DataTableServiceClient
      *
      * @return string The formatted data_table_row resource.
      */
-    public static function dataTableRowName(string $project, string $location, string $instance, string $dataTable, string $dataTableRow): string
-    {
+    public static function dataTableRowName(
+        string $project,
+        string $location,
+        string $instance,
+        string $dataTable,
+        string $dataTableRow
+    ): string {
         return self::getPathTemplate('dataTableRow')->render([
             'project' => $project,
             'location' => $location,
@@ -376,8 +389,10 @@ final class DataTableServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkCreateDataTableRows(BulkCreateDataTableRowsRequest $request, array $callOptions = []): BulkCreateDataTableRowsResponse
-    {
+    public function bulkCreateDataTableRows(
+        BulkCreateDataTableRowsRequest $request,
+        array $callOptions = []
+    ): BulkCreateDataTableRowsResponse {
         return $this->startApiCall('BulkCreateDataTableRows', $request, $callOptions)->wait();
     }
 
@@ -403,8 +418,10 @@ final class DataTableServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkGetDataTableRows(BulkGetDataTableRowsRequest $request, array $callOptions = []): BulkGetDataTableRowsResponse
-    {
+    public function bulkGetDataTableRows(
+        BulkGetDataTableRowsRequest $request,
+        array $callOptions = []
+    ): BulkGetDataTableRowsResponse {
         return $this->startApiCall('BulkGetDataTableRows', $request, $callOptions)->wait();
     }
 
@@ -430,8 +447,10 @@ final class DataTableServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkReplaceDataTableRows(BulkReplaceDataTableRowsRequest $request, array $callOptions = []): BulkReplaceDataTableRowsResponse
-    {
+    public function bulkReplaceDataTableRows(
+        BulkReplaceDataTableRowsRequest $request,
+        array $callOptions = []
+    ): BulkReplaceDataTableRowsResponse {
         return $this->startApiCall('BulkReplaceDataTableRows', $request, $callOptions)->wait();
     }
 
@@ -457,8 +476,10 @@ final class DataTableServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function bulkUpdateDataTableRows(BulkUpdateDataTableRowsRequest $request, array $callOptions = []): BulkUpdateDataTableRowsResponse
-    {
+    public function bulkUpdateDataTableRows(
+        BulkUpdateDataTableRowsRequest $request,
+        array $callOptions = []
+    ): BulkUpdateDataTableRowsResponse {
         return $this->startApiCall('BulkUpdateDataTableRows', $request, $callOptions)->wait();
     }
 
@@ -610,8 +631,10 @@ final class DataTableServiceClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getDataTableOperationErrors(GetDataTableOperationErrorsRequest $request, array $callOptions = []): DataTableOperationErrors
-    {
+    public function getDataTableOperationErrors(
+        GetDataTableOperationErrorsRequest $request,
+        array $callOptions = []
+    ): DataTableOperationErrors {
         return $this->startApiCall('GetDataTableOperationErrors', $request, $callOptions)->wait();
     }
 

@@ -71,7 +71,9 @@ class DataTableServiceClientTest extends GeneratedTest
     /** @return CredentialsWrapper */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)
+            ->disableOriginalConstructor()
+            ->getMock();
     }
 
     /** @return DataTableServiceClient */
@@ -97,9 +99,7 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkCreateDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkCreateDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->bulkCreateDataTableRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -125,19 +125,20 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkCreateDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkCreateDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->bulkCreateDataTableRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -165,9 +166,7 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkGetDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkGetDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->bulkGetDataTableRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -193,19 +192,20 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkGetDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkGetDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->bulkGetDataTableRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -233,9 +233,7 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkReplaceDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkReplaceDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->bulkReplaceDataTableRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -261,19 +259,20 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkReplaceDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkReplaceDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->bulkReplaceDataTableRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -301,9 +300,7 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkUpdateDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkUpdateDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->bulkUpdateDataTableRows($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -329,19 +326,20 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkUpdateDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkUpdateDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         try {
             $gapicClient->bulkUpdateDataTableRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -417,12 +415,15 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
@@ -467,9 +468,7 @@ class DataTableServiceClientTest extends GeneratedTest
         $dataTableRow = new DataTableRow();
         $dataTableRowValues = [];
         $dataTableRow->setValues($dataTableRowValues);
-        $request = (new CreateDataTableRowRequest())
-            ->setParent($formattedParent)
-            ->setDataTableRow($dataTableRow);
+        $request = (new CreateDataTableRowRequest())->setParent($formattedParent)->setDataTableRow($dataTableRow);
         $response = $gapicClient->createDataTableRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -495,21 +494,22 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $dataTableRow = new DataTableRow();
         $dataTableRowValues = [];
         $dataTableRow->setValues($dataTableRowValues);
-        $request = (new CreateDataTableRowRequest())
-            ->setParent($formattedParent)
-            ->setDataTableRow($dataTableRow);
+        $request = (new CreateDataTableRowRequest())->setParent($formattedParent)->setDataTableRow($dataTableRow);
         try {
             $gapicClient->createDataTableRow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -536,8 +536,7 @@ class DataTableServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new DeleteDataTableRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataTableRequest())->setName($formattedName);
         $gapicClient->deleteDataTable($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -560,17 +559,19 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new DeleteDataTableRequest())
-            ->setName($formattedName);
+        $request = (new DeleteDataTableRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDataTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -596,9 +597,14 @@ class DataTableServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->dataTableRowName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]', '[DATA_TABLE_ROW]');
-        $request = (new DeleteDataTableRowRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableRowName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE]',
+            '[DATA_TABLE_ROW]'
+        );
+        $request = (new DeleteDataTableRowRequest())->setName($formattedName);
         $gapicClient->deleteDataTableRow($request);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -621,17 +627,25 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->dataTableRowName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]', '[DATA_TABLE_ROW]');
-        $request = (new DeleteDataTableRowRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableRowName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE]',
+            '[DATA_TABLE_ROW]'
+        );
+        $request = (new DeleteDataTableRowRequest())->setName($formattedName);
         try {
             $gapicClient->deleteDataTableRow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -672,8 +686,7 @@ class DataTableServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new GetDataTableRequest())
-            ->setName($formattedName);
+        $request = (new GetDataTableRequest())->setName($formattedName);
         $response = $gapicClient->getDataTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -697,17 +710,19 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedName = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new GetDataTableRequest())
-            ->setName($formattedName);
+        $request = (new GetDataTableRequest())->setName($formattedName);
         try {
             $gapicClient->getDataTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -735,9 +750,13 @@ class DataTableServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->dataTableOperationErrorsName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE_OPERATION_ERRORS]');
-        $request = (new GetDataTableOperationErrorsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableOperationErrorsName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE_OPERATION_ERRORS]'
+        );
+        $request = (new GetDataTableOperationErrorsRequest())->setName($formattedName);
         $response = $gapicClient->getDataTableOperationErrors($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -761,17 +780,24 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->dataTableOperationErrorsName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE_OPERATION_ERRORS]');
-        $request = (new GetDataTableOperationErrorsRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableOperationErrorsName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE_OPERATION_ERRORS]'
+        );
+        $request = (new GetDataTableOperationErrorsRequest())->setName($formattedName);
         try {
             $gapicClient->getDataTableOperationErrors($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -801,9 +827,14 @@ class DataTableServiceClientTest extends GeneratedTest
         $expectedResponse->setRowTimeToLive($rowTimeToLive);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $gapicClient->dataTableRowName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]', '[DATA_TABLE_ROW]');
-        $request = (new GetDataTableRowRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableRowName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE]',
+            '[DATA_TABLE_ROW]'
+        );
+        $request = (new GetDataTableRowRequest())->setName($formattedName);
         $response = $gapicClient->getDataTableRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -827,17 +858,25 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $gapicClient->dataTableRowName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]', '[DATA_TABLE_ROW]');
-        $request = (new GetDataTableRowRequest())
-            ->setName($formattedName);
+        $formattedName = $gapicClient->dataTableRowName(
+            '[PROJECT]',
+            '[LOCATION]',
+            '[INSTANCE]',
+            '[DATA_TABLE]',
+            '[DATA_TABLE_ROW]'
+        );
+        $request = (new GetDataTableRowRequest())->setName($formattedName);
         try {
             $gapicClient->getDataTableRow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -862,17 +901,14 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataTableRowsElement = new DataTableRow();
-        $dataTableRows = [
-            $dataTableRowsElement,
-        ];
+        $dataTableRows = [$dataTableRowsElement];
         $expectedResponse = new ListDataTableRowsResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataTableRows($dataTableRows);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new ListDataTableRowsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataTableRowsRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataTableRows($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -899,17 +935,19 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
-        $request = (new ListDataTableRowsRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataTableRowsRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataTableRows($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -934,17 +972,14 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock response
         $nextPageToken = '';
         $dataTablesElement = new DataTable();
-        $dataTables = [
-            $dataTablesElement,
-        ];
+        $dataTables = [$dataTablesElement];
         $expectedResponse = new ListDataTablesResponse();
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setDataTables($dataTables);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListDataTablesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataTablesRequest())->setParent($formattedParent);
         $response = $gapicClient->listDataTables($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -971,17 +1006,19 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $formattedParent = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $request = (new ListDataTablesRequest())
-            ->setParent($formattedParent);
+        $request = (new ListDataTablesRequest())->setParent($formattedParent);
         try {
             $gapicClient->listDataTables($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1024,8 +1061,7 @@ class DataTableServiceClientTest extends GeneratedTest
         $dataTable = new DataTable();
         $dataTableDescription = 'dataTableDescription924959512';
         $dataTable->setDescription($dataTableDescription);
-        $request = (new UpdateDataTableRequest())
-            ->setDataTable($dataTable);
+        $request = (new UpdateDataTableRequest())->setDataTable($dataTable);
         $response = $gapicClient->updateDataTable($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1049,19 +1085,21 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $dataTable = new DataTable();
         $dataTableDescription = 'dataTableDescription924959512';
         $dataTable->setDescription($dataTableDescription);
-        $request = (new UpdateDataTableRequest())
-            ->setDataTable($dataTable);
+        $request = (new UpdateDataTableRequest())->setDataTable($dataTable);
         try {
             $gapicClient->updateDataTable($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1094,8 +1132,7 @@ class DataTableServiceClientTest extends GeneratedTest
         $dataTableRow = new DataTableRow();
         $dataTableRowValues = [];
         $dataTableRow->setValues($dataTableRowValues);
-        $request = (new UpdateDataTableRowRequest())
-            ->setDataTableRow($dataTableRow);
+        $request = (new UpdateDataTableRowRequest())->setDataTableRow($dataTableRow);
         $response = $gapicClient->updateDataTableRow($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
@@ -1119,19 +1156,21 @@ class DataTableServiceClientTest extends GeneratedTest
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
         $transport->addResponse(null, $status);
         // Mock request
         $dataTableRow = new DataTableRow();
         $dataTableRowValues = [];
         $dataTableRow->setValues($dataTableRowValues);
-        $request = (new UpdateDataTableRowRequest())
-            ->setDataTableRow($dataTableRow);
+        $request = (new UpdateDataTableRowRequest())->setDataTableRow($dataTableRow);
         try {
             $gapicClient->updateDataTableRow($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1159,9 +1198,7 @@ class DataTableServiceClientTest extends GeneratedTest
         // Mock request
         $formattedParent = $gapicClient->dataTableName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[DATA_TABLE]');
         $requests = [];
-        $request = (new BulkCreateDataTableRowsRequest())
-            ->setParent($formattedParent)
-            ->setRequests($requests);
+        $request = (new BulkCreateDataTableRowsRequest())->setParent($formattedParent)->setRequests($requests);
         $response = $gapicClient->bulkCreateDataTableRowsAsync($request)->wait();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
