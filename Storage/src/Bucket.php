@@ -307,6 +307,9 @@ class Bucket
         }
 
         if (isset($options['contexts'])) {
+            if (!is_array($options['contexts'])) {
+                throw new \InvalidArgumentException('Object contexts must be an array.');
+            }
             $this->validateContexts($options['contexts']);
         }
 
@@ -369,9 +372,6 @@ class Bucket
             $val = (string) $data['value'];
             if ($val !== '' && !preg_match('/^[a-zA-Z0-9][^"\/]*$/', $val)) {
                 throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
-            }
-            if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
-                throw new \InvalidArgumentException('Object context value cannot contain forbidden characters.');
             }
         }
     }
