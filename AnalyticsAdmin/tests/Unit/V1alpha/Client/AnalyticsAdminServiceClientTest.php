@@ -155,6 +155,7 @@ use Google\Analytics\Admin\V1alpha\GetSKAdNetworkConversionValueSchemaRequest;
 use Google\Analytics\Admin\V1alpha\GetSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\GetSubpropertySyncConfigRequest;
+use Google\Analytics\Admin\V1alpha\GetUserProvidedDataSettingsRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
@@ -267,6 +268,7 @@ use Google\Analytics\Admin\V1alpha\UpdateSKAdNetworkConversionValueSchemaRequest
 use Google\Analytics\Admin\V1alpha\UpdateSearchAds360LinkRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertyEventFilterRequest;
 use Google\Analytics\Admin\V1alpha\UpdateSubpropertySyncConfigRequest;
+use Google\Analytics\Admin\V1alpha\UserProvidedDataSettings;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -7034,6 +7036,78 @@ class AnalyticsAdminServiceClientTest extends GeneratedTest
         $request = (new GetSubpropertySyncConfigRequest())->setName($formattedName);
         try {
             $gapicClient->getSubpropertySyncConfig($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getUserProvidedDataSettingsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $userProvidedDataCollectionEnabled = false;
+        $automaticallyDetectedDataCollectionEnabled = true;
+        $expectedResponse = new UserProvidedDataSettings();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setUserProvidedDataCollectionEnabled($userProvidedDataCollectionEnabled);
+        $expectedResponse->setAutomaticallyDetectedDataCollectionEnabled($automaticallyDetectedDataCollectionEnabled);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->userProvidedDataSettingsName('[PROPERTY]');
+        $request = (new GetUserProvidedDataSettingsRequest())->setName($formattedName);
+        $response = $gapicClient->getUserProvidedDataSettings($request);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame(
+            '/google.analytics.admin.v1alpha.AnalyticsAdminService/GetUserProvidedDataSettings',
+            $actualFuncCall
+        );
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getUserProvidedDataSettingsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->userProvidedDataSettingsName('[PROPERTY]');
+        $request = (new GetUserProvidedDataSettingsRequest())->setName($formattedName);
+        try {
+            $gapicClient->getUserProvidedDataSettings($request);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

@@ -470,6 +470,11 @@
                                 "getSubpropertySyncConfig"
                             ]
                         },
+                        "GetUserProvidedDataSettings": {
+                            "methods": [
+                                "getUserProvidedDataSettings"
+                            ]
+                        },
                         "ListAccessBindings": {
                             "methods": [
                                 "listAccessBindings"

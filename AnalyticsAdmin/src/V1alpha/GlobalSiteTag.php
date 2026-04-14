@@ -17,11 +17,11 @@ use Google\Protobuf\RepeatedField;
 class GlobalSiteTag extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name for this GlobalSiteTag resource.
+     * Identifier. Resource name for this GlobalSiteTag resource.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
      * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -39,7 +39,7 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name for this GlobalSiteTag resource.
+     *           Identifier. Resource name for this GlobalSiteTag resource.
      *           Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
      *           Example: "properties/123/dataStreams/456/globalSiteTag"
      *     @type string $snippet
@@ -53,11 +53,11 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this GlobalSiteTag resource.
+     * Identifier. Resource name for this GlobalSiteTag resource.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
      * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -66,11 +66,11 @@ class GlobalSiteTag extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this GlobalSiteTag resource.
+     * Identifier. Resource name for this GlobalSiteTag resource.
      * Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag
      * Example: "properties/123/dataStreams/456/globalSiteTag"
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
