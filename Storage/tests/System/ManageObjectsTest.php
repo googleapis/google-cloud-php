@@ -220,7 +220,6 @@ class ManageObjectsTest extends StorageTestCase
     private function createObjectWithContexts(array $uploadContexts)
     {
         $bucket = self::$bucket;
-
         $object = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . uniqid(),
             'contexts' => $uploadContexts
@@ -343,20 +342,16 @@ class ManageObjectsTest extends StorageTestCase
                 'tag' => ['value' => 'original'],
             ],
         ];
-        
         $source = $this->createObjectWithContexts($initialContexts);
         $destName = 'rewrite-dest-' . uniqid() . '.txt';
-
         $inherited = $source->rewrite(self::$bucket, [
             'name' => $destName
         ]);
-        
         $this->assertEquals($destName, $inherited->name());
         $this->assertEquals(
             'original',
             $inherited->info()['contexts']['custom']['tag']['value']
         );
-
         $overrideVal = 'new-value';
         $overridden = $source->copy(self::$bucket, [
             'name' => 'overridden-' . uniqid() . '.txt',
@@ -367,8 +362,7 @@ class ManageObjectsTest extends StorageTestCase
             ]
         ]);
 
-        $info = $overridden->info();
-        $this->assertEquals($overrideVal, $info['contexts']['custom']['tag']['value']);
+        $this->assertEquals($overrideVal, $overridden->info()['contexts']['custom']['tag']['value']);
         $source->delete();
     }
 

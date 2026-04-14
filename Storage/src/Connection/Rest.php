@@ -514,8 +514,8 @@ class Rest implements ConnectionInterface
             unset($args['retention']);
         }
         if (isset($args['contexts'])) {
-            // during object creation context properties go into metadata
-            // but not into request body
+            // during object creation context properties are part of the object resource
+            // and should be included in the request body.
             $args['metadata']['contexts'] = $args['contexts'];
             unset($args['contexts']);
         }
