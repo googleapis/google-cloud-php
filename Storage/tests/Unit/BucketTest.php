@@ -651,10 +651,10 @@ class BucketTest extends TestCase
     public function testRemoveAndClearAllObjectContexts($inputContexts, $expectedInApi)
     {
         $this->connection->patchObject(
-            Argument::withEntry('contexts', $expectedInApi) 
+            Argument::withEntry('contexts', $expectedInApi)
         )->shouldBeCalled()->willReturn([
             'name' => self::FILE_NAME_TEST,
-            'contexts' => $expectedInApi 
+            'contexts' => $expectedInApi
         ]);
 
         $object = new StorageObject(
