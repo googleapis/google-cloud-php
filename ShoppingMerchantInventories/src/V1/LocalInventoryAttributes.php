@@ -75,6 +75,23 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string instore_product_location = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $instore_product_location = null;
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product at this store.
+     * This field is used to show store-specific member prices on Local
+     * Inventory Ads (LIA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center. The benefits provided must match the merchant's website and be
+     * clear to members. This is only applicable for merchants in supported
+     * countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * For local inventory specific details, see the [Local inventory data
+     * specification](https://support.google.com/merchants/answer/3061342).
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $loyalty_programs;
 
     /**
      * Constructor.
@@ -110,6 +127,19 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $instore_product_location
      *           Optional. Location of the product inside the store. Maximum length is 20
      *           bytes.
+     *     @type \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram[] $loyalty_programs
+     *           Optional. An optional list of loyalty programs containing applicable
+     *           loyalty member prices for this product at this store.
+     *           This field is used to show store-specific member prices on Local
+     *           Inventory Ads (LIA).
+     *           To use this, the loyalty program must be configured in Google Merchant
+     *           Center. The benefits provided must match the merchant's website and be
+     *           clear to members. This is only applicable for merchants in supported
+     *           countries.
+     *           See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     *           for details on supported countries and loyalty program configuration.
+     *           For local inventory specific details, see the [Local inventory data
+     *           specification](https://support.google.com/merchants/answer/3061342).
      * }
      */
     public function __construct($data = NULL) {
@@ -425,6 +455,54 @@ class LocalInventoryAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->instore_product_location = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product at this store.
+     * This field is used to show store-specific member prices on Local
+     * Inventory Ads (LIA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center. The benefits provided must match the merchant's website and be
+     * clear to members. This is only applicable for merchants in supported
+     * countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * For local inventory specific details, see the [Local inventory data
+     * specification](https://support.google.com/merchants/answer/3061342).
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram>
+     */
+    public function getLoyaltyPrograms()
+    {
+        return $this->loyalty_programs;
+    }
+
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product at this store.
+     * This field is used to show store-specific member prices on Local
+     * Inventory Ads (LIA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center. The benefits provided must match the merchant's website and be
+     * clear to members. This is only applicable for merchants in supported
+     * countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * For local inventory specific details, see the [Local inventory data
+     * specification](https://support.google.com/merchants/answer/3061342).
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram[] $var
+     * @return $this
+     */
+    public function setLoyaltyPrograms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram::class);
+        $this->loyalty_programs = $arr;
 
         return $this;
     }
