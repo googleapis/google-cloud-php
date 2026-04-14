@@ -434,8 +434,8 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertArrayHasKey('contexts', $info);
         $this->assertArrayHasKey('custom', $info['contexts']);
         $custom = $info['contexts']['custom'];
-        $this->assertEquals('file1-original', $custom['tag']['value'], 'The composed object failed to inherit context from the first source.');
-        $this->assertArrayHasKey($s2Key, $custom, 'The composed object should have merged contexts from the second source.');
+        $this->assertEquals('file1-original', $custom['tag']['value']);
+        $this->assertArrayHasKey($s2Key, $custom);
         $this->assertEquals('file2-data', $custom[$s2Key]['value']);
         
         $source1->delete();
