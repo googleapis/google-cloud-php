@@ -38,6 +38,20 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 3;</code>
      */
     protected $encryption_spec = null;
+    /**
+     * Optional. The user-provided custom service account to use to do the copy
+     * model. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used to access resources needed to upload the model. This account
+     * must belong to the destination project where the model is copied to,
+     * i.e., the project specified in the `parent` field of this request and
+     * have the Vertex AI Service Agent role in the source project.
+     * Requires the user copying the Model to have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string custom_service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $custom_service_account = '';
     protected $destination_model;
 
     /**
@@ -85,6 +99,16 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key options. If this is set,
      *           then the Model copy will be encrypted with the provided encryption key.
+     *     @type string $custom_service_account
+     *           Optional. The user-provided custom service account to use to do the copy
+     *           model. If empty, [Vertex AI Service
+     *           Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     *           will be used to access resources needed to upload the model. This account
+     *           must belong to the destination project where the model is copied to,
+     *           i.e., the project specified in the `parent` field of this request and
+     *           have the Vertex AI Service Agent role in the source project.
+     *           Requires the user copying the Model to have the
+     *           `iam.serviceAccounts.actAs` permission on this service account.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,6 +280,48 @@ class CopyModelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The user-provided custom service account to use to do the copy
+     * model. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used to access resources needed to upload the model. This account
+     * must belong to the destination project where the model is copied to,
+     * i.e., the project specified in the `parent` field of this request and
+     * have the Vertex AI Service Agent role in the source project.
+     * Requires the user copying the Model to have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string custom_service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getCustomServiceAccount()
+    {
+        return $this->custom_service_account;
+    }
+
+    /**
+     * Optional. The user-provided custom service account to use to do the copy
+     * model. If empty, [Vertex AI Service
+     * Agent](https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents)
+     * will be used to access resources needed to upload the model. This account
+     * must belong to the destination project where the model is copied to,
+     * i.e., the project specified in the `parent` field of this request and
+     * have the Vertex AI Service Agent role in the source project.
+     * Requires the user copying the Model to have the
+     * `iam.serviceAccounts.actAs` permission on this service account.
+     *
+     * Generated from protobuf field <code>string custom_service_account = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCustomServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->custom_service_account = $var;
 
         return $this;
     }
