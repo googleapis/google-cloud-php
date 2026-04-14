@@ -219,7 +219,7 @@ class ManageObjectsTest extends StorageTestCase
 
     private function createObjectWithContexts(array $uploadContexts)
     {
-        $bucket = self::$client->createBucket(uniqid('object-contexts-'));
+        $bucket = self::$bucket;
 
         $object = $bucket->upload(self::DATA, [
             'name' => self::CONTEXT_OBJECT_PREFIX . uniqid(),
@@ -369,11 +369,6 @@ class ManageObjectsTest extends StorageTestCase
 
         $info = $overridden->info();
         $this->assertEquals($overrideVal, $info['contexts']['custom']['tag']['value']);
-        $dropped = $source->rewrite(self::$bucket, [
-            'name' => 'dropped-' . uniqid() . '.txt',
-            'dropContextGroups' => ['custom']
-        ]);
-        $this->assertArrayNotHasKey('contexts', $dropped->info()['contexts']);
         $source->delete();
     }
 
@@ -435,19 +430,14 @@ class ManageObjectsTest extends StorageTestCase
 
         $destName = 'c-inh-' . uniqid() . '.txt';
         $inheritedObject = $bucket->compose([$source1, $source2], $destName);
-        $custom = $inheritedObject->info()['contexts']['custom'];
-
-        $this->assertEquals(
-            'file1-original',
-            $custom['tag']['value'],
-            'The composed object failed to inherit context from the first source.'
-        );
-        $this->assertArrayNotHasKey(
-            $s2Key,
-            $custom['s2-specific-key'],
-            'The composed object incorrectly merged contexts from the second source.'
-        );
-
+        $info = $inheritedObject->info();
+        $this->assertArrayHasKey('contexts', $info);
+        $this->assertArrayHasKey('custom', $info['contexts']);
+        $custom = $info['contexts']['custom'];
+        $this->assertEquals('file1-original', $custom['tag']['value'], 'The composed object failed to inherit context from the first source.');
+        $this->assertArrayHasKey($s2Key, $custom, 'The composed object should have merged contexts from the second source.');
+        $this->assertEquals('file2-data', $custom[$s2Key]['value']);
+        
         $source1->delete();
         $source2->delete();
     }

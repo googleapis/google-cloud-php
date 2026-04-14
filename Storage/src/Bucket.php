@@ -280,7 +280,7 @@ class Bucket
      *     @type array $contexts.custom Custom user-defined contexts. Keys must start
      *           with an alphanumeric character and cannot contain double quotes (`"`).
      *     @type string $contexts.custom.{key}.value The value associated with the context.
-     *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
+     *           If not empty, must start with an alphanumeric character and cannot contain double quotes (`"`)
      *           or forward slashes (`/`).
      *     @type string $contexts.custom.{key}.createTime The time the context
      *           was created in RFC 3339 format. **(read only)**
@@ -330,7 +330,7 @@ class Bucket
         );
     }
 
-    private function validateContexts(array $contexts)
+    private function validateContexts(?array $contexts)
     {
         if (!isset($contexts['custom'])) {
             return;
@@ -344,6 +344,9 @@ class Bucket
             }
             if (strpos((string) $key, '"') !== false) {
                 throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
+            }
+            if ($data === null) {
+                continue;
             }
             if (!is_array($data)) {
                 throw new \InvalidArgumentException(sprintf(
@@ -364,7 +367,7 @@ class Bucket
                 ));
             }
             $val = (string) $data['value'];
-            if ($val !== '' && !preg_match('/^[a-zA-Z0-9]/', $val)) {
+            if ($val !== '' && !preg_match('/^[a-zA-Z0-9][^"\/]*$/', $val)) {
                 throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
             }
             if (strpos($val, '/') !== false || strpos($val, '"') !== false) {
