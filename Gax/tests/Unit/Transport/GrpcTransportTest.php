@@ -68,12 +68,13 @@ class GrpcTransportTest extends TestCase
 
     public function setUp(): void
     {
-        self::requiresGrpcExtension();
-    }
+        // This is required for tests to pass on Windows with PHP 8.1
+        // @TODO remove this once we drop PHP 8.1 support
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && PHP_VERSION_ID < 80200) {
+            $this->markTestSkipped('gRPC shutdown crash on Windows + PHP 8.1');
+        }
 
-    public static function tearDownAfterClass(): void
-    {
-        gc_collect_cycles();
+        self::requiresGrpcExtension();
     }
 
     private function callCredentialsCallback(MockGrpcTransport $transport)
