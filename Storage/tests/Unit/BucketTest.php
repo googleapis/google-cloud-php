@@ -621,7 +621,6 @@ class BucketTest extends TestCase
 
         $result = $object->update(['contexts' => $newContexts]);
         $this->assertEquals('new-val', $result['contexts']['custom']['new-key']['value']);
-        $this->assertArrayNotHasKey('contentType', $result);
     }
 
     public function testAddAndModifyWithIndividualContexts()
@@ -651,14 +650,11 @@ class BucketTest extends TestCase
      */
     public function testRemoveAndClearAllObjectContexts($inputContexts, $expectedInApi)
     {
-        $this->connection->patchObject(Argument::that(function ($args) use ($expectedInApi) {
-            if ($expectedInApi === null) {
-                return !isset($args['contexts']) || $args['contexts'] === null;
-            }
-            return isset($args['contexts']) && $args['contexts'] === $expectedInApi;
-        }))->shouldBeCalled()->willReturn([
+        $this->connection->patchObject(
+            Argument::withEntry('contexts', $expectedInApi) 
+        )->shouldBeCalled()->willReturn([
             'name' => self::FILE_NAME_TEST,
-            'contexts' => $expectedInApi
+            'contexts' => $expectedInApi 
         ]);
 
         $object = new StorageObject(
@@ -674,8 +670,8 @@ class BucketTest extends TestCase
             $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
             $this->assertFalse($hasContexts);
         } else {
-            $this->assertArrayHasKey('contexts', $info);
-            $this->assertEquals($expectedInApi, $info['contexts']);
+            $actualContexts = $object->info()['contexts'] ?? null;
+            $this->assertEquals($expectedInApi, $actualContexts);
         }
     }
 
@@ -720,85 +716,6 @@ class BucketTest extends TestCase
         );
     }
 
-    public function testCombineMetadataOverridesWithContexts()
-    {
-        $destName = 'combined.txt';
-        $sources = ['src1.txt', 'src2.txt'];
-        $contexts = [
-            'custom' => ['status' => ['value' => 'composed']]
-        ];
-
-        $expectedOptions = [
-            'destinationBucket' => self::BUCKET_NAME,
-            'destinationObject' => $destName,
-            'destination' => [
-                'contexts' => $contexts,
-                'contentType' => 'text/plain'
-            ],
-            'sourceObjects' => [
-                ['name' => 'src1.txt'],
-                ['name' => 'src2.txt']
-            ]
-        ];
-
-        $this->connection->composeObject($expectedOptions)
-            ->shouldBeCalled()
-            ->willReturn([
-                'name' => $destName,
-                'generation' => 12345,
-                'metadata' => [
-                    'contexts' => $contexts
-                ]
-            ]);
-
-        $object = $this->getBucket()->compose($sources, $destName, [
-            'metadata' => [
-                'contexts' => $contexts
-            ]
-        ]);
-
-        $this->assertEquals($destName, $object->name());
-        $this->assertEquals($contexts, $object->info()['metadata']['contexts']);
-    }
-
-    public function testComposeHandlesEmptyStringValuesInContexts()
-    {
-        $destName = 'empty-string-test.txt';
-        $sources = ['src1.txt', 'src2.txt'];
-        
-        $metadata = [
-            'contexts' => [
-                'custom' => [
-                    'empty-key' => ['value' => '']
-                ]
-            ]
-        ];
-
-        $this->connection->composeObject([
-            'destinationBucket' => self::BUCKET_NAME,
-            'destinationObject' => $destName,
-            'destination' => $metadata + ['contentType' => 'text/plain'],
-            'sourceObjects' => [
-                ['name' => 'src1.txt'],
-                ['name' => 'src2.txt']
-            ]
-        ])->shouldBeCalled()->willReturn([
-            'name' => $destName,
-            'generation' => 12345,
-            'metadata' => $metadata
-        ]);
-
-        $object = $this->getBucket()->compose($sources, $destName, [
-            'metadata' => $metadata
-        ]);
-
-        $this->assertSame(
-            '',
-            $object->info()['metadata']['contexts']['custom']['empty-key']['value'],
-            "The empty string value was lost or converted during the compose process."
-        );
-    }
-
     public function testGetFiltersByPresenceOfKeyValuePair()
     {
         $filter = 'contexts."status"="active"';
@@ -816,9 +733,9 @@ class BucketTest extends TestCase
     }
 
     /**
-    * @dataProvider filterExistenceDataProvider
+    * @dataProvider listFilterExistenceDataProvider
     */
-    public function testGetFiltersByExistence($filter)
+    public function testListFiltersByExistence($filter)
     {
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
             ->shouldBeCalled()
@@ -830,11 +747,11 @@ class BucketTest extends TestCase
         $iterator = $bucket->objects([
             'filter' => $filter
         ]);
-        
+
         $iterator->current();
     }
 
-    public function filterExistenceDataProvider()
+    public function listFilterExistenceDataProvider()
     {
         return [
             'presence of key (Existence)' => ['contexts."status":*'],

@@ -217,7 +217,7 @@ class ManageObjectsTest extends StorageTestCase
         $this->assertFalse($object->exists());
     }
 
-    private function testCreateObjectWithContexts(array $uploadContexts)
+    private function createObjectWithContexts(array $uploadContexts)
     {
         $bucket = self::$client->createBucket(uniqid('object-contexts-'));
 
@@ -237,7 +237,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
 
-        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $object = $this->createObjectWithContexts($initialContexts);
         $metadata = $object->info();
         $this->assertArrayHasKey('contexts', $metadata);
         $this->assertEquals(
@@ -273,7 +273,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
 
-        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $object = $this->createObjectWithContexts($initialContexts);
         $info = $object->info();
         $this->assertArrayHasKey('contexts', $info, 'Contexts missing from server response.');
     
@@ -301,7 +301,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
 
-        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $object = $this->createObjectWithContexts($initialContexts);
         $object->update([
             'contexts' => null
         ]);
@@ -318,7 +318,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
 
-        $object = $this->testCreateObjectWithContexts($initialContexts);
+        $object = $this->createObjectWithContexts($initialContexts);
         $inherited = $object->rewrite(self::$bucket, ['name' => 'inherit-' . uniqid()]);
         $info = $inherited->info();
         
@@ -344,7 +344,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
         
-        $source = $this->testCreateObjectWithContexts($initialContexts);
+        $source = $this->createObjectWithContexts($initialContexts);
         $destName = 'rewrite-dest-' . uniqid() . '.txt';
 
         $inherited = $source->rewrite(self::$bucket, [
@@ -385,7 +385,7 @@ class ManageObjectsTest extends StorageTestCase
             ],
         ];
         
-        $source1 = $this->testCreateObjectWithContexts($initialContexts);
+        $source1 = $this->createObjectWithContexts($initialContexts);
         $bucket = self::$client->bucket($source1->info()['bucket']);
         $s2Key = 's2-key';
         $source2 = $bucket->upload(self::DATA, [
@@ -420,7 +420,7 @@ class ManageObjectsTest extends StorageTestCase
                 'tag' => ['value' => 'file1-original'],
             ],
         ];
-        $source1 = $this->testCreateObjectWithContexts($initialContexts1);
+        $source1 = $this->createObjectWithContexts($initialContexts1);
 
         $s2Key = 's2-specific-key';
         $bucket = self::$client->bucket($source1->info()['bucket']);
