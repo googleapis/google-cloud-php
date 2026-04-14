@@ -71,6 +71,11 @@ class GrpcTransportTest extends TestCase
         self::requiresGrpcExtension();
     }
 
+    public static function tearDownAfterClass(): void
+    {
+        gc_collect_cycles();
+    }
+
     private function callCredentialsCallback(MockGrpcTransport $transport)
     {
         $mockCall = new Call('method', '', null);
