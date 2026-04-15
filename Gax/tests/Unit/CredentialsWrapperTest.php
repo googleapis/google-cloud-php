@@ -512,7 +512,6 @@ class CredentialsWrapperTest extends TestCase
         ]);
         $reflectionClass = new \ReflectionClass($wrapper);
         $reflectionProperty = $reflectionClass->getProperty('credentialsFetcher');
-        $reflectionProperty->setAccessible(true);
         $this->assertInstanceOf(GCECredentials::class, $reflectionProperty->getValue($wrapper)->getFetcher());
     }
 
@@ -572,7 +571,6 @@ class CredentialsWrapperTest extends TestCase
         ]);
         $reflectionClass = new \ReflectionClass($wrapper);
         $reflectionProperty = $reflectionClass->getProperty('credentialsFetcher');
-        $reflectionProperty->setAccessible(true);
         $this->assertInstanceOf(GCECredentials::class, $reflectionProperty->getValue($wrapper)->getFetcher());
     }
 

@@ -1708,7 +1708,6 @@ class GapicClientTraitTest extends TestCase
         ]);
 
         $prop = new \ReflectionProperty($client, 'credentialsWrapper');
-        $prop->setAccessible(true);
         $this->assertInstanceOf(ApiKeyHeaderCredentials::class, $prop->getValue($client));
     }
 

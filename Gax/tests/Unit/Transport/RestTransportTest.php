@@ -460,7 +460,6 @@ class RestTransportTest extends TestCase
 
         $reflectionClass = new \ReflectionClass($transport);
         $reflectionProp = $reflectionClass->getProperty('clientCertSource');
-        $reflectionProp->setAccessible(true);
         $actualClientCertSource = $reflectionProp->getValue($transport);
 
         $this->assertEquals($mockClientCertSource, $actualClientCertSource);
@@ -468,8 +467,6 @@ class RestTransportTest extends TestCase
 
     public function testClientCertSourceOptionInvalid()
     {
-        self::requiresPhp7();
-
         $mockClientCertSource = 'foo';
 
         $this->expectException(TypeError::class);

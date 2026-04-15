@@ -68,12 +68,6 @@ class GrpcTransportTest extends TestCase
 
     public function setUp(): void
     {
-        // This is required for tests to pass on Windows with PHP 8.1
-        // @TODO remove this once we drop PHP 8.1 support
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN' && PHP_VERSION_ID < 80200) {
-            $this->markTestSkipped('gRPC shutdown crash on Windows + PHP 8.1');
-        }
-
         self::requiresGrpcExtension();
     }
 
@@ -450,7 +444,7 @@ class GrpcTransportTest extends TestCase
     public function testClientCertSourceOptionValid()
     {
         $mockClientCertSource = function () {
-            return 'MOCK_CERT_SOURCE';
+            return ['MOCK_KEY', 'MOCK_CERT'];
         };
         $transport = GrpcTransport::build(
             'address.com:123',
@@ -462,8 +456,6 @@ class GrpcTransportTest extends TestCase
 
     public function testClientCertSourceOptionInvalid()
     {
-        self::requiresPhp7();
-
         $mockClientCertSource = 'foo';
 
         $this->expectException(TypeError::class);
@@ -603,7 +595,6 @@ class GrpcTransportTest extends TestCase
         );
 
         $r = new \ReflectionProperty(BaseStub::class, 'call_invoker');
-        $r->setAccessible(true);
         $r->setValue(
             $transport,
             $mockCallInvoker
@@ -625,11 +616,7 @@ class GrpcTransportTest extends TestCase
 
     public function interceptorDataProvider()
     {
-        // add "mocks" directory to autoloader
-        $loader = file_exists(__DIR__ . '/../../../../vendor/autoload.php')
-            ? require __DIR__ . '/../../../../vendor/autoload.php'
-            : require __DIR__ . '/../../../vendor/autoload.php';
-        $loader->addPsr4(__NAMESPACE__ . '\\', __DIR__ . '/../testdata/mocks/');
+        $this->autoloadTestdata('mocks', __NAMESPACE__);
 
         $deprecatedInterceptors = (new \ReflectionClass(Interceptor::class))
             ->getMethod('interceptUnaryUnary')

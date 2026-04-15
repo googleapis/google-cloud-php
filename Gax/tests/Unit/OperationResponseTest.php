@@ -59,12 +59,7 @@ class OperationResponseTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        // add mocks to autoloader
-        $loader = file_exists(__DIR__ . '/../../../vendor/autoload.php')
-            ? require __DIR__ . '/../../../vendor/autoload.php'
-            : require __DIR__ . '/../../vendor/autoload.php';
-
-        $loader->addPsr4('Google\\', __DIR__ . '/testdata/mocks/');
+        self::autoloadTestdata('mocks', 'Google');
     }
 
     public static function tearDownAfterClass(): void

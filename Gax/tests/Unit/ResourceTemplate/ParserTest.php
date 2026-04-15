@@ -432,7 +432,6 @@ class ParserTest extends TestCase
     {
         $reflection = new \ReflectionClass($class);
         $method = $reflection->getMethod($methodName);
-        $method->setAccessible(true);
 
         return $method->invokeArgs(null, $parameters);
     }
