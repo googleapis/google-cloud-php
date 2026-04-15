@@ -46,6 +46,13 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     protected $type = 0;
     /**
+     * Optional. The edition of the instance. See
+     * [Edition][google.bigtable.admin.v2.Instance.Edition] for details.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Edition edition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $edition = 0;
+    /**
      * Labels are a flexible and lightweight mechanism for organizing cloud
      * resources into groups that reflect a customer's organizational needs and
      * deployment strategies. They can be used to filter resources and aggregate
@@ -111,6 +118,9 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. The current state of the instance.
      *     @type int $type
      *           The type of the instance. Defaults to `PRODUCTION`.
+     *     @type int $edition
+     *           Optional. The edition of the instance. See
+     *           [Edition][google.bigtable.admin.v2.Instance.Edition] for details.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -252,6 +262,34 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance\Type::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The edition of the instance. See
+     * [Edition][google.bigtable.admin.v2.Instance.Edition] for details.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Edition edition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getEdition()
+    {
+        return $this->edition;
+    }
+
+    /**
+     * Optional. The edition of the instance. See
+     * [Edition][google.bigtable.admin.v2.Instance.Edition] for details.
+     *
+     * Generated from protobuf field <code>.google.bigtable.admin.v2.Instance.Edition edition = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEdition($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\Admin\V2\Instance\Edition::class);
+        $this->edition = $var;
 
         return $this;
     }
