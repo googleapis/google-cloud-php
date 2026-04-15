@@ -62,7 +62,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The system-defined duration that an instance can remain
      * unrefreshed until it is automatically disabled. This will have a value of
-     * 120 days.
+     * 730 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration unrefreshed_duration_until_disable = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -117,7 +117,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $unrefreshed_duration_until_disable
      *           Output only. The system-defined duration that an instance can remain
      *           unrefreshed until it is automatically disabled. This will have a value of
-     *           120 days.
+     *           730 days.
      *     @type \Google\Protobuf\Timestamp $disable_time
      *           Output only. The time at which the instance will be automatically disabled
      *           if not refreshed. This field is updated upon creation and after each
@@ -318,7 +318,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The system-defined duration that an instance can remain
      * unrefreshed until it is automatically disabled. This will have a value of
-     * 120 days.
+     * 730 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration unrefreshed_duration_until_disable = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Duration|null
@@ -341,7 +341,7 @@ class SingleTenantHsmInstance extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The system-defined duration that an instance can remain
      * unrefreshed until it is automatically disabled. This will have a value of
-     * 120 days.
+     * 730 days.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration unrefreshed_duration_until_disable = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Duration $var
