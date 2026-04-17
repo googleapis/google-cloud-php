@@ -646,15 +646,15 @@ class BucketTest extends TestCase
     }
 
     /**
-     * @dataProvider removeAndClearAllContextsDataProvider
-     */
-    public function testRemoveAndClearAllObjectContexts($inputContexts, $expectedInApi)
+    * @dataProvider removeAndClearAllContextsDataProvider
+    */
+    public function testRemoveAndClearAllObjectContexts($objectContexts)
     {
         $this->connection->patchObject(
-            Argument::withEntry('contexts', $expectedInApi)
+            Argument::withEntry('contexts', $objectContexts)
         )->shouldBeCalled()->willReturn([
             'name' => self::FILE_NAME_TEST,
-            'contexts' => $expectedInApi
+            'contexts' => $objectContexts
         ]);
 
         $object = new StorageObject(
@@ -664,14 +664,14 @@ class BucketTest extends TestCase
             1,
             ['bucket' => self::BUCKET_NAME]
         );
-        $object->update(['contexts' => $inputContexts]);
-        $info = $object->info();
-        if ($expectedInApi === null) {
+        $object->update(['contexts' => $objectContexts]);
+         $info = $object->info();
+        if ($objectContexts === null) {
             $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
             $this->assertFalse($hasContexts);
         } else {
             $actualContexts = $object->info()['contexts'] ?? null;
-            $this->assertEquals($expectedInApi, $actualContexts);
+            $this->assertEquals($objectContexts, $actualContexts);
         }
     }
 
@@ -679,11 +679,9 @@ class BucketTest extends TestCase
     {
         return [
             'remove an individual context by setting it to null' => [
-                ['custom' => ['key-to-delete' => null]],
                 ['custom' => ['key-to-delete' => null]]
             ],
             'clear all contexts by setting custom to null' => [
-                ['custom' => null],
                 ['custom' => null]
             ]
         ];
@@ -716,7 +714,7 @@ class BucketTest extends TestCase
         );
     }
 
-    public function testGetFiltersByPresenceOfKeyValuePair()
+    public function testListFiltersByPresenceOfKeyValuePair()
     {
         $filter = 'contexts."status"="active"';
         $this->connection->listObjects(Argument::withEntry('filter', $filter))
@@ -729,7 +727,7 @@ class BucketTest extends TestCase
         $iterator = $bucket->objects([
             'filter' => $filter
         ]);
-        $iterator->current();
+        $this->assertCount(0, iterator_to_array($iterator));
     }
 
     /**
@@ -748,7 +746,7 @@ class BucketTest extends TestCase
             'filter' => $filter
         ]);
 
-        $iterator->current();
+        $this->assertCount(0, iterator_to_array($iterator));
     }
 
     public function listFilterExistenceDataProvider()
@@ -764,9 +762,11 @@ class BucketTest extends TestCase
         $fileMetadata = [
             'name' => 'filename',
             'metadata' => [
-                'contexts' => [
-                    'custom' => [
-                        'dept' => ['value' => 'eng', 'createTime' => '...']
+                'contexts' => [ 'custom' => [ 'dept' =>
+                        [
+                            'value' => 'eng',
+                            'createTime' => '2026-04-16T01:01:01.045123456Z', 'updateTime' => '2026-04-16T01:01:01.045123'
+                        ]
                     ]
                 ]
             ]
