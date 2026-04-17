@@ -423,12 +423,12 @@ class ManageObjectsTest extends StorageTestCase
             'contexts' => ['custom' => [$s2Key => ['value' => 'file2']]]
         ]);
 
-        //Inherit Contexts
+        //Inherit contexts during compose
         $inherit = $bucket->compose([$source1, $source2], 'c-inh-' . uniqid() . '.txt');
         $custom = $inherit->info()['contexts']['custom'];
         $this->assertEquals('file1', $custom['tag']['value']);
-        
-        // Override Contexts
+
+        // Override contexts during compose
         $oKey = 'c-override';
         $oVal = 'c-val';
         $override = $bucket->compose([$source1, $source2], 'c-ovr-' . uniqid() . '.txt');
