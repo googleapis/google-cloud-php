@@ -801,6 +801,7 @@ class BucketTest extends TestCase
 
         $this->assertInstanceOf(Iam::class, $bucket->iam());
     }
+    
     public function testRequesterPays()
     {
         $this->connection->getBucket(Argument::withEntry('userProject', 'foo'))
