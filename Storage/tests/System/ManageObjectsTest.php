@@ -233,6 +233,7 @@ class ManageObjectsTest extends StorageTestCase
                 'another-key' => ['value' => 'another-value']
             ],
         ];
+
         //Adding Individual Contexts
         $object = $this->createObjectWithContexts($initialContexts);
         $info = $object->info();
@@ -364,9 +365,11 @@ class ManageObjectsTest extends StorageTestCase
         ];
 
         $object = $this->createObjectWithContexts($initialContexts);
+
         // Inherit object contexts during a rewrite operation.
         $inherited = $object->rewrite(self::$bucket, ['name' => 'inherit-' . uniqid()]);
         $this->assertEquals('orignal', $inherited->info()['contexts']['custom']['tag']['value']);
+
         // Override object contexts during a rewrite operation.
         $overrideKey = 'override-key';
         $overrideVal = 'override-val';
@@ -419,10 +422,12 @@ class ManageObjectsTest extends StorageTestCase
             'name' => 'override-object-contexts-' . 's2-' . uniqid(),
             'contexts' => ['custom' => [$s2Key => ['value' => 'file2']]]
         ]);
+
         //Inherit Contexts
         $inherit = $bucket->compose([$source1, $source2], 'c-inh-' . uniqid() . '.txt');
         $custom = $inherit->info()['contexts']['custom'];
         $this->assertEquals('file1', $custom['tag']['value']);
+        
         // Override Contexts
         $oKey = 'c-override';
         $oVal = 'c-val';

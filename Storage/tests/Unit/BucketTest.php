@@ -665,7 +665,7 @@ class BucketTest extends TestCase
             ['bucket' => self::BUCKET_NAME]
         );
         $object->update(['contexts' => $objectContexts]);
-         $info = $object->info();
+        $info = $object->info();
         if ($objectContexts === null) {
             $hasContexts = isset($info['contexts']) && $info['contexts'] !== null;
             $this->assertFalse($hasContexts);
@@ -765,13 +765,13 @@ class BucketTest extends TestCase
                 'contexts' => [ 'custom' => [ 'dept' =>
                         [
                             'value' => 'eng',
-                            'createTime' => '2026-04-16T01:01:01.045123456Z', 'updateTime' => '2026-04-16T01:01:01.045123'
+                            'createTime' => '2026-04-16T01:01:01.045123456Z', 
+                            'updateTime' => '2026-04-16T01:01:01.045123'
                         ]
                     ]
                 ]
             ]
         ];
-
         $this->connection->listObjects(Argument::any())
             ->shouldBeCalled()
             ->willReturn([
