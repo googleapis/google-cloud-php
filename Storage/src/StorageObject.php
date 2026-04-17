@@ -237,7 +237,7 @@ class StorageObject
      *     @type array $contexts.custom Custom user-defined contexts. Keys must start
      *           with an alphanumeric character and cannot contain double quotes (`"`).
      *     @type string $contexts.custom.{key}.value The value associated with the context.
-     *           Must start with an alphanumeric character and cannot contain double quotes (`"`)
+     *           If not empty, must start with an alphanumeric character and cannot contain double quotes (`"`)
      *           or forward slashes (`/`).
      *     @type string $contexts.custom.{key}.createTime The time the context
      *           was created in RFC 3339 format. **(read only)**
