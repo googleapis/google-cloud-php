@@ -23,6 +23,7 @@
 namespace Google\Cloud\ModelArmor\Tests\Unit\V1beta\Client;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
@@ -558,6 +559,206 @@ class ModelArmorClientTest extends GeneratedTest
         try {
             $gapicClient->sanitizeUserPrompt($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamSanitizeModelResponseTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SanitizeModelResponseResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new SanitizeModelResponseResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new SanitizeModelResponseResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedName = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $modelResponseData = new DataItem();
+        $request = new SanitizeModelResponseRequest();
+        $request->setName($formattedName);
+        $request->setModelResponseData($modelResponseData);
+        $formattedName2 = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $modelResponseData2 = new DataItem();
+        $request2 = new SanitizeModelResponseRequest();
+        $request2->setName($formattedName2);
+        $request2->setModelResponseData($modelResponseData2);
+        $formattedName3 = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $modelResponseData3 = new DataItem();
+        $request3 = new SanitizeModelResponseRequest();
+        $request3->setName($formattedName3);
+        $request3->setModelResponseData($modelResponseData3);
+        $bidi = $gapicClient->streamSanitizeModelResponse();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.modelarmor.v1beta.ModelArmor/StreamSanitizeModelResponse', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamSanitizeModelResponseExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->streamSanitizeModelResponse();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamSanitizeUserPromptTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new SanitizeUserPromptResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new SanitizeUserPromptResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new SanitizeUserPromptResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedName = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $userPromptData = new DataItem();
+        $request = new SanitizeUserPromptRequest();
+        $request->setName($formattedName);
+        $request->setUserPromptData($userPromptData);
+        $formattedName2 = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $userPromptData2 = new DataItem();
+        $request2 = new SanitizeUserPromptRequest();
+        $request2->setName($formattedName2);
+        $request2->setUserPromptData($userPromptData2);
+        $formattedName3 = $gapicClient->templateName('[PROJECT]', '[LOCATION]', '[TEMPLATE]');
+        $userPromptData3 = new DataItem();
+        $request3 = new SanitizeUserPromptRequest();
+        $request3->setName($formattedName3);
+        $request3->setUserPromptData($userPromptData3);
+        $bidi = $gapicClient->streamSanitizeUserPrompt();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([$request2, $request3]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.modelarmor.v1beta.ModelArmor/StreamSanitizeUserPrompt', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamSanitizeUserPromptExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->streamSanitizeUserPrompt();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
