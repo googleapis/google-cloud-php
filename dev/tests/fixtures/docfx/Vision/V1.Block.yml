@@ -202,7 +202,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/Internal/RepeatedField">Google\Protobuf\Internal\RepeatedField</a>'
+          var_type: '<a href="https://protobuf.dev/reference/php/api-docs/Google/Protobuf/RepeatedField">Google\Protobuf\RepeatedField</a>&lt;<xref uid="\Google\Cloud\Vision\V1\Paragraph">Paragraph</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Block::setParagraphs()'
     name: setParagraphs

@@ -94,7 +94,7 @@ items:
       parameters:
         -
           id: options
-          var_type: array
+          var_type: 'array|<xref uid="\Google\ApiCore\Options\ClientOptions">Google\ApiCore\Options\ClientOptions</xref>'
           description: 'Optional. Options for configuring the service API wrapper.'
         -
           id: '↳ apiEndpoint'
@@ -102,8 +102,8 @@ items:
           description: 'The address of the API remote host. May optionally include the port, formatted as "<uri>:<port>". Default ''vision.googleapis.com:443''.'
         -
           id: '↳ credentials'
-          var_type: string|array|FetchAuthTokenInterface|CredentialsWrapper
-          description: 'The credentials to be used by the client to authorize API calls. This option accepts either a path to a credentials file, or a decoded credentials file as a PHP array. *Advanced usage*: In addition, this option can also accept a pre-constructed <xref uid="\Google\Auth\FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</xref> object or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored.'
+          var_type: FetchAuthTokenInterface|CredentialsWrapper
+          description: 'This option should only be used with a pre-constructed <xref uid="\Google\Auth\FetchAuthTokenInterface">Google\Auth\FetchAuthTokenInterface</xref> or <xref uid="\Google\ApiCore\CredentialsWrapper">Google\ApiCore\CredentialsWrapper</xref> object. Note that when one of these objects are provided, any settings in $credentialsConfig will be ignored. **Important**: If you are providing a path to a credentials file, or a decoded credentials file as a PHP array, this usage is now DEPRECATED. Providing an unvalidated credential configuration to Google APIs can compromise the security of your systems and data. It is recommended to create the credentials explicitly ``` use Google\Auth\Credentials\ServiceAccountCredentials; use Google\Cloud\Vision\V1\ProductSearchClient; $creds = new ServiceAccountCredentials($scopes, $json); $options = new ProductSearchClient([''credentials'' => $creds]); ``` <xref uid="https://cloud.google.com/docs/authentication/external/externally-sourced-credentials">https://cloud.google.com/docs/authentication/external/externally-sourced-credentials</xref>'
         -
           id: '↳ credentialsConfig'
           var_type: array
@@ -128,6 +128,14 @@ items:
           id: '↳ clientCertSource'
           var_type: callable
           description: 'A callable which returns the client cert as a string. This can be used to provide a certificate and private key to the transport layer for mTLS.'
+        -
+          id: '↳ logger'
+          var_type: false|LoggerInterface
+          description: "A PSR-3 compliant logger. If set to false, logging is disabled, ignoring the 'GOOGLE_SDK_PHP_LOGGING' environment flag"
+        -
+          id: '↳ universeDomain'
+          var_type: string
+          description: "The service domain for the client. Defaults to 'googleapis.com'."
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::addProductToProductSet()'
     name: addProductToProductSet
@@ -1037,7 +1045,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&lt;<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsResponse">Google\Cloud\Vision\V1\ImportProductSetsResponse</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::listProductSets()'
     name: listProductSets
@@ -1479,7 +1487,7 @@ items:
           description: 'Retry settings to use for this call. Can be a <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> object, or an associative array of retry settings parameters. See the documentation on <xref uid="\Google\ApiCore\RetrySettings">Google\ApiCore\RetrySettings</xref> for example usage.'
       returns:
         -
-          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>'
+          var_type: '<xref uid="\Google\ApiCore\OperationResponse">Google\ApiCore\OperationResponse</xref>&lt;<xref uid="null">null</xref>&gt;'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::removeProductFromProductSet()'
     name: removeProductFromProductSet
@@ -2114,7 +2122,7 @@ items:
     syntax:
       returns:
         -
-          var_type: '<xref uid="\Google\ApiCore\LongRunning\OperationsClient">Google\ApiCore\LongRunning\OperationsClient</xref>'
+          var_type: '<xref uid="\Google\LongRunning\Client\OperationsClient">Google\LongRunning\Client\OperationsClient</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\Client\ProductSearchClient::resumeOperation()'
     name: resumeOperation
@@ -2288,7 +2296,7 @@ items:
           description: 'The formatted name string'
         -
           id: template
-          var_type: string
+          var_type: '?string'
           description: 'Optional name of template to match'
       returns:
         -
