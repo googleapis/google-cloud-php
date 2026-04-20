@@ -18,6 +18,7 @@
 namespace Google\Cloud\Dev\DocFx\Page;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
+use Google\Cloud\Dev\DocFx\Node\InterfaceNode;
 use Google\Cloud\Dev\DocFx\Toc\NamespaceToc;
 use SimpleXMLElement;
 
@@ -54,58 +55,41 @@ class PageTree
 
         // List of pages, to sort alphabetically by key
         $pageMap = [];
-
         $isDiregapic = false;
-
         $gapicClients = [];
+        $interfaces = [];
 
         // Build the list of pages we are going to generate documentation for
         foreach ($structure->file as $file) {
-            // only document classes for now
-            if (!isset($file->class[0])) {
+            if (!isset($file->class[0]) && !isset($file->interface[0])) {
+                // only document classes and interfaces for now
                 continue;
             }
 
-            $classNode = new ClassNode($file->class[0], $this->componentPackages);
+            $node = isset($file->class[0])
+                ? new ClassNode($file->class[0], $this->componentPackages)
+                : new InterfaceNode($file->interface[0], $this->componentPackages);
 
-            // Skip the protobuf classes with underscores, they're all deprecated
-            // @TODO: Do not generate them in V2
-            if (false !== strpos($classNode->getName(), '_')) {
+            if ($node instanceof InterfaceNode) {
+                $interfaces[] = $node;
+            }
+
+            if ($node->excludeFromDocs()) {
+                // Keep track of base clients
+                if ($node->isServiceBaseClass()) {
+                    $gapicClients[] = $node;
+                }
                 continue;
             }
 
-            // Skip deprecated classes
-            if ('deprecated' === $classNode->getStatus()) {
-                continue;
-            }
-
-            // Manually skip GAPIC base clients
-            if ($classNode->isServiceBaseClass()) {
-                $gapicClients[] = $classNode;
-                continue;
-            }
-
-            // Skip internal classes
-            if ($classNode->isInternal()) {
-                continue;
-            }
-
-            $this->hasV1Client |= $classNode->isV1ServiceClass();
-            $this->hasV2Client |= $classNode->isV2ServiceClass();
+            $this->hasV1Client |= $node->isV1ServiceClass();
+            $this->hasV2Client |= $node->isV2ServiceClass();
 
             // Manually skip protobuf enums in favor of Gapic enums (see below).
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
-            $isDiregapic = $isDiregapic || $classNode->isGapicEnumClass();
+            $isDiregapic |= $node->isGapicEnumClass();
 
-            // Manually skip Grpc classes
-            // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
-            $fullName = $classNode->getFullname();
-            if (
-                'GrpcClient' === substr($fullName, -10)
-                && '\Grpc\BaseStub' === $classNode->getExtends()
-            ) {
-                continue;
-            }
+            $fullName = $node->getFullname();
 
             // Skip classes that are in the structure.xml but not a part of this namespace
             if (0 !== strpos($fullName, '\\' . $this->namespace)) {
@@ -113,7 +97,7 @@ class PageTree
             }
 
             $pageMap[$fullName] = new Page(
-                $classNode,
+                $node,
                 $file['path'],
                 $this->packageDescription,
                 $this->componentPath
@@ -132,26 +116,22 @@ class PageTree
             }
         }
 
+        /**
+         * Determine all classes which implement an interface in this library,
+         * so that we can list them in the interface's reference documentation.
+         */
+        foreach ($interfaces as $interface) {
+            $interface->determineImplementingClasses($pageMap);
+        }
+
         // Combine Client classes with internal Gapic\Client
         $pageMap = $this->combineGapicClients($gapicClients, $pageMap);
 
+        // Sort pages alphabetically by full class name
+        ksort($pageMap);
+
         // We no longer need the array keys
         $pages = array_values($pageMap);
-
-        // Mark V2 services as "beta" if they have a V1 client
-        if ($this->hasV1Client && $this->hasV2Client) {
-            foreach ($pages as $page) {
-                if ($page->getClassNode()->isV2ServiceClass()) {
-                    $page->getClassNode()->setTocName(sprintf(
-                        '%s (beta)',
-                        $page->getClassNode()->getName()
-                    ));
-                }
-            }
-        }
-
-        // Sort pages alphabetically by full class name
-        ksort($pages);
 
         return $pages;
     }
