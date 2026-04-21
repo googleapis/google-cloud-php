@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,34 +22,32 @@
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetReportingIdentitySettings_sync]
+// [START analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetUserProvidedDataSettings_sync]
 use Google\Analytics\Admin\V1alpha\Client\AnalyticsAdminServiceClient;
-use Google\Analytics\Admin\V1alpha\GetReportingIdentitySettingsRequest;
-use Google\Analytics\Admin\V1alpha\ReportingIdentitySettings;
+use Google\Analytics\Admin\V1alpha\GetUserProvidedDataSettingsRequest;
+use Google\Analytics\Admin\V1alpha\UserProvidedDataSettings;
 use Google\ApiCore\ApiException;
 
 /**
- * Returns the reporting identity settings for this property.
+ * Looks up settings related to user-provided data for a property.
  *
- * @param string $formattedName The name of the settings to lookup.
- *                              Format:
- *                              properties/{property}/reportingIdentitySettings
- *                              Example: "properties/1000/reportingIdentitySettings"
- *                              Please see {@see AnalyticsAdminServiceClient::reportingIdentitySettingsName()} for help formatting this field.
+ * @param string $formattedName The name of the user provided data settings to retrieve.
+ *                              Format: properties/{property}/userProvidedDataSettings
+ *                              Please see {@see AnalyticsAdminServiceClient::userProvidedDataSettingsName()} for help formatting this field.
  */
-function get_reporting_identity_settings_sample(string $formattedName): void
+function get_user_provided_data_settings_sample(string $formattedName): void
 {
     // Create a client.
     $analyticsAdminServiceClient = new AnalyticsAdminServiceClient();
 
     // Prepare the request message.
-    $request = (new GetReportingIdentitySettingsRequest())
+    $request = (new GetUserProvidedDataSettingsRequest())
         ->setName($formattedName);
 
     // Call the API and handle any network failures.
     try {
-        /** @var ReportingIdentitySettings $response */
-        $response = $analyticsAdminServiceClient->getReportingIdentitySettings($request);
+        /** @var UserProvidedDataSettings $response */
+        $response = $analyticsAdminServiceClient->getUserProvidedDataSettings($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -67,8 +65,8 @@ function get_reporting_identity_settings_sample(string $formattedName): void
  */
 function callSample(): void
 {
-    $formattedName = AnalyticsAdminServiceClient::reportingIdentitySettingsName('[PROPERTY]');
+    $formattedName = AnalyticsAdminServiceClient::userProvidedDataSettingsName('[PROPERTY]');
 
-    get_reporting_identity_settings_sample($formattedName);
+    get_user_provided_data_settings_sample($formattedName);
 }
-// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetReportingIdentitySettings_sync]
+// [END analyticsadmin_v1alpha_generated_AnalyticsAdminService_GetUserProvidedDataSettings_sync]

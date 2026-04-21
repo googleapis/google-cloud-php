@@ -16,10 +16,10 @@ use Google\Protobuf\RepeatedField;
 class DataRetentionSettings extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name for this DataRetentionSetting resource.
+     * Identifier. Resource name for this DataRetentionSetting resource.
      * Format: properties/{property}/dataRetentionSettings
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -49,7 +49,7 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name for this DataRetentionSetting resource.
+     *           Identifier. Resource name for this DataRetentionSetting resource.
      *           Format: properties/{property}/dataRetentionSettings
      *     @type int $event_data_retention
      *           Required. The length of time that event-level data is retained.
@@ -66,10 +66,10 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this DataRetentionSetting resource.
+     * Identifier. Resource name for this DataRetentionSetting resource.
      * Format: properties/{property}/dataRetentionSettings
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -78,10 +78,10 @@ class DataRetentionSettings extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name for this DataRetentionSetting resource.
+     * Identifier. Resource name for this DataRetentionSetting resource.
      * Format: properties/{property}/dataRetentionSettings
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
