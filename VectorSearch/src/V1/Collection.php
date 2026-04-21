@@ -63,10 +63,20 @@ class Collection extends \Google\Protobuf\Internal\Message
      * Optional. JSON Schema for data.
      * Field names must contain only alphanumeric characters,
      * underscores, and hyphens.
+     * The schema must be compliant with
+     * [JSON Schema Draft 7](https://json-schema.org/draft-07/schema).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $data_schema = null;
+    /**
+     * Optional. Immutable. Specifies the customer-managed encryption key spec for
+     * a Collection. If set, this Collection and all sub-resources of this
+     * Collection will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EncryptionSpec encryption_spec = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $encryption_spec = null;
 
     /**
      * Constructor.
@@ -94,6 +104,12 @@ class Collection extends \Google\Protobuf\Internal\Message
      *           Optional. JSON Schema for data.
      *           Field names must contain only alphanumeric characters,
      *           underscores, and hyphens.
+     *           The schema must be compliant with
+     *           [JSON Schema Draft 7](https://json-schema.org/draft-07/schema).
+     *     @type \Google\Cloud\VectorSearch\V1\EncryptionSpec $encryption_spec
+     *           Optional. Immutable. Specifies the customer-managed encryption key spec for
+     *           a Collection. If set, this Collection and all sub-resources of this
+     *           Collection will be secured by this key.
      * }
      */
     public function __construct($data = NULL) {
@@ -311,6 +327,8 @@ class Collection extends \Google\Protobuf\Internal\Message
      * Optional. JSON Schema for data.
      * Field names must contain only alphanumeric characters,
      * underscores, and hyphens.
+     * The schema must be compliant with
+     * [JSON Schema Draft 7](https://json-schema.org/draft-07/schema).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
@@ -334,6 +352,8 @@ class Collection extends \Google\Protobuf\Internal\Message
      * Optional. JSON Schema for data.
      * Field names must contain only alphanumeric characters,
      * underscores, and hyphens.
+     * The schema must be compliant with
+     * [JSON Schema Draft 7](https://json-schema.org/draft-07/schema).
      *
      * Generated from protobuf field <code>.google.protobuf.Struct data_schema = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
@@ -343,6 +363,46 @@ class Collection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Struct::class);
         $this->data_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Immutable. Specifies the customer-managed encryption key spec for
+     * a Collection. If set, this Collection and all sub-resources of this
+     * Collection will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EncryptionSpec encryption_spec = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\VectorSearch\V1\EncryptionSpec|null
+     */
+    public function getEncryptionSpec()
+    {
+        return $this->encryption_spec;
+    }
+
+    public function hasEncryptionSpec()
+    {
+        return isset($this->encryption_spec);
+    }
+
+    public function clearEncryptionSpec()
+    {
+        unset($this->encryption_spec);
+    }
+
+    /**
+     * Optional. Immutable. Specifies the customer-managed encryption key spec for
+     * a Collection. If set, this Collection and all sub-resources of this
+     * Collection will be secured by this key.
+     *
+     * Generated from protobuf field <code>.google.cloud.vectorsearch.v1.EncryptionSpec encryption_spec = 11 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\VectorSearch\V1\EncryptionSpec $var
+     * @return $this
+     */
+    public function setEncryptionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\VectorSearch\V1\EncryptionSpec::class);
+        $this->encryption_spec = $var;
 
         return $this;
     }
