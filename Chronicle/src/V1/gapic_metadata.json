@@ -64,6 +64,90 @@
                 }
             }
         },
+        "DataTableService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataTableServiceGapicClient",
+                    "rpcs": {
+                        "BulkCreateDataTableRows": {
+                            "methods": [
+                                "bulkCreateDataTableRows"
+                            ]
+                        },
+                        "BulkGetDataTableRows": {
+                            "methods": [
+                                "bulkGetDataTableRows"
+                            ]
+                        },
+                        "BulkReplaceDataTableRows": {
+                            "methods": [
+                                "bulkReplaceDataTableRows"
+                            ]
+                        },
+                        "BulkUpdateDataTableRows": {
+                            "methods": [
+                                "bulkUpdateDataTableRows"
+                            ]
+                        },
+                        "CreateDataTable": {
+                            "methods": [
+                                "createDataTable"
+                            ]
+                        },
+                        "CreateDataTableRow": {
+                            "methods": [
+                                "createDataTableRow"
+                            ]
+                        },
+                        "DeleteDataTable": {
+                            "methods": [
+                                "deleteDataTable"
+                            ]
+                        },
+                        "DeleteDataTableRow": {
+                            "methods": [
+                                "deleteDataTableRow"
+                            ]
+                        },
+                        "GetDataTable": {
+                            "methods": [
+                                "getDataTable"
+                            ]
+                        },
+                        "GetDataTableOperationErrors": {
+                            "methods": [
+                                "getDataTableOperationErrors"
+                            ]
+                        },
+                        "GetDataTableRow": {
+                            "methods": [
+                                "getDataTableRow"
+                            ]
+                        },
+                        "ListDataTableRows": {
+                            "methods": [
+                                "listDataTableRows"
+                            ]
+                        },
+                        "ListDataTables": {
+                            "methods": [
+                                "listDataTables"
+                            ]
+                        },
+                        "UpdateDataTable": {
+                            "methods": [
+                                "updateDataTable"
+                            ]
+                        },
+                        "UpdateDataTableRow": {
+                            "methods": [
+                                "updateDataTableRow"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "EntityService": {
             "clients": {
                 "grpc": {
