@@ -70,11 +70,6 @@ class ClassNode
         return false;
     }
 
-    public function isProtobufLibrary(): bool
-    {
-        return 0 === strpos($this->getNamespace(), '\Google\Protobuf');
-    }
-
     public function isGapicEnumClass(): bool
     {
         // returns true if the class extends \Google\Protobuf\Internal\Message
