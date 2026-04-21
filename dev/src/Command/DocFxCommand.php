@@ -297,7 +297,10 @@ class DocFxCommand extends Command
     {
         $valid = true;
         $emptyRef = '<options=bold>empty</>';
-        $isGenerated = $class->isProtobufMessageClass() || $class->isProtobufEnumClass() || $class->isServiceClass();
+        $isGenerated = $class->isProtobufMessageClass()
+            || $class->isProtobufEnumClass()
+            || $class->isServiceClass()
+            || $class->isProtobufLibrary();
         foreach (array_merge([$class], $class->getMethods(), $class->getConstants()) as $node) {
             foreach ($this->getInvalidXrefs($node->getContent()) as $invalidRef) {
                 if (isset(self::$allowedReferenceFailures[$node->getFullname()])
