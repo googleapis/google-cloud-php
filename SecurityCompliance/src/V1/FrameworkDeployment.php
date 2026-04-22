@@ -19,7 +19,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 {
     /**
      * Identifier. The name of the framework deployment, in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -126,7 +128,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Identifier. The name of the framework deployment, in the format
-     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\TargetResourceConfig $target_resource_config
      *           Required. The details of the target resource that you want to deploy the
@@ -185,7 +189,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the framework deployment, in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
@@ -198,7 +204,9 @@ class FrameworkDeployment extends \Google\Protobuf\Internal\Message
 
     /**
      * Identifier. The name of the framework deployment, in the format
-     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>

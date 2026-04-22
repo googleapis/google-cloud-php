@@ -34,15 +34,21 @@ use Google\Cloud\CloudSecurityCompliance\V1\CreateCloudControlRequest;
  * You can't create built-in cloud controls because those are managed by
  * Google.
  *
- * @param string $formattedParent  The parent resource name, in the format
- *                                 `organizations/{organization}/locations/{location}`.
+ * @param string $formattedParent  The parent resource name, in one of the following formats:
+ *                                 - `organizations/{organization}/locations/{location}`.
+ *                                 - `projects/{project}/locations/{location}`.
+ *
  *                                 The only supported location is `global`. Please see
  *                                 {@see ConfigClient::organizationLocationName()} for help formatting this field.
  * @param string $cloudControlId   The identifier for the cloud control, which is the last segment
  *                                 of the cloud control name. The format is
  *                                 `^[a-zA-Z][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$`.
- * @param string $cloudControlName Identifier. The name of the cloud control, in the format
- *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control_id}`.
+ * @param string $cloudControlName Identifier. The name of the cloud control, in either of the
+ *                                 formats:
+ *                                 `organizations/{organization}/locations/{location}/cloudControls/{cloud_control}`
+ *                                 or
+ *                                 `projects/{project}/locations/{location}/cloudControls/{cloud_control}`.
+ *
  *                                 The only supported location is `global`.
  */
 function create_cloud_control_sample(

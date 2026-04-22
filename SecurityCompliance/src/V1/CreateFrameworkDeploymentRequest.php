@@ -17,7 +17,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent resource of the framework deployment in the format
-     * `organizations/{organization}/locations/{location}`.
+     * `organizations/{organization}/locations/{location}`
+     * or
+     * `projects/{project}/locations/{location}`.
      * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -40,7 +42,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * @param string                                                       $parent                Required. The parent resource of the framework deployment in the format
-     *                                                                                            `organizations/{organization}/locations/{location}`.
+     *                                                                                            `organizations/{organization}/locations/{location}`
+     *                                                                                            or
+     *                                                                                            `projects/{project}/locations/{location}`.
      *                                                                                            Only the global location is supported. Please see
      *                                                                                            {@see DeploymentClient::organizationLocationName()} for help formatting this field.
      * @param \Google\Cloud\CloudSecurityCompliance\V1\FrameworkDeployment $frameworkDeployment   Required. The framework deployment that you're creating.
@@ -68,7 +72,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent resource of the framework deployment in the format
-     *           `organizations/{organization}/locations/{location}`.
+     *           `organizations/{organization}/locations/{location}`
+     *           or
+     *           `projects/{project}/locations/{location}`.
      *           Only the global location is supported.
      *     @type string $framework_deployment_id
      *           Optional. An identifier for the framework deployment that's unique in scope
@@ -85,7 +91,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the framework deployment in the format
-     * `organizations/{organization}/locations/{location}`.
+     * `organizations/{organization}/locations/{location}`
+     * or
+     * `projects/{project}/locations/{location}`.
      * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -98,7 +106,9 @@ class CreateFrameworkDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent resource of the framework deployment in the format
-     * `organizations/{organization}/locations/{location}`.
+     * `organizations/{organization}/locations/{location}`
+     * or
+     * `projects/{project}/locations/{location}`.
      * Only the global location is supported.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

@@ -16,8 +16,9 @@ use Google\Protobuf\RepeatedField;
 class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -45,8 +46,10 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     protected $page_token = '';
 
     /**
-     * @param string $parent Required. The parent resource name, in the format
-     *                       `organizations/{organization}/locations/{location}`.
+     * @param string $parent Required. The parent resource name, in one of the following formats:
+     *                       - `organizations/{organization}/locations/{location}`
+     *                       - `projects/{project}/locations/{location}`.
+     *
      *                       The only supported location is `global`. Please see
      *                       {@see ConfigClient::organizationLocationName()} for help formatting this field.
      *
@@ -67,8 +70,9 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource name, in the format
-     *           `organizations/{organization}/locations/{location}`.
+     *           Required. The parent resource name, in one of the following formats:
+     *           - `organizations/{organization}/locations/{location}`
+     *           - `projects/{project}/locations/{location}`.
      *           The only supported location is `global`.
      *     @type int $page_size
      *           Optional. The maximum number of cloud controls to return. The default value
@@ -90,8 +94,9 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -103,8 +108,9 @@ class ListCloudControlsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource name, in the format
-     * `organizations/{organization}/locations/{location}`.
+     * Required. The parent resource name, in one of the following formats:
+     * - `organizations/{organization}/locations/{location}`
+     * - `projects/{project}/locations/{location}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

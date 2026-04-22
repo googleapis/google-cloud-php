@@ -126,7 +126,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];
@@ -210,7 +210,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];
@@ -862,7 +862,7 @@ class DeploymentClientTest extends GeneratedTest
         $frameworkDeploymentTargetResourceConfig = new TargetResourceConfig();
         $frameworkDeployment->setTargetResourceConfig($frameworkDeploymentTargetResourceConfig);
         $frameworkDeploymentFramework = new FrameworkReference();
-        $frameworkFramework = 'frameworkFramework1248820640';
+        $frameworkFramework = $gapicClient->frameworkName('[ORGANIZATION]', '[LOCATION]', '[FRAMEWORK]');
         $frameworkDeploymentFramework->setFramework($frameworkFramework);
         $frameworkDeployment->setFramework($frameworkDeploymentFramework);
         $frameworkDeploymentCloudControlMetadata = [];
