@@ -18,8 +18,11 @@ use Google\Protobuf\RepeatedField;
 class Framework extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Identifier. The name of the framework, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * Required. Identifier. The name of the framework, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
@@ -91,8 +94,11 @@ class Framework extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Identifier. The name of the framework, in the format
-     *           `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     *           Required. Identifier. The name of the framework, in one of the following
+     *           formats:
+     *           `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     *           or
+     *           `projects/{project}/locations/{location}/frameworks/{framework}`.
      *           The only supported location is `global`.
      *     @type int|string $major_revision_id
      *           Output only. The major version of the framework, which is incremented in
@@ -124,8 +130,11 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the framework, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * Required. Identifier. The name of the framework, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>
@@ -137,8 +146,11 @@ class Framework extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Identifier. The name of the framework, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`.
+     * Required. Identifier. The name of the framework, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IDENTIFIER];</code>

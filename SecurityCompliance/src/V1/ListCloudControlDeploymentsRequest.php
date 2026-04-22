@@ -17,8 +17,9 @@ class ListCloudControlDeploymentsRequest extends \Google\Protobuf\Internal\Messa
 {
     /**
      * Required. The parent resource for the cloud control deployment, in the
-     * format `organizations/{organization}/locations/{location}`. The only
-     * supported location is `global`.
+     * format `organizations/{organization}/locations/{location}` or
+     * `projects/{project}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -58,8 +59,9 @@ class ListCloudControlDeploymentsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * @param string $parent Required. The parent resource for the cloud control deployment, in the
-     *                       format `organizations/{organization}/locations/{location}`. The only
-     *                       supported location is `global`. Please see
+     *                       format `organizations/{organization}/locations/{location}` or
+     *                       `projects/{project}/locations/{location}`.
+     *                       The only supported location is `global`. Please see
      *                       {@see DeploymentClient::organizationLocationName()} for help formatting this field.
      *
      * @return \Google\Cloud\CloudSecurityCompliance\V1\ListCloudControlDeploymentsRequest
@@ -80,8 +82,9 @@ class ListCloudControlDeploymentsRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type string $parent
      *           Required. The parent resource for the cloud control deployment, in the
-     *           format `organizations/{organization}/locations/{location}`. The only
-     *           supported location is `global`.
+     *           format `organizations/{organization}/locations/{location}` or
+     *           `projects/{project}/locations/{location}`.
+     *           The only supported location is `global`.
      *     @type int $page_size
      *           Optional. The requested page size. The server might return fewer items than
      *           you requested.
@@ -107,8 +110,9 @@ class ListCloudControlDeploymentsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The parent resource for the cloud control deployment, in the
-     * format `organizations/{organization}/locations/{location}`. The only
-     * supported location is `global`.
+     * format `organizations/{organization}/locations/{location}` or
+     * `projects/{project}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -120,8 +124,9 @@ class ListCloudControlDeploymentsRequest extends \Google\Protobuf\Internal\Messa
 
     /**
      * Required. The parent resource for the cloud control deployment, in the
-     * format `organizations/{organization}/locations/{location}`. The only
-     * supported location is `global`.
+     * format `organizations/{organization}/locations/{location}` or
+     * `projects/{project}/locations/{location}`.
+     * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

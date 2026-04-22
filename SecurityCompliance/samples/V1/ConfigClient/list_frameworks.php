@@ -35,8 +35,10 @@ use Google\Cloud\CloudSecurityCompliance\V1\ListFrameworksRequest;
  * returned.
  * This method supports pagination.
  *
- * @param string $formattedParent The parent resource name, in the format
- *                                `organizations/{organization}/locations/{location}`.
+ * @param string $formattedParent The parent resource name, in one of the following formats:
+ *                                - `organizations/{organization}/locations/{location}`
+ *                                - `projects/{project}/locations/{location}`.
+ *
  *                                The only supported location is `global`. Please see
  *                                {@see ConfigClient::organizationLocationName()} for help formatting this field.
  */
