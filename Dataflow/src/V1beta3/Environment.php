@@ -74,9 +74,9 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     private $worker_pools;
     /**
-     * A description of the process that generated the request.
+     * Optional. A description of the process that generated the request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $user_agent = null;
     /**
@@ -175,6 +175,12 @@ class Environment extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.dataflow.v1beta3.StreamingMode streaming_mode = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $streaming_mode = 0;
+    /**
+     * Optional. True when any worker pool that uses public IPs is present.
+     *
+     * Generated from protobuf field <code>bool use_public_ips = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_public_ips = false;
 
     /**
      * Constructor.
@@ -217,7 +223,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           The worker pools. At least one "harness" worker pool must be
      *           specified in order for the job to have workers.
      *     @type \Google\Protobuf\Struct $user_agent
-     *           A description of the process that generated the request.
+     *           Optional. A description of the process that generated the request.
      *     @type \Google\Protobuf\Struct $version
      *           A structure describing which components and their versions of the service
      *           are required in order to run the job.
@@ -266,6 +272,8 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           case. For more information, see
      *           [Set the pipeline streaming
      *           mode](https://cloud.google.com/dataflow/docs/guides/streaming-modes).
+     *     @type bool $use_public_ips
+     *           Optional. True when any worker pool that uses public IPs is present.
      * }
      */
     public function __construct($data = NULL) {
@@ -474,9 +482,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the process that generated the request.
+     * Optional. A description of the process that generated the request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getUserAgent()
@@ -495,9 +503,9 @@ class Environment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A description of the process that generated the request.
+     * Optional. A description of the process that generated the request.
      *
-     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5;</code>
+     * Generated from protobuf field <code>.google.protobuf.Struct user_agent = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Protobuf\Struct $var
      * @return $this
      */
@@ -905,6 +913,32 @@ class Environment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dataflow\V1beta3\StreamingMode::class);
         $this->streaming_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. True when any worker pool that uses public IPs is present.
+     *
+     * Generated from protobuf field <code>bool use_public_ips = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUsePublicIps()
+    {
+        return $this->use_public_ips;
+    }
+
+    /**
+     * Optional. True when any worker pool that uses public IPs is present.
+     *
+     * Generated from protobuf field <code>bool use_public_ips = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUsePublicIps($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_public_ips = $var;
 
         return $this;
     }

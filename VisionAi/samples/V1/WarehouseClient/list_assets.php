@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\VisionAI\V1\Asset;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ListAssetsRequest;
 
 /**
  * Lists an list of assets inside corpus.
@@ -41,10 +42,14 @@ function list_assets_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ListAssetsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->listAssets($formattedParent);
+        $response = $warehouseClient->listAssets($request);
 
         /** @var Asset $element */
         foreach ($response as $element) {

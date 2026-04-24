@@ -42,6 +42,12 @@ class ListFrameworkComplianceSummariesRequest extends \Google\Protobuf\Internal\
      * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $filter = '';
+    /**
+     * Optional. Specifies the level of detail to return in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkComplianceSummaryView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $view = 0;
 
     /**
      * @param string $parent Required. The parent scope for the framework compliance summary. Please see
@@ -73,6 +79,8 @@ class ListFrameworkComplianceSummariesRequest extends \Google\Protobuf\Internal\
      *           should return.
      *     @type string $filter
      *           Optional. The filtering results.
+     *     @type int $view
+     *           Optional. Specifies the level of detail to return in the response.
      * }
      */
     public function __construct($data = NULL) {
@@ -184,6 +192,32 @@ class ListFrameworkComplianceSummariesRequest extends \Google\Protobuf\Internal\
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specifies the level of detail to return in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkComplianceSummaryView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. Specifies the level of detail to return in the response.
+     *
+     * Generated from protobuf field <code>.google.cloud.cloudsecuritycompliance.v1.FrameworkComplianceSummaryView view = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\CloudSecurityCompliance\V1\FrameworkComplianceSummaryView::class);
+        $this->view = $var;
 
         return $this;
     }

@@ -53,6 +53,19 @@ class ListCorporaRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $parent Required. The resource name of the project from which to list corpora.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ListCorporaRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent): self
+    {
+        return (new self())
+            ->setParent($parent);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

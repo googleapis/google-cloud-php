@@ -50,6 +50,32 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_sentiment_analysis = 3;</code>
      */
     protected $enable_sentiment_analysis = false;
+    /**
+     * Optional. Enables sentiment analysis for audio input and conversation
+     * messages. If unspecified, defaults to false. If this flag is set to true,
+     * other 'enable_sentiment_analysis' fields will be ignored.
+     * Sentiment analysis inspects user input and identifies the prevailing
+     * subjective opinion, especially to determine a user's attitude as
+     * positive, negative, or neutral.
+     * https://cloud.google.com/natural-language/docs/basics#sentiment_analysis
+     * For
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
+     * method, result will be in
+     * [StreamingAnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message].
+     * For
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * method, result will be in
+     * [AnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.AnalyzeContentResponse.message]
+     * For
+     * [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages]
+     * method, result will be in
+     * [ListMessagesResponse.messages.SentimentAnalysisResult][google.cloud.dialogflow.v2.ListMessagesResponse.messages]
+     * If Pub/Sub notification is configured, result will be in
+     * [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
+     *
+     * Generated from protobuf field <code>bool enable_sentiment_analysis_v3 = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_sentiment_analysis_v3 = false;
 
     /**
      * Constructor.
@@ -69,6 +95,28 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
      *           If unspecified, defaults to false. Sentiment analysis inspects user input
      *           and identifies the prevailing subjective opinion, especially to determine
      *           a user's attitude as positive, negative, or neutral:
+     *           https://cloud.google.com/natural-language/docs/basics#sentiment_analysis
+     *           For
+     *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
+     *           method, result will be in
+     *           [StreamingAnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message].
+     *           For
+     *           [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     *           method, result will be in
+     *           [AnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.AnalyzeContentResponse.message]
+     *           For
+     *           [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages]
+     *           method, result will be in
+     *           [ListMessagesResponse.messages.SentimentAnalysisResult][google.cloud.dialogflow.v2.ListMessagesResponse.messages]
+     *           If Pub/Sub notification is configured, result will be in
+     *           [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
+     *     @type bool $enable_sentiment_analysis_v3
+     *           Optional. Enables sentiment analysis for audio input and conversation
+     *           messages. If unspecified, defaults to false. If this flag is set to true,
+     *           other 'enable_sentiment_analysis' fields will be ignored.
+     *           Sentiment analysis inspects user input and identifies the prevailing
+     *           subjective opinion, especially to determine a user's attitude as
+     *           positive, negative, or neutral.
      *           https://cloud.google.com/natural-language/docs/basics#sentiment_analysis
      *           For
      *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
@@ -185,6 +233,72 @@ class MessageAnalysisConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_sentiment_analysis = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Enables sentiment analysis for audio input and conversation
+     * messages. If unspecified, defaults to false. If this flag is set to true,
+     * other 'enable_sentiment_analysis' fields will be ignored.
+     * Sentiment analysis inspects user input and identifies the prevailing
+     * subjective opinion, especially to determine a user's attitude as
+     * positive, negative, or neutral.
+     * https://cloud.google.com/natural-language/docs/basics#sentiment_analysis
+     * For
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
+     * method, result will be in
+     * [StreamingAnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message].
+     * For
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * method, result will be in
+     * [AnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.AnalyzeContentResponse.message]
+     * For
+     * [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages]
+     * method, result will be in
+     * [ListMessagesResponse.messages.SentimentAnalysisResult][google.cloud.dialogflow.v2.ListMessagesResponse.messages]
+     * If Pub/Sub notification is configured, result will be in
+     * [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
+     *
+     * Generated from protobuf field <code>bool enable_sentiment_analysis_v3 = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableSentimentAnalysisV3()
+    {
+        return $this->enable_sentiment_analysis_v3;
+    }
+
+    /**
+     * Optional. Enables sentiment analysis for audio input and conversation
+     * messages. If unspecified, defaults to false. If this flag is set to true,
+     * other 'enable_sentiment_analysis' fields will be ignored.
+     * Sentiment analysis inspects user input and identifies the prevailing
+     * subjective opinion, especially to determine a user's attitude as
+     * positive, negative, or neutral.
+     * https://cloud.google.com/natural-language/docs/basics#sentiment_analysis
+     * For
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]
+     * method, result will be in
+     * [StreamingAnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message].
+     * For
+     * [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent]
+     * method, result will be in
+     * [AnalyzeContentResponse.message.SentimentAnalysisResult][google.cloud.dialogflow.v2.AnalyzeContentResponse.message]
+     * For
+     * [Conversations.ListMessages][google.cloud.dialogflow.v2.Conversations.ListMessages]
+     * method, result will be in
+     * [ListMessagesResponse.messages.SentimentAnalysisResult][google.cloud.dialogflow.v2.ListMessagesResponse.messages]
+     * If Pub/Sub notification is configured, result will be in
+     * [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
+     *
+     * Generated from protobuf field <code>bool enable_sentiment_analysis_v3 = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableSentimentAnalysisV3($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_sentiment_analysis_v3 = $var;
 
         return $this;
     }

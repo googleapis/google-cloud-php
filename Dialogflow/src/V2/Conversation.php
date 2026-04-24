@@ -86,11 +86,26 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     protected $telephony_connection_info = null;
     /**
+     * Optional. Output only. The initial conversation profile to be used to
+     * configure this conversation, which is a copy of the conversation profile
+     * config read at conversation creation time.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile initial_conversation_profile = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $initial_conversation_profile = null;
+    /**
      * Output only. The context reference updates provided by external systems.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ingested_context_references;
+    /**
+     * Output only. A map with generator name as key and generator context as
+     * value.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.GeneratorContext> initial_generator_contexts = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $initial_generator_contexts;
 
     /**
      * Constructor.
@@ -133,8 +148,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           [ConversationStage.HUMAN_ASSIST_STAGE][google.cloud.dialogflow.v2.Conversation.ConversationStage.HUMAN_ASSIST_STAGE].
      *     @type \Google\Cloud\Dialogflow\V2\Conversation\TelephonyConnectionInfo $telephony_connection_info
      *           Output only. The telephony connection information.
+     *     @type \Google\Cloud\Dialogflow\V2\ConversationProfile $initial_conversation_profile
+     *           Optional. Output only. The initial conversation profile to be used to
+     *           configure this conversation, which is a copy of the conversation profile
+     *           config read at conversation creation time.
      *     @type array|\Google\Protobuf\Internal\MapField $ingested_context_references
      *           Output only. The context reference updates provided by external systems.
+     *     @type array|\Google\Protobuf\Internal\MapField $initial_generator_contexts
+     *           Output only. A map with generator name as key and generator context as
+     *           value.
      * }
      */
     public function __construct($data = NULL) {
@@ -429,6 +451,46 @@ class Conversation extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Output only. The initial conversation profile to be used to
+     * configure this conversation, which is a copy of the conversation profile
+     * config read at conversation creation time.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile initial_conversation_profile = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dialogflow\V2\ConversationProfile|null
+     */
+    public function getInitialConversationProfile()
+    {
+        return $this->initial_conversation_profile;
+    }
+
+    public function hasInitialConversationProfile()
+    {
+        return isset($this->initial_conversation_profile);
+    }
+
+    public function clearInitialConversationProfile()
+    {
+        unset($this->initial_conversation_profile);
+    }
+
+    /**
+     * Optional. Output only. The initial conversation profile to be used to
+     * configure this conversation, which is a copy of the conversation profile
+     * config read at conversation creation time.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.ConversationProfile initial_conversation_profile = 15 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dialogflow\V2\ConversationProfile $var
+     * @return $this
+     */
+    public function setInitialConversationProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\ConversationProfile::class);
+        $this->initial_conversation_profile = $var;
+
+        return $this;
+    }
+
+    /**
      * Output only. The context reference updates provided by external systems.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.ContextReference> ingested_context_references = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -450,6 +512,34 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Conversation\ContextReference::class);
         $this->ingested_context_references = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A map with generator name as key and generator context as
+     * value.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.GeneratorContext> initial_generator_contexts = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInitialGeneratorContexts()
+    {
+        return $this->initial_generator_contexts;
+    }
+
+    /**
+     * Output only. A map with generator name as key and generator context as
+     * value.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.dialogflow.v2.Conversation.GeneratorContext> initial_generator_contexts = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInitialGeneratorContexts($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dialogflow\V2\Conversation\GeneratorContext::class);
+        $this->initial_generator_contexts = $arr;
 
         return $this;
     }

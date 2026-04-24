@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_GetAnalysis_sync]
 use Google\ApiCore\ApiException;
 use Google\Cloud\VisionAI\V1\Analysis;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\GetAnalysisRequest;
 
 /**
  * Gets details of a single Analysis.
@@ -38,10 +39,14 @@ function get_analysis_sample(string $formattedName): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new GetAnalysisRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Analysis $response */
-        $response = $liveVideoAnalyticsClient->getAnalysis($formattedName);
+        $response = $liveVideoAnalyticsClient->getAnalysis($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

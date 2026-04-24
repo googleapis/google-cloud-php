@@ -29,8 +29,10 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
      *           projects/{project}/locations/{location}/volumes/{volume}/snapshots/{snapshot}
      *     @type string $source_backup
      *           Full name of the backup resource.
-     *           Format:
+     *           Format for standard backup:
      *           projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     *           Format for BackupDR backup:
+     *           projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      * }
      */
     public function __construct($data = NULL) {
@@ -75,10 +77,12 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Full name of the backup resource.
-     * Format:
+     * Format for standard backup:
      * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     * Format for BackupDR backup:
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      *
-     * Generated from protobuf field <code>string source_backup = 2;</code>
+     * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getSourceBackup()
@@ -93,10 +97,12 @@ class RestoreParameters extends \Google\Protobuf\Internal\Message
 
     /**
      * Full name of the backup resource.
-     * Format:
+     * Format for standard backup:
      * projects/{project}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}
+     * Format for BackupDR backup:
+     * projects/{project}/locations/{location}/backupVaults/{backup_vault}/dataSources/{data_source}/backups/{backup}
      *
-     * Generated from protobuf field <code>string source_backup = 2;</code>
+     * Generated from protobuf field <code>string source_backup = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

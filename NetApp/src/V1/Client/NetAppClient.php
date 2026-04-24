@@ -66,6 +66,15 @@ use Google\Cloud\NetApp\V1\DeleteStoragePoolRequest;
 use Google\Cloud\NetApp\V1\DeleteVolumeRequest;
 use Google\Cloud\NetApp\V1\EncryptVolumesRequest;
 use Google\Cloud\NetApp\V1\EstablishPeeringRequest;
+use Google\Cloud\NetApp\V1\EstablishVolumePeeringRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapDeleteRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapDeleteResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapGetRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapGetResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapPatchRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapPatchResponse;
+use Google\Cloud\NetApp\V1\ExecuteOntapPostRequest;
+use Google\Cloud\NetApp\V1\ExecuteOntapPostResponse;
 use Google\Cloud\NetApp\V1\GetActiveDirectoryRequest;
 use Google\Cloud\NetApp\V1\GetBackupPolicyRequest;
 use Google\Cloud\NetApp\V1\GetBackupRequest;
@@ -157,6 +166,11 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<OperationResponse> deleteVolumeAsync(DeleteVolumeRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> encryptVolumesAsync(EncryptVolumesRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<OperationResponse> establishPeeringAsync(EstablishPeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> establishVolumePeeringAsync(EstablishVolumePeeringRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteOntapDeleteResponse> executeOntapDeleteAsync(ExecuteOntapDeleteRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteOntapGetResponse> executeOntapGetAsync(ExecuteOntapGetRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteOntapPatchResponse> executeOntapPatchAsync(ExecuteOntapPatchRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<ExecuteOntapPostResponse> executeOntapPostAsync(ExecuteOntapPostRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<ActiveDirectory> getActiveDirectoryAsync(GetActiveDirectoryRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Backup> getBackupAsync(GetBackupRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<BackupPolicy> getBackupPolicyAsync(GetBackupPolicyRequest $request, array $optionalArgs = [])
@@ -1309,6 +1323,149 @@ final class NetAppClient
     }
 
     /**
+     * Establish volume peering. This is used to establish cluster and svm
+     * peerings between the GCNV and OnPrem clusters.
+     *
+     * The async variant is {@see NetAppClient::establishVolumePeeringAsync()} .
+     *
+     * @example samples/V1/NetAppClient/establish_volume_peering.php
+     *
+     * @param EstablishVolumePeeringRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse<Volume>
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function establishVolumePeering(
+        EstablishVolumePeeringRequest $request,
+        array $callOptions = []
+    ): OperationResponse {
+        return $this->startApiCall('EstablishVolumePeering', $request, $callOptions)->wait();
+    }
+
+    /**
+     * `ExecuteOntapDelete` dispatches the ONTAP `DELETE` request to the
+     * `StoragePool` cluster.
+     *
+     * The async variant is {@see NetAppClient::executeOntapDeleteAsync()} .
+     *
+     * @example samples/V1/NetAppClient/execute_ontap_delete.php
+     *
+     * @param ExecuteOntapDeleteRequest $request     A request to house fields associated with the call.
+     * @param array                     $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteOntapDeleteResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeOntapDelete(
+        ExecuteOntapDeleteRequest $request,
+        array $callOptions = []
+    ): ExecuteOntapDeleteResponse {
+        return $this->startApiCall('ExecuteOntapDelete', $request, $callOptions)->wait();
+    }
+
+    /**
+     * `ExecuteOntapGet` dispatches the ONTAP `GET` request to the
+     * `StoragePool` cluster.
+     *
+     * The async variant is {@see NetAppClient::executeOntapGetAsync()} .
+     *
+     * @example samples/V1/NetAppClient/execute_ontap_get.php
+     *
+     * @param ExecuteOntapGetRequest $request     A request to house fields associated with the call.
+     * @param array                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteOntapGetResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeOntapGet(ExecuteOntapGetRequest $request, array $callOptions = []): ExecuteOntapGetResponse
+    {
+        return $this->startApiCall('ExecuteOntapGet', $request, $callOptions)->wait();
+    }
+
+    /**
+     * `ExecuteOntapPatch` dispatches the ONTAP `PATCH` request to the
+     * `StoragePool` cluster.
+     *
+     * The async variant is {@see NetAppClient::executeOntapPatchAsync()} .
+     *
+     * @example samples/V1/NetAppClient/execute_ontap_patch.php
+     *
+     * @param ExecuteOntapPatchRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteOntapPatchResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeOntapPatch(
+        ExecuteOntapPatchRequest $request,
+        array $callOptions = []
+    ): ExecuteOntapPatchResponse {
+        return $this->startApiCall('ExecuteOntapPatch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * `ExecuteOntapPost` dispatches the ONTAP `POST` request to the
+     * `StoragePool` cluster.
+     *
+     * The async variant is {@see NetAppClient::executeOntapPostAsync()} .
+     *
+     * @example samples/V1/NetAppClient/execute_ontap_post.php
+     *
+     * @param ExecuteOntapPostRequest $request     A request to house fields associated with the call.
+     * @param array                   $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return ExecuteOntapPostResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function executeOntapPost(
+        ExecuteOntapPostRequest $request,
+        array $callOptions = []
+    ): ExecuteOntapPostResponse {
+        return $this->startApiCall('ExecuteOntapPost', $request, $callOptions)->wait();
+    }
+
+    /**
      * Describes a specified active directory.
      *
      * The async variant is {@see NetAppClient::getActiveDirectoryAsync()} .
@@ -2445,6 +2602,21 @@ final class NetAppClient
 
     /**
      * Lists information about the supported locations for this service.
+
+    This method lists locations based on the resource scope provided in
+    the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    **Global locations**: If `name` is empty, the method lists the
+    public locations available to all projects. * **Project-specific
+    locations**: If `name` follows the format
+    `projects/{project}`, the method lists locations visible to that
+    specific project. This includes public, private, or other
+    project-specific locations enabled for the project.
+
+    For gRPC and client library implementations, the resource name is
+    passed as the `name` field. For direct service calls, the resource
+    name is
+    incorporated into the request path based on the specific service
+    implementation and version.
      *
      * The async variant is {@see NetAppClient::listLocationsAsync()} .
      *

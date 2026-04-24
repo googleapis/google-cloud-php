@@ -199,6 +199,26 @@ class Cluster extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.redis.cluster.v1.EncryptionInfo encryption_info = 43 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     protected $encryption_info = null;
+    /**
+     * Optional. Server CA mode for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.redis.cluster.v1.ServerCaMode server_ca_mode = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $server_ca_mode = null;
+    /**
+     * Optional. Customer-managed CA pool for the cluster. Only applicable for
+     * BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA.
+     * Format: "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 54 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    protected $server_ca_pool = null;
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     */
+    protected $rotate_server_certificate = null;
     protected $import_sources;
 
     /**
@@ -286,6 +306,14 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *           Optional. The automated backup config for the cluster.
      *     @type \Google\Cloud\Redis\Cluster\V1\EncryptionInfo $encryption_info
      *           Output only. Encryption information of the data at rest of the cluster.
+     *     @type int $server_ca_mode
+     *           Optional. Server CA mode for the cluster.
+     *     @type string $server_ca_pool
+     *           Optional. Customer-managed CA pool for the cluster. Only applicable for
+     *           BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA.
+     *           Format: "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *     @type bool $rotate_server_certificate
+     *           Optional. Input only. Rotate the server certificates.
      * }
      */
     public function __construct($data = NULL) {
@@ -1277,6 +1305,118 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Redis\Cluster\V1\EncryptionInfo::class);
         $this->encryption_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Server CA mode for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.redis.cluster.v1.ServerCaMode server_ca_mode = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getServerCaMode()
+    {
+        return isset($this->server_ca_mode) ? $this->server_ca_mode : 0;
+    }
+
+    public function hasServerCaMode()
+    {
+        return isset($this->server_ca_mode);
+    }
+
+    public function clearServerCaMode()
+    {
+        unset($this->server_ca_mode);
+    }
+
+    /**
+     * Optional. Server CA mode for the cluster.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.redis.cluster.v1.ServerCaMode server_ca_mode = 53 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setServerCaMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Redis\Cluster\V1\ServerCaMode::class);
+        $this->server_ca_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Customer-managed CA pool for the cluster. Only applicable for
+     * BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA.
+     * Format: "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 54 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getServerCaPool()
+    {
+        return isset($this->server_ca_pool) ? $this->server_ca_pool : '';
+    }
+
+    public function hasServerCaPool()
+    {
+        return isset($this->server_ca_pool);
+    }
+
+    public function clearServerCaPool()
+    {
+        unset($this->server_ca_pool);
+    }
+
+    /**
+     * Optional. Customer-managed CA pool for the cluster. Only applicable for
+     * BYOCA i.e. if server_ca_mode is SERVER_CA_MODE_CUSTOMER_MANAGED_CAS_CA.
+     * Format: "projects/{project}/locations/{region}/caPools/{ca_pool}".
+     *
+     * Generated from protobuf field <code>optional string server_ca_pool = 54 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServerCaPool($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->server_ca_pool = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getRotateServerCertificate()
+    {
+        return isset($this->rotate_server_certificate) ? $this->rotate_server_certificate : false;
+    }
+
+    public function hasRotateServerCertificate()
+    {
+        return isset($this->rotate_server_certificate);
+    }
+
+    public function clearRotateServerCertificate()
+    {
+        unset($this->rotate_server_certificate);
+    }
+
+    /**
+     * Optional. Input only. Rotate the server certificates.
+     *
+     * Generated from protobuf field <code>optional bool rotate_server_certificate = 55 [(.google.api.field_behavior) = OPTIONAL, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setRotateServerCertificate($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->rotate_server_certificate = $var;
 
         return $this;
     }

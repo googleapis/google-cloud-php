@@ -238,6 +238,119 @@ class ResumableUploaderTest extends TestCase
         $this->assertTrue($retryListenerCalled);
     }
 
+    public function testUploadSendsGoogHashOnFinalChunk()
+    {
+        $hashValue = 'crc32c=abc123';
+        $resumeUri = 'http://some-resume-uri.example.com';
+
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn(new Response(200, ['Location' => $resumeUri]));
+
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) use ($hashValue) {
+                return $request->getHeaderLine('X-Goog-Hash') === $hashValue;
+            }),
+            Argument::type('array')
+        )->willReturn(new Response(200, [], $this->successBody));
+
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            [
+                'restOptions' => [
+                    'headers' => ['X-Goog-Hash' => $hashValue]
+                ]
+            ]
+        );
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+    }
+
+    public function testUploadDoesNotSendGoogHashOnIntermediateChunk()
+    {
+        $hashValue = 'crc32c=abc123';
+        $resumeUri = 'http://some-resume-uri.example.com';
+
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn(new Response(200, ['Location' => $resumeUri]));
+
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) {
+                return $request->getHeaderLine('Content-Range') === 'bytes 0-1/4'
+                    && !$request->hasHeader('X-Goog-Hash');
+            }),
+            Argument::type('array')
+        )->willReturn(new Response(308, ['Range' => 'bytes 0-1']));
+
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) {
+                return $request->getHeaderLine('Content-Range') === 'bytes 2-3/4';
+            }),
+            Argument::type('array')
+        )->willReturn(new Response(200, [], $this->successBody));
+
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream, // size 4
+            'http://www.example.com',
+            [
+                'chunkSize' => 2, // Force multi-chunk upload
+                'restOptions' => [
+                    'headers' => ['X-Goog-Hash' => $hashValue]
+                ]
+            ]
+        );
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+    }
+
+    public function testGoogHashOnlyOnFinalChunkOfMultiChunkUpload()
+    {
+        $hashValue = 'crc32c=abc123';
+        $resumeUri = 'http://some-resume-uri.example.com';
+        $this->stream = Utils::streamFor('01234567'); // 8 bytes total
+
+        $this->requestWrapper->send(
+            Argument::which('getMethod', 'POST'),
+            Argument::type('array')
+        )->willReturn(new Response(200, ['Location' => $resumeUri]));
+
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) {
+                return $request->getHeaderLine('Content-Range') === 'bytes 0-3/8'
+                    && !$request->hasHeader('X-Goog-Hash');
+            }),
+            Argument::type('array')
+        )->willReturn(new Response(308, ['Range' => 'bytes 0-3']));
+
+        $this->requestWrapper->send(
+            Argument::that(function (RequestInterface $request) use ($hashValue) {
+                return $request->getHeaderLine('Content-Range') === 'bytes 4-7/8'
+                    && $request->getHeaderLine('X-Goog-Hash') === $hashValue;
+            }),
+            Argument::type('array')
+        )->willReturn(new Response(200, [], $this->successBody));
+
+        $uploader = new ResumableUploader(
+            $this->requestWrapper->reveal(),
+            $this->stream,
+            'http://www.example.com',
+            [
+                'chunkSize' => 4,
+                'restOptions' => [
+                    'headers' => ['X-Goog-Hash' => $hashValue]
+                ]
+            ]
+        );
+
+        $this->assertEquals(json_decode($this->successBody, true), $uploader->upload());
+    }
+
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
         $this->expectException(GoogleException::class);

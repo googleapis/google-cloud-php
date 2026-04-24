@@ -27,9 +27,48 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/DataCatalogLineage").resolve()
 dest = Path().resolve()
 
-# Added so that we can pass copy_excludes in the owlbot_main() call
-_tracked_paths.add(src)
+# copy over configmanagement (gapic src, samples,  and tests, proto src and metadata) 
+configmanagement_src = Path(f"../{php.STAGING_DIR}/DataCatalogLineage/ConfigManagement/v1").resolve()
+#executions_library = Path(f"../{php.STAGING_DIR}/Workflows/Executions/v1").resolve()
 
+# copy all src including partial veneer classes
+#s.move(
+#    executions_library / 'src',
+#    'src/Executions',
+#    merge=preserve_copyright_year,
+#)
+## copy proto files to src also
+#s.move(
+#    executions_library / 'proto/src/Google/Cloud/Workflows',
+#    'src/',
+#    merge=preserve_copyright_year,
+#    excludes=[
+#        executions_library / "**/*_*.php"
+#    ]
+#)
+#s.move(
+#    executions_library / 'tests/Unit',
+#    'tests/Unit/Executions',
+#    merge=preserve_copyright_year,
+#)
+## copy GPBMetadata file to metadata
+#s.move(executions_library / 'proto/src/GPBMetadata/Google/Cloud/Workflows',
+#    'metadata/',
+#    merge=preserve_copyright_year,
+#)
+#
+## Fix test namespaces
+#s.replace(
+#    'tests/Unit/Executions/*/*.php',
+#    r'namespace Google\\Cloud\\Workflows\\Executions\\Tests\\Unit',
+#    r'namespace Google\\Cloud\\Workflows\\Tests\\Unit\\Executions')
+s.move(configmanagement_src / f'src', 'src/ConfigManagement')
+s.move(configmanagement_src / f'samples', 'samples/ConfigManagement')
+s.move(configmanagement_src / f'tests/Unit', 'tests/Unit/ConfigManagement')
+s.move(configmanagement_src / f'proto/src/Google/Cloud/DataCatalog/Lineage', f'src')
+s.move(configmanagement_src / f'proto/src/GPBMetadata/Google/Cloud/Datacatalog/Lineage', f'metadata')
+
+# copy over the standard files
 php.owlbot_main(src=src, dest=dest)
 
 # format generated clients

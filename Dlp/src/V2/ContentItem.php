@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class ContentItem extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * User provided metadata for the content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentMetadata content_metadata = 6;</code>
+     */
+    protected $content_metadata = null;
     protected $data_item;
 
     /**
@@ -31,6 +37,8 @@ class ContentItem extends \Google\Protobuf\Internal\Message
      *           to learn more.
      *     @type \Google\Cloud\Dlp\V2\ByteContentItem $byte_item
      *           Content data to inspect or redact. Replaces `type` and `data`.
+     *     @type \Google\Cloud\Dlp\V2\ContentMetadata $content_metadata
+     *           User provided metadata for the content.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +139,42 @@ class ContentItem extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ByteContentItem::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * User provided metadata for the content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentMetadata content_metadata = 6;</code>
+     * @return \Google\Cloud\Dlp\V2\ContentMetadata|null
+     */
+    public function getContentMetadata()
+    {
+        return $this->content_metadata;
+    }
+
+    public function hasContentMetadata()
+    {
+        return isset($this->content_metadata);
+    }
+
+    public function clearContentMetadata()
+    {
+        unset($this->content_metadata);
+    }
+
+    /**
+     * User provided metadata for the content.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentMetadata content_metadata = 6;</code>
+     * @param \Google\Cloud\Dlp\V2\ContentMetadata $var
+     * @return $this
+     */
+    public function setContentMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ContentMetadata::class);
+        $this->content_metadata = $var;
 
         return $this;
     }

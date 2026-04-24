@@ -51,6 +51,24 @@ class CreateSeriesRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                           $parent   Required. Value for parent. Please see
+     *                                                   {@see StreamsServiceClient::clusterName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Series $series   Required. The resource being created.
+     * @param string                           $seriesId Required. Id of the requesting object.
+     *
+     * @return \Google\Cloud\VisionAI\V1\CreateSeriesRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Series $series, string $seriesId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setSeries($series)
+            ->setSeriesId($seriesId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

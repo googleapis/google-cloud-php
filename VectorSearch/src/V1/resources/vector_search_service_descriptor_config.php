@@ -157,6 +157,26 @@ return [
                     ],
                 ],
             ],
+            'UpdateIndex' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VectorSearch\V1\Index',
+                    'metadataReturnType' => '\Google\Cloud\VectorSearch\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'index.name',
+                        'fieldAccessors' => [
+                            'getIndex',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCollection' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\VectorSearch\V1\Collection',
@@ -257,6 +277,7 @@ return [
             ],
             'templateMap' => [
                 'collection' => 'projects/{project}/locations/{location}/collections/{collection}',
+                'cryptoKey' => 'projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}',
                 'index' => 'projects/{project}/locations/{location}/collections/{collection}/indexes/{index}',
                 'location' => 'projects/{project}/locations/{location}',
             ],

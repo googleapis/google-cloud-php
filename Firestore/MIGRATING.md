@@ -108,3 +108,6 @@ $batch = new BulkWriter(...);
 | Class Constructors | Accepted `ConnectionInterface` | Accept `V1\Client\FirestoreClient` | Update arguments passed to constructors. |
 
 By addressing these key areas, you can successfully migrate your application to version 2 of the Firestore client library.
+
+## 5. Version constant removed
+Removed `FirestoreClient::VERSION`, use the `VERSION` file in the library root instead.

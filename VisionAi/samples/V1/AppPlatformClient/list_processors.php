@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_ListProcessors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\ListProcessorsRequest;
 use Google\Cloud\VisionAI\V1\Processor;
 
 /**
@@ -39,10 +40,14 @@ function list_processors_sample(string $formattedParent): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new ListProcessorsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appPlatformClient->listProcessors($formattedParent);
+        $response = $appPlatformClient->listProcessors($request);
 
         /** @var Processor $element */
         foreach ($response as $element) {

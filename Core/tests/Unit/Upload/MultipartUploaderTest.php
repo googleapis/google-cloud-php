@@ -85,6 +85,48 @@ class MultipartUploaderTest extends TestCase
             $actualPromise->wait()
         );
     }
+
+    public function testUploadsWithCustomHeaders()
+    {
+        $customHeaders = [
+            'X-Goog-Custom-Header' => 'custom-value',
+            'User-Agent' => 'custom-ua'
+        ];
+
+        $requestWrapper = $this->prophesize(RequestWrapper::class);
+        $stream = Utils::streamFor('abcd');
+        $successBody = '{"canI":"kickIt"}';
+        $response = new Response(200, [], $successBody);
+
+        $requestWrapper->send(
+            Argument::that(function (RequestInterface $request) use ($customHeaders) {
+                foreach ($customHeaders as $key => $value) {
+                    if ($request->getHeaderLine($key) !== $value) {
+                        return false;
+                    }
+                }
+
+                $contentType = $request->getHeaderLine('Content-Type');
+                return str_contains($contentType, 'multipart/related')
+                    && str_contains($contentType, 'boundary=boundary');
+            }),
+            Argument::type('array')
+        )->willReturn($response);
+
+        $uploader = new MultipartUploader(
+            $requestWrapper->reveal(),
+            $stream,
+            'http://www.example.com',
+            [
+                'restOptions' => [
+                    'headers' => $customHeaders
+                ]
+            ]
+        );
+
+        $this->assertEquals(json_decode($successBody, true), $uploader->upload());
+    }
+
     /**
      * @dataProvider streamSizes
      */

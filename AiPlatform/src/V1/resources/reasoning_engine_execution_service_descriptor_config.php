@@ -23,6 +23,25 @@
 return [
     'interfaces' => [
         'google.cloud.aiplatform.v1.ReasoningEngineExecutionService' => [
+            'AsyncQueryReasoningEngine' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineResponse',
+                    'metadataReturnType' => '\Google\Cloud\AIPlatform\V1\AsyncQueryReasoningEngineOperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+                'callType' => \Google\ApiCore\Call::LONGRUNNING_CALL,
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'QueryReasoningEngine' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\AIPlatform\V1\QueryReasoningEngineResponse',

@@ -80,6 +80,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string specific_info_types = 12;</code>
      */
     private $specific_info_types;
+    /**
+     * The launch status of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeDescription.InfoTypeLaunchStatus launch_status = 13;</code>
+     */
+    protected $launch_status = 0;
 
     /**
      * Constructor.
@@ -112,6 +118,8 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           General infoTypes are infoTypes that encompass multiple specific infoTypes.
      *           For example, the "GEOGRAPHIC_DATA" general infoType would have set for this
      *           field "LOCATION", "LOCATION_COORDINATES", and "STREET_ADDRESS".
+     *     @type int $launch_status
+     *           The launch status of the infoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -405,6 +413,32 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->specific_info_types = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The launch status of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeDescription.InfoTypeLaunchStatus launch_status = 13;</code>
+     * @return int
+     */
+    public function getLaunchStatus()
+    {
+        return $this->launch_status;
+    }
+
+    /**
+     * The launch status of the infoType.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoTypeDescription.InfoTypeLaunchStatus launch_status = 13;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setLaunchStatus($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Dlp\V2\InfoTypeDescription\InfoTypeLaunchStatus::class);
+        $this->launch_status = $var;
 
         return $this;
     }

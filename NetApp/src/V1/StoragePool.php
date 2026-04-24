@@ -223,13 +223,27 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of the storage pool. This field is used to control whether
      * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
-     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
-     * volumes with large capacity. If not specified during creation, it defaults
-     * to `FILE`.
+     * `BLOCK`) volumes. If not specified during creation, it defaults to `FILE`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $type = null;
+    /**
+     * Optional. Mode of the storage pool. This field is used to control whether
+     * the user can perform the ONTAP operations on the storage pool using the
+     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * `DEFAULT`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $mode = null;
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scale_type = 0;
 
     /**
      * Constructor.
@@ -318,9 +332,15 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Optional. Type of the storage pool. This field is used to control whether
      *           the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
-     *           `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
-     *           volumes with large capacity. If not specified during creation, it defaults
-     *           to `FILE`.
+     *           `BLOCK`) volumes. If not specified during creation, it defaults to `FILE`.
+     *     @type int $mode
+     *           Optional. Mode of the storage pool. This field is used to control whether
+     *           the user can perform the ONTAP operations on the storage pool using the
+     *           GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     *           `DEFAULT`.
+     *     @type int $scale_type
+     *           Optional. The scale type of the storage pool. Defaults to
+     *           `SCALE_TYPE_DEFAULT` if not specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -1209,9 +1229,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of the storage pool. This field is used to control whether
      * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
-     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
-     * volumes with large capacity. If not specified during creation, it defaults
-     * to `FILE`.
+     * `BLOCK`) volumes. If not specified during creation, it defaults to `FILE`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -1234,9 +1252,7 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Type of the storage pool. This field is used to control whether
      * the pool supports `FILE` based volumes only or `UNIFIED` (both `FILE` and
-     * `BLOCK`) volumes or `UNIFIED_LARGE_CAPACITY` (both `FILE` and `BLOCK`)
-     * volumes with large capacity. If not specified during creation, it defaults
-     * to `FILE`.
+     * `BLOCK`) volumes. If not specified during creation, it defaults to `FILE`.
      *
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.StoragePoolType type = 35 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -1246,6 +1262,76 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\StoragePoolType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Mode of the storage pool. This field is used to control whether
+     * the user can perform the ONTAP operations on the storage pool using the
+     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * `DEFAULT`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getMode()
+    {
+        return isset($this->mode) ? $this->mode : 0;
+    }
+
+    public function hasMode()
+    {
+        return isset($this->mode);
+    }
+
+    public function clearMode()
+    {
+        unset($this->mode);
+    }
+
+    /**
+     * Optional. Mode of the storage pool. This field is used to control whether
+     * the user can perform the ONTAP operations on the storage pool using the
+     * GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
+     * `DEFAULT`.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\Mode::class);
+        $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScaleType()
+    {
+        return $this->scale_type;
+    }
+
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScaleType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\ScaleType::class);
+        $this->scale_type = $var;
 
         return $this;
     }

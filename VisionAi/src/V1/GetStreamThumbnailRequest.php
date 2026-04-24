@@ -52,6 +52,21 @@ class GetStreamThumbnailRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string $stream        Required. The name of the stream for to get the thumbnail from.
+     * @param string $gcsObjectName Required. The name of the GCS object to store the thumbnail image.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetStreamThumbnailRequest
+     *
+     * @experimental
+     */
+    public static function build(string $stream, string $gcsObjectName): self
+    {
+        return (new self())
+            ->setStream($stream)
+            ->setGcsObjectName($gcsObjectName);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

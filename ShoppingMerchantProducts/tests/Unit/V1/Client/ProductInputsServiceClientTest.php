@@ -144,7 +144,9 @@ class ProductInputsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $product = 'product-309474065';
+        $base64EncodedProduct = 'base64EncodedProduct137527246';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
@@ -152,7 +154,9 @@ class ProductInputsServiceClientTest extends GeneratedTest
         $versionNumber = 135927952;
         $expectedResponse = new ProductInput();
         $expectedResponse->setName($name);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setProduct($product);
+        $expectedResponse->setBase64EncodedProduct($base64EncodedProduct);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);
@@ -250,7 +254,9 @@ class ProductInputsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $base64EncodedName = 'base64EncodedName-1315189748';
         $product = 'product-309474065';
+        $base64EncodedProduct = 'base64EncodedProduct137527246';
         $legacyLocal = false;
         $offerId = 'offerId-768546338';
         $contentLanguage = 'contentLanguage-1408137122';
@@ -258,7 +264,9 @@ class ProductInputsServiceClientTest extends GeneratedTest
         $versionNumber = 135927952;
         $expectedResponse = new ProductInput();
         $expectedResponse->setName($name);
+        $expectedResponse->setBase64EncodedName($base64EncodedName);
         $expectedResponse->setProduct($product);
+        $expectedResponse->setBase64EncodedProduct($base64EncodedProduct);
         $expectedResponse->setLegacyLocal($legacyLocal);
         $expectedResponse->setOfferId($offerId);
         $expectedResponse->setContentLanguage($contentLanguage);

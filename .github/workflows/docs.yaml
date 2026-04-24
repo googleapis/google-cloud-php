@@ -24,14 +24,14 @@ jobs:
         php-version: "8.1"
     - name: Extract phpDocumentor
       id: extract
-      uses: shrink/actions-docker-extract@v2
+      uses: shrink/actions-docker-extract@v4
       with:
         image: "phpdoc/phpdoc:3.5.3"
         path: "/opt/phpdoc/."
     - name: Symlink phpDocumentor
       run: ln -s $(pwd)/${{ steps.extract.outputs.destination }}/bin/phpdoc /usr/local/bin/phpdoc
     - name: Install Dependencies
-      uses: nick-invision/retry@v3
+      uses: nick-invision/retry@v4
       with:
         timeout_minutes: 10
         max_attempts: 3

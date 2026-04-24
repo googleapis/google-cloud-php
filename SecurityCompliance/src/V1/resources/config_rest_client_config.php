@@ -27,6 +27,16 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/cloudControls',
                 'body' => 'cloud_control',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/cloudControls',
+                        'body' => 'cloud_control',
+                        'queryParams' => [
+                            'cloud_control_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -42,6 +52,16 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/frameworks',
                 'body' => 'framework',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/frameworks',
+                        'body' => 'framework',
+                        'queryParams' => [
+                            'framework_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -56,6 +76,12 @@ return [
             'DeleteCloudControl' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/cloudControls/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudControls/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -67,6 +93,12 @@ return [
             'DeleteFramework' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/frameworks/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/frameworks/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -78,6 +110,12 @@ return [
             'GetCloudControl' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/cloudControls/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/cloudControls/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -89,6 +127,12 @@ return [
             'GetFramework' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/frameworks/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/frameworks/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -100,6 +144,12 @@ return [
             'ListCloudControls' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/cloudControls',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/cloudControls',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -111,6 +161,12 @@ return [
             'ListFrameworks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/locations/*}/frameworks',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/frameworks',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -123,6 +179,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{cloud_control.name=organizations/*/locations/*/cloudControls/*}',
                 'body' => 'cloud_control',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{cloud_control.name=projects/*/locations/*/cloudControls/*}',
+                        'body' => 'cloud_control',
+                    ],
+                ],
                 'placeholders' => [
                     'cloud_control.name' => [
                         'getters' => [
@@ -136,6 +199,13 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{framework.name=organizations/*/locations/*/frameworks/*}',
                 'body' => 'framework',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{framework.name=projects/*/locations/*/frameworks/*}',
+                        'body' => 'framework',
+                    ],
+                ],
                 'placeholders' => [
                     'framework.name' => [
                         'getters' => [
@@ -150,6 +220,12 @@ return [
             'GetLocation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -161,6 +237,12 @@ return [
             'ListLocations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*}/locations',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*}/locations',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -175,6 +257,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}:cancel',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -186,6 +275,12 @@ return [
             'DeleteOperation' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -197,6 +292,12 @@ return [
             'GetOperation' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -208,6 +309,12 @@ return [
             'ListOperations' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/locations/*}/operations',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [

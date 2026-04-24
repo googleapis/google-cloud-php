@@ -28,6 +28,8 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
      *           Hotword-based detection rule.
      *     @type \Google\Cloud\Dlp\V2\ExclusionRule $exclusion_rule
      *           Exclusion rule.
+     *     @type \Google\Cloud\Dlp\V2\AdjustmentRule $adjustment_rule
+     *           Adjustment rule.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +95,37 @@ class InspectionRule extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ExclusionRule::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Adjustment rule.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AdjustmentRule adjustment_rule = 3;</code>
+     * @return \Google\Cloud\Dlp\V2\AdjustmentRule|null
+     */
+    public function getAdjustmentRule()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasAdjustmentRule()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * Adjustment rule.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.AdjustmentRule adjustment_rule = 3;</code>
+     * @param \Google\Cloud\Dlp\V2\AdjustmentRule $var
+     * @return $this
+     */
+    public function setAdjustmentRule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\AdjustmentRule::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

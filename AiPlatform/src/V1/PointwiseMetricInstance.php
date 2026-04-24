@@ -28,6 +28,10 @@ class PointwiseMetricInstance extends \Google\Protobuf\Internal\Message
      *           Instance specified as a json string. String key-value pairs are expected
      *           in the json_instance to render
      *           PointwiseMetricSpec.instance_prompt_template.
+     *     @type \Google\Cloud\AIPlatform\V1\ContentMap $content_map_instance
+     *           Key-value contents for the mutlimodality input, including text, image,
+     *           video, audio, and pdf, etc. The key is placeholder in metric prompt
+     *           template, and the value is the multimodal content.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,6 +70,41 @@ class PointwiseMetricInstance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(1, $var);
+
+        return $this;
+    }
+
+    /**
+     * Key-value contents for the mutlimodality input, including text, image,
+     * video, audio, and pdf, etc. The key is placeholder in metric prompt
+     * template, and the value is the multimodal content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ContentMap content_map_instance = 2;</code>
+     * @return \Google\Cloud\AIPlatform\V1\ContentMap|null
+     */
+    public function getContentMapInstance()
+    {
+        return $this->readOneof(2);
+    }
+
+    public function hasContentMapInstance()
+    {
+        return $this->hasOneof(2);
+    }
+
+    /**
+     * Key-value contents for the mutlimodality input, including text, image,
+     * video, audio, and pdf, etc. The key is placeholder in metric prompt
+     * template, and the value is the multimodal content.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ContentMap content_map_instance = 2;</code>
+     * @param \Google\Cloud\AIPlatform\V1\ContentMap $var
+     * @return $this
+     */
+    public function setContentMapInstance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ContentMap::class);
+        $this->writeOneof(2, $var);
 
         return $this;
     }

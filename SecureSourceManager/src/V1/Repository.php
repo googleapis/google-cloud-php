@@ -16,11 +16,11 @@ use Google\Protobuf\RepeatedField;
 class Repository extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. A unique identifier for a repository. The name should be of the
+     * Identifier. A unique identifier for a repository. The name should be of the
      * format:
      * `projects/{project}/locations/{location_id}/repositories/{repository_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -44,7 +44,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      */
     protected $uid = '';
     /**
@@ -87,7 +87,7 @@ class Repository extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. A unique identifier for a repository. The name should be of the
+     *           Identifier. A unique identifier for a repository. The name should be of the
      *           format:
      *           `projects/{project}/locations/{location_id}/repositories/{repository_id}`
      *     @type string $description
@@ -122,11 +122,11 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for a repository. The name should be of the
+     * Identifier. A unique identifier for a repository. The name should be of the
      * format:
      * `projects/{project}/locations/{location_id}/repositories/{repository_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -135,11 +135,11 @@ class Repository extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A unique identifier for a repository. The name should be of the
+     * Identifier. A unique identifier for a repository. The name should be of the
      * format:
      * `projects/{project}/locations/{location_id}/repositories/{repository_id}`
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */
@@ -218,7 +218,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @return string
      */
     public function getUid()
@@ -229,7 +229,7 @@ class Repository extends \Google\Protobuf\Internal\Message
     /**
      * Output only. Unique identifier of the repository.
      *
-     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string uid = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.field_info) = {</code>
      * @param string $var
      * @return $this
      */

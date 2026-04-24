@@ -49,7 +49,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * Optional. The entry agent to handle the session. If not specified, the
      * session will be handled by the [root
      * agent][google.cloud.ces.v1.App.root_agent] of the app. Format:
-     * `projects/{project}/locations/{location}/agents/{agent}`
+     * `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *
      * Generated from protobuf field <code>string entry_agent = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      */
@@ -73,6 +73,14 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      */
     protected $time_zone = '';
     /**
+     * Optional. Whether to use tool fakes for the session.
+     * If this field is set, the agent will attempt use tool fakes instead of
+     * calling the real tools.
+     *
+     * Generated from protobuf field <code>bool use_tool_fakes = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $use_tool_fakes = false;
+    /**
      * Optional.
      * [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters)
      * to send to the remote
@@ -82,6 +90,17 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.ces.v1.SessionConfig.RemoteDialogflowQueryParameters remote_dialogflow_query_parameters = 15 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $remote_dialogflow_query_parameters = null;
+    /**
+     * Optional. Whether to enable streaming text outputs from the model.
+     * By default, text outputs from the model are collected before sending to the
+     * client.
+     * NOTE: This is only supported for text (non-voice) sessions via
+     * [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
+     * [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
+     *
+     * Generated from protobuf field <code>bool enable_text_streaming = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $enable_text_streaming = false;
 
     /**
      * Constructor.
@@ -107,7 +126,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. The entry agent to handle the session. If not specified, the
      *           session will be handled by the [root
      *           agent][google.cloud.ces.v1.App.root_agent] of the app. Format:
-     *           `projects/{project}/locations/{location}/agents/{agent}`
+     *           `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *     @type string $deployment
      *           Optional. The deployment of the app to use for the session.
      *           Format:
@@ -118,12 +137,23 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      *           use the time zone specified in the App.time_zone_settings.
      *           The format is the IANA Time Zone Database time zone, e.g.
      *           "America/Los_Angeles".
+     *     @type bool $use_tool_fakes
+     *           Optional. Whether to use tool fakes for the session.
+     *           If this field is set, the agent will attempt use tool fakes instead of
+     *           calling the real tools.
      *     @type \Google\Cloud\Ces\V1\SessionConfig\RemoteDialogflowQueryParameters $remote_dialogflow_query_parameters
      *           Optional.
      *           [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters)
      *           to send to the remote
      *           [Dialogflow](https://cloud.google.com/dialogflow/cx/docs/concept/console-conversational-agents)
      *           agent when the session control is transferred to the remote agent.
+     *     @type bool $enable_text_streaming
+     *           Optional. Whether to enable streaming text outputs from the model.
+     *           By default, text outputs from the model are collected before sending to the
+     *           client.
+     *           NOTE: This is only supported for text (non-voice) sessions via
+     *           [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
+     *           [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
      * }
      */
     public function __construct($data = NULL) {
@@ -271,7 +301,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * Optional. The entry agent to handle the session. If not specified, the
      * session will be handled by the [root
      * agent][google.cloud.ces.v1.App.root_agent] of the app. Format:
-     * `projects/{project}/locations/{location}/agents/{agent}`
+     * `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *
      * Generated from protobuf field <code>string entry_agent = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @return string
@@ -285,7 +315,7 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
      * Optional. The entry agent to handle the session. If not specified, the
      * session will be handled by the [root
      * agent][google.cloud.ces.v1.App.root_agent] of the app. Format:
-     * `projects/{project}/locations/{location}/agents/{agent}`
+     * `projects/{project}/locations/{location}/apps/{app}/agents/{agent}`
      *
      * Generated from protobuf field <code>string entry_agent = 12 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -364,6 +394,36 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Whether to use tool fakes for the session.
+     * If this field is set, the agent will attempt use tool fakes instead of
+     * calling the real tools.
+     *
+     * Generated from protobuf field <code>bool use_tool_fakes = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getUseToolFakes()
+    {
+        return $this->use_tool_fakes;
+    }
+
+    /**
+     * Optional. Whether to use tool fakes for the session.
+     * If this field is set, the agent will attempt use tool fakes instead of
+     * calling the real tools.
+     *
+     * Generated from protobuf field <code>bool use_tool_fakes = 14 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setUseToolFakes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->use_tool_fakes = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional.
      * [QueryParameters](https://cloud.google.com/dialogflow/cx/docs/reference/rpc/google.cloud.dialogflow.cx.v3#queryparameters)
      * to send to the remote
@@ -403,6 +463,42 @@ class SessionConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\SessionConfig\RemoteDialogflowQueryParameters::class);
         $this->remote_dialogflow_query_parameters = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Whether to enable streaming text outputs from the model.
+     * By default, text outputs from the model are collected before sending to the
+     * client.
+     * NOTE: This is only supported for text (non-voice) sessions via
+     * [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
+     * [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
+     *
+     * Generated from protobuf field <code>bool enable_text_streaming = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getEnableTextStreaming()
+    {
+        return $this->enable_text_streaming;
+    }
+
+    /**
+     * Optional. Whether to enable streaming text outputs from the model.
+     * By default, text outputs from the model are collected before sending to the
+     * client.
+     * NOTE: This is only supported for text (non-voice) sessions via
+     * [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
+     * [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
+     *
+     * Generated from protobuf field <code>bool enable_text_streaming = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableTextStreaming($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_text_streaming = $var;
 
         return $this;
     }

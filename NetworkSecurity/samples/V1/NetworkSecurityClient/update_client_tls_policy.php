@@ -34,7 +34,7 @@ use Google\Rpc\Status;
  * Updates the parameters of a single ClientTlsPolicy.
  *
  * @param string $clientTlsPolicyName Name of the ClientTlsPolicy resource. It matches the pattern
- *                                    `projects/&#42;/locations/{location}/clientTlsPolicies/{client_tls_policy}`
+ *                                    `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`
  */
 function update_client_tls_policy_sample(string $clientTlsPolicyName): void
 {

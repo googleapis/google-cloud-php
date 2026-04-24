@@ -52,6 +52,22 @@ class ViewIndexedAssetsRequest extends \Google\Protobuf\Internal\Message
     protected $filter = '';
 
     /**
+     * @param string $index Required. The index that owns this collection of assets.
+     *                      Format:
+     *                      `projects/{project_number}/locations/{location}/corpora/{corpus}/indexes/{index}`
+     *                      Please see {@see WarehouseClient::indexName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ViewIndexedAssetsRequest
+     *
+     * @experimental
+     */
+    public static function build(string $index): self
+    {
+        return (new self())
+            ->setIndex($index);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

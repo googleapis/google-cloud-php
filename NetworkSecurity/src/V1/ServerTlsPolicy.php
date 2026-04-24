@@ -11,7 +11,12 @@ use Google\Protobuf\RepeatedField;
 /**
  * ServerTlsPolicy is a resource that specifies how a server should authenticate
  * incoming requests. This resource itself does not affect configuration unless
- * it is attached to a target https proxy or endpoint config selector resource.
+ * it is attached to a target HTTPS proxy or endpoint config selector resource.
+ * ServerTlsPolicy in the form accepted by Application Load Balancers can
+ * be attached only to TargetHttpsProxy with an `EXTERNAL`, `EXTERNAL_MANAGED`
+ * or `INTERNAL_MANAGED` load balancing scheme. Traffic Director compatible
+ * ServerTlsPolicies can be attached to EndpointPolicy and TargetHttpsProxy with
+ * Traffic Director `INTERNAL_SELF_MANAGED` load balancing scheme.
  *
  * Generated from protobuf message <code>google.cloud.networksecurity.v1.ServerTlsPolicy</code>
  */
@@ -49,6 +54,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * This field applies only for Traffic Director policies. It is must be set to
+     * false for Application Load Balancer policies.
      * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
      * is not exclusive of other encryption modes. For example, if `allow_open`
@@ -62,6 +69,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $allow_open = false;
     /**
+     * Optional if policy is to be used with Traffic Director. For Application
+     * Load Balancers must be empty.
      * Defines a mechanism to provision server identity (public and private keys).
      * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
@@ -70,6 +79,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     protected $server_certificate = null;
     /**
+     * This field is required if the policy is used with Application Load
+     * Balancers. This field can be empty for Traffic Director.
      * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not
@@ -98,6 +109,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of label tags associated with the resource.
      *     @type bool $allow_open
+     *           This field applies only for Traffic Director policies. It is must be set to
+     *           false for Application Load Balancer policies.
      *           Determines if server allows plaintext connections. If set to true, server
      *           allows plain text connections. By default, it is set to false. This setting
      *           is not exclusive of other encryption modes. For example, if `allow_open`
@@ -107,10 +120,14 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *           Consider using it if you wish to upgrade in place your deployment to TLS
      *           while having mixed TLS and non-TLS traffic reaching port :80.
      *     @type \Google\Cloud\NetworkSecurity\V1\CertificateProvider $server_certificate
+     *           Optional if policy is to be used with Traffic Director. For Application
+     *           Load Balancers must be empty.
      *           Defines a mechanism to provision server identity (public and private keys).
      *           Cannot be combined with `allow_open` as a permissive mode that allows both
      *           plain text and TLS is not supported.
      *     @type \Google\Cloud\NetworkSecurity\V1\ServerTlsPolicy\MTLSPolicy $mtls_policy
+     *           This field is required if the policy is used with Application Load
+     *           Balancers. This field can be empty for Traffic Director.
      *           Defines a mechanism to provision peer validation certificates for peer to
      *           peer authentication (Mutual TLS - mTLS). If not specified, client
      *           certificate will not be requested. The connection is treated as TLS and not
@@ -276,6 +293,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field applies only for Traffic Director policies. It is must be set to
+     * false for Application Load Balancer policies.
      * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
      * is not exclusive of other encryption modes. For example, if `allow_open`
@@ -294,6 +313,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field applies only for Traffic Director policies. It is must be set to
+     * false for Application Load Balancer policies.
      * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
      * is not exclusive of other encryption modes. For example, if `allow_open`
@@ -316,6 +337,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional if policy is to be used with Traffic Director. For Application
+     * Load Balancers must be empty.
      * Defines a mechanism to provision server identity (public and private keys).
      * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
@@ -339,6 +362,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional if policy is to be used with Traffic Director. For Application
+     * Load Balancers must be empty.
      * Defines a mechanism to provision server identity (public and private keys).
      * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
@@ -356,6 +381,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is required if the policy is used with Application Load
+     * Balancers. This field can be empty for Traffic Director.
      * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not
@@ -381,6 +408,8 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is required if the policy is used with Application Load
+     * Balancers. This field can be empty for Traffic Director.
      * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not

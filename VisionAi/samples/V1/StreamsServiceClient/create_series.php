@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_CreateSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\CreateSeriesRequest;
 use Google\Cloud\VisionAI\V1\Series;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -49,15 +50,19 @@ function create_series_sample(
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $series = (new Series())
         ->setStream($formattedSeriesStream)
         ->setEvent($formattedSeriesEvent);
+    $request = (new CreateSeriesRequest())
+        ->setParent($formattedParent)
+        ->setSeriesId($seriesId)
+        ->setSeries($series);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->createSeries($formattedParent, $seriesId, $series);
+        $response = $streamsServiceClient->createSeries($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

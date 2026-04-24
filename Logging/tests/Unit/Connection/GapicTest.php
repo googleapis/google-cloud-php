@@ -119,7 +119,9 @@ class GapicTest extends TestCase
             ],
             'httpRequest' => [
                 'latency' => ['seconds' => 1, 'nanos' => 0]
-            ]
+            ],
+            'timestamp' => ['seconds' => 100],
+            'severity' => 100,
         ];
         $sinkData = [
             'name' => $value,
@@ -163,7 +165,9 @@ class GapicTest extends TestCase
                             ],
                             'httpRequest' => [
                                 'latency' => '1.0s'
-                            ]
+                            ],
+                            'timestamp' => date('Y-m-d H:i:s', 100),
+                            'severity' => 'DEBUG',
                         ]
                     ]
                 ],

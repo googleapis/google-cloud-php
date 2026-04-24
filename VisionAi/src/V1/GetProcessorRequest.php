@@ -23,6 +23,20 @@ class GetProcessorRequest extends \Google\Protobuf\Internal\Message
     protected $name = '';
 
     /**
+     * @param string $name Required. Name of the resource. Please see
+     *                     {@see AppPlatformClient::processorName()} for help formatting this field.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GetProcessorRequest
+     *
+     * @experimental
+     */
+    public static function build(string $name): self
+    {
+        return (new self())
+            ->setName($name);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

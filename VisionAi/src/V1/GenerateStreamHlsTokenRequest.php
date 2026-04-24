@@ -23,6 +23,19 @@ class GenerateStreamHlsTokenRequest extends \Google\Protobuf\Internal\Message
     protected $stream = '';
 
     /**
+     * @param string $stream Required. The name of the stream.
+     *
+     * @return \Google\Cloud\VisionAI\V1\GenerateStreamHlsTokenRequest
+     *
+     * @experimental
+     */
+    public static function build(string $stream): self
+    {
+        return (new self())
+            ->setStream($stream);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

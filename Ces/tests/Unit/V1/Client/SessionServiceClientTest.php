@@ -25,6 +25,7 @@ namespace Google\Cloud\Ces\Tests\Unit\V1\Client;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
+use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Ces\V1\BidiSessionClientMessage;
@@ -219,6 +220,89 @@ class SessionServiceClientTest extends GeneratedTest
         try {
             $gapicClient->runSession($request);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamRunSessionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RunSessionResponse();
+        $transport->addResponse($expectedResponse);
+        $expectedResponse2 = new RunSessionResponse();
+        $transport->addResponse($expectedResponse2);
+        $expectedResponse3 = new RunSessionResponse();
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $config = new SessionConfig();
+        $configSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[APP]', '[SESSION]');
+        $config->setSession($configSession);
+        $inputs = [];
+        $request = (new RunSessionRequest())->setConfig($config)->setInputs($inputs);
+        $serverStream = $gapicClient->streamRunSession($request);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.ces.v1.SessionService/StreamRunSession', $actualFuncCall);
+        $actualValue = $actualRequestObject->getConfig();
+        $this->assertProtobufEquals($config, $actualValue);
+        $actualValue = $actualRequestObject->getInputs();
+        $this->assertProtobufEquals($inputs, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function streamRunSessionExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $config = new SessionConfig();
+        $configSession = $gapicClient->sessionName('[PROJECT]', '[LOCATION]', '[APP]', '[SESSION]');
+        $config->setSession($configSession);
+        $inputs = [];
+        $request = (new RunSessionRequest())->setConfig($config)->setInputs($inputs);
+        $serverStream = $gapicClient->streamRunSession($request);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

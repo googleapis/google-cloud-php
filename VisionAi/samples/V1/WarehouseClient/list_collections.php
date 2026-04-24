@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_ListCollections_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\Collection;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ListCollectionsRequest;
 
 /**
  * Lists collections inside a corpus.
@@ -40,10 +41,14 @@ function list_collections_sample(string $formattedParent): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ListCollectionsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->listCollections($formattedParent);
+        $response = $warehouseClient->listCollections($request);
 
         /** @var Collection $element */
         foreach ($response as $element) {

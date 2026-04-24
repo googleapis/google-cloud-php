@@ -28,7 +28,6 @@ use Google\ApiCore\OperationResponse;
 use Google\Cloud\SecureSourceManager\V1\BranchRule;
 use Google\Cloud\SecureSourceManager\V1\Client\SecureSourceManagerClient;
 use Google\Cloud\SecureSourceManager\V1\UpdateBranchRuleRequest;
-use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
 /**
@@ -47,10 +46,8 @@ function update_branch_rule_sample(): void
 
     // Prepare the request message.
     $branchRule = new BranchRule();
-    $updateMask = new FieldMask();
     $request = (new UpdateBranchRuleRequest())
-        ->setBranchRule($branchRule)
-        ->setUpdateMask($updateMask);
+        ->setBranchRule($branchRule);
 
     // Call the API and handle any network failures.
     try {

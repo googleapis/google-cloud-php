@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_GetStreamThumbnail_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\GetStreamThumbnailRequest;
 use Google\Cloud\VisionAI\V1\GetStreamThumbnailResponse;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 use Google\Rpc\Status;
 
 /**
@@ -40,10 +41,15 @@ function get_stream_thumbnail_sample(string $stream, string $gcsObjectName): voi
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GetStreamThumbnailRequest())
+        ->setStream($stream)
+        ->setGcsObjectName($gcsObjectName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->getStreamThumbnail($stream, $gcsObjectName);
+        $response = $streamsServiceClient->getStreamThumbnail($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

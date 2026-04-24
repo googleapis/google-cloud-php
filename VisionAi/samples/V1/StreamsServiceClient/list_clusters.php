@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_ListClusters_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
 use Google\Cloud\VisionAI\V1\Cluster;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\ListClustersRequest;
 
 /**
  * Lists Clusters in a given project and location.
@@ -39,10 +40,14 @@ function list_clusters_sample(string $formattedParent): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new ListClustersRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $streamsServiceClient->listClusters($formattedParent);
+        $response = $streamsServiceClient->listClusters($request);
 
         /** @var Cluster $element */
         foreach ($response as $element) {

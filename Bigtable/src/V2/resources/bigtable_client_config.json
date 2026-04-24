@@ -31,12 +31,26 @@
                 "GenerateInitialChangeStreamPartitions": {
                     "timeout_millis": 60000
                 },
+                "GetClientConfiguration": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "non_idempotent",
+                    "retry_params_name": "default"
+                },
                 "MutateRow": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "non_idempotent",
                     "retry_params_name": "default"
                 },
                 "MutateRows": {
+                    "timeout_millis": 60000
+                },
+                "OpenAuthorizedView": {
+                    "timeout_millis": 60000
+                },
+                "OpenMaterializedView": {
+                    "timeout_millis": 60000
+                },
+                "OpenTable": {
                     "timeout_millis": 60000
                 },
                 "PingAndWarm": {

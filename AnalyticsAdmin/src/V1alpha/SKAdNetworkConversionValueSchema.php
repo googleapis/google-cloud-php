@@ -16,12 +16,12 @@ use Google\Protobuf\RepeatedField;
 class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. Resource name of the schema. This will be child of ONLY an iOS
+     * Identifier. Resource name of the schema. This will be child of ONLY an iOS
      * stream, and there can be at most one such child under an iOS stream.
      * Format:
      * properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      */
     protected $name = '';
     /**
@@ -72,7 +72,7 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. Resource name of the schema. This will be child of ONLY an iOS
+     *           Identifier. Resource name of the schema. This will be child of ONLY an iOS
      *           stream, and there can be at most one such child under an iOS stream.
      *           Format:
      *           properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
@@ -108,12 +108,12 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the schema. This will be child of ONLY an iOS
+     * Identifier. Resource name of the schema. This will be child of ONLY an iOS
      * stream, and there can be at most one such child under an iOS stream.
      * Format:
      * properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @return string
      */
     public function getName()
@@ -122,12 +122,12 @@ class SKAdNetworkConversionValueSchema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource name of the schema. This will be child of ONLY an iOS
+     * Identifier. Resource name of the schema. This will be child of ONLY an iOS
      * stream, and there can be at most one such child under an iOS stream.
      * Format:
      * properties/{property}/dataStreams/{dataStream}/sKAdNetworkConversionValueSchema
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IDENTIFIER];</code>
      * @param string $var
      * @return $this
      */

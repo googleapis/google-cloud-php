@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_DeleteAnalysis_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\DeleteAnalysisRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_analysis_sample(string $formattedName): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new DeleteAnalysisRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->deleteAnalysis($formattedName);
+        $response = $liveVideoAnalyticsClient->deleteAnalysis($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_DeployApplication_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\DeployApplicationRequest;
 use Google\Cloud\VisionAI\V1\DeployApplicationResponse;
 use Google\Rpc\Status;
 
@@ -42,10 +43,14 @@ function deploy_application_sample(string $formattedName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new DeployApplicationRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->deployApplication($formattedName);
+        $response = $appPlatformClient->deployApplication($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

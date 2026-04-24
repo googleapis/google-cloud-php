@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_ListApplications_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
 use Google\Cloud\VisionAI\V1\Application;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\ListApplicationsRequest;
 
 /**
  * Lists Applications in a given project and location.
@@ -39,10 +40,14 @@ function list_applications_sample(string $formattedParent): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new ListApplicationsRequest())
+        ->setParent($formattedParent);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $appPlatformClient->listApplications($formattedParent);
+        $response = $appPlatformClient->listApplications($request);
 
         /** @var Application $element */
         foreach ($response as $element) {

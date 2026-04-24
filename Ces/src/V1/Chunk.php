@@ -27,6 +27,8 @@ class Chunk extends \Google\Protobuf\Internal\Message
      *           Optional. Text data.
      *     @type string $transcript
      *           Optional. Transcript associated with the audio.
+     *     @type \Google\Cloud\Ces\V1\Blob $blob
+     *           Optional. Blob data.
      *     @type \Google\Protobuf\Struct $payload
      *           Optional. Custom payload data.
      *     @type \Google\Cloud\Ces\V1\Image $image
@@ -108,6 +110,37 @@ class Chunk extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Blob data.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Blob blob = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\Blob|null
+     */
+    public function getBlob()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasBlob()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Optional. Blob data.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.Blob blob = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\Blob $var
+     * @return $this
+     */
+    public function setBlob($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\Blob::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

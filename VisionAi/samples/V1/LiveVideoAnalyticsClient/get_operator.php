@@ -24,7 +24,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_LiveVideoAnalytics_GetOperator_sync]
 use Google\ApiCore\ApiException;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\GetOperatorRequest;
 use Google\Cloud\VisionAI\V1\Operator;
 
 /**
@@ -38,10 +39,14 @@ function get_operator_sample(string $formattedName): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
+    // Prepare the request message.
+    $request = (new GetOperatorRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var Operator $response */
-        $response = $liveVideoAnalyticsClient->getOperator($formattedName);
+        $response = $liveVideoAnalyticsClient->getOperator($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

@@ -20,8 +20,8 @@ class Control extends \Google\Protobuf\Internal\Message
 {
     /**
      * The service controller environment to use. If empty, no control plane
-     * feature (like quota and billing) will be enabled. The recommended value for
-     * most services is servicecontrol.googleapis.com
+     * features (like quota and billing) will be enabled. The recommended value
+     * for most services is servicecontrol.googleapis.com.
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      */
@@ -41,8 +41,8 @@ class Control extends \Google\Protobuf\Internal\Message
      *
      *     @type string $environment
      *           The service controller environment to use. If empty, no control plane
-     *           feature (like quota and billing) will be enabled. The recommended value for
-     *           most services is servicecontrol.googleapis.com
+     *           features (like quota and billing) will be enabled. The recommended value
+     *           for most services is servicecontrol.googleapis.com.
      *     @type \Google\Api\MethodPolicy[] $method_policies
      *           Defines policies applying to the API methods of the service.
      * }
@@ -54,8 +54,8 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * The service controller environment to use. If empty, no control plane
-     * feature (like quota and billing) will be enabled. The recommended value for
-     * most services is servicecontrol.googleapis.com
+     * features (like quota and billing) will be enabled. The recommended value
+     * for most services is servicecontrol.googleapis.com.
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      * @return string
@@ -67,8 +67,8 @@ class Control extends \Google\Protobuf\Internal\Message
 
     /**
      * The service controller environment to use. If empty, no control plane
-     * feature (like quota and billing) will be enabled. The recommended value for
-     * most services is servicecontrol.googleapis.com
+     * features (like quota and billing) will be enabled. The recommended value
+     * for most services is servicecontrol.googleapis.com.
      *
      * Generated from protobuf field <code>string environment = 1;</code>
      * @param string $var

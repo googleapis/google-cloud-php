@@ -24,8 +24,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 
 // [START visionai_v1_generated_StreamsService_GenerateStreamHlsToken_sync]
 use Google\ApiCore\ApiException;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\GenerateStreamHlsTokenRequest;
 use Google\Cloud\VisionAI\V1\GenerateStreamHlsTokenResponse;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
 
 /**
  * Generate the JWT auth token required to get the stream HLS contents.
@@ -37,10 +38,14 @@ function generate_stream_hls_token_sample(string $stream): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new GenerateStreamHlsTokenRequest())
+        ->setStream($stream);
+
     // Call the API and handle any network failures.
     try {
         /** @var GenerateStreamHlsTokenResponse $response */
-        $response = $streamsServiceClient->generateStreamHlsToken($stream);
+        $response = $streamsServiceClient->generateStreamHlsToken($request);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());

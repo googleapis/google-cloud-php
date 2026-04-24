@@ -37,12 +37,19 @@ class Language
      * Generated from protobuf enum <code>GO = 3;</code>
      */
     const GO = 3;
+    /**
+     * YAML.
+     *
+     * Generated from protobuf enum <code>YAML = 4;</code>
+     */
+    const YAML = 4;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
         self::JAVA => 'JAVA',
         self::PYTHON => 'PYTHON',
         self::GO => 'GO',
+        self::YAML => 'YAML',
     ];
 
     public static function name($value)

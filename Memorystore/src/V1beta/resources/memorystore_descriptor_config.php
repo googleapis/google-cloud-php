@@ -105,6 +105,18 @@ return [
                     ],
                 ],
             ],
+            'GetSharedRegionalCertificateAuthority' => [
+                'callType' => \Google\ApiCore\Call::UNARY_CALL,
+                'responseType' => 'Google\Cloud\Memorystore\V1beta\SharedRegionalCertificateAuthority',
+                'headerParams' => [
+                    [
+                        'keyName' => 'name',
+                        'fieldAccessors' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -160,11 +172,13 @@ return [
                 'interfaceOverride' => 'google.cloud.location.Locations',
             ],
             'templateMap' => [
+                'caPool' => 'projects/{project}/locations/{location}/caPools/{ca_pool}',
                 'forwardingRule' => 'projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}',
                 'instance' => 'projects/{project}/locations/{location}/instances/{instance}',
                 'location' => 'projects/{project}/locations/{location}',
                 'network' => 'projects/{project}/global/networks/{network}',
                 'serviceAttachment' => 'projects/{project}/regions/{region}/serviceAttachments/{service_attachment}',
+                'sharedRegionalCertificateAuthority' => 'projects/{project}/locations/{location}/sharedRegionalCertificateAuthority',
             ],
         ],
     ],

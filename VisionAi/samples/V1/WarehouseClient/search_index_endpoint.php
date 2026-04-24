@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_SearchIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\SearchIndexEndpointRequest;
 use Google\Cloud\VisionAI\V1\SearchResultItem;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
 
 /**
  * Search a deployed index endpoint (IMAGE corpus type only).
@@ -41,10 +42,14 @@ function search_index_endpoint_sample(string $formattedIndexEndpoint): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new SearchIndexEndpointRequest())
+        ->setIndexEndpoint($formattedIndexEndpoint);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->searchIndexEndpoint($formattedIndexEndpoint);
+        $response = $warehouseClient->searchIndexEndpoint($request);
 
         /** @var SearchResultItem $element */
         foreach ($response as $element) {

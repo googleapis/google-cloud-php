@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_StreamsService_DeleteSeries_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\DeleteSeriesRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_series_sample(string $formattedName): void
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
+    // Prepare the request message.
+    $request = (new DeleteSeriesRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->deleteSeries($formattedName);
+        $response = $streamsServiceClient->deleteSeries($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

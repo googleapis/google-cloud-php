@@ -31,6 +31,23 @@ class UpdateDataSchemaRequest extends \Google\Protobuf\Internal\Message
     protected $update_mask = null;
 
     /**
+     * @param \Google\Cloud\VisionAI\V1\DataSchema $dataSchema Required. The data schema's `name` field is used to identify the data
+     *                                                         schema to be updated. Format:
+     *                                                         `projects/{project_number}/locations/{location}/corpora/{corpus}/dataSchemas/{data_schema}`
+     * @param \Google\Protobuf\FieldMask           $updateMask The list of fields to be updated.
+     *
+     * @return \Google\Cloud\VisionAI\V1\UpdateDataSchemaRequest
+     *
+     * @experimental
+     */
+    public static function build(\Google\Cloud\VisionAI\V1\DataSchema $dataSchema, \Google\Protobuf\FieldMask $updateMask): self
+    {
+        return (new self())
+            ->setDataSchema($dataSchema)
+            ->setUpdateMask($updateMask);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

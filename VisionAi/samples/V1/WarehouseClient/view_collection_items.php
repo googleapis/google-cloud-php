@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_ViewCollectionItems_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
 use Google\Cloud\VisionAI\V1\CollectionItem;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\ViewCollectionItemsRequest;
 
 /**
  * View items inside a collection.
@@ -40,10 +41,14 @@ function view_collection_items_sample(string $formattedCollection): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new ViewCollectionItemsRequest())
+        ->setCollection($formattedCollection);
+
     // Call the API and handle any network failures.
     try {
         /** @var PagedListResponse $response */
-        $response = $warehouseClient->viewCollectionItems($formattedCollection);
+        $response = $warehouseClient->viewCollectionItems($request);
 
         /** @var CollectionItem $element */
         foreach ($response as $element) {

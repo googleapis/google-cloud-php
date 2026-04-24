@@ -26,7 +26,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\VisionAI\V1\Channel;
-use Google\Cloud\VisionAI\V1\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\Client\StreamsServiceClient;
+use Google\Cloud\VisionAI\V1\MaterializeChannelRequest;
 use Google\Rpc\Status;
 
 /**
@@ -49,15 +50,19 @@ function materialize_channel_sample(
     // Create a client.
     $streamsServiceClient = new StreamsServiceClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $channel = (new Channel())
         ->setStream($formattedChannelStream)
         ->setEvent($formattedChannelEvent);
+    $request = (new MaterializeChannelRequest())
+        ->setParent($formattedParent)
+        ->setChannelId($channelId)
+        ->setChannel($channel);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $streamsServiceClient->materializeChannel($formattedParent, $channelId, $channel);
+        $response = $streamsServiceClient->materializeChannel($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

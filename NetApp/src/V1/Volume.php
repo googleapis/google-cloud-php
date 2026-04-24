@@ -212,7 +212,9 @@ class Volume extends \Google\Protobuf\Internal\Message
     private $restricted_actions;
     /**
      * Optional. Flag indicating if the volume will be a large capacity volume or
-     * a regular volume.
+     * a regular volume. This field is used for legacy FILE pools. For Unified
+     * pools, use the `large_capacity_config` field instead. This field and
+     * `large_capacity_config` are mutually exclusive.
      *
      * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -282,6 +284,23 @@ class Volume extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.netapp.v1.BlockDevice block_devices = 45 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $block_devices;
+    /**
+     * Optional. Large capacity config for the volume.
+     * Enables and configures large capacity for volumes in Unified pools with
+     * File protocols. Not applicable for Block protocols in Unified pools.
+     * This field and the legacy `large_capacity` boolean field
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LargeCapacityConfig large_capacity_config = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $large_capacity_config = null;
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    protected $clone_details = null;
 
     /**
      * Constructor.
@@ -362,7 +381,9 @@ class Volume extends \Google\Protobuf\Internal\Message
      *           Optional. List of actions that are restricted on this volume.
      *     @type bool $large_capacity
      *           Optional. Flag indicating if the volume will be a large capacity volume or
-     *           a regular volume.
+     *           a regular volume. This field is used for legacy FILE pools. For Unified
+     *           pools, use the `large_capacity_config` field instead. This field and
+     *           `large_capacity_config` are mutually exclusive.
      *     @type bool $multiple_endpoints
      *           Optional. Flag indicating if the volume will have an IP address per node
      *           for volumes supporting multiple IP endpoints. Only the volume with
@@ -388,6 +409,15 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetApp\V1\BlockDevice[] $block_devices
      *           Optional. Block devices for the volume.
      *           Currently, only one block device is permitted per Volume.
+     *     @type \Google\Cloud\NetApp\V1\LargeCapacityConfig $large_capacity_config
+     *           Optional. Large capacity config for the volume.
+     *           Enables and configures large capacity for volumes in Unified pools with
+     *           File protocols. Not applicable for Block protocols in Unified pools.
+     *           This field and the legacy `large_capacity` boolean field
+     *           are mutually exclusive.
+     *     @type \Google\Cloud\NetApp\V1\Volume\CloneDetails $clone_details
+     *           Output only. If this volume is a clone, this field contains details about
+     *           the clone.
      * }
      */
     public function __construct($data = NULL) {
@@ -1271,7 +1301,9 @@ class Volume extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag indicating if the volume will be a large capacity volume or
-     * a regular volume.
+     * a regular volume. This field is used for legacy FILE pools. For Unified
+     * pools, use the `large_capacity_config` field instead. This field and
+     * `large_capacity_config` are mutually exclusive.
      *
      * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return bool
@@ -1283,7 +1315,9 @@ class Volume extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Flag indicating if the volume will be a large capacity volume or
-     * a regular volume.
+     * a regular volume. This field is used for legacy FILE pools. For Unified
+     * pools, use the `large_capacity_config` field instead. This field and
+     * `large_capacity_config` are mutually exclusive.
      *
      * Generated from protobuf field <code>bool large_capacity = 32 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param bool $var
@@ -1593,6 +1627,88 @@ class Volume extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\NetApp\V1\BlockDevice::class);
         $this->block_devices = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Large capacity config for the volume.
+     * Enables and configures large capacity for volumes in Unified pools with
+     * File protocols. Not applicable for Block protocols in Unified pools.
+     * This field and the legacy `large_capacity` boolean field
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LargeCapacityConfig large_capacity_config = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\NetApp\V1\LargeCapacityConfig|null
+     */
+    public function getLargeCapacityConfig()
+    {
+        return $this->large_capacity_config;
+    }
+
+    public function hasLargeCapacityConfig()
+    {
+        return isset($this->large_capacity_config);
+    }
+
+    public function clearLargeCapacityConfig()
+    {
+        unset($this->large_capacity_config);
+    }
+
+    /**
+     * Optional. Large capacity config for the volume.
+     * Enables and configures large capacity for volumes in Unified pools with
+     * File protocols. Not applicable for Block protocols in Unified pools.
+     * This field and the legacy `large_capacity` boolean field
+     * are mutually exclusive.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.LargeCapacityConfig large_capacity_config = 46 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\NetApp\V1\LargeCapacityConfig $var
+     * @return $this
+     */
+    public function setLargeCapacityConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\LargeCapacityConfig::class);
+        $this->large_capacity_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\NetApp\V1\Volume\CloneDetails|null
+     */
+    public function getCloneDetails()
+    {
+        return $this->clone_details;
+    }
+
+    public function hasCloneDetails()
+    {
+        return isset($this->clone_details);
+    }
+
+    public function clearCloneDetails()
+    {
+        unset($this->clone_details);
+    }
+
+    /**
+     * Output only. If this volume is a clone, this field contains details about
+     * the clone.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.Volume.CloneDetails clone_details = 47 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\NetApp\V1\Volume\CloneDetails $var
+     * @return $this
+     */
+    public function setCloneDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\NetApp\V1\Volume\CloneDetails::class);
+        $this->clone_details = $var;
 
         return $this;
     }

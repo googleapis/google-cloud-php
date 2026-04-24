@@ -118,6 +118,14 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      */
     protected $enable_partial_automated_agent_reply = false;
     /**
+     * Optional. If multiple uttereances are detected in the audio stream, process
+     * them individually instead of stitching them together to form a single
+     * utterance.
+     *
+     * Generated from protobuf field <code>bool output_multiple_utterances = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $output_multiple_utterances = false;
+    /**
      * If true, `StreamingAnalyzeContentResponse.debugging_info` will get
      * populated.
      *
@@ -192,6 +200,10 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
      *           is not enabled, response stream still contains only one final response even
      *           if some `Fulfillment`s in Dialogflow CX agent have been configured to
      *           return partial responses.
+     *     @type bool $output_multiple_utterances
+     *           Optional. If multiple uttereances are detected in the audio stream, process
+     *           them individually instead of stitching them together to form a single
+     *           utterance.
      *     @type bool $enable_debugging_info
      *           If true, `StreamingAnalyzeContentResponse.debugging_info` will get
      *           populated.
@@ -645,6 +657,36 @@ class StreamingAnalyzeContentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_partial_automated_agent_reply = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. If multiple uttereances are detected in the audio stream, process
+     * them individually instead of stitching them together to form a single
+     * utterance.
+     *
+     * Generated from protobuf field <code>bool output_multiple_utterances = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getOutputMultipleUtterances()
+    {
+        return $this->output_multiple_utterances;
+    }
+
+    /**
+     * Optional. If multiple uttereances are detected in the audio stream, process
+     * them individually instead of stitching them together to form a single
+     * utterance.
+     *
+     * Generated from protobuf field <code>bool output_multiple_utterances = 18 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setOutputMultipleUtterances($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->output_multiple_utterances = $var;
 
         return $this;
     }

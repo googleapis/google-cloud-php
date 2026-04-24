@@ -649,6 +649,12 @@ class SignalType
      * Generated from protobuf enum <code>SIGNAL_TYPE_EXTENDED_SUPPORT = 102;</code>
      */
     const SIGNAL_TYPE_EXTENDED_SUPPORT = 102;
+    /**
+     * Represents a database version nearing end of life.
+     *
+     * Generated from protobuf enum <code>SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE = 104;</code>
+     */
+    const SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE = 104;
 
     private static $valueToName = [
         self::SIGNAL_TYPE_UNSPECIFIED => 'SIGNAL_TYPE_UNSPECIFIED',
@@ -750,6 +756,7 @@ class SignalType
         self::SIGNAL_TYPE_DATABOOST_DISABLED => 'SIGNAL_TYPE_DATABOOST_DISABLED',
         self::SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES => 'SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES',
         self::SIGNAL_TYPE_EXTENDED_SUPPORT => 'SIGNAL_TYPE_EXTENDED_SUPPORT',
+        self::SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE => 'SIGNAL_TYPE_VERSION_NEARING_END_OF_LIFE',
     ];
 
     public static function name($value)

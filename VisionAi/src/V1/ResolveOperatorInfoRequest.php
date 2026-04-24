@@ -29,6 +29,22 @@ class ResolveOperatorInfoRequest extends \Google\Protobuf\Internal\Message
     private $queries;
 
     /**
+     * @param string                                    $parent  Required. Parent value for ResolveOperatorInfoRequest. Please see
+     *                                                           {@see LiveVideoAnalyticsClient::locationName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\OperatorQuery[] $queries Required. The operator queries.
+     *
+     * @return \Google\Cloud\VisionAI\V1\ResolveOperatorInfoRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, array $queries): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setQueries($queries);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

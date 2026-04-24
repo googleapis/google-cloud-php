@@ -51,6 +51,24 @@ class MaterializeChannelRequest extends \Google\Protobuf\Internal\Message
     protected $request_id = '';
 
     /**
+     * @param string                            $parent    Required. Value for parent. Please see
+     *                                                     {@see StreamsServiceClient::clusterName()} for help formatting this field.
+     * @param \Google\Cloud\VisionAI\V1\Channel $channel   Required. The resource being created.
+     * @param string                            $channelId Required. Id of the channel.
+     *
+     * @return \Google\Cloud\VisionAI\V1\MaterializeChannelRequest
+     *
+     * @experimental
+     */
+    public static function build(string $parent, \Google\Cloud\VisionAI\V1\Channel $channel, string $channelId): self
+    {
+        return (new self())
+            ->setParent($parent)
+            ->setChannel($channel)
+            ->setChannelId($channelId);
+    }
+
+    /**
      * Constructor.
      *
      * @param array $data {

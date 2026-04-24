@@ -106,6 +106,15 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     protected $chunked_document = null;
     /**
+     * Optional. The blob assets in this document. This is used to store the
+     * content of the inline blobs in this document, for example, image bytes,
+     * such that it can be referenced by other fields in the document via asset
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.BlobAsset blob_assets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $blob_assets;
+    /**
      * The entity validation output for the document. This is the validation
      * output for `document.entities` field.
      *
@@ -124,7 +133,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * The entity revision ID that `document.entities` field is based on.
      * If this field is set and `entities_revisions` is not empty, the entities in
      * `document.entities` field are the entities in the entity revision with this
-     * ID and `document.entity_validation_output` field is the
+     * id and `document.entity_validation_output` field is the
      * `entity_validation_output` field in this entity revision.
      *
      * Generated from protobuf field <code>string entities_revision_id = 23;</code>
@@ -181,6 +190,11 @@ class Document extends \Google\Protobuf\Internal\Message
      *           Parsed layout of the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ChunkedDocument $chunked_document
      *           Document chunked based on chunking config.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\BlobAsset[] $blob_assets
+     *           Optional. The blob assets in this document. This is used to store the
+     *           content of the inline blobs in this document, for example, image bytes,
+     *           such that it can be referenced by other fields in the document via asset
+     *           id.
      *     @type \Google\Cloud\DocumentAI\V1\Document\EntityValidationOutput $entity_validation_output
      *           The entity validation output for the document. This is the validation
      *           output for `document.entities` field.
@@ -192,7 +206,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           The entity revision ID that `document.entities` field is based on.
      *           If this field is set and `entities_revisions` is not empty, the entities in
      *           `document.entities` field are the entities in the entity revision with this
-     *           ID and `document.entity_validation_output` field is the
+     *           id and `document.entity_validation_output` field is the
      *           `entity_validation_output` field in this entity revision.
      * }
      */
@@ -676,6 +690,38 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The blob assets in this document. This is used to store the
+     * content of the inline blobs in this document, for example, image bytes,
+     * such that it can be referenced by other fields in the document via asset
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.BlobAsset blob_assets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Cloud\DocumentAI\V1\Document\BlobAsset>
+     */
+    public function getBlobAssets()
+    {
+        return $this->blob_assets;
+    }
+
+    /**
+     * Optional. The blob assets in this document. This is used to store the
+     * content of the inline blobs in this document, for example, image bytes,
+     * such that it can be referenced by other fields in the document via asset
+     * id.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.BlobAsset blob_assets = 19 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\BlobAsset[] $var
+     * @return $this
+     */
+    public function setBlobAssets($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\BlobAsset::class);
+        $this->blob_assets = $arr;
+
+        return $this;
+    }
+
+    /**
      * The entity validation output for the document. This is the validation
      * output for `document.entities` field.
      *
@@ -747,7 +793,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * The entity revision ID that `document.entities` field is based on.
      * If this field is set and `entities_revisions` is not empty, the entities in
      * `document.entities` field are the entities in the entity revision with this
-     * ID and `document.entity_validation_output` field is the
+     * id and `document.entity_validation_output` field is the
      * `entity_validation_output` field in this entity revision.
      *
      * Generated from protobuf field <code>string entities_revision_id = 23;</code>
@@ -762,7 +808,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * The entity revision ID that `document.entities` field is based on.
      * If this field is set and `entities_revisions` is not empty, the entities in
      * `document.entities` field are the entities in the entity revision with this
-     * ID and `document.entity_validation_output` field is the
+     * id and `document.entity_validation_output` field is the
      * `entity_validation_output` field in this entity revision.
      *
      * Generated from protobuf field <code>string entities_revision_id = 23;</code>

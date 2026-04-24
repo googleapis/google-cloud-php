@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_Warehouse_DeleteIndexEndpoint_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\WarehouseClient;
+use Google\Cloud\VisionAI\V1\Client\WarehouseClient;
+use Google\Cloud\VisionAI\V1\DeleteIndexEndpointRequest;
 use Google\Rpc\Status;
 
 /**
@@ -39,10 +40,14 @@ function delete_index_endpoint_sample(string $formattedName): void
     // Create a client.
     $warehouseClient = new WarehouseClient();
 
+    // Prepare the request message.
+    $request = (new DeleteIndexEndpointRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $warehouseClient->deleteIndexEndpoint($formattedName);
+        $response = $warehouseClient->deleteIndexEndpoint($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

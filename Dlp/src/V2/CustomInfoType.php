@@ -37,15 +37,16 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     protected $likelihood = 0;
     /**
      * Set of detection rules to apply to all findings of this CustomInfoType.
-     * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` CustomInfoType.
+     * Rules are applied in the order that they are specified. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      */
     private $detection_rules;
     /**
      * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
-     * to be returned. It still can be used for rules matching.
+     * to be returned. It still can be used for rules matching. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
      */
@@ -87,15 +88,17 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
      *           Message for detecting output from deidentification transformations that
      *           support reversing.
      *     @type \Google\Cloud\Dlp\V2\StoredType $stored_type
-     *           Load an existing `StoredInfoType` resource for use in
-     *           `InspectDataSource`. Not currently supported in `InspectContent`.
+     *           Loads an existing `StoredInfoType` resource.
+     *     @type \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression $metadata_key_value_expression
+     *           Key-value pair to detect in the metadata.
      *     @type \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[] $detection_rules
      *           Set of detection rules to apply to all findings of this CustomInfoType.
-     *           Rules are applied in order that they are specified. Not supported for the
-     *           `surrogate_type` CustomInfoType.
+     *           Rules are applied in the order that they are specified. Only supported
+     *           for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *     @type int $exclusion_type
      *           If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
-     *           to be returned. It still can be used for rules matching.
+     *           to be returned. It still can be used for rules matching. Only supported
+     *           for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *     @type \Google\Cloud\Dlp\V2\SensitivityScore $sensitivity_score
      *           Sensitivity for this CustomInfoType. If this CustomInfoType extends an
      *           existing InfoType, the sensitivity here will take precedence over that of
@@ -281,8 +284,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Load an existing `StoredInfoType` resource for use in
-     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     * Loads an existing `StoredInfoType` resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredType stored_type = 5;</code>
      * @return \Google\Cloud\Dlp\V2\StoredType|null
@@ -298,8 +300,7 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Load an existing `StoredInfoType` resource for use in
-     * `InspectDataSource`. Not currently supported in `InspectContent`.
+     * Loads an existing `StoredInfoType` resource.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.StoredType stored_type = 5;</code>
      * @param \Google\Cloud\Dlp\V2\StoredType $var
@@ -314,9 +315,40 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Key-value pair to detect in the metadata.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression metadata_key_value_expression = 10;</code>
+     * @return \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression|null
+     */
+    public function getMetadataKeyValueExpression()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasMetadataKeyValueExpression()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Key-value pair to detect in the metadata.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.MetadataKeyValueExpression metadata_key_value_expression = 10;</code>
+     * @param \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression $var
+     * @return $this
+     */
+    public function setMetadataKeyValueExpression($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CustomInfoType\MetadataKeyValueExpression::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
      * Set of detection rules to apply to all findings of this CustomInfoType.
-     * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` CustomInfoType.
+     * Rules are applied in the order that they are specified. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      * @return RepeatedField<\Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule>
@@ -328,8 +360,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
 
     /**
      * Set of detection rules to apply to all findings of this CustomInfoType.
-     * Rules are applied in order that they are specified. Not supported for the
-     * `surrogate_type` CustomInfoType.
+     * Rules are applied in the order that they are specified. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType.DetectionRule detection_rules = 7;</code>
      * @param \Google\Cloud\Dlp\V2\CustomInfoType\DetectionRule[] $var
@@ -345,7 +377,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
-     * to be returned. It still can be used for rules matching.
+     * to be returned. It still can be used for rules matching. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
      * @return int
@@ -357,7 +390,8 @@ class CustomInfoType extends \Google\Protobuf\Internal\Message
 
     /**
      * If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding
-     * to be returned. It still can be used for rules matching.
+     * to be returned. It still can be used for rules matching. Only supported
+     * for the `dictionary`, `regex`, and `stored_type` CustomInfoTypes.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CustomInfoType.ExclusionType exclusion_type = 8;</code>
      * @param int $var

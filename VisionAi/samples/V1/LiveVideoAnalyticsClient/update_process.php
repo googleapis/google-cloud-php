@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_UpdateProcess_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
 use Google\Cloud\VisionAI\V1\Process;
+use Google\Cloud\VisionAI\V1\UpdateProcessRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -41,15 +42,18 @@ function update_process_sample(string $formattedProcessAnalysis): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $process = (new Process())
         ->setAnalysis($formattedProcessAnalysis);
+    $request = (new UpdateProcessRequest())
+        ->setUpdateMask($updateMask)
+        ->setProcess($process);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->updateProcess($updateMask, $process);
+        $response = $liveVideoAnalyticsClient->updateProcess($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

@@ -17,7 +17,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The name of the framework deployment, in the format
-     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -29,7 +31,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      * ```
      * {
      *   framework:
-     *   "organizations/{org}/locations/{location}/frameworks/{framework}",
+     *   "organizations/{organization}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
      * ```
@@ -54,7 +56,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      *
      *     @type string $framework_deployment
      *           Output only. The name of the framework deployment, in the format
-     *           `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     *           `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     *           or
+     *           `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      *           The only supported location is `global`.
      *     @type \Google\Cloud\CloudSecurityCompliance\V1\FrameworkReference $framework_reference
      *           Optional. The reference to the framework that this deployment is for.
@@ -62,7 +66,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      *           ```
      *           {
      *             framework:
-     *             "organizations/{org}/locations/{location}/frameworks/{framework}",
+     *             "organizations/{organization}/locations/{location}/frameworks/{framework}",
      *             major_revision_id: 1
      *           }
      *           ```
@@ -79,7 +83,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the framework deployment, in the format
-     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -92,7 +98,9 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The name of the framework deployment, in the format
-     * `organizations/{org}/locations/{location}/frameworkDeployments/{framework_deployment_id}`.
+     * `organizations/{organization}/locations/{location}/frameworkDeployments/{framework_deployment}`
+     * or
+     * `projects/{project}/locations/{location}/frameworkDeployments/{framework_deployment}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string framework_deployment = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -113,7 +121,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      * ```
      * {
      *   framework:
-     *   "organizations/{org}/locations/{location}/frameworks/{framework}",
+     *   "organizations/{organization}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
      * ```
@@ -143,7 +151,7 @@ class FrameworkDeploymentReference extends \Google\Protobuf\Internal\Message
      * ```
      * {
      *   framework:
-     *   "organizations/{org}/locations/{location}/frameworks/{framework}",
+     *   "organizations/{organization}/locations/{location}/frameworks/{framework}",
      *   major_revision_id: 1
      * }
      * ```

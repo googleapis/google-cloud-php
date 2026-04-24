@@ -51,6 +51,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\V1\Client\SpannerClient as GapicSpannerClient;
 use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\TransactionOptions\IsolationLevel;
+use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite\ReadLockMode;
 use Google\Protobuf\Duration;
 use Google\Protobuf\Timestamp as TimestampProto;
 use Grpc\Channel;
@@ -611,6 +612,74 @@ class SpannerClientTest extends TestCase
         $property = $reflectedDb->getProperty('isolationLevel');
         $this->assertEquals(
             IsolationLevel::REPEATABLE_READ,
+            $property->getValue($database)
+        );
+    }
+
+    public function testClientPassesReadLockMode()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'readLockMode' => ReadLockMode::PESSIMISTIC,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($database)
+        );
+    }
+
+    public function testTransactionHasCorrectReadLockMode()
+    {
+        /** @var SpannerClient $client */
+        $client = new SpannerClient([
+            'projectId' => self::PROJECT,
+            'directedReadOptions' => $this->directedReadOptionsIncludeReplicas,
+            'readLockMode' => ReadLockMode::PESSIMISTIC,
+            'credentials' => Fixtures::KEYFILE_STUB_FIXTURE(),
+        ]);
+
+        $reflectedClient = new ReflectionClass($client);
+        $property = $reflectedClient->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($client)
+        );
+
+        $instance = $client->instance('test');
+        $reflectedInstance = new ReflectionClass($instance);
+        $property = $reflectedInstance->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
+            $property->getValue($instance)
+        );
+
+        $database = $instance->database('test');
+        $reflectedDb = new ReflectionClass($database);
+        $property = $reflectedDb->getProperty('readLockMode');
+        $this->assertEquals(
+            ReadLockMode::PESSIMISTIC,
             $property->getValue($database)
         );
     }

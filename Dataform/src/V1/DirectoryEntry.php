@@ -15,6 +15,12 @@ use Google\Protobuf\RepeatedField;
  */
 class DirectoryEntry extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Entry with metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.FilesystemEntryMetadata metadata = 3;</code>
+     */
+    protected $metadata = null;
     protected $entry;
 
     /**
@@ -27,6 +33,8 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
      *           A file in the directory.
      *     @type string $directory
      *           A child directory in the directory.
+     *     @type \Google\Cloud\Dataform\V1\FilesystemEntryMetadata $metadata
+     *           Entry with metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +100,42 @@ class DirectoryEntry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Entry with metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.FilesystemEntryMetadata metadata = 3;</code>
+     * @return \Google\Cloud\Dataform\V1\FilesystemEntryMetadata|null
+     */
+    public function getMetadata()
+    {
+        return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
+    }
+
+    /**
+     * Entry with metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataform.v1.FilesystemEntryMetadata metadata = 3;</code>
+     * @param \Google\Cloud\Dataform\V1\FilesystemEntryMetadata $var
+     * @return $this
+     */
+    public function setMetadata($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataform\V1\FilesystemEntryMetadata::class);
+        $this->metadata = $var;
 
         return $this;
     }

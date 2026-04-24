@@ -25,7 +25,8 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_AppPlatform_UpdateApplicationInstances_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\Client\AppPlatformClient;
+use Google\Cloud\VisionAI\V1\UpdateApplicationInstancesRequest;
 use Google\Cloud\VisionAI\V1\UpdateApplicationInstancesResponse;
 use Google\Rpc\Status;
 
@@ -45,10 +46,14 @@ function update_application_instances_sample(string $formattedName): void
     // Create a client.
     $appPlatformClient = new AppPlatformClient();
 
+    // Prepare the request message.
+    $request = (new UpdateApplicationInstancesRequest())
+        ->setName($formattedName);
+
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $appPlatformClient->updateApplicationInstances($formattedName);
+        $response = $appPlatformClient->updateApplicationInstances($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

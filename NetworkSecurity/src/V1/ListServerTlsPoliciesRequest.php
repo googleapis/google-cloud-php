@@ -37,6 +37,16 @@ class ListServerTlsPoliciesRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
     protected $page_token = '';
+    /**
+     * Optional. Setting this field to `true` will opt the request into returning
+     * the resources that are reachable, and into including the names of those
+     * that were unreachable in the [ListServerTlsPoliciesResponse.unreachable]
+     * field. This can only be `true` when reading across collections e.g. when
+     * `parent` is set to `"projects/example/locations/-"`.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $return_partial_success = false;
 
     /**
      * @param string $parent Required. The project and location from which the ServerTlsPolicies should
@@ -69,6 +79,12 @@ class ListServerTlsPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           Indicates that this is a continuation of a prior
      *           `ListServerTlsPolicies` call, and that the system
      *           should return the next page of data.
+     *     @type bool $return_partial_success
+     *           Optional. Setting this field to `true` will opt the request into returning
+     *           the resources that are reachable, and into including the names of those
+     *           that were unreachable in the [ListServerTlsPoliciesResponse.unreachable]
+     *           field. This can only be `true` when reading across collections e.g. when
+     *           `parent` is set to `"projects/example/locations/-"`.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +174,40 @@ class ListServerTlsPoliciesRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Setting this field to `true` will opt the request into returning
+     * the resources that are reachable, and into including the names of those
+     * that were unreachable in the [ListServerTlsPoliciesResponse.unreachable]
+     * field. This can only be `true` when reading across collections e.g. when
+     * `parent` is set to `"projects/example/locations/-"`.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getReturnPartialSuccess()
+    {
+        return $this->return_partial_success;
+    }
+
+    /**
+     * Optional. Setting this field to `true` will opt the request into returning
+     * the resources that are reachable, and into including the names of those
+     * that were unreachable in the [ListServerTlsPoliciesResponse.unreachable]
+     * field. This can only be `true` when reading across collections e.g. when
+     * `parent` is set to `"projects/example/locations/-"`.
+     *
+     * Generated from protobuf field <code>bool return_partial_success = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setReturnPartialSuccess($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->return_partial_success = $var;
 
         return $this;
     }

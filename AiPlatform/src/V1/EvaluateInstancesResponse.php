@@ -15,6 +15,14 @@ use Google\Protobuf\RepeatedField;
  */
 class EvaluateInstancesResponse extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Metric results for each instance.
+     * The order of the metric results is guaranteed to be the same as the order
+     * of the instances in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MetricResult metric_results = 43;</code>
+     */
+    private $metric_results;
     protected $evaluation_results;
 
     /**
@@ -81,6 +89,10 @@ class EvaluateInstancesResponse extends \Google\Protobuf\Internal\Message
      *           Result for Comet metric.
      *     @type \Google\Cloud\AIPlatform\V1\MetricxResult $metricx_result
      *           Result for Metricx metric.
+     *     @type \Google\Cloud\AIPlatform\V1\MetricResult[] $metric_results
+     *           Metric results for each instance.
+     *           The order of the metric results is guaranteed to be the same as the order
+     *           of the instances in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -875,6 +887,36 @@ class EvaluateInstancesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\MetricxResult::class);
         $this->writeOneof(30, $var);
+
+        return $this;
+    }
+
+    /**
+     * Metric results for each instance.
+     * The order of the metric results is guaranteed to be the same as the order
+     * of the instances in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MetricResult metric_results = 43;</code>
+     * @return RepeatedField<\Google\Cloud\AIPlatform\V1\MetricResult>
+     */
+    public function getMetricResults()
+    {
+        return $this->metric_results;
+    }
+
+    /**
+     * Metric results for each instance.
+     * The order of the metric results is guaranteed to be the same as the order
+     * of the instances in the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MetricResult metric_results = 43;</code>
+     * @param \Google\Cloud\AIPlatform\V1\MetricResult[] $var
+     * @return $this
+     */
+    public function setMetricResults($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\MetricResult::class);
+        $this->metric_results = $arr;
 
         return $this;
     }

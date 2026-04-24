@@ -35,6 +35,11 @@
                                 "createReaction"
                             ]
                         },
+                        "CreateSection": {
+                            "methods": [
+                                "createSection"
+                            ]
+                        },
                         "CreateSpace": {
                             "methods": [
                                 "createSpace"
@@ -60,6 +65,11 @@
                                 "deleteReaction"
                             ]
                         },
+                        "DeleteSection": {
+                            "methods": [
+                                "deleteSection"
+                            ]
+                        },
                         "DeleteSpace": {
                             "methods": [
                                 "deleteSpace"
@@ -68,6 +78,11 @@
                         "FindDirectMessage": {
                             "methods": [
                                 "findDirectMessage"
+                            ]
+                        },
+                        "FindGroupChats": {
+                            "methods": [
+                                "findGroupChats"
                             ]
                         },
                         "GetAttachment": {
@@ -135,6 +150,16 @@
                                 "listReactions"
                             ]
                         },
+                        "ListSectionItems": {
+                            "methods": [
+                                "listSectionItems"
+                            ]
+                        },
+                        "ListSections": {
+                            "methods": [
+                                "listSections"
+                            ]
+                        },
                         "ListSpaceEvents": {
                             "methods": [
                                 "listSpaceEvents"
@@ -143,6 +168,16 @@
                         "ListSpaces": {
                             "methods": [
                                 "listSpaces"
+                            ]
+                        },
+                        "MoveSectionItem": {
+                            "methods": [
+                                "moveSectionItem"
+                            ]
+                        },
+                        "PositionSection": {
+                            "methods": [
+                                "positionSection"
                             ]
                         },
                         "SearchSpaces": {
@@ -163,6 +198,11 @@
                         "UpdateMessage": {
                             "methods": [
                                 "updateMessage"
+                            ]
+                        },
+                        "UpdateSection": {
+                            "methods": [
+                                "updateSection"
                             ]
                         },
                         "UpdateSpace": {

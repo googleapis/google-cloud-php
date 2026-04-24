@@ -19,13 +19,13 @@ use Google\Protobuf\RepeatedField;
  * To do something meaningful with this number, such as format it for various
  * use-cases, convert it to an `i18n.phonenumbers.PhoneNumber` object first.
  * For instance, in Java this would be:
- *    com.google.type.PhoneNumber wireProto =
- *        com.google.type.PhoneNumber.newBuilder().build();
- *    com.google.i18n.phonenumbers.Phonenumber.PhoneNumber phoneNumber =
- *        PhoneNumberUtil.getInstance().parse(wireProto.getE164Number(), "ZZ");
- *    if (!wireProto.getExtension().isEmpty()) {
- *      phoneNumber.setExtension(wireProto.getExtension());
- *    }
+ *     com.google.type.PhoneNumber wireProto =
+ *         com.google.type.PhoneNumber.newBuilder().build();
+ *     com.google.i18n.phonenumbers.Phonenumber.PhoneNumber phoneNumber =
+ *         PhoneNumberUtil.getInstance().parse(wireProto.getE164Number(), "ZZ");
+ *     if (!wireProto.getExtension().isEmpty()) {
+ *       phoneNumber.setExtension(wireProto.getExtension());
+ *     }
  *  Reference(s):
  *   - https://github.com/google/libphonenumber
  *
@@ -58,9 +58,9 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
      *           The phone number, represented as a leading plus sign ('+'), followed by a
      *           phone number that uses a relaxed ITU E.164 format consisting of the
      *           country calling code (1 to 3 digits) and the subscriber number, with no
-     *           additional spaces or formatting, e.g.:
+     *           additional spaces or formatting. For example:
      *            - correct: "+15552220123"
-     *            - incorrect: "+1 (555) 222-01234 x123".
+     *            - incorrect: "+1 (555) 222-01234 x123"
      *           The ITU E.164 format limits the latter to 12 digits, but in practice not
      *           all countries respect that, so we relax that restriction here.
      *           National-only numbers are not allowed.
@@ -71,7 +71,7 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\PhoneNumber\ShortCode $short_code
      *           A short code.
      *           Reference(s):
-     *            - https://en.wikipedia.org/wiki/Short_code
+     *            - https://wikipedia.org/wiki/Short_code
      *     @type string $extension
      *           The phone number's extension. The extension is not standardized in ITU
      *           recommendations, except for being defined as a series of numbers with a
@@ -92,9 +92,9 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
      * The phone number, represented as a leading plus sign ('+'), followed by a
      * phone number that uses a relaxed ITU E.164 format consisting of the
      * country calling code (1 to 3 digits) and the subscriber number, with no
-     * additional spaces or formatting, e.g.:
+     * additional spaces or formatting. For example:
      *  - correct: "+15552220123"
-     *  - incorrect: "+1 (555) 222-01234 x123".
+     *  - incorrect: "+1 (555) 222-01234 x123"
      * The ITU E.164 format limits the latter to 12 digits, but in practice not
      * all countries respect that, so we relax that restriction here.
      * National-only numbers are not allowed.
@@ -120,9 +120,9 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
      * The phone number, represented as a leading plus sign ('+'), followed by a
      * phone number that uses a relaxed ITU E.164 format consisting of the
      * country calling code (1 to 3 digits) and the subscriber number, with no
-     * additional spaces or formatting, e.g.:
+     * additional spaces or formatting. For example:
      *  - correct: "+15552220123"
-     *  - incorrect: "+1 (555) 222-01234 x123".
+     *  - incorrect: "+1 (555) 222-01234 x123"
      * The ITU E.164 format limits the latter to 12 digits, but in practice not
      * all countries respect that, so we relax that restriction here.
      * National-only numbers are not allowed.
@@ -146,7 +146,7 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
     /**
      * A short code.
      * Reference(s):
-     *  - https://en.wikipedia.org/wiki/Short_code
+     *  - https://wikipedia.org/wiki/Short_code
      *
      * Generated from protobuf field <code>.google.type.PhoneNumber.ShortCode short_code = 2;</code>
      * @return \Google\Type\PhoneNumber\ShortCode|null
@@ -164,7 +164,7 @@ class PhoneNumber extends \Google\Protobuf\Internal\Message
     /**
      * A short code.
      * Reference(s):
-     *  - https://en.wikipedia.org/wiki/Short_code
+     *  - https://wikipedia.org/wiki/Short_code
      *
      * Generated from protobuf field <code>.google.type.PhoneNumber.ShortCode short_code = 2;</code>
      * @param \Google\Type\PhoneNumber\ShortCode $var

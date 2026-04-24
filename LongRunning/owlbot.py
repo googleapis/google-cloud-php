@@ -41,12 +41,6 @@ php.owlbot_copy_version(
     version_string="longrunning",
 )
 
-# Add an alias for the previous namespace
-s.replace(
-    "src/LongRunning/OperationsClient.php",
-    r"^}$\n",
-    r"}\n\nclass_alias('Google\\LongRunning\\OperationsClient', 'Google\\ApiCore\\LongRunning\\OperationsClient');\n")
-
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.

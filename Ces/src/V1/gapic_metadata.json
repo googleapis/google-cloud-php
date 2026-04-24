@@ -279,6 +279,11 @@
                                 "runSession"
                             ]
                         },
+                        "StreamRunSession": {
+                            "methods": [
+                                "streamRunSession"
+                            ]
+                        },
                         "GetLocation": {
                             "methods": [
                                 "getLocation"

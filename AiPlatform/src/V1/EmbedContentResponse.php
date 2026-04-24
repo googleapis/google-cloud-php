@@ -23,7 +23,7 @@ class EmbedContentResponse extends \Google\Protobuf\Internal\Message
      */
     protected $embedding = null;
     /**
-     * Metadata about the response(s).
+     * Usage metadata about the response(s).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UsageMetadata usage_metadata = 2;</code>
      */
@@ -44,7 +44,7 @@ class EmbedContentResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EmbedContentResponse\Embedding $embedding
      *           The embedding generated from the input content.
      *     @type \Google\Cloud\AIPlatform\V1\UsageMetadata $usage_metadata
-     *           Metadata about the response(s).
+     *           Usage metadata about the response(s).
      *     @type bool $truncated
      *           Whether the input content was truncated before generating the embedding.
      * }
@@ -91,7 +91,7 @@ class EmbedContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata about the response(s).
+     * Usage metadata about the response(s).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UsageMetadata usage_metadata = 2;</code>
      * @return \Google\Cloud\AIPlatform\V1\UsageMetadata|null
@@ -112,7 +112,7 @@ class EmbedContentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Metadata about the response(s).
+     * Usage metadata about the response(s).
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.UsageMetadata usage_metadata = 2;</code>
      * @param \Google\Cloud\AIPlatform\V1\UsageMetadata $var

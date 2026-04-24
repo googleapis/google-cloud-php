@@ -1,5 +1,591 @@
 # Changelog
 
+## 0.326.0
+
+<details><summary>google/cloud-ai-platform 1.57.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add evaluation metrics and autorater configuration to the AI Platform v1 API ([#9074](https://github.com/googleapis/google-cloud-php/issues/9074)) ([63b8cfb](https://github.com/googleapis/google-cloud-php/commit/63b8cfb0444e710df83ead3e816c1c013a517647))
+
+</details>
+
+<details><summary>google/apps-chat 0.18.0</summary>
+
+
+
+### Features
+
+* [AppsChat] Support app authentication with admin-consent scopes for Chat API ListMessages, GetMessage, GetSpaceEvent and ListSpaceEvents ([#9076](https://github.com/googleapis/google-cloud-php/issues/9076)) ([7df87f1](https://github.com/googleapis/google-cloud-php/commit/7df87f1f264b212b482163000f3d86862f639ca9))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.23.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add session based protocol ([#9087](https://github.com/googleapis/google-cloud-php/issues/9087)) ([9a52356](https://github.com/googleapis/google-cloud-php/commit/9a52356e3991c022e5c1d568797b93ba3c2d5da1))
+
+
+### Documentation
+
+* Update various comments ([9a52356](https://github.com/googleapis/google-cloud-php/commit/9a52356e3991c022e5c1d568797b93ba3c2d5da1))
+
+</details>
+
+<details><summary>google/common-protos 4.14.0</summary>
+
+
+
+### Features
+
+* [CommonProtos] update SelectiveGapicGeneration usage doc ([#9070](https://github.com/googleapis/google-cloud-php/issues/9070)) ([93dd13c](https://github.com/googleapis/google-cloud-php/commit/93dd13cbb61a81c813fd03f4eabad87ad29e5218))
+
+
+### Documentation
+
+* Update comments and formatting ([93dd13c](https://github.com/googleapis/google-cloud-php/commit/93dd13cbb61a81c813fd03f4eabad87ad29e5218))
+
+</details>
+
+<details><summary>google/cloud-config 1.8.0</summary>
+
+
+
+### Features
+
+* [Config] adding DeploymentGroups, you can now manage deployment of multiple module root dependencies in a single DAG ([#9088](https://github.com/googleapis/google-cloud-php/issues/9088)) ([6ea26f5](https://github.com/googleapis/google-cloud-php/commit/6ea26f54cd5912d141ea6cd285cd96db1871e7c2))
+
+</details>
+
+<details><summary>google/cloud-core 1.72.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable full object checksum validation on JSON path ([#8825](https://github.com/googleapis/google-cloud-php/issues/8825)) ([277f985](https://github.com/googleapis/google-cloud-php/commit/277f985d461e91108c1dc0e23e3271427d566021))
+
+</details>
+
+<details><summary>google/cloud-datastore 2.0.6</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-dlp 2.11.0</summary>
+
+
+
+### Features
+
+* [Dlp] added support for detecting key-value pairs in client provided metadata ([#9079](https://github.com/googleapis/google-cloud-php/issues/9079)) ([cb2837c](https://github.com/googleapis/google-cloud-php/commit/cb2837c34c183bf762729ed86391def38a6d23ee))
+
+</details>
+
+<details><summary>google/cloud-document-ai 2.7.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] Added a fields for image and table annotation output ([#9072](https://github.com/googleapis/google-cloud-php/issues/9072)) ([e379546](https://github.com/googleapis/google-cloud-php/commit/e37954649954690e2fd33b9e6b1d4f191fcc8991))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-logging 2.0.0-RC2</summary>
+
+
+
+### Bug Fixes
+
+* **Logging:** Format timestamp and severity for API ([#9078](https://github.com/googleapis/google-cloud-php/issues/9078)) ([650b5e3](https://github.com/googleapis/google-cloud-php/commit/650b5e35530492adb1784d2948da5ef2c7f23d93))
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.8.0</summary>
+
+
+
+### Features
+
+* [Memorystore] [Memorystore for Valkey] Add support for Flexible CA feature ([#9075](https://github.com/googleapis/google-cloud-php/issues/9075)) ([ceeb2e2](https://github.com/googleapis/google-cloud-php/commit/ceeb2e2af71c7299aa314a9e84f819e9d9b3b205))
+
+</details>
+
+<details><summary>google/cloud-pubsub 2.19.2</summary>
+
+
+
+### Documentation
+
+* [PubSub] Fix documentation URL AIInference MessageTransform service_account_email field ([#9083](https://github.com/googleapis/google-cloud-php/issues/9083)) ([a917277](https://github.com/googleapis/google-cloud-php/commit/a9172779b7ac881eb8150351629d9b750d4f8d60))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.5.0</summary>
+
+
+
+### Features
+
+* [ShoppingMerchantProducts] a new field `base64_encoded_name` is added to the `Product` message ([#9089](https://github.com/googleapis/google-cloud-php/issues/9089)) ([a58b916](https://github.com/googleapis/google-cloud-php/commit/a58b916e32e87c7abe491b580b302b831961cce1))
+
+</details>
+
+<details><summary>google/cloud-spanner 2.6.1</summary>
+
+
+
+### Bug Fixes
+
+* **spanner:** Client-level read lock mode setting ([#9084](https://github.com/googleapis/google-cloud-php/issues/9084)) ([e21a5b5](https://github.com/googleapis/google-cloud-php/commit/e21a5b5e37967635d91016c38e1815325b293365))
+
+</details>
+
+<details><summary>google/cloud-storage 1.51.0</summary>
+
+
+
+### Features
+
+* **Storage:** Enable full object checksum validation on JSON path ([#8825](https://github.com/googleapis/google-cloud-php/issues/8825)) ([277f985](https://github.com/googleapis/google-cloud-php/commit/277f985d461e91108c1dc0e23e3271427d566021))
+
+
+### Bug Fixes
+
+* **Storage:** Add null check for $stream-&gt;getMetadata ([#9071](https://github.com/googleapis/google-cloud-php/issues/9071)) ([1c0051a](https://github.com/googleapis/google-cloud-php/commit/1c0051ab903b9b3a3882d9eb70ea6b2e3cebc8c8))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 2.8.0</summary>
+
+
+
+### Features
+
+* [TextToSpeech] Support safety settings for Gemini voices and deprecate `relax_safety_filters` ([#9064](https://github.com/googleapis/google-cloud-php/issues/9064)) ([aafc718](https://github.com/googleapis/google-cloud-php/commit/aafc71895988d9395cc73567fc5f4168194587b6))
+
+</details>
+
+<details><summary>google/cloud-translate 2.3.0</summary>
+
+
+
+### Features
+
+* [Translate] A new field `mime_type` is added to message `.google.cloud.translation.v3.AdaptiveMtTranslateRequest` ([#9080](https://github.com/googleapis/google-cloud-php/issues/9080)) ([15416d7](https://github.com/googleapis/google-cloud-php/commit/15416d776c783dc1e691fb271bdb7667087cc1a9))
+
+</details>
+
+## 0.325.0
+
+<details><summary>googleads/data-manager 0.4.0</summary>
+
+
+
+### Features
+
+* [AdsDataManager] add INVALID_MERCHANT_ID to the ErrorReason enum for when the merchant_id field is not valid ([#9051](https://github.com/googleapis/google-cloud-php/issues/9051)) ([34d5b9d](https://github.com/googleapis/google-cloud-php/commit/34d5b9dfb8985cdbd154540e02b07a6af96f017b))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 1.56.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] Add container_spec to Reasoning Engine public protos ([#9058](https://github.com/googleapis/google-cloud-php/issues/9058)) ([8d04833](https://github.com/googleapis/google-cloud-php/commit/8d04833b6a922030a98f836a57b960977ef528e5))
+
+</details>
+
+<details><summary>google/cloud-bigtable 2.22.0</summary>
+
+
+
+### Features
+
+* [Bigtable] add locations field to AutomatedBackupPolicy ([#9041](https://github.com/googleapis/google-cloud-php/issues/9041)) ([3e6d0f1](https://github.com/googleapis/google-cloud-php/commit/3e6d0f1aadf5ce93f3ea3dd5032c39e8dd60bab3))
+
+
+### Bug Fixes
+
+* **Bigtable:** Ensure samples are generated for admin clients ([#9045](https://github.com/googleapis/google-cloud-php/issues/9045)) ([0022585](https://github.com/googleapis/google-cloud-php/commit/0022585b7b60320e71398cc4548389b8e40615ec))
+
+</details>
+
+<details><summary>google/cloud-ces 0.2.0</summary>
+
+
+
+### Features
+
+* [Ces] update public libraries for CES v1 ([#9040](https://github.com/googleapis/google-cloud-php/issues/9040)) ([d62d86d](https://github.com/googleapis/google-cloud-php/commit/d62d86d31d35671bfed1403a1c8f52e201aec234))
+
+</details>
+
+<details><summary>google/common-protos 4.13.0</summary>
+
+
+
+### Features
+
+* Publish client batch config schema ([#9046](https://github.com/googleapis/google-cloud-php/issues/9046)) ([803f9c5](https://github.com/googleapis/google-cloud-php/commit/803f9c50f26ab2f7450b51f3f062b1ae29d1353c))
+* Publish new error reasons ([803f9c5](https://github.com/googleapis/google-cloud-php/commit/803f9c50f26ab2f7450b51f3f062b1ae29d1353c))
+
+</details>
+
+<details><summary>google/cloud-datacatalog-lineage 1.3.0</summary>
+
+
+
+### Features
+
+* **DataCatalogLineage:** Add configmanagement ([#9039](https://github.com/googleapis/google-cloud-php/issues/9039)) ([fbe2e3f](https://github.com/googleapis/google-cloud-php/commit/fbe2e3fcb32ac020514f4830d0083aaa427a25e6))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.10.0</summary>
+
+
+
+### Features
+
+* [Dataflow] Add Pausing/Yaml capabilities to public protos ([#9057](https://github.com/googleapis/google-cloud-php/issues/9057)) ([4b21892](https://github.com/googleapis/google-cloud-php/commit/4b21892d0d6141e495217bf836babcea96e439b9))
+* [Dataflow] add sha256 field to Package proto ([#9059](https://github.com/googleapis/google-cloud-php/issues/9059)) ([3ceff36](https://github.com/googleapis/google-cloud-php/commit/3ceff36477afa856212fba10ab8b99a31d601b32))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.11.0</summary>
+
+
+
+### Features
+
+* [Dataform] add folders and teamFolders related changes to v1 ([#9043](https://github.com/googleapis/google-cloud-php/issues/9043)) ([457db98](https://github.com/googleapis/google-cloud-php/commit/457db9882638b1a688ef00ff6d926e36deb65e27))
+
+</details>
+
+<details><summary>google/cloud-dialogflow-cx 0.11.0</summary>
+
+
+
+### Features
+
+* [DialogflowCx] updated v3 dialogflow client libraries with `dtmf_pattern` and `trace_blocks` ([#9044](https://github.com/googleapis/google-cloud-php/issues/9044)) ([6408d67](https://github.com/googleapis/google-cloud-php/commit/6408d6798b43632f658902f2f86361ca228aa567))
+
+</details>
+
+<details><summary>google/cloud-firestore 2.0.0-RC3</summary>
+
+
+
+### Features
+
+* [Firestore] add `expiration_offset` to `Field` ([#9054](https://github.com/googleapis/google-cloud-php/issues/9054)) ([d241351](https://github.com/googleapis/google-cloud-php/commit/d241351fe4567dd24ce161fc58e4dc1a7e3fddfd))
+
+</details>
+
+<details><summary>google/longrunning 0.7.1</summary>
+
+
+
+</details>
+
+<details><summary>google/cloud-memorystore 0.7.0</summary>
+
+
+
+### Features
+
+* [Memorystore] [Memorystore for Valkey] Add support for Flexible CA feature ([#9061](https://github.com/googleapis/google-cloud-php/issues/9061)) ([0cac659](https://github.com/googleapis/google-cloud-php/commit/0cac65988b430ca8483af2eec115b1595fbfd5b1))
+
+</details>
+
+<details><summary>google/cloud-netapp 1.11.0</summary>
+
+
+
+### Features
+
+* [NetApp] Add ONTAP passthrough APIs ([#9047](https://github.com/googleapis/google-cloud-php/issues/9047)) ([cb626ee](https://github.com/googleapis/google-cloud-php/commit/cb626ee0325a61aa9280536b3b7540f007e60039))
+
+</details>
+
+<details><summary>google/cloud-network-security 1.3.0</summary>
+
+
+
+### Features
+
+* [NetworkSecurity] Publish proto definitions for AuthzPolicy, TlsInspectionPolicy, GatewaySecurityPolicy, GatewaySecurityPolicyRule, and UrlList ([#9049](https://github.com/googleapis/google-cloud-php/issues/9049)) ([f96ce62](https://github.com/googleapis/google-cloud-php/commit/f96ce620f369ce81c964bb60e12af92acb2f98e2))
+
+</details>
+
+<details><summary>google/cloud-redis-cluster 0.7.0</summary>
+
+
+
+### Features
+
+* [RedisCluster] [Memorystore for Redis Cluster] Add support for Flexible CA feature ([#9060](https://github.com/googleapis/google-cloud-php/issues/9060)) ([5b1dec0](https://github.com/googleapis/google-cloud-php/commit/5b1dec070969bea742b83b07ffb461ed93e78b99))
+
+</details>
+
+<details><summary>google/cloud-securesourcemanager 1.8.0</summary>
+
+
+
+### Features
+
+* [SecureSourceManager] Add CustomHostConfig to configure custom hostnames for private instances ([#9053](https://github.com/googleapis/google-cloud-php/issues/9053)) ([fd0c30c](https://github.com/googleapis/google-cloud-php/commit/fd0c30cb7fffd1aede54f485eb7f37334cb811c8))
+
+</details>
+
+## 0.324.0
+
+<details><summary>google/cloud-ai-platform 1.55.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add `VALIDATED` Function Calling mode to v1 ([#9025](https://github.com/googleapis/google-cloud-php/issues/9025)) ([bf58c00](https://github.com/googleapis/google-cloud-php/commit/bf58c00be153693a88cedf4510260cba037a2b39))
+
+</details>
+
+<details><summary>google/cloud-backupdr 0.13.0</summary>
+
+
+
+### Features
+
+* [BackupDr] Adding new workload specific fields for AlloyDB ([#9037](https://github.com/googleapis/google-cloud-php/issues/9037)) ([dfa382f](https://github.com/googleapis/google-cloud-php/commit/dfa382f77228cb1b510d8e68df395f8491ba3c09))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.36.0</summary>
+
+
+
+### Features
+
+* **BigQuery:** Add Stateless Query support ([#9022](https://github.com/googleapis/google-cloud-php/issues/9022)) ([a1f6930](https://github.com/googleapis/google-cloud-php/commit/a1f69303a1c7b84395928b6c27b4d2517cf27615))
+
+</details>
+
+<details><summary>google/cloud-databasecenter 0.5.0</summary>
+
+
+
+### Features
+
+* [DatabaseCenter] A new value `SUB_RESOURCE_TYPE_READ_POOL` is added to enum `SubResourceType` ([#9036](https://github.com/googleapis/google-cloud-php/issues/9036)) ([90641db](https://github.com/googleapis/google-cloud-php/commit/90641db3e5df90e59be29768ba707f0224234458))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 2.4.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] updated v2 dialogflow client libraries ([#9038](https://github.com/googleapis/google-cloud-php/issues/9038)) ([295a837](https://github.com/googleapis/google-cloud-php/commit/295a837db7cb120969eeada2b2ac8ee3d79cc606))
+
+</details>
+
+<details><summary>google/cloud-dlp 2.10.0</summary>
+
+
+
+### Features
+
+* [Dlp] added support for detecting key-value pairs in document metadata ([#9029](https://github.com/googleapis/google-cloud-php/issues/9029)) ([2cc507c](https://github.com/googleapis/google-cloud-php/commit/2cc507c8b57bcbe709e1c3a237c86881b2955a78))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.26.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [ErrorReporting] remove deprecated GAPICs ([#9015](https://github.com/googleapis/google-cloud-php/issues/9015))
+
+### Chores
+
+* [ErrorReporting] remove deprecated GAPICs ([#9015](https://github.com/googleapis/google-cloud-php/issues/9015)) ([3bbcd9f](https://github.com/googleapis/google-cloud-php/commit/3bbcd9f2ddab7ee1015a09ca26c904b495e687ff))
+
+</details>
+
+<details><summary>google/cloud-run 1.12.2</summary>
+
+
+
+### Documentation
+
+* [Run] An existing repeated string field custom_audiences is marked deprecated for WorkerPools API ([#9031](https://github.com/googleapis/google-cloud-php/issues/9031)) ([c4fd69b](https://github.com/googleapis/google-cloud-php/commit/c4fd69bfe51d2ef82a31dff2ed55f954ffa26333))
+
+</details>
+
+<details><summary>google/shopping-css 0.8.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-accounts 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-datasources 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-inventories 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-issueresolution 1.3.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-lfp 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-notifications 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-ordertracking 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-products 1.4.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-promotions 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-reports 1.2.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/shopping-merchant-reviews 0.6.1</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** Update dependency google/shopping-common-protos to ^0.5.0 ([#9024](https://github.com/googleapis/google-cloud-php/issues/9024)) ([780dd97](https://github.com/googleapis/google-cloud-php/commit/780dd9775e27a5e822b57cf9804fc80955ed68da))
+
+</details>
+
+<details><summary>google/cloud-storage 1.50.0</summary>
+
+
+
+### Features
+
+* **storage:** Add support for encryption enforcement configurations ([#8937](https://github.com/googleapis/google-cloud-php/issues/8937)) ([e0d7036](https://github.com/googleapis/google-cloud-php/commit/e0d7036b3fd6fbd62bbaacc9b185b96642fc3b47))
+
+</details>
+
+<details><summary>google/cloud-visionai 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Remove deprecated clients and files
+* [VisionAi] remove deprecated clients and files ([#9019](https://github.com/googleapis/google-cloud-php/issues/9019))
+
+### Bug Fixes
+
+* [VisionAi] remove deprecated clients and files ([#9019](https://github.com/googleapis/google-cloud-php/issues/9019)) ([d14df04](https://github.com/googleapis/google-cloud-php/commit/d14df04750540a70b38a37da39361e565f367729))
+* Remove deprecated clients and files ([d14df04](https://github.com/googleapis/google-cloud-php/commit/d14df04750540a70b38a37da39361e565f367729))
+
+</details>
+
 ## 0.323.0
 
 <details><summary>google/cloud-access-approval 2.1.3</summary>

@@ -75,6 +75,12 @@ class App extends \Google\Protobuf\Internal\Message
      */
     protected $logging_settings = null;
     /**
+     * Optional. Error handling settings of the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings error_handling_settings = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $error_handling_settings = null;
+    /**
      * Optional. The default LLM model settings for the app.
      * Individual resources (e.g. agents, guardrails) can override these
      * configurations as needed.
@@ -208,6 +214,8 @@ class App extends \Google\Protobuf\Internal\Message
      *           Optional. Audio processing configuration of the app.
      *     @type \Google\Cloud\Ces\V1\LoggingSettings $logging_settings
      *           Optional. Logging settings of the app.
+     *     @type \Google\Cloud\Ces\V1\ErrorHandlingSettings $error_handling_settings
+     *           Optional. Error handling settings of the app.
      *     @type \Google\Cloud\Ces\V1\ModelSettings $model_settings
      *           Optional. The default LLM model settings for the app.
      *           Individual resources (e.g. agents, guardrails) can override these
@@ -532,6 +540,42 @@ class App extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\LoggingSettings::class);
         $this->logging_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Error handling settings of the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings error_handling_settings = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Ces\V1\ErrorHandlingSettings|null
+     */
+    public function getErrorHandlingSettings()
+    {
+        return $this->error_handling_settings;
+    }
+
+    public function hasErrorHandlingSettings()
+    {
+        return isset($this->error_handling_settings);
+    }
+
+    public function clearErrorHandlingSettings()
+    {
+        unset($this->error_handling_settings);
+    }
+
+    /**
+     * Optional. Error handling settings of the app.
+     *
+     * Generated from protobuf field <code>.google.cloud.ces.v1.ErrorHandlingSettings error_handling_settings = 34 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Ces\V1\ErrorHandlingSettings $var
+     * @return $this
+     */
+    public function setErrorHandlingSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Ces\V1\ErrorHandlingSettings::class);
+        $this->error_handling_settings = $var;
 
         return $this;
     }

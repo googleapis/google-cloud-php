@@ -44,6 +44,27 @@ class RegionalInventoryAttributes extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.shopping.merchant.inventories.v1.RegionalInventoryAttributes.Availability availability = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $availability = null;
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product in this region.
+     * This field is used to show region-specific member prices on Product
+     * Listing Ads (PLA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center, and the merchant must be using the Regional Availability and
+     * Pricing (RAAP) feature. The benefits provided must match the merchant's
+     * website and be clear to members. This is only applicable for merchants in
+     * supported countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * Also see [Regional availability and
+     * pricing](https://support.google.com/merchants/answer/14644124) and [How to
+     * set up regional member
+     * pricing](https://support.google.com/merchants/answer/16388178) for more
+     * information.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $loyalty_programs;
 
     /**
      * Constructor.
@@ -64,6 +85,23 @@ class RegionalInventoryAttributes extends \Google\Protobuf\Internal\Message
      *           Optional.
      *           [Availability](https://support.google.com/merchants/answer/14644124) of the
      *           product in this region.
+     *     @type \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram[] $loyalty_programs
+     *           Optional. An optional list of loyalty programs containing applicable
+     *           loyalty member prices for this product in this region.
+     *           This field is used to show region-specific member prices on Product
+     *           Listing Ads (PLA).
+     *           To use this, the loyalty program must be configured in Google Merchant
+     *           Center, and the merchant must be using the Regional Availability and
+     *           Pricing (RAAP) feature. The benefits provided must match the merchant's
+     *           website and be clear to members. This is only applicable for merchants in
+     *           supported countries.
+     *           See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     *           for details on supported countries and loyalty program configuration.
+     *           Also see [Regional availability and
+     *           pricing](https://support.google.com/merchants/answer/14644124) and [How to
+     *           set up regional member
+     *           pricing](https://support.google.com/merchants/answer/16388178) for more
+     *           information.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,6 +259,62 @@ class RegionalInventoryAttributes extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Inventories\V1\RegionalInventoryAttributes\Availability::class);
         $this->availability = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product in this region.
+     * This field is used to show region-specific member prices on Product
+     * Listing Ads (PLA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center, and the merchant must be using the Regional Availability and
+     * Pricing (RAAP) feature. The benefits provided must match the merchant's
+     * website and be clear to members. This is only applicable for merchants in
+     * supported countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * Also see [Regional availability and
+     * pricing](https://support.google.com/merchants/answer/14644124) and [How to
+     * set up regional member
+     * pricing](https://support.google.com/merchants/answer/16388178) for more
+     * information.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram>
+     */
+    public function getLoyaltyPrograms()
+    {
+        return $this->loyalty_programs;
+    }
+
+    /**
+     * Optional. An optional list of loyalty programs containing applicable
+     * loyalty member prices for this product in this region.
+     * This field is used to show region-specific member prices on Product
+     * Listing Ads (PLA).
+     * To use this, the loyalty program must be configured in Google Merchant
+     * Center, and the merchant must be using the Regional Availability and
+     * Pricing (RAAP) feature. The benefits provided must match the merchant's
+     * website and be clear to members. This is only applicable for merchants in
+     * supported countries.
+     * See [Loyalty program](https://support.google.com/merchants/answer/12922446)
+     * for details on supported countries and loyalty program configuration.
+     * Also see [Regional availability and
+     * pricing](https://support.google.com/merchants/answer/14644124) and [How to
+     * set up regional member
+     * pricing](https://support.google.com/merchants/answer/16388178) for more
+     * information.
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.inventories.v1.InventoryLoyaltyProgram loyalty_programs = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram[] $var
+     * @return $this
+     */
+    public function setLoyaltyPrograms($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Inventories\V1\InventoryLoyaltyProgram::class);
+        $this->loyalty_programs = $arr;
 
         return $this;
     }

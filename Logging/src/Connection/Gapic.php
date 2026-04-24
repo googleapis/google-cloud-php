@@ -76,11 +76,17 @@ class Gapic
         ], [], [
             'json_payload' => function ($v) {
                 return $this->formatStructForApi($v);
+            },
+            'severity' => function ($v) {
+                return array_flip(Logger::getLogLevelMap())[strtoupper($v)];
             }
         ], [
             'google.protobuf.Duration' => function ($v) {
                 return $this->formatDurationForApi($v);
             },
+            'google.protobuf.Timestamp' => function ($v) {
+                return $this->formatTimestampForApi($v);
+            }
         ]);
         $this->optionsValidator = new OptionsValidator($this->serializer);
     }

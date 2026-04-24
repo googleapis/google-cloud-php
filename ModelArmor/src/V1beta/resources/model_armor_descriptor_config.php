@@ -115,6 +115,20 @@ return [
                     ],
                 ],
             ],
+            'StreamSanitizeModelResponse' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\ModelArmor\V1beta\SanitizeModelResponseResponse',
+            ],
+            'StreamSanitizeUserPrompt' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+                'callType' => \Google\ApiCore\Call::BIDI_STREAMING_CALL,
+                'responseType' => 'Google\Cloud\ModelArmor\V1beta\SanitizeUserPromptResponse',
+            ],
             'UpdateFloorSetting' => [
                 'callType' => \Google\ApiCore\Call::UNARY_CALL,
                 'responseType' => 'Google\Cloud\ModelArmor\V1beta\FloorSetting',

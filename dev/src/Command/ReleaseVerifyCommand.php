@@ -58,9 +58,9 @@ class ReleaseVerifyCommand extends Command
                 $version = 'v' . $component->getPackageVersion();
             }
 
-            $output->write(sprintf('Verifying package <info>%s</info> version <info>%s</info>... ', $packageName, $version));
+            $output->write(sprintf('Verifying package <info>%s</> version <info>%s</>... ', $packageName, $version));
             if ($packagist->versionExists($packageName, $version)) {
-                $output->writeln('<info>OK</info>');
+                $output->writeln('OK');
             } else {
                 $output->writeln('<error>NOT FOUND</error>');
                 $notFound[] = $packageName . ':' . $version;

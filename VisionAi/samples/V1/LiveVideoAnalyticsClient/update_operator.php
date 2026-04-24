@@ -25,8 +25,9 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START visionai_v1_generated_LiveVideoAnalytics_UpdateOperator_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
-use Google\Cloud\VisionAI\V1\LiveVideoAnalyticsClient;
+use Google\Cloud\VisionAI\V1\Client\LiveVideoAnalyticsClient;
 use Google\Cloud\VisionAI\V1\Operator;
+use Google\Cloud\VisionAI\V1\UpdateOperatorRequest;
 use Google\Protobuf\FieldMask;
 use Google\Rpc\Status;
 
@@ -44,14 +45,17 @@ function update_operator_sample(): void
     // Create a client.
     $liveVideoAnalyticsClient = new LiveVideoAnalyticsClient();
 
-    // Prepare any non-scalar elements to be passed along with the request.
+    // Prepare the request message.
     $updateMask = new FieldMask();
     $operator = new Operator();
+    $request = (new UpdateOperatorRequest())
+        ->setUpdateMask($updateMask)
+        ->setOperator($operator);
 
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $liveVideoAnalyticsClient->updateOperator($updateMask, $operator);
+        $response = $liveVideoAnalyticsClient->updateOperator($request);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {

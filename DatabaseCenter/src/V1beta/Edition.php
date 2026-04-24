@@ -7,8 +7,7 @@ namespace Google\Cloud\DatabaseCenter\V1beta;
 use UnexpectedValueException;
 
 /**
- * Proto representing the edition of the instance.
- * NextId: 4.
+ * Represents the edition of a database resource.
  *
  * Protobuf type <code>google.cloud.databasecenter.v1beta.Edition</code>
  */

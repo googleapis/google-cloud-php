@@ -36,6 +36,19 @@ return [
                     ],
                 ],
             ],
+            'StreamRunSession' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{config.session=projects/*/locations/*/apps/*/sessions/*}:streamRunSession',
+                'body' => '*',
+                'placeholders' => [
+                    'config.session' => [
+                        'getters' => [
+                            'getConfig',
+                            'getSession',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.cloud.location.Locations' => [
             'GetLocation' => [

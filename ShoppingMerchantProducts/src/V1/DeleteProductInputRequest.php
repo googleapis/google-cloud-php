@@ -32,10 +32,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *     MUST be used if any part of the product identifier (like `offer_id`)
      *     contains characters such as `/`, `%`, or `~`.
      *     *   Example: To represent the product ID `en~US~sku/123`, the
-     *         `{productInput}` segment must be the base64url encoding of this
-     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         `{productInput}` segment must be the unpadded base64url encoding of
+     *         this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
      *         for the product would be
-     *         `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+     *         `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`.
      * 2.  **Plain Format**: The `{productInput}` segment is the tilde-separated
      * string
      *     `content_language~feed_label~offer_id`. This format is suitable only
@@ -45,9 +45,6 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      * correct parsing, especially those containing special characters. The
      * presence of tilde (`~`) characters in the `{productInput}` segment is used
      * to differentiate between the two formats.
-     * Note: For calls to the v1beta version, the plain format is
-     *     `channel~content_language~feed_label~offer_id`, for example:
-     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -82,10 +79,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *                     MUST be used if any part of the product identifier (like `offer_id`)
      *                     contains characters such as `/`, `%`, or `~`.
      *                     *   Example: To represent the product ID `en~US~sku/123`, the
-     *                     `{productInput}` segment must be the base64url encoding of this
-     *                     string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *                     `{productInput}` segment must be the unpadded base64url encoding of
+     *                     this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
      *                     for the product would be
-     *                     `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+     *                     `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`.
      *
      *                     2.  **Plain Format**: The `{productInput}` segment is the tilde-separated
      *                     string
@@ -96,11 +93,7 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *                     We recommend using the **Encoded Format** for all product IDs to ensure
      *                     correct parsing, especially those containing special characters. The
      *                     presence of tilde (`~`) characters in the `{productInput}` segment is used
-     *                     to differentiate between the two formats.
-     *
-     *                     Note: For calls to the v1beta version, the plain format is
-     *                     `channel~content_language~feed_label~offer_id`, for example:
-     *                     `accounts/123/productinputs/online~en~US~sku123`. Please see
+     *                     to differentiate between the two formats. Please see
      *                     {@see ProductInputsServiceClient::productInputName()} for help formatting this field.
      *
      * @return \Google\Shopping\Merchant\Products\V1\DeleteProductInputRequest
@@ -136,10 +129,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *               MUST be used if any part of the product identifier (like `offer_id`)
      *               contains characters such as `/`, `%`, or `~`.
      *               *   Example: To represent the product ID `en~US~sku/123`, the
-     *                   `{productInput}` segment must be the base64url encoding of this
-     *                   string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *                   `{productInput}` segment must be the unpadded base64url encoding of
+     *                   this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
      *                   for the product would be
-     *                   `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+     *                   `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`.
      *           2.  **Plain Format**: The `{productInput}` segment is the tilde-separated
      *           string
      *               `content_language~feed_label~offer_id`. This format is suitable only
@@ -149,9 +142,6 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *           correct parsing, especially those containing special characters. The
      *           presence of tilde (`~`) characters in the `{productInput}` segment is used
      *           to differentiate between the two formats.
-     *           Note: For calls to the v1beta version, the plain format is
-     *               `channel~content_language~feed_label~offer_id`, for example:
-     *               `accounts/123/productinputs/online~en~US~sku123`.
      *     @type string $data_source
      *           Required. The primary or supplemental data source from which the product
      *           input should be deleted. Format:
@@ -181,10 +171,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *     MUST be used if any part of the product identifier (like `offer_id`)
      *     contains characters such as `/`, `%`, or `~`.
      *     *   Example: To represent the product ID `en~US~sku/123`, the
-     *         `{productInput}` segment must be the base64url encoding of this
-     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         `{productInput}` segment must be the unpadded base64url encoding of
+     *         this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
      *         for the product would be
-     *         `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+     *         `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`.
      * 2.  **Plain Format**: The `{productInput}` segment is the tilde-separated
      * string
      *     `content_language~feed_label~offer_id`. This format is suitable only
@@ -194,9 +184,6 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      * correct parsing, especially those containing special characters. The
      * presence of tilde (`~`) characters in the `{productInput}` segment is used
      * to differentiate between the two formats.
-     * Note: For calls to the v1beta version, the plain format is
-     *     `channel~content_language~feed_label~offer_id`, for example:
-     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -223,10 +210,10 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      *     MUST be used if any part of the product identifier (like `offer_id`)
      *     contains characters such as `/`, `%`, or `~`.
      *     *   Example: To represent the product ID `en~US~sku/123`, the
-     *         `{productInput}` segment must be the base64url encoding of this
-     *         string, which is `ZW5-VVMtc2t1LzEyMw`. The full resource name
+     *         `{productInput}` segment must be the unpadded base64url encoding of
+     *         this string, which is `ZW5-VVN-c2t1LzEyMw`. The full resource name
      *         for the product would be
-     *         `accounts/123/productInputs/ZW5-VVMtc2t1LzEyMw`.
+     *         `accounts/123/productInputs/ZW5-VVN-c2t1LzEyMw`.
      * 2.  **Plain Format**: The `{productInput}` segment is the tilde-separated
      * string
      *     `content_language~feed_label~offer_id`. This format is suitable only
@@ -236,9 +223,6 @@ class DeleteProductInputRequest extends \Google\Protobuf\Internal\Message
      * correct parsing, especially those containing special characters. The
      * presence of tilde (`~`) characters in the `{productInput}` segment is used
      * to differentiate between the two formats.
-     * Note: For calls to the v1beta version, the plain format is
-     *     `channel~content_language~feed_label~offer_id`, for example:
-     *     `accounts/123/productinputs/online~en~US~sku123`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
