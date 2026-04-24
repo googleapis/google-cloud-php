@@ -43,6 +43,24 @@ class NodeType
      * Generated from protobuf enum <code>REDIS_STANDARD_SMALL = 4;</code>
      */
     const REDIS_STANDARD_SMALL = 4;
+    /**
+     * Redis highcpu medium node_type.
+     *
+     * Generated from protobuf enum <code>REDIS_HIGHCPU_MEDIUM = 7;</code>
+     */
+    const REDIS_HIGHCPU_MEDIUM = 7;
+    /**
+     * Redis standard large node_type.
+     *
+     * Generated from protobuf enum <code>REDIS_STANDARD_LARGE = 8;</code>
+     */
+    const REDIS_STANDARD_LARGE = 8;
+    /**
+     * Redis highmem 2xlarge node_type.
+     *
+     * Generated from protobuf enum <code>REDIS_HIGHMEM_2XLARGE = 9;</code>
+     */
+    const REDIS_HIGHMEM_2XLARGE = 9;
 
     private static $valueToName = [
         self::NODE_TYPE_UNSPECIFIED => 'NODE_TYPE_UNSPECIFIED',
@@ -50,6 +68,9 @@ class NodeType
         self::REDIS_HIGHMEM_MEDIUM => 'REDIS_HIGHMEM_MEDIUM',
         self::REDIS_HIGHMEM_XLARGE => 'REDIS_HIGHMEM_XLARGE',
         self::REDIS_STANDARD_SMALL => 'REDIS_STANDARD_SMALL',
+        self::REDIS_HIGHCPU_MEDIUM => 'REDIS_HIGHCPU_MEDIUM',
+        self::REDIS_STANDARD_LARGE => 'REDIS_STANDARD_LARGE',
+        self::REDIS_HIGHMEM_2XLARGE => 'REDIS_HIGHMEM_2XLARGE',
     ];
 
     public static function name($value)
