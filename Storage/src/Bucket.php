@@ -274,14 +274,7 @@ class Bucket
      *     @type array $metadata The full list of available options are outlined
      *           at the [JSON API docs](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request-body).
      *     @type array $metadata.metadata User-provided metadata, in key/value pairs.
-     *     @type array $contexts User-defined or system-defined object contexts.
-     *           Each object context is a key-payload pair, where the key provides the
-     *           identification and the payload holds the associated value and additional metadata.
-     *     @type array $contexts.custom Custom user-defined contexts. Keys must start
-     *           with an alphanumeric character and cannot contain double quotes (`"`).
-     *     @type string $contexts.custom.{key}.value The value associated with the context.
-     *           If not empty, must start with an alphanumeric character and cannot contain double quotes (`"`)
-     *           or forward slashes (`/`).
+     *     @type array $contexts Object contexts. See the [API docs](https://docs.cloud.google.com/storage/docs/use-object-contexts) for more details.
      *     @type string $contexts.custom.{key}.createTime The time the context
      *           was created in RFC 3339 format. **(read only)**
      *     @type string $contexts.custom.{key}.updateTime The time the context
@@ -310,7 +303,9 @@ class Bucket
             if (!is_array($options['contexts'])) {
                 throw new \InvalidArgumentException('Object contexts must be an array.');
             }
-            $this->validateContexts($options['contexts']);
+            if (isset($options['contexts']['custom']) && !is_array($options['contexts']['custom'])) {
+                throw new \InvalidArgumentException('Object contexts custom field must be an array.');
+            }
         }
 
         $encryptionKey = $options['encryptionKey'] ?? null;
@@ -331,49 +326,6 @@ class Bucket
             $encryptionKey,
             $encryptionKeySHA256
         );
-    }
-
-    private function validateContexts(?array $contexts)
-    {
-        if (!isset($contexts['custom'])) {
-            return;
-        }
-        if (!is_array($contexts['custom'])) {
-            throw new \InvalidArgumentException('Object contexts custom field must be an array.');
-        }
-        foreach ($contexts['custom'] as $key => $data) {
-            if (!preg_match('/^[a-zA-Z0-9]/', (string) $key)) {
-                throw new \InvalidArgumentException('Object context key must start with an alphanumeric.');
-            }
-            if (strpos((string) $key, '"') !== false) {
-                throw new \InvalidArgumentException('Object context key cannot contain double quotes.');
-            }
-            if ($data === null) {
-                continue;
-            }
-            if (!is_array($data)) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Context data for key "%s" must be an array.',
-                    $key
-                ));
-            }
-            if (!isset($data['value'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Context for key "%s" must have a \'value\' property.',
-                    $key
-                ));
-            }
-            if (!is_scalar($data['value'])) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Context value for key "%s" must be a scalar type.',
-                    $key
-                ));
-            }
-            $val = (string) $data['value'];
-            if ($val !== '' && !preg_match('/^[a-zA-Z0-9][^"\/]*$/', $val)) {
-                throw new \InvalidArgumentException('Object context value must start with an alphanumeric.');
-            }
-        }
     }
 
     /**

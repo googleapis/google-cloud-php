@@ -666,34 +666,6 @@ class BucketTest extends TestCase
         $this->assertEquals($contexts, $object->info()['contexts']);
     }
 
-    /**
-    * @dataProvider invalidAndUnicodeContextsDataProvider
-    */
-    public function testCreateObjectWithInvalidAndUnicodeContexts(array $contexts, string $expectedMessage)
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage($expectedMessage);
-
-        $this->getBucket()->upload('data', [
-            'name' => self::FILE_NAME_TEST,
-            'contexts' => $contexts
-        ]);
-    }
-
-    public function invalidAndUnicodeContextsDataProvider()
-    {
-        return [
-            'Unicode at start of key' => [
-                ['custom' => ['🚀-launcher' => ['value' => '✨-sparkle']]],
-                'Object context key must start with an alphanumeric.'
-            ],
-            'Double quotes in key' => [
-                ['custom' => ['invalid"key' => ['value' => 'some-value']]],
-                'Object context key cannot contain double quotes.'
-            ],
-        ];
-    }
-
     public function testUpdateReplacesAllMetadataIncludingContexts()
     {
         $objectName = 'replace-test.txt';

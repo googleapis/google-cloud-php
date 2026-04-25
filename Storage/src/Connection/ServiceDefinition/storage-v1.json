@@ -1570,28 +1570,32 @@
                             "type": "object",
                             "description": "User-provided object contexts where each entry consists of a unique key and a corresponding payload.",
                             "additionalProperties": {
-                                "type": "object",
-                                "description": "The payload associated with a user-defined context key.",
-                                "properties": {
-                                    "value": {
-                                        "type": "string",
-                                        "description": "The value of the object contexts.",
-                                        "required": true
-                                    },
-                                    "createTime": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "description": "The time at which the object contexts was created in RFC 3339 format."
-                                    },
-                                    "updateTime": {
-                                        "type": "string",
-                                        "format": "date-time",
-                                        "description": "The time at which the object context was last updated in RFC 3339 format."
-                                    }
-                                }
+                                "$ref": "ObjectCustomContextPayload",
+                                "description": "A single user-defined object context."
                             }
-                        } 
+                        }
                     }
+                }
+            }
+        },
+        "ObjectCustomContextPayload": {
+            "id": "ObjectCustomContextPayload",
+            "type": "object",
+            "description": "The payload associated with a user-defined context key.",
+            "properties": {
+                "value": {
+                    "type": "string",
+                    "description": "The value of the object contexts."
+                },
+                "createTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time at which the object contexts was created in RFC 3339 format."
+                },
+                "updateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The time at which the object context was last updated in RFC 3339 format."
                 }
             }
         },
