@@ -1572,6 +1572,9 @@
                             "additionalProperties": {
                                 "$ref": "ObjectCustomContextPayload",
                                 "description": "A single user-defined object context."
+                              }
+                                "$ref": "ObjectCustomContextPayload",
+                                "description": "A single user-defined object context."
                             }
                         }
                     }
