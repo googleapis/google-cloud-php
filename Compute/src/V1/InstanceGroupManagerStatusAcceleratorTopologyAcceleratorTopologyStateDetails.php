@@ -15,13 +15,13 @@ use Google\Protobuf\RepeatedField;
 class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetails extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. [Output Only] Encountered errors.
+     * Output only. Encountered errors.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      */
     protected $error = null;
     /**
-     * Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     * Output only. Timestamp is shown only if there is an error. The field
      * has // RFC3339 //
      * text format.
      *
@@ -36,9 +36,9 @@ class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetai
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\Error $error
-     *           Output only. [Output Only] Encountered errors.
+     *           Output only. Encountered errors.
      *     @type string $timestamp
-     *           Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     *           Output only. Timestamp is shown only if there is an error. The field
      *           has // RFC3339 //
      *           text format.
      * }
@@ -49,7 +49,7 @@ class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetai
     }
 
     /**
-     * Output only. [Output Only] Encountered errors.
+     * Output only. Encountered errors.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\Error|null
@@ -70,7 +70,7 @@ class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetai
     }
 
     /**
-     * Output only. [Output Only] Encountered errors.
+     * Output only. Encountered errors.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.Error error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\Error $var
@@ -85,7 +85,7 @@ class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetai
     }
 
     /**
-     * Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     * Output only. Timestamp is shown only if there is an error. The field
      * has // RFC3339 //
      * text format.
      *
@@ -108,7 +108,7 @@ class InstanceGroupManagerStatusAcceleratorTopologyAcceleratorTopologyStateDetai
     }
 
     /**
-     * Output only. [Output Only] Timestamp is shown only if there is an error. The field
+     * Output only. Timestamp is shown only if there is an error. The field
      * has // RFC3339 //
      * text format.
      *

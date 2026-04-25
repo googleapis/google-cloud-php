@@ -34,41 +34,39 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\CompositeHealthCheck;
-use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
-use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\ListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\PatchRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsRegionCompositeHealthCheckRequest;
+use Google\Cloud\Compute\V1\DeleteRegionInstantSnapshotGroupRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionInstantSnapshotGroupRequest;
+use Google\Cloud\Compute\V1\GetRegionInstantSnapshotGroupRequest;
+use Google\Cloud\Compute\V1\InsertRegionInstantSnapshotGroupRequest;
+use Google\Cloud\Compute\V1\InstantSnapshotGroup;
+use Google\Cloud\Compute\V1\ListRegionInstantSnapshotGroupsRequest;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionInstantSnapshotGroupRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionInstantSnapshotGroupRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionCompositeHealthChecks API.
+ * Service Description: The RegionInstantSnapshotGroups API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheck> getAsync(GetRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheckHealth> getHealthAsync(GetHealthRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<InstantSnapshotGroup> getAsync(GetRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionInstantSnapshotGroupsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionInstantSnapshotGroupRequest $request, array $optionalArgs = [])
  */
-final class RegionCompositeHealthChecksClient
+final class RegionInstantSnapshotGroupsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionCompositeHealthChecks';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionInstantSnapshotGroups';
 
     /**
      * The default address of the service.
@@ -99,8 +97,8 @@ final class RegionCompositeHealthChecksClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_composite_health_checks_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_composite_health_checks_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/region_instant_snapshot_groups_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/region_instant_snapshot_groups_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
@@ -108,7 +106,7 @@ final class RegionCompositeHealthChecksClient
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_composite_health_checks_rest_client_config.php',
+                        __DIR__ . '/../resources/region_instant_snapshot_groups_rest_client_config.php',
                 ],
             ],
         ];
@@ -213,9 +211,9 @@ final class RegionCompositeHealthChecksClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionCompositeHealthChecksClient;
+     *           use Google\Cloud\Compute\V1\RegionInstantSnapshotGroupsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionCompositeHealthChecksClient(['credentials' => $creds]);
+     *           $options = new RegionInstantSnapshotGroupsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -277,46 +275,13 @@ final class RegionCompositeHealthChecksClient
     }
 
     /**
-     * Retrieves the list of all CompositeHealthCheck resources (all
-     * regional) available to the specified project.
+     * deletes a Regional InstantSnapshotGroup resource
      *
-     * To prevent failure, it is recommended that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * The async variant is {@see RegionInstantSnapshotGroupsClient::deleteAsync()} .
      *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::aggregatedListAsync()} .
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/delete.php
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/aggregated_list.php
-     *
-     * @param AggregatedListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListRegionCompositeHealthChecksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified CompositeHealthCheck in the given region
-     *
-     * The async variant is {@see RegionCompositeHealthChecksClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/delete.php
-     *
-     * @param DeleteRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param DeleteRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
      *
@@ -330,19 +295,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function delete(DeleteRegionInstantSnapshotGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Returns the specified CompositeHealthCheck resource in the given region.
+     * returns the specified InstantSnapshotGroup resource in the specified
+     * region.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getAsync()} .
+     * The async variant is {@see RegionInstantSnapshotGroupsClient::getAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/get.php
      *
-     * @param GetRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param GetRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
      * @param array                                $callOptions {
      *     Optional.
      *
@@ -352,26 +318,26 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheck
+     * @return InstantSnapshotGroup
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetRegionCompositeHealthCheckRequest $request, array $callOptions = []): CompositeHealthCheck
+    public function get(GetRegionInstantSnapshotGroupRequest $request, array $callOptions = []): InstantSnapshotGroup
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Gets the most recent health check results for this
-     * regional CompositeHealthCheck.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getHealthAsync()}
-     * .
+     * The async variant is
+     * {@see RegionInstantSnapshotGroupsClient::getIamPolicyAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get_health.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/get_iam_policy.php
      *
-     * @param GetHealthRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                      $callOptions {
+     * @param GetIamPolicyRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -380,26 +346,25 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheckHealth
+     * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(
-        GetHealthRegionCompositeHealthCheckRequest $request,
+    public function getIamPolicy(
+        GetIamPolicyRegionInstantSnapshotGroupRequest $request,
         array $callOptions = []
-    ): CompositeHealthCheckHealth {
-        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
+    ): Policy {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
-     * Create a CompositeHealthCheck in the specified project in the given region
-     * using the parameters that are included in the request.
+     * creates a Regional InstantSnapshotGroup resource
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::insertAsync()} .
+     * The async variant is {@see RegionInstantSnapshotGroupsClient::insertAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/insert.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/insert.php
      *
-     * @param InsertRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param InsertRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
      * @param array                                   $callOptions {
      *     Optional.
      *
@@ -413,19 +378,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function insert(InsertRegionInstantSnapshotGroupRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
     /**
-     * Lists the CompositeHealthChecks for a project in the given region.
+     * retrieves the list of InstantSnapshotGroup resources contained within
+     * the specified region.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::listAsync()} .
+     * The async variant is {@see RegionInstantSnapshotGroupsClient::listAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/list.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/list.php
      *
-     * @param ListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
+     * @param ListRegionInstantSnapshotGroupsRequest $request     A request to house fields associated with the call.
      * @param array                                  $callOptions {
      *     Optional.
      *
@@ -439,23 +405,22 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListRegionCompositeHealthChecksRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListRegionInstantSnapshotGroupsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Updates the specified regional CompositeHealthCheck resource
-     * with the data included in the request.  This method supportsPATCH
-     * semantics and uses theJSON merge
-     * patch format and processing rules.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::patchAsync()} .
+     * The async variant is
+     * {@see RegionInstantSnapshotGroupsClient::setIamPolicyAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/patch.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/set_iam_policy.php
      *
-     * @param PatchRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param SetIamPolicyRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
+     * @param array                                         $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -464,24 +429,26 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return OperationResponse
+     * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patch(PatchRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
-    {
-        return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    public function setIamPolicy(
+        SetIamPolicyRegionInstantSnapshotGroupRequest $request,
+        array $callOptions = []
+    ): Policy {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see RegionCompositeHealthChecksClient::testIamPermissionsAsync()} .
+     * {@see RegionInstantSnapshotGroupsClient::testIamPermissionsAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/test_iam_permissions.php
+     * @example samples/V1/RegionInstantSnapshotGroupsClient/test_iam_permissions.php
      *
-     * @param TestIamPermissionsRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
+     * @param TestIamPermissionsRegionInstantSnapshotGroupRequest $request     A request to house fields associated with the call.
      * @param array                                               $callOptions {
      *     Optional.
      *
@@ -496,7 +463,7 @@ final class RegionCompositeHealthChecksClient
      * @throws ApiException Thrown if the API call fails.
      */
     public function testIamPermissions(
-        TestIamPermissionsRegionCompositeHealthCheckRequest $request,
+        TestIamPermissionsRegionInstantSnapshotGroupRequest $request,
         array $callOptions = []
     ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();

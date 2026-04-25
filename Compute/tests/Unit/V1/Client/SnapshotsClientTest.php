@@ -43,9 +43,11 @@ use Google\Cloud\Compute\V1\SetIamPolicySnapshotRequest;
 use Google\Cloud\Compute\V1\SetLabelsSnapshotRequest;
 use Google\Cloud\Compute\V1\Snapshot;
 use Google\Cloud\Compute\V1\SnapshotList;
+use Google\Cloud\Compute\V1\SnapshotUpdateKmsKeyRequest;
 use Google\Cloud\Compute\V1\TestIamPermissionsSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateKmsKeySnapshotRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -222,9 +224,12 @@ class SnapshotsClientTest extends GeneratedTest
         $labelFingerprint = 'labelFingerprint714995737';
         $locationHint = 'locationHint-1796964143';
         $name = 'name3373707';
+        $region = 'region-934795532';
         $satisfiesPzi = false;
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
+        $snapshotGroupId = 'snapshotGroupId-1355608330';
+        $snapshotGroupName = 'snapshotGroupName-1364364890';
         $snapshotType = 'snapshotType1198091477';
         $sourceDisk = 'sourceDisk-85117119';
         $sourceDiskForRecoveryCheckpoint = 'sourceDiskForRecoveryCheckpoint-713903874';
@@ -252,9 +257,12 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setLabelFingerprint($labelFingerprint);
         $expectedResponse->setLocationHint($locationHint);
         $expectedResponse->setName($name);
+        $expectedResponse->setRegion($region);
         $expectedResponse->setSatisfiesPzi($satisfiesPzi);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSnapshotGroupId($snapshotGroupId);
+        $expectedResponse->setSnapshotGroupName($snapshotGroupName);
         $expectedResponse->setSnapshotType($snapshotType);
         $expectedResponse->setSourceDisk($sourceDisk);
         $expectedResponse->setSourceDiskForRecoveryCheckpoint($sourceDiskForRecoveryCheckpoint);
@@ -879,6 +887,135 @@ class SnapshotsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function updateKmsKeyTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/updateKmsKeyTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/updateKmsKeyTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $snapshotUpdateKmsKeyRequestResource = new SnapshotUpdateKmsKeyRequest();
+        $request = (new UpdateKmsKeySnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot)
+            ->setSnapshotUpdateKmsKeyRequestResource($snapshotUpdateKmsKeyRequestResource);
+        $response = $gapicClient->updateKmsKey($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.Snapshots/UpdateKmsKey', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshot();
+        $this->assertProtobufEquals($snapshot, $actualValue);
+        $actualValue = $actualApiRequestObject->getSnapshotUpdateKmsKeyRequestResource();
+        $this->assertProtobufEquals($snapshotUpdateKmsKeyRequestResource, $actualValue);
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function updateKmsKeyExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/updateKmsKeyExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $snapshot = 'snapshot284874180';
+        $snapshotUpdateKmsKeyRequestResource = new SnapshotUpdateKmsKeyRequest();
+        $request = (new UpdateKmsKeySnapshotRequest())
+            ->setProject($project)
+            ->setSnapshot($snapshot)
+            ->setSnapshotUpdateKmsKeyRequestResource($snapshotUpdateKmsKeyRequestResource);
+        $response = $gapicClient->updateKmsKey($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */

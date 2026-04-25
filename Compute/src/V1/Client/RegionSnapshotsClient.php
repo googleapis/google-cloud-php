@@ -34,41 +34,43 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\CompositeHealthCheck;
-use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
-use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\ListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\PatchRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsRegionCompositeHealthCheckRequest;
+use Google\Cloud\Compute\V1\DeleteRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\GetRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\InsertRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\ListRegionSnapshotsRequest;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\SetLabelsRegionSnapshotRequest;
+use Google\Cloud\Compute\V1\Snapshot;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionSnapshotRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\UpdateKmsKeyRegionSnapshotRequest;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionCompositeHealthChecks API.
+ * Service Description: The RegionSnapshots API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheck> getAsync(GetRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheckHealth> getHealthAsync(GetHealthRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Snapshot> getAsync(GetRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionSnapshotsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> setLabelsAsync(SetLabelsRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionSnapshotRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateKmsKeyAsync(UpdateKmsKeyRegionSnapshotRequest $request, array $optionalArgs = [])
  */
-final class RegionCompositeHealthChecksClient
+final class RegionSnapshotsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionCompositeHealthChecks';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionSnapshots';
 
     /**
      * The default address of the service.
@@ -99,16 +101,15 @@ final class RegionCompositeHealthChecksClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_composite_health_checks_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_composite_health_checks_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/region_snapshots_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/region_snapshots_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_composite_health_checks_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/region_snapshots_rest_client_config.php',
                 ],
             ],
         ];
@@ -213,9 +214,9 @@ final class RegionCompositeHealthChecksClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionCompositeHealthChecksClient;
+     *           use Google\Cloud\Compute\V1\RegionSnapshotsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionCompositeHealthChecksClient(['credentials' => $creds]);
+     *           $options = new RegionSnapshotsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -277,47 +278,21 @@ final class RegionCompositeHealthChecksClient
     }
 
     /**
-     * Retrieves the list of all CompositeHealthCheck resources (all
-     * regional) available to the specified project.
+     * Deletes the specified Snapshot resource. Keep in mind that deleting
+     * a single snapshot might not necessarily delete all the data on that
+     * snapshot. If any data on the snapshot that is marked for deletion is
+     * needed for subsequent snapshots, the data will be moved to the next
+     * corresponding snapshot.
      *
-     * To prevent failure, it is recommended that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * For more information, seeDeleting
+     * snapshots.
      *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::aggregatedListAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::deleteAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/aggregated_list.php
+     * @example samples/V1/RegionSnapshotsClient/delete.php
      *
-     * @param AggregatedListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListRegionCompositeHealthChecksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified CompositeHealthCheck in the given region
-     *
-     * The async variant is {@see RegionCompositeHealthChecksClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/delete.php
-     *
-     * @param DeleteRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param DeleteRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -330,20 +305,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function delete(DeleteRegionSnapshotRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Returns the specified CompositeHealthCheck resource in the given region.
+     * Returns the specified Snapshot resource.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::getAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get.php
+     * @example samples/V1/RegionSnapshotsClient/get.php
      *
-     * @param GetRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
+     * @param GetRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                    $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -352,26 +327,25 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheck
+     * @return Snapshot
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetRegionCompositeHealthCheckRequest $request, array $callOptions = []): CompositeHealthCheck
+    public function get(GetRegionSnapshotRequest $request, array $callOptions = []): Snapshot
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Gets the most recent health check results for this
-     * regional CompositeHealthCheck.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getHealthAsync()}
-     * .
+     * The async variant is {@see RegionSnapshotsClient::getIamPolicyAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get_health.php
+     * @example samples/V1/RegionSnapshotsClient/get_iam_policy.php
      *
-     * @param GetHealthRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                      $callOptions {
+     * @param GetIamPolicyRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -380,27 +354,25 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheckHealth
+     * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(
-        GetHealthRegionCompositeHealthCheckRequest $request,
-        array $callOptions = []
-    ): CompositeHealthCheckHealth {
-        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
+    public function getIamPolicy(GetIamPolicyRegionSnapshotRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
-     * Create a CompositeHealthCheck in the specified project in the given region
-     * using the parameters that are included in the request.
+     * Creates a snapshot in the specified region using the data included
+     * in the request.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::insertAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::insertAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/insert.php
+     * @example samples/V1/RegionSnapshotsClient/insert.php
      *
-     * @param InsertRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param InsertRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                       $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -413,20 +385,21 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function insert(InsertRegionSnapshotRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
     /**
-     * Lists the CompositeHealthChecks for a project in the given region.
+     * Retrieves the list of Snapshot resources contained within
+     * the specified region.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::listAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::listAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/list.php
+     * @example samples/V1/RegionSnapshotsClient/list.php
      *
-     * @param ListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param ListRegionSnapshotsRequest $request     A request to house fields associated with the call.
+     * @param array                      $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -439,23 +412,49 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListRegionCompositeHealthChecksRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListRegionSnapshotsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Updates the specified regional CompositeHealthCheck resource
-     * with the data included in the request.  This method supportsPATCH
-     * semantics and uses theJSON merge
-     * patch format and processing rules.
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::patchAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::setIamPolicyAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/patch.php
+     * @example samples/V1/RegionSnapshotsClient/set_iam_policy.php
      *
-     * @param PatchRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param SetIamPolicyRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRegionSnapshotRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the labels on a regional snapshot. To learn more about labels, read
+     * the Labeling Resources
+     * documentation.
+     *
+     * The async variant is {@see RegionSnapshotsClient::setLabelsAsync()} .
+     *
+     * @example samples/V1/RegionSnapshotsClient/set_labels.php
+     *
+     * @param SetLabelsRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                          $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -468,21 +467,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patch(PatchRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function setLabels(SetLabelsRegionSnapshotRequest $request, array $callOptions = []): OperationResponse
     {
-        return $this->startApiCall('Patch', $request, $callOptions)->wait();
+        return $this->startApiCall('SetLabels', $request, $callOptions)->wait();
     }
 
     /**
      * Returns permissions that a caller has on the specified resource.
      *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::testIamPermissionsAsync()} .
+     * The async variant is {@see RegionSnapshotsClient::testIamPermissionsAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/test_iam_permissions.php
+     * @example samples/V1/RegionSnapshotsClient/test_iam_permissions.php
      *
-     * @param TestIamPermissionsRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                               $callOptions {
+     * @param TestIamPermissionsRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                                   $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -496,9 +494,36 @@ final class RegionCompositeHealthChecksClient
      * @throws ApiException Thrown if the API call fails.
      */
     public function testIamPermissions(
-        TestIamPermissionsRegionCompositeHealthCheckRequest $request,
+        TestIamPermissionsRegionSnapshotRequest $request,
         array $callOptions = []
     ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Rotates the customer-managed
+     * encryption key to the latest version for the specified snapshot.
+     *
+     * The async variant is {@see RegionSnapshotsClient::updateKmsKeyAsync()} .
+     *
+     * @example samples/V1/RegionSnapshotsClient/update_kms_key.php
+     *
+     * @param UpdateKmsKeyRegionSnapshotRequest $request     A request to house fields associated with the call.
+     * @param array                             $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return OperationResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function updateKmsKey(UpdateKmsKeyRegionSnapshotRequest $request, array $callOptions = []): OperationResponse
+    {
+        return $this->startApiCall('UpdateKmsKey', $request, $callOptions)->wait();
     }
 }

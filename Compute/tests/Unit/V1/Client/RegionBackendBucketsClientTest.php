@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,29 +26,27 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\AggregatedListInstantSnapshotsRequest;
-use Google\Cloud\Compute\V1\Client\InstantSnapshotsClient;
-use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
-use Google\Cloud\Compute\V1\DeleteInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\GetIamPolicyInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\GetInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\GetZoneOperationRequest;
-use Google\Cloud\Compute\V1\InsertInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\InstantSnapshot;
-use Google\Cloud\Compute\V1\InstantSnapshotAggregatedList;
-use Google\Cloud\Compute\V1\InstantSnapshotList;
-use Google\Cloud\Compute\V1\InstantSnapshotsScopedList;
-use Google\Cloud\Compute\V1\ListInstantSnapshotsRequest;
+use Google\Cloud\Compute\V1\BackendBucket;
+use Google\Cloud\Compute\V1\BackendBucketList;
+use Google\Cloud\Compute\V1\BackendBucketListUsable;
+use Google\Cloud\Compute\V1\Client\RegionBackendBucketsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
+use Google\Cloud\Compute\V1\DeleteRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetRegionOperationRequest;
+use Google\Cloud\Compute\V1\InsertRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\ListRegionBackendBucketsRequest;
+use Google\Cloud\Compute\V1\ListUsableRegionBackendBucketsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\PatchRegionBackendBucketRequest;
 use Google\Cloud\Compute\V1\Policy;
-use Google\Cloud\Compute\V1\SetIamPolicyInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\SetLabelsInstantSnapshotRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsInstantSnapshotRequest;
+use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendBucketRequest;
 use Google\Cloud\Compute\V1\TestPermissionsRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
-use Google\Cloud\Compute\V1\ZoneSetLabelsRequest;
-use Google\Cloud\Compute\V1\ZoneSetPolicyRequest;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -57,7 +55,7 @@ use stdClass;
  *
  * @group gapic
  */
-class InstantSnapshotsClientTest extends GeneratedTest
+class RegionBackendBucketsClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -73,100 +71,20 @@ class InstantSnapshotsClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return InstantSnapshotsClient */
+    /** @return RegionBackendBucketsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new InstantSnapshotsClient($options);
-    }
-
-    /** @test */
-    public function aggregatedListTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $id = 'id3355';
-        $kind = 'kind3292052';
-        $nextPageToken = '';
-        $selfLink = 'selfLink-1691268851';
-        $items = [
-            'itemsKey' => new InstantSnapshotsScopedList(),
-        ];
-        $expectedResponse = new InstantSnapshotAggregatedList();
-        $expectedResponse->setId($id);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setItems($items);
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListInstantSnapshotsRequest())->setProject($project);
-        $response = $gapicClient->aggregatedList($request);
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
-        $this->assertArrayHasKey('itemsKey', $resources);
-        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function aggregatedListExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $transport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $request = (new AggregatedListInstantSnapshotsRequest())->setProject($project);
-        try {
-            $gapicClient->aggregatedList($request);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
+        return new RegionBackendBucketsClient($options);
     }
 
     /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -188,13 +106,13 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $instantSnapshot = 'instantSnapshot1465380450';
+        $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new DeleteInstantSnapshotRequest())
-            ->setInstantSnapshot($instantSnapshot)
+        $region = 'region-934795532';
+        $request = (new DeleteRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -203,17 +121,17 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/Delete', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstantSnapshot();
-        $this->assertProtobufEquals($instantSnapshot, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -224,7 +142,7 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -234,7 +152,7 @@ class InstantSnapshotsClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -265,13 +183,13 @@ class InstantSnapshotsClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $instantSnapshot = 'instantSnapshot1465380450';
+        $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new DeleteInstantSnapshotRequest())
-            ->setInstantSnapshot($instantSnapshot)
+        $region = 'region-934795532';
+        $request = (new DeleteRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -301,67 +219,53 @@ class InstantSnapshotsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
-        $architecture = 'architecture839674195';
+        $bucketName = 'bucketName283610048';
+        $compressionMode = 'compressionMode-2051962660';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $diskSizeGb = 757478089;
+        $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
+        $enableCdn = false;
         $id = 3355;
         $kind = 'kind3292052';
-        $labelFingerprint = 'labelFingerprint714995737';
+        $loadBalancingScheme = 'loadBalancingScheme1974502980';
         $name = 'name3373707';
-        $region = 'region-934795532';
-        $satisfiesPzi = false;
-        $satisfiesPzs = false;
+        $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
-        $selfLinkWithId = 'selfLinkWithId-1029220862';
-        $sourceDisk = 'sourceDisk-85117119';
-        $sourceDiskId = 'sourceDiskId-1693292839';
-        $sourceInstantSnapshotGroup = 'sourceInstantSnapshotGroup1062862598';
-        $sourceInstantSnapshotGroupId = 'sourceInstantSnapshotGroupId1240845556';
-        $status = 'status-892481550';
-        $zone2 = 'zone2-696322977';
-        $expectedResponse = new InstantSnapshot();
-        $expectedResponse->setArchitecture($architecture);
+        $expectedResponse = new BackendBucket();
+        $expectedResponse->setBucketName($bucketName);
+        $expectedResponse->setCompressionMode($compressionMode);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
-        $expectedResponse->setDiskSizeGb($diskSizeGb);
+        $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
+        $expectedResponse->setEnableCdn($enableCdn);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
-        $expectedResponse->setLabelFingerprint($labelFingerprint);
+        $expectedResponse->setLoadBalancingScheme($loadBalancingScheme);
         $expectedResponse->setName($name);
-        $expectedResponse->setRegion($region);
-        $expectedResponse->setSatisfiesPzi($satisfiesPzi);
-        $expectedResponse->setSatisfiesPzs($satisfiesPzs);
+        $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setSelfLinkWithId($selfLinkWithId);
-        $expectedResponse->setSourceDisk($sourceDisk);
-        $expectedResponse->setSourceDiskId($sourceDiskId);
-        $expectedResponse->setSourceInstantSnapshotGroup($sourceInstantSnapshotGroup);
-        $expectedResponse->setSourceInstantSnapshotGroupId($sourceInstantSnapshotGroupId);
-        $expectedResponse->setStatus($status);
-        $expectedResponse->setZone($zone2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $instantSnapshot = 'instantSnapshot1465380450';
+        $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new GetInstantSnapshotRequest())
-            ->setInstantSnapshot($instantSnapshot)
+        $region = 'region-934795532';
+        $request = (new GetRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/Get', $actualFuncCall);
-        $actualValue = $actualRequestObject->getInstantSnapshot();
-        $this->assertProtobufEquals($instantSnapshot, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/Get', $actualFuncCall);
+        $actualValue = $actualRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -387,13 +291,13 @@ class InstantSnapshotsClientTest extends GeneratedTest
         );
         $transport->addResponse(null, $status);
         // Mock request
-        $instantSnapshot = 'instantSnapshot1465380450';
+        $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new GetInstantSnapshotRequest())
-            ->setInstantSnapshot($instantSnapshot)
+        $region = 'region-934795532';
+        $request = (new GetRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -426,25 +330,25 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $request = (new GetIamPolicyInstantSnapshotRequest())
+        $request = (new GetIamPolicyRegionBackendBucketRequest())
             ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResource($resource);
         $response = $gapicClient->getIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/GetIamPolicy', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/GetIamPolicy', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -471,12 +375,12 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $request = (new GetIamPolicyInstantSnapshotRequest())
+        $request = (new GetIamPolicyRegionBackendBucketRequest())
             ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResource($resource);
         try {
             $gapicClient->getIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -494,7 +398,7 @@ class InstantSnapshotsClientTest extends GeneratedTest
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -516,13 +420,13 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $completeOperation->setStatus(Status::DONE);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $instantSnapshotResource = new InstantSnapshot();
+        $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new InsertInstantSnapshotRequest())
-            ->setInstantSnapshotResource($instantSnapshotResource)
+        $region = 'region-934795532';
+        $request = (new InsertRegionBackendBucketRequest())
+            ->setBackendBucketResource($backendBucketResource)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -531,17 +435,17 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/Insert', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getInstantSnapshotResource();
-        $this->assertProtobufEquals($instantSnapshotResource, $actualValue);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucketResource();
+        $this->assertProtobufEquals($backendBucketResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -552,7 +456,7 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -562,7 +466,7 @@ class InstantSnapshotsClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -593,13 +497,13 @@ class InstantSnapshotsClientTest extends GeneratedTest
         );
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $instantSnapshotResource = new InstantSnapshot();
+        $backendBucketResource = new BackendBucket();
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new InsertInstantSnapshotRequest())
-            ->setInstantSnapshotResource($instantSnapshotResource)
+        $region = 'region-934795532';
+        $request = (new InsertRegionBackendBucketRequest())
+            ->setBackendBucketResource($backendBucketResource)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -633,9 +537,9 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
-        $itemsElement = new InstantSnapshot();
+        $itemsElement = new BackendBucket();
         $items = [$itemsElement];
-        $expectedResponse = new InstantSnapshotList();
+        $expectedResponse = new BackendBucketList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -644,8 +548,8 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListInstantSnapshotsRequest())->setProject($project)->setZone($zone);
+        $region = 'region-934795532';
+        $request = (new ListRegionBackendBucketsRequest())->setProject($project)->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -655,11 +559,11 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/List', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/List', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -686,8 +590,8 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListInstantSnapshotsRequest())->setProject($project)->setZone($zone);
+        $region = 'region-934795532';
+        $request = (new ListRegionBackendBucketsRequest())->setProject($project)->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -699,6 +603,223 @@ class InstantSnapshotsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listUsableTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $id = 'id3355';
+        $kind = 'kind3292052';
+        $nextPageToken = '';
+        $selfLink = 'selfLink-1691268851';
+        $itemsElement = new BackendBucket();
+        $items = [$itemsElement];
+        $expectedResponse = new BackendBucketListUsable();
+        $expectedResponse->setId($id);
+        $expectedResponse->setKind($kind);
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setItems($items);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListUsableRegionBackendBucketsRequest())->setProject($project)->setRegion($region);
+        $response = $gapicClient->listUsable($request);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/ListUsable', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listUsableExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new ListUsableRegionBackendBucketsRequest())->setProject($project)->setRegion($region);
+        try {
+            $gapicClient->listUsable($request);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function patchTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/patchTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $backendBucketResource = new BackendBucket();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
+            ->setBackendBucketResource($backendBucketResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->patch($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/Patch', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
+        $actualValue = $actualApiRequestObject->getBackendBucketResource();
+        $this->assertProtobufEquals($backendBucketResource, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function patchExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/patchExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode(
+            [
+                'message' => 'internal error',
+                'code' => Code::DATA_LOSS,
+                'status' => 'DATA_LOSS',
+                'details' => [],
+            ],
+            JSON_PRETTY_PRINT
+        );
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $backendBucket = 'backendBucket91714037';
+        $backendBucketResource = new BackendBucket();
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $request = (new PatchRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
+            ->setBackendBucketResource($backendBucketResource)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->patch($request);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -720,29 +841,29 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $request = (new SetIamPolicyInstantSnapshotRequest())
+        $request = (new SetIamPolicyRegionBackendBucketRequest())
             ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+            ->setRegion($region)
+            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
+            ->setResource($resource);
         $response = $gapicClient->setIamPolicy($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/SetIamPolicy', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/SetIamPolicy', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
+        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualRequestObject->getZoneSetPolicyRequestResource();
-        $this->assertProtobufEquals($zoneSetPolicyRequestResource, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -769,14 +890,14 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetPolicyRequestResource = new ZoneSetPolicyRequest();
-        $request = (new SetIamPolicyInstantSnapshotRequest())
+        $request = (new SetIamPolicyRegionBackendBucketRequest())
             ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetPolicyRequestResource($zoneSetPolicyRequestResource);
+            ->setRegion($region)
+            ->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource)
+            ->setResource($resource);
         try {
             $gapicClient->setIamPolicy($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -788,142 +909,6 @@ class InstantSnapshotsClientTest extends GeneratedTest
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
-    }
-
-    /** @test */
-    public function setLabelsTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setLabelsTest');
-        $incompleteOperation->setStatus(Status::RUNNING);
-        $transport->addResponse($incompleteOperation);
-        $completeOperation = new Operation();
-        $completeOperation->setName('customOperations/setLabelsTest');
-        $completeOperation->setStatus(Status::DONE);
-        $operationsTransport->addResponse($completeOperation);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
-        $request = (new SetLabelsInstantSnapshotRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetLabelsRequestResource($zoneSetLabelsRequestResource);
-        $response = $gapicClient->setLabels($request);
-        $this->assertFalse($response->isDone());
-        $apiRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($apiRequests));
-        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
-        $this->assertSame(0, count($operationsRequestsEmpty));
-        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
-        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/SetLabels', $actualApiFuncCall);
-        $actualValue = $actualApiRequestObject->getProject();
-        $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getResource();
-        $this->assertProtobufEquals($resource, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $actualValue = $actualApiRequestObject->getZoneSetLabelsRequestResource();
-        $this->assertProtobufEquals($zoneSetLabelsRequestResource, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
-        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
-        $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
-        $response->pollUntilComplete([
-            'initialPollDelayMillis' => 1,
-        ]);
-        $this->assertTrue($response->isDone());
-        $apiRequestsEmpty = $transport->popReceivedCalls();
-        $this->assertSame(0, count($apiRequestsEmpty));
-        $operationsRequests = $operationsTransport->popReceivedCalls();
-        $this->assertSame(1, count($operationsRequests));
-        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
-        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
-        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-    }
-
-    /** @test */
-    public function setLabelsExceptionTest()
-    {
-        $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
-            'apiEndpoint' => '',
-            'transport' => $operationsTransport,
-            'credentials' => $this->createCredentials(),
-        ]);
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-            'operationsClient' => $operationsClient,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
-        // Mock response
-        $incompleteOperation = new Operation();
-        $incompleteOperation->setName('customOperations/setLabelsExceptionTest');
-        $incompleteOperation->setStatus(Status::RUNNING);
-        $transport->addResponse($incompleteOperation);
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage = json_encode(
-            [
-                'message' => 'internal error',
-                'code' => Code::DATA_LOSS,
-                'status' => 'DATA_LOSS',
-                'details' => [],
-            ],
-            JSON_PRETTY_PRINT
-        );
-        $operationsTransport->addResponse(null, $status);
-        // Mock request
-        $project = 'project-309310695';
-        $resource = 'resource-341064690';
-        $zone = 'zone3744684';
-        $zoneSetLabelsRequestResource = new ZoneSetLabelsRequest();
-        $request = (new SetLabelsInstantSnapshotRequest())
-            ->setProject($project)
-            ->setResource($resource)
-            ->setZone($zone)
-            ->setZoneSetLabelsRequestResource($zoneSetLabelsRequestResource);
-        $response = $gapicClient->setLabels($request);
-        $this->assertFalse($response->isDone());
-        $this->assertNull($response->getResult());
-        try {
-            $response->pollUntilComplete([
-                'initialPollDelayMillis' => 1,
-            ]);
-            // If the pollUntilComplete() method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stubs are exhausted
-        $transport->popReceivedCalls();
-        $operationsTransport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /** @test */
@@ -939,29 +924,29 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
-        $request = (new TestIamPermissionsInstantSnapshotRequest())
+        $request = (new TestIamPermissionsRegionBackendBucketRequest())
             ->setProject($project)
+            ->setRegion($region)
             ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
-            ->setZone($zone);
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         $response = $gapicClient->testIamPermissions($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/TestIamPermissions', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/TestIamPermissions', $actualFuncCall);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getResource();
         $this->assertProtobufEquals($resource, $actualValue);
         $actualValue = $actualRequestObject->getTestPermissionsRequestResource();
         $this->assertProtobufEquals($testPermissionsRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -988,14 +973,14 @@ class InstantSnapshotsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $zone = 'zone3744684';
-        $request = (new TestIamPermissionsInstantSnapshotRequest())
+        $request = (new TestIamPermissionsRegionBackendBucketRequest())
             ->setProject($project)
+            ->setRegion($region)
             ->setResource($resource)
-            ->setTestPermissionsRequestResource($testPermissionsRequestResource)
-            ->setZone($zone);
+            ->setTestPermissionsRequestResource($testPermissionsRequestResource);
         try {
             $gapicClient->testIamPermissions($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -1010,45 +995,70 @@ class InstantSnapshotsClientTest extends GeneratedTest
     }
 
     /** @test */
-    public function aggregatedListAsyncTest()
+    public function deleteAsyncTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new RegionOperationsClient([
+            'apiEndpoint' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
         $gapicClient = $this->createClient([
             'transport' => $transport,
+            'operationsClient' => $operationsClient,
         ]);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $id = 'id3355';
-        $kind = 'kind3292052';
-        $nextPageToken = '';
-        $selfLink = 'selfLink-1691268851';
-        $items = [
-            'itemsKey' => new InstantSnapshotsScopedList(),
-        ];
-        $expectedResponse = new InstantSnapshotAggregatedList();
-        $expectedResponse->setId($id);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setNextPageToken($nextPageToken);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setItems($items);
-        $transport->addResponse($expectedResponse);
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/deleteAsyncTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/deleteAsyncTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
+        $backendBucket = 'backendBucket91714037';
         $project = 'project-309310695';
-        $request = (new AggregatedListInstantSnapshotsRequest())->setProject($project);
-        $response = $gapicClient->aggregatedListAsync($request)->wait();
-        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
-        $resources = iterator_to_array($response->iterateAllElements());
-        $this->assertSame(1, count($resources));
-        $this->assertArrayHasKey('itemsKey', $expectedResponse->getItems());
-        $this->assertArrayHasKey('itemsKey', $resources);
-        $this->assertEquals($expectedResponse->getItems()['itemsKey'], $resources['itemsKey']);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstantSnapshots/AggregatedList', $actualFuncCall);
-        $actualValue = $actualRequestObject->getProject();
+        $region = 'region-934795532';
+        $request = (new DeleteRegionBackendBucketRequest())
+            ->setBackendBucket($backendBucket)
+            ->setProject($project)
+            ->setRegion($region);
+        $response = $gapicClient->delete($request);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendBuckets/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getBackendBucket();
+        $this->assertProtobufEquals($backendBucket, $actualValue);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $expectedOperationsRequestObject->setRegion($region);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }
