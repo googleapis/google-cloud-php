@@ -34,41 +34,33 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\CompositeHealthCheck;
-use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
-use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\ListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\PatchRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\TestPermissionsResponse;
+use Google\Cloud\Compute\V1\DeleteZoneVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\GetZoneVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\InsertZoneVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\ListZoneVmExtensionPoliciesRequest;
+use Google\Cloud\Compute\V1\UpdateZoneVmExtensionPolicyRequest;
+use Google\Cloud\Compute\V1\VmExtensionPolicy;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionCompositeHealthChecks API.
+ * Service Description: The ZoneVmExtensionPolicies API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheck> getAsync(GetRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheckHealth> getHealthAsync(GetHealthRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<VmExtensionPolicy> getAsync(GetZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListZoneVmExtensionPoliciesRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> updateAsync(UpdateZoneVmExtensionPolicyRequest $request, array $optionalArgs = [])
  */
-final class RegionCompositeHealthChecksClient
+final class ZoneVmExtensionPoliciesClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionCompositeHealthChecks';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.ZoneVmExtensionPolicies';
 
     /**
      * The default address of the service.
@@ -99,8 +91,8 @@ final class RegionCompositeHealthChecksClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_composite_health_checks_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_composite_health_checks_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/zone_vm_extension_policies_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/zone_vm_extension_policies_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
@@ -108,7 +100,7 @@ final class RegionCompositeHealthChecksClient
             'transportConfig' => [
                 'rest' => [
                     'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_composite_health_checks_rest_client_config.php',
+                        __DIR__ . '/../resources/zone_vm_extension_policies_rest_client_config.php',
                 ],
             ],
         ];
@@ -127,9 +119,9 @@ final class RegionCompositeHealthChecksClient
     }
 
     /**
-     * Return an RegionOperationsClient object with the same endpoint as $this.
+     * Return an ZoneOperationsClient object with the same endpoint as $this.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     public function getOperationsClient()
     {
@@ -140,7 +132,7 @@ final class RegionCompositeHealthChecksClient
     private function getDefaultOperationDescriptor()
     {
         return [
-            'additionalArgumentMethods' => ['getProject', 'getRegion'],
+            'additionalArgumentMethods' => ['getProject', 'getZone'],
             'getOperationMethod' => 'get',
             'cancelOperationMethod' => null,
             'deleteOperationMethod' => 'delete',
@@ -149,9 +141,9 @@ final class RegionCompositeHealthChecksClient
             'operationNameMethod' => 'getName',
             'operationStatusMethod' => 'getStatus',
             'operationStatusDoneValue' => \Google\Cloud\Compute\V1\Operation\Status::DONE,
-            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetRegionOperationRequest',
+            'getOperationRequest' => '\Google\Cloud\Compute\V1\GetZoneOperationRequest',
             'cancelOperationRequest' => null,
-            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteRegionOperationRequest',
+            'deleteOperationRequest' => '\Google\Cloud\Compute\V1\DeleteZoneOperationRequest',
         ];
     }
 
@@ -179,7 +171,7 @@ final class RegionCompositeHealthChecksClient
      *
      * @param array $options ClientOptions for the client.
      *
-     * @return RegionOperationsClient
+     * @return ZoneOperationsClient
      */
     private function createOperationsClient(array $options)
     {
@@ -190,7 +182,7 @@ final class RegionCompositeHealthChecksClient
             return $options['operationsClient'];
         }
 
-        return new RegionOperationsClient($options);
+        return new ZoneOperationsClient($options);
     }
 
     /**
@@ -213,9 +205,9 @@ final class RegionCompositeHealthChecksClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionCompositeHealthChecksClient;
+     *           use Google\Cloud\Compute\V1\ZoneVmExtensionPoliciesClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionCompositeHealthChecksClient(['credentials' => $creds]);
+     *           $options = new ZoneVmExtensionPoliciesClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -277,47 +269,14 @@ final class RegionCompositeHealthChecksClient
     }
 
     /**
-     * Retrieves the list of all CompositeHealthCheck resources (all
-     * regional) available to the specified project.
+     * Deletes a specified zone VM extension policy.
      *
-     * To prevent failure, it is recommended that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * The async variant is {@see ZoneVmExtensionPoliciesClient::deleteAsync()} .
      *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::aggregatedListAsync()} .
+     * @example samples/V1/ZoneVmExtensionPoliciesClient/delete.php
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/aggregated_list.php
-     *
-     * @param AggregatedListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListRegionCompositeHealthChecksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified CompositeHealthCheck in the given region
-     *
-     * The async variant is {@see RegionCompositeHealthChecksClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/delete.php
-     *
-     * @param DeleteRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param DeleteZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -330,20 +289,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function delete(DeleteZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Returns the specified CompositeHealthCheck resource in the given region.
+     * Retrieves details of a specific zone VM extension policy.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getAsync()} .
+     * The async variant is {@see ZoneVmExtensionPoliciesClient::getAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get.php
+     * @example samples/V1/ZoneVmExtensionPoliciesClient/get.php
      *
-     * @param GetRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
+     * @param GetZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -352,55 +311,24 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheck
+     * @return VmExtensionPolicy
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetRegionCompositeHealthCheckRequest $request, array $callOptions = []): CompositeHealthCheck
+    public function get(GetZoneVmExtensionPolicyRequest $request, array $callOptions = []): VmExtensionPolicy
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Gets the most recent health check results for this
-     * regional CompositeHealthCheck.
+     * Creates a new zone-level VM extension policy within a project.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getHealthAsync()}
-     * .
+     * The async variant is {@see ZoneVmExtensionPoliciesClient::insertAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get_health.php
+     * @example samples/V1/ZoneVmExtensionPoliciesClient/insert.php
      *
-     * @param GetHealthRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                      $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return CompositeHealthCheckHealth
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function getHealth(
-        GetHealthRegionCompositeHealthCheckRequest $request,
-        array $callOptions = []
-    ): CompositeHealthCheckHealth {
-        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Create a CompositeHealthCheck in the specified project in the given region
-     * using the parameters that are included in the request.
-     *
-     * The async variant is {@see RegionCompositeHealthChecksClient::insertAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/insert.php
-     *
-     * @param InsertRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param InsertZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -413,20 +341,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function insert(InsertZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
     /**
-     * Lists the CompositeHealthChecks for a project in the given region.
+     * Lists all VM extension policies within a specific zone for a project.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::listAsync()} .
+     * The async variant is {@see ZoneVmExtensionPoliciesClient::listAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/list.php
+     * @example samples/V1/ZoneVmExtensionPoliciesClient/list.php
      *
-     * @param ListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param ListZoneVmExtensionPoliciesRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -439,23 +367,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListRegionCompositeHealthChecksRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListZoneVmExtensionPoliciesRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Updates the specified regional CompositeHealthCheck resource
-     * with the data included in the request.  This method supportsPATCH
-     * semantics and uses theJSON merge
-     * patch format and processing rules.
+     * Modifies an existing zone VM extension policy.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::patchAsync()} .
+     * The async variant is {@see ZoneVmExtensionPoliciesClient::updateAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/patch.php
+     * @example samples/V1/ZoneVmExtensionPoliciesClient/update.php
      *
-     * @param PatchRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param UpdateZoneVmExtensionPolicyRequest $request     A request to house fields associated with the call.
+     * @param array                              $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -468,37 +393,8 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patch(PatchRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function update(UpdateZoneVmExtensionPolicyRequest $request, array $callOptions = []): OperationResponse
     {
-        return $this->startApiCall('Patch', $request, $callOptions)->wait();
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource.
-     *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::testIamPermissionsAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/test_iam_permissions.php
-     *
-     * @param TestIamPermissionsRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                               $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return TestPermissionsResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function testIamPermissions(
-        TestIamPermissionsRegionCompositeHealthCheckRequest $request,
-        array $callOptions = []
-    ): TestPermissionsResponse {
-        return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
+        return $this->startApiCall('Update', $request, $callOptions)->wait();
     }
 }

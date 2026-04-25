@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2025 Google LLC
+ * Copyright 2026 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,18 +26,18 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Compute\V1\CancelInstanceGroupManagerResizeRequestRequest;
-use Google\Cloud\Compute\V1\Client\InstanceGroupManagerResizeRequestsClient;
-use Google\Cloud\Compute\V1\Client\ZoneOperationsClient;
-use Google\Cloud\Compute\V1\DeleteInstanceGroupManagerResizeRequestRequest;
-use Google\Cloud\Compute\V1\GetInstanceGroupManagerResizeRequestRequest;
-use Google\Cloud\Compute\V1\GetZoneOperationRequest;
-use Google\Cloud\Compute\V1\InsertInstanceGroupManagerResizeRequestRequest;
+use Google\Cloud\Compute\V1\CancelRegionInstanceGroupManagerResizeRequestRequest;
+use Google\Cloud\Compute\V1\Client\RegionInstanceGroupManagerResizeRequestsClient;
+use Google\Cloud\Compute\V1\Client\RegionOperationsClient;
+use Google\Cloud\Compute\V1\DeleteRegionInstanceGroupManagerResizeRequestRequest;
+use Google\Cloud\Compute\V1\GetRegionInstanceGroupManagerResizeRequestRequest;
+use Google\Cloud\Compute\V1\GetRegionOperationRequest;
+use Google\Cloud\Compute\V1\InsertRegionInstanceGroupManagerResizeRequestRequest;
 use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequest;
-use Google\Cloud\Compute\V1\InstanceGroupManagerResizeRequestsListResponse;
-use Google\Cloud\Compute\V1\ListInstanceGroupManagerResizeRequestsRequest;
+use Google\Cloud\Compute\V1\ListRegionInstanceGroupManagerResizeRequestsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\RegionInstanceGroupManagerResizeRequestsListResponse;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -46,7 +46,7 @@ use stdClass;
  *
  * @group gapic
  */
-class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
+class RegionInstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
 {
     /** @return TransportInterface */
     private function createTransport($deserialize = null)
@@ -62,20 +62,20 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
             ->getMock();
     }
 
-    /** @return InstanceGroupManagerResizeRequestsClient */
+    /** @return RegionInstanceGroupManagerResizeRequestsClient */
     private function createClient(array $options = [])
     {
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-        return new InstanceGroupManagerResizeRequestsClient($options);
+        return new RegionInstanceGroupManagerResizeRequestsClient($options);
     }
 
     /** @test */
     public function cancelTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -99,13 +99,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new CancelInstanceGroupManagerResizeRequestRequest())
+        $request = (new CancelRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->cancel($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -114,19 +114,22 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/Cancel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/Cancel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualApiRequestObject->getResizeRequest();
         $this->assertProtobufEquals($resizeRequest, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -137,7 +140,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -147,7 +150,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function cancelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -180,13 +183,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new CancelInstanceGroupManagerResizeRequestRequest())
+        $request = (new CancelRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->cancel($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -211,7 +214,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -235,13 +238,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new DeleteInstanceGroupManagerResizeRequestRequest())
+        $request = (new DeleteRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -250,19 +253,22 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/Delete', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/Delete',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualApiRequestObject->getResizeRequest();
         $this->assertProtobufEquals($resizeRequest, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -273,7 +279,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -283,7 +289,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -316,13 +322,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new DeleteInstanceGroupManagerResizeRequestRequest())
+        $request = (new DeleteRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->delete($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -357,50 +363,50 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
-        $region = 'region-934795532';
+        $region2 = 'region2-690338393';
         $resizeBy = 2144348098;
         $selfLink = 'selfLink-1691268851';
         $selfLinkWithId = 'selfLinkWithId-1029220862';
         $state = 'state109757585';
-        $zone2 = 'zone2-696322977';
+        $zone = 'zone3744684';
         $expectedResponse = new InstanceGroupManagerResizeRequest();
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
-        $expectedResponse->setRegion($region);
+        $expectedResponse->setRegion($region2);
         $expectedResponse->setResizeBy($resizeBy);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setSelfLinkWithId($selfLinkWithId);
         $expectedResponse->setState($state);
-        $expectedResponse->setZone($zone2);
+        $expectedResponse->setZone($zone);
         $transport->addResponse($expectedResponse);
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new GetInstanceGroupManagerResizeRequestRequest())
+        $request = (new GetRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->get($request);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/Get', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/Get', $actualFuncCall);
         $actualValue = $actualRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualRequestObject->getResizeRequest();
         $this->assertProtobufEquals($resizeRequest, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -428,13 +434,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new GetInstanceGroupManagerResizeRequestRequest())
+        $request = (new GetRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         try {
             $gapicClient->get($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -452,7 +458,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -477,12 +483,12 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $instanceGroupManagerResizeRequestResource = new InstanceGroupManagerResizeRequest();
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new InsertInstanceGroupManagerResizeRequestRequest())
+        $region = 'region-934795532';
+        $request = (new InsertRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setInstanceGroupManagerResizeRequestResource($instanceGroupManagerResizeRequestResource)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -491,19 +497,22 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/Insert', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/Insert',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getInstanceGroupManagerResizeRequestResource();
         $this->assertProtobufEquals($instanceGroupManagerResizeRequestResource, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -514,7 +523,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
@@ -524,7 +533,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -558,12 +567,12 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $instanceGroupManagerResizeRequestResource = new InstanceGroupManagerResizeRequest();
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new InsertInstanceGroupManagerResizeRequestRequest())
+        $region = 'region-934795532';
+        $request = (new InsertRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setInstanceGroupManagerResizeRequestResource($instanceGroupManagerResizeRequestResource)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->insert($request);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
@@ -593,13 +602,15 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $etag = 'etag3123477';
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new InstanceGroupManagerResizeRequest();
         $items = [$itemsElement];
-        $expectedResponse = new InstanceGroupManagerResizeRequestsListResponse();
+        $expectedResponse = new RegionInstanceGroupManagerResizeRequestsListResponse();
+        $expectedResponse->setEtag($etag);
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setNextPageToken($nextPageToken);
@@ -609,11 +620,11 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListInstanceGroupManagerResizeRequestsRequest())
+        $region = 'region-934795532';
+        $request = (new ListRegionInstanceGroupManagerResizeRequestsRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         $response = $gapicClient->list($request);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -623,13 +634,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/List', $actualFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/List', $actualFuncCall);
         $actualValue = $actualRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -657,11 +668,11 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
-        $zone = 'zone3744684';
-        $request = (new ListInstanceGroupManagerResizeRequestsRequest())
+        $region = 'region-934795532';
+        $request = (new ListRegionInstanceGroupManagerResizeRequestsRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setZone($zone);
+            ->setRegion($region);
         try {
             $gapicClient->list($request);
             // If the $gapicClient method call did not throw, fail the test
@@ -679,7 +690,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
     public function cancelAsyncTest()
     {
         $operationsTransport = $this->createTransport();
-        $operationsClient = new ZoneOperationsClient([
+        $operationsClient = new RegionOperationsClient([
             'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
@@ -703,13 +714,13 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         // Mock request
         $instanceGroupManager = 'instanceGroupManager-1361249341';
         $project = 'project-309310695';
+        $region = 'region-934795532';
         $resizeRequest = 'resizeRequest-319929852';
-        $zone = 'zone3744684';
-        $request = (new CancelInstanceGroupManagerResizeRequestRequest())
+        $request = (new CancelRegionInstanceGroupManagerResizeRequestRequest())
             ->setInstanceGroupManager($instanceGroupManager)
             ->setProject($project)
-            ->setResizeRequest($resizeRequest)
-            ->setZone($zone);
+            ->setRegion($region)
+            ->setResizeRequest($resizeRequest);
         $response = $gapicClient->cancel($request);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
@@ -718,19 +729,22 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(0, count($operationsRequestsEmpty));
         $actualApiFuncCall = $apiRequests[0]->getFuncCall();
         $actualApiRequestObject = $apiRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.InstanceGroupManagerResizeRequests/Cancel', $actualApiFuncCall);
+        $this->assertSame(
+            '/google.cloud.compute.v1.RegionInstanceGroupManagerResizeRequests/Cancel',
+            $actualApiFuncCall
+        );
         $actualValue = $actualApiRequestObject->getInstanceGroupManager();
         $this->assertProtobufEquals($instanceGroupManager, $actualValue);
         $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualApiRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
         $actualValue = $actualApiRequestObject->getResizeRequest();
         $this->assertProtobufEquals($resizeRequest, $actualValue);
-        $actualValue = $actualApiRequestObject->getZone();
-        $this->assertProtobufEquals($zone, $actualValue);
-        $expectedOperationsRequestObject = new GetZoneOperationRequest();
+        $expectedOperationsRequestObject = new GetRegionOperationRequest();
         $expectedOperationsRequestObject->setOperation($completeOperation->getName());
         $expectedOperationsRequestObject->setProject($project);
-        $expectedOperationsRequestObject->setZone($zone);
+        $expectedOperationsRequestObject->setRegion($region);
         $response->pollUntilComplete([
             'initialPollDelayMillis' => 1,
         ]);
@@ -741,7 +755,7 @@ class InstanceGroupManagerResizeRequestsClientTest extends GeneratedTest
         $this->assertSame(1, count($operationsRequests));
         $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
         $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.ZoneOperations/Get', $actualOperationsFuncCall);
+        $this->assertSame('/google.cloud.compute.v1.RegionOperations/Get', $actualOperationsFuncCall);
         $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());

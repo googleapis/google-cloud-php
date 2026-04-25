@@ -34,41 +34,43 @@ use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Cloud\Compute\V1\AggregatedListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\CompositeHealthCheck;
-use Google\Cloud\Compute\V1\CompositeHealthCheckHealth;
-use Google\Cloud\Compute\V1\DeleteRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetHealthRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\GetRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\InsertRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\ListRegionCompositeHealthChecksRequest;
-use Google\Cloud\Compute\V1\PatchRegionCompositeHealthCheckRequest;
-use Google\Cloud\Compute\V1\TestIamPermissionsRegionCompositeHealthCheckRequest;
+use Google\Cloud\Compute\V1\BackendBucket;
+use Google\Cloud\Compute\V1\DeleteRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\GetRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\InsertRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\ListRegionBackendBucketsRequest;
+use Google\Cloud\Compute\V1\ListUsableRegionBackendBucketsRequest;
+use Google\Cloud\Compute\V1\PatchRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\Policy;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendBucketRequest;
+use Google\Cloud\Compute\V1\TestIamPermissionsRegionBackendBucketRequest;
 use Google\Cloud\Compute\V1\TestPermissionsResponse;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Log\LoggerInterface;
 
 /**
- * Service Description: The RegionCompositeHealthChecks API.
+ * Service Description: The RegionBackendBuckets API.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods.
  *
- * @method PromiseInterface<PagedListResponse> aggregatedListAsync(AggregatedListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheck> getAsync(GetRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<CompositeHealthCheckHealth> getHealthAsync(GetHealthRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<PagedListResponse> listAsync(ListRegionCompositeHealthChecksRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
- * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionCompositeHealthCheckRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> deleteAsync(DeleteRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<BackendBucket> getAsync(GetRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> getIamPolicyAsync(GetIamPolicyRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> insertAsync(InsertRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listAsync(ListRegionBackendBucketsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> listUsableAsync(ListUsableRegionBackendBucketsRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<OperationResponse> patchAsync(PatchRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<Policy> setIamPolicyAsync(SetIamPolicyRegionBackendBucketRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<TestPermissionsResponse> testIamPermissionsAsync(TestIamPermissionsRegionBackendBucketRequest $request, array $optionalArgs = [])
  */
-final class RegionCompositeHealthChecksClient
+final class RegionBackendBucketsClient
 {
     use GapicClientTrait;
 
     /** The name of the service. */
-    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionCompositeHealthChecks';
+    private const SERVICE_NAME = 'google.cloud.compute.v1.RegionBackendBuckets';
 
     /**
      * The default address of the service.
@@ -99,16 +101,15 @@ final class RegionCompositeHealthChecksClient
         return [
             'serviceName' => self::SERVICE_NAME,
             'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/region_composite_health_checks_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/region_composite_health_checks_descriptor_config.php',
+            'clientConfig' => __DIR__ . '/../resources/region_backend_buckets_client_config.json',
+            'descriptorsConfigPath' => __DIR__ . '/../resources/region_backend_buckets_descriptor_config.php',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
                 'useJwtAccessWithScope' => false,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' =>
-                        __DIR__ . '/../resources/region_composite_health_checks_rest_client_config.php',
+                    'restClientConfigPath' => __DIR__ . '/../resources/region_backend_buckets_rest_client_config.php',
                 ],
             ],
         ];
@@ -213,9 +214,9 @@ final class RegionCompositeHealthChecksClient
      *           of your systems and data. It is recommended to create the credentials explicitly
      *           ```
      *           use Google\Auth\Credentials\ServiceAccountCredentials;
-     *           use Google\Cloud\Compute\V1\RegionCompositeHealthChecksClient;
+     *           use Google\Cloud\Compute\V1\RegionBackendBucketsClient;
      *           $creds = new ServiceAccountCredentials($scopes, $json);
-     *           $options = new RegionCompositeHealthChecksClient(['credentials' => $creds]);
+     *           $options = new RegionBackendBucketsClient(['credentials' => $creds]);
      *           ```
      *           {@see
      *           https://cloud.google.com/docs/authentication/external/externally-sourced-credentials}
@@ -277,47 +278,14 @@ final class RegionCompositeHealthChecksClient
     }
 
     /**
-     * Retrieves the list of all CompositeHealthCheck resources (all
-     * regional) available to the specified project.
+     * Deletes the specified regional BackendBucket resource.
      *
-     * To prevent failure, it is recommended that you set the
-     * `returnPartialSuccess` parameter to `true`.
+     * The async variant is {@see RegionBackendBucketsClient::deleteAsync()} .
      *
-     * The async variant is
-     * {@see RegionCompositeHealthChecksClient::aggregatedListAsync()} .
+     * @example samples/V1/RegionBackendBucketsClient/delete.php
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/aggregated_list.php
-     *
-     * @param AggregatedListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                            $callOptions {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return PagedListResponse
-     *
-     * @throws ApiException Thrown if the API call fails.
-     */
-    public function aggregatedList(
-        AggregatedListRegionCompositeHealthChecksRequest $request,
-        array $callOptions = []
-    ): PagedListResponse {
-        return $this->startApiCall('AggregatedList', $request, $callOptions);
-    }
-
-    /**
-     * Deletes the specified CompositeHealthCheck in the given region
-     *
-     * The async variant is {@see RegionCompositeHealthChecksClient::deleteAsync()} .
-     *
-     * @example samples/V1/RegionCompositeHealthChecksClient/delete.php
-     *
-     * @param DeleteRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param DeleteRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -330,20 +298,20 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function delete(DeleteRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function delete(DeleteRegionBackendBucketRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Delete', $request, $callOptions)->wait();
     }
 
     /**
-     * Returns the specified CompositeHealthCheck resource in the given region.
+     * Returns the specified regional BackendBucket resource.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getAsync()} .
+     * The async variant is {@see RegionBackendBucketsClient::getAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get.php
+     * @example samples/V1/RegionBackendBucketsClient/get.php
      *
-     * @param GetRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                $callOptions {
+     * @param GetRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                         $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -352,26 +320,25 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheck
+     * @return BackendBucket
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function get(GetRegionCompositeHealthCheckRequest $request, array $callOptions = []): CompositeHealthCheck
+    public function get(GetRegionBackendBucketRequest $request, array $callOptions = []): BackendBucket
     {
         return $this->startApiCall('Get', $request, $callOptions)->wait();
     }
 
     /**
-     * Gets the most recent health check results for this
-     * regional CompositeHealthCheck.
+     * Gets the access control policy for a resource. May be empty if no such
+     * policy or resource exists.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::getHealthAsync()}
-     * .
+     * The async variant is {@see RegionBackendBucketsClient::getIamPolicyAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/get_health.php
+     * @example samples/V1/RegionBackendBucketsClient/get_iam_policy.php
      *
-     * @param GetHealthRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                      $callOptions {
+     * @param GetIamPolicyRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -380,27 +347,25 @@ final class RegionCompositeHealthChecksClient
      *           {@see RetrySettings} for example usage.
      * }
      *
-     * @return CompositeHealthCheckHealth
+     * @return Policy
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function getHealth(
-        GetHealthRegionCompositeHealthCheckRequest $request,
-        array $callOptions = []
-    ): CompositeHealthCheckHealth {
-        return $this->startApiCall('GetHealth', $request, $callOptions)->wait();
+    public function getIamPolicy(GetIamPolicyRegionBackendBucketRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('GetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
-     * Create a CompositeHealthCheck in the specified project in the given region
+     * Creates a RegionBackendBucket in the specified project in the given scope
      * using the parameters that are included in the request.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::insertAsync()} .
+     * The async variant is {@see RegionBackendBucketsClient::insertAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/insert.php
+     * @example samples/V1/RegionBackendBucketsClient/insert.php
      *
-     * @param InsertRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                   $callOptions {
+     * @param InsertRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                            $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -413,20 +378,21 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function insert(InsertRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function insert(InsertRegionBackendBucketRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Insert', $request, $callOptions)->wait();
     }
 
     /**
-     * Lists the CompositeHealthChecks for a project in the given region.
+     * Retrieves the list of BackendBucket resources available to the specified
+     * project in the given region.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::listAsync()} .
+     * The async variant is {@see RegionBackendBucketsClient::listAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/list.php
+     * @example samples/V1/RegionBackendBucketsClient/list.php
      *
-     * @param ListRegionCompositeHealthChecksRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param ListRegionBackendBucketsRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -439,23 +405,52 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function list(ListRegionCompositeHealthChecksRequest $request, array $callOptions = []): PagedListResponse
+    public function list(ListRegionBackendBucketsRequest $request, array $callOptions = []): PagedListResponse
     {
         return $this->startApiCall('List', $request, $callOptions);
     }
 
     /**
-     * Updates the specified regional CompositeHealthCheck resource
-     * with the data included in the request.  This method supportsPATCH
+     * Retrieves a list of all usable backend buckets in the specified project in
+     * the given region.
+     *
+     * The async variant is {@see RegionBackendBucketsClient::listUsableAsync()} .
+     *
+     * @example samples/V1/RegionBackendBucketsClient/list_usable.php
+     *
+     * @param ListUsableRegionBackendBucketsRequest $request     A request to house fields associated with the call.
+     * @param array                                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function listUsable(
+        ListUsableRegionBackendBucketsRequest $request,
+        array $callOptions = []
+    ): PagedListResponse {
+        return $this->startApiCall('ListUsable', $request, $callOptions);
+    }
+
+    /**
+     * Updates the specified  BackendBucket resource with the data included in the
+     * request. This method supportsPATCH
      * semantics and uses theJSON merge
      * patch format and processing rules.
      *
-     * The async variant is {@see RegionCompositeHealthChecksClient::patchAsync()} .
+     * The async variant is {@see RegionBackendBucketsClient::patchAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/patch.php
+     * @example samples/V1/RegionBackendBucketsClient/patch.php
      *
-     * @param PatchRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                  $callOptions {
+     * @param PatchRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                           $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -468,21 +463,48 @@ final class RegionCompositeHealthChecksClient
      *
      * @throws ApiException Thrown if the API call fails.
      */
-    public function patch(PatchRegionCompositeHealthCheckRequest $request, array $callOptions = []): OperationResponse
+    public function patch(PatchRegionBackendBucketRequest $request, array $callOptions = []): OperationResponse
     {
         return $this->startApiCall('Patch', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource.
+     * Replaces any existing policy.
+     *
+     * The async variant is {@see RegionBackendBucketsClient::setIamPolicyAsync()} .
+     *
+     * @example samples/V1/RegionBackendBucketsClient/set_iam_policy.php
+     *
+     * @param SetIamPolicyRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                                  $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return Policy
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function setIamPolicy(SetIamPolicyRegionBackendBucketRequest $request, array $callOptions = []): Policy
+    {
+        return $this->startApiCall('SetIamPolicy', $request, $callOptions)->wait();
     }
 
     /**
      * Returns permissions that a caller has on the specified resource.
      *
      * The async variant is
-     * {@see RegionCompositeHealthChecksClient::testIamPermissionsAsync()} .
+     * {@see RegionBackendBucketsClient::testIamPermissionsAsync()} .
      *
-     * @example samples/V1/RegionCompositeHealthChecksClient/test_iam_permissions.php
+     * @example samples/V1/RegionBackendBucketsClient/test_iam_permissions.php
      *
-     * @param TestIamPermissionsRegionCompositeHealthCheckRequest $request     A request to house fields associated with the call.
-     * @param array                                               $callOptions {
+     * @param TestIamPermissionsRegionBackendBucketRequest $request     A request to house fields associated with the call.
+     * @param array                                        $callOptions {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
@@ -496,7 +518,7 @@ final class RegionCompositeHealthChecksClient
      * @throws ApiException Thrown if the API call fails.
      */
     public function testIamPermissions(
-        TestIamPermissionsRegionCompositeHealthCheckRequest $request,
+        TestIamPermissionsRegionBackendBucketRequest $request,
         array $callOptions = []
     ): TestPermissionsResponse {
         return $this->startApiCall('TestIamPermissions', $request, $callOptions)->wait();
