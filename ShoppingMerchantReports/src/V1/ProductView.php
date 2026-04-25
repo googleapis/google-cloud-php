@@ -10,12 +10,13 @@ use Google\Protobuf\RepeatedField;
 
 /**
  * Fields available for query in `product_view` table.
- * Products in the current inventory. Products in this table are the same as in
- * Products sub-API but not all product attributes from Products sub-API are
- * available for query in this table. In contrast to Products sub-API, this
- * table allows to filter the returned list of products by product attributes.
- * To retrieve a single product by `id` or list all products, Products sub-API
- * should be used.
+ * Products in the current inventory. Products in this table are the
+ * same as a [Product resource in Products
+ * sub-API](https://developers.google.com/merchant/api/reference/rest/products_v1/accounts.products)
+ * but not all product attributes from Products sub-API are available for query
+ * in this table. In contrast to Products sub-API, this table allows to filter
+ * the returned list of products by product attributes. To retrieve a single
+ * product by `id` or list all products, Products sub-API should be used.
  * Values are only set for fields requested explicitly in the request's search
  * query.
  *
@@ -199,11 +200,36 @@ class ProductView extends \Google\Protobuf\Internal\Message
      */
     protected $expiration_date = null;
     /**
-     * Aggregated status.
+     * Aggregated status across all reporting contexts.
+     * Reporting contexts included in the computation of the aggregated status can
+     * be restricted using a filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      */
     protected $aggregated_reporting_context_status = null;
+    /**
+     * Detailed product status per reporting context.
+     * Reporting contexts included in this list can be restricted using a filter
+     * on the `reporting_context` field.
+     * Equivalent to
+     * [`ProductStatus.destination_statuses`][google.shopping.merchant.products.v1.ProductStatus]
+     * in Products API.
+     * **This field cannot be used for sorting or filtering the results.**
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.StatusPerReportingContext status_per_reporting_context = 32;</code>
+     */
+    private $status_per_reporting_context;
+    /**
+     * Reporting context to restrict the query to.
+     * Restricts the reporting contexts returned in `status_per_reporting_context`
+     * and `item_issues`, and used to compute
+     * `aggregated_reporting_context_status`.
+     * **This field can only be used in the `WHERE` clause and cannot be selected
+     * in the `SELECT` clause.**
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 33;</code>
+     */
+    protected $reporting_context = null;
     /**
      * List of item issues for the product.
      * **This field cannot be used for sorting the results.**
@@ -222,9 +248,8 @@ class ProductView extends \Google\Protobuf\Internal\Message
      */
     protected $click_potential = 0;
     /**
-     * Rank of the product based on its click potential. A product with
-     * `click_potential_rank` 1 has the highest click potential among the
-     * merchant's products that fulfill the search query conditions.
+     * Normalized click potential of the product. Values range from 1 to 1000,
+     * where 1 is the highest click potential and 1000 is the theoretical lowest.
      *
      * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
      */
@@ -308,7 +333,24 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $expiration_date
      *           Expiration date for the product, specified on insertion.
      *     @type int $aggregated_reporting_context_status
-     *           Aggregated status.
+     *           Aggregated status across all reporting contexts.
+     *           Reporting contexts included in the computation of the aggregated status can
+     *           be restricted using a filter on the `reporting_context` field.
+     *     @type \Google\Shopping\Merchant\Reports\V1\ProductView\StatusPerReportingContext[] $status_per_reporting_context
+     *           Detailed product status per reporting context.
+     *           Reporting contexts included in this list can be restricted using a filter
+     *           on the `reporting_context` field.
+     *           Equivalent to
+     *           [`ProductStatus.destination_statuses`][google.shopping.merchant.products.v1.ProductStatus]
+     *           in Products API.
+     *           **This field cannot be used for sorting or filtering the results.**
+     *     @type int $reporting_context
+     *           Reporting context to restrict the query to.
+     *           Restricts the reporting contexts returned in `status_per_reporting_context`
+     *           and `item_issues`, and used to compute
+     *           `aggregated_reporting_context_status`.
+     *           **This field can only be used in the `WHERE` clause and cannot be selected
+     *           in the `SELECT` clause.**
      *     @type \Google\Shopping\Merchant\Reports\V1\ProductView\ItemIssue[] $item_issues
      *           List of item issues for the product.
      *           **This field cannot be used for sorting the results.**
@@ -319,9 +361,8 @@ class ProductView extends \Google\Protobuf\Internal\Message
      *           Estimated performance potential compared to highest performing products of
      *           the merchant.
      *     @type int|string $click_potential_rank
-     *           Rank of the product based on its click potential. A product with
-     *           `click_potential_rank` 1 has the highest click potential among the
-     *           merchant's products that fulfill the search query conditions.
+     *           Normalized click potential of the product. Values range from 1 to 1000,
+     *           where 1 is the highest click potential and 1000 is the theoretical lowest.
      * }
      */
     public function __construct($data = NULL) {
@@ -1294,7 +1335,9 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Aggregated status.
+     * Aggregated status across all reporting contexts.
+     * Reporting contexts included in the computation of the aggregated status can
+     * be restricted using a filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      * @return int
@@ -1315,7 +1358,9 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Aggregated status.
+     * Aggregated status across all reporting contexts.
+     * Reporting contexts included in the computation of the aggregated status can
+     * be restricted using a filter on the `reporting_context` field.
      *
      * Generated from protobuf field <code>optional .google.shopping.merchant.reports.v1.ProductView.AggregatedReportingContextStatus aggregated_reporting_context_status = 26;</code>
      * @param int $var
@@ -1325,6 +1370,90 @@ class ProductView extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Shopping\Merchant\Reports\V1\ProductView\AggregatedReportingContextStatus::class);
         $this->aggregated_reporting_context_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Detailed product status per reporting context.
+     * Reporting contexts included in this list can be restricted using a filter
+     * on the `reporting_context` field.
+     * Equivalent to
+     * [`ProductStatus.destination_statuses`][google.shopping.merchant.products.v1.ProductStatus]
+     * in Products API.
+     * **This field cannot be used for sorting or filtering the results.**
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.StatusPerReportingContext status_per_reporting_context = 32;</code>
+     * @return RepeatedField<\Google\Shopping\Merchant\Reports\V1\ProductView\StatusPerReportingContext>
+     */
+    public function getStatusPerReportingContext()
+    {
+        return $this->status_per_reporting_context;
+    }
+
+    /**
+     * Detailed product status per reporting context.
+     * Reporting contexts included in this list can be restricted using a filter
+     * on the `reporting_context` field.
+     * Equivalent to
+     * [`ProductStatus.destination_statuses`][google.shopping.merchant.products.v1.ProductStatus]
+     * in Products API.
+     * **This field cannot be used for sorting or filtering the results.**
+     *
+     * Generated from protobuf field <code>repeated .google.shopping.merchant.reports.v1.ProductView.StatusPerReportingContext status_per_reporting_context = 32;</code>
+     * @param \Google\Shopping\Merchant\Reports\V1\ProductView\StatusPerReportingContext[] $var
+     * @return $this
+     */
+    public function setStatusPerReportingContext($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Shopping\Merchant\Reports\V1\ProductView\StatusPerReportingContext::class);
+        $this->status_per_reporting_context = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Reporting context to restrict the query to.
+     * Restricts the reporting contexts returned in `status_per_reporting_context`
+     * and `item_issues`, and used to compute
+     * `aggregated_reporting_context_status`.
+     * **This field can only be used in the `WHERE` clause and cannot be selected
+     * in the `SELECT` clause.**
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 33;</code>
+     * @return int
+     */
+    public function getReportingContext()
+    {
+        return isset($this->reporting_context) ? $this->reporting_context : 0;
+    }
+
+    public function hasReportingContext()
+    {
+        return isset($this->reporting_context);
+    }
+
+    public function clearReportingContext()
+    {
+        unset($this->reporting_context);
+    }
+
+    /**
+     * Reporting context to restrict the query to.
+     * Restricts the reporting contexts returned in `status_per_reporting_context`
+     * and `item_issues`, and used to compute
+     * `aggregated_reporting_context_status`.
+     * **This field can only be used in the `WHERE` clause and cannot be selected
+     * in the `SELECT` clause.**
+     *
+     * Generated from protobuf field <code>optional .google.shopping.type.ReportingContext.ReportingContextEnum reporting_context = 33;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReportingContext($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Shopping\Type\ReportingContext\ReportingContextEnum::class);
+        $this->reporting_context = $var;
 
         return $this;
     }
@@ -1392,9 +1521,8 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rank of the product based on its click potential. A product with
-     * `click_potential_rank` 1 has the highest click potential among the
-     * merchant's products that fulfill the search query conditions.
+     * Normalized click potential of the product. Values range from 1 to 1000,
+     * where 1 is the highest click potential and 1000 is the theoretical lowest.
      *
      * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
      * @return int|string
@@ -1415,9 +1543,8 @@ class ProductView extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Rank of the product based on its click potential. A product with
-     * `click_potential_rank` 1 has the highest click potential among the
-     * merchant's products that fulfill the search query conditions.
+     * Normalized click potential of the product. Values range from 1 to 1000,
+     * where 1 is the highest click potential and 1000 is the theoretical lowest.
      *
      * Generated from protobuf field <code>optional int64 click_potential_rank = 30;</code>
      * @param int|string $var
