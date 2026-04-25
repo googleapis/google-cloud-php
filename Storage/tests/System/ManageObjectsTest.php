@@ -453,12 +453,12 @@ class ManageObjectsTest extends StorageTestCase
         try {
             $activeFile = $bucket->upload('content', [
                 'name' => 'test-active.txt',
-                'metadata' => ['contexts' => ['custom' => ['status' => ['value' => 'active']]]]
+                'contexts' => ['custom' => ['status' => ['value' => 'active']]]
             ]);
 
             $inactiveFile = $bucket->upload('content', [
                 'name' => 'test-inactive.txt',
-                'metadata' => ['contexts' => ['custom' => ['status' => ['value' => 'inactive']]]]
+                'contexts' => ['custom' => ['status' => ['value' => 'inactive']]]
             ]);
 
             $noneFile = $bucket->upload('content', [
