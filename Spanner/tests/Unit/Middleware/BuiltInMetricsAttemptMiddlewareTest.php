@@ -109,13 +109,15 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $clientId = 'test-client-id';
         $version = '2.5.1';
         $expectedClientName = 'spanner-php/2.5.1';
+        $location = 'us-central1';
 
         $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
             $projectId,
-            $version
+            $version,
+            $location
         );
 
         $call = $this->prophesize(Call::class);
@@ -138,7 +140,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             'client_uid' => $clientId,
             'client_name' => $expectedClientName,
             'instance_config' => 'unknown',
-            'location' => 'global'
+            'location' => $location
         ];
 
         $this->attemptCounter->add(1, $expectedLabels)->shouldBeCalled();
@@ -168,7 +170,8 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->meter->reveal(),
             'client',
             'project',
-            'name'
+            'name',
+            'global'
         );
 
         $call = $this->prophesize(Call::class);
@@ -201,7 +204,8 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->meter->reveal(),
             'client',
             'project',
-            'name'
+            'name',
+            'global'
         );
 
         $call = $this->prophesize(Call::class);
@@ -230,7 +234,8 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             $this->meter->reveal(),
             'client',
             'project',
-            'name'
+            'name',
+            'global'
         );
 
         $call = $this->prophesize(Call::class);

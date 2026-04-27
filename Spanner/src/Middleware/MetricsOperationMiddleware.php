@@ -58,9 +58,9 @@ class MetricsOperationMiddleware implements MiddlewareInterface
     private string $projectId;
     private string $clientId;
     private string $clientName;
+    private string $location;
 
     private const INSTANCE_CONFIG = 'unknown';
-    private const LOCATION_LABEL = 'global';
 
     /**
      * Creates a middleware that handles an entire operation for an RPC call
@@ -69,13 +69,15 @@ class MetricsOperationMiddleware implements MiddlewareInterface
      * @param MeterInterface $meter
      * @param string $clientId
      * @param string $projectId
+     * @param string $location
      */
     public function __construct(
         callable $nextHandler,
         MeterInterface $meter,
         string $clientId,
         string $projectId,
-        string $clientName
+        string $clientName,
+        string $location
     ) {
         $this->nextHandler = $nextHandler;
         $this->operationLatencyHistogram = $meter->createHistogram(
@@ -91,6 +93,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         $this->clientId = $clientId;
         $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
+        $this->location = $location;
     }
 
     public function __invoke(Call $call, array $options)
@@ -163,7 +166,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
-            'location' => self::LOCATION_LABEL
+            'location' => $this->location
         ];
 
         $this->operationCountCounter->add(1, $labels);
