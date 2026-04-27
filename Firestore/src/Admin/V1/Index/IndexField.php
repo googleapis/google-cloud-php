@@ -45,6 +45,10 @@ class IndexField extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig $vector_config
      *           Indicates that this field supports nearest neighbor and distance
      *           operations on vector.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField\SearchConfig $search_config
+     *           Indicates that this field supports search operations. This field
+     *           is only currently supported for indexes with MONGODB_COMPATIBLE_API
+     *           ApiScope.
      * }
      */
     public function __construct($data = NULL) {
@@ -175,6 +179,41 @@ class IndexField extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\VectorConfig::class);
         $this->writeOneof(4, $var);
+
+        return $this;
+    }
+
+    /**
+     * Indicates that this field supports search operations. This field
+     * is only currently supported for indexes with MONGODB_COMPATIBLE_API
+     * ApiScope.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.SearchConfig search_config = 5;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Index\IndexField\SearchConfig|null
+     */
+    public function getSearchConfig()
+    {
+        return $this->readOneof(5);
+    }
+
+    public function hasSearchConfig()
+    {
+        return $this->hasOneof(5);
+    }
+
+    /**
+     * Indicates that this field supports search operations. This field
+     * is only currently supported for indexes with MONGODB_COMPATIBLE_API
+     * ApiScope.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Index.IndexField.SearchConfig search_config = 5;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Index\IndexField\SearchConfig $var
+     * @return $this
+     */
+    public function setSearchConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Index\IndexField\SearchConfig::class);
+        $this->writeOneof(5, $var);
 
         return $this;
     }
