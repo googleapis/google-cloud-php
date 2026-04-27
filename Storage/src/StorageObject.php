@@ -231,7 +231,8 @@ class StorageObject
      *           This is the retention configuration set for this object.
      *     @type string $retention.mode The mode of the retention configuration,
      *           which can be either `"Unlocked"` or `"Locked"`.
-     *     @type array $contexts Object contexts. See the [API docs](https://docs.cloud.google.com/storage/docs/use-object-contexts) for more details.
+     *     @type array $contexts Object contexts. See at the
+     *           [API docs](https://docs.cloud.google.com/storage/docs/use-object-contexts) for more details.
      *     @type string $contexts.custom.{key}.createTime The time the context
      *           was created in RFC 3339 format. **(read only)**
      *     @type string $contexts.custom.{key}.updateTime The time the context
