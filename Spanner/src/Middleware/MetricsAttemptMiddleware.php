@@ -65,9 +65,9 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
     private string $projectId;
     private string $clientId;
     private string $clientName;
+    private string $location;
 
     private const INSTANCE_CONFIG = 'unknown';
-    private const LOCATION_LABEL = 'global';
 
     /**
      * Creates a middleware that tracks all the attempts of an RPC call
@@ -77,6 +77,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
      * @param string $clientId
      * @param string $projectId
      * @param string $clientName
+     * @param string $location
      */
     public function __construct(
         callable $nextHandler,
@@ -84,6 +85,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         string $clientId,
         string $projectId,
         string $clientName,
+        string $location
     ) {
         $this->nextHandler = $nextHandler;
         $this->attemptLatencyHistogram = $meter->createHistogram(
@@ -119,6 +121,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $this->clientId = $clientId;
         $this->projectId = $projectId;
         $this->clientName = 'spanner-php/' . $clientName;
+        $this->location = $location;
     }
 
     public function __invoke(Call $call, array $options)
@@ -195,6 +198,15 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $this->attemptLatencyHistogram->record($duration, $labels);
     }
 
+    /**
+     * Records the Gfe and Afe latency
+     *
+     * @param mixed $metadata
+     * @param Call $call
+     * @param array $options
+     *
+     * @return void
+     */
     private function recordGfeAndAfeLatency($metadata, Call $call, array $options): void
     {
         $serverTiming = $metadata['server-timing'][0] ?? null;
@@ -226,6 +238,15 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         }
     }
 
+    /**
+     * Creates an array containing the labels for metrics.
+     *
+     * @param string $method
+     * @param array $options
+     * @param int $code
+     *
+     * @return array
+     */
     private function getMetricLabels(string $method, array $options, int $code): array
     {
         $codeName = Code::name($code);
@@ -248,10 +269,19 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             'client_uid' => $this->clientId,
             'client_name' => $this->clientName,
             'instance_config' => self::INSTANCE_CONFIG,
-            'location' => self::LOCATION_LABEL
+            'location' => $this->location
         ];
     }
 
+    /**
+     * Records an GFE and/or an AFE error
+     *
+     * @param Exception $e
+     * @param Call $call
+     * @param array $options
+     *
+     * @return void
+     */
     private function recordGfeAndAfeError(Exception $e, Call $call, array $options): void
     {
         if ($e instanceof ApiException) {

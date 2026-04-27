@@ -17,11 +17,14 @@
 
 namespace Google\Cloud\Spanner;
 
+use Exception;
 use Google\ApiCore\ClientOptionsTrait;
 use Google\ApiCore\Middleware\MiddlewareInterface;
 use Google\ApiCore\Options\CallOptions;
 use Google\ApiCore\ValidationException;
+use Google\Auth\Credentials\GCECredentials;
 use Google\Cloud\Core\ApiHelperTrait;
+use Google\Cloud\Core\Compute\Metadata;
 use Google\Cloud\Core\DetectProjectIdTrait;
 use Google\Cloud\Core\EmulatorTrait;
 use Google\Cloud\Core\Exception\GoogleException;
@@ -1051,6 +1054,7 @@ class SpannerClient
     {
         $metricsClient = $this->pluck('metricServiceClient', $options, false);
         $timeoutMillis = $this->pluck('metricsTimeoutMillis', $options, false) ?? 100;
+        $location = $this->getLocation();
 
         if ($this->pluck('disableBuiltInMetrics', $options, false)) {
             return;
@@ -1090,23 +1094,25 @@ class SpannerClient
         $this->meter = $this->meterProvider->getMeter('google-cloud-spanner');
         ShutdownHandler::register([$this->meterProvider, 'shutdown']);
 
-        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
+        $attemptMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
             return new MetricsAttemptMiddleware(
                 $handler,
                 $this->meter,
                 $metricsClientId,
                 $this->projectId,
-                $this->clientVersion()
+                $this->clientVersion(),
+                $location
             );
         };
 
-        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId) {
+        $operationMetricsMiddleware = function (MiddlewareInterface $handler) use ($metricsClientId, $location) {
             return new MetricsOperationMiddleware(
                 $handler,
                 $this->meter,
                 $metricsClientId,
                 $this->projectId,
-                $this->clientVersion()
+                $this->clientVersion(),
+                $location
             );
         };
 
@@ -1122,5 +1128,45 @@ class SpannerClient
     private function clientVersion(): string
     {
         return trim(file_get_contents(__DIR__ . '/../VERSION'));
+    }
+
+    /**
+     * Gets the current location for the client for GCP or 'global' as a fallback.
+     *
+     * @return string
+     */
+    private function getLocation(): string
+    {
+        $location = 'global';
+        if (!GCECredentials::onGce()) {
+            return $location;
+        }
+
+        try {
+            $metadata = new Metadata();
+
+            $location = $metadata->get('instance/attributes/cluster-location');
+            if ($location) {
+                return $location;
+            }
+
+            $region = $metadata->get('instance/region');
+            if ($region) {
+                // Region is returned as "projects/[NUM]/regions/[REGION-NAME]"
+                return substr($region, strrpos($region, '/') + 1);
+            }
+
+            $zone = $metadata->get('instance/zone');
+            if ($zone) {
+                // Zone is "projects/[NUM]/zones/[ZONE-NAME]"
+                $zoneName = substr($zone, strrpos($zone, '/') + 1);
+                $lastHyphen = strrpos($zoneName, '-');
+                return ($lastHyphen !== false) ? substr($zoneName, 0, $lastHyphen) : $zoneName;
+            }
+        } catch (Exception $e) {
+            // avoid crashing the client in case of a metadata error
+        }
+
+        return $location;
     }
 }
