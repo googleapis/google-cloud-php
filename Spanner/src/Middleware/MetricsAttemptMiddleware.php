@@ -57,6 +57,8 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
     private CounterInterface $attemptCountCounter;
     private HistogramInterface $attemptGfeHistogram;
     private CounterInterface $gfeConnectivityErrorCounter;
+    private HistogramInterface $attemptAfeHistogram;
+    private CounterInterface $afeConnectivityErrorCounter;
 
     /** @var callable */
     private $nextHandler;
@@ -104,9 +106,19 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
             '1',
             'Number of RPC attempts that failed to reach the GFE or returned no GFE headers'
         );
+        $this->attemptAfeHistogram = $meter->createHistogram(
+            'afe_latencies',
+            'ms',
+            'Latency between Spanner Spanner AFE receiving and returning a response.'
+        );
+        $this->afeConnectivityErrorCounter = $meter->createCounter(
+            'afe_connectivity_error_count',
+            '1',
+            'Number of connectivity errors for Spanner AFE'
+        );
         $this->clientId = $clientId;
         $this->projectId = $projectId;
-        $this->clientName = $clientName;
+        $this->clientName = 'spanner-php/' . $clientName;
     }
 
     public function __invoke(Call $call, array $options)
@@ -121,7 +133,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
 
         // This gets the metadata on an ok status meaning we can get the GFE latency header for unary calls
         $options['metadataCallback'] = function ($metadata) use ($originalCallback, $call, $options) {
-            $this->recordGfeLatency($metadata, $call, $options);
+            $this->recordGfeAndAfeLatency($metadata, $call, $options);
             if ($originalCallback) {
                 $originalCallback($metadata);
             }
@@ -135,13 +147,13 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         } catch (Exception $e) {
             // In case that the call is not a unary call and it is a streaming call error.
             $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options);
-            $this->recordGfeError($e, $call, $options);
+            $this->recordGfeAndAfeError($e, $call, $options);
             throw $e;
         }
 
         if ($response instanceof ServerStream) {
             $this->recordAttempt($startTime, Code::OK, $call->getMethod(), $options);
-            $this->recordGfeLatency($response->getServerStreamingCall()->getMetadata(), $call, $options);
+            $this->recordGfeAndAfeLatency($response->getServerStreamingCall()->getMetadata(), $call, $options);
         }
 
         if ($response instanceof PromiseInterface) {
@@ -152,7 +164,7 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
                 },
                 function ($e) use ($startTime, $options, $call) {
                     $this->recordAttempt($startTime, $e->getCode(), $call->getMethod(), $options);
-                    $this->recordGfeError($e, $call, $options);
+                    $this->recordGfeAndAfeError($e, $call, $options);
                     throw $e;
                 }
             );
@@ -183,23 +195,34 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         $this->attemptLatencyHistogram->record($duration, $labels);
     }
 
-    private function recordGfeLatency($metadata, Call $call, array $options): void
+    private function recordGfeAndAfeLatency($metadata, Call $call, array $options): void
     {
         $serverTiming = $metadata['server-timing'][0] ?? null;
         $gfeLatency = null;
+        $afeLatency = null;
 
         if ($serverTiming) {
             if (preg_match('/gfet4t7;\s*dur=(\d+(\.\d+)?)/', $serverTiming, $matches)) {
                 $gfeLatency = (float) $matches[1];
             }
+
+            if (preg_match('/afe;\s*dur=(\d+(\.\d+)?)/', $serverTiming, $matches)) {
+                $afeLatency = (float) $matches[1];
+            }
         }
 
         $labels = $this->getMetricLabels($call->getMethod(), $options, Code::OK);
 
-        if ($gfeLatency !== null) {
+        if (!is_null($gfeLatency)) {
             $this->attemptGfeHistogram->record($gfeLatency, $labels);
         } else {
             $this->gfeConnectivityErrorCounter->add(1, $labels);
+        }
+
+        if (!is_null($afeLatency)) {
+            $this->attemptAfeHistogram->record($afeLatency, $labels);
+        } else {
+            $this->afeConnectivityErrorCounter->add(1, $labels);
         }
     }
 
@@ -229,12 +252,12 @@ class MetricsAttemptMiddleware implements MiddlewareInterface
         ];
     }
 
-    private function recordGfeError(Exception $e, Call $call, array $options): void
+    private function recordGfeAndAfeError(Exception $e, Call $call, array $options): void
     {
         if ($e instanceof ApiException) {
-            $this->recordGfeLatency($e->getMetadata() ?? [], $call, $options);
+            $this->recordGfeAndAfeLatency($e->getMetadata() ?? [], $call, $options);
         } else {
-            $this->recordGfeLatency([], $call, $options);
+            $this->recordGfeAndAfeLatency([], $call, $options);
         }
     }
 }

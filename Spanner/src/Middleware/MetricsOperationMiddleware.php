@@ -90,7 +90,7 @@ class MetricsOperationMiddleware implements MiddlewareInterface
         );
         $this->clientId = $clientId;
         $this->projectId = $projectId;
-        $this->clientName = $clientName;
+        $this->clientName = 'spanner-php/' . $clientName;
     }
 
     public function __invoke(Call $call, array $options)

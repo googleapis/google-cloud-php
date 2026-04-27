@@ -66,14 +66,15 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
     {
         $projectId = 'test-project';
         $clientId = 'test-client-id';
-        $clientName = 'php-spanner/1.0.0';
+        $version = '2.5.1';
+        $expectedClientName = 'spanner-php/2.5.1';
 
         $middleware = new MetricsOperationMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
             $projectId,
-            $clientName
+            $version
         );
 
         $call = $this->prophesize(Call::class);
@@ -93,7 +94,7 @@ class BuiltInMetricsOperationMiddlewareTest extends TestCase
             'database' => 'd',
             'project_id' => $projectId,
             'client_uid' => $clientId,
-            'client_name' => $clientName,
+            'client_name' => $expectedClientName,
             'instance_config' => 'unknown',
             'location' => 'global'
         ];

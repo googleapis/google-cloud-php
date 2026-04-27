@@ -43,6 +43,8 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
     private $attemptCounter;
     private $gfeHistogram;
     private $gfeErrorCounter;
+    private $afeHistogram;
+    private $afeErrorCounter;
     private $nextHandler;
 
     public function setUp(): void
@@ -51,6 +53,8 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->attemptCounter = $this->prophesize(CounterInterface::class);
         $this->gfeHistogram = $this->prophesize(HistogramInterface::class);
         $this->gfeErrorCounter = $this->prophesize(CounterInterface::class);
+        $this->afeHistogram = $this->prophesize(HistogramInterface::class);
+        $this->afeErrorCounter = $this->prophesize(CounterInterface::class);
         $this->meter = $this->prophesize(MeterInterface::class);
 
         $this->meter->createHistogram(
@@ -77,9 +81,23 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             Argument::any()
         )->willReturn($this->gfeErrorCounter->reveal());
 
+        $this->meter->createHistogram(
+            'afe_latencies',
+            'ms',
+            Argument::any()
+        )->willReturn($this->afeHistogram->reveal());
+
+        $this->meter->createCounter(
+            'afe_connectivity_error_count',
+            '1',
+            Argument::any()
+        )->willReturn($this->afeErrorCounter->reveal());
+
         $this->nextHandler = function ($call, $options) {
             if (isset($options['metadataCallback'])) {
-                $options['metadataCallback'](['server-timing' => ['gfet4t7; dur=12.5']]);
+                $options['metadataCallback']([
+                    'server-timing' => ['gfet4t7; dur=12.5, afe; dur=8.2']
+                ]);
             }
             return new FulfilledPromise('ok');
         };
@@ -89,14 +107,15 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
     {
         $projectId = 'test-project';
         $clientId = 'test-client-id';
-        $clientName = 'php-spanner/1.0.0';
+        $version = '2.5.1';
+        $expectedClientName = 'spanner-php/2.5.1';
 
         $middleware = new MetricsAttemptMiddleware(
             $this->nextHandler,
             $this->meter->reveal(),
             $clientId,
             $projectId,
-            $clientName
+            $version
         );
 
         $call = $this->prophesize(Call::class);
@@ -117,7 +136,7 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
             'database' => 'd',
             'project_id' => $projectId,
             'client_uid' => $clientId,
-            'client_name' => $clientName,
+            'client_name' => $expectedClientName,
             'instance_config' => 'unknown',
             'location' => 'global'
         ];
@@ -125,8 +144,9 @@ class BuiltInMetricsAttemptMiddlewareTest extends TestCase
         $this->attemptCounter->add(1, $expectedLabels)->shouldBeCalled();
         $this->attemptHistogram->record(Argument::type('float'), $expectedLabels)->shouldBeCalled();
 
-        // GFE metrics
+        // GFE and AFE metrics
         $this->gfeHistogram->record(12.5, $expectedLabels)->shouldBeCalled();
+        $this->afeHistogram->record(8.2, $expectedLabels)->shouldBeCalled();
 
         $promise = $middleware($call->reveal(), $options);
         $promise->wait();
