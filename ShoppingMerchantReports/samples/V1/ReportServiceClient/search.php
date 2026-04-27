@@ -41,7 +41,7 @@ use Google\Shopping\Merchant\Reports\V1\SearchRequest;
  *                       For details on how to construct your query, see the [Query Language
  *                       guide](/merchant/api/guides/reports/query-language). For the full list of
  *                       available tables and fields, see the [Available
- *                       fields](/merchant/api/reference/rest/reports_v1/accounts.reports).
+ *                       fields][google.shopping.merchant.reports.v1.ReportRow].
  */
 function search_sample(string $parent, string $query): void
 {
