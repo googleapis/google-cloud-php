@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\GPBUtil;
 use Google\Protobuf\RepeatedField;
 
 /**
- * Output only. [Output Only] Encountered errors.
+ * Output only. Encountered errors.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Error</code>
  */

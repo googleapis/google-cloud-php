@@ -39,6 +39,13 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     protected $commitment = null;
     /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     */
+    protected $confidential_compute_type = null;
+    /**
      * Output only. [Output Only] Creation timestamp inRFC3339
      * text format.
      *
@@ -236,6 +243,9 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type string $commitment
      *           Output only. [Output Only] Full or partial URL to a parent commitment. This field
      *           displays for reservations that are tied to a commitment.
+     *     @type string $confidential_compute_type
+     *           
+     *           Check the ConfidentialComputeType enum for the list of possible values.
      *     @type string $creation_timestamp
      *           Output only. [Output Only] Creation timestamp inRFC3339
      *           text format.
@@ -438,6 +448,44 @@ class Reservation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->commitment = $var;
+
+        return $this;
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @return string
+     */
+    public function getConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type) ? $this->confidential_compute_type : '';
+    }
+
+    public function hasConfidentialComputeType()
+    {
+        return isset($this->confidential_compute_type);
+    }
+
+    public function clearConfidentialComputeType()
+    {
+        unset($this->confidential_compute_type);
+    }
+
+    /**
+     * 
+     * Check the ConfidentialComputeType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string confidential_compute_type = 386447257;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setConfidentialComputeType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->confidential_compute_type = $var;
 
         return $this;
     }

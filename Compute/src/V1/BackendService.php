@@ -89,7 +89,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * added/removed from the destination service. This field specifies parameters
      * that control consistent hashing. This field is only applicable whenlocalityLbPolicy is set to MAGLEV orRING_HASH.
      * This field is applicable to either:
-     *    - A regional backend service with the service_protocol set to HTTP,
+     *    - A regional backend service with the service protocol set to HTTP,
      *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *    INTERNAL_MANAGED.
      *    - A global backend service with the
@@ -355,7 +355,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
      *    This field is applicable to either:
-     *       - A regional backend service with the service_protocol set to HTTP,
+     *       - A regional backend service with the service protocol set to HTTP,
      *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *       INTERNAL_MANAGED.
      *       - A global backend service with the
@@ -468,7 +468,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    - A global backend service with the loadBalancingScheme set to
      *    INTERNAL_SELF_MANAGED or EXTERNAL_MANAGED.
      *    - A regional backend
-     *    service with the serviceProtocol set to HTTP, HTTPS, HTTP2 or H2C, and
+     *    service with the service protocol set to HTTP, HTTPS, HTTP2 or H2C, and
      *    loadBalancingScheme set to INTERNAL_MANAGED or EXTERNAL_MANAGED. Not
      *    supported for Serverless NEGs.
      * Not supported when the backend service is referenced by a URL map that is
@@ -662,7 +662,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *           added/removed from the destination service. This field specifies parameters
      *           that control consistent hashing. This field is only applicable whenlocalityLbPolicy is set to MAGLEV orRING_HASH.
      *           This field is applicable to either:
-     *              - A regional backend service with the service_protocol set to HTTP,
+     *              - A regional backend service with the service protocol set to HTTP,
      *              HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *              INTERNAL_MANAGED.
      *              - A global backend service with the
@@ -848,7 +848,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *              HTTP response header field Endpoint-Load-Metrics. The reported
      *              metrics to use for computing the weights are specified via thecustomMetrics field.
      *              This field is applicable to either:
-     *                 - A regional backend service with the service_protocol set to HTTP,
+     *                 - A regional backend service with the service protocol set to HTTP,
      *                 HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *                 INTERNAL_MANAGED.
      *                 - A global backend service with the
@@ -929,7 +929,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *              - A global backend service with the loadBalancingScheme set to
      *              INTERNAL_SELF_MANAGED or EXTERNAL_MANAGED.
      *              - A regional backend
-     *              service with the serviceProtocol set to HTTP, HTTPS, HTTP2 or H2C, and
+     *              service with the service protocol set to HTTP, HTTPS, HTTP2 or H2C, and
      *              loadBalancingScheme set to INTERNAL_MANAGED or EXTERNAL_MANAGED. Not
      *              supported for Serverless NEGs.
      *           Not supported when the backend service is referenced by a URL map that is
@@ -1293,7 +1293,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * added/removed from the destination service. This field specifies parameters
      * that control consistent hashing. This field is only applicable whenlocalityLbPolicy is set to MAGLEV orRING_HASH.
      * This field is applicable to either:
-     *    - A regional backend service with the service_protocol set to HTTP,
+     *    - A regional backend service with the service protocol set to HTTP,
      *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *    INTERNAL_MANAGED.
      *    - A global backend service with the
@@ -1325,7 +1325,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      * added/removed from the destination service. This field specifies parameters
      * that control consistent hashing. This field is only applicable whenlocalityLbPolicy is set to MAGLEV orRING_HASH.
      * This field is applicable to either:
-     *    - A regional backend service with the service_protocol set to HTTP,
+     *    - A regional backend service with the service protocol set to HTTP,
      *    HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *    INTERNAL_MANAGED.
      *    - A global backend service with the
@@ -2234,7 +2234,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
      *    This field is applicable to either:
-     *       - A regional backend service with the service_protocol set to HTTP,
+     *       - A regional backend service with the service protocol set to HTTP,
      *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *       INTERNAL_MANAGED.
      *       - A global backend service with the
@@ -2299,7 +2299,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    HTTP response header field Endpoint-Load-Metrics. The reported
      *    metrics to use for computing the weights are specified via thecustomMetrics field.
      *    This field is applicable to either:
-     *       - A regional backend service with the service_protocol set to HTTP,
+     *       - A regional backend service with the service protocol set to HTTP,
      *       HTTPS, HTTP2 or H2C, and load_balancing_scheme set to
      *       INTERNAL_MANAGED.
      *       - A global backend service with the
@@ -2645,7 +2645,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    - A global backend service with the loadBalancingScheme set to
      *    INTERNAL_SELF_MANAGED or EXTERNAL_MANAGED.
      *    - A regional backend
-     *    service with the serviceProtocol set to HTTP, HTTPS, HTTP2 or H2C, and
+     *    service with the service protocol set to HTTP, HTTPS, HTTP2 or H2C, and
      *    loadBalancingScheme set to INTERNAL_MANAGED or EXTERNAL_MANAGED. Not
      *    supported for Serverless NEGs.
      * Not supported when the backend service is referenced by a URL map that is
@@ -2695,7 +2695,7 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *    - A global backend service with the loadBalancingScheme set to
      *    INTERNAL_SELF_MANAGED or EXTERNAL_MANAGED.
      *    - A regional backend
-     *    service with the serviceProtocol set to HTTP, HTTPS, HTTP2 or H2C, and
+     *    service with the service protocol set to HTTP, HTTPS, HTTP2 or H2C, and
      *    loadBalancingScheme set to INTERNAL_MANAGED or EXTERNAL_MANAGED. Not
      *    supported for Serverless NEGs.
      * Not supported when the backend service is referenced by a URL map that is
