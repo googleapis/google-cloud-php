@@ -50,6 +50,7 @@ use Google\Apps\Chat\V1\DeleteReactionRequest;
 use Google\Apps\Chat\V1\DeleteSectionRequest;
 use Google\Apps\Chat\V1\DeleteSpaceRequest;
 use Google\Apps\Chat\V1\FindDirectMessageRequest;
+use Google\Apps\Chat\V1\FindGroupChatsRequest;
 use Google\Apps\Chat\V1\GetAttachmentRequest;
 use Google\Apps\Chat\V1\GetCustomEmojiRequest;
 use Google\Apps\Chat\V1\GetMembershipRequest;
@@ -120,6 +121,7 @@ use Psr\Log\LoggerInterface;
  * @method PromiseInterface<void> deleteSectionAsync(DeleteSectionRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<void> deleteSpaceAsync(DeleteSpaceRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Space> findDirectMessageAsync(FindDirectMessageRequest $request, array $optionalArgs = [])
+ * @method PromiseInterface<PagedListResponse> findGroupChatsAsync(FindGroupChatsRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Attachment> getAttachmentAsync(GetAttachmentRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<CustomEmoji> getCustomEmojiAsync(GetCustomEmojiRequest $request, array $optionalArgs = [])
  * @method PromiseInterface<Membership> getMembershipAsync(GetMembershipRequest $request, array $optionalArgs = [])
@@ -1295,6 +1297,51 @@ final class ChatServiceClient
     public function findDirectMessage(FindDirectMessageRequest $request, array $callOptions = []): Space
     {
         return $this->startApiCall('FindDirectMessage', $request, $callOptions)->wait();
+    }
+
+    /**
+     * Returns all spaces with `spaceType == GROUP_CHAT`, whose
+     * human memberships contain exactly the calling user, and the users specified
+     * in `FindGroupChatsRequest.users`. Only members that have joined the
+     * conversation are supported. For an example, see [Find group
+     * chats](https://developers.google.com/workspace/chat/find-group-chats).
+     *
+     * If the calling user blocks, or is blocked by, some users, and no spaces
+     * with the entire specified set of users are found, this method returns
+     * spaces that don't include the blocked or blocking users.
+     *
+     * The specified set of users must contain only human (non-app) memberships.
+     * A request that contains non-human users doesn't return any spaces.
+     *
+     * Requires [user
+     * authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)
+     * with one of the following [authorization
+     * scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes):
+     *
+     * - `https://www.googleapis.com/auth/chat.memberships.readonly`
+     * - `https://www.googleapis.com/auth/chat.memberships`
+     *
+     * The async variant is {@see ChatServiceClient::findGroupChatsAsync()} .
+     *
+     * @example samples/V1/ChatServiceClient/find_group_chats.php
+     *
+     * @param FindGroupChatsRequest $request     A request to house fields associated with the call.
+     * @param array                 $callOptions {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return PagedListResponse
+     *
+     * @throws ApiException Thrown if the API call fails.
+     */
+    public function findGroupChats(FindGroupChatsRequest $request, array $callOptions = []): PagedListResponse
+    {
+        return $this->startApiCall('FindGroupChats', $request, $callOptions);
     }
 
     /**

@@ -37,8 +37,12 @@ use Google\Cloud\CloudSecurityCompliance\V1\DeleteCloudControlRequest;
  * by a framework.
  * - You can't restore a deleted cloud control. This action is permanent.
  *
- * @param string $formattedName The name of the cloud control to delete, in the format
- *                              `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`.
+ * @param string $formattedName The name of the cloud control to delete, in one of the following
+ *                              formats:
+ *                              `organizations/{organization}/locations/{location}/CloudControls/{CloudControl}`
+ *                              or
+ *                              `projects/{project}/locations/{location}/CloudControls/{CloudControl}`.
+ *
  *                              The only supported location is `global`. Please see
  *                              {@see ConfigClient::cloudControlName()} for help formatting this field.
  */

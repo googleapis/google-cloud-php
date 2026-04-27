@@ -20,6 +20,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo byte_range = 1;</code>
      */
@@ -28,6 +29,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo codepoint_range = 2;</code>
      */
@@ -44,10 +46,12 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      *           These are relative to the finding's containing element.
      *           Note that when the content is not textual, this references
      *           the UTF-8 encoded textual representation of the content.
+     *           Note: Omitted if content is an image.
      *     @type \Google\Cloud\ModelArmor\V1beta\RangeInfo $codepoint_range
      *           Unicode character offsets delimiting the finding.
      *           These are relative to the finding's containing element.
      *           Provided when the content is text.
+     *           Note: Omitted if content is an image.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,6 +64,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo byte_range = 1;</code>
      * @return \Google\Cloud\ModelArmor\V1beta\RangeInfo|null
@@ -84,6 +89,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * These are relative to the finding's containing element.
      * Note that when the content is not textual, this references
      * the UTF-8 encoded textual representation of the content.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo byte_range = 1;</code>
      * @param \Google\Cloud\ModelArmor\V1beta\RangeInfo $var
@@ -101,6 +107,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo codepoint_range = 2;</code>
      * @return \Google\Cloud\ModelArmor\V1beta\RangeInfo|null
@@ -124,6 +131,7 @@ class SdpFindingLocation extends \Google\Protobuf\Internal\Message
      * Unicode character offsets delimiting the finding.
      * These are relative to the finding's containing element.
      * Provided when the content is text.
+     * Note: Omitted if content is an image.
      *
      * Generated from protobuf field <code>.google.cloud.modelarmor.v1beta.RangeInfo codepoint_range = 2;</code>
      * @param \Google\Cloud\ModelArmor\V1beta\RangeInfo $var

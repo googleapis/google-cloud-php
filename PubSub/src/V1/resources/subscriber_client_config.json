@@ -39,10 +39,10 @@
                     "initial_retry_delay_millis": 100,
                     "retry_delay_multiplier": 4.0,
                     "max_retry_delay_millis": 60000,
-                    "initial_rpc_timeout_millis": 900000,
+                    "initial_rpc_timeout_millis": 1800000,
                     "rpc_timeout_multiplier": 1.0,
-                    "max_rpc_timeout_millis": 900000,
-                    "total_timeout_millis": 900000
+                    "max_rpc_timeout_millis": 1800000,
+                    "total_timeout_millis": 1800000
                 },
                 "retry_policy_5_params": {
                     "initial_retry_delay_millis": 100,
@@ -139,7 +139,7 @@
                     "retry_params_name": "retry_policy_6_params"
                 },
                 "StreamingPull": {
-                    "timeout_millis": 900000
+                    "timeout_millis": 1800000
                 },
                 "UpdateSnapshot": {
                     "timeout_millis": 60000,

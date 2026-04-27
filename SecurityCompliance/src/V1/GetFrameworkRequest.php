@@ -16,8 +16,11 @@ use Google\Protobuf\RepeatedField;
 class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the framework to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * Required. The name of the framework to retrieve, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -32,8 +35,12 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     protected $major_revision_id = 0;
 
     /**
-     * @param string $name Required. The name of the framework to retrieve, in the format
-     *                     `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * @param string $name Required. The name of the framework to retrieve, in one of the following
+     *                     formats:
+     *                     `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     *                     or
+     *                     `projects/{project}/locations/{location}/frameworks/{framework}`.
+     *
      *                     The only supported location is `global`. Please see
      *                     {@see ConfigClient::frameworkName()} for help formatting this field.
      *
@@ -54,8 +61,11 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the framework to retrieve, in the format
-     *           `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     *           Required. The name of the framework to retrieve, in one of the following
+     *           formats:
+     *           `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     *           or
+     *           `projects/{project}/locations/{location}/frameworks/{framework}`.
      *           The only supported location is `global`.
      *     @type int|string $major_revision_id
      *           Optional. The framework major version to retrieve. If not specified, the
@@ -68,8 +78,11 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the framework to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * Required. The name of the framework to retrieve, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -81,8 +94,11 @@ class GetFrameworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the framework to retrieve, in the format
-     * `organizations/{organization}/locations/{location}/frameworks/{framework_id}`
+     * Required. The name of the framework to retrieve, in one of the following
+     * formats:
+     * `organizations/{organization}/locations/{location}/frameworks/{framework}`
+     * or
+     * `projects/{project}/locations/{location}/frameworks/{framework}`.
      * The only supported location is `global`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

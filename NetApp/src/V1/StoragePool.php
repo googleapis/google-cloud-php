@@ -237,6 +237,13 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.netapp.v1.Mode mode = 36 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     protected $mode = null;
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    protected $scale_type = 0;
 
     /**
      * Constructor.
@@ -331,6 +338,9 @@ class StoragePool extends \Google\Protobuf\Internal\Message
      *           the user can perform the ONTAP operations on the storage pool using the
      *           GCNV ONTAP Mode APIs. If not specified during creation, it defaults to
      *           `DEFAULT`.
+     *     @type int $scale_type
+     *           Optional. The scale type of the storage pool. Defaults to
+     *           `SCALE_TYPE_DEFAULT` if not specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -1294,6 +1304,34 @@ class StoragePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\Mode::class);
         $this->mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getScaleType()
+    {
+        return $this->scale_type;
+    }
+
+    /**
+     * Optional. The scale type of the storage pool. Defaults to
+     * `SCALE_TYPE_DEFAULT` if not specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.netapp.v1.ScaleType scale_type = 38 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setScaleType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\NetApp\V1\ScaleType::class);
+        $this->scale_type = $var;
 
         return $this;
     }
